@@ -21,6 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       ec2_ip: ${{ steps.ec2.outputs.public_ip }}
+      ssh_key_created: ${{ steps.ssh.outputs.created }}
 
     steps:
       - name: Checkout code
@@ -41,9 +42,28 @@ jobs:
           done
 
       - name: Ensure SSH key pair exists
+        id: ssh
         run: |
-          aws ec2 describe-key-pairs --key-names $KEY_NAME 2>/dev/null || \
-          aws ec2 create-key-pair --key-name $KEY_NAME --query 'KeyMaterial' --output text > /dev/null
+          if aws ec2 describe-key-pairs --key-names $KEY_NAME 2>/dev/null; then
+            echo "Key pair already exists"
+            echo "created=false" >> $GITHUB_OUTPUT
+          else
+            aws ec2 create-key-pair \
+              --key-name $KEY_NAME \
+              --query 'KeyMaterial' \
+              --output text > /tmp/ssh-key.pem
+            chmod 400 /tmp/ssh-key.pem
+            echo "created=true" >> $GITHUB_OUTPUT
+            echo "::warning::New SSH key created! Download from Artifacts and add as EC2_SSH_KEY GitHub Secret."
+          fi
+
+      - name: Upload SSH key artifact (first run only)
+        if: steps.ssh.outputs.created == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ec2-ssh-key
+          path: /tmp/ssh-key.pem
+          retention-days: 1
 
       - name: Ensure security group exists
         id: sg
@@ -160,22 +180,41 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Copy production files to EC2
-        uses: appleboy/scp-action@v0.1.7
+      - name: Download SSH key artifact (first run)
+        if: needs.infra.outputs.ssh_key_created == 'true'
+        uses: actions/download-artifact@v4
         with:
-          host: ${{ needs.infra.outputs.ec2_ip }}
-          username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "docker-compose.prod.yml,nginx/nginx.conf,.env.example"
-          target: "/home/ec2-user/stock-sentinel"
+          name: ec2-ssh-key
+          path: /tmp
+
+      - name: Resolve SSH key
+        id: key
+        run: |
+          if [ -f /tmp/ssh-key.pem ]; then
+            echo "Using newly created SSH key from artifact"
+            cat /tmp/ssh-key.pem > /tmp/deploy-key.pem
+          elif [ -n "${{ secrets.EC2_SSH_KEY }}" ]; then
+            echo "Using EC2_SSH_KEY from GitHub Secrets"
+            echo "${{ secrets.EC2_SSH_KEY }}" > /tmp/deploy-key.pem
+          else
+            echo "::error::No SSH key available. Add EC2_SSH_KEY secret or re-run to generate one."
+            exit 1
+          fi
+          chmod 400 /tmp/deploy-key.pem
+
+      - name: Copy production files to EC2
+        run: |
+          scp -o StrictHostKeyChecking=no -i /tmp/deploy-key.pem \
+            docker-compose.prod.yml .env.example \
+            ec2-user@${{ needs.infra.outputs.ec2_ip }}:/home/ec2-user/stock-sentinel/
+          scp -o StrictHostKeyChecking=no -i /tmp/deploy-key.pem \
+            nginx/nginx.conf \
+            ec2-user@${{ needs.infra.outputs.ec2_ip }}:/home/ec2-user/stock-sentinel/nginx/
 
       - name: Deploy services
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ needs.infra.outputs.ec2_ip }}
-          username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
+        run: |
+          ssh -o StrictHostKeyChecking=no -i /tmp/deploy-key.pem \
+            ec2-user@${{ needs.infra.outputs.ec2_ip }} << 'DEPLOY'
             cd /home/ec2-user/stock-sentinel
 
             # Use production compose
@@ -197,7 +236,12 @@ jobs:
             docker compose up -d --force-recreate --remove-orphans
             docker image prune -f
 
-            echo "✅ Deployment complete!"
+            echo "Deployment complete!"
+          DEPLOY
+
+      - name: Clean up key
+        if: always()
+        run: rm -f /tmp/deploy-key.pem /tmp/ssh-key.pem
 
       - name: Summary
         run: |
@@ -205,3 +249,9 @@ jobs:
           echo "- **Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
           echo "- **Branch:** \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
           echo "- **App:** http://${{ needs.infra.outputs.ec2_ip }}" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ needs.infra.outputs.ssh_key_created }}" = "true" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### ⚠️ First Deploy - Action Required" >> $GITHUB_STEP_SUMMARY
+            echo "1. Download **ec2-ssh-key** from Artifacts (expires in 24h)" >> $GITHUB_STEP_SUMMARY
+            echo "2. Add its contents as **EC2_SSH_KEY** in GitHub Secrets" >> $GITHUB_STEP_SUMMARY
+          fi
