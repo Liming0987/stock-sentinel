@@ -2,20 +2,128 @@ name: Deploy to AWS
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches:
+      - main
+      - 'release/**'
 
 env:
   AWS_REGION: us-east-1
+  ACCOUNT_ID: "178801185941"
   ECR_REGISTRY: 178801185941.dkr.ecr.us-east-1.amazonaws.com
   BACKEND_REPO: stock-sentinel-backend
   FRONTEND_REPO: stock-sentinel-frontend
+  APP_NAME: stock-sentinel
+  KEY_NAME: stock-sentinel-key
 
 jobs:
-  build-and-push:
+  # ── Ensure AWS infrastructure exists (idempotent) ──
+  infra:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    outputs:
+      ec2_ip: ${{ steps.ec2.outputs.public_ip }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Ensure ECR repositories exist
+        run: |
+          for repo in $BACKEND_REPO $FRONTEND_REPO; do
+            aws ecr describe-repositories --repository-names $repo 2>/dev/null || \
+            aws ecr create-repository --repository-name $repo --image-scanning-configuration scanOnPush=true
+          done
+
+      - name: Ensure SSH key pair exists
+        run: |
+          aws ec2 describe-key-pairs --key-names $KEY_NAME 2>/dev/null || \
+          aws ec2 create-key-pair --key-name $KEY_NAME --query 'KeyMaterial' --output text > /dev/null
+
+      - name: Ensure security group exists
+        id: sg
+        run: |
+          VPC_ID=$(aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[0].VpcId" --output text)
+          SG_ID=$(aws ec2 describe-security-groups --filters "Name=group-name,Values=${APP_NAME}-sg" --query "SecurityGroups[0].GroupId" --output text 2>/dev/null)
+
+          if [ "$SG_ID" = "None" ] || [ -z "$SG_ID" ]; then
+            SG_ID=$(aws ec2 create-security-group \
+              --group-name ${APP_NAME}-sg \
+              --description "Stock Sentinel - HTTP, HTTPS, SSH" \
+              --vpc-id $VPC_ID --query 'GroupId' --output text)
+            aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 22  --cidr 0.0.0.0/0
+            aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 80  --cidr 0.0.0.0/0
+            aws ec2 authorize-security-group-ingress --group-id $SG_ID --protocol tcp --port 443 --cidr 0.0.0.0/0
+          fi
+          echo "sg_id=$SG_ID" >> $GITHUB_OUTPUT
+
+      - name: Ensure IAM role exists
+        run: |
+          cat > /tmp/trust.json << 'EOF'
+          {
+            "Version": "2012-10-17",
+            "Statement": [{
+              "Effect": "Allow",
+              "Principal": { "Service": "ec2.amazonaws.com" },
+              "Action": "sts:AssumeRole"
+            }]
+          }
+          EOF
+          aws iam create-role --role-name StockSentinelEC2Role \
+            --assume-role-policy-document file:///tmp/trust.json 2>/dev/null || true
+          aws iam attach-role-policy --role-name StockSentinelEC2Role \
+            --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly 2>/dev/null || true
+          aws iam create-instance-profile \
+            --instance-profile-name StockSentinelEC2Profile 2>/dev/null || true
+          aws iam add-role-to-instance-profile \
+            --instance-profile-name StockSentinelEC2Profile \
+            --role-name StockSentinelEC2Role 2>/dev/null || true
+
+      - name: Ensure EC2 instance is running
+        id: ec2
+        run: |
+          EXISTING=$(aws ec2 describe-instances \
+            --filters "Name=tag:Name,Values=$APP_NAME" "Name=instance-state-name,Values=running" \
+            --query "Reservations[0].Instances[0].InstanceId" --output text 2>/dev/null)
+
+          if [ "$EXISTING" != "None" ] && [ -n "$EXISTING" ]; then
+            PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $EXISTING \
+              --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
+            echo "EC2 already running: $EXISTING ($PUBLIC_IP)"
+          else
+            sleep 10  # wait for instance profile propagation
+            AMI_ID=$(aws ec2 describe-images --owners amazon \
+              --filters "Name=name,Values=al2023-ami-2023*-x86_64" "Name=state,Values=available" \
+              --query "sort_by(Images, &CreationDate)[-1].ImageId" --output text)
+
+            INSTANCE_ID=$(aws ec2 run-instances \
+              --image-id $AMI_ID --instance-type t3.small \
+              --key-name $KEY_NAME --security-group-ids ${{ steps.sg.outputs.sg_id }} \
+              --iam-instance-profile Name=StockSentinelEC2Profile \
+              --user-data file://deploy/ec2-userdata.sh \
+              --block-device-mappings '[{"DeviceName":"/dev/xvda","Ebs":{"VolumeSize":30,"VolumeType":"gp3"}}]' \
+              --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$APP_NAME}]" \
+              --query 'Instances[0].InstanceId' --output text)
+
+            aws ec2 wait instance-running --instance-ids $INSTANCE_ID
+            sleep 60  # wait for userdata bootstrap
+
+            PUBLIC_IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID \
+              --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
+            echo "Created new EC2: $INSTANCE_ID ($PUBLIC_IP)"
+          fi
+
+          echo "public_ip=$PUBLIC_IP" >> $GITHUB_OUTPUT
+
+  # ── Build and push Docker images to ECR ──
+  build:
+    runs-on: ubuntu-latest
+    needs: infra
 
     steps:
       - name: Checkout code
@@ -29,55 +137,71 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
-        id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build and push backend image
+      - name: Build and push backend
         run: |
-          docker build -t $ECR_REGISTRY/$BACKEND_REPO:latest -t $ECR_REGISTRY/$BACKEND_REPO:${{ github.sha }} ./backend
-          docker push $ECR_REGISTRY/$BACKEND_REPO:latest
-          docker push $ECR_REGISTRY/$BACKEND_REPO:${{ github.sha }}
+          docker build -t $ECR_REGISTRY/$BACKEND_REPO:latest \
+                        -t $ECR_REGISTRY/$BACKEND_REPO:${{ github.sha }} ./backend
+          docker push $ECR_REGISTRY/$BACKEND_REPO --all-tags
 
-      - name: Build and push frontend image
+      - name: Build and push frontend
         run: |
-          docker build -t $ECR_REGISTRY/$FRONTEND_REPO:latest -t $ECR_REGISTRY/$FRONTEND_REPO:${{ github.sha }} ./frontend
-          docker push $ECR_REGISTRY/$FRONTEND_REPO:latest
-          docker push $ECR_REGISTRY/$FRONTEND_REPO:${{ github.sha }}
+          docker build -t $ECR_REGISTRY/$FRONTEND_REPO:latest \
+                        -t $ECR_REGISTRY/$FRONTEND_REPO:${{ github.sha }} ./frontend
+          docker push $ECR_REGISTRY/$FRONTEND_REPO --all-tags
 
+  # ── Deploy to EC2 ──
   deploy:
     runs-on: ubuntu-latest
-    needs: build-and-push
+    needs: [infra, build]
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Copy production files to EC2
+        uses: appleboy/scp-action@v0.1.7
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+          host: ${{ needs.infra.outputs.ec2_ip }}
+          username: ec2-user
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "docker-compose.prod.yml,nginx/nginx.conf,.env.example"
+          target: "/home/ec2-user/stock-sentinel"
 
-      - name: Deploy to EC2 via SSH
+      - name: Deploy services
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{ secrets.EC2_HOST }}
+          host: ${{ needs.infra.outputs.ec2_ip }}
           username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /home/ec2-user/stock-sentinel
 
-            # Login to ECR
-            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 178801185941.dkr.ecr.us-east-1.amazonaws.com
+            # Use production compose
+            cp -f docker-compose.prod.yml docker-compose.yml 2>/dev/null || true
+            mkdir -p nginx
 
-            # Pull latest images
+            # Bootstrap .env on first deploy
+            if [ ! -f .env ]; then
+              cp .env.example .env
+              echo "DB_PASSWORD=$(openssl rand -hex 16)" >> .env
+              echo "JWT_SECRET=$(openssl rand -hex 32)" >> .env
+            fi
+
+            # Login to ECR and deploy
+            aws ecr get-login-password --region us-east-1 | \
+              docker login --username AWS --password-stdin 178801185941.dkr.ecr.us-east-1.amazonaws.com
+
             docker compose pull
-
-            # Restart services with new images
-            docker compose up -d --force-recreate backend worker beat frontend
-
-            # Clean up old images
+            docker compose up -d --force-recreate --remove-orphans
             docker image prune -f
 
-            echo "Deployment complete!"
+            echo "✅ Deployment complete!"
+
+      - name: Summary
+        run: |
+          echo "## Deployed to ${{ needs.infra.outputs.ec2_ip }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch:** \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **App:** http://${{ needs.infra.outputs.ec2_ip }}" >> $GITHUB_STEP_SUMMARY
