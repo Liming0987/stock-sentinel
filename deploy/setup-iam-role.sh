@@ -160,7 +160,8 @@ cat > /tmp/gh-permissions.json << EOF
         "ssm:SendCommand",
         "ssm:GetCommandInvocation",
         "ssm:DescribeInstanceInformation",
-        "ssm:GetParameter"
+        "ssm:GetParameter",
+        "ssm:GetParameters"
       ],
       "Resource": "*"
     },
