@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { api } from "./api";
-import type { TrendingStock, Signal, WatchlistItem } from "./mock-data";
+import type { TrendingStock, Signal } from "./mock-data";
 
 interface TrendingResponse {
   timeframe: string;
