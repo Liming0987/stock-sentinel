@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Clock, CheckCircle2, XCircle, Timer, Signal as SignalIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { formatPrice, timeAgo } from "@/lib/utils";
 import { mockSignals, type Signal } from "@/lib/mock-data";
 
