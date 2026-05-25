@@ -6,6 +6,10 @@ on:
       - main
       - 'release/**'
 
+permissions:
+  id-token: write
+  contents: read
+
 env:
   AWS_REGION: us-east-1
   ACCOUNT_ID: "178801185941"
@@ -27,11 +31,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Configure AWS credentials
+      - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Ensure ECR repositories exist
@@ -82,7 +85,7 @@ jobs:
           fi
           echo "sg_id=$SG_ID" >> $GITHUB_OUTPUT
 
-      - name: Ensure IAM role exists
+      - name: Ensure EC2 IAM role exists
         run: |
           cat > /tmp/trust.json << 'EOF'
           {
@@ -149,11 +152,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Configure AWS credentials
+      - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
@@ -188,11 +190,10 @@ jobs:
           path: /tmp
 
       - name: Resolve SSH key
-        id: key
         run: |
           if [ -f /tmp/ssh-key.pem ]; then
             echo "Using newly created SSH key from artifact"
-            cat /tmp/ssh-key.pem > /tmp/deploy-key.pem
+            cp /tmp/ssh-key.pem /tmp/deploy-key.pem
           elif [ -n "${{ secrets.EC2_SSH_KEY }}" ]; then
             echo "Using EC2_SSH_KEY from GitHub Secrets"
             echo "${{ secrets.EC2_SSH_KEY }}" > /tmp/deploy-key.pem
@@ -217,18 +218,15 @@ jobs:
             ec2-user@${{ needs.infra.outputs.ec2_ip }} << 'DEPLOY'
             cd /home/ec2-user/stock-sentinel
 
-            # Use production compose
             cp -f docker-compose.prod.yml docker-compose.yml 2>/dev/null || true
             mkdir -p nginx
 
-            # Bootstrap .env on first deploy
             if [ ! -f .env ]; then
               cp .env.example .env
               echo "DB_PASSWORD=$(openssl rand -hex 16)" >> .env
               echo "JWT_SECRET=$(openssl rand -hex 32)" >> .env
             fi
 
-            # Login to ECR and deploy
             aws ecr get-login-password --region us-east-1 | \
               docker login --username AWS --password-stdin 178801185941.dkr.ecr.us-east-1.amazonaws.com
 
@@ -251,7 +249,7 @@ jobs:
           echo "- **App:** http://${{ needs.infra.outputs.ec2_ip }}" >> $GITHUB_STEP_SUMMARY
           if [ "${{ needs.infra.outputs.ssh_key_created }}" = "true" ]; then
             echo "" >> $GITHUB_STEP_SUMMARY
-            echo "### ⚠️ First Deploy - Action Required" >> $GITHUB_STEP_SUMMARY
+            echo "### First Deploy - Action Required" >> $GITHUB_STEP_SUMMARY
             echo "1. Download **ec2-ssh-key** from Artifacts (expires in 24h)" >> $GITHUB_STEP_SUMMARY
             echo "2. Add its contents as **EC2_SSH_KEY** in GitHub Secrets" >> $GITHUB_STEP_SUMMARY
           fi
