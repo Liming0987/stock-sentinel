@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SentimentGauge } from "@/components/dashboard/sentiment-gauge";
 import { formatPrice, formatPercent } from "@/lib/utils";
-import { mockWatchlist, type WatchlistItem } from "@/lib/mock-data";
+import { type WatchlistItem } from "@/lib/mock-data";
 
 export default function WatchlistPage() {
-  const [stocks, setStocks] = useState<WatchlistItem[]>(mockWatchlist);
+  const [stocks, setStocks] = useState<WatchlistItem[]>([]);
 
   const handleRemove = (ticker: string) => {
     setStocks(stocks.filter((s) => s.ticker !== ticker));

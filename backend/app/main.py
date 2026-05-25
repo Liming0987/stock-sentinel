@@ -1,18 +1,41 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import text
 
 from app.config import settings
+from app.models.database import engine, Base
+from app.models.stock import Stock
+from app.models.mention import RedditPost, StocktwitsMessage, Mention
+from app.models.signal import Signal, TrendingSnapshot
 from app.routers import trending, sentiment, prices, signals, watchlist, auth
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Create all tables on startup
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+        # Enable TimescaleDB extension if available
+        try:
+            await conn.execute(text("CREATE EXTENSION IF NOT EXISTS timescaledb"))
+        except Exception:
+            pass  # Regular PostgreSQL without TimescaleDB
+    yield
+    await engine.dispose()
+
 
 app = FastAPI(
     title="Stock Sentinel API",
     description="Reddit & Social Sentiment-Driven Stock Monitor",
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", settings.frontend_url],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

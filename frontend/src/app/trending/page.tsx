@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { TrendingTable } from "@/components/dashboard/trending-table";
 import { Button } from "@/components/ui/button";
-import { mockTrendingStocks } from "@/lib/mock-data";
+import { useTrending } from "@/lib/hooks";
 
 const timeframes = ["1h", "6h", "24h", "7d"] as const;
 
 export default function TrendingPage() {
   const [timeframe, setTimeframe] = useState<string>("24h");
+  const { data: trending, loading } = useTrending(timeframe);
 
   return (
     <div className="space-y-6">
@@ -34,7 +35,11 @@ export default function TrendingPage() {
         </div>
       </div>
 
-      <TrendingTable stocks={mockTrendingStocks} />
+      {loading ? (
+        <p className="text-muted-foreground text-center py-8">Loading...</p>
+      ) : (
+        <TrendingTable stocks={trending.stocks} />
+      )}
     </div>
   );
 }

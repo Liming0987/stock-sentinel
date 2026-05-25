@@ -1,40 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { Clock, CheckCircle2, XCircle, Timer, Signal as SignalIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatPrice, timeAgo } from "@/lib/utils";
-import { mockSignals, type Signal } from "@/lib/mock-data";
-
-const pastSignals: Signal[] = [
-  {
-    id: 10, ticker: "AMD", name: "Advanced Micro Devices", signal_type: "BUY",
-    confidence: 0.76, entry_low: 155.0, entry_high: 160.0, stop_loss: 148.0, target: 175.0,
-    reasoning: ["RSI at 27", "Volume 1.8x average"],
-    created_at: new Date(Date.now() - 5 * 86400000).toISOString(),
-    expires_at: new Date(Date.now() - 3 * 86400000).toISOString(),
-    outcome: "hit_target",
-  },
-  {
-    id: 11, ticker: "TSLA", name: "Tesla, Inc.", signal_type: "BUY",
-    confidence: 0.62, entry_low: 330.0, entry_high: 338.0, stop_loss: 318.0, target: 360.0,
-    reasoning: ["Sentiment surge", "MACD crossover"],
-    created_at: new Date(Date.now() - 7 * 86400000).toISOString(),
-    expires_at: new Date(Date.now() - 5 * 86400000).toISOString(),
-    outcome: "hit_stop",
-  },
-  {
-    id: 12, ticker: "MSFT", name: "Microsoft Corporation", signal_type: "HOLD",
-    confidence: 0.58, entry_low: 420.0, entry_high: 428.0, stop_loss: 410.0, target: 445.0,
-    reasoning: ["Moderate sentiment"],
-    created_at: new Date(Date.now() - 10 * 86400000).toISOString(),
-    expires_at: new Date(Date.now() - 8 * 86400000).toISOString(),
-    outcome: "expired",
-  },
-];
+import { type Signal } from "@/lib/mock-data";
+import { useSignals } from "@/lib/hooks";
 
 function OutcomeIcon({ outcome }: { outcome?: string | null }) {
   if (outcome === "hit_target") return <CheckCircle2 className="h-4 w-4 text-bullish" />;
@@ -86,10 +58,13 @@ function SignalRow({ signal, showOutcome }: { signal: Signal; showOutcome: boole
 }
 
 export default function SignalsPage() {
-  const [tab, setTab] = useState<"active" | "history">("active");
+  const { data: signalsData, loading } = useSignals();
 
-  const hitCount = pastSignals.filter((s) => s.outcome === "hit_target").length;
-  const hitRate = pastSignals.length > 0 ? ((hitCount / pastSignals.length) * 100).toFixed(0) : "0";
+  const activeSignals = signalsData.signals;
+
+  if (loading) {
+    return <p className="text-muted-foreground text-center py-8">Loading signals...</p>;
+  }
 
   return (
     <div className="space-y-6">
@@ -108,7 +83,7 @@ export default function SignalsPage() {
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Active</p>
-              <p className="text-2xl font-bold">{mockSignals.length}</p>
+              <p className="text-2xl font-bold">{activeSignals.length}</p>
             </div>
           </CardContent>
         </Card>
@@ -119,7 +94,7 @@ export default function SignalsPage() {
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Hit Rate</p>
-              <p className="text-2xl font-bold">{hitRate}%</p>
+              <p className="text-2xl font-bold">–</p>
             </div>
           </CardContent>
         </Card>
@@ -130,30 +105,19 @@ export default function SignalsPage() {
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Total Past</p>
-              <p className="text-2xl font-bold">{pastSignals.length}</p>
+              <p className="text-2xl font-bold">0</p>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      <div className="flex gap-1 rounded-lg border p-1 w-fit">
-        <Button variant={tab === "active" ? "default" : "ghost"} size="sm" onClick={() => setTab("active")}>
-          Active ({mockSignals.length})
-        </Button>
-        <Button variant={tab === "history" ? "default" : "ghost"} size="sm" onClick={() => setTab("history")}>
-          History ({pastSignals.length})
-        </Button>
-      </div>
-
       <div className="space-y-3">
-        {tab === "active" ? (
-          mockSignals.length === 0 ? (
-            <p className="text-sm text-muted-foreground">No active signals right now.</p>
-          ) : (
-            mockSignals.map((s) => <SignalRow key={s.id} signal={s} showOutcome={false} />)
-          )
+        {activeSignals.length === 0 ? (
+          <p className="text-sm text-muted-foreground py-4">
+            No active signals yet. Signals will be generated once Reddit scraping and analysis are running.
+          </p>
         ) : (
-          pastSignals.map((s) => <SignalRow key={s.id} signal={s} showOutcome={true} />)
+          activeSignals.map((s: Signal) => <SignalRow key={s.id} signal={s} showOutcome={false} />)
         )}
       </div>
     </div>

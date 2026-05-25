@@ -21,61 +21,29 @@ import {
   formatPrice,
   formatPercent,
   formatNumber,
-  sentimentLabel,
-  timeAgo,
 } from "@/lib/utils";
-import {
-  mockTrendingStocks,
-  mockSignals,
-  mockSentimentHistory,
-  mockPriceData,
-} from "@/lib/mock-data";
-
-const mockPosts = [
-  {
-    id: 1, source: "reddit", subreddit: "wallstreetbets",
-    title: "NVDA earnings are going to be absolutely insane",
-    author: "diamond_hands_42", score: 1247, sentiment_score: 0.81,
-    created_at: new Date(Date.now() - 3600000).toISOString(),
-  },
-  {
-    id: 2, source: "reddit", subreddit: "stocks",
-    title: "Technical analysis on NVDA - oversold on RSI",
-    author: "chart_master", score: 342, sentiment_score: 0.56,
-    created_at: new Date(Date.now() - 7200000).toISOString(),
-  },
-  {
-    id: 3, source: "stocktwits", subreddit: null,
-    title: "Loading up on NVDA calls before earnings, this thing is coiled",
-    author: "bullish_trader", score: 89, sentiment_score: 0.72,
-    created_at: new Date(Date.now() - 10800000).toISOString(),
-  },
-  {
-    id: 4, source: "reddit", subreddit: "investing",
-    title: "Is NVDA still a buy at these levels? P/E concerns",
-    author: "value_investor_99", score: 156, sentiment_score: -0.12,
-    created_at: new Date(Date.now() - 14400000).toISOString(),
-  },
-];
+import { useTrendingDetail, usePrices, useSentiment, useSignals } from "@/lib/hooks";
 
 export default function StockDetailPage() {
   const params = useParams();
   const ticker = (params.ticker as string).toUpperCase();
 
-  const stock = mockTrendingStocks.find((s) => s.ticker === ticker) || {
-    ticker,
-    name: ticker,
-    price: 131.28,
-    change_pct: 3.42,
-    mention_count: 1847,
-    mention_velocity: 42.3,
-    sentiment_score: 0.72,
-    trend_score: 0.89,
-    volume_ratio: 2.1,
-    sources: ["reddit", "stocktwits"],
-  };
+  const { data: stock, loading: stockLoading } = useTrendingDetail(ticker);
+  const { data: priceData } = usePrices(ticker);
+  const { data: sentimentData } = useSentiment(ticker);
+  const { data: signalsData } = useSignals();
 
-  const signal = mockSignals.find((s) => s.ticker === ticker);
+  const signal = signalsData.signals.find((s) => s.ticker === ticker);
+  const candles = priceData.candles;
+  const sentimentHistory = sentimentData.history;
+
+  if (stockLoading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <p className="text-muted-foreground">Loading {ticker} data...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -160,7 +128,7 @@ export default function StockDetailPage() {
           <CardContent>
             <div className="h-72">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={mockPriceData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+                <AreaChart data={candles} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
                   <defs>
                     <linearGradient id="priceGradient" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
@@ -187,7 +155,7 @@ export default function StockDetailPage() {
           <CardContent>
             <div className="h-72">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={mockSentimentHistory} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+                <BarChart data={sentimentHistory} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                   <XAxis dataKey="date" tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} tickFormatter={(v) => v.slice(5)} />
                   <YAxis tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} />
@@ -210,25 +178,7 @@ export default function StockDetailPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          {mockPosts.map((post) => (
-            <div key={post.id} className="flex items-start justify-between rounded-lg border p-3 transition-colors hover:bg-accent/50">
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <Badge variant="secondary" className="text-[10px]">{post.source}</Badge>
-                  {post.subreddit && <span className="text-xs text-muted-foreground">r/{post.subreddit}</span>}
-                  <span className="text-xs text-muted-foreground">by u/{post.author}</span>
-                  <span className="text-xs text-muted-foreground">{timeAgo(post.created_at)}</span>
-                </div>
-                <p className="text-sm">{post.title}</p>
-              </div>
-              <div className="ml-4 flex items-center gap-3">
-                <span className="text-xs text-muted-foreground">{post.score} pts</span>
-                <Badge variant={post.sentiment_score >= 0.2 ? "bullish" : post.sentiment_score > -0.2 ? "neutral" : "bearish"}>
-                  {sentimentLabel(post.sentiment_score)}
-                </Badge>
-              </div>
-            </div>
-          ))}
+          <p className="text-sm text-muted-foreground">Posts will appear here once Reddit scraping is active.</p>
         </CardContent>
       </Card>
     </div>
