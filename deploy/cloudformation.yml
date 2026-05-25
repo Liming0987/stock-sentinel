@@ -1,0 +1,186 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Stock Sentinel — EC2 + ECR infrastructure
+
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t3.small
+    AllowedValues: [t3.micro, t3.small, t3.medium]
+  KeyPairName:
+    Type: String
+    Default: stock-sentinel-key
+    Description: EC2 key pair name (optional, for emergency SSH access)
+  LatestAmiId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64
+
+Resources:
+  # ── ECR Repositories ──
+  BackendRepo:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: stock-sentinel-backend
+      ImageScanningConfiguration:
+        ScanOnPush: true
+      LifecyclePolicy:
+        LifecyclePolicyText: |
+          {
+            "rules": [{
+              "rulePriority": 1,
+              "description": "Keep last 10 images",
+              "selection": {
+                "tagStatus": "any",
+                "countType": "imageCountMoreThan",
+                "countNumber": 10
+              },
+              "action": { "type": "expire" }
+            }]
+          }
+
+  FrontendRepo:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: stock-sentinel-frontend
+      ImageScanningConfiguration:
+        ScanOnPush: true
+      LifecyclePolicy:
+        LifecyclePolicyText: |
+          {
+            "rules": [{
+              "rulePriority": 1,
+              "description": "Keep last 10 images",
+              "selection": {
+                "tagStatus": "any",
+                "countType": "imageCountMoreThan",
+                "countNumber": 10
+              },
+              "action": { "type": "expire" }
+            }]
+          }
+
+  # ── Security Group ──
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Stock Sentinel — HTTP, HTTPS
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: stock-sentinel-sg
+
+  # ── IAM Role for EC2 (ECR pull + SSM) ──
+  EC2Role:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: StockSentinelEC2Role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      Policies:
+        - PolicyName: S3DeployAccess
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:ListBucket
+                Resource:
+                  - arn:aws:s3:::stock-sentinel-deploy-us-east-1
+                  - arn:aws:s3:::stock-sentinel-deploy-us-east-1/*
+      Tags:
+        - Key: Name
+          Value: stock-sentinel-ec2-role
+
+  EC2InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      InstanceProfileName: StockSentinelEC2Profile
+      Roles:
+        - !Ref EC2Role
+
+  # ── EC2 Instance ──
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref LatestAmiId
+      InstanceType: !Ref InstanceType
+      IamInstanceProfile: !Ref EC2InstanceProfile
+      SecurityGroupIds:
+        - !GetAtt SecurityGroup.GroupId
+      BlockDeviceMappings:
+        - DeviceName: /dev/xvda
+          Ebs:
+            VolumeSize: 30
+            VolumeType: gp3
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          set -e
+
+          # Install Docker
+          yum update -y
+          yum install -y docker
+          systemctl enable docker
+          systemctl start docker
+          usermod -aG docker ec2-user
+
+          # Install Docker Compose v2
+          mkdir -p /usr/local/lib/docker/cli-plugins
+          curl -SL "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" \
+            -o /usr/local/lib/docker/cli-plugins/docker-compose
+          chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+          ln -sf /usr/local/lib/docker/cli-plugins/docker-compose /usr/local/bin/docker-compose
+
+          # Create app directory
+          mkdir -p /home/ec2-user/stock-sentinel/nginx
+          chown -R ec2-user:ec2-user /home/ec2-user/stock-sentinel
+
+          # Signal CloudFormation that setup is complete
+          /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
+      Tags:
+        - Key: Name
+          Value: stock-sentinel
+    CreationPolicy:
+      ResourceSignal:
+        Timeout: PT10M
+
+Outputs:
+  EC2PublicIp:
+    Description: Public IP of the EC2 instance
+    Value: !GetAtt EC2Instance.PublicIp
+    Export:
+      Name: StockSentinelEC2Ip
+
+  EC2InstanceId:
+    Description: EC2 Instance ID (used by SSM)
+    Value: !Ref EC2Instance
+    Export:
+      Name: StockSentinelEC2InstanceId
+
+  BackendRepoUri:
+    Description: Backend ECR repository URI
+    Value: !GetAtt BackendRepo.RepositoryUri
+
+  FrontendRepoUri:
+    Description: Frontend ECR repository URI
+    Value: !GetAtt FrontendRepo.RepositoryUri
+
+  SecurityGroupId:
+    Description: Security group ID
+    Value: !GetAtt SecurityGroup.GroupId

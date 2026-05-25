@@ -72,11 +72,29 @@ cat > /tmp/gh-permissions.json << EOF
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "CloudFormation",
+      "Effect": "Allow",
+      "Action": [
+        "cloudformation:CreateStack",
+        "cloudformation:UpdateStack",
+        "cloudformation:DeleteStack",
+        "cloudformation:DescribeStacks",
+        "cloudformation:DescribeStackEvents",
+        "cloudformation:GetTemplate",
+        "cloudformation:CreateChangeSet",
+        "cloudformation:DescribeChangeSet",
+        "cloudformation:ExecuteChangeSet",
+        "cloudformation:DeleteChangeSet"
+      ],
+      "Resource": "arn:aws:cloudformation:us-east-1:${ACCOUNT_ID}:stack/stock-sentinel/*"
+    },
+    {
       "Sid": "ECR",
       "Effect": "Allow",
       "Action": [
         "ecr:GetAuthorizationToken",
         "ecr:CreateRepository",
+        "ecr:DeleteRepository",
         "ecr:DescribeRepositories",
         "ecr:BatchCheckLayerAvailability",
         "ecr:GetDownloadUrlForLayer",
@@ -85,7 +103,9 @@ cat > /tmp/gh-permissions.json << EOF
         "ecr:InitiateLayerUpload",
         "ecr:UploadLayerPart",
         "ecr:CompleteLayerUpload",
-        "ecr:PutImageScanningConfiguration"
+        "ecr:PutImageScanningConfiguration",
+        "ecr:PutLifecyclePolicy",
+        "ecr:SetRepositoryPolicy"
       ],
       "Resource": "*"
     },
@@ -100,10 +120,10 @@ cat > /tmp/gh-permissions.json << EOF
         "ec2:DescribeVpcs",
         "ec2:DescribeSubnets",
         "ec2:DescribeSecurityGroups",
-        "ec2:DescribeKeyPairs",
-        "ec2:CreateKeyPair",
         "ec2:CreateSecurityGroup",
+        "ec2:DeleteSecurityGroup",
         "ec2:AuthorizeSecurityGroupIngress",
+        "ec2:RevokeSecurityGroupIngress",
         "ec2:CreateTags"
       ],
       "Resource": "*"
@@ -113,16 +133,49 @@ cat > /tmp/gh-permissions.json << EOF
       "Effect": "Allow",
       "Action": [
         "iam:CreateRole",
+        "iam:DeleteRole",
         "iam:GetRole",
+        "iam:PutRolePolicy",
+        "iam:DeleteRolePolicy",
+        "iam:GetRolePolicy",
         "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy",
         "iam:CreateInstanceProfile",
+        "iam:DeleteInstanceProfile",
         "iam:GetInstanceProfile",
         "iam:AddRoleToInstanceProfile",
-        "iam:PassRole"
+        "iam:RemoveRoleFromInstanceProfile",
+        "iam:PassRole",
+        "iam:TagRole"
       ],
       "Resource": [
         "arn:aws:iam::${ACCOUNT_ID}:role/${EC2_ROLE_NAME}",
         "arn:aws:iam::${ACCOUNT_ID}:instance-profile/StockSentinelEC2Profile"
+      ]
+    },
+    {
+      "Sid": "SSM",
+      "Effect": "Allow",
+      "Action": [
+        "ssm:SendCommand",
+        "ssm:GetCommandInvocation",
+        "ssm:DescribeInstanceInformation",
+        "ssm:GetParameter"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "S3Deploy",
+      "Effect": "Allow",
+      "Action": [
+        "s3:CreateBucket",
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::stock-sentinel-deploy-us-east-1",
+        "arn:aws:s3:::stock-sentinel-deploy-us-east-1/*"
       ]
     }
   ]
