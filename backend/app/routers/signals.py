@@ -80,3 +80,15 @@ async def get_signal_history(
     hit_rate = round(hits / total, 2) if total > 0 else 0.0
 
     return {"signals": signals, "stats": {"total": total, "hit_rate": hit_rate}}
+
+
+@router.post("/generate")
+async def trigger_signal_generation():
+    """Manually trigger signal generation (runs synchronously)."""
+    import asyncio
+    from app.services.signal_service import SignalService
+
+    service = SignalService()
+    loop = asyncio.get_event_loop()
+    results = await loop.run_in_executor(None, service.generate)
+    return {"signals_generated": len(results), "signals": results}

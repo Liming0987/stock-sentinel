@@ -47,11 +47,11 @@ export default function StockDetailPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold">{stock.ticker}</h1>
-            <span className="text-lg text-muted-foreground">{stock.name}</span>
+            <h1 className="text-2xl font-bold sm:text-3xl">{stock.ticker}</h1>
+            <span className="text-sm text-muted-foreground sm:text-lg">{stock.name}</span>
           </div>
           <div className="mt-1 flex items-center gap-4">
             <span className="text-2xl font-bold font-mono">{formatPrice(stock.price)}</span>
@@ -63,27 +63,27 @@ export default function StockDetailPage() {
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm">
-            <Star className="mr-2 h-4 w-4" />
-            Watchlist
+            <Star className="mr-1 h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Watchlist</span>
           </Button>
           <Button variant="outline" size="sm">
-            <ExternalLink className="mr-2 h-4 w-4" />
-            Yahoo Finance
+            <ExternalLink className="mr-1 h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Yahoo Finance</span>
           </Button>
         </div>
       </div>
 
       {signal && (
         <Card className="border-bullish/30 bg-bullish/5">
-          <CardContent className="flex items-center justify-between p-4">
-            <div className="flex items-center gap-3">
+          <CardContent className="p-4 space-y-2">
+            <div className="flex flex-wrap items-center gap-2">
               <Badge variant="bullish">{signal.signal_type}</Badge>
               <span className="font-semibold">{(signal.confidence * 100).toFixed(0)}% confidence</span>
               <span className="text-sm text-muted-foreground">
                 Entry: {formatPrice(signal.entry_low)} – {formatPrice(signal.entry_high)}
               </span>
             </div>
-            <div className="flex gap-6 text-sm">
+            <div className="flex gap-4 text-sm">
               <span>Stop: <span className="font-mono text-bearish">{formatPrice(signal.stop_loss)}</span></span>
               <span>Target: <span className="font-mono text-bullish">{formatPrice(signal.target)}</span></span>
             </div>
@@ -91,7 +91,7 @@ export default function StockDetailPage() {
         </Card>
       )}
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
         <Card>
           <CardContent className="p-4 text-center">
             <p className="text-sm text-muted-foreground">Mentions (24h)</p>
