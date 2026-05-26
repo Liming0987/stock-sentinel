@@ -178,6 +178,21 @@ cat > /tmp/gh-permissions.json << EOF
         "arn:aws:s3:::stock-sentinel-deploy-us-east-1",
         "arn:aws:s3:::stock-sentinel-deploy-us-east-1/*"
       ]
+    },
+    {
+      "Sid": "SecretsManager",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:CreateSecret",
+        "secretsmanager:UpdateSecret",
+        "secretsmanager:DeleteSecret",
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:PutSecretValue",
+        "secretsmanager:TagResource",
+        "secretsmanager:UntagResource"
+      ],
+      "Resource": "arn:aws:secretsmanager:us-east-1:${ACCOUNT_ID}:secret:stock-sentinel/*"
     }
   ]
 }
