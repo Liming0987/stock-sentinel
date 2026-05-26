@@ -186,11 +186,31 @@ class SignalService:
                     if not indicators:
                         continue
 
-                    # Use placeholder sentiment (no scraping data yet)
+                    # Fetch sentiment data from mentions table
+                    from app.models.mention import Mention
+                    from datetime import timedelta
+                    cutoff = now - timedelta(hours=24)
+                    recent_mentions = session.execute(
+                        select(Mention).where(
+                            and_(
+                                Mention.stock_id == stock_row.id,
+                                Mention.created_at >= cutoff,
+                            )
+                        )
+                    ).scalars().all()
+
+                    if recent_mentions:
+                        scores = [float(m.sentiment_score) for m in recent_mentions if m.sentiment_score is not None]
+                        avg_sent = sum(scores) / len(scores) if scores else 0.0
+                        velocity_pct = min(100, len(recent_mentions) * 5)  # crude heuristic
+                    else:
+                        avg_sent = 0.3
+                        velocity_pct = 50
+
                     sentiment_data = {
-                        "avg_sentiment": 0.3,
-                        "velocity_percentile": 50,
-                        "news_sentiment": 0.3,
+                        "avg_sentiment": avg_sent,
+                        "velocity_percentile": velocity_pct,
+                        "news_sentiment": avg_sent,
                     }
 
                     result = self.evaluate_stock(stock_row.ticker, sentiment_data, indicators)

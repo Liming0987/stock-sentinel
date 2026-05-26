@@ -105,3 +105,14 @@ async def get_sentiment_posts(
         })
 
     return {"ticker": ticker.upper(), "posts": posts}
+
+
+@router.post("/scrape")
+async def trigger_scrape():
+    """Manually trigger Reddit scrape + sentiment analysis (runs synchronously)."""
+    import asyncio
+    from app.workers.tasks import scrape_reddit
+
+    loop = asyncio.get_event_loop()
+    result = await loop.run_in_executor(None, scrape_reddit)
+    return result

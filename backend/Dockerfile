@@ -16,6 +16,11 @@ RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/wh
 # Download spaCy model
 RUN python -m spacy download en_core_web_sm
 
+# Pre-download FinBERT model to avoid cold-start latency at runtime
+RUN python -c "from transformers import AutoModelForSequenceClassification, AutoTokenizer; \
+    AutoTokenizer.from_pretrained('ProsusAI/finbert'); \
+    AutoModelForSequenceClassification.from_pretrained('ProsusAI/finbert')"
+
 COPY . .
 
 EXPOSE 8000
