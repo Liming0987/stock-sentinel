@@ -58,6 +58,19 @@ Resources:
             }]
           }
 
+  # ── Secrets Manager: Alpaca API credentials ──
+  # NOTE: Populate this manually in the AWS Console after stack creation.
+  # Use SecretString = {"api_key":"...","api_secret":"..."}
+  AlpacaSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: stock-sentinel/alpaca
+      Description: Alpaca API credentials for paper/live trading
+      SecretString: '{"api_key":"PLACEHOLDER","api_secret":"PLACEHOLDER","paper":true}'
+      Tags:
+        - Key: Name
+          Value: stock-sentinel-alpaca-secret
+
   # ── Security Group ──
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -103,6 +116,15 @@ Resources:
                 Resource:
                   - arn:aws:s3:::stock-sentinel-deploy-us-east-1
                   - arn:aws:s3:::stock-sentinel-deploy-us-east-1/*
+        - PolicyName: SecretsManagerRead
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - secretsmanager:GetSecretValue
+                  - secretsmanager:DescribeSecret
+                Resource: !Ref AlpacaSecret
       Tags:
         - Key: Name
           Value: stock-sentinel-ec2-role
@@ -184,3 +206,9 @@ Outputs:
   SecurityGroupId:
     Description: Security group ID
     Value: !GetAtt SecurityGroup.GroupId
+
+  AlpacaSecretArn:
+    Description: ARN of the Alpaca credentials secret (populate via AWS Console)
+    Value: !Ref AlpacaSecret
+    Export:
+      Name: StockSentinelAlpacaSecretArn

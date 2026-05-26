@@ -24,6 +24,13 @@ class Settings(BaseSettings):
     # Frontend
     frontend_url: str = "http://localhost:3000"
 
+    # Alpaca trading (loaded from AWS Secrets Manager in prod, env vars locally)
+    aws_region: str = "us-east-1"
+    alpaca_secret_name: str = "stock-sentinel/alpaca"
+    alpaca_api_key: str = ""
+    alpaca_api_secret: str = ""
+    alpaca_paper: bool = True  # paper trading by default
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

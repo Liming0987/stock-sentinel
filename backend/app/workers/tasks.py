@@ -143,3 +143,12 @@ def cleanup_expired_signals():
     service = SignalService()
     cleaned = service.cleanup_expired()
     return {"signals_expired": cleaned}
+
+
+@celery_app.task
+def run_strategies(submit_to_alpaca: bool = False):
+    """Evaluate every registered strategy and open/close paper trades."""
+    from app.services.strategy_runner import StrategyRunner
+
+    runner = StrategyRunner(submit_to_alpaca=submit_to_alpaca)
+    return runner.run()

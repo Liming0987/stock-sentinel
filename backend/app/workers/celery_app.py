@@ -7,6 +7,7 @@ celery_app = Celery(
     "stock_sentinel",
     broker=settings.redis_url,
     backend=settings.redis_url,
+    include=["app.workers.tasks"],
 )
 
 celery_app.conf.update(
@@ -47,5 +48,10 @@ celery_app.conf.beat_schedule = {
     "cleanup-expired": {
         "task": "app.workers.tasks.cleanup_expired_signals",
         "schedule": crontab(hour=0, minute=0),
+    },
+    # Run trading strategies every 30 minutes
+    "run-strategies": {
+        "task": "app.workers.tasks.run_strategies",
+        "schedule": 1800.0,  # 30 minutes
     },
 }
