@@ -134,9 +134,59 @@ class PriceService:
             return {}
 
     def update_all(self) -> int:
-        """Update prices for all tracked stocks. Returns count updated."""
-        # TODO: Query DB for tracked stocks, update each
-        return 0
+        """Fetch latest prices for every Stock row and update last_price + updated_at.
+
+        Returns the number of stocks successfully updated.
+        Bootstraps a default universe if the table is empty.
+        """
+        from decimal import Decimal
+        from sqlalchemy import create_engine, select
+        from sqlalchemy.orm import Session
+
+        from app.config import settings
+        from app.models.stock import Stock
+
+        BOOTSTRAP_TICKERS = ["NVDA", "TSLA", "AAPL", "MSFT", "AMD", "META", "GOOG", "AMZN", "PLTR", "SOFI"]
+
+        sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+        engine = create_engine(sync_url)
+        updated = 0
+
+        with Session(engine) as session:
+            stocks = session.execute(select(Stock)).scalars().all()
+
+            # Bootstrap if empty
+            if not stocks:
+                for ticker in BOOTSTRAP_TICKERS:
+                    info = self.get_stock_info(ticker)
+                    if not info.get("name"):
+                        continue
+                    session.add(Stock(
+                        ticker=ticker,
+                        name=info.get("name", ticker),
+                        sector=info.get("sector"),
+                        market_cap=info.get("market_cap"),
+                        avg_volume=info.get("avg_volume"),
+                    ))
+                session.commit()
+                stocks = session.execute(select(Stock)).scalars().all()
+
+            for stock in stocks:
+                try:
+                    df = self.get_price_data(stock.ticker, period="5d", interval="1d")
+                    if df is None or df.empty:
+                        continue
+                    last_price = float(df["Close"].iloc[-1])
+                    stock.last_price = Decimal(str(round(last_price, 2)))
+                    session.add(stock)
+                    updated += 1
+                except Exception as e:
+                    print(f"update_all: error for {stock.ticker}: {e}")
+
+            session.commit()
+
+        engine.dispose()
+        return updated
 
     def is_oversold(self, indicators: Dict) -> bool:
         """Check if a stock is technically oversold."""

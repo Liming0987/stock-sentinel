@@ -3,7 +3,7 @@ import praw
 from typing import List, Dict
 from datetime import datetime, timezone
 
-from app.config import settings
+from app.services.secrets import get_reddit_credentials
 
 # Subreddits to monitor
 TARGET_SUBREDDITS = [
@@ -31,10 +31,11 @@ STANDALONE_TICKER = re.compile(r'\b([A-Z]{2,5})\b')
 
 class RedditScraper:
     def __init__(self):
+        creds = get_reddit_credentials()
         self.reddit = praw.Reddit(
-            client_id=settings.reddit_client_id,
-            client_secret=settings.reddit_client_secret,
-            user_agent=settings.reddit_user_agent,
+            client_id=creds["client_id"],
+            client_secret=creds["client_secret"],
+            user_agent=creds.get("user_agent", "stock-sentinel/1.0"),
         )
 
     def extract_tickers(self, text: str) -> List[str]:

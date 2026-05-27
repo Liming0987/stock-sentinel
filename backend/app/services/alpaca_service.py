@@ -1,62 +1,26 @@
-"""Alpaca trading service.
-
-Loads credentials from AWS Secrets Manager (production) or environment variables (local dev).
-Defaults to paper trading. Switch to live by setting `paper=false` in the secret JSON.
-"""
-import json
+"""Alpaca trading service. Credentials loaded exclusively from AWS Secrets Manager."""
 import logging
-from functools import lru_cache
 from typing import Optional, Dict
 
-from app.config import settings
+from app.services.secrets import get_alpaca_credentials, SecretNotConfiguredError
 
 logger = logging.getLogger(__name__)
-
-
-@lru_cache(maxsize=1)
-def get_alpaca_credentials() -> Dict[str, any]:
-    """
-    Fetch Alpaca creds in this priority order:
-      1. AWS Secrets Manager (if running on EC2 with IAM role)
-      2. Environment variables (ALPACA_API_KEY / ALPACA_API_SECRET)
-    Cached for the process lifetime.
-    """
-    # Try AWS Secrets Manager first
-    try:
-        import boto3
-        client = boto3.client("secretsmanager", region_name=settings.aws_region)
-        response = client.get_secret_value(SecretId=settings.alpaca_secret_name)
-        secret = json.loads(response["SecretString"])
-        if secret.get("api_key") and secret["api_key"] != "PLACEHOLDER":
-            logger.info("Loaded Alpaca credentials from AWS Secrets Manager")
-            return {
-                "api_key": secret["api_key"],
-                "api_secret": secret["api_secret"],
-                "paper": secret.get("paper", True),
-            }
-    except Exception as e:
-        logger.info(f"Could not load from Secrets Manager ({e}); falling back to env")
-
-    # Fallback to env vars
-    if settings.alpaca_api_key:
-        logger.info("Loaded Alpaca credentials from environment variables")
-        return {
-            "api_key": settings.alpaca_api_key,
-            "api_secret": settings.alpaca_api_secret,
-            "paper": settings.alpaca_paper,
-        }
-
-    return {"api_key": None, "api_secret": None, "paper": True}
 
 
 class AlpacaService:
     """Wrapper around alpaca-py for paper/live trading."""
 
     def __init__(self):
-        creds = get_alpaca_credentials()
-        self.api_key = creds["api_key"]
-        self.api_secret = creds["api_secret"]
-        self.paper = creds["paper"]
+        try:
+            creds = get_alpaca_credentials()
+            self.api_key = creds["api_key"]
+            self.api_secret = creds["api_secret"]
+            self.paper = creds.get("paper", True)
+        except SecretNotConfiguredError as e:
+            logger.warning(f"Alpaca not configured: {e}")
+            self.api_key = None
+            self.api_secret = None
+            self.paper = True
         self._trading_client = None
         self._data_client = None
 

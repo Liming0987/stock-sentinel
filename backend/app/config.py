@@ -6,17 +6,7 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://sentinel:sentinel_dev_pass@localhost:5432/stock_sentinel"
     redis_url: str = "redis://localhost:6379/0"
 
-    # Reddit
-    reddit_client_id: str = ""
-    reddit_client_secret: str = ""
-    reddit_user_agent: str = "stock-sentinel/1.0"
-
-    # Market Data
-    finnhub_api_key: str = ""
-    polygon_api_key: str = ""
-    alpha_vantage_api_key: str = ""
-
-    # Auth
+    # Auth (JWT secret can stay in env since it's app-internal, not third-party)
     jwt_secret: str = "change-this-to-a-random-secret"
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 1440
@@ -24,12 +14,10 @@ class Settings(BaseSettings):
     # Frontend
     frontend_url: str = "http://localhost:3000"
 
-    # Alpaca trading (loaded from AWS Secrets Manager in prod, env vars locally)
+    # AWS — used by Secrets Manager client
+    # All third-party API credentials live in a single secret:
+    # stock-sentinel/credentials. See app/services/secrets.py.
     aws_region: str = "us-east-1"
-    alpaca_secret_name: str = "stock-sentinel/alpaca"
-    alpaca_api_key: str = ""
-    alpaca_api_secret: str = ""
-    alpaca_paper: bool = True  # paper trading by default
 
     class Config:
         env_file = ".env"
