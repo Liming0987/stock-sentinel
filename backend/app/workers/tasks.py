@@ -97,12 +97,93 @@ def scrape_reddit():
 
 @celery_app.task
 def scrape_stocktwits():
-    """Scrape StockTwits for trending stock messages."""
+    """Scrape StockTwits trending messages, score sentiment, and persist to DB."""
+    from decimal import Decimal
+    from datetime import datetime, timezone
+    from sqlalchemy import create_engine, select
+    from sqlalchemy.orm import Session
+
+    from app.config import settings
     from app.scrapers.stocktwits_scraper import StockTwitsScraper
+    from app.services.sentiment_service import SentimentService
+    from app.services.price_service import PriceService
+    from app.models.stock import Stock
+    from app.models.mention import StocktwitsMessage, Mention
 
     scraper = StockTwitsScraper()
+    sentiment_svc = SentimentService(use_finbert=False)  # VADER for speed
+    price_service = PriceService()
+
     results = scraper.scrape_trending()
-    return {"messages_scraped": len(results)}
+    sync_db_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    engine = create_engine(sync_db_url)
+
+    msgs_saved = 0
+    mentions_saved = 0
+
+    with Session(engine) as session:
+        for item in results:
+            existing = session.execute(
+                select(StocktwitsMessage).where(StocktwitsMessage.external_id == item["external_id"])
+            ).scalar_one_or_none()
+            if existing:
+                continue
+
+            created_at = datetime.now(timezone.utc)
+            if item.get("created_at"):
+                try:
+                    created_at = datetime.fromisoformat(item["created_at"].replace("Z", "+00:00"))
+                except Exception:
+                    pass
+
+            msg = StocktwitsMessage(
+                external_id=item["external_id"],
+                body=item["body"],
+                author=item["author"],
+                sentiment_tag=item["sentiment_tag"],
+                likes=item["likes"],
+                created_at=created_at,
+            )
+            session.add(msg)
+            session.flush()
+            msgs_saved += 1
+
+            ticker = item["ticker"].upper()
+            stock = session.execute(
+                select(Stock).where(Stock.ticker == ticker)
+            ).scalar_one_or_none()
+
+            if not stock:
+                info = price_service.get_stock_info(ticker)
+                if not info.get("name"):
+                    continue
+                stock = Stock(
+                    ticker=ticker,
+                    name=info.get("name", ticker),
+                    sector=info.get("sector"),
+                    market_cap=info.get("market_cap"),
+                    avg_volume=info.get("avg_volume"),
+                )
+                session.add(stock)
+                session.flush()
+
+            sent = sentiment_svc.analyze(item["body"] or "", method="auto")
+            mention = Mention(
+                stock_id=stock.id,
+                source_type="stocktwits",
+                source_id=msg.id,
+                sentiment_score=Decimal(str(sent["score"])),
+                confidence=Decimal(str(sent["confidence"])),
+                model_used=sent["model_used"],
+                created_at=created_at,
+            )
+            session.add(mention)
+            mentions_saved += 1
+
+        session.commit()
+
+    engine.dispose()
+    return {"messages_scraped": len(results), "messages_saved": msgs_saved, "mentions_saved": mentions_saved}
 
 
 @celery_app.task

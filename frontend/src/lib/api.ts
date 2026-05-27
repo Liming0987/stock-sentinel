@@ -15,6 +15,7 @@ export const api = {
     detail: (ticker: string) => fetchApi(`/api/trending/${ticker}`),
   },
   sentiment: {
+    market: (period = "7d") => fetchApi(`/api/sentiment/market?period=${period}`),
     get: (ticker: string, period = "7d") =>
       fetchApi(`/api/sentiment/${ticker}?period=${period}`),
     posts: (ticker: string, limit = 20) =>

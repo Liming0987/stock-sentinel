@@ -2,19 +2,45 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Star, ArrowUpRight, ArrowDownRight, Trash2, Bell } from "lucide-react";
+import { Star, ArrowUpRight, ArrowDownRight, Trash2, Bell, Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SentimentGauge } from "@/components/dashboard/sentiment-gauge";
 import { formatPrice, formatPercent } from "@/lib/utils";
-import { type WatchlistItem } from "@/lib/mock-data";
+import { useWatchlist } from "@/lib/hooks";
+import { api } from "@/lib/api";
 
 export default function WatchlistPage() {
-  const [stocks, setStocks] = useState<WatchlistItem[]>([]);
+  const { data, refetch } = useWatchlist();
+  const stocks = data.stocks;
 
-  const handleRemove = (ticker: string) => {
-    setStocks(stocks.filter((s) => s.ticker !== ticker));
+  const [adding, setAdding] = useState(false);
+  const [tickerInput, setTickerInput] = useState("");
+  const [addError, setAddError] = useState<string | null>(null);
+
+  const handleAdd = async () => {
+    const ticker = tickerInput.trim().toUpperCase();
+    if (!ticker) return;
+    setAddError(null);
+    try {
+      const res = await api.watchlist.add(ticker);
+      if (!res.ok) {
+        const body = await res.json();
+        setAddError(body.detail || "Failed to add ticker");
+        return;
+      }
+      setTickerInput("");
+      setAdding(false);
+      refetch();
+    } catch {
+      setAddError("Network error — is the backend running?");
+    }
+  };
+
+  const handleRemove = async (ticker: string) => {
+    await api.watchlist.remove(ticker);
+    refetch();
   };
 
   return (
@@ -26,18 +52,40 @@ export default function WatchlistPage() {
             Track your favorite stocks with sentiment alerts
           </p>
         </div>
-        <Button size="sm">
+        <Button size="sm" onClick={() => { setAdding(true); setAddError(null); }}>
           <Star className="mr-2 h-4 w-4" />
           Add Ticker
         </Button>
       </div>
+
+      {adding && (
+        <Card>
+          <CardContent className="flex items-center gap-3 pt-4">
+            <input
+              autoFocus
+              className="flex-1 rounded-md border bg-background px-3 py-2 text-sm uppercase placeholder:normal-case placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              placeholder="e.g. NVDA"
+              value={tickerInput}
+              onChange={(e) => setTickerInput(e.target.value.toUpperCase())}
+              onKeyDown={(e) => { if (e.key === "Enter") handleAdd(); if (e.key === "Escape") setAdding(false); }}
+            />
+            <Button size="sm" onClick={handleAdd}>
+              <Plus className="mr-1 h-4 w-4" /> Add
+            </Button>
+            <Button size="sm" variant="ghost" onClick={() => setAdding(false)}>
+              Cancel
+            </Button>
+            {addError && <p className="text-xs text-destructive">{addError}</p>}
+          </CardContent>
+        </Card>
+      )}
 
       {stocks.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
             <Star className="mb-4 h-12 w-12 text-muted-foreground/50" />
             <p className="text-lg font-medium">Your watchlist is empty</p>
-            <p className="text-sm text-muted-foreground">Search for a ticker to add it here</p>
+            <p className="text-sm text-muted-foreground">Click &ldquo;Add Ticker&rdquo; to start tracking stocks</p>
           </CardContent>
         </Card>
       ) : (

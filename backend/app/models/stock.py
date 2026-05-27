@@ -12,4 +12,5 @@ class Stock(Base):
     market_cap = Column(BigInteger)
     avg_volume = Column(BigInteger)
     last_price = Column(Numeric(10, 2))
+    prev_close = Column(Numeric(10, 2))  # previous trading day's close, used for change_pct
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())

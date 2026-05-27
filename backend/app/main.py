@@ -10,6 +10,7 @@ from app.models.stock import Stock
 from app.models.mention import RedditPost, StocktwitsMessage, Mention
 from app.models.signal import Signal, TrendingSnapshot
 from app.models.trade import Strategy, Trade
+from app.models.watchlist import Watchlist
 from app.routers import trending, sentiment, prices, signals, watchlist, auth, strategies as strategies_router
 
 

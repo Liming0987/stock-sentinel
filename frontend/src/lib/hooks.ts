@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { api } from "./api";
-import type { TrendingStock, Signal } from "./mock-data";
+import type { TrendingStock, Signal, WatchlistItem } from "./mock-data";
 
 interface TrendingResponse {
   timeframe: string;
@@ -78,6 +78,28 @@ export function usePrices(ticker: string, period = "1M", interval = "1d") {
     [ticker, period, interval]
   );
   return useApi(fetcher, { ticker, name: "", period, interval, candles: [], indicators: {} } as PriceResponse);
+}
+
+interface MarketSentimentResponse {
+  period: string;
+  history: { date: string; sentiment: number; mentions: number }[];
+}
+
+interface WatchlistResponse {
+  stocks: WatchlistItem[];
+}
+
+export function useMarketSentiment(period = "7d") {
+  const fetcher = useCallback(
+    () => api.sentiment.market(period) as Promise<MarketSentimentResponse>,
+    [period]
+  );
+  return useApi(fetcher, { period, history: [] } as MarketSentimentResponse);
+}
+
+export function useWatchlist() {
+  const fetcher = useCallback(() => api.watchlist.list() as Promise<WatchlistResponse>, []);
+  return useApi(fetcher, { stocks: [] } as WatchlistResponse);
 }
 
 export function useTrendingDetail(ticker: string) {

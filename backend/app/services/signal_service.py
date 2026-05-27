@@ -204,8 +204,8 @@ class SignalService:
                         avg_sent = sum(scores) / len(scores) if scores else 0.0
                         velocity_pct = min(100, len(recent_mentions) * 5)  # crude heuristic
                     else:
-                        avg_sent = 0.3
-                        velocity_pct = 50
+                        avg_sent = 0.0
+                        velocity_pct = 0
 
                     sentiment_data = {
                         "avg_sentiment": avg_sent,

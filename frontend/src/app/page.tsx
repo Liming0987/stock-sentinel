@@ -4,12 +4,12 @@ import { StatsCards } from "@/components/dashboard/stats-cards";
 import { TrendingTable } from "@/components/dashboard/trending-table";
 import { SignalsCard } from "@/components/dashboard/signals-card";
 import { SentimentChart } from "@/components/dashboard/sentiment-chart";
-import { useTrending, useSignals } from "@/lib/hooks";
-import { mockSentimentHistory } from "@/lib/mock-data";
+import { useTrending, useSignals, useMarketSentiment } from "@/lib/hooks";
 
 export default function DashboardPage() {
   const { data: trending, loading: trendingLoading } = useTrending();
   const { data: signalsData } = useSignals();
+  const { data: marketSentiment } = useMarketSentiment();
 
   const stocks = trending.stocks;
   const signals = signalsData.signals;
@@ -41,7 +41,7 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <div className="xl:col-span-2">
-          <SentimentChart data={mockSentimentHistory} />
+          <SentimentChart data={marketSentiment.history} />
         </div>
         <div>
           <SignalsCard signals={signals} />

@@ -10,6 +10,37 @@ from app.models.mention import Mention, RedditPost
 router = APIRouter()
 
 
+@router.get("/market")
+async def get_market_sentiment(
+    period: str = Query(default="7d", regex="^(24h|7d|30d)$"),
+    db: AsyncSession = Depends(get_db),
+):
+    """Aggregate sentiment across all tracked stocks for the market overview chart."""
+    period_map = {"24h": 1, "7d": 7, "30d": 30}
+    days = period_map.get(period, 7)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+
+    result = await db.execute(
+        select(Mention).where(Mention.created_at >= cutoff).order_by(Mention.created_at)
+    )
+    all_mentions = result.scalars().all()
+
+    history = []
+    for d in range(days):
+        day = datetime.now(timezone.utc) - timedelta(days=days - 1 - d)
+        day_start = day.replace(hour=0, minute=0, second=0, microsecond=0)
+        day_end = day_start + timedelta(days=1)
+        day_mentions = [m for m in all_mentions if m.created_at and day_start <= m.created_at < day_end]
+        day_scores = [float(m.sentiment_score) for m in day_mentions if m.sentiment_score is not None]
+        history.append({
+            "date": day_start.strftime("%Y-%m-%d"),
+            "sentiment": round(sum(day_scores) / len(day_scores), 3) if day_scores else 0.0,
+            "mentions": len(day_mentions),
+        })
+
+    return {"period": period, "history": history}
+
+
 @router.get("/{ticker}")
 async def get_sentiment(
     ticker: str,

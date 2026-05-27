@@ -1,4 +1,5 @@
 import math
+from decimal import Decimal
 from typing import List, Dict
 from datetime import datetime, timezone, timedelta
 
@@ -92,6 +93,98 @@ class TrendingService:
         return round(trend_score, 3)
 
     def compute_rankings(self) -> List[Dict]:
-        """Compute rankings for all stocks with recent activity."""
-        # TODO: Query DB for recent mentions, compute scores, rank
-        return []
+        """Query recent mentions, compute composite scores, persist TrendingSnapshot rows, and return ranked list."""
+        from sqlalchemy import create_engine, select, and_
+        from sqlalchemy.orm import Session
+        from app.config import settings
+        from app.models.stock import Stock
+        from app.models.mention import Mention, RedditPost
+        from app.models.signal import TrendingSnapshot
+
+        sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+        engine = create_engine(sync_url)
+        now = datetime.now(timezone.utc)
+        window_start = now - timedelta(hours=24)
+        prev_window_start = now - timedelta(hours=48)
+        rankings = []
+
+        with Session(engine) as session:
+            active_stock_ids = session.execute(
+                select(Mention.stock_id)
+                .where(Mention.created_at >= window_start)
+                .distinct()
+            ).scalars().all()
+
+            for stock_id in active_stock_ids:
+                stock = session.get(Stock, stock_id)
+                if not stock:
+                    continue
+
+                current = session.execute(
+                    select(Mention).where(
+                        and_(Mention.stock_id == stock_id, Mention.created_at >= window_start)
+                    )
+                ).scalars().all()
+
+                prev = session.execute(
+                    select(Mention).where(
+                        and_(
+                            Mention.stock_id == stock_id,
+                            Mention.created_at >= prev_window_start,
+                            Mention.created_at < window_start,
+                        )
+                    )
+                ).scalars().all()
+
+                mention_count = len(current)
+                velocity = self.compute_mention_velocity(mention_count, len(prev), hours=24.0)
+
+                scores = [float(m.sentiment_score) for m in current if m.sentiment_score is not None]
+                avg_sentiment = sum(scores) / len(scores) if scores else 0.0
+
+                # Engagement from linked Reddit posts
+                reddit_source_ids = [m.source_id for m in current if m.source_type == "reddit" and m.source_id]
+                total_upvotes = 0
+                num_posts = 0
+                if reddit_source_ids:
+                    posts = session.execute(
+                        select(RedditPost).where(RedditPost.id.in_(reddit_source_ids))
+                    ).scalars().all()
+                    total_upvotes = sum(p.score or 0 for p in posts)
+                    num_posts = len(posts)
+                engagement_ratio = self.compute_engagement_ratio(total_upvotes, num_posts)
+
+                sources = {m.source_type for m in current}
+                cross_platform = len(sources) / 4.0  # reddit, stocktwits, news, youtube
+
+                trend_score = self.compute_trend_score({
+                    "mention_velocity": velocity,
+                    "sentiment_avg": avg_sentiment,
+                    "engagement_ratio": engagement_ratio,
+                    "cross_platform": cross_platform,
+                    "volume_anomaly": 0.0,
+                })
+
+                session.add(TrendingSnapshot(
+                    stock_id=stock_id,
+                    mention_count=mention_count,
+                    mention_velocity=Decimal(str(round(velocity, 2))),
+                    avg_sentiment=Decimal(str(round(avg_sentiment, 3))),
+                    trend_score=Decimal(str(round(trend_score, 3))),
+                    rank=0,
+                ))
+                rankings.append({
+                    "stock_id": stock_id,
+                    "ticker": stock.ticker,
+                    "mention_count": mention_count,
+                    "mention_velocity": velocity,
+                    "avg_sentiment": avg_sentiment,
+                    "trend_score": trend_score,
+                    "sources": list(sources),
+                })
+
+            rankings.sort(key=lambda x: x["trend_score"], reverse=True)
+            session.commit()
+
+        engine.dispose()
+        return rankings

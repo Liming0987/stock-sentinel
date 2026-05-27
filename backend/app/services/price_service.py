@@ -177,6 +177,8 @@ class PriceService:
                     if df is None or df.empty:
                         continue
                     last_price = float(df["Close"].iloc[-1])
+                    prev_price = float(df["Close"].iloc[-2]) if len(df) >= 2 else last_price
+                    stock.prev_close = Decimal(str(round(prev_price, 2)))
                     stock.last_price = Decimal(str(round(last_price, 2)))
                     session.add(stock)
                     updated += 1
