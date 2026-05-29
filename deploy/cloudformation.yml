@@ -187,6 +187,31 @@ Resources:
           mkdir -p /home/ec2-user/stock-sentinel/nginx
           chown -R ec2-user:ec2-user /home/ec2-user/stock-sentinel
 
+          # Systemd unit — starts docker compose on every boot
+          cat > /etc/systemd/system/stock-sentinel.service << 'SERVICE'
+          [Unit]
+          Description=Stock Sentinel (docker compose)
+          Requires=docker.service
+          After=docker.service network-online.target
+          StartLimitIntervalSec=0
+
+          [Service]
+          Type=simple
+          Restart=on-failure
+          RestartSec=10
+          User=ec2-user
+          WorkingDirectory=/home/ec2-user/stock-sentinel
+          ExecStartPre=/usr/local/bin/docker-compose pull --quiet
+          ExecStart=/usr/local/bin/docker-compose up
+          ExecStop=/usr/local/bin/docker-compose down
+
+          [Install]
+          WantedBy=multi-user.target
+          SERVICE
+
+          systemctl daemon-reload
+          systemctl enable stock-sentinel.service
+
           # Signal CloudFormation that setup is complete
           /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource EC2Instance --region ${AWS::Region}
       Tags:
