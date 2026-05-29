@@ -127,6 +127,7 @@ cat > /tmp/gh-permissions.json << EOF
         "ec2:CreateTags",
         "ec2:StopInstances",
         "ec2:StartInstances",
+        "ec2:ModifyInstanceAttribute",
         "ec2:ModifyInstanceMetadataOptions",
         "ec2:DescribeInstanceAttribute"
       ],
