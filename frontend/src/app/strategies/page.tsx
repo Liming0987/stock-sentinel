@@ -4,7 +4,7 @@ import { useState } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
 } from "recharts";
-import { TrendingUp, TrendingDown, DollarSign, Activity } from "lucide-react";
+import { DollarSign, Activity } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useStrategies, useStrategyTrades, useEquityCurve, useAlpacaAccount } from "@/lib/hooks";
