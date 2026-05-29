@@ -135,6 +135,14 @@ Resources:
                   - secretsmanager:DescribeSecret
                 Resource:
                   - !Ref AppSecret
+        - PolicyName: SNSSendSMS
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - sns:Publish
+                Resource: "*"
       Tags:
         - Key: Name
           Value: stock-sentinel-ec2-role

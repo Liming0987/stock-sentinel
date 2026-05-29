@@ -11,7 +11,9 @@ from app.models.mention import RedditPost, StocktwitsMessage, Mention
 from app.models.signal import Signal, TrendingSnapshot
 from app.models.trade import Strategy, Trade
 from app.models.watchlist import Watchlist
+from app.models.settings import AppSetting  # noqa: F401 — registers table with Base
 from app.routers import trending, sentiment, prices, signals, watchlist, auth, strategies as strategies_router
+from app.routers import settings as settings_router
 
 
 @asynccontextmanager
@@ -50,6 +52,7 @@ app.include_router(prices.router, prefix="/api/prices", tags=["prices"])
 app.include_router(signals.router, prefix="/api/signals", tags=["signals"])
 app.include_router(watchlist.router, prefix="/api/watchlist", tags=["watchlist"])
 app.include_router(strategies_router.router, prefix="/api/strategies", tags=["strategies"])
+app.include_router(settings_router.router, prefix="/api/settings", tags=["settings"])
 
 
 @app.get("/api/health")

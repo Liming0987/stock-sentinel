@@ -1,6 +1,8 @@
 import logging
 from celery import Task
 from celery.exceptions import SoftTimeLimitExceeded
+from sqlalchemy import select
+from app.config import settings
 from app.workers.celery_app import celery_app
 
 logger = logging.getLogger(__name__)
@@ -250,9 +252,42 @@ def compute_trending(self: Task):
 @celery_app.task(**_RETRY_DEFAULTS, name="app.workers.tasks.generate_signals")
 def generate_signals(self: Task):
     """Generate buy/hold/avoid signals based on multi-factor model."""
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import Session
     from app.services.signal_service import SignalService
+    from app.models.watchlist import Watchlist
+
     service = SignalService()
     signals = service.generate()
+
+    # SMS: notify for any new buy signal on a watchlisted stock
+    try:
+        from app.services.notification_service import NotificationService
+        from app.models.stock import Stock
+        sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+        engine = create_engine(sync_url)
+        with Session(engine) as s:
+            watchlist_tickers = {
+                row[0] for row in s.execute(
+                    select(Stock.ticker).join(Watchlist, Watchlist.stock_id == Stock.id)
+                ).all()
+            }
+        engine.dispose()
+
+        svc = NotificationService(sync_url)
+        for sig in signals:
+            ticker = sig.get("ticker", "")
+            if sig.get("signal_type") == "buy" and ticker in watchlist_tickers:
+                reasoning = sig.get("reasoning", [])
+                svc.notify_signal(
+                    ticker=ticker,
+                    action="buy",
+                    confidence=sig.get("confidence", 0),
+                    reasoning=reasoning[0] if reasoning else "",
+                )
+    except Exception as e:
+        logger.warning(f"Signal notification failed: {e}")
+
     return {"signals_generated": len(signals)}
 
 

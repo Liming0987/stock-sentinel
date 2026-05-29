@@ -1,69 +1,218 @@
 "use client";
 
-import { Bell, User } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Bell, Phone, CheckCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
+const API = process.env.NEXT_PUBLIC_API_URL || "";
+
+interface NotifSettings {
+  notification_phone: string;
+  notify_signals: boolean;
+  notify_trade_open: boolean;
+  notify_trade_close: boolean;
+}
+
+const TOGGLES: { key: keyof NotifSettings; label: string; desc: string }[] = [
+  {
+    key: "notify_signals",
+    label: "Buy signal alerts",
+    desc: "SMS when a buy signal is generated for a watchlist stock",
+  },
+  {
+    key: "notify_trade_open",
+    label: "Trade opened",
+    desc: "SMS when a strategy opens a new position",
+  },
+  {
+    key: "notify_trade_close",
+    label: "Trade closed",
+    desc: "SMS when a strategy closes a position with P&L result",
+  },
+];
+
 export default function SettingsPage() {
+  const [form, setForm] = useState<NotifSettings>({
+    notification_phone: "",
+    notify_signals: true,
+    notify_trade_open: true,
+    notify_trade_close: true,
+  });
+  const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [testStatus, setTestStatus] = useState<"idle" | "sending" | "ok" | "fail">("idle");
+
+  useEffect(() => {
+    fetch(`${API}/api/settings`)
+      .then((r) => r.json())
+      .then((data: NotifSettings) => setForm(data))
+      .catch(() => {});
+  }, []);
+
+  const handleSave = async () => {
+    setSaving(true);
+    setSaved(false);
+    try {
+      await fetch(`${API}/api/settings`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleTest = async () => {
+    setTestStatus("sending");
+    try {
+      const res = await fetch(`${API}/api/settings/test-sms`, { method: "POST" });
+      const data = await res.json();
+      setTestStatus(data.ok ? "ok" : "fail");
+    } catch {
+      setTestStatus("fail");
+    }
+    setTimeout(() => setTestStatus("idle"), 5000);
+  };
+
+  const setToggle = (key: keyof NotifSettings, val: boolean) =>
+    setForm((f) => ({ ...f, [key]: val }));
+
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold">Settings</h1>
         <p className="text-sm text-muted-foreground">
-          Configure your account, notifications, and API connections
+          Configure notifications and API connections
         </p>
       </div>
 
       <div className="grid gap-6 max-w-2xl">
+        {/* Phone number */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <User className="h-5 w-5" />
-              Profile
+              <Phone className="h-5 w-5" />
+              SMS Notifications
             </CardTitle>
-            <CardDescription>Manage your account settings</CardDescription>
+            <CardDescription>
+              Receive text messages via AWS SNS — no extra account needed
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="text-sm font-medium">Email</label>
+              <label className="text-sm font-medium">Phone number</label>
+              <p className="text-xs text-muted-foreground mb-1">
+                10-digit US number (e.g. 6185281028) — country code added automatically
+              </p>
               <input
-                type="email"
-                defaultValue="user@example.com"
-                className="mt-1 flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-ring focus:ring-2 outline-none"
+                type="tel"
+                value={form.notification_phone}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, notification_phone: e.target.value }))
+                }
+                placeholder="6185281028"
+                className="mt-1 flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-ring font-mono"
               />
             </div>
-            <Button size="sm">Save Changes</Button>
+
+            {/* Notification toggles */}
+            <div className="space-y-2">
+              <p className="text-sm font-medium">Send SMS for</p>
+              {TOGGLES.map(({ key, label, desc }) => (
+                <div
+                  key={key}
+                  className="flex items-center justify-between rounded-lg border p-3"
+                >
+                  <div>
+                    <p className="text-sm font-medium">{label}</p>
+                    <p className="text-xs text-muted-foreground">{desc}</p>
+                  </div>
+                  <button
+                    role="switch"
+                    aria-checked={form[key] as boolean}
+                    onClick={() => setToggle(key, !(form[key] as boolean))}
+                    className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors focus:outline-none ${
+                      form[key] ? "bg-primary" : "bg-muted"
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-5 w-5 rounded-full bg-white shadow transition-transform mt-0.5 ml-0.5 ${
+                        form[key] ? "translate-x-5" : "translate-x-0"
+                      }`}
+                    />
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-3 pt-1">
+              <Button size="sm" onClick={handleSave} disabled={saving}>
+                {saved ? (
+                  <>
+                    <CheckCircle className="mr-1 h-4 w-4" /> Saved
+                  </>
+                ) : saving ? (
+                  "Saving…"
+                ) : (
+                  "Save Settings"
+                )}
+              </Button>
+
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={handleTest}
+                disabled={testStatus === "sending" || !form.notification_phone}
+              >
+                <Send className="mr-1 h-4 w-4" />
+                {testStatus === "sending"
+                  ? "Sending…"
+                  : testStatus === "ok"
+                  ? "Sent ✓"
+                  : testStatus === "fail"
+                  ? "Failed ✗"
+                  : "Send Test SMS"}
+              </Button>
+            </div>
+
+            {testStatus === "fail" && (
+              <p className="text-xs text-destructive">
+                Test SMS failed — save your phone number first, then check that the
+                EC2 instance role has <code>sns:Publish</code> permission.
+              </p>
+            )}
           </CardContent>
         </Card>
 
+        {/* Info card about SNS */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Bell className="h-5 w-5" />
-              Notifications
+              How it works
             </CardTitle>
-            <CardDescription>Choose what alerts you receive</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-3">
-            {[
-              { label: "Buy signal alerts", desc: "Get notified when a new buy signal is generated for your watchlist" },
-              { label: "Sentiment spikes", desc: "Alert when a watchlist stock has unusual sentiment activity" },
-              { label: "Daily digest", desc: "Receive a daily summary of top trending stocks and signals" },
-            ].map((item) => (
-              <div key={item.label} className="flex items-center justify-between rounded-lg border p-3">
-                <div>
-                  <p className="text-sm font-medium">{item.label}</p>
-                  <p className="text-xs text-muted-foreground">{item.desc}</p>
-                </div>
-                <label className="relative inline-flex cursor-pointer items-center">
-                  <input type="checkbox" defaultChecked className="peer sr-only" />
-                  <div className="h-6 w-11 rounded-full bg-muted peer-checked:bg-primary after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all peer-checked:after:translate-x-full"></div>
-                </label>
-              </div>
-            ))}
+          <CardContent className="text-sm text-muted-foreground space-y-2">
+            <p>
+              Notifications use <strong>AWS SNS</strong> — the same AWS account
+              already running the app. No Twilio or other third-party accounts needed.
+            </p>
+            <p>You will receive a text when:</p>
+            <ul className="ml-4 list-disc space-y-1">
+              <li>A <strong>buy signal</strong> fires for a stock on your watchlist</li>
+              <li>A strategy <strong>opens</strong> a paper trade (shows entry price, stop &amp; target)</li>
+              <li>A strategy <strong>closes</strong> a trade (shows exit price &amp; P&amp;L)</li>
+            </ul>
+            <p className="text-xs pt-1">
+              AWS SNS charges ~$0.00645 per SMS to US numbers. With typical trading
+              activity this is well under $1/month.
+            </p>
           </CardContent>
         </Card>
-
       </div>
     </div>
   );

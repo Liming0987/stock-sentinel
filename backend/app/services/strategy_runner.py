@@ -193,6 +193,20 @@ class StrategyRunner:
         session.add(trade)
         session.flush()
         logger.info(f"[{strat_row.name}] OPEN {ticker} @ {signal.entry_price} qty={signal.qty}")
+
+        # SMS notification (fire-and-forget, never raises)
+        try:
+            from app.services.notification_service import NotificationService
+            NotificationService(_sync_db_url()).notify_trade_open(
+                strategy=strat_row.name,
+                ticker=ticker,
+                price=float(signal.entry_price),
+                stop=float(signal.stop_loss) if signal.stop_loss else None,
+                target=float(signal.target) if signal.target else None,
+            )
+        except Exception:
+            pass
+
         return trade
 
     def _close_position(self, session: Session, trade: Trade, exit_price: float, reason: str):
@@ -221,6 +235,22 @@ class StrategyRunner:
         trade.reasoning = (trade.reasoning or "") + f" | exit: {reason}"
         session.add(trade)
         logger.info(f"[strat={trade.strategy_id}] CLOSE {trade.ticker} @ {exit_price} pnl={pnl:.2f} ({reason})")
+
+        # SMS notification
+        try:
+            from app.services.notification_service import NotificationService
+            strat_name = session.get(StrategyRow, trade.strategy_id)
+            strat_label = strat_name.name if strat_name else str(trade.strategy_id)
+            NotificationService(_sync_db_url()).notify_trade_close(
+                strategy=strat_label,
+                ticker=trade.ticker,
+                price=exit_price,
+                pnl=pnl,
+                return_pct=return_pct,
+                reason=reason,
+            )
+        except Exception:
+            pass
 
     def _recompute_metrics(self, session: Session, strat_row: StrategyRow):
         """Recompute aggregate metrics for a strategy."""
