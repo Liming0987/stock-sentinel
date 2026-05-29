@@ -36,6 +36,8 @@ def scrape_reddit(self: Task):
     from app.models.mention import RedditPost, Mention
 
     try:
+        from app.models.watchlist import Watchlist
+
         scraper = RedditScraper()
         sentiment = get_sentiment_service(use_finbert=True)
         price_service = PriceService()
@@ -43,6 +45,22 @@ def scrape_reddit(self: Task):
         results = scraper.scrape_all()
         sync_db_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
         engine = create_engine(sync_db_url)
+
+        # Pull watchlist tickers and do a targeted search so watchlisted stocks
+        # always get recent Reddit coverage even when not trending.
+        with Session(engine) as tmp:
+            watchlist_tickers = tmp.execute(
+                select(Stock.ticker).join(Watchlist, Watchlist.stock_id == Stock.id)
+            ).scalars().all()
+        watchlist_tickers = list(watchlist_tickers)
+
+        if watchlist_tickers:
+            seen_ids = {r["external_id"] for r in results}
+            targeted = scraper.scrape_for_tickers(watchlist_tickers)
+            for r in targeted:
+                if r["external_id"] not in seen_ids:
+                    results.append(r)
+                    seen_ids.add(r["external_id"])
 
         posts_saved = 0
         mentions_saved = 0

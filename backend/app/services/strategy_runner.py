@@ -16,6 +16,7 @@ from app.config import settings
 from app.models.stock import Stock
 from app.models.mention import Mention
 from app.models.trade import Strategy as StrategyRow, Trade
+from app.models.watchlist import Watchlist
 from app.services.price_service import PriceService
 from app.services.alpaca_service import AlpacaService
 from app.strategies import STRATEGY_REGISTRY, BaseStrategy
@@ -47,6 +48,15 @@ class StrategyRunner:
         self.alpaca = AlpacaService() if submit_to_alpaca else None
 
     # ── Helpers ────────────────────────────────────────────────────────────
+    def _build_universe(self, session: Session) -> List[str]:
+        """DEFAULT_UNIVERSE merged with any watchlist tickers, order preserved."""
+        rows = session.execute(
+            select(Stock.ticker).join(Watchlist, Watchlist.stock_id == Stock.id)
+        ).scalars().all()
+        seen = set(self.universe)
+        extra = [t for t in rows if t not in seen]
+        return self.universe + extra
+
     def _ensure_stock(self, session: Session, ticker: str) -> Stock:
         stock = session.execute(
             select(Stock).where(Stock.ticker == ticker)
@@ -261,9 +271,10 @@ class StrategyRunner:
         summary = {"strategies": {}, "trades_opened": 0, "trades_closed": 0}
 
         with Session(engine) as session:
+            universe = self._build_universe(session)
             # Build context per ticker (one expensive yfinance fetch per ticker)
             stocks_ctx: Dict[str, Dict] = {}
-            for ticker in self.universe:
+            for ticker in universe:
                 try:
                     stock = self._ensure_stock(session, ticker)
                     ctx = self._build_context(session, stock)
@@ -363,8 +374,9 @@ class StrategyRunner:
         summary = {"strategies": {}, "trades_opened": 0, "trades_closed": 0, "intraday": True}
 
         with Session(engine) as session:
+            universe = self._build_universe(session)
             stocks_ctx: Dict[str, Dict] = {}
-            for ticker in self.universe:
+            for ticker in universe:
                 try:
                     stock = self._ensure_stock(session, ticker)
                     ctx = self._build_intraday_context(session, stock, alpaca)

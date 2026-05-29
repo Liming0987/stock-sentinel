@@ -178,3 +178,37 @@ class RedditScraper:
             except Exception as e:
                 print(f"Error scraping r/{subreddit}: {e}")
         return all_results
+
+    def scrape_for_tickers(self, tickers: List[str], limit_per_ticker: int = 10) -> List[Dict]:
+        """Targeted Reddit search for specific tickers (used for watchlist stocks).
+
+        Searches across the key finance subreddits in one call per ticker so
+        watchlist stocks get coverage even when they're not trending.
+        """
+        subreddit = self.reddit.subreddit("+".join(TARGET_SUBREDDITS))
+        all_results = []
+
+        for ticker in tickers:
+            try:
+                query = f'${ticker} OR "{ticker}"'
+                for post in subreddit.search(query, sort="new", time_filter="week", limit=limit_per_ticker):
+                    found = self.extract_tickers(f"{post.title} {post.selftext}")
+                    # Guarantee the searched ticker is linked even if regex misses it
+                    if ticker not in found:
+                        found.append(ticker)
+                    all_results.append({
+                        "external_id": post.id,
+                        "subreddit": post.subreddit.display_name,
+                        "title": post.title,
+                        "body": post.selftext[:5000],
+                        "author": str(post.author) if post.author else "[deleted]",
+                        "score": post.score,
+                        "num_comments": post.num_comments,
+                        "url": post.url,
+                        "created_at": datetime.fromtimestamp(post.created_utc, tz=timezone.utc),
+                        "tickers": found,
+                    })
+            except Exception as e:
+                print(f"Error searching Reddit for {ticker}: {e}")
+
+        return all_results

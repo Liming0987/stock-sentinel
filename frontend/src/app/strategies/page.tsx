@@ -162,7 +162,7 @@ function StrategyLivePanel({
               </div>
             ) : (
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={chartData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+                <LineChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                   <XAxis
                     dataKey="time"
@@ -170,10 +170,7 @@ function StrategyLivePanel({
                     interval={7}
                     tickFormatter={(v: string) => (v.startsWith("\x00") ? "" : v)}
                   />
-                  <YAxis
-                    tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
-                    tickFormatter={(v) => `$${Number(v).toFixed(2)}`}
-                  />
+                  <YAxis tick={false} width={0} tickCount={10} />
                   <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" />
                   <Tooltip
                     contentStyle={{
