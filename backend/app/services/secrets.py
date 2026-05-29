@@ -66,10 +66,26 @@ def get_reddit_credentials() -> Dict:
 
 
 def get_alpaca_credentials() -> Dict:
-    """Returns dict with keys: api_key, api_secret, paper."""
+    """Returns dict with keys: api_key, api_secret, paper.
+
+    When alpaca_paper is True, uses alpaca_paper_api_key / alpaca_paper_api_secret.
+    Falls back to alpaca_api_key / alpaca_api_secret for live trading.
+    """
     data = _load_credentials()
-    return {
-        "api_key": data["alpaca_api_key"],
-        "api_secret": data["alpaca_api_secret"],
-        "paper": data.get("alpaca_paper", True),
-    }
+    paper = bool(data.get("alpaca_paper", True))
+    if paper:
+        api_key = data.get("alpaca_paper_api_key", "")
+        api_secret = data.get("alpaca_paper_api_secret", "")
+        if not api_key or not api_secret:
+            raise SecretNotConfiguredError(
+                "alpaca_paper is True but alpaca_paper_api_key / alpaca_paper_api_secret are empty"
+            )
+    else:
+        api_key = data.get("alpaca_api_key", "")
+        api_secret = data.get("alpaca_api_secret", "")
+        if not api_key or not api_secret:
+            raise SecretNotConfiguredError(
+                "alpaca_paper is False but alpaca_api_key / alpaca_api_secret are empty"
+            )
+
+    return {"api_key": api_key, "api_secret": api_secret, "paper": paper}
