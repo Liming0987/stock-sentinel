@@ -129,7 +129,12 @@ cat > /tmp/gh-permissions.json << EOF
         "ec2:StartInstances",
         "ec2:ModifyInstanceAttribute",
         "ec2:ModifyInstanceMetadataOptions",
-        "ec2:DescribeInstanceAttribute"
+        "ec2:DescribeInstanceAttribute",
+        "ec2:AllocateAddress",
+        "ec2:ReleaseAddress",
+        "ec2:AssociateAddress",
+        "ec2:DisassociateAddress",
+        "ec2:DescribeAddresses"
       ],
       "Resource": "*"
     },

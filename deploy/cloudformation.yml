@@ -219,7 +219,7 @@ Resources:
 
 Outputs:
   EC2PublicIp:
-    Description: Public IP of the EC2 instance
+    Description: Public IP of the EC2 instance (Elastic IP eipalloc-0994f8f9e5ba0797e — managed outside CF)
     Value: !GetAtt EC2Instance.PublicIp
     Export:
       Name: StockSentinelEC2Ip
