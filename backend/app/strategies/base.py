@@ -26,6 +26,7 @@ class BaseStrategy(ABC):
     # Subclasses override these
     name: str = "base"
     description: str = ""
+    max_positions: int = 2  # max concurrent open trades across the whole universe
 
     @abstractmethod
     def evaluate(self, ticker: str, context: Dict) -> Signal:

@@ -7,6 +7,7 @@ class MomentumStrategy(BaseStrategy):
     name = "momentum"
     description = "Trend-following: enter on bullish MACD + price above 50/200-EMA + volume."
 
+    max_positions = 3
     STOP_LOSS_ATR_MULT = 2.5
     TARGET_ATR_MULT = 5.0
     MIN_VOL_RATIO = 1.2

@@ -7,6 +7,7 @@ class RSIMeanReversionStrategy(BaseStrategy):
     name = "rsi_meanreversion"
     description = "Buy when RSI < 30 (oversold), close at RSI > 60 or stop-loss/target."
 
+    max_positions = 2
     RSI_BUY_THRESHOLD = 30
     RSI_EXIT_THRESHOLD = 60
     STOP_LOSS_ATR_MULT = 2.0

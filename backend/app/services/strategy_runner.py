@@ -274,6 +274,18 @@ class StrategyRunner:
                     continue
 
                 opened = closed = 0
+
+                # Count currently open positions for this strategy
+                open_count = session.execute(
+                    select(func.count()).select_from(Trade).where(and_(
+                        Trade.strategy_id == strat_row.id,
+                        Trade.status == "open",
+                    ))
+                ).scalar() or 0
+
+                # Collect buy signals so we can rank by confidence and respect max_positions
+                buy_candidates = []
+
                 for ticker, payload in stocks_ctx.items():
                     stock: Stock = payload["stock"]
                     ctx = dict(payload["ctx"])  # copy
@@ -296,13 +308,21 @@ class StrategyRunner:
                             if last_price:
                                 self._close_position(session, open_trade, float(last_price), close_reason)
                                 closed += 1
+                                open_count -= 1
                                 continue
 
-                    # 2) Look for new entry
-                    sig = strat.evaluate(ticker, ctx)
-                    if sig.action == "buy" and not open_trade:
-                        self._open_position(session, strat_row, stock, sig, ticker)
-                        opened += 1
+                    # 2) Collect entry signals — only where no existing position
+                    if not open_trade:
+                        sig = strat.evaluate(ticker, ctx)
+                        if sig.action == "buy":
+                            buy_candidates.append((sig.confidence, ticker, payload["stock"], sig))
+
+                # Open highest-confidence entries up to max_positions cap
+                buy_candidates.sort(key=lambda x: x[0], reverse=True)
+                slots_available = max(0, strat.max_positions - open_count)
+                for _, ticker, stock, sig in buy_candidates[:slots_available]:
+                    self._open_position(session, strat_row, stock, sig, ticker)
+                    opened += 1
 
                 # Update aggregate metrics
                 self._recompute_metrics(session, strat_row)
@@ -354,6 +374,16 @@ class StrategyRunner:
                     continue
 
                 opened = closed = 0
+
+                open_count = session.execute(
+                    select(func.count()).select_from(Trade).where(and_(
+                        Trade.strategy_id == strat_row.id,
+                        Trade.status == "open",
+                    ))
+                ).scalar() or 0
+
+                buy_candidates = []
+
                 for ticker, payload in stocks_ctx.items():
                     stock: Stock = payload["stock"]
                     ctx = dict(payload["ctx"])
@@ -374,12 +404,19 @@ class StrategyRunner:
                             if last_price:
                                 self._close_position(session, open_trade, float(last_price), close_reason)
                                 closed += 1
+                                open_count -= 1
                                 continue
 
-                    sig = strat.evaluate(ticker, ctx)
-                    if sig.action == "buy" and not open_trade:
-                        self._open_position(session, strat_row, stock, sig, ticker)
-                        opened += 1
+                    if not open_trade:
+                        sig = strat.evaluate(ticker, ctx)
+                        if sig.action == "buy":
+                            buy_candidates.append((sig.confidence, ticker, stock, sig))
+
+                buy_candidates.sort(key=lambda x: x[0], reverse=True)
+                slots_available = max(0, strat.max_positions - open_count)
+                for _, ticker, stock, sig in buy_candidates[:slots_available]:
+                    self._open_position(session, strat_row, stock, sig, ticker)
+                    opened += 1
 
                 self._recompute_metrics(session, strat_row)
                 session.commit()

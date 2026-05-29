@@ -7,6 +7,7 @@ class SentimentDrivenStrategy(BaseStrategy):
     name = "sentiment_driven"
     description = "Buy on positive sentiment surge (FinBERT score > 0.4) with high mention activity."
 
+    max_positions = 2
     MIN_AVG_SENTIMENT = 0.4
     MIN_MENTIONS_24H = 5
     STOP_LOSS_ATR_MULT = 2.0
