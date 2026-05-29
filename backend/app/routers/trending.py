@@ -164,7 +164,7 @@ async def get_trending_detail(ticker: str, db: AsyncSession = Depends(get_db)):
         "change_pct": change_pct,
         "mention_count": mention_count,
         "mention_velocity": round(mention_velocity, 2),
-        "avg_sentiment": avg_sentiment,
+        "sentiment_score": avg_sentiment,
         "trend_score": 0.0,
         "volume_ratio": indicators.get("volume_ratio", 1.0),
         "indicators": indicators,

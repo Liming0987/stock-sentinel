@@ -23,11 +23,12 @@ export function SignalsCard({ signals }: SignalsCardProps) {
           View all
         </Link>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent>
         {signals.length === 0 ? (
           <p className="text-sm text-muted-foreground">No active signals</p>
         ) : (
-          signals.map((signal) => (
+          <div className="max-h-[460px] overflow-y-auto space-y-3 pr-1">
+          {signals.map((signal) => (
             <Link
               key={signal.id}
               href={`/stock/${signal.ticker}`}
@@ -85,7 +86,8 @@ export function SignalsCard({ signals }: SignalsCardProps) {
                 ))}
               </div>
             </Link>
-          ))
+          ))}
+          </div>
         )}
       </CardContent>
     </Card>

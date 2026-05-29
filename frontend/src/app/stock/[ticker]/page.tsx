@@ -66,9 +66,15 @@ export default function StockDetailPage() {
             <Star className="mr-1 h-4 w-4 sm:mr-2" />
             <span className="hidden sm:inline">Watchlist</span>
           </Button>
-          <Button variant="outline" size="sm">
-            <ExternalLink className="mr-1 h-4 w-4 sm:mr-2" />
-            <span className="hidden sm:inline">Yahoo Finance</span>
+          <Button variant="outline" size="sm" asChild>
+            <a
+              href={`https://finance.yahoo.com/quote/${ticker}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink className="mr-1 h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">Yahoo Finance</span>
+            </a>
           </Button>
         </div>
       </div>
@@ -107,7 +113,7 @@ export default function StockDetailPage() {
         <Card>
           <CardContent className="p-4 text-center">
             <p className="text-sm text-muted-foreground">Sentiment</p>
-            <SentimentGauge score={stock.sentiment_score} size="sm" />
+            <SentimentGauge score={stock.sentiment_score ?? 0} size="sm" />
           </CardContent>
         </Card>
         <Card>

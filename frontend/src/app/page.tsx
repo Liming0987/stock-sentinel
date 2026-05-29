@@ -39,16 +39,18 @@ export default function DashboardPage() {
         watchlistCount={0}
       />
 
+      {/* Trending table + compact signals sidebar */}
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <div className="xl:col-span-2">
-          <SentimentChart data={marketSentiment.history} />
+          <TrendingTable stocks={stocks} compact />
         </div>
         <div>
           <SignalsCard signals={signals} />
         </div>
       </div>
 
-      <TrendingTable stocks={stocks} compact />
+      {/* Sentiment chart spans full width */}
+      <SentimentChart data={marketSentiment.history} />
     </div>
   );
 }
