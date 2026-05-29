@@ -284,22 +284,20 @@ export function useLivePositions() {
         setData(result);
         setLoading(false);
 
-        if (result.market_open) {
-          const time = new Date(result.timestamp || Date.now()).toLocaleTimeString("en-US", {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-            hour12: false,
-          });
-          const point: LiveHistoryPoint = { time };
-          for (const [name, s] of Object.entries(result.by_strategy)) {
-            point[name] = s.unrealized_pnl;
-          }
-          setHistory((prev) => {
-            const next = [...prev, point];
-            return next.slice(-120);
-          });
+        const time = new Date(result.timestamp || Date.now()).toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        });
+        const point: LiveHistoryPoint = { time };
+        for (const [name, s] of Object.entries(result.by_strategy)) {
+          point[name] = s.unrealized_pnl;
         }
+        setHistory((prev) => {
+          const next = [...prev, point];
+          return next.slice(-120);
+        });
       } catch {
         if (active) setLoading(false);
       }

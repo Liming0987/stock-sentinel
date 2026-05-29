@@ -115,13 +115,14 @@ interface StrategyLivePanelProps {
   isOpen: boolean;
   onToggle: () => void;
   marketOpen: boolean;
+  loading: boolean;
 }
 
 function StrategyLivePanel({
-  stratName, summary, positions, chartData, isOpen, onToggle, marketOpen,
+  stratName, summary, positions, chartData, isOpen, onToggle, marketOpen, loading,
 }: StrategyLivePanelProps) {
   const color = STRATEGY_COLORS[stratName] || "hsl(var(--primary))";
-  const hasHistory = chartData.some(
+  const hasData = chartData.some(
     (pt) => !pt.time.startsWith("\x00") && pt[stratName] !== undefined
   );
 
@@ -160,9 +161,9 @@ function StrategyLivePanel({
         <CardContent className="pt-4 space-y-4">
           {/* Chart */}
           <div className="h-48">
-            {!hasHistory ? (
+            {loading || !hasData ? (
               <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-                Collecting data&hellip;
+                {loading ? "Fetching data…" : "No data yet…"}
               </div>
             ) : (
               <ResponsiveContainer width="100%" height="100%">
@@ -290,6 +291,7 @@ function LivePositionsPanel() {
             isOpen={isOpen(name)}
             onToggle={() => toggle(name)}
             marketOpen={data.market_open}
+            loading={loading}
           />
         ))
       )}
