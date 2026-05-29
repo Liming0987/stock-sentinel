@@ -23,6 +23,8 @@ from app.strategies import STRATEGY_REGISTRY, BaseStrategy
 logger = logging.getLogger(__name__)
 
 
+POSITION_SIZE_USD = 100.0  # fixed dollar amount to risk per trade
+
 # Default universe: top liquid stocks. Extend as needed.
 DEFAULT_UNIVERSE = [
     "NVDA", "TSLA", "AAPL", "MSFT", "AMD",
@@ -146,11 +148,16 @@ class StrategyRunner:
         client_order_id = f"{strat_row.name}-{ticker}-{uuid4().hex[:8]}"
         alpaca_order_id = None
 
+        # Size position to a fixed dollar amount; use fractional shares
+        entry_price = signal.entry_price or 1.0
+        qty = round(POSITION_SIZE_USD / entry_price, 6)
+        qty = max(qty, 0.000001)  # floor to avoid zero-share orders
+
         if self.submit_to_alpaca and self.alpaca and self.alpaca.is_configured:
             try:
                 order = self.alpaca.submit_order(
                     symbol=ticker,
-                    qty=signal.qty,
+                    qty=qty,
                     side="buy",
                     client_order_id=client_order_id,
                 )
@@ -164,7 +171,7 @@ class StrategyRunner:
             stock_id=stock.id,
             ticker=ticker,
             side="buy",
-            qty=Decimal(str(signal.qty)),
+            qty=Decimal(str(qty)),
             entry_price=Decimal(str(signal.entry_price)),
             stop_loss=Decimal(str(signal.stop_loss)) if signal.stop_loss else None,
             target=Decimal(str(signal.target)) if signal.target else None,
