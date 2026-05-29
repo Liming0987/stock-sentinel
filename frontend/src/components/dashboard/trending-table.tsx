@@ -17,7 +17,7 @@ export function TrendingTable({ stocks, compact = false }: TrendingTableProps) {
   const displayStocks = compact ? stocks.slice(0, 5) : stocks;
 
   return (
-    <Card className="h-full flex flex-col">
+    <Card className="h-full flex flex-col overflow-hidden">
       <CardHeader className="flex flex-row items-center justify-between shrink-0">
         <CardTitle className="flex items-center gap-2">
           <TrendingUp className="h-5 w-5 text-primary" />

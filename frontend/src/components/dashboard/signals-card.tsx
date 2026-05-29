@@ -13,7 +13,7 @@ interface SignalsCardProps {
 
 export function SignalsCard({ signals }: SignalsCardProps) {
   return (
-    <Card className="h-full flex flex-col">
+    <Card className="h-full flex flex-col overflow-hidden">
       <CardHeader className="flex flex-row items-center justify-between shrink-0">
         <CardTitle className="flex items-center gap-2">
           <SignalIcon className="h-5 w-5 text-primary" />
