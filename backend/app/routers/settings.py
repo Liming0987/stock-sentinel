@@ -52,20 +52,56 @@ async def save_settings(body: dict, db: AsyncSession = Depends(get_db)):
 
 
 @router.post("/test-sms")
-async def test_sms(db: AsyncSession = Depends(get_db)):
-    """Send a test SMS to the configured phone number."""
+async def test_sms(body: dict = None, db: AsyncSession = Depends(get_db)):
+    """Send a test SMS. Accepts {phone} in body or falls back to the saved number."""
     import asyncio
+    import boto3
+    from botocore.exceptions import BotoCoreError, ClientError
     from app.config import settings as app_settings
     from app.services.notification_service import NotificationService
 
-    sync_url = app_settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    # Phone from request body takes priority so the user can test before saving
+    phone = ""
+    if body:
+        phone = (body.get("phone") or "").strip()
+
+    # Fall back to saved DB value
+    if not phone:
+        sync_url = app_settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+
+        def _load_phone():
+            return NotificationService(sync_url)._load_all().get("notification_phone", "")
+
+        phone = await asyncio.to_thread(_load_phone)
+        phone = (phone or "").strip()
+
+    if not phone:
+        return {"ok": False, "message": "No phone number found — enter your number and click Save first."}
+
+    # Format the number
+    digits = "".join(c for c in phone if c.isdigit())
+    if len(digits) == 10:
+        e164 = f"+1{digits}"
+    elif len(digits) == 11 and digits.startswith("1"):
+        e164 = f"+{digits}"
+    else:
+        e164 = f"+{digits}"
 
     def _send():
-        svc = NotificationService(sync_url)
-        return svc.notify("Stock Sentinel: test message — notifications are working!")
+        try:
+            client = boto3.client("sns", region_name=app_settings.aws_region)
+            client.publish(
+                PhoneNumber=e164,
+                Message="Stock Sentinel: test message — SMS notifications are working!",
+                MessageAttributes={
+                    "AWS.SNS.SMS.SMSType": {"DataType": "String", "StringValue": "Transactional"}
+                },
+            )
+            return True, f"SMS sent to {e164}"
+        except (BotoCoreError, ClientError) as exc:
+            return False, f"AWS SNS error: {exc}"
+        except Exception as exc:
+            return False, f"Unexpected error: {exc}"
 
-    loop = asyncio.get_event_loop()
-    sent = await loop.run_in_executor(None, _send)
-    if sent:
-        return {"ok": True, "message": "Test SMS sent"}
-    return {"ok": False, "message": "SMS not sent — check phone number is saved and EC2 role has sns:Publish"}
+    ok, message = await asyncio.to_thread(_send)
+    return {"ok": ok, "message": message}

@@ -42,6 +42,7 @@ export default function SettingsPage() {
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
   const [testStatus, setTestStatus] = useState<"idle" | "sending" | "ok" | "fail">("idle");
+  const [testMessage, setTestMessage] = useState("");
 
   useEffect(() => {
     fetch(`${API}/api/settings`)
@@ -68,14 +69,22 @@ export default function SettingsPage() {
 
   const handleTest = async () => {
     setTestStatus("sending");
+    setTestMessage("");
     try {
-      const res = await fetch(`${API}/api/settings/test-sms`, { method: "POST" });
+      const res = await fetch(`${API}/api/settings/test-sms`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        // Pass the current phone so it works even before saving
+        body: JSON.stringify({ phone: form.notification_phone }),
+      });
       const data = await res.json();
       setTestStatus(data.ok ? "ok" : "fail");
-    } catch {
+      setTestMessage(data.message || "");
+    } catch (e) {
       setTestStatus("fail");
+      setTestMessage("Network error — is the backend reachable?");
     }
-    setTimeout(() => setTestStatus("idle"), 5000);
+    setTimeout(() => setTestStatus("idle"), 8000);
   };
 
   const setToggle = (key: keyof NotifSettings, val: boolean) =>
@@ -166,7 +175,7 @@ export default function SettingsPage() {
                 size="sm"
                 variant="ghost"
                 onClick={handleTest}
-                disabled={testStatus === "sending" || !form.notification_phone}
+                disabled={testStatus === "sending" || !form.notification_phone.trim()}
               >
                 <Send className="mr-1 h-4 w-4" />
                 {testStatus === "sending"
@@ -179,10 +188,12 @@ export default function SettingsPage() {
               </Button>
             </div>
 
+            {testStatus === "ok" && testMessage && (
+              <p className="text-xs text-bullish">{testMessage}</p>
+            )}
             {testStatus === "fail" && (
               <p className="text-xs text-destructive">
-                Test SMS failed — save your phone number first, then check that the
-                EC2 instance role has <code>sns:Publish</code> permission.
+                {testMessage || "SMS failed — check the EC2 instance role has sns:Publish permission."}
               </p>
             )}
           </CardContent>
