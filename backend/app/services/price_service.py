@@ -118,13 +118,36 @@ class PriceService:
 
         return indicators
 
+    # yfinance exchange codes for US-listed securities
+    _US_EXCHANGES = {
+        "NMS", "NGM", "NCM",  # NASDAQ tiers
+        "NYQ",                 # NYSE
+        "ASE",                 # NYSE American (AMEX)
+        "BTS", "PCX",          # CBOE / NYSE Arca
+        "PNK", "OBB",          # OTC markets
+    }
+
     def get_stock_info(self, ticker: str) -> Dict:
-        """Get basic stock info (name, sector, market cap)."""
+        """Get basic stock info. Returns {} for non-US, non-equity, or unresolvable symbols."""
         try:
             stock = yf.Ticker(ticker)
             info = stock.info
+
+            # Reject non-USD securities (filters out UK, EU, etc. listings)
+            if info.get("currency") != "USD":
+                return {}
+
+            # Accept only equities and ETFs; reject indices, FX, crypto, etc.
+            if info.get("quoteType") not in ("EQUITY", "ETF"):
+                return {}
+
+            # Require a recognisable name — catches symbols yfinance "finds" but has no data for
+            name = info.get("longName") or info.get("shortName") or ""
+            if not name:
+                return {}
+
             return {
-                "name": info.get("longName", ""),
+                "name": name,
                 "sector": info.get("sector", ""),
                 "market_cap": info.get("marketCap", 0),
                 "avg_volume": info.get("averageVolume", 0),

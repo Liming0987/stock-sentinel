@@ -17,11 +17,95 @@ TARGET_SUBREDDITS = [
 
 # Common false positive tickers to exclude
 FALSE_POSITIVES = {
-    "A", "I", "AM", "PM", "IT", "ALL", "FOR", "ARE", "BE", "SO",
-    "OR", "AT", "ON", "GO", "DO", "HAS", "CEO", "CFO", "CTO",
-    "USA", "GDP", "IMO", "FYI", "TIL", "PSA", "DD", "YOLO",
-    "FOMO", "FUD", "ATH", "ATL", "EOD", "IPO", "SEC", "FBI",
-    "NYSE", "NASDAQ", "ETF", "OTC", "RH", "WSB", "OP", "EPS",
+    # ── Articles / prepositions / conjunctions ──
+    "A", "I", "AN", "AS", "AT", "BE", "BY", "DO", "GO", "IF",
+    "IN", "IS", "IT", "MY", "NO", "OF", "ON", "OR", "SO", "TO",
+    "UP", "US", "WE", "AM", "AND", "ARE", "BUT", "CAN", "DID",
+    "FOR", "GET", "GOT", "HAD", "HAS", "HOW", "ITS", "LET", "MAY",
+    "NOR", "NOT", "NOW", "OFF", "OUT", "OWN", "PUT", "RAN", "SET",
+    "THE", "WAS", "YET", "ALSO", "BEEN", "BOTH", "EACH", "EVEN",
+    "FROM", "HAVE", "INTO", "JUST", "LIKE", "MADE", "MAKE", "MANY",
+    "MORE", "MOST", "MUCH", "NEED", "ONCE", "ONLY", "OVER", "SAME",
+    "SOME", "SUCH", "THAN", "THAT", "THEM", "THEN", "THEY", "THIS",
+    "VERY", "WANT", "WELL", "WERE", "WHAT", "WHEN", "WITH", "WILL",
+    "ABOUT", "AFTER", "AGAIN", "BEING", "COULD", "EVERY", "FIRST",
+    "GOING", "GREAT", "LARGE", "LATER", "LEAST", "MAJOR", "MAYBE",
+    "MIGHT", "NEVER", "OFTEN", "OTHER", "QUITE", "SMALL", "STILL",
+    "THEIR", "THERE", "THESE", "THOSE", "TODAY", "UNDER", "UNTIL",
+    "USING", "WHERE", "WHICH", "WHILE", "WHOSE", "WOULD", "YEARS",
+    # ── Common nouns / adjectives ──
+    "OLD", "NEW", "BIG", "TOP", "LOW", "HIGH", "LONG", "BACK",
+    "BEST", "GOOD", "HARD", "HUGE", "LAST", "LATE", "LEFT", "MAIN",
+    "NEAR", "NEXT", "OPEN", "PAST", "PEAK", "REAL", "RICH", "SAFE",
+    "SLOW", "FAST", "SOON", "SURE", "TRUE", "WEEK", "YEAR", "ZERO",
+    "BASE", "BLUE", "DARK", "EASY", "FIVE", "FOUR", "FULL", "GOLD",
+    "HALF", "NINE", "ONCE", "READ", "RISE", "SHOW", "STAY", "STOP",
+    "TERM", "WAIT", "WIDE", "ABLE", "ALSO", "CORE", "DEAL", "DONE",
+    "DOWN", "DROP", "FEEL", "FIND", "HAND", "HEAR", "HELP", "HITS",
+    "HOLD", "KEEP", "KNOW", "LOOK", "LOSE", "LOSS", "MOVE", "ONCE",
+    "PAID", "PLAN", "PLAY", "POST", "FREE", "PICK", "RATE", "RISK",
+    "SELL", "SOLD", "SOON", "STAY", "TAKE", "USED", "WENT", "WORK",
+    "YEAR", "ABLE", "BOOK", "BOND", "CALL", "CASH", "COST", "DAYS",
+    "DEBT", "FIVE", "FUND", "GAIN", "GROW", "LEFT", "LINK", "NOTE",
+    "ONCE", "PAYS", "RISE", "RUNS", "SAYS", "SEES", "SETS", "SIZE",
+    "SOLD", "SOON", "TALK", "TIME", "VOTE", "WAIT", "WAYS", "WITH",
+    "BLACK", "WHITE", "GREEN", "HOLES", "CLOSE", "ABOVE", "BELOW",
+    "AFTER", "BREAK", "BRING", "BUILT", "CLAIM", "CLEAN", "CLEAR",
+    "COSTS", "COVER", "DAILY", "DOING", "FINAL", "GIVEN", "AHEAD",
+    "KNOWN", "LEVEL", "LIGHT", "LOWER", "MAKES", "MEANS", "MONEY",
+    "MONTH", "MOVED", "MOVED", "NAMES", "NOTES", "OFFER", "ORDER",
+    "PARTS", "POINT", "POWER", "PRESS", "PRICE", "RIGHT", "ROUND",
+    "SHARE", "SHORT", "SHOWS", "SINCE", "SOLID", "SPACE", "STAGE",
+    "STAND", "START", "STATE", "STOCK", "TAKES", "TERMS", "THINK",
+    "THREE", "TIMES", "TOTAL", "TRADE", "TRUMP", "TURNS", "TWICE",
+    "TYPES", "ULTRA", "UNION", "UNITS", "UPPER", "USAGE", "VALUE",
+    "VIEWS", "WASTE", "WATCH", "WEEKS", "WHOLE", "WORTH", "WRONG",
+    "YIELD", "YOUNG", "YOURS",
+    # ── Reddit / trading slang ──
+    "DD", "OP", "RH", "WSB", "YOLO", "FOMO", "FUD", "ATH", "ATL",
+    "EOD", "HODL", "BTFD", "DYOR", "NFA", "NGMI", "WAGMI", "REKT",
+    "BAGS", "MOON", "PUMP", "DUMP", "BULL", "BEAR", "PRINT", "PUTS",
+    "CALLS", "GAIN", "GAINS", "LOSS", "LOSER", "BASED", "CALLS",
+    # ── Finance / accounting acronyms ──
+    "CEO", "CFO", "CTO", "COO", "CRO", "IPO", "SEC", "FBI", "NYSE",
+    "NASDAQ", "ETF", "OTC", "EPS", "IMO", "FYI", "TIL", "PSA",
+    "GDP", "CPI", "PPI", "PCE", "PMI", "ISM", "AUM", "NAV", "DCF",
+    "FCF", "OCF", "ROE", "ROA", "ROI", "EV", "PE", "PB",
+    "EBIT", "GAAP", "IFRS", "REIT", "SPAC", "PIPE", "ESOP", "DRIP",
+    "CAGR", "TTM", "LTM", "NTM", "YOY", "QOQ", "MOM", "YTD",
+    "LIBOR", "SOFR", "REPO", "ZIRP", "NIRP", "TARP", "QE", "QT",
+    "FOMC", "FDIC", "SIPC", "DTCC", "FINRA", "CFTC", "PCAOB",
+    "EDGAR", "POTUS", "SCOTUS",
+    # ── Options jargon ──
+    "LEAP", "LEAPS", "CALL", "IRON", "STRANGLE", "STRADDLE",
+    "ITM", "OTM", "ATM", "VWAP", "TWAP",
+    # ── Technical analysis terms ──
+    "RSI", "EMA", "SMA", "MACD", "VWAP", "ATR", "ADX",
+    # ── Macro / news terms ──
+    "USA", "FED", "IMF", "ECB", "BOJ", "PBOC",
+    "COVID", "SARS", "MERS", "DELTA", "MACRO", "MICRO",
+    # ── Tech / semiconductor terms ──
+    "NAND", "DRAM", "SRAM", "CPU", "GPU", "NPU", "TPU", "FPGA",
+    "ASIC", "API", "SDK", "SAAS", "PAAS", "IAAS", "NLP", "LLM",
+    "BERT", "CHAT", "BING", "SIRI", "GROK",
+    # ── Brands / products that are NOT tickers ──
+    "AVIS",   # ticker is CAR
+    "LSEG",   # London Stock Exchange (UK, not US)
+    "VWRP",   # Vanguard ETF on London exchange
+    "SAME", "NEVER", "HOLES", "BLACK", "DAYS",
+}
+
+# US exchange codes reported by yfinance — used to filter non-US stocks
+_US_EXCHANGES = {
+    "NMS",   # NASDAQ National Market
+    "NGM",   # NASDAQ Global Market
+    "NCM",   # NASDAQ Capital Market
+    "NYQ",   # NYSE
+    "ASE",   # NYSE American (AMEX)
+    "BTS",   # CBOE / BATS
+    "PCX",   # NYSE Arca
+    "PNK",   # OTC Pink Sheets
+    "OBB",   # OTC Bulletin Board
 }
 
 # Regex to match $TICKER or standalone uppercase tickers
