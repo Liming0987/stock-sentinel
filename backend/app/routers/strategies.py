@@ -164,10 +164,16 @@ async def alpaca_account():
     from app.services.alpaca_service import AlpacaService
 
     def _fetch():
-        svc = AlpacaService()
+        try:
+            svc = AlpacaService()
+        except Exception as e:
+            return {"configured": False, "message": f"Failed to load Alpaca credentials: {e}"}
         if not svc.is_configured:
             return {"configured": False, "message": "Alpaca credentials not set"}
-        acc = svc.get_account()
+        try:
+            acc = svc.get_account()
+        except Exception as e:
+            return {"configured": True, "error": str(e), "message": "Alpaca API call failed — check API key/secret are valid paper trading credentials"}
         positions = []
         try:
             for p in svc.get_positions():
