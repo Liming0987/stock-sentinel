@@ -153,10 +153,6 @@ Resources:
       ImageId: !Ref LatestAmiId
       InstanceType: !Ref InstanceType
       IamInstanceProfile: !Ref EC2InstanceProfile
-      MetadataOptions:
-        HttpEndpoint: enabled
-        HttpTokens: optional        # allow IMDSv1 + IMDSv2
-        HttpPutResponseHopLimit: 2  # Docker containers need hop limit ≥ 2
       SecurityGroupIds:
         - !GetAtt SecurityGroup.GroupId
       BlockDeviceMappings:
