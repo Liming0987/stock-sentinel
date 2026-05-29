@@ -1,6 +1,6 @@
 """Trading strategy comparison API."""
 from fastapi import APIRouter, Depends, Query
-from sqlalchemy import select, desc
+from sqlalchemy import select, desc, and_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.database import get_db
@@ -119,6 +119,42 @@ async def trigger_strategy_run(submit_to_alpaca: bool = False):
     loop = asyncio.get_event_loop()
     summary = await loop.run_in_executor(None, _run)
     return summary
+
+
+@router.get("/equity-curve")
+async def get_equity_curves(db: AsyncSession = Depends(get_db)):
+    """Return daily cumulative P&L per strategy for charting."""
+    from collections import defaultdict
+
+    result = await db.execute(
+        select(StrategyRow)
+    )
+    strats = result.scalars().all()
+
+    curves = {}
+    for strat in strats:
+        trades_result = await db.execute(
+            select(Trade)
+            .where(and_(Trade.strategy_id == strat.id, Trade.status == "closed"))
+            .order_by(Trade.closed_at)
+        )
+        closed_trades = trades_result.scalars().all()
+
+        daily_pnl: dict = defaultdict(float)
+        for t in closed_trades:
+            if t.closed_at and t.pnl is not None:
+                day = t.closed_at.strftime("%Y-%m-%d")
+                daily_pnl[day] += float(t.pnl)
+
+        cumulative = 0.0
+        points = []
+        for day in sorted(daily_pnl.keys()):
+            cumulative += daily_pnl[day]
+            points.append({"date": day, "cumulative_pnl": round(cumulative, 2), "daily_pnl": round(daily_pnl[day], 2)})
+
+        curves[strat.name] = points
+
+    return {"curves": curves}
 
 
 @router.get("/alpaca/account")

@@ -12,6 +12,7 @@ import {
   Activity,
   Menu,
   X,
+  BarChart2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +20,7 @@ const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/trending", label: "Trending", icon: TrendingUp },
   { href: "/signals", label: "Signals", icon: Signal },
+  { href: "/strategies", label: "Strategies", icon: BarChart2 },
   { href: "/watchlist", label: "Watchlist", icon: Star },
   { href: "/settings", label: "Settings", icon: Settings },
 ];

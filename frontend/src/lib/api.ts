@@ -36,4 +36,11 @@ export const api = {
     remove: (ticker: string) =>
       fetch(`${API_BASE}/api/watchlist/${ticker}`, { method: "DELETE" }),
   },
+  strategies: {
+    list: () => fetchApi("/api/strategies"),
+    trades: (name: string, status = "all") =>
+      fetchApi(`/api/strategies/${name}/trades?status=${status}&limit=100`),
+    equityCurve: () => fetchApi("/api/strategies/equity-curve"),
+    alpacaAccount: () => fetchApi("/api/strategies/alpaca/account"),
+  },
 };

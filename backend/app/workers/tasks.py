@@ -253,3 +253,19 @@ def run_strategies(self: Task, submit_to_alpaca: bool = False):
     from app.services.strategy_runner import StrategyRunner
     runner = StrategyRunner(submit_to_alpaca=submit_to_alpaca)
     return runner.run()
+
+
+@celery_app.task(
+    bind=True, name="app.workers.tasks.run_strategies_intraday",
+    max_retries=0, time_limit=55, soft_time_limit=50,
+    autoretry_for=(), task_acks_late=True,
+)
+def run_strategies_intraday(self: Task):
+    """Run strategies every minute during market hours using real-time Alpaca prices."""
+    from app.services.strategy_runner import StrategyRunner
+    try:
+        runner = StrategyRunner(submit_to_alpaca=True)
+        return runner.run_intraday()
+    except SoftTimeLimitExceeded:
+        logger.warning("run_strategies_intraday hit soft time limit — aborting")
+        raise

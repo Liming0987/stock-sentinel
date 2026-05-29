@@ -138,3 +138,95 @@ export function useTrendingDetail(ticker: string) {
     mention_velocity: 0, sentiment_score: 0, trend_score: 0, volume_ratio: 1, sources: [], indicators: {},
   } as TrendingStock & { indicators: Record<string, number> });
 }
+
+interface StrategyMetrics {
+  id?: number;
+  name: string;
+  description: string;
+  enabled: boolean;
+  paper: boolean;
+  total_trades: number;
+  winning_trades: number;
+  losing_trades: number;
+  win_rate: number;
+  total_pnl: number;
+  unrealized_pnl: number;
+  avg_return_pct: number;
+  last_run_at: string | null;
+}
+
+interface StrategiesResponse {
+  strategies: StrategyMetrics[];
+}
+
+interface StrategyTrade {
+  id: number;
+  ticker: string;
+  side: string;
+  qty: number;
+  entry_price: number;
+  exit_price: number | null;
+  stop_loss: number | null;
+  target: number | null;
+  status: string;
+  pnl: number | null;
+  return_pct: number | null;
+  reasoning: string | null;
+  opened_at: string | null;
+  closed_at: string | null;
+}
+
+interface StrategyTradesResponse {
+  strategy: string;
+  trades: StrategyTrade[];
+}
+
+interface EquityCurvePoint {
+  date: string;
+  cumulative_pnl: number;
+  daily_pnl: number;
+}
+
+interface EquityCurveResponse {
+  curves: Record<string, EquityCurvePoint[]>;
+}
+
+interface AlpacaAccountResponse {
+  configured: boolean;
+  paper?: boolean;
+  cash?: number;
+  portfolio_value?: number;
+  buying_power?: number;
+  equity?: number;
+  positions?: Array<{
+    symbol: string;
+    qty: number;
+    avg_entry_price: number;
+    current_price: number | null;
+    unrealized_pl: number;
+  }>;
+  message?: string;
+}
+
+export function useStrategies() {
+  const fetcher = useCallback(() => api.strategies.list() as Promise<StrategiesResponse>, []);
+  return useApi(fetcher, { strategies: [] } as StrategiesResponse);
+}
+
+export function useStrategyTrades(name: string, status = "all") {
+  const fetcher = useCallback(
+    () => api.strategies.trades(name, status) as Promise<StrategyTradesResponse>,
+    [name, status]
+  );
+  return useApi(fetcher, { strategy: name, trades: [] } as StrategyTradesResponse);
+}
+
+export function useEquityCurve() {
+  const fetcher = useCallback(() => api.strategies.equityCurve() as Promise<EquityCurveResponse>, []);
+  return useApi(fetcher, { curves: {} } as EquityCurveResponse);
+}
+
+export function useAlpacaAccount() {
+  const fetcher = useCallback(() => api.strategies.alpacaAccount() as Promise<AlpacaAccountResponse>, []);
+  return useApi(fetcher, { configured: false } as AlpacaAccountResponse);
+}

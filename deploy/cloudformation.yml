@@ -4,8 +4,8 @@ Description: Stock Sentinel — EC2 + ECR infrastructure
 Parameters:
   InstanceType:
     Type: String
-    Default: t3.small
-    AllowedValues: [t3.micro, t3.small, t3.medium]
+    Default: t3.medium
+    AllowedValues: [t3.micro, t3.small, t3.medium, t3.large]
   KeyPairName:
     Type: String
     Default: stock-sentinel-key

@@ -106,6 +106,39 @@ class StrategyRunner:
             },
         }
 
+    def _build_intraday_context(self, session: Session, stock: Stock, alpaca) -> Dict:
+        """Build strategy context using real-time Alpaca price + cached daily indicators."""
+        df = self.price_service.get_price_data(stock.ticker, period="3mo")
+        if df is None or df.empty:
+            return {}
+        indicators = self.price_service.compute_indicators(df)
+
+        # Override last_price with real-time Alpaca quote
+        rt_price = alpaca.get_latest_price(stock.ticker)
+        if rt_price:
+            indicators["last_price"] = rt_price
+
+        cutoff = datetime.now(timezone.utc) - timedelta(hours=24)
+        mentions = session.execute(
+            select(Mention).where(
+                and_(Mention.stock_id == stock.id, Mention.created_at >= cutoff)
+            )
+        ).scalars().all()
+
+        scores = [float(m.sentiment_score) for m in mentions if m.sentiment_score is not None]
+        avg_sentiment = sum(scores) / len(scores) if scores else 0.0
+        velocity = len(mentions) / 24.0
+
+        return {
+            "price_df": df,
+            "indicators": indicators,
+            "sentiment": {
+                "avg_sentiment": avg_sentiment,
+                "mention_count": len(mentions),
+                "mention_velocity": velocity,
+            },
+        }
+
     def _open_position(
         self, session: Session, strat_row: StrategyRow, stock: Stock, signal, ticker: str
     ) -> Trade:
@@ -282,6 +315,79 @@ class StrategyRunner:
                     "win_rate": float(strat_row.win_rate or 0),
                     "total_pnl": float(strat_row.total_pnl or 0),
                     "unrealized_pnl": float(strat_row.unrealized_pnl or 0),
+                }
+                summary["trades_opened"] += opened
+                summary["trades_closed"] += closed
+
+        engine.dispose()
+        return summary
+
+    def run_intraday(self) -> Dict:
+        """Run strategies using real-time Alpaca prices. Market-hours-only."""
+        from app.services.alpaca_service import AlpacaService
+
+        alpaca = AlpacaService()
+        if not alpaca.is_configured:
+            return {"skipped": "Alpaca not configured"}
+        if not alpaca.is_market_open():
+            return {"skipped": "Market closed"}
+
+        engine = create_engine(_sync_db_url())
+        summary = {"strategies": {}, "trades_opened": 0, "trades_closed": 0, "intraday": True}
+
+        with Session(engine) as session:
+            stocks_ctx: Dict[str, Dict] = {}
+            for ticker in self.universe:
+                try:
+                    stock = self._ensure_stock(session, ticker)
+                    ctx = self._build_intraday_context(session, stock, alpaca)
+                    if ctx:
+                        stocks_ctx[ticker] = {"stock": stock, "ctx": ctx}
+                except Exception as e:
+                    logger.warning(f"Intraday: skipping {ticker}: {e}")
+            session.commit()
+
+            for strat_name, strat_cls in STRATEGY_REGISTRY.items():
+                strat: BaseStrategy = strat_cls()
+                strat_row = self._ensure_strategy_row(session, strat)
+                if not strat_row.enabled:
+                    continue
+
+                opened = closed = 0
+                for ticker, payload in stocks_ctx.items():
+                    stock: Stock = payload["stock"]
+                    ctx = dict(payload["ctx"])
+
+                    open_trade = session.execute(
+                        select(Trade).where(and_(
+                            Trade.strategy_id == strat_row.id,
+                            Trade.stock_id == stock.id,
+                            Trade.status == "open",
+                        ))
+                    ).scalar_one_or_none()
+                    ctx["current_position"] = open_trade
+
+                    if open_trade:
+                        close_reason = strat.should_close(open_trade, ctx)
+                        if close_reason:
+                            last_price = ctx["indicators"].get("last_price")
+                            if last_price:
+                                self._close_position(session, open_trade, float(last_price), close_reason)
+                                closed += 1
+                                continue
+
+                    sig = strat.evaluate(ticker, ctx)
+                    if sig.action == "buy" and not open_trade:
+                        self._open_position(session, strat_row, stock, sig, ticker)
+                        opened += 1
+
+                self._recompute_metrics(session, strat_row)
+                session.commit()
+
+                summary["strategies"][strat_name] = {
+                    "opened": opened,
+                    "closed": closed,
+                    "total_pnl": float(strat_row.total_pnl or 0),
                 }
                 summary["trades_opened"] += opened
                 summary["trades_closed"] += closed

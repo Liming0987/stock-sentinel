@@ -74,6 +74,10 @@ celery_app.conf.beat_schedule = {
         "task": "app.workers.tasks.run_strategies",
         "schedule": 1800.0,
     },
+    "run-strategies-intraday": {
+        "task": "app.workers.tasks.run_strategies_intraday",
+        "schedule": 60.0,  # every minute, task itself skips if market closed
+    },
 }
 
 

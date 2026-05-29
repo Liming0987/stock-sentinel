@@ -110,3 +110,52 @@ class AlpacaService:
         except Exception as e:
             logger.warning(f"Failed to get latest price for {symbol}: {e}")
             return None
+
+    def is_market_open(self) -> bool:
+        """Check if the US equity market is currently open via Alpaca clock."""
+        if not self.is_configured:
+            return False
+        try:
+            clock = self.trading_client.get_clock()
+            return bool(clock.is_open)
+        except Exception as e:
+            logger.warning(f"Failed to check market clock: {e}")
+            return False
+
+    def get_latest_prices(self, symbols: list) -> dict:
+        """Get latest trade price for multiple symbols in one call. Returns {symbol: price}."""
+        if not self.is_configured:
+            return {}
+        try:
+            from alpaca.data.requests import StockLatestTradeRequest
+            req = StockLatestTradeRequest(symbol_or_symbols=symbols)
+            trades = self.data_client.get_stock_latest_trade(req)
+            return {sym: float(trades[sym].price) for sym in symbols if sym in trades}
+        except Exception as e:
+            logger.warning(f"Failed to get latest prices: {e}")
+            return {}
+
+    def get_minute_bars(self, symbol: str, limit: int = 120):
+        """Get recent 1-minute OHLCV bars for a symbol. Returns a pandas DataFrame or None."""
+        if not self.is_configured:
+            return None
+        try:
+            from alpaca.data.requests import StockBarsRequest
+            from alpaca.data.timeframe import TimeFrame
+            from datetime import datetime, timedelta, timezone
+            end = datetime.now(timezone.utc)
+            start = end - timedelta(hours=3)
+            req = StockBarsRequest(
+                symbol_or_symbols=symbol,
+                timeframe=TimeFrame.Minute,
+                start=start,
+                end=end,
+                limit=limit,
+            )
+            bars = self.data_client.get_stock_bars(req)
+            if symbol not in bars or bars[symbol] is None:
+                return None
+            return bars[symbol].df
+        except Exception as e:
+            logger.warning(f"Failed to get minute bars for {symbol}: {e}")
+            return None
