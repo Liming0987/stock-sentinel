@@ -1,6 +1,21 @@
 import math
-from typing import Dict, Tuple
+import logging
+from typing import Dict, Optional, Tuple
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+logger = logging.getLogger(__name__)
+
+# Process-level singleton — loaded once when the worker boots, never per-task.
+# Tasks call get_sentiment_service() instead of constructing SentimentService().
+_process_sentiment_service: Optional["SentimentService"] = None
+
+
+def get_sentiment_service(use_finbert: bool = True) -> "SentimentService":
+    """Return the process-level SentimentService, initialising it on first call."""
+    global _process_sentiment_service
+    if _process_sentiment_service is None:
+        _process_sentiment_service = SentimentService(use_finbert=use_finbert)
+    return _process_sentiment_service
 
 
 class SentimentService:
@@ -15,7 +30,7 @@ class SentimentService:
             self._load_finbert()
 
     def _load_finbert(self):
-        """Lazy-load FinBERT model."""
+        """Load FinBERT model. Falls back to VADER silently on any failure."""
         try:
             from transformers import AutoModelForSequenceClassification, AutoTokenizer
             import torch
@@ -24,8 +39,9 @@ class SentimentService:
             self.finbert_tokenizer = AutoTokenizer.from_pretrained(model_name)
             self.finbert_model = AutoModelForSequenceClassification.from_pretrained(model_name)
             self.finbert_model.eval()
+            logger.info("FinBERT loaded successfully")
         except Exception as e:
-            print(f"Failed to load FinBERT, falling back to VADER: {e}")
+            logger.warning("FinBERT unavailable, falling back to VADER: %s", e)
             self.finbert_model = None
 
     def analyze_vader(self, text: str) -> Tuple[float, float]:

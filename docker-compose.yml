@@ -67,7 +67,16 @@ services:
         condition: service_healthy
     volumes:
       - ./backend:/app
-    command: celery -A app.workers.celery_app worker --loglevel=info --concurrency=2
+    # concurrency=1: one process per container so FinBERT loads exactly once
+    command: celery -A app.workers.celery_app worker --loglevel=info --concurrency=1 --max-tasks-per-child=50
+    healthcheck:
+      # Worker is healthy if it can ping the Celery inspect endpoint
+      test: ["CMD", "celery", "-A", "app.workers.celery_app", "inspect", "ping", "--timeout", "5"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: on-failure
 
   # Celery Beat (scheduler)
   beat:
@@ -87,6 +96,7 @@ services:
     volumes:
       - ./backend:/app
     command: celery -A app.workers.celery_app beat --loglevel=info
+    restart: on-failure
 
   # Next.js Frontend
   frontend:

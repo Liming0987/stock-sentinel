@@ -53,8 +53,19 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    command: celery -A app.workers.celery_app worker --loglevel=info --concurrency=2
-    restart: unless-stopped
+    # concurrency=1: FinBERT loads exactly once per container; max-tasks-per-child
+    # recycles the process periodically to prevent memory growth
+    command: celery -A app.workers.celery_app worker --loglevel=info --concurrency=1 --max-tasks-per-child=50
+    healthcheck:
+      test: ["CMD", "celery", "-A", "app.workers.celery_app", "inspect", "ping", "--timeout", "5"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 90s
+    # on-failure stops the crash-restart-reload spiral; the worker_init signal
+    # handler in celery_app.py exits with code 1 if DB/schema is not ready,
+    # which Docker counts as a failure and applies its restart backoff
+    restart: on-failure
 
   beat:
     image: 178801185941.dkr.ecr.us-east-1.amazonaws.com/stock-sentinel-backend:latest
@@ -69,7 +80,7 @@ services:
       redis:
         condition: service_healthy
     command: celery -A app.workers.celery_app beat --loglevel=info
-    restart: unless-stopped
+    restart: on-failure
 
   frontend:
     image: 178801185941.dkr.ecr.us-east-1.amazonaws.com/stock-sentinel-frontend:latest
