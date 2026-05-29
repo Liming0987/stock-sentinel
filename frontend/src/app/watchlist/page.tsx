@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Star, ArrowUpRight, ArrowDownRight, Trash2, Bell, Plus } from "lucide-react";
+import {
+  Star, ArrowUpRight, ArrowDownRight,
+  Trash2, Bell, Plus, Search, ChevronUp, ChevronDown,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,14 +13,67 @@ import { SentimentGauge } from "@/components/dashboard/sentiment-gauge";
 import { formatPrice, formatPercent } from "@/lib/utils";
 import { useWatchlist } from "@/lib/hooks";
 import { api } from "@/lib/api";
+import type { WatchlistItem } from "@/lib/mock-data";
+
+type SortKey = "ticker" | "price" | "change_pct" | "sentiment_score";
+type SortDir = "asc" | "desc";
+
+const SORT_OPTIONS: { key: SortKey; label: string }[] = [
+  { key: "ticker", label: "Ticker" },
+  { key: "price", label: "Price" },
+  { key: "change_pct", label: "Change" },
+  { key: "sentiment_score", label: "Sentiment" },
+];
+
+const DEFAULT_DIR: Record<SortKey, SortDir> = {
+  ticker: "asc",
+  price: "desc",
+  change_pct: "desc",
+  sentiment_score: "desc",
+};
 
 export default function WatchlistPage() {
   const { data, refetch } = useWatchlist();
-  const stocks = data.stocks;
 
   const [adding, setAdding] = useState(false);
   const [tickerInput, setTickerInput] = useState("");
   const [addError, setAddError] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
+  const [sortKey, setSortKey] = useState<SortKey>("ticker");
+  const [sortDir, setSortDir] = useState<SortDir>("asc");
+
+  const handleSortClick = (key: SortKey) => {
+    if (sortKey === key) {
+      setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    } else {
+      setSortKey(key);
+      setSortDir(DEFAULT_DIR[key]);
+    }
+  };
+
+  const displayed = useMemo(() => {
+    let list: WatchlistItem[] = data.stocks;
+
+    if (query.trim()) {
+      const q = query.trim().toLowerCase();
+      list = list.filter(
+        (s) =>
+          s.ticker.toLowerCase().includes(q) ||
+          (s.name ?? "").toLowerCase().includes(q)
+      );
+    }
+
+    return [...list].sort((a, b) => {
+      const av = a[sortKey];
+      const bv = b[sortKey];
+      if (typeof av === "string" && typeof bv === "string") {
+        return sortDir === "asc" ? av.localeCompare(bv) : bv.localeCompare(av);
+      }
+      const an = Number(av ?? 0);
+      const bn = Number(bv ?? 0);
+      return sortDir === "asc" ? an - bn : bn - an;
+    });
+  }, [data.stocks, query, sortKey, sortDir]);
 
   const handleAdd = async () => {
     const ticker = tickerInput.trim().toUpperCase();
@@ -45,6 +101,7 @@ export default function WatchlistPage() {
 
   return (
     <div className="space-y-6">
+      {/* Page header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">Watchlist</h1>
@@ -58,6 +115,7 @@ export default function WatchlistPage() {
         </Button>
       </div>
 
+      {/* Add ticker form */}
       {adding && (
         <Card>
           <CardContent className="flex items-center gap-3 pt-4">
@@ -67,7 +125,10 @@ export default function WatchlistPage() {
               placeholder="e.g. NVDA"
               value={tickerInput}
               onChange={(e) => setTickerInput(e.target.value.toUpperCase())}
-              onKeyDown={(e) => { if (e.key === "Enter") handleAdd(); if (e.key === "Escape") setAdding(false); }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleAdd();
+                if (e.key === "Escape") setAdding(false);
+              }}
             />
             <Button size="sm" onClick={handleAdd}>
               <Plus className="mr-1 h-4 w-4" /> Add
@@ -80,23 +141,77 @@ export default function WatchlistPage() {
         </Card>
       )}
 
-      {stocks.length === 0 ? (
+      {/* Filter + sort controls — only shown when there are stocks */}
+      {data.stocks.length > 0 && (
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          {/* Filter input */}
+          <div className="relative max-w-xs w-full">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Filter by ticker or name…"
+              className="w-full rounded-md border border-input bg-background pl-8 pr-3 py-1.5 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring"
+            />
+          </div>
+
+          {/* Sort picker */}
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs text-muted-foreground shrink-0">Sort by</span>
+            <div className="flex gap-1 rounded-lg border p-0.5">
+              {SORT_OPTIONS.map(({ key, label }) => {
+                const active = sortKey === key;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => handleSortClick(key)}
+                    className={`flex items-center gap-1 rounded px-2.5 py-1 text-xs font-medium transition-colors ${
+                      active
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                    }`}
+                  >
+                    {label}
+                    {active && (
+                      sortDir === "asc"
+                        ? <ChevronUp className="h-3 w-3" />
+                        : <ChevronDown className="h-3 w-3" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Empty watchlist */}
+      {data.stocks.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
             <Star className="mb-4 h-12 w-12 text-muted-foreground/50" />
             <p className="text-lg font-medium">Your watchlist is empty</p>
-            <p className="text-sm text-muted-foreground">Click &ldquo;Add Ticker&rdquo; to start tracking stocks</p>
+            <p className="text-sm text-muted-foreground">
+              Click &ldquo;Add Ticker&rdquo; to start tracking stocks
+            </p>
+          </CardContent>
+        </Card>
+      ) : displayed.length === 0 ? (
+        /* No results after filtering */
+        <Card>
+          <CardContent className="flex flex-col items-center justify-center py-10">
+            <p className="text-sm text-muted-foreground">
+              No stocks match &ldquo;{query}&rdquo;
+            </p>
           </CardContent>
         </Card>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {stocks.map((stock) => (
+          {displayed.map((stock) => (
             <Card key={stock.ticker} className="relative overflow-hidden">
               {stock.has_active_signal && (
                 <div className="absolute right-3 top-3">
-                  <Badge variant="bullish" className="text-[10px]">
-                    SIGNAL
-                  </Badge>
+                  <Badge variant="bullish" className="text-[10px]">SIGNAL</Badge>
                 </div>
               )}
               <CardHeader className="pb-2">
@@ -111,7 +226,11 @@ export default function WatchlistPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-2xl font-bold font-mono">{formatPrice(stock.price)}</p>
-                    <p className={`flex items-center gap-0.5 text-sm font-mono ${stock.change_pct >= 0 ? "text-bullish" : "text-bearish"}`}>
+                    <p
+                      className={`flex items-center gap-0.5 text-sm font-mono ${
+                        stock.change_pct >= 0 ? "text-bullish" : "text-bearish"
+                      }`}
+                    >
                       {stock.change_pct >= 0 ? (
                         <ArrowUpRight className="h-3 w-3" />
                       ) : (
