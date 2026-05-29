@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.database import get_db
 from app.models.stock import Stock
-from app.models.mention import Mention, RedditPost
+from app.models.mention import Mention, RedditPost, StocktwitsMessage
 
 router = APIRouter()
 
@@ -107,8 +107,9 @@ async def get_sentiment_posts(
         return {"ticker": ticker.upper(), "posts": []}
 
     query = (
-        select(Mention, RedditPost)
+        select(Mention, RedditPost, StocktwitsMessage)
         .outerjoin(RedditPost, (Mention.source_type == "reddit") & (Mention.source_id == RedditPost.id))
+        .outerjoin(StocktwitsMessage, (Mention.source_type == "stocktwits") & (Mention.source_id == StocktwitsMessage.id))
         .where(Mention.stock_id == stock.id)
         .order_by(desc(Mention.created_at))
         .limit(limit)
@@ -121,19 +122,33 @@ async def get_sentiment_posts(
     rows = result.all()
 
     posts = []
-    for mention, post in rows:
-        posts.append({
-            "id": mention.id,
-            "source": mention.source_type,
-            "subreddit": post.subreddit if post else None,
-            "title": post.title if post else "",
-            "body": (post.body or "")[:200] if post else "",
-            "author": post.author if post else "",
-            "score": post.score if post else 0,
-            "sentiment_score": float(mention.sentiment_score) if mention.sentiment_score else 0,
-            "created_at": mention.created_at.isoformat() if mention.created_at else "",
-            "url": post.url if post else "",
-        })
+    for mention, reddit_post, st_msg in rows:
+        if mention.source_type == "reddit" and reddit_post:
+            posts.append({
+                "id": mention.id,
+                "source": "reddit",
+                "subreddit": reddit_post.subreddit,
+                "title": reddit_post.title or "",
+                "body": (reddit_post.body or "")[:300],
+                "author": reddit_post.author or "",
+                "score": reddit_post.score or 0,
+                "sentiment_score": float(mention.sentiment_score) if mention.sentiment_score else 0,
+                "created_at": mention.created_at.isoformat() if mention.created_at else "",
+                "url": reddit_post.url or "",
+            })
+        elif mention.source_type == "stocktwits" and st_msg:
+            posts.append({
+                "id": mention.id,
+                "source": "stocktwits",
+                "subreddit": None,
+                "title": "",
+                "body": st_msg.body or "",
+                "author": st_msg.author or "",
+                "score": st_msg.likes or 0,
+                "sentiment_score": float(mention.sentiment_score) if mention.sentiment_score else 0,
+                "created_at": mention.created_at.isoformat() if mention.created_at else "",
+                "url": "",
+            })
 
     return {"ticker": ticker.upper(), "posts": posts}
 

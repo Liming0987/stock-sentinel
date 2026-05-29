@@ -226,23 +226,27 @@ export default function StockDetailPage() {
                       </span>
                     </div>
                   </div>
-                  {post.title && (
-                    post.url ? (
-                      <a
-                        href={post.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-medium hover:underline line-clamp-2"
-                      >
-                        {post.title}
-                      </a>
-                    ) : (
-                      <p className="text-sm font-medium line-clamp-2">{post.title}</p>
-                    )
-                  )}
-                  {post.body && (
-                    <p className="text-xs text-muted-foreground line-clamp-2">{post.body}</p>
-                  )}
+                  {post.title ? (
+                    <>
+                      {post.url ? (
+                        <a
+                          href={post.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium hover:underline line-clamp-2"
+                        >
+                          {post.title}
+                        </a>
+                      ) : (
+                        <p className="text-sm font-medium line-clamp-2">{post.title}</p>
+                      )}
+                      {post.body && (
+                        <p className="text-xs text-muted-foreground line-clamp-2">{post.body}</p>
+                      )}
+                    </>
+                  ) : post.body ? (
+                    <p className="text-sm line-clamp-3">{post.body}</p>
+                  ) : null}
                 </div>
               );
             })
