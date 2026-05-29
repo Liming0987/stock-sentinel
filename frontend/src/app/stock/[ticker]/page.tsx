@@ -22,7 +22,7 @@ import {
   formatPercent,
   formatNumber,
 } from "@/lib/utils";
-import { useTrendingDetail, usePrices, useSentiment, useSignals } from "@/lib/hooks";
+import { useTrendingDetail, usePrices, useSentiment, useSignals, usePosts } from "@/lib/hooks";
 
 export default function StockDetailPage() {
   const params = useParams();
@@ -32,10 +32,12 @@ export default function StockDetailPage() {
   const { data: priceData } = usePrices(ticker);
   const { data: sentimentData } = useSentiment(ticker);
   const { data: signalsData } = useSignals();
+  const { data: postsData } = usePosts(ticker);
 
   const signal = signalsData.signals.find((s) => s.ticker === ticker);
   const candles = priceData.candles;
   const sentimentHistory = sentimentData.history;
+  const posts = postsData.posts;
 
   if (stockLoading) {
     return (
@@ -132,25 +134,31 @@ export default function StockDetailPage() {
             <CardTitle>Price Chart (30D)</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-72">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={candles} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
-                  <defs>
-                    <linearGradient id="priceGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
-                      <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                  <XAxis dataKey="date" tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} tickFormatter={(v) => v.slice(5)} />
-                  <YAxis domain={["auto", "auto"]} tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} />
-                  <Tooltip
-                    contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px", fontSize: "12px" }}
-                  />
-                  <Area type="monotone" dataKey="close" stroke="hsl(var(--primary))" fill="url(#priceGradient)" strokeWidth={2} />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
+            {candles.length === 0 ? (
+              <div className="flex h-72 items-center justify-center text-sm text-muted-foreground">
+                Price data unavailable for {ticker}
+              </div>
+            ) : (
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={candles} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+                    <defs>
+                      <linearGradient id="priceGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                    <XAxis dataKey="date" tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} tickFormatter={(v) => v.slice(5)} />
+                    <YAxis domain={["auto", "auto"]} tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} />
+                    <Tooltip
+                      contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px", fontSize: "12px" }}
+                    />
+                    <Area type="monotone" dataKey="close" stroke="hsl(var(--primary))" fill="url(#priceGradient)" strokeWidth={2} />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            )}
           </CardContent>
         </Card>
 
@@ -184,7 +192,61 @@ export default function StockDetailPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <p className="text-sm text-muted-foreground">Posts will appear here once Reddit scraping is active.</p>
+          {posts.length === 0 ? (
+            <p className="text-sm text-muted-foreground">No recent posts found for {ticker}.</p>
+          ) : (
+            posts.map((post) => {
+              const sentimentColor =
+                post.sentiment_score > 0.05
+                  ? "text-bullish"
+                  : post.sentiment_score < -0.05
+                  ? "text-bearish"
+                  : "text-muted-foreground";
+              return (
+                <div key={post.id} className="rounded-lg border p-3 space-y-1">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <Badge variant="secondary" className="text-[10px] capitalize">
+                        {post.source}
+                      </Badge>
+                      {post.subreddit && (
+                        <span className="text-xs text-muted-foreground">r/{post.subreddit}</span>
+                      )}
+                      {post.author && (
+                        <span className="text-xs text-muted-foreground">u/{post.author}</span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span className={`text-xs font-mono ${sentimentColor}`}>
+                        {post.sentiment_score > 0 ? "+" : ""}
+                        {(post.sentiment_score * 100).toFixed(0)}%
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {new Date(post.created_at).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                  {post.title && (
+                    post.url ? (
+                      <a
+                        href={post.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium hover:underline line-clamp-2"
+                      >
+                        {post.title}
+                      </a>
+                    ) : (
+                      <p className="text-sm font-medium line-clamp-2">{post.title}</p>
+                    )
+                  )}
+                  {post.body && (
+                    <p className="text-xs text-muted-foreground line-clamp-2">{post.body}</p>
+                  )}
+                </div>
+              );
+            })
+          )}
         </CardContent>
       </Card>
     </div>

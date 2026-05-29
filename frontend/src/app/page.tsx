@@ -40,7 +40,7 @@ export default function DashboardPage() {
       />
 
       {/* Trending table + compact signals sidebar — equal height */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3 xl:items-stretch">
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3 xl:h-[460px]">
         <div className="xl:col-span-2 h-full">
           <TrendingTable stocks={stocks} compact />
         </div>

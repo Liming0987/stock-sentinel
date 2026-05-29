@@ -102,6 +102,32 @@ export function useWatchlist() {
   return useApi(fetcher, { stocks: [] } as WatchlistResponse);
 }
 
+interface Post {
+  id: number;
+  source: string;
+  subreddit: string | null;
+  title: string;
+  body: string;
+  author: string;
+  score: number;
+  sentiment_score: number;
+  created_at: string;
+  url: string;
+}
+
+interface PostsResponse {
+  ticker: string;
+  posts: Post[];
+}
+
+export function usePosts(ticker: string, limit = 20) {
+  const fetcher = useCallback(
+    () => api.sentiment.posts(ticker, limit) as Promise<PostsResponse>,
+    [ticker, limit]
+  );
+  return useApi(fetcher, { ticker, posts: [] } as PostsResponse);
+}
+
 export function useTrendingDetail(ticker: string) {
   const fetcher = useCallback(
     () => api.trending.detail(ticker) as Promise<TrendingStock & { indicators: Record<string, number> }>,
