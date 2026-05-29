@@ -4,12 +4,13 @@ import { StatsCards } from "@/components/dashboard/stats-cards";
 import { TrendingTable } from "@/components/dashboard/trending-table";
 import { SignalsCard } from "@/components/dashboard/signals-card";
 import { SentimentChart } from "@/components/dashboard/sentiment-chart";
-import { useTrending, useSignals, useMarketSentiment } from "@/lib/hooks";
+import { useTrending, useSignals, useMarketSentiment, useWatchlist } from "@/lib/hooks";
 
 export default function DashboardPage() {
   const { data: trending, loading: trendingLoading } = useTrending();
   const { data: signalsData } = useSignals();
   const { data: marketSentiment } = useMarketSentiment();
+  const { data: watchlistData } = useWatchlist();
 
   const stocks = trending.stocks;
   const signals = signalsData.signals;
@@ -36,7 +37,7 @@ export default function DashboardPage() {
         totalMentions={totalMentions}
         trendingCount={stocks.length}
         activeSignals={signals.length}
-        watchlistCount={0}
+        watchlistCount={watchlistData.stocks.length}
       />
 
       {/* Trending table + compact signals sidebar — equal height */}

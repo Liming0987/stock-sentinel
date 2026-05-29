@@ -80,7 +80,7 @@ export default function SettingsPage() {
       const data = await res.json();
       setTestStatus(data.ok ? "ok" : "fail");
       setTestMessage(data.message || "");
-    } catch (e) {
+    } catch {
       setTestStatus("fail");
       setTestMessage("Network error — is the backend reachable?");
     }

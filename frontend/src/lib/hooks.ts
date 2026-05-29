@@ -252,6 +252,7 @@ export interface LivePositionsResponse {
   timestamp: string;
   positions: LivePosition[];
   by_strategy: Record<string, ByStrategy>;
+  market_open: boolean;
 }
 
 export interface LiveHistoryPoint {
@@ -259,51 +260,62 @@ export interface LiveHistoryPoint {
   [key: string]: number | string;
 }
 
-export function useLivePositions(intervalMs = 3000) {
+export function useLivePositions() {
   const [data, setData] = useState<LivePositionsResponse>({
     timestamp: "",
     positions: [],
     by_strategy: {},
+    market_open: true,
   });
   const [history, setHistory] = useState<LiveHistoryPoint[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
+    let timerId: ReturnType<typeof setTimeout>;
+
+    let marketOpen = true;
 
     const poll = async () => {
       try {
         const result = await (api.strategies.livePositions() as Promise<LivePositionsResponse>);
         if (!active) return;
+        marketOpen = result.market_open;
         setData(result);
         setLoading(false);
 
-        const time = new Date(result.timestamp || Date.now()).toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        });
-        const point: LiveHistoryPoint = { time };
-        for (const [name, s] of Object.entries(result.by_strategy)) {
-          point[name] = s.unrealized_pnl;
+        if (result.market_open) {
+          const time = new Date(result.timestamp || Date.now()).toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false,
+          });
+          const point: LiveHistoryPoint = { time };
+          for (const [name, s] of Object.entries(result.by_strategy)) {
+            point[name] = s.unrealized_pnl;
+          }
+          setHistory((prev) => {
+            const next = [...prev, point];
+            return next.slice(-120);
+          });
         }
-        setHistory((prev) => {
-          const next = [...prev, point];
-          return next.slice(-120); // keep 6 minutes at 3s interval
-        });
       } catch {
         if (active) setLoading(false);
+      }
+
+      if (active) {
+        // 3s when market is open, 60s when closed (checking for re-open)
+        timerId = setTimeout(poll, marketOpen ? 3000 : 60000);
       }
     };
 
     poll();
-    const id = setInterval(poll, intervalMs);
     return () => {
       active = false;
-      clearInterval(id);
+      clearTimeout(timerId);
     };
-  }, [intervalMs]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return { data, history, loading };
 }

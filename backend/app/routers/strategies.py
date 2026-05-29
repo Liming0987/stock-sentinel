@@ -171,11 +171,24 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
     )
     open_trades = trades_result.scalars().all()
 
+    def _is_market_open() -> bool:
+        try:
+            import pytz
+            from datetime import time as dt_time
+            et = pytz.timezone("America/New_York")
+            now = datetime.now(et)
+            return now.weekday() < 5 and dt_time(9, 30) <= now.time() <= dt_time(16, 0)
+        except Exception:
+            return True  # default open if check fails
+
+    market_open = _is_market_open()
+
     if not open_trades:
         return {
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "positions": [],
             "by_strategy": {},
+            "market_open": market_open,
         }
 
     tickers = list({t.ticker for t in open_trades})
@@ -240,6 +253,7 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "positions": positions,
         "by_strategy": by_strategy,
+        "market_open": market_open,
     }
 
 

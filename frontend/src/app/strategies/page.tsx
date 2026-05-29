@@ -114,10 +114,11 @@ interface StrategyLivePanelProps {
   chartData: ReturnType<typeof useLivePositions>["history"];
   isOpen: boolean;
   onToggle: () => void;
+  marketOpen: boolean;
 }
 
 function StrategyLivePanel({
-  stratName, summary, positions, chartData, isOpen, onToggle,
+  stratName, summary, positions, chartData, isOpen, onToggle, marketOpen,
 }: StrategyLivePanelProps) {
   const color = STRATEGY_COLORS[stratName] || "hsl(var(--primary))";
   const hasHistory = chartData.some(
@@ -144,6 +145,9 @@ function StrategyLivePanel({
             <span className="text-xs text-muted-foreground">
               {summary.position_count} position{summary.position_count !== 1 ? "s" : ""}
             </span>
+          )}
+          {!marketOpen && (
+            <Badge variant="secondary" className="text-[10px] shrink-0">Market closed</Badge>
           )}
         </div>
         {isOpen
@@ -228,7 +232,7 @@ function StrategyLivePanel({
 }
 
 function LivePositionsPanel() {
-  const { data, history, loading } = useLivePositions(3000);
+  const { data, history, loading } = useLivePositions();
 
   const chartData = useMemo(() => {
     const recent = history.slice(-REAL_SLOTS);
@@ -262,10 +266,10 @@ function LivePositionsPanel() {
         </h2>
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${data.market_open ? "animate-ping bg-primary" : "bg-muted-foreground"}`} />
+            <span className={`relative inline-flex rounded-full h-2 w-2 ${data.market_open ? "bg-primary" : "bg-muted-foreground"}`} />
           </span>
-          Updates every 3s
+          {data.market_open ? "Updates every 3s" : "Market closed — checking every 60s"}
         </div>
       </div>
 
@@ -285,6 +289,7 @@ function LivePositionsPanel() {
             chartData={chartData}
             isOpen={isOpen(name)}
             onToggle={() => toggle(name)}
+            marketOpen={data.market_open}
           />
         ))
       )}
