@@ -109,6 +109,15 @@ class TrendingService:
         rankings = []
 
         with Session(engine) as session:
+            # Purge snapshots older than 7 days to keep the table lean
+            from sqlalchemy import delete as sa_delete
+            session.execute(
+                sa_delete(TrendingSnapshot).where(
+                    TrendingSnapshot.snapshot_at < now - timedelta(days=7)
+                )
+            )
+            session.commit()
+
             active_stock_ids = session.execute(
                 select(Mention.stock_id)
                 .where(Mention.created_at >= window_start)

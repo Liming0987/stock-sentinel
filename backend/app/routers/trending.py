@@ -31,8 +31,24 @@ async def get_trending_stocks(
     db: AsyncSession = Depends(get_db),
 ):
     """Get top trending stocks ranked by composite score."""
+    # Subquery: most recent snapshot timestamp per stock
+    latest_subq = (
+        select(
+            TrendingSnapshot.stock_id,
+            func.max(TrendingSnapshot.snapshot_at).label("latest_at"),
+        )
+        .group_by(TrendingSnapshot.stock_id)
+        .subquery()
+    )
     result = await db.execute(
         select(TrendingSnapshot)
+        .join(
+            latest_subq,
+            and_(
+                TrendingSnapshot.stock_id == latest_subq.c.stock_id,
+                TrendingSnapshot.snapshot_at == latest_subq.c.latest_at,
+            ),
+        )
         .join(Stock, TrendingSnapshot.stock_id == Stock.id)
         .order_by(desc(TrendingSnapshot.trend_score))
         .limit(limit)
