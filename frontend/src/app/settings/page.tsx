@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Key, User } from "lucide-react";
+import { Bell, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
@@ -64,32 +64,6 @@ export default function SettingsPage() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Key className="h-5 w-5" />
-              API Keys
-            </CardTitle>
-            <CardDescription>Connect external data sources</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {[
-              { label: "Reddit Client ID", placeholder: "Enter your Reddit app client ID" },
-              { label: "Reddit Client Secret", placeholder: "Enter your Reddit app client secret" },
-              { label: "Finnhub API Key", placeholder: "Enter your Finnhub API key (optional)" },
-            ].map((item) => (
-              <div key={item.label}>
-                <label className="text-sm font-medium">{item.label}</label>
-                <input
-                  type="password"
-                  placeholder={item.placeholder}
-                  className="mt-1 flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-ring focus:ring-2 outline-none"
-                />
-              </div>
-            ))}
-            <Button size="sm">Save API Keys</Button>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
