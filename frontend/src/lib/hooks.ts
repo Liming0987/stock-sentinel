@@ -230,3 +230,78 @@ export function useAlpacaAccount() {
   const fetcher = useCallback(() => api.strategies.alpacaAccount() as Promise<AlpacaAccountResponse>, []);
   return useApi(fetcher, { configured: false } as AlpacaAccountResponse);
 }
+
+export interface LivePosition {
+  strategy: string;
+  ticker: string;
+  qty: number;
+  entry_price: number;
+  current_price: number;
+  unrealized_pnl: number;
+  return_pct: number;
+}
+
+interface ByStrategy {
+  unrealized_pnl: number;
+  position_count: number;
+}
+
+export interface LivePositionsResponse {
+  timestamp: string;
+  positions: LivePosition[];
+  by_strategy: Record<string, ByStrategy>;
+}
+
+export interface LiveHistoryPoint {
+  time: string;
+  [key: string]: number | string;
+}
+
+export function useLivePositions(intervalMs = 3000) {
+  const [data, setData] = useState<LivePositionsResponse>({
+    timestamp: "",
+    positions: [],
+    by_strategy: {},
+  });
+  const [history, setHistory] = useState<LiveHistoryPoint[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+
+    const poll = async () => {
+      try {
+        const result = await (api.strategies.livePositions() as Promise<LivePositionsResponse>);
+        if (!active) return;
+        setData(result);
+        setLoading(false);
+
+        const time = new Date(result.timestamp || Date.now()).toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        });
+        const point: LiveHistoryPoint = { time };
+        for (const [name, s] of Object.entries(result.by_strategy)) {
+          point[name] = s.unrealized_pnl;
+        }
+        setHistory((prev) => {
+          const next = [...prev, point];
+          return next.slice(-120); // keep 6 minutes at 3s interval
+        });
+      } catch {
+        if (active) setLoading(false);
+      }
+    };
+
+    poll();
+    const id = setInterval(poll, intervalMs);
+    return () => {
+      active = false;
+      clearInterval(id);
+    };
+  }, [intervalMs]);
+
+  return { data, history, loading };
+}

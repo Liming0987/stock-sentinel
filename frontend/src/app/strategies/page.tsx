@@ -2,12 +2,17 @@
 
 import { useState } from "react";
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
+  Legend, ResponsiveContainer, ReferenceLine,
 } from "recharts";
-import { DollarSign, Activity } from "lucide-react";
+import { DollarSign, Activity, Radio } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useStrategies, useStrategyTrades, useEquityCurve, useAlpacaAccount } from "@/lib/hooks";
+import {
+  useStrategies, useStrategyTrades, useEquityCurve, useAlpacaAccount,
+  useLivePositions,
+} from "@/lib/hooks";
+import type { LivePosition } from "@/lib/hooks";
 
 const STRATEGY_COLORS: Record<string, string> = {
   momentum: "hsl(var(--primary))",
@@ -49,6 +54,181 @@ function AlpacaBar() {
         )}
       </div>
     </div>
+  );
+}
+
+function PositionRow({ pos }: { pos: LivePosition }) {
+  const priceDiff = pos.current_price - pos.entry_price;
+  const positive = priceDiff >= 0;
+  return (
+    <tr className="border-b last:border-0 hover:bg-accent/30">
+      <td className="py-2 pr-3">
+        <span
+          className="inline-block h-2 w-2 rounded-full mr-2"
+          style={{ backgroundColor: STRATEGY_COLORS[pos.strategy] || "hsl(var(--primary))" }}
+        />
+        <span className="text-xs capitalize text-muted-foreground">
+          {pos.strategy.replace(/_/g, " ")}
+        </span>
+      </td>
+      <td className="py-2 pr-3 font-semibold">{pos.ticker}</td>
+      <td className="py-2 pr-3 font-mono text-muted-foreground">${pos.entry_price.toFixed(2)}</td>
+      <td className="py-2 pr-3 font-mono font-semibold">
+        <span className={positive ? "text-bullish" : "text-bearish"}>
+          ${pos.current_price.toFixed(2)}
+        </span>
+      </td>
+      <td className="py-2 pr-3 font-mono">
+        <span className={positive ? "text-bullish" : "text-bearish"}>
+          {positive ? "+" : ""}{(pos.return_pct * 100).toFixed(2)}%
+        </span>
+      </td>
+      <td className="py-2 pr-3 font-mono text-muted-foreground">{pos.qty}</td>
+      <td className="py-2">
+        <PnlText val={pos.unrealized_pnl} />
+      </td>
+    </tr>
+  );
+}
+
+function LivePositionsPanel() {
+  const { data, history, loading } = useLivePositions(3000);
+  const activeStrategies = Object.keys(data.by_strategy);
+  const hasPositions = data.positions.length > 0;
+  const hasHistory = history.length > 1;
+
+  return (
+    <Card>
+      <CardHeader className="pb-2">
+        <div className="flex items-center justify-between">
+          <CardTitle className="flex items-center gap-2">
+            <Radio className="h-5 w-5 text-primary" />
+            Live Unrealized P&amp;L
+          </CardTitle>
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            </span>
+            Updates every 3s
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {/* Per-strategy summary badges */}
+        {hasPositions && (
+          <div className="flex flex-wrap gap-3">
+            {Object.entries(data.by_strategy).map(([name, s]) => (
+              <div
+                key={name}
+                className="rounded-lg border px-3 py-2 text-sm flex items-center gap-3"
+                style={{ borderColor: STRATEGY_COLORS[name] || "hsl(var(--border))" }}
+              >
+                <span
+                  className="h-2 w-2 rounded-full shrink-0"
+                  style={{ backgroundColor: STRATEGY_COLORS[name] || "hsl(var(--primary))" }}
+                />
+                <span className="capitalize text-muted-foreground text-xs">
+                  {name.replace(/_/g, " ")}
+                </span>
+                <PnlText val={s.unrealized_pnl} className="font-bold" />
+                <span className="text-xs text-muted-foreground">
+                  {s.position_count} pos
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Time-series chart */}
+        <div className="h-56">
+          {loading ? (
+            <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+              Fetching live prices&hellip;
+            </div>
+          ) : !hasPositions ? (
+            <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+              No open positions — chart will appear once strategies open trades.
+            </div>
+          ) : !hasHistory ? (
+            <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+              Collecting data&hellip;
+            </div>
+          ) : (
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={history} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <XAxis
+                  dataKey="time"
+                  tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
+                  interval="preserveStartEnd"
+                />
+                <YAxis
+                  tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                  tickFormatter={(v) => `$${Number(v).toFixed(2)}`}
+                />
+                <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "hsl(var(--card))",
+                    border: "1px solid hsl(var(--border))",
+                    borderRadius: "8px",
+                    fontSize: "12px",
+                  }}
+                  formatter={(val, name) => [
+                    `$${Number(val).toFixed(2)}`,
+                    String(name).replace(/_/g, " "),
+                  ]}
+                />
+                <Legend formatter={(val) => String(val).replace(/_/g, " ")} />
+                {activeStrategies.map((name) => (
+                  <Line
+                    key={name}
+                    type="monotone"
+                    dataKey={name}
+                    stroke={STRATEGY_COLORS[name] || "hsl(var(--primary))"}
+                    strokeWidth={2}
+                    dot={false}
+                    connectNulls
+                    isAnimationActive={false}
+                  />
+                ))}
+              </LineChart>
+            </ResponsiveContainer>
+          )}
+        </div>
+
+        {/* Position table: cost vs real-time price */}
+        {hasPositions ? (
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b text-left text-muted-foreground">
+                  <th className="pb-2 pr-3 font-medium">Strategy</th>
+                  <th className="pb-2 pr-3 font-medium">Ticker</th>
+                  <th className="pb-2 pr-3 font-medium">Cost</th>
+                  <th className="pb-2 pr-3 font-medium">Price</th>
+                  <th className="pb-2 pr-3 font-medium">Change</th>
+                  <th className="pb-2 pr-3 font-medium">Qty</th>
+                  <th className="pb-2 font-medium">Unrealized</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.positions.map((pos, i) => (
+                  <PositionRow key={`${pos.strategy}-${pos.ticker}-${i}`} pos={pos} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          !loading && (
+            <p className="text-xs text-muted-foreground">
+              No open positions across all strategies.
+            </p>
+          )
+        )}
+      </CardContent>
+    </Card>
   );
 }
 
@@ -158,7 +338,6 @@ export default function StrategiesPage() {
 
   const strategies = strategiesData.strategies;
 
-  // Merge all dates across strategies for the chart x-axis
   const allDates = Array.from(
     new Set(Object.values(curveData.curves).flatMap((pts) => pts.map((p) => p.date)))
   ).sort();
@@ -184,6 +363,9 @@ export default function StrategiesPage() {
       </div>
 
       <AlpacaBar />
+
+      {/* Real-time live positions panel */}
+      <LivePositionsPanel />
 
       {loading ? (
         <div className="flex items-center justify-center h-32">

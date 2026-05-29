@@ -157,6 +157,90 @@ async def get_equity_curves(db: AsyncSession = Depends(get_db)):
     return {"curves": curves}
 
 
+@router.get("/live-positions")
+async def live_positions(db: AsyncSession = Depends(get_db)):
+    """Open positions with real-time prices — poll every few seconds for live P&L."""
+    import asyncio
+    from datetime import datetime, timezone
+
+    result = await db.execute(select(StrategyRow))
+    strats = {s.id: s.name for s in result.scalars().all()}
+
+    trades_result = await db.execute(
+        select(Trade).where(Trade.status == "open").order_by(Trade.opened_at)
+    )
+    open_trades = trades_result.scalars().all()
+
+    if not open_trades:
+        return {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "positions": [],
+            "by_strategy": {},
+        }
+
+    tickers = list({t.ticker for t in open_trades})
+
+    def _fetch_prices() -> dict:
+        prices: dict = {}
+        try:
+            from app.services.alpaca_service import AlpacaService
+            svc = AlpacaService()
+            if svc.is_configured:
+                prices = svc.get_latest_prices(tickers)
+        except Exception:
+            pass
+
+        missing = [t for t in tickers if t not in prices]
+        if missing:
+            try:
+                import yfinance as yf
+                for sym in missing:
+                    fi = yf.Ticker(sym).fast_info
+                    price = getattr(fi, "last_price", None)
+                    if price:
+                        prices[sym] = float(price)
+            except Exception:
+                pass
+        return prices
+
+    loop = asyncio.get_event_loop()
+    prices = await loop.run_in_executor(None, _fetch_prices)
+
+    positions = []
+    by_strategy: dict = {}
+
+    for t in open_trades:
+        strat_name = strats.get(t.strategy_id, "unknown")
+        entry = float(t.entry_price) if t.entry_price else 0.0
+        qty = float(t.qty) if t.qty else 0.0
+        current = prices.get(t.ticker, entry)
+        upnl = (current - entry) * qty
+        ret_pct = (current - entry) / entry if entry else 0.0
+
+        positions.append({
+            "strategy": strat_name,
+            "ticker": t.ticker,
+            "qty": round(qty, 6),
+            "entry_price": round(entry, 4),
+            "current_price": round(current, 4),
+            "unrealized_pnl": round(upnl, 2),
+            "return_pct": round(ret_pct, 4),
+        })
+
+        if strat_name not in by_strategy:
+            by_strategy[strat_name] = {"unrealized_pnl": 0.0, "position_count": 0}
+        by_strategy[strat_name]["unrealized_pnl"] = round(
+            by_strategy[strat_name]["unrealized_pnl"] + upnl, 2
+        )
+        by_strategy[strat_name]["position_count"] += 1
+
+    return {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "positions": positions,
+        "by_strategy": by_strategy,
+    }
+
+
 @router.get("/alpaca/account")
 async def alpaca_account():
     """Return Alpaca paper account snapshot (cash, equity, positions)."""

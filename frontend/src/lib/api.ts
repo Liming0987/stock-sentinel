@@ -42,5 +42,6 @@ export const api = {
       fetchApi(`/api/strategies/${name}/trades?status=${status}&limit=100`),
     equityCurve: () => fetchApi("/api/strategies/equity-curve"),
     alpacaAccount: () => fetchApi("/api/strategies/alpaca/account"),
+    livePositions: () => fetchApi("/api/strategies/live-positions"),
   },
 };
