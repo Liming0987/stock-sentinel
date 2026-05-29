@@ -39,12 +39,12 @@ export default function DashboardPage() {
         watchlistCount={0}
       />
 
-      {/* Trending table + compact signals sidebar */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <div className="xl:col-span-2">
+      {/* Trending table + compact signals sidebar — equal height */}
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3 xl:items-stretch">
+        <div className="xl:col-span-2 h-full">
           <TrendingTable stocks={stocks} compact />
         </div>
-        <div>
+        <div className="h-full">
           <SignalsCard signals={signals} />
         </div>
       </div>

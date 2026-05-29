@@ -13,8 +13,8 @@ interface SignalsCardProps {
 
 export function SignalsCard({ signals }: SignalsCardProps) {
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
+    <Card className="h-full flex flex-col">
+      <CardHeader className="flex flex-row items-center justify-between shrink-0">
         <CardTitle className="flex items-center gap-2">
           <SignalIcon className="h-5 w-5 text-primary" />
           Active Signals
@@ -23,11 +23,11 @@ export function SignalsCard({ signals }: SignalsCardProps) {
           View all
         </Link>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-1 overflow-y-auto min-h-0 pt-0">
         {signals.length === 0 ? (
           <p className="text-sm text-muted-foreground">No active signals</p>
         ) : (
-          <div className="max-h-[460px] overflow-y-auto space-y-3 pr-1">
+          <div className="space-y-3 pr-1">
           {signals.map((signal) => (
             <Link
               key={signal.id}
@@ -90,6 +90,7 @@ export function SignalsCard({ signals }: SignalsCardProps) {
           </div>
         )}
       </CardContent>
+
     </Card>
   );
 }
