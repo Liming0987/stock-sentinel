@@ -218,7 +218,7 @@ export default function StrategiesPage() {
                       <YAxis tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} tickFormatter={(v) => `$${v}`} />
                       <Tooltip
                         contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px", fontSize: "12px" }}
-                        formatter={(val: number) => [`$${val.toFixed(2)}`, ""]}
+                        formatter={(val) => [`$${Number(val).toFixed(2)}`, ""]}
                       />
                       <Legend />
                       {Object.keys(curveData.curves).map((name) => (
