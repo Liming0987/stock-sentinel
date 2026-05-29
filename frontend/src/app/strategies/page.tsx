@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
   Legend, ResponsiveContainer, ReferenceLine,
@@ -97,6 +97,16 @@ function LivePositionsPanel() {
   const hasPositions = data.positions.length > 0;
   const hasHistory = history.length > 1;
 
+  // Fixed-width windowed data: last REAL_SLOTS real points + PAD_SLOTS empty
+  // slots on the right so the live line always ends at ~70% across the chart.
+  const REAL_SLOTS = 40;
+  const PAD_SLOTS = 16;
+  const chartData = useMemo(() => {
+    const recent = history.slice(-REAL_SLOTS);
+    const pads = Array.from({ length: PAD_SLOTS }, (_, i) => ({ time: `\x00${i}` }));
+    return [...recent, ...pads];
+  }, [history]);
+
   return (
     <Card>
       <CardHeader className="pb-2">
@@ -156,12 +166,13 @@ function LivePositionsPanel() {
             </div>
           ) : (
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={history} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
+              <LineChart data={chartData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                 <XAxis
                   dataKey="time"
                   tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
-                  interval="preserveStartEnd"
+                  interval={7}
+                  tickFormatter={(v: string) => (v.startsWith("\x00") ? "" : v)}
                 />
                 <YAxis
                   tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
