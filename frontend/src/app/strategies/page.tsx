@@ -60,6 +60,8 @@ function AlpacaBar() {
 function PositionRow({ pos }: { pos: LivePosition }) {
   const priceDiff = pos.current_price - pos.entry_price;
   const positive = priceDiff >= 0;
+  const atRisk = pos.stop_loss !== null && pos.current_price <= pos.stop_loss * 1.02;
+  const nearTarget = pos.target !== null && pos.current_price >= pos.target * 0.98;
   return (
     <tr className="border-b last:border-0 hover:bg-accent/30">
       <td className="py-2 pr-3">
@@ -82,6 +84,26 @@ function PositionRow({ pos }: { pos: LivePosition }) {
         <span className={positive ? "text-bullish" : "text-bearish"}>
           {positive ? "+" : ""}{(pos.return_pct * 100).toFixed(2)}%
         </span>
+      </td>
+      <td className="py-2 pr-3 font-mono">
+        {pos.stop_loss !== null ? (
+          <span className={atRisk ? "text-bearish font-semibold" : "text-muted-foreground"}>
+            ${pos.stop_loss.toFixed(2)}
+            {atRisk && " ⚠"}
+          </span>
+        ) : (
+          <span className="text-muted-foreground">—</span>
+        )}
+      </td>
+      <td className="py-2 pr-3 font-mono">
+        {pos.target !== null ? (
+          <span className={nearTarget ? "text-bullish font-semibold" : "text-muted-foreground"}>
+            ${pos.target.toFixed(2)}
+            {nearTarget && " ★"}
+          </span>
+        ) : (
+          <span className="text-muted-foreground">—</span>
+        )}
       </td>
       <td className="py-2 pr-3 font-mono text-muted-foreground">{pos.qty}</td>
       <td className="py-2">
@@ -220,6 +242,8 @@ function LivePositionsPanel() {
                   <th className="pb-2 pr-3 font-medium">Cost</th>
                   <th className="pb-2 pr-3 font-medium">Price</th>
                   <th className="pb-2 pr-3 font-medium">Change</th>
+                  <th className="pb-2 pr-3 font-medium">Stop Loss</th>
+                  <th className="pb-2 pr-3 font-medium">Target</th>
                   <th className="pb-2 pr-3 font-medium">Qty</th>
                   <th className="pb-2 font-medium">Unrealized</th>
                 </tr>

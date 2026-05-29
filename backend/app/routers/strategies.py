@@ -223,6 +223,8 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
             "qty": round(qty, 6),
             "entry_price": round(entry, 4),
             "current_price": round(current, 4),
+            "stop_loss": round(float(t.stop_loss), 4) if t.stop_loss else None,
+            "target": round(float(t.target), 4) if t.target else None,
             "unrealized_pnl": round(upnl, 2),
             "return_pct": round(ret_pct, 4),
         })

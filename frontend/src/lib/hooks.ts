@@ -237,6 +237,8 @@ export interface LivePosition {
   qty: number;
   entry_price: number;
   current_price: number;
+  stop_loss: number | null;
+  target: number | null;
   unrealized_pnl: number;
   return_pct: number;
 }
