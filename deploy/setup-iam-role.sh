@@ -124,7 +124,9 @@ cat > /tmp/gh-permissions.json << EOF
         "ec2:DeleteSecurityGroup",
         "ec2:AuthorizeSecurityGroupIngress",
         "ec2:RevokeSecurityGroupIngress",
-        "ec2:CreateTags"
+        "ec2:CreateTags",
+        "ec2:ModifyInstanceMetadataOptions",
+        "ec2:DescribeInstanceAttribute"
       ],
       "Resource": "*"
     },
