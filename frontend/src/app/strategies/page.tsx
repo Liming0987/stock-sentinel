@@ -274,7 +274,7 @@ function LivePositionsPanel() {
             <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${data.market_open ? "animate-ping bg-primary" : "bg-muted-foreground"}`} />
             <span className={`relative inline-flex rounded-full h-2 w-2 ${data.market_open ? "bg-primary" : "bg-muted-foreground"}`} />
           </span>
-          {data.market_open ? "Updates every 3s" : "Market closed — checking every 60s"}
+          {data.market_open ? "Updates every 5s" : "Market closed — showing last close prices"}
         </div>
       </div>
 

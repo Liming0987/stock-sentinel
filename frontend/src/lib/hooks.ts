@@ -265,7 +265,7 @@ export function useLivePositions() {
     timestamp: "",
     positions: [],
     by_strategy: {},
-    market_open: true,
+    market_open: false,
   });
   const [history, setHistory] = useState<LiveHistoryPoint[]>([]);
   const [loading, setLoading] = useState(true);
@@ -274,41 +274,73 @@ export function useLivePositions() {
     let active = true;
     let timerId: ReturnType<typeof setTimeout>;
 
-    let marketOpen = true;
+    const appendHistory = (result: LivePositionsResponse) => {
+      const time = new Date(result.timestamp || Date.now()).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      });
+      const point: LiveHistoryPoint = { time };
+      for (const [name, s] of Object.entries(result.by_strategy)) {
+        point[name] = s.unrealized_pnl;
+      }
+      setHistory((prev) => [...prev, point].slice(-120));
+    };
 
-    const poll = async () => {
+    const fetchOnce = async () => {
       try {
         const result = await (api.strategies.livePositions() as Promise<LivePositionsResponse>);
         if (!active) return;
-        marketOpen = result.market_open;
         setData(result);
         setLoading(false);
-
-        const time = new Date(result.timestamp || Date.now()).toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        });
-        const point: LiveHistoryPoint = { time };
-        for (const [name, s] of Object.entries(result.by_strategy)) {
-          point[name] = s.unrealized_pnl;
-        }
-        setHistory((prev) => {
-          const next = [...prev, point];
-          return next.slice(-120);
-        });
+        return result;
       } catch {
         if (active) setLoading(false);
-      }
-
-      if (active) {
-        // 3s when market is open, 60s when closed (checking for re-open)
-        timerId = setTimeout(poll, marketOpen ? 3000 : 60000);
+        return null;
       }
     };
 
-    poll();
+    const pollMarketOpen = async () => {
+      // Poll prices every 5s and grow the chart while the market is open
+      const result = await fetchOnce();
+      if (!active) return;
+
+      if (result?.market_open) {
+        appendHistory(result);
+        timerId = setTimeout(pollMarketOpen, 5000);
+      } else {
+        // Market just closed — stop price polling, switch to status-only checks
+        scheduleStatusCheck();
+      }
+    };
+
+    const scheduleStatusCheck = () => {
+      // Re-check every 5 minutes whether the market has opened; don't touch history
+      timerId = setTimeout(async () => {
+        if (!active) return;
+        const result = await fetchOnce();
+        if (result?.market_open) {
+          // Market opened — start live polling
+          pollMarketOpen();
+        } else {
+          scheduleStatusCheck();
+        }
+      }, 5 * 60 * 1000);
+    };
+
+    // Initial fetch — determines which mode to enter
+    fetchOnce().then((result) => {
+      if (!active || !result) return;
+      if (result.market_open) {
+        appendHistory(result);
+        timerId = setTimeout(pollMarketOpen, 5000);
+      } else {
+        // Market closed — show last-known prices, start quiet status checks
+        scheduleStatusCheck();
+      }
+    });
+
     return () => {
       active = false;
       clearTimeout(timerId);
