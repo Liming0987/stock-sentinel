@@ -16,21 +16,15 @@ from app.config import settings
 from app.models.stock import Stock
 from app.models.mention import Mention
 from app.models.trade import Strategy as StrategyRow, Trade
-from app.models.watchlist import Watchlist
 from app.services.price_service import PriceService
 from app.services.alpaca_service import AlpacaService
+from app.services.universe_builder import UniverseBuilder
 from app.strategies import STRATEGY_REGISTRY, BaseStrategy
 
 logger = logging.getLogger(__name__)
 
-
 POSITION_SIZE_USD = 100.0  # fixed dollar amount to risk per trade
-
-# Default universe: top liquid stocks. Extend as needed.
-DEFAULT_UNIVERSE = [
-    "NVDA", "TSLA", "AAPL", "MSFT", "AMD",
-    "META", "GOOG", "AMZN", "PLTR", "SOFI",
-]
+UNIVERSE_SIZE     = 20     # stocks evaluated per run
 
 
 def _sync_db_url() -> str:
@@ -80,9 +74,9 @@ def _is_market_open() -> bool:
 class StrategyRunner:
     """Runs all enabled strategies against a stock universe."""
 
-    def __init__(self, universe: List[str] = None):
-        self.universe = universe or DEFAULT_UNIVERSE
+    def __init__(self):
         self.price_service = PriceService()
+        self.universe_builder = UniverseBuilder()
         alpaca = AlpacaService()
         if not alpaca.is_configured:
             raise RuntimeError(
@@ -93,13 +87,8 @@ class StrategyRunner:
 
     # ── Helpers ────────────────────────────────────────────────────────────
     def _build_universe(self, session: Session) -> List[str]:
-        """DEFAULT_UNIVERSE merged with any watchlist tickers, order preserved."""
-        rows = session.execute(
-            select(Stock.ticker).join(Watchlist, Watchlist.stock_id == Stock.id)
-        ).scalars().all()
-        seen = set(self.universe)
-        extra = [t for t in rows if t not in seen]
-        return self.universe + extra
+        """Score all candidates (S&P 100 + watchlist + trending) and return top UNIVERSE_SIZE."""
+        return self.universe_builder.build(session, target=UNIVERSE_SIZE)
 
     def _ensure_stock(self, session: Session, ticker: str) -> Stock:
         stock = session.execute(
