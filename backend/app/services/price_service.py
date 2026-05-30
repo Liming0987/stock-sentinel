@@ -146,6 +146,10 @@ class PriceService:
             if not name:
                 return {}
 
+            # Reject delisted / non-traded securities (zero average volume)
+            if not info.get("averageVolume", 0):
+                return {}
+
             return {
                 "name": name,
                 "sector": info.get("sector", ""),
@@ -212,6 +216,47 @@ class PriceService:
 
         engine.dispose()
         return updated
+
+    def compute_intraday_indicators(self, df: pd.DataFrame) -> Dict:
+        """Compute intraday indicators from a 5-min bar DataFrame (period='1d', interval='5m')."""
+        if df is None or df.empty:
+            return {}
+
+        result: Dict = {}
+
+        # VWAP from all bars since open
+        typical = (df["High"] + df["Low"] + df["Close"]) / 3
+        cum_vol = df["Volume"].cumsum()
+        cum_tp_vol = (typical * df["Volume"]).cumsum()
+        vwap_series = cum_tp_vol / cum_vol.replace(0, float("nan"))
+        result["vwap"] = round(float(vwap_series.iloc[-1]), 4) if not vwap_series.empty else None
+
+        # Opening Range: first 6 bars = 30 min
+        orb_bars = 6
+        orb_slice = df.iloc[:orb_bars] if len(df) >= orb_bars else df
+        result["orb_high"] = round(float(orb_slice["High"].max()), 4)
+        result["orb_low"] = round(float(orb_slice["Low"].min()), 4)
+
+        # Current and previous bar closes
+        result["current_price"] = round(float(df["Close"].iloc[-1]), 4)
+        result["prev_bar_close"] = round(float(df["Close"].iloc[-2]), 4) if len(df) >= 2 else None
+        result["open_price"] = round(float(df["Open"].iloc[0]), 4)
+        result["bars_elapsed"] = len(df)
+
+        # Intraday volume ratio: current bar vs avg bar
+        avg_bar_vol = df["Volume"].mean()
+        cur_bar_vol = df["Volume"].iloc[-1]
+        result["intraday_volume_ratio"] = round(float(cur_bar_vol / avg_bar_vol), 2) if avg_bar_vol > 0 else 0.0
+
+        # Intraday ATR (5-min, last 14 bars if available)
+        atr_series = _atr(df["High"], df["Low"], df["Close"], length=min(14, len(df) - 1))
+        if not atr_series.empty and not pd.isna(atr_series.iloc[-1]):
+            result["intraday_atr"] = round(float(atr_series.iloc[-1]), 4)
+        else:
+            # Fallback: use half the daily range as a rough intraday ATR proxy
+            result["intraday_atr"] = round(float((df["High"] - df["Low"]).mean()), 4)
+
+        return result
 
     def is_oversold(self, indicators: Dict) -> bool:
         """Check if a stock is technically oversold."""

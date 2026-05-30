@@ -66,6 +66,8 @@ def scrape_reddit(self: Task):
 
         posts_saved = 0
         mentions_saved = 0
+        # Cache ticker→info per run to avoid redundant yfinance calls
+        ticker_info_cache: dict = {}
 
         with Session(engine) as session:
             for item in results:
@@ -94,14 +96,18 @@ def scrape_reddit(self: Task):
                 sent = sentiment.analyze(text, method="auto")
 
                 for ticker in item["tickers"]:
+                    # Always validate — even existing stocks may become delisted
+                    if ticker not in ticker_info_cache:
+                        ticker_info_cache[ticker] = price_service.get_stock_info(ticker)
+                    info = ticker_info_cache[ticker]
+                    if not info.get("name"):
+                        continue
+
                     stock = session.execute(
                         select(Stock).where(Stock.ticker == ticker)
                     ).scalar_one_or_none()
 
                     if not stock:
-                        info = price_service.get_stock_info(ticker)
-                        if not info.get("name"):
-                            continue
                         stock = Stock(
                             ticker=ticker,
                             name=info.get("name", ticker),
@@ -161,6 +167,8 @@ def scrape_stocktwits(self: Task):
 
         msgs_saved = 0
         mentions_saved = 0
+        # Cache ticker→info per run to avoid redundant yfinance calls
+        ticker_info_cache: dict = {}
 
         with Session(engine) as session:
             for item in results:
@@ -190,14 +198,19 @@ def scrape_stocktwits(self: Task):
                 msgs_saved += 1
 
                 ticker = item["ticker"].upper()
+
+                # Always validate — even existing stocks may become delisted
+                if ticker not in ticker_info_cache:
+                    ticker_info_cache[ticker] = price_service.get_stock_info(ticker)
+                info = ticker_info_cache[ticker]
+                if not info.get("name"):
+                    continue
+
                 stock = session.execute(
                     select(Stock).where(Stock.ticker == ticker)
                 ).scalar_one_or_none()
 
                 if not stock:
-                    info = price_service.get_stock_info(ticker)
-                    if not info.get("name"):
-                        continue
                     stock = Stock(
                         ticker=ticker,
                         name=info.get("name", ticker),

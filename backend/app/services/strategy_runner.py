@@ -141,6 +141,18 @@ class StrategyRunner:
         avg_sentiment = sum(scores) / len(scores) if scores else 0.0
         velocity = len(mentions) / 24.0
 
+        # 5-min bars for intraday strategies (ORB, VWAP)
+        intraday: Dict = {}
+        try:
+            df_5m = self.price_service.get_price_data(stock.ticker, period="1d", interval="5m")
+            if df_5m is not None and not df_5m.empty:
+                intraday = self.price_service.compute_intraday_indicators(df_5m)
+                # Override current_price with real-time Alpaca quote
+                if rt_price:
+                    intraday["current_price"] = rt_price
+        except Exception as e:
+            logger.debug(f"Intraday bars unavailable for {stock.ticker}: {e}")
+
         return {
             "price_df": df,
             "indicators": indicators,
@@ -149,6 +161,7 @@ class StrategyRunner:
                 "mention_count": len(mentions),
                 "mention_velocity": velocity,
             },
+            "intraday": intraday,
         }
 
     def _open_position(
