@@ -65,8 +65,9 @@ class TrendingService:
         # Normalize each factor to 0-1 range
         scores = {}
 
-        # Mention velocity: log scale, cap at 100 mentions/hour
-        mv = stock_data.get("mention_velocity", 0)
+        # Mention velocity: log scale, cap at 100 mentions/hour. Clamp to 0 — a
+        # declining stock scores the same as no growth, not negatively.
+        mv = max(stock_data.get("mention_velocity", 0), 0)
         scores["mention_velocity"] = min(math.log(1 + mv) / math.log(101), 1.0)
 
         # Sentiment: shift from [-1,1] to [0,1]

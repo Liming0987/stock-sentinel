@@ -171,21 +171,23 @@ export default function SettingsPage() {
                 )}
               </Button>
 
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={handleTest}
-                disabled={testStatus === "sending" || !form.notification_phone.trim()}
-              >
-                <Send className="mr-1 h-4 w-4" />
-                {testStatus === "sending"
-                  ? "Sending…"
-                  : testStatus === "ok"
-                  ? "Sent ✓"
-                  : testStatus === "fail"
-                  ? "Failed ✗"
-                  : "Send Test SMS"}
-              </Button>
+              <div title={!form.notification_phone.trim() ? "Enter a phone number above first" : undefined}>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={handleTest}
+                  disabled={testStatus === "sending" || !form.notification_phone.trim()}
+                >
+                  <Send className="mr-1 h-4 w-4" />
+                  {testStatus === "sending"
+                    ? "Sending…"
+                    : testStatus === "ok"
+                    ? "Sent ✓"
+                    : testStatus === "fail"
+                    ? "Failed ✗"
+                    : "Send Test SMS"}
+                </Button>
+              </div>
             </div>
 
             {testStatus === "ok" && testMessage && (
