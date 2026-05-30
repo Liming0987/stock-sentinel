@@ -314,11 +314,22 @@ def cleanup_expired_signals(self: Task):
 
 
 @celery_app.task(**_RETRY_DEFAULTS, name="app.workers.tasks.run_strategies")
-def run_strategies(self: Task, submit_to_alpaca: bool = False):
+def run_strategies(self: Task):
     """Evaluate every registered strategy and open/close paper trades."""
     from app.services.strategy_runner import StrategyRunner
-    runner = StrategyRunner(submit_to_alpaca=submit_to_alpaca)
-    return runner.run()
+    from app.services.notification_service import NotificationService
+    try:
+        runner = StrategyRunner()
+        return runner.run()
+    except Exception as exc:
+        msg = str(exc)
+        logger.error(f"run_strategies failed: {msg}")
+        try:
+            sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+            NotificationService(sync_url).notify_error("run_strategies", msg)
+        except Exception:
+            pass
+        raise
 
 
 @celery_app.task(
@@ -329,9 +340,19 @@ def run_strategies(self: Task, submit_to_alpaca: bool = False):
 def run_strategies_intraday(self: Task):
     """Run strategies every minute during market hours using real-time Alpaca prices."""
     from app.services.strategy_runner import StrategyRunner
+    from app.services.notification_service import NotificationService
     try:
-        runner = StrategyRunner(submit_to_alpaca=True)
+        runner = StrategyRunner()
         return runner.run_intraday()
     except SoftTimeLimitExceeded:
         logger.warning("run_strategies_intraday hit soft time limit — aborting")
+        raise
+    except Exception as exc:
+        msg = str(exc)
+        logger.error(f"run_strategies_intraday failed: {msg}")
+        try:
+            sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+            NotificationService(sync_url).notify_error("run_strategies_intraday", msg)
+        except Exception:
+            pass
         raise

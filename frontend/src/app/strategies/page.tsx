@@ -299,8 +299,16 @@ function LivePositionsPanel() {
   );
 }
 
-function StrategyCard({ strat }: { strat: ReturnType<typeof useStrategies>["data"]["strategies"][0] }) {
+function StrategyCard({
+  strat,
+  liveUnrealized,
+}: {
+  strat: ReturnType<typeof useStrategies>["data"]["strategies"][0];
+  liveUnrealized: number | undefined;
+}) {
   const winPct = (strat.win_rate * 100).toFixed(0);
+  // Prefer live real-time unrealized P&L; fall back to the last value the strategy runner saved
+  const unrealized = liveUnrealized ?? strat.unrealized_pnl;
   return (
     <Card>
       <CardContent className="p-5">
@@ -320,7 +328,7 @@ function StrategyCard({ strat }: { strat: ReturnType<typeof useStrategies>["data
           </div>
           <div>
             <p className="text-xs text-muted-foreground">Unrealized</p>
-            <PnlText val={strat.unrealized_pnl} className="text-base font-bold" />
+            <PnlText val={unrealized} className="text-base font-bold" />
           </div>
           <div>
             <p className="text-xs text-muted-foreground">Win Rate</p>
@@ -362,7 +370,8 @@ function TradesTable({ strategyName }: { strategyName: string }) {
             <th className="pb-2 pr-4 font-medium">P&amp;L</th>
             <th className="pb-2 pr-4 font-medium">Return</th>
             <th className="pb-2 pr-4 font-medium">Status</th>
-            <th className="pb-2 font-medium">Opened</th>
+            <th className="pb-2 pr-4 font-medium">Entered</th>
+            <th className="pb-2 font-medium">Exited</th>
           </tr>
         </thead>
         <tbody>
@@ -387,8 +396,11 @@ function TradesTable({ strategyName }: { strategyName: string }) {
                   {t.status}
                 </Badge>
               </td>
-              <td className="py-2 text-muted-foreground">
-                {t.opened_at ? new Date(t.opened_at).toLocaleDateString() : "—"}
+              <td className="py-2 pr-4 font-mono text-muted-foreground whitespace-nowrap">
+                {t.opened_at ? new Date(t.opened_at).toLocaleString() : "—"}
+              </td>
+              <td className="py-2 font-mono text-muted-foreground whitespace-nowrap">
+                {t.closed_at ? new Date(t.closed_at).toLocaleString() : "—"}
               </td>
             </tr>
           ))}
@@ -401,6 +413,7 @@ function TradesTable({ strategyName }: { strategyName: string }) {
 export default function StrategiesPage() {
   const { data: strategiesData, loading } = useStrategies();
   const { data: curveData } = useEquityCurve();
+  const { data: liveData } = useLivePositions();
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
   const strategies = strategiesData.strategies;
@@ -442,7 +455,13 @@ export default function StrategiesPage() {
         <>
           {/* Strategy cards */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {strategies.map((s) => <StrategyCard key={s.name} strat={s} />)}
+            {strategies.map((s) => (
+              <StrategyCard
+                key={s.name}
+                strat={s}
+                liveUnrealized={liveData.by_strategy[s.name]?.unrealized_pnl}
+              />
+            ))}
           </div>
 
           {/* Cumulative P&L chart */}

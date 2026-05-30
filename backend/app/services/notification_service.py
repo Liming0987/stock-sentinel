@@ -98,6 +98,10 @@ class NotificationService:
             parts.append(f"Target ${target:.2f}")
         return self.notify(" | ".join(parts), SETTING_TRADE_OPEN)
 
+    def notify_error(self, context: str, error: str) -> bool:
+        msg = f"Stock Sentinel ERROR [{context}]: {error[:200]}"
+        return self.notify(msg)
+
     def notify_trade_close(self, strategy: str, ticker: str, price: float,
                            pnl: float, return_pct: float, reason: str) -> bool:
         sign = "+" if pnl >= 0 else ""

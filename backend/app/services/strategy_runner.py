@@ -37,15 +37,59 @@ def _sync_db_url() -> str:
     return settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
 
 
+def _is_market_open() -> bool:
+    """Return True only when the NYSE is in a regular trading session right now."""
+    try:
+        import pandas_market_calendars as mcal
+        import pandas as pd
+        import pytz
+        from datetime import time as dt_time
+
+        et = pytz.timezone("America/New_York")
+        now = datetime.now(et)
+
+        # Weekends are never open
+        if now.weekday() >= 5:
+            return False
+
+        # Check NYSE calendar for today — handles all holidays (Good Friday,
+        # Juneteenth, early closes on Christmas Eve, etc.)
+        nyse = mcal.get_calendar("NYSE")
+        today = now.date().isoformat()
+        schedule = nyse.schedule(start_date=today, end_date=today)
+        if schedule.empty:
+            return False  # market holiday
+
+        market_open = schedule.iloc[0]["market_open"].to_pydatetime()
+        market_close = schedule.iloc[0]["market_close"].to_pydatetime()
+        now_utc = datetime.now(timezone.utc)
+        return market_open <= now_utc <= market_close
+
+    except Exception:
+        # Fall back to simple clock check if library unavailable
+        try:
+            import pytz
+            from datetime import time as dt_time
+            et = pytz.timezone("America/New_York")
+            now = datetime.now(et)
+            return now.weekday() < 5 and dt_time(9, 30) <= now.time() <= dt_time(16, 0)
+        except Exception:
+            return True
+
+
 class StrategyRunner:
     """Runs all enabled strategies against a stock universe."""
 
-    def __init__(self, universe: List[str] = None, submit_to_alpaca: bool = False):
+    def __init__(self, universe: List[str] = None):
         self.universe = universe or DEFAULT_UNIVERSE
-        self.submit_to_alpaca = submit_to_alpaca
         self.price_service = PriceService()
-        # Alpaca is optional; if not configured we just simulate trades in DB
-        self.alpaca = AlpacaService() if submit_to_alpaca else None
+        alpaca = AlpacaService()
+        if not alpaca.is_configured:
+            raise RuntimeError(
+                "Alpaca credentials are not configured. "
+                "All strategy trades must go through Alpaca — simulation mode is disabled."
+            )
+        self.alpaca = alpaca
 
     # ── Helpers ────────────────────────────────────────────────────────────
     def _build_universe(self, session: Session) -> List[str]:
@@ -167,27 +211,30 @@ class StrategyRunner:
     def _open_position(
         self, session: Session, strat_row: StrategyRow, stock: Stock, signal, ticker: str
     ) -> Trade:
-        """Open a new paper trade. Optionally submit to Alpaca."""
+        """Submit a buy order to Alpaca (if configured) and record the trade using the real fill price."""
         client_order_id = f"{strat_row.name}-{ticker}-{uuid4().hex[:8]}"
         alpaca_order_id = None
 
         # Size position to a fixed dollar amount; use fractional shares
-        entry_price = signal.entry_price or 1.0
-        qty = round(POSITION_SIZE_USD / entry_price, 6)
-        qty = max(qty, 0.000001)  # floor to avoid zero-share orders
+        signal_price = signal.entry_price or 1.0
+        qty = round(POSITION_SIZE_USD / signal_price, 6)
+        qty = max(qty, 0.000001)
 
-        if self.submit_to_alpaca and self.alpaca and self.alpaca.is_configured:
-            try:
-                order = self.alpaca.submit_order(
-                    symbol=ticker,
-                    qty=qty,
-                    side="buy",
-                    client_order_id=client_order_id,
-                )
-                alpaca_order_id = str(order.id)
-                logger.info(f"[{strat_row.name}] Alpaca order submitted: {alpaca_order_id}")
-            except Exception as e:
-                logger.warning(f"[{strat_row.name}] Alpaca submit failed: {e}")
+        order = self.alpaca.submit_order(
+            symbol=ticker,
+            qty=qty,
+            side="buy",
+            client_order_id=client_order_id,
+        )
+        alpaca_order_id = str(order.id)
+
+        fill_price = self.alpaca.get_order_fill(alpaca_order_id)
+        if not fill_price:
+            raise RuntimeError(
+                f"[{strat_row.name}] Order {alpaca_order_id} for {ticker} did not fill within timeout."
+            )
+        entry_price = fill_price
+        logger.info(f"[{strat_row.name}] Alpaca fill {ticker} @ {fill_price} (signal {signal_price})")
 
         trade = Trade(
             strategy_id=strat_row.id,
@@ -195,7 +242,7 @@ class StrategyRunner:
             ticker=ticker,
             side="buy",
             qty=Decimal(str(qty)),
-            entry_price=Decimal(str(signal.entry_price)),
+            entry_price=Decimal(str(round(entry_price, 4))),
             stop_loss=Decimal(str(signal.stop_loss)) if signal.stop_loss else None,
             target=Decimal(str(signal.target)) if signal.target else None,
             status="open",
@@ -205,7 +252,7 @@ class StrategyRunner:
         )
         session.add(trade)
         session.flush()
-        logger.info(f"[{strat_row.name}] OPEN {ticker} @ {signal.entry_price} qty={signal.qty}")
+        logger.info(f"[{strat_row.name}] OPEN {ticker} @ {entry_price} qty={qty}")
 
         # SMS notification (fire-and-forget, never raises)
         try:
@@ -223,17 +270,14 @@ class StrategyRunner:
         return trade
 
     def _close_position(self, session: Session, trade: Trade, exit_price: float, reason: str):
-        """Close an open trade and compute P&L."""
-        if self.submit_to_alpaca and self.alpaca and self.alpaca.is_configured:
-            try:
-                self.alpaca.submit_order(
-                    symbol=trade.ticker,
-                    qty=float(trade.qty),
-                    side="sell",
-                    client_order_id=f"{trade.alpaca_client_order_id}-close",
-                )
-            except Exception as e:
-                logger.warning(f"Alpaca close failed for {trade.ticker}: {e}")
+        """Close an open trade via Alpaca and record the real fill price."""
+        fill_price = self.alpaca.close_position(trade.ticker)
+        if not fill_price:
+            raise RuntimeError(
+                f"Alpaca close_position for {trade.ticker} did not return a fill price."
+            )
+        exit_price = fill_price
+        logger.info(f"Alpaca close fill {trade.ticker} @ {fill_price}")
 
         entry = float(trade.entry_price)
         qty = float(trade.qty)
@@ -310,6 +354,10 @@ class StrategyRunner:
     # ── Main entry ─────────────────────────────────────────────────────────
     def run(self) -> Dict:
         """Run all enabled strategies once. Returns summary dict."""
+        if not _is_market_open():
+            logger.info("Market closed — skipping strategy run")
+            return {"skipped": "market_closed"}
+
         engine = create_engine(_sync_db_url())
         summary = {"strategies": {}, "trades_opened": 0, "trades_closed": 0}
 

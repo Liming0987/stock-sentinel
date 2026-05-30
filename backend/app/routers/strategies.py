@@ -108,16 +108,13 @@ async def get_strategy_trades(
 
 
 @router.post("/run")
-async def trigger_strategy_run(submit_to_alpaca: bool = False):
+async def trigger_strategy_run():
     """Manually run all strategies once (synchronously)."""
     import asyncio
     from app.services.strategy_runner import StrategyRunner
 
-    def _run():
-        return StrategyRunner(submit_to_alpaca=submit_to_alpaca).run()
-
     loop = asyncio.get_event_loop()
-    summary = await loop.run_in_executor(None, _run)
+    summary = await loop.run_in_executor(None, lambda: StrategyRunner().run())
     return summary
 
 
@@ -172,14 +169,8 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
     open_trades = trades_result.scalars().all()
 
     def _is_market_open() -> bool:
-        try:
-            import pytz
-            from datetime import time as dt_time
-            et = pytz.timezone("America/New_York")
-            now = datetime.now(et)
-            return now.weekday() < 5 and dt_time(9, 30) <= now.time() <= dt_time(16, 0)
-        except Exception:
-            return True  # default open if check fails
+        from app.services.strategy_runner import _is_market_open as _check
+        return _check()
 
     market_open = _is_market_open()
 

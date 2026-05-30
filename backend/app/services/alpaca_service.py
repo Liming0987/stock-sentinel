@@ -122,6 +122,38 @@ class AlpacaService:
             logger.warning(f"Failed to check market clock: {e}")
             return False
 
+    def get_order_fill(self, order_id: str, timeout: int = 10) -> Optional[float]:
+        """Poll until a market order is filled and return filled_avg_price, or None on timeout."""
+        import time
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            try:
+                from alpaca.trading.requests import GetOrderByIdRequest
+                order = self.trading_client.get_order_by_id(
+                    order_id, filter=GetOrderByIdRequest(nested=False)
+                )
+                status = str(order.status).lower()
+                if status in ("filled", "partially_filled") and order.filled_avg_price:
+                    return float(order.filled_avg_price)
+                if status in ("canceled", "expired", "rejected"):
+                    logger.warning(f"Order {order_id} ended in status {status}")
+                    return None
+            except Exception as e:
+                logger.warning(f"get_order_fill poll error: {e}")
+            time.sleep(0.5)
+        logger.warning(f"Order {order_id} not filled within {timeout}s")
+        return None
+
+    def close_position(self, symbol: str) -> Optional[float]:
+        """Close an entire position by symbol and return filled_avg_price, or None on failure."""
+        try:
+            from alpaca.trading.requests import ClosePositionRequest
+            order = self.trading_client.close_position(symbol)
+            return self.get_order_fill(str(order.id))
+        except Exception as e:
+            logger.warning(f"close_position failed for {symbol}: {e}")
+            return None
+
     def get_latest_prices(self, symbols: list) -> dict:
         """Get latest trade price for multiple symbols in one call. Returns {symbol: price}."""
         if not self.is_configured:
