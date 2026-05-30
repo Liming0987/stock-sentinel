@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import {
   AreaChart,
@@ -23,6 +24,55 @@ import {
   formatNumber,
 } from "@/lib/utils";
 import { useTrendingDetail, usePrices, useSentiment, useSignals, usePosts } from "@/lib/hooks";
+
+function PostCard({ post, sentimentColor }: { post: ReturnType<typeof usePosts>["data"]["posts"][0]; sentimentColor: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const hasBody = Boolean(post.body);
+  return (
+    <div className="rounded-lg border p-3 space-y-1">
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
+          <Badge variant="secondary" className="text-[10px] capitalize">{post.source}</Badge>
+          {post.subreddit && <span className="text-xs text-muted-foreground">r/{post.subreddit}</span>}
+          {post.author && <span className="text-xs text-muted-foreground">u/{post.author}</span>}
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <span className={`text-xs font-mono ${sentimentColor}`}>
+            {post.sentiment_score > 0 ? "+" : ""}{(post.sentiment_score * 100).toFixed(0)}%
+          </span>
+          <span className="text-xs text-muted-foreground">
+            {new Date(post.created_at).toLocaleDateString()}
+          </span>
+        </div>
+      </div>
+
+      {post.title && (
+        post.url ? (
+          <a href={post.url} target="_blank" rel="noopener noreferrer"
+            className="text-sm font-medium hover:underline block">
+            {post.title}
+          </a>
+        ) : (
+          <p className="text-sm font-medium">{post.title}</p>
+        )
+      )}
+
+      {hasBody && (
+        <>
+          <p className={`text-xs text-muted-foreground whitespace-pre-wrap ${expanded ? "" : "line-clamp-3"}`}>
+            {post.body}
+          </p>
+          <button
+            onClick={() => setExpanded((v) => !v)}
+            className="text-[11px] text-primary hover:underline"
+          >
+            {expanded ? "Show less" : "Show more"}
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default function StockDetailPage() {
   const params = useParams();
@@ -202,53 +252,7 @@ export default function StockDetailPage() {
                   : post.sentiment_score < -0.05
                   ? "text-bearish"
                   : "text-muted-foreground";
-              return (
-                <div key={post.id} className="rounded-lg border p-3 space-y-1">
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <Badge variant="secondary" className="text-[10px] capitalize">
-                        {post.source}
-                      </Badge>
-                      {post.subreddit && (
-                        <span className="text-xs text-muted-foreground">r/{post.subreddit}</span>
-                      )}
-                      {post.author && (
-                        <span className="text-xs text-muted-foreground">u/{post.author}</span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className={`text-xs font-mono ${sentimentColor}`}>
-                        {post.sentiment_score > 0 ? "+" : ""}
-                        {(post.sentiment_score * 100).toFixed(0)}%
-                      </span>
-                      <span className="text-xs text-muted-foreground">
-                        {new Date(post.created_at).toLocaleDateString()}
-                      </span>
-                    </div>
-                  </div>
-                  {post.title ? (
-                    <>
-                      {post.url ? (
-                        <a
-                          href={post.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm font-medium hover:underline line-clamp-2"
-                        >
-                          {post.title}
-                        </a>
-                      ) : (
-                        <p className="text-sm font-medium line-clamp-2">{post.title}</p>
-                      )}
-                      {post.body && (
-                        <p className="text-xs text-muted-foreground line-clamp-2">{post.body}</p>
-                      )}
-                    </>
-                  ) : post.body ? (
-                    <p className="text-sm line-clamp-3">{post.body}</p>
-                  ) : null}
-                </div>
-              );
+              return <PostCard key={post.id} post={post} sentimentColor={sentimentColor} />;
             })
           )}
         </CardContent>

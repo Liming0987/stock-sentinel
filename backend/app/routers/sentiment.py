@@ -129,7 +129,7 @@ async def get_sentiment_posts(
                 "source": "reddit",
                 "subreddit": reddit_post.subreddit,
                 "title": reddit_post.title or "",
-                "body": (reddit_post.body or "")[:300],
+                "body": reddit_post.body or "",
                 "author": reddit_post.author or "",
                 "score": reddit_post.score or 0,
                 "sentiment_score": float(mention.sentiment_score) if mention.sentiment_score else 0,
