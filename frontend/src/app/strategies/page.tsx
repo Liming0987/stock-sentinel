@@ -15,9 +15,13 @@ import {
 import type { LivePosition } from "@/lib/hooks";
 
 const STRATEGY_COLORS: Record<string, string> = {
-  momentum: "hsl(var(--primary))",
-  rsi_meanreversion: "hsl(142, 71%, 45%)",
-  sentiment_driven: "hsl(38, 92%, 50%)",
+  momentum:              "hsl(217, 91%, 60%)",  // blue
+  rsi_meanreversion:     "hsl(142, 71%, 45%)",  // green
+  sentiment_driven:      "hsl(38,  92%, 50%)",  // amber
+  bb_breakout:           "hsl(280, 70%, 60%)",  // purple
+  macd_histogram:        "hsl(340, 82%, 55%)",  // rose
+  opening_range_breakout:"hsl(173, 80%, 40%)",  // teal
+  vwap_cross:            "hsl(24,  95%, 55%)",  // orange
 };
 
 function formatPnl(val: number) {

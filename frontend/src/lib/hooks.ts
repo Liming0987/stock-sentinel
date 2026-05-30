@@ -317,3 +317,46 @@ export function useLivePositions() {
 
   return { data, history, loading };
 }
+
+export interface AppNotification {
+  id: string;
+  type: "signal" | "trade_open" | "trade_close";
+  ticker: string;
+  message: string;
+  timestamp: string;
+  meta: Record<string, unknown>;
+}
+
+const LAST_SEEN_KEY = "notif_last_seen";
+
+export function useNotifications() {
+  const [notifications, setNotifications] = useState<AppNotification[]>([]);
+  const [lastSeen, setLastSeen] = useState<string>(
+    () => localStorage.getItem(LAST_SEEN_KEY) ?? new Date(0).toISOString()
+  );
+
+  useEffect(() => {
+    let active = true;
+    const poll = async () => {
+      try {
+        const res = await api.notifications.list() as { notifications: AppNotification[] };
+        if (active) setNotifications(res.notifications);
+      } catch { /* ignore */ }
+      if (active) setTimeout(poll, 30000);
+    };
+    poll();
+    return () => { active = false; };
+  }, []);
+
+  const unreadCount = notifications.filter(
+    (n) => n.timestamp > lastSeen
+  ).length;
+
+  const markAllRead = () => {
+    const now = new Date().toISOString();
+    setLastSeen(now);
+    localStorage.setItem(LAST_SEEN_KEY, now);
+  };
+
+  return { notifications, unreadCount, markAllRead };
+}

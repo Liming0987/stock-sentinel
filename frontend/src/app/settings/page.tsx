@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Bell, Phone, CheckCircle, Send } from "lucide-react";
+import { Bell, Phone, CheckCircle, Send, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
@@ -174,18 +174,18 @@ export default function SettingsPage() {
               <div title={!form.notification_phone.trim() ? "Enter a phone number above first" : undefined}>
                 <Button
                   size="sm"
-                  variant="ghost"
                   onClick={handleTest}
                   disabled={testStatus === "sending" || !form.notification_phone.trim()}
                 >
-                  <Send className="mr-1 h-4 w-4" />
-                  {testStatus === "sending"
-                    ? "Sending…"
-                    : testStatus === "ok"
-                    ? "Sent ✓"
-                    : testStatus === "fail"
-                    ? "Failed ✗"
-                    : "Send Test SMS"}
+                  {testStatus === "sending" ? (
+                    "Sending…"
+                  ) : testStatus === "ok" ? (
+                    <><CheckCircle className="mr-1 h-4 w-4" /> Sent</>
+                  ) : testStatus === "fail" ? (
+                    <><XCircle className="mr-1 h-4 w-4" /> Failed</>
+                  ) : (
+                    <><Send className="mr-1 h-4 w-4" /> Send Test SMS</>
+                  )}
                 </Button>
               </div>
             </div>

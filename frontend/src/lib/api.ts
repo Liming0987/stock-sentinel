@@ -36,6 +36,9 @@ export const api = {
     remove: (ticker: string) =>
       fetch(`${API_BASE}/api/watchlist/${ticker}`, { method: "DELETE" }),
   },
+  notifications: {
+    list: (limit = 30) => fetchApi(`/api/notifications?limit=${limit}`),
+  },
   strategies: {
     list: () => fetchApi("/api/strategies"),
     trades: (name: string, status = "all") =>
