@@ -62,7 +62,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-card/80 px-4 pl-16 backdrop-blur-sm lg:px-6 lg:pl-6">
-      <form onSubmit={handleSearch} className="relative w-full max-w-sm lg:max-w-md">
+      <form onSubmit={handleSearch} className="relative w-full max-w-[180px] sm:max-w-sm lg:max-w-md">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <input
           type="text"
@@ -86,7 +86,7 @@ export function Header() {
           </Button>
 
           {open && (
-            <div className="absolute right-0 top-10 z-50 w-80 rounded-lg border bg-card shadow-xl">
+            <div className="absolute right-0 top-10 z-50 w-80 max-w-[calc(100vw-1rem)] rounded-lg border bg-card shadow-xl">
               {/* Header */}
               <div className="flex items-center justify-between border-b px-4 py-2.5">
                 <span className="text-sm font-semibold">Notifications</span>

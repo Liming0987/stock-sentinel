@@ -13,14 +13,14 @@ export default function TrendingPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold">Trending Stocks</h1>
           <p className="text-sm text-muted-foreground">
             Most discussed stocks ranked by mention velocity, sentiment & engagement
           </p>
         </div>
-        <div className="flex gap-1 rounded-lg border p-1">
+        <div className="flex gap-1 rounded-lg border p-1 self-start sm:self-auto">
           {timeframes.map((tf) => (
             <Button
               key={tf}

@@ -48,8 +48,8 @@ function AlpacaBar() {
   }
   return (
     <div className="rounded-lg border bg-card px-4 py-3">
-      <div className="flex flex-wrap items-center gap-6 text-sm">
-        <span className="font-semibold text-primary">Alpaca Paper Account</span>
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+        <span className="font-semibold text-primary w-full sm:w-auto">Alpaca Paper Account</span>
         <span>Cash: <span className="font-mono">${acc.cash?.toLocaleString("en-US", { minimumFractionDigits: 2 })}</span></span>
         <span>Equity: <span className="font-mono">${acc.equity?.toLocaleString("en-US", { minimumFractionDigits: 2 })}</span></span>
         <span>Buying Power: <span className="font-mono">${acc.buying_power?.toLocaleString("en-US", { minimumFractionDigits: 2 })}</span></span>
@@ -270,11 +270,12 @@ function LivePositionsPanel() {
           Live Unrealized P&amp;L
         </h2>
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-          <span className="relative flex h-2 w-2">
+          <span className="relative flex h-2 w-2 shrink-0">
             <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${data.market_open ? "animate-ping bg-primary" : "bg-muted-foreground"}`} />
             <span className={`relative inline-flex rounded-full h-2 w-2 ${data.market_open ? "bg-primary" : "bg-muted-foreground"}`} />
           </span>
-          {data.market_open ? "Updates every 5s" : "Market closed — showing last close prices"}
+          <span className="hidden sm:inline">{data.market_open ? "Updates every 5s" : "Market closed — showing last close prices"}</span>
+          <span className="sm:hidden">{data.market_open ? "Live" : "Closed"}</span>
         </div>
       </div>
 
@@ -514,12 +515,12 @@ export default function StrategiesPage() {
           {/* Trades per strategy */}
           <Card>
             <CardHeader>
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <CardTitle className="flex items-center gap-2">
                   <DollarSign className="h-5 w-5 text-primary" />
                   Trade History
                 </CardTitle>
-                <div className="flex gap-1">
+                <div className="flex flex-wrap gap-1">
                   {strategies.map((s) => (
                     <button
                       key={s.name}

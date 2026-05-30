@@ -106,7 +106,7 @@ export function TrendingTable({ stocks, compact = false }: TrendingTableProps) {
 
   return (
     <Card className="h-full flex flex-col overflow-hidden">
-      <CardHeader className="flex flex-row items-center justify-between gap-3 shrink-0">
+      <CardHeader className="flex flex-col gap-2 shrink-0 sm:flex-row sm:items-center sm:justify-between">
         <CardTitle className="flex items-center gap-2 shrink-0">
           <TrendingUp className="h-5 w-5 text-primary" />
           Trending Stocks
@@ -130,7 +130,7 @@ export function TrendingTable({ stocks, compact = false }: TrendingTableProps) {
 
       <CardContent className="flex-1 overflow-y-auto min-h-0 pt-0">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-xs sm:text-sm">
             <thead>
               <tr className="border-b text-left text-muted-foreground">
                 <th className="pb-3 pr-3 font-medium w-8">#</th>

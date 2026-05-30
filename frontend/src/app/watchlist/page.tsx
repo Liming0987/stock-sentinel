@@ -156,9 +156,9 @@ export default function WatchlistPage() {
           </div>
 
           {/* Sort picker */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex flex-wrap items-center gap-1.5">
             <span className="text-xs text-muted-foreground shrink-0">Sort by</span>
-            <div className="flex gap-1 rounded-lg border p-0.5">
+            <div className="flex flex-wrap gap-1 rounded-lg border p-0.5">
               {SORT_OPTIONS.map(({ key, label }) => {
                 const active = sortKey === key;
                 return (
