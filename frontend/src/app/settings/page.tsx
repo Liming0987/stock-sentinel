@@ -123,7 +123,7 @@ export default function SettingsPage() {
                 onChange={(e) =>
                   setForm((f) => ({ ...f, notification_phone: e.target.value }))
                 }
-                placeholder="6185281028"
+                placeholder="10-digit US number"
                 className="mt-1 flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-ring font-mono"
               />
             </div>

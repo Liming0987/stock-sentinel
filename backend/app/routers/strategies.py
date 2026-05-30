@@ -107,6 +107,59 @@ async def get_strategy_trades(
     }
 
 
+@router.post("/reset")
+async def reset_positions(db: AsyncSession = Depends(get_db)):
+    """Close all Alpaca positions and cancel all open DB trades so both are in sync."""
+    import asyncio
+    from datetime import datetime, timezone
+    from app.services.alpaca_service import AlpacaService
+
+    def _close_alpaca_positions():
+        svc = AlpacaService()
+        if not svc.is_configured:
+            return [], "Alpaca not configured"
+        positions = svc.get_positions()
+        closed = []
+        errors = []
+        for p in positions:
+            fill = svc.close_position(p.symbol)
+            if fill:
+                closed.append({"symbol": p.symbol, "fill_price": fill})
+            else:
+                errors.append(p.symbol)
+        return closed, errors
+
+    loop = asyncio.get_event_loop()
+    alpaca_closed, errors = await loop.run_in_executor(None, _close_alpaca_positions)
+
+    # Cancel all open trades in DB
+    open_trades_result = await db.execute(
+        select(Trade).where(Trade.status == "open")
+    )
+    open_trades = open_trades_result.scalars().all()
+    now = datetime.now(timezone.utc)
+    for trade in open_trades:
+        trade.status = "cancelled"
+        trade.closed_at = now
+        trade.reasoning = (trade.reasoning or "") + " | reset: positions cleared for sync"
+        db.add(trade)
+
+    # Zero unrealized P&L on all strategies
+    strats_result = await db.execute(select(StrategyRow))
+    for strat in strats_result.scalars().all():
+        strat.unrealized_pnl = 0
+        db.add(strat)
+
+    await db.commit()
+
+    return {
+        "alpaca_positions_closed": alpaca_closed,
+        "alpaca_close_errors": errors,
+        "db_trades_cancelled": len(open_trades),
+        "message": "All positions closed and DB synced. Ready for fresh start.",
+    }
+
+
 @router.post("/run")
 async def trigger_strategy_run():
     """Manually run all strategies once (synchronously)."""
