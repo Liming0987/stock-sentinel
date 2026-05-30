@@ -332,7 +332,7 @@ const LAST_SEEN_KEY = "notif_last_seen";
 export function useNotifications() {
   const [notifications, setNotifications] = useState<AppNotification[]>([]);
   const [lastSeen, setLastSeen] = useState<string>(
-    () => localStorage.getItem(LAST_SEEN_KEY) ?? new Date(0).toISOString()
+    () => (typeof window !== "undefined" ? localStorage.getItem(LAST_SEEN_KEY) : null) ?? new Date(0).toISOString()
   );
 
   useEffect(() => {
