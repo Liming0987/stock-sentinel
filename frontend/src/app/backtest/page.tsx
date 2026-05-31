@@ -396,7 +396,7 @@ export default function BacktestPage() {
                           borderRadius: "8px",
                           fontSize: "12px",
                         }}
-                        formatter={(v: number) => [`$${v.toFixed(2)}`, "P&L"]}
+                        formatter={(v) => [`$${Number(v).toFixed(2)}`, "P&L"]}
                         labelFormatter={(l) => `Date: ${l}`}
                       />
                       <Line
