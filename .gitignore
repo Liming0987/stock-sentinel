@@ -34,3 +34,6 @@ pgdata/
 # Models cache
 *.pt
 *.bin
+
+# Local notebooks — never commit
+notebooks/
