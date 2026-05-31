@@ -12,6 +12,7 @@ from app.strategies.bb_breakout import BBBreakoutStrategy
 from app.strategies.macd_histogram import MACDHistogramStrategy
 from app.strategies.opening_range_breakout import OpeningRangeBreakoutStrategy
 from app.strategies.vwap_cross import VWAPCrossStrategy
+from app.strategies.fib_retracement import FibRetracementStrategy
 
 # Registry of available strategies. Add new ones here.
 STRATEGY_REGISTRY = {
@@ -22,6 +23,7 @@ STRATEGY_REGISTRY = {
     "macd_histogram": MACDHistogramStrategy,
     "opening_range_breakout": OpeningRangeBreakoutStrategy,
     "vwap_cross": VWAPCrossStrategy,
+    "fib_retracement": FibRetracementStrategy,
 }
 
 __all__ = [
@@ -35,4 +37,5 @@ __all__ = [
     "MACDHistogramStrategy",
     "OpeningRangeBreakoutStrategy",
     "VWAPCrossStrategy",
+    "FibRetracementStrategy",
 ]
