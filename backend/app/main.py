@@ -15,6 +15,7 @@ from app.models.settings import AppSetting  # noqa: F401 — registers table wit
 from app.routers import trending, sentiment, prices, signals, watchlist, auth, strategies as strategies_router
 from app.routers import settings as settings_router
 from app.routers import notifications as notifications_router
+from app.routers import backtest as backtest_router
 
 
 @asynccontextmanager
@@ -55,6 +56,7 @@ app.include_router(watchlist.router, prefix="/api/watchlist", tags=["watchlist"]
 app.include_router(strategies_router.router, prefix="/api/strategies", tags=["strategies"])
 app.include_router(settings_router.router, prefix="/api/settings", tags=["settings"])
 app.include_router(notifications_router.router, prefix="/api/notifications", tags=["notifications"])
+app.include_router(backtest_router.router, prefix="/api/backtest", tags=["backtest"])
 
 
 @app.get("/api/health")

@@ -39,6 +39,15 @@ export const api = {
   notifications: {
     list: (limit = 30) => fetchApi(`/api/notifications?limit=${limit}`),
   },
+  backtest: {
+    strategies: () => fetchApi("/api/backtest/strategies"),
+    run: (body: object) =>
+      fetch(`${API_BASE}/api/backtest/run`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }).then((r) => r.json()),
+  },
   strategies: {
     list: () => fetchApi("/api/strategies"),
     trades: (name: string, status = "all") =>
