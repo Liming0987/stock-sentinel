@@ -95,7 +95,7 @@ export default function BacktestPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    api.backtest.strategies().then((res: { strategies: StrategyMeta[] }) => {
+    (api.backtest.strategies() as Promise<{ strategies: StrategyMeta[] }>).then((res) => {
       setStrategies(res.strategies);
       if (res.strategies.length > 0) setSelectedStrategy(res.strategies[0].name);
     }).catch(() => {});
