@@ -26,7 +26,7 @@ from app.strategies import STRATEGY_REGISTRY, BaseStrategy
 
 logger = logging.getLogger(__name__)
 
-POSITION_SIZE_USD = 100.0
+POSITION_SIZE_USD = 500.0
 MIN_BARS = 50  # minimum history needed before evaluating signals
 
 
