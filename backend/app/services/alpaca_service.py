@@ -132,7 +132,8 @@ class AlpacaService:
                 order = self.trading_client.get_order_by_id(
                     order_id, filter=GetOrderByIdRequest(nested=False)
                 )
-                status = str(order.status).lower()
+                # Compare directly — str(enum) yields "ClassName.VALUE", not the value itself
+                status = order.status
                 if status in ("filled", "partially_filled") and order.filled_avg_price:
                     return float(order.filled_avg_price)
                 if status in ("canceled", "expired", "rejected"):
@@ -180,10 +181,8 @@ class AlpacaService:
                 limit=limit,
             )
             orders = self.trading_client.get_orders(req)
-            return [
-                o for o in orders
-                if str(o.status).lower() == "filled" and str(o.side).lower().endswith("buy")
-            ]
+            # Compare directly — str(enum) yields "ClassName.VALUE", not the value itself
+            return [o for o in orders if o.status == "filled" and o.side == "buy"]
         except Exception as e:
             logger.warning(f"Failed to get orders: {e}")
             return []
