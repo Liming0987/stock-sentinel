@@ -37,7 +37,6 @@ class RSIMeanReversionStrategy(BaseStrategy):
                 stop_loss=stop_loss,
                 target=target,
                 reasoning=[f"RSI={rsi:.1f} oversold (<{self.RSI_BUY_THRESHOLD})"],
-                qty=1.0,
             )
 
         return Signal.hold()

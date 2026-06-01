@@ -13,7 +13,6 @@ class Signal:
     stop_loss: Optional[float] = None
     target: Optional[float] = None
     reasoning: List[str] = field(default_factory=list)
-    qty: float = 1.0  # default 1 share for paper trading
 
     @classmethod
     def hold(cls) -> "Signal":

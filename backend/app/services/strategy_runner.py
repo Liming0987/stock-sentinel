@@ -23,7 +23,7 @@ from app.strategies import STRATEGY_REGISTRY, BaseStrategy
 
 logger = logging.getLogger(__name__)
 
-POSITION_SIZE_USD = 100.0  # fixed dollar amount to risk per trade
+POSITION_SIZE_USD = 500.0  # fixed dollar amount to risk per trade
 UNIVERSE_SIZE     = 20     # stocks evaluated per run
 
 

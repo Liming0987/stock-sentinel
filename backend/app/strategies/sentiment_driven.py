@@ -47,7 +47,6 @@ class SentimentDrivenStrategy(BaseStrategy):
                 f"{mentions} mentions/24h",
                 f"velocity {velocity:.1f}/hr",
             ],
-            qty=1.0,
         )
 
     def should_close(self, trade, context: Dict):

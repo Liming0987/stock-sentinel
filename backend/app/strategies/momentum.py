@@ -56,7 +56,6 @@ class MomentumStrategy(BaseStrategy):
             stop_loss=stop_loss,
             target=target,
             reasoning=reasoning,
-            qty=1.0,
         )
 
     def should_close(self, trade, context: Dict):
