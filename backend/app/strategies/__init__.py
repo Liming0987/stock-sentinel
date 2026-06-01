@@ -13,6 +13,7 @@ from app.strategies.macd_histogram import MACDHistogramStrategy
 from app.strategies.opening_range_breakout import OpeningRangeBreakoutStrategy
 from app.strategies.vwap_cross import VWAPCrossStrategy
 from app.strategies.fib_retracement import FibRetracementStrategy
+from app.strategies.elliott_fib import ElliottFibStrategy
 
 # Registry of available strategies. Add new ones here.
 STRATEGY_REGISTRY = {
@@ -24,6 +25,7 @@ STRATEGY_REGISTRY = {
     "opening_range_breakout": OpeningRangeBreakoutStrategy,
     "vwap_cross": VWAPCrossStrategy,
     "fib_retracement": FibRetracementStrategy,
+    "elliott_fib": ElliottFibStrategy,
 }
 
 __all__ = [
@@ -38,4 +40,5 @@ __all__ = [
     "OpeningRangeBreakoutStrategy",
     "VWAPCrossStrategy",
     "FibRetracementStrategy",
+    "ElliottFibStrategy",
 ]

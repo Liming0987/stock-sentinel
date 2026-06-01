@@ -5,9 +5,10 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
   Legend, ResponsiveContainer, ReferenceLine,
 } from "recharts";
-import { DollarSign, Activity, Radio, ChevronDown, ChevronRight } from "lucide-react";
+import { DollarSign, Activity, Radio, ChevronDown, ChevronRight, RefreshCw, AlertTriangle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { api } from "@/lib/api";
 import {
   useStrategies, useStrategyTrades, useEquityCurve, useAlpacaAccount,
   useLivePositions,
@@ -66,9 +67,17 @@ function PositionRow({ pos }: { pos: LivePosition }) {
   const positive = priceDiff >= 0;
   const atRisk = pos.stop_loss !== null && pos.current_price <= pos.stop_loss * 1.02;
   const nearTarget = pos.target !== null && pos.current_price >= pos.target * 0.98;
+  const isUntracked = pos.source === "alpaca";
   return (
-    <tr className="border-b last:border-0 hover:bg-accent/30">
-      <td className="py-2 pr-3 font-semibold">{pos.ticker}</td>
+    <tr className={`border-b last:border-0 hover:bg-accent/30 ${isUntracked ? "opacity-80" : ""}`}>
+      <td className="py-2 pr-3 font-semibold">
+        {pos.ticker}
+        {isUntracked && (
+          <span title="Not yet tracked in DB — click Sync with Alpaca to attribute">
+            <AlertTriangle className="inline ml-1 h-3 w-3 text-amber-500" />
+          </span>
+        )}
+      </td>
       <td className="py-2 pr-3 font-mono text-muted-foreground">${pos.entry_price.toFixed(2)}</td>
       <td className="py-2 pr-3 font-mono font-semibold">
         <span className={positive ? "text-bullish" : "text-bearish"}>
@@ -238,6 +247,8 @@ function StrategyLivePanel({
 
 function LivePositionsPanel() {
   const { data, history, loading } = useLivePositions();
+  const [syncing, setSyncing] = useState(false);
+  const [syncMsg, setSyncMsg] = useState<string | null>(null);
 
   const chartData = useMemo(() => {
     const recent = history.slice(-REAL_SLOTS);
@@ -254,12 +265,27 @@ function LivePositionsPanel() {
     return Array.from(new Set([...fromPositions, ...fromHistory]));
   }, [data.positions, history]);
 
+  const hasUntracked = data.positions.some((p) => p.source === "alpaca");
+
   // Default all open
   const [openMap, setOpenMap] = useState<Record<string, boolean>>({});
   const isOpen = (name: string) => openMap[name] !== false; // open by default
 
   const toggle = (name: string) =>
     setOpenMap((prev) => ({ ...prev, [name]: !isOpen(name) }));
+
+  const handleSync = async () => {
+    setSyncing(true);
+    setSyncMsg(null);
+    try {
+      const res = await (api.strategies.syncAlpaca() as Promise<{ synced: number; message: string }>);
+      setSyncMsg(res.message);
+    } catch {
+      setSyncMsg("Sync failed — check server logs.");
+    } finally {
+      setSyncing(false);
+    }
+  };
 
   return (
     <div className="space-y-2">
@@ -269,15 +295,42 @@ function LivePositionsPanel() {
           <Radio className="h-4 w-4 text-primary" />
           Live Unrealized P&amp;L
         </h2>
-        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-          <span className="relative flex h-2 w-2 shrink-0">
-            <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${data.market_open ? "animate-ping bg-primary" : "bg-muted-foreground"}`} />
-            <span className={`relative inline-flex rounded-full h-2 w-2 ${data.market_open ? "bg-primary" : "bg-muted-foreground"}`} />
-          </span>
-          <span className="hidden sm:inline">{data.market_open ? "Updates every 5s" : "Market closed — showing last close prices"}</span>
-          <span className="sm:hidden">{data.market_open ? "Live" : "Closed"}</span>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleSync}
+            disabled={syncing}
+            className="flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-medium bg-muted hover:bg-accent transition-colors disabled:opacity-50"
+            title="Pull Alpaca positions into the DB and attribute them to strategies"
+          >
+            <RefreshCw className={`h-3 w-3 ${syncing ? "animate-spin" : ""}`} />
+            Sync with Alpaca
+          </button>
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${data.market_open ? "animate-ping bg-primary" : "bg-muted-foreground"}`} />
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${data.market_open ? "bg-primary" : "bg-muted-foreground"}`} />
+            </span>
+            <span className="hidden sm:inline">{data.market_open ? "Updates every 5s" : "Market closed — showing last close prices"}</span>
+            <span className="sm:hidden">{data.market_open ? "Live" : "Closed"}</span>
+          </div>
         </div>
       </div>
+
+      {/* Sync result message */}
+      {syncMsg && (
+        <p className="text-xs text-muted-foreground px-1">{syncMsg} Positions will refresh on next poll.</p>
+      )}
+
+      {/* Warning when untracked Alpaca positions are present */}
+      {hasUntracked && !syncing && (
+        <div className="flex items-start gap-2 rounded-md border border-amber-500/30 bg-amber-500/5 px-3 py-2 text-xs text-amber-700 dark:text-amber-400">
+          <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+          <span>
+            Some positions in Alpaca are not tracked in the DB (shown under &ldquo;untracked&rdquo; below).
+            Click <strong>Sync with Alpaca</strong> to attribute them to the strategy that opened them.
+          </span>
+        </div>
+      )}
 
       {loading ? (
         <p className="text-sm text-muted-foreground py-4">Fetching live prices&hellip;</p>

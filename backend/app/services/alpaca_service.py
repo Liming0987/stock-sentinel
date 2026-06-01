@@ -167,6 +167,27 @@ class AlpacaService:
             logger.warning(f"Failed to get latest prices: {e}")
             return {}
 
+    def get_orders(self, symbols: list = None, limit: int = 200) -> list:
+        """Fetch recent filled buy orders. Returns list of alpaca Order objects."""
+        if not self.is_configured:
+            return []
+        try:
+            from alpaca.trading.requests import GetOrdersRequest
+            from alpaca.trading.enums import QueryOrderStatus
+            req = GetOrdersRequest(
+                status=QueryOrderStatus.CLOSED,
+                symbols=symbols,
+                limit=limit,
+            )
+            orders = self.trading_client.get_orders(req)
+            return [
+                o for o in orders
+                if str(o.status).lower() == "filled" and str(o.side).lower().endswith("buy")
+            ]
+        except Exception as e:
+            logger.warning(f"Failed to get orders: {e}")
+            return []
+
     def get_minute_bars(self, symbol: str, limit: int = 120):
         """Get recent 1-minute OHLCV bars for a symbol. Returns a pandas DataFrame or None."""
         if not self.is_configured:

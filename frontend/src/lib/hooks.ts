@@ -241,6 +241,8 @@ export interface LivePosition {
   target: number | null;
   unrealized_pnl: number;
   return_pct: number;
+  /** "db" = tracked by strategy runner; "alpaca" = in Alpaca but no DB record yet */
+  source?: "db" | "alpaca";
 }
 
 interface ByStrategy {

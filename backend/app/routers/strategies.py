@@ -1,9 +1,12 @@
 """Trading strategy comparison API."""
+from decimal import Decimal
+
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy import select, desc, and_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.database import get_db
+from app.models.stock import Stock
 from app.models.trade import Strategy as StrategyRow, Trade
 from app.strategies import STRATEGY_REGISTRY
 
@@ -160,6 +163,135 @@ async def reset_positions(db: AsyncSession = Depends(get_db)):
     }
 
 
+@router.post("/sync-alpaca")
+async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
+    """Reconcile Alpaca open positions with the DB.
+
+    For each Alpaca position that has no open Trade record in the DB:
+    - Looks up the most recent filled buy order for that symbol to read its client_order_id
+    - Parses the strategy name from client_order_id (format: {strategy_name}-{ticker}-{uuid})
+    - Creates a Trade record attributed to that strategy (or 'untracked' if unknown)
+    After this runs, live-positions will show proper strategy attribution.
+    """
+    import asyncio
+    from datetime import datetime, timezone
+
+    strategy_names = list(STRATEGY_REGISTRY.keys())
+
+    def _fetch_alpaca_data():
+        from app.services.alpaca_service import AlpacaService
+        svc = AlpacaService()
+        if not svc.is_configured:
+            return [], {}
+        positions = svc.get_positions()
+        if not positions:
+            return [], {}
+        # Batch-fetch all recent filled buy orders in one call
+        all_orders = svc.get_orders(limit=500)
+        # Group orders by symbol, keep only the most recent per symbol
+        orders_by_symbol: dict = {}
+        for order in all_orders:
+            sym = order.symbol
+            existing = orders_by_symbol.get(sym)
+            order_time = order.filled_at or order.created_at
+            if existing is None:
+                orders_by_symbol[sym] = order
+            else:
+                prev_time = existing.filled_at or existing.created_at
+                if order_time and (prev_time is None or order_time > prev_time):
+                    orders_by_symbol[sym] = order
+        return positions, orders_by_symbol
+
+    loop = asyncio.get_event_loop()
+    alpaca_positions, orders_by_symbol = await loop.run_in_executor(None, _fetch_alpaca_data)
+
+    if not alpaca_positions:
+        return {"synced": 0, "skipped": 0, "message": "No open Alpaca positions found."}
+
+    # Load existing open DB trades to detect which tickers are already tracked
+    open_result = await db.execute(select(Trade).where(Trade.status == "open"))
+    open_tickers = {t.ticker for t in open_result.scalars().all()}
+
+    # Load strategy rows
+    strats_result = await db.execute(select(StrategyRow))
+    strats_by_name = {s.name: s for s in strats_result.scalars().all()}
+
+    # Load stocks by ticker
+    stocks_result = await db.execute(select(Stock))
+    stocks_by_ticker = {s.ticker: s for s in stocks_result.scalars().all()}
+
+    synced = []
+    skipped = []
+
+    for pos in alpaca_positions:
+        symbol = pos.symbol
+
+        if symbol in open_tickers:
+            skipped.append({"symbol": symbol, "reason": "already tracked in DB"})
+            continue
+
+        # Determine strategy from client_order_id
+        strat_name = "untracked"
+        order = orders_by_symbol.get(symbol)
+        if order and order.client_order_id:
+            coid = order.client_order_id
+            for name in strategy_names:
+                if coid.startswith(f"{name}-"):
+                    strat_name = name
+                    break
+
+        # Find or create Strategy row
+        strat_row = strats_by_name.get(strat_name)
+        if strat_row is None:
+            strat_row = StrategyRow(
+                name=strat_name,
+                description="Positions opened outside the strategy runner" if strat_name == "untracked" else None,
+                enabled=strat_name != "untracked",
+                paper=True,
+            )
+            db.add(strat_row)
+            await db.flush()
+            strats_by_name[strat_name] = strat_row
+
+        # Find or create Stock row (required FK)
+        stock = stocks_by_ticker.get(symbol)
+        if stock is None:
+            stock = Stock(ticker=symbol, name=symbol)
+            db.add(stock)
+            await db.flush()
+            stocks_by_ticker[symbol] = stock
+
+        entry_price = float(pos.avg_entry_price) if pos.avg_entry_price else 0.0
+        qty = float(pos.qty) if pos.qty else 0.0
+
+        trade = Trade(
+            strategy_id=strat_row.id,
+            stock_id=stock.id,
+            ticker=symbol,
+            side="buy",
+            qty=Decimal(str(round(qty, 6))),
+            entry_price=Decimal(str(round(entry_price, 4))),
+            status="open",
+            alpaca_order_id=str(order.id) if order else None,
+            alpaca_client_order_id=order.client_order_id if order else None,
+            reasoning=f"synced from Alpaca on {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} (strategy: {strat_name})",
+        )
+        db.add(trade)
+        synced.append({"symbol": symbol, "strategy": strat_name, "entry_price": entry_price, "qty": qty})
+
+    await db.commit()
+
+    return {
+        "synced": len(synced),
+        "skipped": len(skipped),
+        "positions_synced": synced,
+        "message": (
+            f"Synced {len(synced)} Alpaca position(s) into DB."
+            if synced else "All Alpaca positions are already tracked in the DB."
+        ),
+    }
+
+
 @router.post("/run")
 async def trigger_strategy_run():
     """Manually run all strategies once (synchronously)."""
@@ -209,7 +341,14 @@ async def get_equity_curves(db: AsyncSession = Depends(get_db)):
 
 @router.get("/live-positions")
 async def live_positions(db: AsyncSession = Depends(get_db)):
-    """Open positions with real-time prices — poll every few seconds for live P&L."""
+    """Open positions with real-time prices — poll every few seconds for live P&L.
+
+    Merges two sources of truth:
+    - DB open Trade records (have strategy attribution, stop/target levels)
+    - Alpaca open positions (authoritative for what's actually held in the account)
+    Any Alpaca position without a matching DB record is surfaced as 'untracked'.
+    Use POST /sync-alpaca to reconcile and give untracked positions proper attribution.
+    """
     import asyncio
     from datetime import datetime, timezone
 
@@ -227,27 +366,23 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
 
     market_open = _is_market_open()
 
-    if not open_trades:
-        return {
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "positions": [],
-            "by_strategy": {},
-            "market_open": market_open,
-        }
+    db_tickers = list({t.ticker for t in open_trades})
 
-    tickers = list({t.ticker for t in open_trades})
-
-    def _fetch_prices() -> dict:
+    def _fetch_alpaca_and_prices() -> tuple:
+        alpaca_positions = []
         prices: dict = {}
         try:
             from app.services.alpaca_service import AlpacaService
             svc = AlpacaService()
             if svc.is_configured:
-                prices = svc.get_latest_prices(tickers)
+                alpaca_positions = svc.get_positions()
+                all_tickers = list(set(db_tickers + [p.symbol for p in alpaca_positions]))
+                if all_tickers:
+                    prices = svc.get_latest_prices(all_tickers)
         except Exception:
             pass
 
-        missing = [t for t in tickers if t not in prices]
+        missing = [t for t in db_tickers if t not in prices]
         if missing:
             try:
                 import yfinance as yf
@@ -258,14 +393,16 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
                         prices[sym] = float(price)
             except Exception:
                 pass
-        return prices
+        return prices, alpaca_positions
 
     loop = asyncio.get_event_loop()
-    prices = await loop.run_in_executor(None, _fetch_prices)
+    prices, alpaca_positions = await loop.run_in_executor(None, _fetch_alpaca_and_prices)
 
     positions = []
     by_strategy: dict = {}
+    tracked_tickers: set = set()
 
+    # DB-tracked positions (have strategy attribution, stop/target)
     for t in open_trades:
         strat_name = strats.get(t.strategy_id, "unknown")
         entry = float(t.entry_price) if t.entry_price else 0.0
@@ -273,6 +410,8 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
         current = prices.get(t.ticker, entry)
         upnl = (current - entry) * qty
         ret_pct = (current - entry) / entry if entry else 0.0
+
+        tracked_tickers.add(t.ticker)
 
         positions.append({
             "strategy": strat_name,
@@ -284,6 +423,7 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
             "target": round(float(t.target), 4) if t.target else None,
             "unrealized_pnl": round(upnl, 2),
             "return_pct": round(ret_pct, 4),
+            "source": "db",
         })
 
         if strat_name not in by_strategy:
@@ -292,6 +432,37 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
             by_strategy[strat_name]["unrealized_pnl"] + upnl, 2
         )
         by_strategy[strat_name]["position_count"] += 1
+
+    # Alpaca positions not yet in DB — shown as "untracked"
+    for ap in alpaca_positions:
+        if ap.symbol in tracked_tickers:
+            continue
+        entry = float(ap.avg_entry_price) if ap.avg_entry_price else 0.0
+        qty = float(ap.qty) if ap.qty else 0.0
+        current = prices.get(ap.symbol) or (float(ap.current_price) if ap.current_price else entry)
+        upnl = float(ap.unrealized_pl) if ap.unrealized_pl else (current - entry) * qty
+        ret_pct = float(ap.unrealized_plpc) if ap.unrealized_plpc else (
+            (current - entry) / entry if entry else 0.0
+        )
+
+        positions.append({
+            "strategy": "untracked",
+            "ticker": ap.symbol,
+            "qty": round(qty, 6),
+            "entry_price": round(entry, 4),
+            "current_price": round(current, 4),
+            "stop_loss": None,
+            "target": None,
+            "unrealized_pnl": round(upnl, 2),
+            "return_pct": round(ret_pct, 4),
+            "source": "alpaca",
+        })
+
+        by_strategy.setdefault("untracked", {"unrealized_pnl": 0.0, "position_count": 0})
+        by_strategy["untracked"]["unrealized_pnl"] = round(
+            by_strategy["untracked"]["unrealized_pnl"] + upnl, 2
+        )
+        by_strategy["untracked"]["position_count"] += 1
 
     return {
         "timestamp": datetime.now(timezone.utc).isoformat(),
