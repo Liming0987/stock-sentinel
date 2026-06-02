@@ -26,6 +26,7 @@ class BaseStrategy(ABC):
     name: str = "base"
     description: str = ""
     max_positions: int = 2  # max concurrent open trades across the whole universe
+    FUNDAMENTAL_WEIGHT: float = 0.30
 
     @abstractmethod
     def evaluate(self, ticker: str, context: Dict) -> Signal:
@@ -41,6 +42,28 @@ class BaseStrategy(ABC):
                 - "current_position": Trade row if open, else None
         """
         ...
+
+    def apply_fundamental_modifier(self, signal: Signal, context: Dict) -> Signal:
+        if signal.action != "buy":
+            return signal
+        fundamentals = context.get("fundamentals")
+        if not fundamentals:
+            return signal
+        score = fundamentals.get("score")
+        if score is None:
+            return signal
+        grade = fundamentals.get("grade", "N/A")
+        flags = fundamentals.get("flags", [])
+
+        if flags and score < 0.35:
+            signal.action = "hold"
+            signal.reasoning.append(f"Fundamental veto: {flags[0]}")
+            return signal
+
+        mult = 1 + self.FUNDAMENTAL_WEIGHT * (score - 0.5) * 2
+        signal.confidence = round(min(1.0, max(0.0, signal.confidence * mult)), 3)
+        signal.reasoning.append(f"Fundamentals {grade} ({score:.0%}) ×{mult:.2f}")
+        return signal
 
     def should_close(self, trade, context: Dict) -> Optional[str]:
         """

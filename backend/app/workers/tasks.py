@@ -332,6 +332,26 @@ def run_strategies(self: Task):
         raise
 
 
+@celery_app.task(**_RETRY_DEFAULTS, name="app.workers.tasks.refresh_fundamentals")
+def refresh_fundamentals(self: Task):
+    """Refresh fundamental analysis for all tracked stocks."""
+    from sqlalchemy import create_engine, select
+    from sqlalchemy.orm import Session
+    from app.models.stock import Stock
+    from app.services.fundamentals_service import FundamentalsService
+
+    sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    engine = create_engine(sync_url)
+    try:
+        with Session(engine) as session:
+            tickers = session.execute(select(Stock.ticker)).scalars().all()
+        with Session(engine) as session:
+            FundamentalsService().refresh_all(list(tickers), session)
+    finally:
+        engine.dispose()
+    return {"tickers_refreshed": len(list(tickers))}
+
+
 @celery_app.task(
     bind=True, name="app.workers.tasks.run_strategies_intraday",
     max_retries=0, time_limit=55, soft_time_limit=50,

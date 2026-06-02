@@ -49,6 +49,9 @@ export const api = {
         body: JSON.stringify(body),
       }).then((r) => r.json()),
   },
+  fundamentals: {
+    get: (ticker: string) => fetchApi(`/api/fundamentals/${ticker}`),
+  },
   strategies: {
     list: () => fetchApi("/api/strategies"),
     trades: (name: string, status = "all") =>

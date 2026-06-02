@@ -18,12 +18,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SentimentGauge } from "@/components/dashboard/sentiment-gauge";
+import { GradeBadge } from "@/components/dashboard/grade-badge";
+import { FundamentalsPanel } from "@/components/dashboard/fundamentals-panel";
 import {
   formatPrice,
   formatPercent,
   formatNumber,
 } from "@/lib/utils";
-import { useTrendingDetail, usePrices, useSentiment, useSignals, usePosts } from "@/lib/hooks";
+import { useTrendingDetail, usePrices, useSentiment, useSignals, usePosts, useFundamentals } from "@/lib/hooks";
 
 function PostCard({ post, sentimentColor }: { post: ReturnType<typeof usePosts>["data"]["posts"][0]; sentimentColor: string }) {
   const [expanded, setExpanded] = useState(false);
@@ -83,6 +85,7 @@ export default function StockDetailPage() {
   const { data: sentimentData } = useSentiment(ticker);
   const { data: signalsData } = useSignals();
   const { data: postsData } = usePosts(ticker);
+  const { data: fundamentals } = useFundamentals(ticker);
 
   const signal = signalsData.signals.find((s) => s.ticker === ticker);
   const candles = priceData.candles;
@@ -104,6 +107,7 @@ export default function StockDetailPage() {
           <div className="flex items-center gap-3">
             <h1 className="text-2xl font-bold sm:text-3xl">{stock.ticker}</h1>
             <span className="text-sm text-muted-foreground sm:text-lg">{stock.name}</span>
+            {fundamentals.grade !== "N/A" && <GradeBadge grade={fundamentals.grade} />}
           </div>
           <div className="mt-1 flex items-center gap-4">
             <span className="text-2xl font-bold font-mono">{formatPrice(stock.price)}</span>
@@ -177,6 +181,8 @@ export default function StockDetailPage() {
           </CardContent>
         </Card>
       </div>
+
+      <FundamentalsPanel data={fundamentals} />
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
         <Card>

@@ -19,6 +19,7 @@ from app.models.trade import Strategy as StrategyRow, Trade
 from app.services.price_service import PriceService
 from app.services.alpaca_service import AlpacaService
 from app.services.universe_builder import UniverseBuilder
+from app.services.fundamentals_service import FundamentalsService
 from app.strategies import STRATEGY_REGISTRY, BaseStrategy
 
 logger = logging.getLogger(__name__)
@@ -77,6 +78,7 @@ class StrategyRunner:
     def __init__(self):
         self.price_service = PriceService()
         self.universe_builder = UniverseBuilder()
+        self.fundamentals_service = FundamentalsService()
         alpaca = AlpacaService()
         if not alpaca.is_configured:
             raise RuntimeError(
@@ -141,6 +143,8 @@ class StrategyRunner:
             avg_sentiment = 0.0
             velocity = 0.0
 
+        fundamentals = self.fundamentals_service.get(stock.ticker, session)
+
         return {
             "price_df": df,
             "indicators": indicators,
@@ -149,6 +153,7 @@ class StrategyRunner:
                 "mention_count": len(mentions),
                 "mention_velocity": velocity,
             },
+            "fundamentals": fundamentals,
         }
 
     def _build_intraday_context(self, session: Session, stock: Stock, alpaca) -> Dict:
@@ -186,6 +191,8 @@ class StrategyRunner:
         except Exception as e:
             logger.debug(f"Intraday bars unavailable for {stock.ticker}: {e}")
 
+        fundamentals = self.fundamentals_service.get(stock.ticker, session, allow_fetch=False)
+
         return {
             "price_df": df,
             "indicators": indicators,
@@ -195,6 +202,7 @@ class StrategyRunner:
                 "mention_velocity": velocity,
             },
             "intraday": intraday,
+            "fundamentals": fundamentals,
         }
 
     def _open_position(
@@ -411,7 +419,7 @@ class StrategyRunner:
 
                     # 2) Collect entry signals — only where no existing position
                     if not open_trade:
-                        sig = strat.evaluate(ticker, ctx)
+                        sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, payload["stock"], sig))
 
@@ -507,7 +515,7 @@ class StrategyRunner:
                                 continue
 
                     if not open_trade:
-                        sig = strat.evaluate(ticker, ctx)
+                        sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, stock, sig))
 

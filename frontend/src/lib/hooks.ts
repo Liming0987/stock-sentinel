@@ -352,6 +352,36 @@ export function useLivePositions() {
   return { data, history, loading };
 }
 
+export interface FundamentalsData {
+  ticker: string;
+  score: number | null;
+  grade: string;
+  pillars: Record<string, number>;
+  metrics: Record<string, number | null>;
+  flags: string[];
+  next_earnings: string | null;
+  reasoning: string[];
+}
+
+const EMPTY_FUNDAMENTALS: FundamentalsData = {
+  ticker: "",
+  score: null,
+  grade: "N/A",
+  pillars: {},
+  metrics: {},
+  flags: [],
+  next_earnings: null,
+  reasoning: [],
+};
+
+export function useFundamentals(ticker: string) {
+  const fetcher = useCallback(
+    () => api.fundamentals.get(ticker) as Promise<FundamentalsData>,
+    [ticker]
+  );
+  return useApi(fetcher, { ...EMPTY_FUNDAMENTALS, ticker });
+}
+
 export interface AppNotification {
   id: string;
   type: "signal" | "trade_open" | "trade_close";
