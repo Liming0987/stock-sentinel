@@ -13,7 +13,7 @@ import {
   useStrategies, useStrategyTrades, useEquityCurve, useAlpacaAccount,
   useLivePositions,
 } from "@/lib/hooks";
-import type { LivePosition } from "@/lib/hooks";
+import type { LivePosition, ByStrategy } from "@/lib/hooks";
 
 const STRATEGY_COLORS: Record<string, string> = {
   momentum:              "hsl(217, 91%, 60%)",  // blue
@@ -78,7 +78,7 @@ function PositionRow({ pos }: { pos: LivePosition }) {
           </span>
         )}
       </td>
-      <td className="py-2 pr-3 font-mono text-muted-foreground">${pos.entry_price.toFixed(2)}</td>
+      <td className="py-2 pr-3 font-mono text-muted-foreground">${(pos.entry_price * pos.qty).toFixed(2)}</td>
       <td className="py-2 pr-3 font-mono font-semibold">
         <span className={positive ? "text-bullish" : "text-bearish"}>
           ${pos.current_price.toFixed(2)}
@@ -122,7 +122,7 @@ const PAD_SLOTS = 16;
 
 interface StrategyLivePanelProps {
   stratName: string;
-  summary: { unrealized_pnl: number; position_count: number } | undefined;
+  summary: ByStrategy | undefined;
   positions: LivePosition[];
   chartData: ReturnType<typeof useLivePositions>["history"];
   isOpen: boolean;
@@ -151,11 +151,20 @@ function StrategyLivePanel({
           <span className="h-3 w-3 rounded-full shrink-0" style={{ backgroundColor: color }} />
           <span className="font-semibold capitalize">{stratName.replace(/_/g, " ")}</span>
           {summary ? (
-            <PnlText val={summary.unrealized_pnl} className="text-sm font-bold" />
+            <>
+              <span className="text-xs text-muted-foreground">Unrealized:</span>
+              <PnlText val={summary.unrealized_pnl} className="text-sm font-bold" />
+              {summary.realized_pnl !== 0 && (
+                <>
+                  <span className="text-xs text-muted-foreground">Realized today:</span>
+                  <PnlText val={summary.realized_pnl} className="text-sm font-bold" />
+                </>
+              )}
+            </>
           ) : (
             <span className="text-xs text-muted-foreground">no open positions</span>
           )}
-          {summary && (
+          {summary && summary.position_count > 0 && (
             <span className="text-xs text-muted-foreground">
               {summary.position_count} position{summary.position_count !== 1 ? "s" : ""}
             </span>
@@ -293,7 +302,7 @@ function LivePositionsPanel() {
       <div className="flex items-center justify-between">
         <h2 className="flex items-center gap-2 text-base font-semibold">
           <Radio className="h-4 w-4 text-primary" />
-          Live Unrealized P&amp;L
+          Live P&amp;L
         </h2>
         <div className="flex items-center gap-3">
           <button
@@ -423,9 +432,10 @@ function TradesTable({ strategyName }: { strategyName: string }) {
           <tr className="border-b text-left text-muted-foreground">
             <th className="pb-2 pr-4 font-medium">Ticker</th>
             <th className="pb-2 pr-4 font-medium">Entry</th>
-            <th className="pb-2 pr-4 font-medium">Exit</th>
             <th className="pb-2 pr-4 font-medium">Qty</th>
-            <th className="pb-2 pr-4 font-medium">P&amp;L</th>
+            <th className="pb-2 pr-4 font-medium">Total Cost</th>
+            <th className="pb-2 pr-4 font-medium">Exit</th>
+            <th className="pb-2 pr-4 font-medium">Realized P&amp;L</th>
             <th className="pb-2 pr-4 font-medium">Return</th>
             <th className="pb-2 pr-4 font-medium">Status</th>
             <th className="pb-2 pr-4 font-medium">Entered</th>
@@ -437,10 +447,13 @@ function TradesTable({ strategyName }: { strategyName: string }) {
             <tr key={t.id} className="border-b last:border-0 hover:bg-accent/30">
               <td className="py-2 pr-4 font-semibold">{t.ticker}</td>
               <td className="py-2 pr-4 font-mono">${t.entry_price.toFixed(2)}</td>
-              <td className="py-2 pr-4 font-mono">{t.exit_price ? `$${t.exit_price.toFixed(2)}` : "—"}</td>
               <td className="py-2 pr-4 font-mono">{t.qty}</td>
+              <td className="py-2 pr-4 font-mono text-muted-foreground">
+                {t.total_cost != null ? `$${t.total_cost.toFixed(2)}` : `$${(t.entry_price * t.qty).toFixed(2)}`}
+              </td>
+              <td className="py-2 pr-4 font-mono">{t.exit_price ? `$${t.exit_price.toFixed(2)}` : "—"}</td>
               <td className="py-2 pr-4">
-                {t.pnl != null ? <PnlText val={t.pnl} /> : <span className="text-muted-foreground">open</span>}
+                {t.pnl != null ? <PnlText val={t.pnl} /> : <span className="text-muted-foreground">—</span>}
               </td>
               <td className="py-2 pr-4 font-mono">
                 {t.return_pct != null ? (
@@ -450,7 +463,10 @@ function TradesTable({ strategyName }: { strategyName: string }) {
                 ) : "—"}
               </td>
               <td className="py-2 pr-4">
-                <Badge variant={t.status === "open" ? "bullish" : "secondary"} className="text-[10px]">
+                <Badge
+                  variant={t.status === "open" ? "bullish" : t.status === "cancelled" ? "destructive" : "secondary"}
+                  className="text-[10px]"
+                >
                   {t.status}
                 </Badge>
               </td>

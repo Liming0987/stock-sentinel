@@ -267,14 +267,21 @@ class StrategyRunner:
         return trade
 
     def _close_position(self, session: Session, trade: Trade, exit_price: float, reason: str):
-        """Close an open trade via Alpaca and record the real fill price."""
+        """Close an open trade via Alpaca and record the fill price.
+
+        Falls back to the last_price passed by the caller when Alpaca returns no fill
+        (e.g. position already closed on Alpaca side, partial fill, API hiccup).
+        This ensures the DB is always updated to 'closed' — never left stuck as 'open'.
+        """
         fill_price = self.alpaca.close_position(trade.ticker)
-        if not fill_price:
-            raise RuntimeError(
-                f"Alpaca close_position for {trade.ticker} did not return a fill price."
+        if fill_price:
+            exit_price = fill_price
+            logger.info(f"Alpaca close fill {trade.ticker} @ {fill_price}")
+        else:
+            logger.warning(
+                f"Alpaca close_position({trade.ticker}) returned no fill — "
+                f"recording exit at last price {exit_price:.4f}"
             )
-        exit_price = fill_price
-        logger.info(f"Alpaca close fill {trade.ticker} @ {fill_price}")
 
         entry = float(trade.entry_price)
         qty = float(trade.qty)

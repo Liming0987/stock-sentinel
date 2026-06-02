@@ -165,6 +165,7 @@ interface StrategyTrade {
   side: string;
   qty: number;
   entry_price: number;
+  total_cost: number | null;
   exit_price: number | null;
   stop_loss: number | null;
   target: number | null;
@@ -245,8 +246,9 @@ export interface LivePosition {
   source?: "db" | "alpaca";
 }
 
-interface ByStrategy {
+export interface ByStrategy {
   unrealized_pnl: number;
+  realized_pnl: number;
   position_count: number;
 }
 

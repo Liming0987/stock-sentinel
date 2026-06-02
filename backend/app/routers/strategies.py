@@ -95,6 +95,7 @@ async def get_strategy_trades(
                 "side": t.side,
                 "qty": float(t.qty) if t.qty else 0,
                 "entry_price": float(t.entry_price) if t.entry_price else 0,
+                "total_cost": round(float(t.entry_price) * float(t.qty), 2) if t.entry_price and t.qty else None,
                 "exit_price": float(t.exit_price) if t.exit_price else None,
                 "stop_loss": float(t.stop_loss) if t.stop_loss else None,
                 "target": float(t.target) if t.target else None,
@@ -205,12 +206,74 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
     loop = asyncio.get_event_loop()
     alpaca_positions, orders_by_symbol = await loop.run_in_executor(None, _fetch_alpaca_data)
 
-    if not alpaca_positions:
-        return {"synced": 0, "skipped": 0, "message": "No open Alpaca positions found."}
-
-    # Load existing open DB trades to detect which tickers are already tracked
+    # Load existing open DB trades
     open_result = await db.execute(select(Trade).where(Trade.status == "open"))
-    open_tickers = {t.ticker for t in open_result.scalars().all()}
+    open_trades_list = open_result.scalars().all()
+    open_tickers = {t.ticker for t in open_trades_list}
+
+    alpaca_symbols = {p.symbol for p in alpaca_positions}
+
+    # ── Close orphaned DB trades (open in DB but no Alpaca position) ──────────
+    # These are positions Alpaca already closed (stop-loss hit, manual close, etc.)
+    # that the strategy runner missed because close_position raised or was never called.
+    orphan_closed = []
+    if open_trades_list:
+        orphan_tickers = [t.ticker for t in open_trades_list if t.ticker not in alpaca_symbols]
+        orphan_prices: dict = {}
+        if orphan_tickers:
+            def _fetch_orphan_prices():
+                prices = {}
+                try:
+                    from app.services.alpaca_service import AlpacaService
+                    svc = AlpacaService()
+                    if svc.is_configured:
+                        prices = svc.get_latest_prices(orphan_tickers)
+                except Exception:
+                    pass
+                missing = [t for t in orphan_tickers if t not in prices]
+                if missing:
+                    try:
+                        import yfinance as yf
+                        for sym in missing:
+                            fi = yf.Ticker(sym).fast_info
+                            p = getattr(fi, "last_price", None)
+                            if p:
+                                prices[sym] = float(p)
+                    except Exception:
+                        pass
+                return prices
+            orphan_prices = await loop.run_in_executor(None, _fetch_orphan_prices)
+
+        now = datetime.now(timezone.utc)
+        for t in open_trades_list:
+            if t.ticker in alpaca_symbols:
+                continue
+            last_price = orphan_prices.get(t.ticker) or float(t.entry_price)
+            entry = float(t.entry_price)
+            qty = float(t.qty or 0)
+            pnl = round((last_price - entry) * qty, 2)
+            ret_pct = round((last_price - entry) / entry, 4) if entry else 0
+            t.status = "closed"
+            t.exit_price = Decimal(str(round(last_price, 4)))
+            t.pnl = Decimal(str(pnl))
+            t.return_pct = Decimal(str(ret_pct))
+            t.closed_at = now
+            t.reasoning = (t.reasoning or "") + " | sync-closed: position no longer in Alpaca"
+            db.add(t)
+            orphan_closed.append({"symbol": t.ticker, "pnl": pnl, "exit_price": last_price})
+
+    if not alpaca_positions:
+        await db.commit()
+        return {
+            "synced": 0,
+            "skipped": 0,
+            "orphans_closed": len(orphan_closed),
+            "orphans": orphan_closed,
+            "message": (
+                f"No open Alpaca positions. Closed {len(orphan_closed)} orphaned DB trade(s)."
+                if orphan_closed else "No open Alpaca positions and no orphaned DB trades."
+            ),
+        }
 
     # Load strategy rows
     strats_result = await db.execute(select(StrategyRow))
@@ -280,14 +343,15 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
         synced.append({"symbol": symbol, "strategy": strat_name, "entry_price": entry_price, "qty": qty})
 
     await db.commit()
-
     return {
         "synced": len(synced),
         "skipped": len(skipped),
+        "orphans_closed": len(orphan_closed),
         "positions_synced": synced,
+        "orphans": orphan_closed,
         "message": (
-            f"Synced {len(synced)} Alpaca position(s) into DB."
-            if synced else "All Alpaca positions are already tracked in the DB."
+            f"Synced {len(synced)} missing position(s) into DB; "
+            f"closed {len(orphan_closed)} orphaned trade(s) no longer in Alpaca."
         ),
     }
 
@@ -398,6 +462,19 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
     loop = asyncio.get_event_loop()
     prices, alpaca_positions = await loop.run_in_executor(None, _fetch_alpaca_and_prices)
 
+    # Today's realized P&L per strategy (closed trades since midnight UTC)
+    from datetime import date as _date
+    today_start = datetime.combine(_date.today(), datetime.min.time()).replace(tzinfo=timezone.utc)
+    closed_today_result = await db.execute(
+        select(Trade).where(
+            and_(Trade.status == "closed", Trade.closed_at >= today_start)
+        )
+    )
+    realized_by_strategy: dict = {}
+    for t in closed_today_result.scalars().all():
+        sname = strats.get(t.strategy_id, "unknown")
+        realized_by_strategy[sname] = realized_by_strategy.get(sname, 0.0) + float(t.pnl or 0)
+
     positions = []
     by_strategy: dict = {}
     tracked_tickers: set = set()
@@ -463,6 +540,14 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
             by_strategy["untracked"]["unrealized_pnl"] + upnl, 2
         )
         by_strategy["untracked"]["position_count"] += 1
+
+    # Merge realized P&L into by_strategy (and surface strategies with only realized P&L today)
+    for sname, rpnl in realized_by_strategy.items():
+        if sname not in by_strategy:
+            by_strategy[sname] = {"unrealized_pnl": 0.0, "position_count": 0}
+        by_strategy[sname]["realized_pnl"] = round(rpnl, 2)
+    for sname in by_strategy:
+        by_strategy[sname].setdefault("realized_pnl", 0.0)
 
     return {
         "timestamp": datetime.now(timezone.utc).isoformat(),
