@@ -19,11 +19,6 @@ interface Props {
   data: FundamentalsData;
 }
 
-function fmt(val: number | null | undefined, suffix = "", decimals = 1): string {
-  if (val == null) return "—";
-  return `${(val * 1).toFixed(decimals)}${suffix}`;
-}
-
 function fmtPct(val: number | null | undefined): string {
   if (val == null) return "—";
   return `${(val * 100).toFixed(1)}%`;
