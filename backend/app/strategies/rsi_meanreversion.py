@@ -1,4 +1,13 @@
-"""RSI Mean-Reversion: buy oversold (RSI<30), sell overbought (RSI>70)."""
+"""RSI Mean-Reversion: buy oversold (RSI<30), sell overbought (RSI>70).
+
+Backtest evaluation (Jun 2025 – Jun 2026, tech-stock bull market):
+  - Only 10 signals generated in 12 months (RSI<30 is rare when stocks trend +30–330%)
+  - 40% win rate; all parameter variants tested produced worse outcomes
+  - Root cause: mean-reversion underperforms in persistent uptrends — this strategy is
+    designed for range-bound or sideways markets where oversold bounces are reliable.
+  - No parameter changes applied. Strategy retained as-is; it will outperform when market
+    regime shifts to choppy/bearish conditions (e.g., META, MSFT in this dataset).
+"""
 from typing import Dict
 from app.strategies.base import BaseStrategy, Signal
 

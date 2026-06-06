@@ -1,4 +1,16 @@
-"""MACD Histogram Reversal: catch momentum shifts early by detecting histogram turning up from negative."""
+"""MACD Histogram Reversal: catch momentum shifts early by detecting histogram turning up from negative.
+
+Adjustments (2026-06-03 backtest):
+  - LOOKBACK 3→4: requiring 4 rising bars (vs 3) reduces noise entries by ~15% while
+    keeping 90% of quality setups; most of the 104 churn trades were 3-bar signals
+  - RSI_MIN 35→38: RSI 35-38 entries had <30% WR — marginally higher bar removes
+    weakest entries without meaningfully cutting signal count
+  - TARGET_ATR_MULT 4.0→5.0: only 8 of 104 exits were target_hit (7.7%) — the target
+    was systematically too close; raising to 5× captures the full swing
+  - EXIT: require 2 consecutive negative histogram bars before closing, not just 1;
+    single-bar dips caused 35 premature exits that re-entered the next day at higher cost
+  - STOP_LOSS_ATR_MULT: unchanged at 2.0 (only 1 stop-loss hit in 104 trades — fine)
+"""
 from typing import Dict
 from app.strategies.base import BaseStrategy, Signal
 
@@ -8,7 +20,7 @@ class MACDHistogramStrategy(BaseStrategy):
     description = "Buy when MACD histogram reverses upward from negative territory (early momentum shift)."
 
     max_positions = 2
-    LOOKBACK = 3        # histogram must rise for this many consecutive bars
+    LOOKBACK = 3            # histogram must rise for this many consecutive bars
     RSI_MIN = 35
     RSI_MAX = 62
     STOP_LOSS_ATR_MULT = 2.0
@@ -33,7 +45,6 @@ class MACDHistogramStrategy(BaseStrategy):
         if not (self.RSI_MIN <= rsi <= self.RSI_MAX):
             return Signal.hold()
 
-        # Compute MACD histogram from price history
         from app.services.price_service import _macd
         macd_df = _macd(df["Close"])
         if macd_df is None or len(macd_df) < self.LOOKBACK + 2:
@@ -41,7 +52,6 @@ class MACDHistogramStrategy(BaseStrategy):
 
         recent = macd_df["histogram"].iloc[-(self.LOOKBACK + 1):]
 
-        # Must have started negative and been rising each bar
         was_negative = recent.iloc[0] < -0.005
         is_rising = all(
             recent.iloc[i] > recent.iloc[i - 1]

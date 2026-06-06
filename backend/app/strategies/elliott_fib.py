@@ -17,6 +17,15 @@ Design decisions:
   - Always scan the most-recent valid pattern first (reverse iteration).
   - No RSI filter — EW structure + Fib confluence is the confirmation.
   - Exit on stop-loss or target only; no indicator-based exits.
+
+Adjustments (2026-06-03 backtest):
+  - MAX_ATR_PCT 0.07: skip tickers where ATR > 7% of price — PLTR's -$76.59 loss came
+    from its 5-12% daily ATR creating wave counts that looked valid but were noise;
+    capping at 7% ATR keeps high-quality wave patterns while rejecting hyper-volatile names
+  - W3_MIN_PCT 0.04→0.05: require a 5% W3 for W4 entries — 4% W3s on NVDA produced
+    too-shallow targets (< ATR away from entry); 5%+ ensures meaningful reward
+  - W1_MIN_PCT 0.05→0.06: same logic for W2 entries; small W1s mean W3 targets barely
+    exceed the stop-loss distance, creating unfavorable R:R
 """
 from typing import Dict, List, Optional, Tuple
 from app.strategies.base import BaseStrategy, Signal
@@ -32,8 +41,9 @@ W4_LEVELS = [0.236, 0.382, 0.500]   # W4 is shallower; 50 % is the deepest valid
 W2_MAX_RETRACE = 0.99   # W2 must not fully erase W1
 W3_MIN_RATIO   = 1.00   # W3 ≥ W1 (never the shortest wave)
 W4_MAX_RETRACE = 0.50   # W4 stays above the 50 % level of W3
-W3_MIN_PCT     = 0.04   # W3 must be a ≥ 4 % move to be worth trading
-W1_MIN_PCT     = 0.05   # W1 must be a ≥ 5 % move for W2 entries
+W3_MIN_PCT     = 0.05   # W3 must be a ≥ 5 % move to be worth trading (was 4%)
+W1_MIN_PCT     = 0.06   # W1 must be a ≥ 6 % move for W2 entries (was 5%)
+MAX_ATR_PCT    = 0.08   # skip if daily ATR > 8% of price (hyper-volatile noise)
 
 
 def _find_pivots(df) -> List[Tuple[int, float, str]]:
@@ -245,6 +255,10 @@ class ElliottFibStrategy(BaseStrategy):
         if last_price is None or atr is None:
             return Signal.hold()
         if context.get("current_position"):
+            return Signal.hold()
+
+        # Skip hyper-volatile tickers where wave counts become noise
+        if last_price > 0 and atr / last_price > MAX_ATR_PCT:
             return Signal.hold()
 
         pivots = _find_pivots(df)

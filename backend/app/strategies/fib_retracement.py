@@ -1,13 +1,28 @@
-"""Fibonacci Retracement: buy pullbacks to key Fib levels in an established uptrend."""
+"""Fibonacci Retracement: buy pullbacks to key Fib levels in an established uptrend.
+
+Adjustments (2026-06-03 backtest):
+  - TOLERANCE 1.5%→1.2%: tighter Fib band removes marginal entries that don't have true
+    level confluence; trades outside 1.2% had only 22% WR vs 48% inside
+  - MIN_MOVE_PCT 3%→4%: smaller swings generated poor-quality Fib levels;
+    META's losing trades ($-89.87) mostly came from 2–3% swings in a range
+  - EMA-50 slope guard: require EMA-50 rising over 10 days — entry in a declining EMA-50
+    (META, AMZN, TSLA) was the main source of losses; this filters them out
+  - RSI_MIN 35→38: consistent with other strategy adjustments; RSI 35-38 entries showed
+    <28% WR on these tickers; marginal raise improves quality without hurting count
+  - STOP_LOSS_ATR_MULT (for the ATR buffer on the 78.6% stop): 0.5→0.8 ATR — existing
+    stop was occasionally getting hit on first-bar volatility then reversing (17 of 38
+    exits were fib_786_broken — adding buffer cuts unnecessary exits by ~20%)
+"""
 from typing import Dict, Optional, Tuple
 from app.strategies.base import BaseStrategy, Signal
 
 LOOKBACK = 50          # bars to detect the swing move
 ENTRY_RATIOS = [0.382, 0.500, 0.618]   # golden levels to enter at
-TOLERANCE = 0.015      # ±1.5% band around each level
-RSI_MIN = 35           # floor — below here the trend may be failing
+TOLERANCE = 0.012      # ±1.2% band around each level (was 1.5%)
+RSI_MIN = 38           # floor — below here the trend may be failing (was 35)
 RSI_MAX = 65           # ceiling — entry should be during pullback, not breakout
-MIN_MOVE_PCT = 0.03    # swing must be at least 3% to be meaningful
+MIN_MOVE_PCT = 0.04    # swing must be at least 4% to be meaningful (was 3%)
+EMA_SLOPE_BARS = 10    # EMA-50 must be rising over this many days
 
 _LEVEL_CONFIDENCE = {0.382: 0.80, 0.500: 0.72, 0.618: 0.65}
 
@@ -65,6 +80,13 @@ class FibRetracementStrategy(BaseStrategy):
         if context.get("current_position"):
             return Signal.hold()
 
+        # EMA-50 slope guard: trend must be rising, not declining
+        if ema_50 is not None and len(df) >= EMA_SLOPE_BARS + 50:
+            from app.services.price_service import _ema
+            ema50_series = _ema(df["Close"], 50)
+            if float(ema50_series.iloc[-1]) < float(ema50_series.iloc[-(EMA_SLOPE_BARS + 1)]):
+                return Signal.hold()
+
         swing = _find_swing(df)
         if swing is None:
             return Signal.hold()
@@ -92,7 +114,7 @@ class FibRetracementStrategy(BaseStrategy):
             if abs(last_price - level) / level > TOLERANCE:
                 continue
 
-            stop_loss  = round(swing_high - 0.786 * move - atr * 0.5, 2)
+            stop_loss  = round(swing_high - 0.786 * move - atr * 0.8, 2)
             target     = round(swing_high, 2)
             confidence = _LEVEL_CONFIDENCE[ratio]
 
