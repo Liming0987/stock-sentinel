@@ -70,6 +70,10 @@ celery_app.conf.beat_schedule = {
         "task": "app.workers.tasks.cleanup_expired_signals",
         "schedule": crontab(hour=0, minute=0),
     },
+    "cleanup-strategy-signals": {
+        "task": "app.workers.tasks.cleanup_strategy_signals",
+        "schedule": crontab(hour=2, minute=0),
+    },
     "refresh-fundamentals": {
         "task": "app.workers.tasks.refresh_fundamentals",
         "schedule": crontab(hour=1, minute=0),

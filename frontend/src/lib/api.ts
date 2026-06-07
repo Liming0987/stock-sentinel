@@ -60,5 +60,16 @@ export const api = {
     alpacaAccount: () => fetchApi("/api/strategies/alpaca/account"),
     livePositions: () => fetchApi("/api/strategies/live-positions"),
     syncAlpaca: () => fetchApi("/api/strategies/sync-alpaca", { method: "POST" }),
+    signals: (name: string, action = "all", limit = 50) =>
+      fetchApi(`/api/strategies/${name}/signals?action=${action}&limit=${limit}`),
+  },
+  strategySignals: (filters: { strategy?: string; action?: string; ticker?: string; limit?: number } = {}) => {
+    const params = new URLSearchParams();
+    if (filters.strategy) params.set("strategy", filters.strategy);
+    if (filters.action) params.set("action", filters.action);
+    if (filters.ticker) params.set("ticker", filters.ticker);
+    if (filters.limit) params.set("limit", String(filters.limit));
+    const qs = params.toString();
+    return fetchApi(`/api/strategy-signals${qs ? `?${qs}` : ""}`);
   },
 };

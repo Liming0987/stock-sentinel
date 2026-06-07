@@ -352,6 +352,29 @@ def refresh_fundamentals(self: Task):
     return {"tickers_refreshed": len(list(tickers))}
 
 
+@celery_app.task(**_RETRY_DEFAULTS, name="app.workers.tasks.cleanup_strategy_signals")
+def cleanup_strategy_signals(self: Task):
+    """Delete StrategySignal rows older than 30 days."""
+    from datetime import datetime, timezone, timedelta
+    from sqlalchemy import create_engine, delete
+    from sqlalchemy.orm import Session
+    from app.models.strategy_signal import StrategySignal
+
+    cutoff = datetime.now(timezone.utc) - timedelta(days=30)
+    sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    engine = create_engine(sync_url)
+    try:
+        with Session(engine) as session:
+            result = session.execute(
+                delete(StrategySignal).where(StrategySignal.created_at < cutoff)
+            )
+            session.commit()
+            deleted = result.rowcount
+    finally:
+        engine.dispose()
+    return {"strategy_signals_deleted": deleted}
+
+
 @celery_app.task(
     bind=True, name="app.workers.tasks.run_strategies_intraday",
     max_retries=0, time_limit=55, soft_time_limit=50,

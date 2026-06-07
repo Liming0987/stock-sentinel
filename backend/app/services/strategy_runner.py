@@ -16,6 +16,7 @@ from app.config import settings
 from app.models.stock import Stock
 from app.models.mention import Mention
 from app.models.trade import Strategy as StrategyRow, Trade
+from app.models.strategy_signal import StrategySignal
 from app.services.price_service import PriceService
 from app.services.alpaca_service import AlpacaService
 from app.services.universe_builder import UniverseBuilder
@@ -204,6 +205,30 @@ class StrategyRunner:
             "intraday": intraday,
             "fundamentals": fundamentals,
         }
+
+    def _record_signal(
+        self,
+        session: Session,
+        strat_row: StrategyRow,
+        stock: Stock,
+        signal,
+        executed: bool,
+        trade_id: int | None = None,
+    ) -> None:
+        row = StrategySignal(
+            strategy_id=strat_row.id,
+            stock_id=stock.id,
+            ticker=stock.ticker,
+            action=signal.action,
+            confidence=Decimal(str(round(signal.confidence, 3))) if signal.confidence is not None else None,
+            entry_price=Decimal(str(signal.entry_price)) if signal.entry_price else None,
+            stop_loss=Decimal(str(signal.stop_loss)) if signal.stop_loss else None,
+            target=Decimal(str(signal.target)) if signal.target else None,
+            reasoning=signal.reasoning if isinstance(signal.reasoning, list) else [],
+            executed=executed,
+            trade_id=trade_id,
+        )
+        session.add(row)
 
     def _open_position(
         self, session: Session, strat_row: StrategyRow, stock: Stock, signal, ticker: str
@@ -418,11 +443,21 @@ class StrategyRunner:
                         close_reason = strat.should_close(open_trade, ctx)
                         if close_reason:
                             last_price = ctx["indicators"].get("last_price")
-                            if last_price:
-                                self._close_position(session, open_trade, float(last_price), close_reason)
-                                closed += 1
-                                open_count -= 1
-                                continue
+                            close_price = float(last_price) if last_price else float(open_trade.entry_price)
+                            self._close_position(session, open_trade, close_price, close_reason)
+                            from app.strategies.base import Signal as SigDC
+                            sell_sig = SigDC(
+                                action="sell",
+                                confidence=1.0,
+                                entry_price=close_price,
+                                stop_loss=None,
+                                target=None,
+                                reasoning=[close_reason],
+                            )
+                            self._record_signal(session, strat_row, stock, sell_sig, executed=True, trade_id=open_trade.id)
+                            closed += 1
+                            open_count -= 1
+                            continue
 
                     # 2) Collect entry signals — only where no existing position
                     if not open_trade:
@@ -433,9 +468,15 @@ class StrategyRunner:
                 # Open highest-confidence entries up to max_positions cap
                 buy_candidates.sort(key=lambda x: x[0], reverse=True)
                 slots_available = max(0, strat.max_positions - open_count)
-                for _, ticker, stock, sig in buy_candidates[:slots_available]:
-                    self._open_position(session, strat_row, stock, sig, ticker)
-                    opened += 1
+                executed_tickers = {t for _, t, _, _ in buy_candidates[:slots_available]}
+                for _, ticker, stock, sig in buy_candidates:
+                    will_execute = ticker in executed_tickers
+                    if will_execute:
+                        trade = self._open_position(session, strat_row, stock, sig, ticker)
+                        self._record_signal(session, strat_row, stock, sig, executed=True, trade_id=trade.id)
+                        opened += 1
+                    else:
+                        self._record_signal(session, strat_row, stock, sig, executed=False)
 
                 # Update aggregate metrics
                 self._recompute_metrics(session, strat_row)
@@ -515,11 +556,21 @@ class StrategyRunner:
                         close_reason = strat.should_close(open_trade, ctx)
                         if close_reason:
                             last_price = ctx["indicators"].get("last_price")
-                            if last_price:
-                                self._close_position(session, open_trade, float(last_price), close_reason)
-                                closed += 1
-                                open_count -= 1
-                                continue
+                            close_price = float(last_price) if last_price else float(open_trade.entry_price)
+                            self._close_position(session, open_trade, close_price, close_reason)
+                            from app.strategies.base import Signal as SigDC
+                            sell_sig = SigDC(
+                                action="sell",
+                                confidence=1.0,
+                                entry_price=close_price,
+                                stop_loss=None,
+                                target=None,
+                                reasoning=[close_reason],
+                            )
+                            self._record_signal(session, strat_row, stock, sell_sig, executed=True, trade_id=open_trade.id)
+                            closed += 1
+                            open_count -= 1
+                            continue
 
                     if not open_trade:
                         sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
@@ -528,9 +579,26 @@ class StrategyRunner:
 
                 buy_candidates.sort(key=lambda x: x[0], reverse=True)
                 slots_available = max(0, strat.max_positions - open_count)
-                for _, ticker, stock, sig in buy_candidates[:slots_available]:
-                    self._open_position(session, strat_row, stock, sig, ticker)
-                    opened += 1
+                executed_tickers_intra = {t for _, t, _, _ in buy_candidates[:slots_available]}
+                dedup_cutoff = datetime.now(timezone.utc) - timedelta(minutes=5)
+                for _, ticker, stock, sig in buy_candidates:
+                    will_execute = ticker in executed_tickers_intra
+                    if will_execute:
+                        trade = self._open_position(session, strat_row, stock, sig, ticker)
+                        self._record_signal(session, strat_row, stock, sig, executed=True, trade_id=trade.id)
+                        opened += 1
+                    else:
+                        # Dedup: skip if an identical unexecuted buy was already recorded within the last 5 min
+                        existing = session.query(StrategySignal).filter(
+                            StrategySignal.strategy_id == strat_row.id,
+                            StrategySignal.ticker == ticker,
+                            StrategySignal.action == "buy",
+                            StrategySignal.executed == False,
+                            StrategySignal.created_at >= dedup_cutoff,
+                        ).first()
+                        if existing:
+                            continue
+                        self._record_signal(session, strat_row, stock, sig, executed=False)
 
                 self._recompute_metrics(session, strat_row)
                 session.commit()

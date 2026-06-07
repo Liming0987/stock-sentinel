@@ -376,6 +376,38 @@ const EMPTY_FUNDAMENTALS: FundamentalsData = {
   reasoning: [],
 };
 
+export interface StrategySignalItem {
+  id: number;
+  strategy_name: string;
+  ticker: string;
+  action: "buy" | "sell" | "hold";
+  confidence: number | null;
+  entry_price: number | null;
+  stop_loss: number | null;
+  target: number | null;
+  reasoning: string[];
+  executed: boolean;
+  trade_id: number | null;
+  created_at: string | null;
+}
+
+interface StrategySignalsResponse {
+  strategy?: string;
+  signals: StrategySignalItem[];
+  total?: number;
+}
+
+export function useStrategySignals(
+  filters: { strategy?: string; action?: string; ticker?: string; limit?: number } = {}
+) {
+  const fetcher = useCallback(
+    () => api.strategySignals(filters) as Promise<StrategySignalsResponse>,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [filters.strategy, filters.action, filters.ticker, filters.limit]
+  );
+  return useApi(fetcher, { signals: [], total: 0 } as StrategySignalsResponse);
+}
+
 export function useFundamentals(ticker: string) {
   const fetcher = useCallback(
     () => api.fundamentals.get(ticker) as Promise<FundamentalsData>,
