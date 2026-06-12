@@ -17,10 +17,10 @@ Parameters:
       DO NOT use a dynamic SSM parameter here — a dynamic value causes CloudFormation to replace
       the EC2 instance on every AMI update, wiping all Docker volumes.
       To find the latest AMI: aws ssm get-parameter --name /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 --query Parameter.Value --output text
-    Default: ami-0c02fb55956c7d316
+    Default: ami-0521cb2d60cfbb1a6
   DataVolumeAvailabilityZone:
     Type: String
-    Default: us-east-1a
+    Default: us-east-1c
     Description: >
       AZ for the persistent data EBS volume. Must match the AZ where the EC2 instance runs.
       The DataVolume has DeletionPolicy:Retain — it survives instance replacements and stack deletions.
