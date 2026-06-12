@@ -57,6 +57,36 @@ async def get_strategy_signals(
     }
 
 
+@router.get("/strategy-signals/latest")
+async def get_latest_signals(
+    since: str = Query(default=""),
+    limit: int = Query(default=20, le=50),
+    db: AsyncSession = Depends(get_db),
+):
+    from datetime import datetime
+    strats_result = await db.execute(select(StrategyRow))
+    strats_by_id = {s.id: s.name for s in strats_result.scalars().all()}
+
+    filters = []
+    if since:
+        try:
+            since_dt = datetime.fromisoformat(since.replace("Z", "+00:00"))
+            filters.append(StrategySignal.created_at > since_dt)
+        except ValueError:
+            pass
+
+    query = select(StrategySignal).order_by(desc(StrategySignal.created_at)).limit(limit)
+    if filters:
+        query = query.where(and_(*filters))
+
+    result = await db.execute(query)
+    signals = result.scalars().all()
+    return {
+        "signals": [_serialize(s, strats_by_id.get(s.strategy_id, "unknown")) for s in signals],
+        "total": len(signals),
+    }
+
+
 @router.get("/strategy-signals")
 async def list_strategy_signals(
     strategy: str = Query(default=""),

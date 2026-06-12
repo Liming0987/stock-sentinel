@@ -14,12 +14,14 @@ from app.models.watchlist import Watchlist
 from app.models.settings import AppSetting  # noqa: F401 — registers table with Base
 from app.models.fundamentals import StockFundamentals  # noqa: F401 — registers table with Base
 from app.models.strategy_signal import StrategySignal  # noqa: F401 — registers table with Base
+from app.models.daily_report import DailyReport  # noqa: F401 — registers table with Base
 from app.routers import trending, sentiment, prices, signals, watchlist, auth, strategies as strategies_router
 from app.routers import settings as settings_router
 from app.routers import notifications as notifications_router
 from app.routers import backtest as backtest_router
 from app.routers import fundamentals as fundamentals_router
 from app.routers import strategy_signals as strategy_signals_router
+from app.routers.reports import router as reports_router
 
 
 @asynccontextmanager
@@ -63,6 +65,7 @@ app.include_router(notifications_router.router, prefix="/api/notifications", tag
 app.include_router(backtest_router.router, prefix="/api/backtest", tags=["backtest"])
 app.include_router(fundamentals_router.router, prefix="/api/fundamentals", tags=["fundamentals"])
 app.include_router(strategy_signals_router.router, prefix="/api", tags=["strategy-signals"])
+app.include_router(reports_router, prefix="/api", tags=["reports"])
 
 
 @app.get("/api/health")

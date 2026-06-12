@@ -13,8 +13,10 @@ import {
   Menu,
   X,
   BarChart2,
+  BarChart3,
   FlaskConical,
   Zap,
+  GraduationCap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,8 +26,10 @@ const navItems = [
   { href: "/signals", label: "Signals", icon: Signal },
   { href: "/strategies", label: "Strategies", icon: BarChart2 },
   { href: "/strategy-signals", label: "Signal Log", icon: Zap },
+  { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/backtest", label: "Backtest", icon: FlaskConical },
   { href: "/watchlist", label: "Watchlist", icon: Star },
+  { href: "/learn", label: "Learn", icon: GraduationCap },
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 

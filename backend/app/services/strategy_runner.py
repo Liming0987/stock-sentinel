@@ -378,7 +378,68 @@ class StrategyRunner:
         strat_row.win_rate = Decimal(str(round(win_rate, 4)))
         strat_row.avg_return_pct = Decimal(str(round(avg_return, 4)))
         strat_row.last_run_at = datetime.now(timezone.utc)
+        self._compute_advanced_metrics(session, strat_row)
         session.add(strat_row)
+
+    def _compute_advanced_metrics(self, session: Session, strat_row):
+        """Compute Sharpe ratio, max drawdown, avg hold days, streaks, best/worst trade."""
+        import math
+        from decimal import Decimal
+
+        closed = session.query(Trade).filter(
+            Trade.strategy_id == strat_row.id,
+            Trade.status == "closed",
+        ).order_by(Trade.closed_at).all()
+
+        if len(closed) < 2:
+            return
+
+        returns = [float(t.return_pct) / 100 for t in closed if t.return_pct is not None]
+        if len(returns) >= 2:
+            mean_r = sum(returns) / len(returns)
+            variance = sum((r - mean_r) ** 2 for r in returns) / (len(returns) - 1)
+            std_r = math.sqrt(variance) if variance > 0 else 0
+            sharpe = (math.sqrt(252) * mean_r / std_r) if std_r > 0 else 0
+            strat_row.sharpe_ratio = Decimal(str(round(sharpe, 4)))
+
+        cum = 0.0
+        peak = 0.0
+        max_dd = 0.0
+        for t in closed:
+            cum += float(t.pnl or 0)
+            if cum > peak:
+                peak = cum
+            if peak > 0:
+                dd = (peak - cum) / peak * 100
+                if dd > max_dd:
+                    max_dd = dd
+        strat_row.max_drawdown = Decimal(str(round(max_dd, 4)))
+
+        hold_days = []
+        for t in closed:
+            if t.opened_at and t.closed_at:
+                hold_days.append((t.closed_at - t.opened_at).total_seconds() / 86400)
+        if hold_days:
+            strat_row.avg_hold_days = Decimal(str(round(sum(hold_days) / len(hold_days), 2)))
+
+        ret_vals = [float(t.return_pct) for t in closed if t.return_pct is not None]
+        if ret_vals:
+            strat_row.best_trade_pct = Decimal(str(round(max(ret_vals), 4)))
+            strat_row.worst_trade_pct = Decimal(str(round(min(ret_vals), 4)))
+
+        wins = losses = 0
+        for t in reversed(closed):
+            pnl = float(t.pnl or 0)
+            if pnl > 0:
+                if losses > 0:
+                    break
+                wins += 1
+            else:
+                if wins > 0:
+                    break
+                losses += 1
+        strat_row.consecutive_wins = wins
+        strat_row.consecutive_losses = losses
 
     # ── Main entry ─────────────────────────────────────────────────────────
     def run(self) -> Dict:

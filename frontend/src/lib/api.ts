@@ -63,6 +63,8 @@ export const api = {
     signals: (name: string, action = "all", limit = 50) =>
       fetchApi(`/api/strategies/${name}/signals?action=${action}&limit=${limit}`),
   },
+  strategySignalsLatest: (since: string, limit = 20) =>
+    fetchApi(`/api/strategy-signals/latest?since=${encodeURIComponent(since)}&limit=${limit}`),
   strategySignals: (filters: { strategy?: string; action?: string; ticker?: string; limit?: number; offset?: number } = {}) => {
     const params = new URLSearchParams();
     if (filters.strategy) params.set("strategy", filters.strategy);
@@ -72,5 +74,9 @@ export const api = {
     if (filters.offset) params.set("offset", String(filters.offset));
     const qs = params.toString();
     return fetchApi(`/api/strategy-signals${qs ? `?${qs}` : ""}`);
+  },
+  reports: {
+    list: (limit = 30) => fetchApi(`/api/reports?limit=${limit}`),
+    latest: () => fetchApi("/api/reports/latest"),
   },
 };

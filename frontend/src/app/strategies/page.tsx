@@ -416,6 +416,27 @@ function StrategyCard({
             Last run: {new Date(strat.last_run_at).toLocaleString()}
           </p>
         )}
+        {(strat.sharpe_ratio != null || strat.max_drawdown != null || strat.avg_hold_days != null || (strat.consecutive_wins ?? 0) > 0 || (strat.consecutive_losses ?? 0) > 0) && (
+          <div className="flex flex-wrap gap-3 text-xs mt-2 pt-2 border-t">
+            {strat.sharpe_ratio != null && (
+              <span className={strat.sharpe_ratio >= 1 ? "text-green-600" : strat.sharpe_ratio >= 0 ? "text-yellow-600" : "text-red-600"}>
+                Sharpe {strat.sharpe_ratio.toFixed(2)}
+              </span>
+            )}
+            {strat.max_drawdown != null && (
+              <span className="text-red-500">Max DD -{strat.max_drawdown.toFixed(1)}%</span>
+            )}
+            {strat.avg_hold_days != null && (
+              <span className="text-muted-foreground">Avg Hold {strat.avg_hold_days.toFixed(1)}d</span>
+            )}
+            {(strat.consecutive_wins ?? 0) > 0 && (
+              <span className="text-green-600">{strat.consecutive_wins}W streak</span>
+            )}
+            {(strat.consecutive_losses ?? 0) > 0 && (
+              <span className="text-red-500">{strat.consecutive_losses}L streak</span>
+            )}
+          </div>
+        )}
       </CardContent>
     </Card>
   );

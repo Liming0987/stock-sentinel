@@ -399,3 +399,144 @@ def run_strategies_intraday(self: Task):
         except Exception:
             pass
         raise
+
+
+@celery_app.task(**_RETRY_DEFAULTS, name="tasks.generate_daily_report")
+def generate_daily_report(self: Task):
+    """Aggregate today's trading activity into a DailyReport row (upsert)."""
+    from datetime import date as date_type, datetime, timezone
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import Session
+    from app.models.daily_report import DailyReport
+    from app.models.trade import Strategy, Trade
+    from app.models.strategy_signal import StrategySignal
+
+    today = date_type.today()
+    today_start = datetime(today.year, today.month, today.day, tzinfo=timezone.utc)
+
+    sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    engine = create_engine(sync_url)
+
+    try:
+        with Session(engine) as session:
+            strategies = session.execute(select(Strategy)).scalars().all()
+
+            strategy_breakdown: dict = {}
+            best_strategy: str | None = None
+            worst_strategy: str | None = None
+            best_pnl: float | None = None
+            worst_pnl: float | None = None
+            total_pnl_sum = 0.0
+            realized_pnl_sum = 0.0
+            unrealized_pnl_sum = 0.0
+            total_trades_count = 0
+            winning_trades_count = 0
+
+            for strat in strategies:
+                # Closed trades today
+                closed_trades = session.execute(
+                    select(Trade).where(
+                        Trade.strategy_id == strat.id,
+                        Trade.status == "closed",
+                        Trade.closed_at >= today_start,
+                    )
+                ).scalars().all()
+
+                # Open trades (unrealized)
+                open_trades = session.execute(
+                    select(Trade).where(
+                        Trade.strategy_id == strat.id,
+                        Trade.status == "open",
+                    )
+                ).scalars().all()
+
+                realized = sum(float(t.pnl or 0) for t in closed_trades)
+                unrealized = sum(float(t.pnl or 0) for t in open_trades)
+                winning = sum(1 for t in closed_trades if (t.pnl or 0) > 0)
+
+                realized_pnl_sum += realized
+                unrealized_pnl_sum += unrealized
+                total_trades_count += len(closed_trades)
+                winning_trades_count += winning
+
+                strategy_breakdown[strat.name] = {
+                    "realized_pnl": realized,
+                    "open_trades": len(open_trades),
+                    "closed_trades": len(closed_trades),
+                    "winning_trades": winning,
+                }
+
+                if best_pnl is None or realized > best_pnl:
+                    best_pnl = realized
+                    best_strategy = strat.name
+                if worst_pnl is None or realized < worst_pnl:
+                    worst_pnl = realized
+                    worst_strategy = strat.name
+
+            total_pnl_sum = realized_pnl_sum + unrealized_pnl_sum
+
+            # Signals generated today
+            signals_count_result = session.execute(
+                select(StrategySignal).where(StrategySignal.created_at >= today_start)
+            ).scalars().all()
+            signals_generated = len(signals_count_result)
+
+            # Top 5 signals today by confidence
+            top_signals_rows = session.execute(
+                select(StrategySignal, Strategy.name.label("strategy_name"))
+                .join(Strategy, Strategy.id == StrategySignal.strategy_id)
+                .where(StrategySignal.created_at >= today_start)
+                .order_by(StrategySignal.confidence.desc())
+                .limit(5)
+            ).all()
+
+            top_signals = [
+                {
+                    "ticker": row.StrategySignal.ticker,
+                    "action": row.StrategySignal.action,
+                    "strategy_name": row.strategy_name,
+                    "confidence": float(row.StrategySignal.confidence) if row.StrategySignal.confidence is not None else None,
+                }
+                for row in top_signals_rows
+            ]
+
+            # Upsert DailyReport
+            existing = session.query(DailyReport).filter_by(report_date=today).first()
+            if existing:
+                existing.total_pnl = total_pnl_sum
+                existing.realized_pnl = realized_pnl_sum
+                existing.unrealized_pnl = unrealized_pnl_sum
+                existing.total_trades = total_trades_count
+                existing.winning_trades = winning_trades_count
+                existing.signals_generated = signals_generated
+                existing.best_strategy = best_strategy
+                existing.worst_strategy = worst_strategy
+                existing.top_signals = top_signals
+                existing.strategy_breakdown = strategy_breakdown
+            else:
+                report = DailyReport(
+                    report_date=today,
+                    total_pnl=total_pnl_sum,
+                    realized_pnl=realized_pnl_sum,
+                    unrealized_pnl=unrealized_pnl_sum,
+                    total_trades=total_trades_count,
+                    winning_trades=winning_trades_count,
+                    signals_generated=signals_generated,
+                    best_strategy=best_strategy,
+                    worst_strategy=worst_strategy,
+                    top_signals=top_signals,
+                    strategy_breakdown=strategy_breakdown,
+                )
+                session.add(report)
+
+            session.commit()
+
+    finally:
+        engine.dispose()
+
+    return {
+        "report_date": today.isoformat(),
+        "total_pnl": total_pnl_sum,
+        "total_trades": total_trades_count,
+        "signals_generated": signals_generated,
+    }

@@ -153,6 +153,13 @@ interface StrategyMetrics {
   unrealized_pnl: number;
   avg_return_pct: number;
   last_run_at: string | null;
+  sharpe_ratio?: number | null;
+  max_drawdown?: number | null;
+  avg_hold_days?: number | null;
+  consecutive_wins?: number;
+  consecutive_losses?: number;
+  best_trade_pct?: number | null;
+  worst_trade_pct?: number | null;
 }
 
 interface StrategiesResponse {
@@ -426,6 +433,47 @@ export interface AppNotification {
 }
 
 const LAST_SEEN_KEY = "notif_last_seen";
+
+export interface DailyReportItem {
+  id: number;
+  report_date: string | null;
+  total_pnl: number | null;
+  realized_pnl: number | null;
+  unrealized_pnl: number | null;
+  total_trades: number | null;
+  winning_trades: number | null;
+  signals_generated: number | null;
+  best_strategy: string | null;
+  worst_strategy: string | null;
+  top_signals: { ticker: string; action: string; strategy_name: string; confidence: number | null }[];
+  strategy_breakdown: Record<string, { realized_pnl: number; open_trades: number; closed_trades: number; winning_trades: number }>;
+  created_at: string | null;
+}
+
+interface DailyReportsResponse {
+  reports: DailyReportItem[];
+  total: number;
+}
+
+interface LatestReportResponse {
+  report: DailyReportItem | null;
+}
+
+export function useDailyReports(limit = 30) {
+  const fetcher = useCallback(
+    () => api.reports.list(limit) as Promise<DailyReportsResponse>,
+    [limit]
+  );
+  return useApi(fetcher, { reports: [], total: 0 } as DailyReportsResponse);
+}
+
+export function useLatestReport() {
+  const fetcher = useCallback(
+    () => api.reports.latest() as Promise<LatestReportResponse>,
+    []
+  );
+  return useApi(fetcher, { report: null } as LatestReportResponse);
+}
 
 export function useNotifications() {
   const [notifications, setNotifications] = useState<AppNotification[]>([]);

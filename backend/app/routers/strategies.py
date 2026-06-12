@@ -37,6 +37,13 @@ async def list_strategies(db: AsyncSession = Depends(get_db)):
                 "unrealized_pnl": 0,
                 "avg_return_pct": 0,
                 "last_run_at": None,
+                "sharpe_ratio": None,
+                "max_drawdown": None,
+                "avg_hold_days": None,
+                "consecutive_wins": 0,
+                "consecutive_losses": 0,
+                "best_trade_pct": None,
+                "worst_trade_pct": None,
             })
 
     strategies = [
@@ -54,6 +61,13 @@ async def list_strategies(db: AsyncSession = Depends(get_db)):
             "unrealized_pnl": float(r.unrealized_pnl or 0),
             "avg_return_pct": float(r.avg_return_pct or 0),
             "last_run_at": r.last_run_at.isoformat() if r.last_run_at else None,
+            "sharpe_ratio": float(r.sharpe_ratio) if r.sharpe_ratio is not None else None,
+            "max_drawdown": float(r.max_drawdown) if r.max_drawdown is not None else None,
+            "avg_hold_days": float(r.avg_hold_days) if r.avg_hold_days is not None else None,
+            "consecutive_wins": r.consecutive_wins or 0,
+            "consecutive_losses": r.consecutive_losses or 0,
+            "best_trade_pct": float(r.best_trade_pct) if r.best_trade_pct is not None else None,
+            "worst_trade_pct": float(r.worst_trade_pct) if r.worst_trade_pct is not None else None,
         }
         for r in rows
     ] + extra

@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Zap, TrendingUp, TrendingDown, Minus, CheckCircle2, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useStrategies, useStrategySignals } from "@/lib/hooks";
 import type { StrategySignalItem } from "@/lib/hooks";
+import { api } from "@/lib/api";
 
 const ACTION_STYLES = {
   buy: {
@@ -150,6 +151,15 @@ function SignalCard({ sig }: { sig: StrategySignalItem }) {
       <p className="text-[10px] text-muted-foreground">
         {sig.created_at ? new Date(sig.created_at).toLocaleString() : ""}
       </p>
+
+      {/* Educational action hint */}
+      {sig.entry_price != null && sig.action !== "hold" && (
+        <div className="rounded bg-muted/50 p-2 text-[10px] text-muted-foreground leading-relaxed">
+          {sig.action === "buy"
+            ? `Enter near $${sig.entry_price.toFixed(2)}. Set stop loss at $${sig.stop_loss != null ? sig.stop_loss.toFixed(2) : "—"} and take profit at $${sig.target != null ? sig.target.toFixed(2) : "—"}.`
+            : `Position closed at $${sig.entry_price.toFixed(2)}. Review the reasoning above to learn from this exit.`}
+        </div>
+      )}
     </div>
   );
 }
@@ -163,6 +173,9 @@ export default function StrategySignalsPage() {
   const [selectedStrategy, setSelectedStrategy] = useState<string>("all");
   const [selectedAction, setSelectedAction] = useState<"all" | "buy" | "sell">("all");
   const [page, setPage] = useState(1);
+  const [isLive, setIsLive] = useState(true)
+  const [newCount, setNewCount] = useState(0)
+  const latestTsRef = useRef<string | null>(null)
 
   const filters = useMemo(() => {
     const f: { strategy?: string; action?: string; limit: number; offset: number } = {
@@ -179,6 +192,27 @@ export default function StrategySignalsPage() {
   const total = data.total ?? 0;
   const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
+  useEffect(() => {
+    if (signals.length > 0 && !latestTsRef.current) {
+      latestTsRef.current = signals[0].created_at
+    }
+  }, [signals])
+
+  useEffect(() => {
+    if (!isLive || page !== 1) return
+    const id = setInterval(async () => {
+      if (!latestTsRef.current) return
+      try {
+        const res = await api.strategySignalsLatest(latestTsRef.current) as { signals: StrategySignalItem[]; total: number }
+        if (res.signals.length > 0) {
+          latestTsRef.current = res.signals[0].created_at
+          setNewCount(c => c + res.signals.length)
+        }
+      } catch { /* ignore */ }
+    }, 30000)
+    return () => clearInterval(id)
+  }, [isLive, page])
+
   const resetPage = () => setPage(1);
 
   return (
@@ -188,6 +222,23 @@ export default function StrategySignalsPage() {
           <Zap className="h-6 w-6 text-primary" />
           Signal Log
         </h1>
+        <div className="flex items-center gap-3 mt-1">
+          <span className={
+            "h-2 w-2 rounded-full " + (isLive ? "bg-green-500 animate-pulse" : "bg-muted-foreground")
+          } />
+          <span className="text-xs text-muted-foreground">{isLive ? "Live updates every 30s" : "Paused"}</span>
+          <button
+            onClick={() => { setIsLive(l => !l); setNewCount(0) }}
+            className="text-xs underline text-muted-foreground hover:text-foreground"
+          >
+            {isLive ? "Pause" : "Resume"}
+          </button>
+          {newCount > 0 && (
+            <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-semibold text-primary-foreground">
+              {newCount} new
+            </span>
+          )}
+        </div>
         <p className="text-sm text-muted-foreground mt-1">
           Full history of buy and sell signals with entry, stop loss, target, and reasoning for each strategy.
         </p>

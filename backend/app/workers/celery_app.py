@@ -86,6 +86,10 @@ celery_app.conf.beat_schedule = {
         "task": "app.workers.tasks.run_strategies_intraday",
         "schedule": 60.0,  # every minute, task itself skips if market closed
     },
+    "generate-daily-report": {
+        "task": "tasks.generate_daily_report",
+        "schedule": crontab(hour=21, minute=0),  # 21:00 UTC = 5pm ET
+    },
 }
 
 
