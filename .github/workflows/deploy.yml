@@ -134,6 +134,11 @@ jobs:
               "if [ ! -f .env ]; then cp .env.example .env && echo DB_PASSWORD=$(openssl rand -hex 16) >> .env && echo JWT_SECRET=$(openssl rand -hex 32) >> .env; fi",
               "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 178801185941.dkr.ecr.us-east-1.amazonaws.com",
               "docker compose pull",
+              "echo === Pre-deploy backup ===",
+              "BACKUP_KEY=backups/pre-deploy-$(date +%Y%m%d-%H%M%S).sql.gz && docker compose exec -T db pg_dump -U sentinel stock_sentinel 2>/dev/null | gzip | aws s3 cp - s3://$BUCKET/$BACKUP_KEY && echo Backup saved: $BACKUP_KEY || echo WARNING: backup skipped (db may not be running yet)",
+              "echo === Alembic migrations ===",
+              "docker compose run --rm --no-deps backend alembic upgrade head",
+              "echo === Starting services ===",
               "docker compose up -d --force-recreate --remove-orphans",
               "docker image prune -f",
               "echo Deployment complete"

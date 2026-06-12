@@ -2,13 +2,18 @@ version: "3.9"
 
 services:
   db:
-    image: timescale/timescaledb:latest-pg16
+    # Pin to a specific patch version — never use latest-pg16.
+    # An unexpected image upgrade can make the data directory unreadable.
+    # To upgrade: test on staging first, then update this tag and redeploy.
+    image: timescale/timescaledb:2.17.2-pg16
     environment:
       POSTGRES_DB: stock_sentinel
       POSTGRES_USER: sentinel
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      # Bind mount to the persistent EBS data volume (/data is /dev/xvdb).
+      # This survives docker compose down -v, container recreation, and EC2 replacement.
+      - /data/pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U sentinel"]
       interval: 5s
@@ -105,5 +110,4 @@ services:
       - backend
     restart: unless-stopped
 
-volumes:
-  pgdata:
+# No named volumes — db data uses a bind mount to /data/pgdata (persistent EBS volume).

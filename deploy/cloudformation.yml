@@ -10,9 +10,20 @@ Parameters:
     Type: String
     Default: stock-sentinel-key
     Description: EC2 key pair name (optional, for emergency SSH access)
-  LatestAmiId:
-    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
-    Default: /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64
+  AmiId:
+    Type: String
+    Description: >
+      Pinned Amazon Linux 2023 AMI ID (us-east-1). Update manually when you want to upgrade the OS.
+      DO NOT use a dynamic SSM parameter here — a dynamic value causes CloudFormation to replace
+      the EC2 instance on every AMI update, wiping all Docker volumes.
+      To find the latest AMI: aws ssm get-parameter --name /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 --query Parameter.Value --output text
+    Default: ami-0c02fb55956c7d316
+  DataVolumeAvailabilityZone:
+    Type: String
+    Default: us-east-1a
+    Description: >
+      AZ for the persistent data EBS volume. Must match the AZ where the EC2 instance runs.
+      The DataVolume has DeletionPolicy:Retain — it survives instance replacements and stack deletions.
 
 Resources:
   # ── ECR Repositories ──
@@ -154,12 +165,38 @@ Resources:
       Roles:
         - !Ref EC2Role
 
+  # ── Persistent data volume ──
+  # DeletionPolicy:Retain means this volume survives EC2 instance replacements
+  # and even stack deletion. PostgreSQL data lives here, not on the root EBS.
+  DataVolume:
+    Type: AWS::EC2::Volume
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      AvailabilityZone: !Ref DataVolumeAvailabilityZone
+      Size: 50
+      VolumeType: gp3
+      Encrypted: true
+      Tags:
+        - Key: Name
+          Value: stock-sentinel-data
+        - Key: Purpose
+          Value: PostgreSQL and Docker volume data
+
+  DataVolumeAttachment:
+    Type: AWS::EC2::VolumeAttachment
+    Properties:
+      Device: /dev/xvdb
+      InstanceId: !Ref EC2Instance
+      VolumeId: !Ref DataVolume
+
   # ── EC2 Instance ──
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: !Ref LatestAmiId
+      ImageId: !Ref AmiId
       InstanceType: !Ref InstanceType
+      AvailabilityZone: !Ref DataVolumeAvailabilityZone
       IamInstanceProfile: !Ref EC2InstanceProfile
       SecurityGroupIds:
         - !GetAtt SecurityGroup.GroupId
@@ -168,6 +205,7 @@ Resources:
           Ebs:
             VolumeSize: 30
             VolumeType: gp3
+            DeleteOnTermination: true
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
@@ -191,7 +229,57 @@ Resources:
           mkdir -p /home/ec2-user/stock-sentinel/nginx
           chown -R ec2-user:ec2-user /home/ec2-user/stock-sentinel
 
-          # Systemd unit — starts docker compose on every boot
+          # Create data mount point now; the actual device (/dev/xvdb) is
+          # attached by CloudFormation after this UserData completes.
+          # The mount-data.sh script runs at service start before docker compose.
+          mkdir -p /data/pgdata
+
+          # Script that mounts /dev/xvdb → /data idempotently.
+          # Called by the systemd service before docker compose starts.
+          cat > /usr/local/bin/mount-data-volume.sh << 'MOUNTSCRIPT'
+          #!/bin/bash
+          DEVICE=/dev/xvdb
+          MOUNT=/data
+
+          # Wait up to 60s for the EBS volume to be attached
+          for i in $(seq 1 12); do
+            [ -b "$DEVICE" ] && break
+            echo "Waiting for data volume at $DEVICE (attempt $i/12)..."
+            sleep 5
+          done
+
+          if [ ! -b "$DEVICE" ]; then
+            echo "WARNING: Data volume $DEVICE not found — PostgreSQL will use ephemeral storage"
+            mkdir -p /data/pgdata
+            exit 0
+          fi
+
+          # Format only if the device has no filesystem (idempotent — safe on existing data)
+          if ! blkid -s TYPE "$DEVICE" | grep -q TYPE; then
+            echo "Formatting new data volume..."
+            mkfs.xfs "$DEVICE"
+          fi
+
+          # Mount if not already mounted
+          if ! mountpoint -q "$MOUNT"; then
+            mount "$DEVICE" "$MOUNT"
+            echo "Mounted $DEVICE at $MOUNT"
+          fi
+
+          # Ensure PostgreSQL data directory exists with correct ownership
+          # UID 999 is the postgres user in the timescaledb Docker image
+          mkdir -p "$MOUNT/pgdata"
+          chown -R 999:999 "$MOUNT/pgdata"
+
+          # Persist mount across reboots (nofail so boot continues if volume missing)
+          UUID=$(blkid -s UUID -o value "$DEVICE" 2>/dev/null || true)
+          if [ -n "$UUID" ] && ! grep -q "$UUID" /etc/fstab; then
+            echo "UUID=$UUID $MOUNT xfs defaults,nofail 0 2" >> /etc/fstab
+          fi
+          MOUNTSCRIPT
+          chmod +x /usr/local/bin/mount-data-volume.sh
+
+          # Systemd unit — mounts data volume then starts docker compose on every boot
           cat > /etc/systemd/system/stock-sentinel.service << 'SERVICE'
           [Unit]
           Description=Stock Sentinel (docker compose)
@@ -203,8 +291,9 @@ Resources:
           Type=simple
           Restart=on-failure
           RestartSec=10
-          User=ec2-user
+          User=root
           WorkingDirectory=/home/ec2-user/stock-sentinel
+          ExecStartPre=/usr/local/bin/mount-data-volume.sh
           ExecStartPre=/usr/local/bin/docker-compose pull --quiet
           ExecStart=/usr/local/bin/docker-compose up
           ExecStop=/usr/local/bin/docker-compose down
