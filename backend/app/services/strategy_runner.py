@@ -450,8 +450,8 @@ class StrategyRunner:
                                 action="sell",
                                 confidence=1.0,
                                 entry_price=close_price,
-                                stop_loss=None,
-                                target=None,
+                                stop_loss=float(open_trade.stop_loss) if open_trade.stop_loss else None,
+                                target=float(open_trade.target) if open_trade.target else None,
                                 reasoning=[close_reason],
                             )
                             self._record_signal(session, strat_row, stock, sell_sig, executed=True, trade_id=open_trade.id)
@@ -565,8 +565,8 @@ class StrategyRunner:
                                 action="sell",
                                 confidence=1.0,
                                 entry_price=close_price,
-                                stop_loss=None,
-                                target=None,
+                                stop_loss=float(open_trade.stop_loss) if open_trade.stop_loss else None,
+                                target=float(open_trade.target) if open_trade.target else None,
                                 reasoning=[close_reason],
                             )
                             self._record_signal(session, strat_row, stock, sell_sig, executed=True, trade_id=open_trade.id)
