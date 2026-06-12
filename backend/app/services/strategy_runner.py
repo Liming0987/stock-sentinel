@@ -464,6 +464,8 @@ class StrategyRunner:
                         sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, payload["stock"], sig))
+                        else:
+                            self._record_signal(session, strat_row, stock, sig, executed=False)
 
                 # Open highest-confidence entries up to max_positions cap
                 buy_candidates.sort(key=lambda x: x[0], reverse=True)
@@ -576,6 +578,8 @@ class StrategyRunner:
                         sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, stock, sig))
+                        else:
+                            self._record_signal(session, strat_row, stock, sig, executed=False)
 
                 buy_candidates.sort(key=lambda x: x[0], reverse=True)
                 slots_available = max(0, strat.max_positions - open_count)
