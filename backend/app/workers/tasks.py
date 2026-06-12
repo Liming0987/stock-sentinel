@@ -401,6 +401,14 @@ def run_strategies_intraday(self: Task):
         raise
 
 
+@celery_app.task(**_RETRY_DEFAULTS, name="tasks.reconcile_positions")
+def reconcile_positions(self: Task):
+    """Compare DB open trades vs live Alpaca positions and close any orphans on either side."""
+    from app.services.position_reconciler import PositionReconciler
+    reconciler = PositionReconciler()
+    return reconciler.reconcile()
+
+
 @celery_app.task(**_RETRY_DEFAULTS, name="tasks.generate_daily_report")
 def generate_daily_report(self: Task):
     """Aggregate today's trading activity into a DailyReport row (upsert)."""

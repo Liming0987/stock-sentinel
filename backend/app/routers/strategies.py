@@ -571,6 +571,27 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
     }
 
 
+@router.post("/reconcile")
+async def reconcile_positions(db: AsyncSession = Depends(get_db)):
+    """
+    Trigger a reconciliation pass: compare DB open trades vs live Alpaca positions.
+    Closes untracked Alpaca positions and marks stale DB trades as closed.
+    Returns a summary of actions taken.
+    IMPORTANT: Aborts if Alpaca API is unreachable — never modifies DB without Alpaca data.
+    """
+    import asyncio
+    from app.services.position_reconciler import PositionReconciler
+    try:
+        reconciler = PositionReconciler()
+        # Run in thread pool since reconciler uses sync SQLAlchemy
+        loop = asyncio.get_event_loop()
+        result = await loop.run_in_executor(None, reconciler.reconcile)
+        return result
+    except Exception as e:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @router.get("/alpaca/account")
 async def alpaca_account():
     """Return Alpaca paper account snapshot (cash, equity, positions)."""

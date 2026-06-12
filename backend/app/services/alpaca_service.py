@@ -211,3 +211,70 @@ class AlpacaService:
         except Exception as e:
             logger.warning(f"Failed to get minute bars for {symbol}: {e}")
             return None
+
+    def cancel_order(self, order_id: str) -> bool:
+        """Cancel a pending order. Returns True if cancelled, False if already terminal."""
+        try:
+            from alpaca.trading.requests import GetOrderByIdRequest
+            order = self.trading_client.get_order_by_id(
+                order_id, filter=GetOrderByIdRequest(nested=False)
+            )
+            terminal = {"filled", "cancelled", "expired", "rejected", "done_for_day"}
+            status = order.status.value if hasattr(order.status, 'value') else order.status
+            if status in terminal:
+                return False
+            self.trading_client.cancel_order_by_id(order_id)
+            logger.info(f"Cancelled order {order_id}")
+            return True
+        except Exception as e:
+            logger.warning(f"cancel_order failed for {order_id}: {e}")
+            return False
+
+    def get_position(self, symbol: str) -> Optional[Dict]:
+        """Return the Alpaca position for a symbol, or None if no position exists."""
+        try:
+            pos = self.trading_client.get_open_position(symbol)
+            return {
+                "symbol": pos.symbol,
+                "qty": float(pos.qty),
+                "avg_entry_price": float(pos.avg_entry_price),
+                "market_value": float(pos.market_value) if pos.market_value else None,
+                "unrealized_pl": float(pos.unrealized_pl) if pos.unrealized_pl else None,
+            }
+        except Exception:
+            return None
+
+    def get_all_positions_dict(self) -> Dict[str, Dict]:
+        """Return all open Alpaca positions keyed by symbol."""
+        try:
+            positions = self.trading_client.get_all_positions()
+            return {
+                pos.symbol: {
+                    "symbol": pos.symbol,
+                    "qty": float(pos.qty),
+                    "avg_entry_price": float(pos.avg_entry_price),
+                    "market_value": float(pos.market_value) if pos.market_value else None,
+                    "unrealized_pl": float(pos.unrealized_pl) if pos.unrealized_pl else None,
+                    "side": str(pos.side.value) if hasattr(pos.side, 'value') else str(pos.side),
+                }
+                for pos in positions
+            }
+        except Exception as e:
+            logger.warning(f"get_all_positions_dict failed: {e}")
+            return {}
+
+    def close_position_for_reconciliation(self, symbol: str) -> Optional[Dict]:
+        """Close an untracked position during reconciliation. Returns fill info or None."""
+        try:
+            order = self.trading_client.close_position(symbol)
+            order_id = str(order.id)
+            fill_price = self.get_order_fill(order_id, timeout=15)
+            qty = float(order.qty) if hasattr(order, 'qty') and order.qty else None
+            return {
+                "order_id": order_id,
+                "fill_price": fill_price,
+                "qty": qty,
+            }
+        except Exception as e:
+            logger.warning(f"close_position_for_reconciliation failed for {symbol}: {e}")
+            return None

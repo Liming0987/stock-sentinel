@@ -90,6 +90,10 @@ celery_app.conf.beat_schedule = {
         "task": "tasks.generate_daily_report",
         "schedule": crontab(hour=21, minute=0),  # 21:00 UTC = 5pm ET
     },
+    "reconcile-positions": {
+        "task": "tasks.reconcile_positions",
+        "schedule": crontab(hour=13, minute=30),  # 13:30 UTC = 9:30am ET (market open)
+    },
 }
 
 

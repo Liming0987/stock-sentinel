@@ -60,6 +60,7 @@ export const api = {
     alpacaAccount: () => fetchApi("/api/strategies/alpaca/account"),
     livePositions: () => fetchApi("/api/strategies/live-positions"),
     syncAlpaca: () => fetchApi("/api/strategies/sync-alpaca", { method: "POST" }),
+    reconcile: () => fetchApi("/api/strategies/reconcile", { method: "POST" }),
     signals: (name: string, action = "all", limit = 50) =>
       fetchApi(`/api/strategies/${name}/signals?action=${action}&limit=${limit}`),
   },

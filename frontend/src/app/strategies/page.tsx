@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
   Legend, ResponsiveContainer, ReferenceLine,
@@ -258,6 +258,38 @@ function LivePositionsPanel() {
   const { data, history, loading } = useLivePositions();
   const [syncing, setSyncing] = useState(false);
   const [syncMsg, setSyncMsg] = useState<string | null>(null);
+  const [isReconciling, setIsReconciling] = useState(false);
+  const [reconcileMsg, setReconcileMsg] = useState<string | null>(null);
+
+  // Auto-dismiss reconcile message after 5 seconds
+  useEffect(() => {
+    if (!reconcileMsg) return;
+    const timer = setTimeout(() => setReconcileMsg(null), 5000);
+    return () => clearTimeout(timer);
+  }, [reconcileMsg]);
+
+  const handleReconcile = async () => {
+    setIsReconciling(true);
+    setReconcileMsg(null);
+    try {
+      const res = await (api.strategies.reconcile() as Promise<{
+        alpaca_orphans_cancelled?: number;
+        db_orphans_closed?: number;
+        message?: string;
+        [key: string]: unknown;
+      }>);
+      const alphaOrphans = res.alpaca_orphans_cancelled ?? 0;
+      const dbOrphans = res.db_orphans_closed ?? 0;
+      setReconcileMsg(
+        res.message ??
+          `Reconciled: ${alphaOrphans} Alpaca orphan(s) cancelled, ${dbOrphans} DB orphan(s) closed.`
+      );
+    } catch (err) {
+      setReconcileMsg(err instanceof Error ? err.message : "Reconcile failed — check server logs.");
+    } finally {
+      setIsReconciling(false);
+    }
+  };
 
   const chartData = useMemo(() => {
     const recent = history.slice(-REAL_SLOTS);
@@ -314,6 +346,15 @@ function LivePositionsPanel() {
             <RefreshCw className={`h-3 w-3 ${syncing ? "animate-spin" : ""}`} />
             Sync with Alpaca
           </button>
+          <button
+            onClick={handleReconcile}
+            disabled={isReconciling}
+            className="flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-medium bg-muted hover:bg-accent transition-colors disabled:opacity-50"
+            title="Compare DB open trades vs live Alpaca positions and close any orphans on either side"
+          >
+            <RefreshCw className={`h-3 w-3 ${isReconciling ? "animate-spin" : ""}`} />
+            Reconcile Positions
+          </button>
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <span className="relative flex h-2 w-2 shrink-0">
               <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 ${data.market_open ? "animate-ping bg-primary" : "bg-muted-foreground"}`} />
@@ -328,6 +369,20 @@ function LivePositionsPanel() {
       {/* Sync result message */}
       {syncMsg && (
         <p className="text-xs text-muted-foreground px-1">{syncMsg} Positions will refresh on next poll.</p>
+      )}
+
+      {/* Reconcile result message — auto-dismisses after 5s */}
+      {reconcileMsg && (
+        <div className="flex items-center justify-between rounded-md border border-border bg-muted/40 px-3 py-2 text-xs">
+          <span className="text-muted-foreground">{reconcileMsg}</span>
+          <button
+            onClick={() => setReconcileMsg(null)}
+            className="ml-3 text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            aria-label="Dismiss"
+          >
+            &times;
+          </button>
+        </div>
       )}
 
       {/* Warning when untracked Alpaca positions are present */}

@@ -22,6 +22,7 @@ from app.services.alpaca_service import AlpacaService
 from app.services.universe_builder import UniverseBuilder
 from app.services.fundamentals_service import FundamentalsService
 from app.strategies import STRATEGY_REGISTRY, BaseStrategy
+from app.models.trade_event import TradeEvent
 
 logger = logging.getLogger(__name__)
 
@@ -252,9 +253,30 @@ class StrategyRunner:
 
         fill_price = self.alpaca.get_order_fill(alpaca_order_id)
         if not fill_price:
-            raise RuntimeError(
-                f"[{strat_row.name}] Order {alpaca_order_id} for {ticker} did not fill within timeout."
+            # Cancel the pending Alpaca order to avoid a dangling open order
+            try:
+                self.alpaca.cancel_order(alpaca_order_id)
+                logger.warning(f"[{strat_row.name}] Cancelled unfilled order {alpaca_order_id} for {ticker}")
+            except Exception as cancel_err:
+                logger.error(f"[{strat_row.name}] Failed to cancel order {alpaca_order_id}: {cancel_err}")
+
+            # Write an audit event — no Trade row is created
+            failed_event = TradeEvent(
+                trade_id=None,
+                event_type="open_failed",
+                ticker=ticker,
+                strategy_name=strat_row.name,
+                side="buy",
+                qty=Decimal(str(qty)),
+                price=Decimal(str(round(signal_price, 4))),
+                alpaca_order_id=alpaca_order_id,
+                meta={"client_order_id": client_order_id, "signal_price": str(signal_price)},
             )
+            session.add(failed_event)
+            raise RuntimeError(
+                f"Order {alpaca_order_id} for {ticker} did not fill within timeout; order cancelled"
+            )
+
         entry_price = fill_price
         logger.info(f"[{strat_row.name}] Alpaca fill {ticker} @ {fill_price} (signal {signal_price})")
 
@@ -272,8 +294,21 @@ class StrategyRunner:
             alpaca_order_id=alpaca_order_id,
             reasoning=" | ".join(signal.reasoning),
         )
+        open_event = TradeEvent(
+            trade_id=None,  # will be set after flush
+            event_type="opened",
+            ticker=ticker,
+            strategy_name=strat_row.name,
+            side="buy",
+            qty=Decimal(str(qty)),
+            price=Decimal(str(fill_price)),
+            alpaca_order_id=alpaca_order_id,
+            meta={"signal_price": str(signal.entry_price), "client_order_id": client_order_id},
+        )
         session.add(trade)
-        session.flush()
+        session.flush()  # get trade.id
+        open_event.trade_id = trade.id
+        session.add(open_event)
         logger.info(f"[{strat_row.name}] OPEN {ticker} @ {entry_price} qty={qty}")
 
         # SMS notification (fire-and-forget, never raises)
@@ -319,6 +354,19 @@ class StrategyRunner:
         trade.status = "closed"
         trade.closed_at = datetime.now(timezone.utc)
         trade.reasoning = (trade.reasoning or "") + f" | exit: {reason}"
+        close_event = TradeEvent(
+            trade_id=trade.id,
+            event_type="closed",
+            ticker=trade.ticker,
+            strategy_name=None,
+            side="sell",
+            qty=trade.qty,
+            price=Decimal(str(fill_price or exit_price)),
+            pnl=trade.pnl,
+            alpaca_order_id=trade.alpaca_order_id,
+            meta={"reason": reason, "exit_price": str(exit_price)},
+        )
+        session.add(close_event)
         session.add(trade)
         logger.info(f"[strat={trade.strategy_id}] CLOSE {trade.ticker} @ {exit_price} pnl={pnl:.2f} ({reason})")
 
@@ -535,9 +583,13 @@ class StrategyRunner:
                 for _, ticker, stock, sig in buy_candidates:
                     will_execute = ticker in executed_tickers
                     if will_execute:
-                        trade = self._open_position(session, strat_row, stock, sig, ticker)
-                        self._record_signal(session, strat_row, stock, sig, executed=True, trade_id=trade.id)
-                        opened += 1
+                        try:
+                            trade = self._open_position(session, strat_row, stock, sig, ticker)
+                            self._record_signal(session, strat_row, stock, sig, executed=True, trade_id=trade.id)
+                            opened += 1
+                        except Exception as e:
+                            logger.error(f"[{strat_row.name}] Failed to open position for {ticker}: {e}")
+                            self._record_signal(session, strat_row, stock, sig, executed=False)
                     else:
                         self._record_signal(session, strat_row, stock, sig, executed=False)
 
@@ -650,9 +702,13 @@ class StrategyRunner:
                 for _, ticker, stock, sig in buy_candidates:
                     will_execute = ticker in executed_tickers_intra
                     if will_execute:
-                        trade = self._open_position(session, strat_row, stock, sig, ticker)
-                        self._record_signal(session, strat_row, stock, sig, executed=True, trade_id=trade.id)
-                        opened += 1
+                        try:
+                            trade = self._open_position(session, strat_row, stock, sig, ticker)
+                            self._record_signal(session, strat_row, stock, sig, executed=True, trade_id=trade.id)
+                            opened += 1
+                        except Exception as e:
+                            logger.error(f"[{strat_row.name}] Failed to open position for {ticker}: {e}")
+                            self._record_signal(session, strat_row, stock, sig, executed=False)
                     else:
                         # Dedup: skip if an identical unexecuted buy was already recorded within the last 5 min
                         existing = session.query(StrategySignal).filter(
