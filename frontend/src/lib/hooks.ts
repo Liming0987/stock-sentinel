@@ -398,12 +398,12 @@ interface StrategySignalsResponse {
 }
 
 export function useStrategySignals(
-  filters: { strategy?: string; action?: string; ticker?: string; limit?: number } = {}
+  filters: { strategy?: string; action?: string; ticker?: string; limit?: number; offset?: number } = {}
 ) {
   const fetcher = useCallback(
     () => api.strategySignals(filters) as Promise<StrategySignalsResponse>,
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [filters.strategy, filters.action, filters.ticker, filters.limit]
+    [filters.strategy, filters.action, filters.ticker, filters.limit, filters.offset]
   );
   return useApi(fetcher, { signals: [], total: 0 } as StrategySignalsResponse);
 }

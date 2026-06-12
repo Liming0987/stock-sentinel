@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Zap, TrendingUp, TrendingDown, Minus, CheckCircle2, Clock } from "lucide-react";
+import { Zap, TrendingUp, TrendingDown, Minus, CheckCircle2, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useStrategies, useStrategySignals } from "@/lib/hooks";
@@ -154,22 +154,32 @@ function SignalCard({ sig }: { sig: StrategySignalItem }) {
   );
 }
 
+const PAGE_SIZE = 50;
+
 export default function StrategySignalsPage() {
   const { data: strategiesData } = useStrategies();
   const strategies = strategiesData.strategies;
 
   const [selectedStrategy, setSelectedStrategy] = useState<string>("all");
   const [selectedAction, setSelectedAction] = useState<"all" | "buy" | "sell">("all");
+  const [page, setPage] = useState(1);
 
   const filters = useMemo(() => {
-    const f: { strategy?: string; action?: string; limit?: number } = { limit: 100 };
+    const f: { strategy?: string; action?: string; limit: number; offset: number } = {
+      limit: PAGE_SIZE,
+      offset: (page - 1) * PAGE_SIZE,
+    };
     if (selectedStrategy !== "all") f.strategy = selectedStrategy;
     if (selectedAction !== "all") f.action = selectedAction;
     return f;
-  }, [selectedStrategy, selectedAction]);
+  }, [selectedStrategy, selectedAction, page]);
 
   const { data, loading } = useStrategySignals(filters);
   const signals = data.signals;
+  const total = data.total ?? 0;
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+
+  const resetPage = () => setPage(1);
 
   return (
     <div className="space-y-6">
@@ -193,7 +203,7 @@ export default function StrategySignalsPage() {
         <CardContent className="pt-0">
           <div className="flex flex-wrap gap-1.5">
             <button
-              onClick={() => setSelectedStrategy("all")}
+              onClick={() => { setSelectedStrategy("all"); resetPage(); }}
               className={`rounded px-3 py-1 text-xs font-medium transition-colors capitalize ${
                 selectedStrategy === "all"
                   ? "bg-primary text-primary-foreground"
@@ -205,7 +215,7 @@ export default function StrategySignalsPage() {
             {strategies.map((s) => (
               <button
                 key={s.name}
-                onClick={() => setSelectedStrategy(s.name)}
+                onClick={() => { setSelectedStrategy(s.name); resetPage(); }}
                 className={`rounded px-3 py-1 text-xs font-medium transition-colors capitalize ${
                   selectedStrategy === s.name
                     ? "bg-primary text-primary-foreground"
@@ -224,7 +234,7 @@ export default function StrategySignalsPage() {
         {(["all", "buy", "sell"] as const).map((a) => (
           <button
             key={a}
-            onClick={() => setSelectedAction(a)}
+            onClick={() => { setSelectedAction(a); resetPage(); }}
             className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-colors uppercase ${
               selectedAction === a
                 ? a === "buy"
@@ -243,7 +253,7 @@ export default function StrategySignalsPage() {
       {/* Signal count */}
       {!loading && (
         <p className="text-sm text-muted-foreground">
-          Showing {signals.length} signal{signals.length !== 1 ? "s" : ""}
+          Showing {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, total)} of {total} signal{total !== 1 ? "s" : ""}
           {selectedStrategy !== "all" && ` for ${selectedStrategy.replace(/_/g, " ")}`}
           {selectedAction !== "all" && ` · ${selectedAction} only`}
         </p>
@@ -263,11 +273,63 @@ export default function StrategySignalsPage() {
           </p>
         </div>
       ) : (
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {signals.map((sig) => (
-            <SignalCard key={sig.id} sig={sig} />
-          ))}
-        </div>
+        <>
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {signals.map((sig) => (
+              <SignalCard key={sig.id} sig={sig} />
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 pt-2">
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className="flex items-center gap-1 rounded px-3 py-1.5 text-xs font-medium bg-muted text-muted-foreground hover:bg-accent disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="h-3.5 w-3.5" />
+                Prev
+              </button>
+
+              <div className="flex items-center gap-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1)
+                  .filter((p) => p === 1 || p === totalPages || Math.abs(p - page) <= 2)
+                  .reduce<(number | "…")[]>((acc, p, idx, arr) => {
+                    if (idx > 0 && p - (arr[idx - 1] as number) > 1) acc.push("…");
+                    acc.push(p);
+                    return acc;
+                  }, [])
+                  .map((item, idx) =>
+                    item === "…" ? (
+                      <span key={`ellipsis-${idx}`} className="px-1 text-xs text-muted-foreground">…</span>
+                    ) : (
+                      <button
+                        key={item}
+                        onClick={() => setPage(item as number)}
+                        className={`min-w-[28px] rounded px-2 py-1 text-xs font-medium transition-colors ${
+                          page === item
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-muted text-muted-foreground hover:bg-accent"
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    )
+                  )}
+              </div>
+
+              <button
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                className="flex items-center gap-1 rounded px-3 py-1.5 text-xs font-medium bg-muted text-muted-foreground hover:bg-accent disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Next
+                <ChevronRight className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

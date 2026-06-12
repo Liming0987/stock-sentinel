@@ -62,16 +62,18 @@ async def list_strategy_signals(
     strategy: str = Query(default=""),
     action: str = Query(default="all", pattern="^(all|buy|sell|hold)$"),
     ticker: str = Query(default=""),
-    limit: int = Query(default=100, le=500),
+    limit: int = Query(default=50, le=200),
+    offset: int = Query(default=0, ge=0),
     db: AsyncSession = Depends(get_db),
 ):
+    from sqlalchemy import func as sqlfunc
+
     strats_result = await db.execute(select(StrategyRow))
     strats_by_id = {s.id: s.name for s in strats_result.scalars().all()}
 
+    filters = []
     if action != "all":
-        filters = [StrategySignal.action == action]
-    else:
-        filters = []
+        filters.append(StrategySignal.action == action)
 
     if strategy:
         strat_row = await db.execute(select(StrategyRow).where(StrategyRow.name == strategy))
@@ -84,18 +86,25 @@ async def list_strategy_signals(
     if ticker:
         filters.append(StrategySignal.ticker == ticker.upper())
 
+    where_clause = and_(*filters) if filters else True
+
+    total_result = await db.execute(
+        select(sqlfunc.count()).select_from(StrategySignal).where(where_clause)
+    )
+    total = total_result.scalar() or 0
+
     query = (
         select(StrategySignal)
+        .where(where_clause)
         .order_by(desc(StrategySignal.created_at))
+        .offset(offset)
         .limit(limit)
     )
-    if filters:
-        query = query.where(and_(*filters))
 
     result = await db.execute(query)
     signals = result.scalars().all()
 
     return {
         "signals": [_serialize(s, strats_by_id.get(s.strategy_id, "unknown")) for s in signals],
-        "total": len(signals),
+        "total": total,
     }
