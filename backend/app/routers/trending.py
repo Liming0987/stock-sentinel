@@ -19,10 +19,6 @@ def _change_pct(stock: Stock) -> float:
         return round((float(stock.last_price) - float(stock.prev_close)) / float(stock.prev_close) * 100, 2)
     return 0.0
 
-# Popular tickers to show when DB has no mention data yet (bootstrap)
-BOOTSTRAP_TICKERS = ["NVDA", "TSLA", "AAPL", "MSFT", "AMD", "AMZN", "META", "GOOG", "PLTR", "SOFI"]
-
-
 @router.get("")
 async def get_trending_stocks(
     limit: int = Query(default=20, le=50),
@@ -55,54 +51,23 @@ async def get_trending_stocks(
     )
     snapshots = result.scalars().all()
 
-    if snapshots:
-        stocks = []
-        for snap in snapshots:
-            stock = await db.get(Stock, snap.stock_id)
-            if not stock:
-                continue
-            stocks.append({
-                "ticker": stock.ticker,
-                "name": stock.name or stock.ticker,
-                "price": float(stock.last_price) if stock.last_price else 0,
-                "change_pct": _change_pct(stock),
-                "mention_count": snap.mention_count,
-                "mention_velocity": float(snap.mention_velocity) if snap.mention_velocity else 0,
-                "sentiment_score": float(snap.avg_sentiment) if snap.avg_sentiment else 0,
-                "trend_score": float(snap.trend_score) if snap.trend_score else 0,
-                "volume_ratio": 1.0,
-                "sources": ["reddit"],
-            })
-        return {"timeframe": timeframe, "stocks": stocks, "updated_at": datetime.now(timezone.utc).isoformat()}
-
-    # Bootstrap: show real price data for popular tickers when no sentiment data exists yet
     stocks = []
-    for ticker in BOOTSTRAP_TICKERS[:limit]:
-        try:
-            df = price_service.get_price_data(ticker, period="5d", interval="1d")
-            if df is None or len(df) < 2:
-                continue
-            info = price_service.get_stock_info(ticker)
-            last_close = float(df["Close"].iloc[-1])
-            prev_close = float(df["Close"].iloc[-2])
-            change_pct = round((last_close - prev_close) / prev_close * 100, 2)
-            indicators = price_service.compute_indicators(df) if len(df) >= 20 else {}
-
-            stocks.append({
-                "ticker": ticker,
-                "name": info.get("name", ticker),
-                "price": round(last_close, 2),
-                "change_pct": change_pct,
-                "mention_count": 0,
-                "mention_velocity": 0,
-                "sentiment_score": 0,
-                "trend_score": 0,
-                "volume_ratio": indicators.get("volume_ratio", 1.0),
-                "sources": [],
-            })
-        except Exception as e:
-            print(f"Error fetching {ticker}: {e}")
-
+    for snap in snapshots:
+        stock = await db.get(Stock, snap.stock_id)
+        if not stock:
+            continue
+        stocks.append({
+            "ticker": stock.ticker,
+            "name": stock.name or stock.ticker,
+            "price": float(stock.last_price) if stock.last_price else 0,
+            "change_pct": _change_pct(stock),
+            "mention_count": snap.mention_count,
+            "mention_velocity": float(snap.mention_velocity) if snap.mention_velocity else 0,
+            "sentiment_score": float(snap.avg_sentiment) if snap.avg_sentiment else 0,
+            "trend_score": float(snap.trend_score) if snap.trend_score else 0,
+            "volume_ratio": 1.0,
+            "sources": ["reddit"],
+        })
     return {"timeframe": timeframe, "stocks": stocks, "updated_at": datetime.now(timezone.utc).isoformat()}
 
 

@@ -162,10 +162,12 @@ export function TrendingTable({ stocks, compact = false }: TrendingTableProps) {
               {displayed.length === 0 ? (
                 <tr>
                   <td
-                    colSpan={9}
+                    colSpan={compact ? 7 : 10}
                     className="py-10 text-center text-sm text-muted-foreground"
                   >
-                    No stocks match &ldquo;{query}&rdquo;
+                    {stocks.length === 0
+                      ? "No trending stocks yet — scrapers will populate this once they run."
+                      : `No stocks match “${query}”`}
                   </td>
                 </tr>
               ) : (
