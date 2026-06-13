@@ -78,17 +78,11 @@ def upgrade():
         ["action", "created_at"],
     )
 
-    # Primary lookup index on stocks.ticker (IF NOT EXISTS guard via try/except
-    # is not available in Alembic, so we rely on the standard index creation;
-    # the migration is idempotent via downgrade/upgrade cycle)
-    op.create_index("ix_stocks_ticker", "stocks", ["ticker"])
-
 
 def downgrade():
     # Drop in reverse order
 
     # c) Existing-table indexes
-    op.drop_index("ix_stocks_ticker", table_name="stocks")
     op.drop_index("ix_strategy_signals_action_created", table_name="strategy_signals")
     op.drop_index("ix_trades_alpaca_order_id", table_name="trades")
     op.drop_index("ix_trades_ticker_status", table_name="trades")
