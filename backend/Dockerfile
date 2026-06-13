@@ -16,10 +16,12 @@ RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/wh
 # Download spaCy model
 RUN python -m spacy download en_core_web_sm
 
-# Pre-download FinBERT model to avoid cold-start latency at runtime
+# Pre-download FinBERT model to avoid cold-start latency at runtime.
+# Falls back to runtime download if HuggingFace is unavailable or rate-limiting.
 RUN python -c "from transformers import AutoModelForSequenceClassification, AutoTokenizer; \
     AutoTokenizer.from_pretrained('ProsusAI/finbert'); \
-    AutoModelForSequenceClassification.from_pretrained('ProsusAI/finbert')"
+    AutoModelForSequenceClassification.from_pretrained('ProsusAI/finbert')" || \
+    echo "WARNING: FinBERT pre-download failed; model will be downloaded on first use"
 
 COPY . .
 
