@@ -137,7 +137,7 @@ jobs:
               "/usr/local/bin/mount-data-volume.sh",
               "docker compose pull",
               "echo === Pre-deploy backup ===",
-              "BACKUP_KEY=backups/pre-deploy-$(date +%Y%m%d-%H%M%S).sql.gz && docker compose exec -T db pg_dump -U sentinel stock_sentinel 2>/dev/null | gzip | aws s3 cp - s3://$BUCKET/$BACKUP_KEY && echo Backup saved: $BACKUP_KEY || echo WARNING: backup skipped (db may not be running yet)",
+              "BACKUP_KEY=backups/pre-deploy-$(date +%Y%m%d-%H%M%S).sql.gz && docker compose exec -T db pg_dump -U sentinel stock_sentinel 2>/dev/null | gzip | aws s3 cp - s3://$BUCKET/$BACKUP_KEY && echo Backup saved: $BACKUP_KEY || echo WARNING: backup skipped - db may not be running yet",
               "echo === Alembic migrations ===",
               "docker compose run --rm --no-deps backend alembic upgrade head",
               "echo === Starting services ===",
