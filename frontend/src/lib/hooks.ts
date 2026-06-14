@@ -475,6 +475,78 @@ export function useLatestReport() {
   return useApi(fetcher, { report: null } as LatestReportResponse);
 }
 
+export interface VolumeHistoryPoint {
+  date: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+  avg_vol_30: number | null;
+  vol_ratio: number | null;
+  obv: number | null;
+  vwap: number | null;
+  price_change_pct: number | null;
+  interpretation: string;
+  is_spike: boolean;
+}
+
+export interface VolumeEvent {
+  date: string;
+  vol_ratio: number | null;
+  price_change_pct: number | null;
+  interpretation: string;
+}
+
+export interface VolumeChecklist {
+  selling_climax: boolean;
+  high_vol_breakout: boolean;
+  low_vol_retest: boolean;
+  higher_low_pivot: boolean;
+  vwap_reclaim: boolean;
+  overall: string;
+  score: number;
+  details: Record<string, string>;
+}
+
+export interface VolumeAnalysisResponse {
+  ticker: string;
+  period: string;
+  name: string;
+  current_price: number | null;
+  avg_vol_30d: number | null;
+  current_vol_ratio: number | null;
+  history: VolumeHistoryPoint[];
+  events: VolumeEvent[];
+  checklist: VolumeChecklist;
+}
+
+export function useVolumeAnalysis(ticker: string, period = "90d") {
+  const [data, setData] = useState<VolumeAnalysisResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = useCallback(async () => {
+    if (!ticker) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await (api.watchlist.volumeAnalysis(ticker, period) as Promise<VolumeAnalysisResponse>);
+      setData(result);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to load volume analysis");
+    } finally {
+      setLoading(false);
+    }
+  }, [ticker, period]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { data, loading, error, refetch: fetchData };
+}
+
 export function useNotifications() {
   const [notifications, setNotifications] = useState<AppNotification[]>([]);
   const [lastSeen, setLastSeen] = useState<string>(

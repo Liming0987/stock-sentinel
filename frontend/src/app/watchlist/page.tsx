@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import {
   Star, ArrowUpRight, ArrowDownRight,
-  Trash2, Bell, Plus, Search, ChevronUp, ChevronDown,
+  Trash2, Bell, Plus, Search, ChevronUp, ChevronDown, BarChart3,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -247,6 +247,12 @@ export default function WatchlistPage() {
                     <Bell className="mr-1 h-3 w-3" />
                     Alerts
                   </Button>
+                  <Link href={`/watchlist/${stock.ticker}/volume`}>
+                    <Button variant="outline" size="sm" className="text-xs">
+                      <BarChart3 className="mr-1 h-3 w-3" />
+                      Volume
+                    </Button>
+                  </Link>
                   <Button
                     variant="ghost"
                     size="sm"

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from datetime import datetime, timezone, timedelta
 from sqlalchemy import select, and_
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -8,8 +8,10 @@ from app.models.stock import Stock
 from app.models.mention import Mention
 from app.models.signal import Signal
 from app.models.watchlist import Watchlist
+from app.services.volume_service import VolumeService
 
 router = APIRouter()
+volume_service = VolumeService()
 
 
 def _change_pct(stock: Stock) -> float:
@@ -63,6 +65,14 @@ async def get_watchlist(db: AsyncSession = Depends(get_db)):
         })
 
     return {"stocks": stocks}
+
+
+@router.get("/{ticker}/volume-analysis")
+async def get_volume_analysis(
+    ticker: str,
+    period: str = Query(default="90d", pattern="^(30d|60d|90d|6mo|1y)$"),
+):
+    return volume_service.analyze(ticker.upper(), period)
 
 
 @router.post("/{ticker}")
