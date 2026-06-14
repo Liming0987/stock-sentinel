@@ -37,3 +37,4 @@ pgdata/
 
 # Local notebooks — never commit
 notebooks/
+.claude/
