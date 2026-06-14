@@ -9,9 +9,11 @@ from app.models.mention import Mention
 from app.models.signal import Signal
 from app.models.watchlist import Watchlist
 from app.services.volume_service import VolumeService
+from app.services.price_service import PriceService
 
 router = APIRouter()
 volume_service = VolumeService()
+price_service = PriceService()
 
 
 def _change_pct(stock: Stock) -> float:
@@ -83,10 +85,12 @@ async def add_to_watchlist(ticker: str, db: AsyncSession = Depends(get_db)):
     stock = stock_result.scalar_one_or_none()
 
     if not stock:
-        raise HTTPException(
-            status_code=404,
-            detail=f"{ticker} not found in database. It will be added automatically after the next price update.",
-        )
+        info = price_service.get_stock_info(ticker)
+        if not info:
+            raise HTTPException(status_code=404, detail=f"{ticker} is not a valid US equity symbol.")
+        stock = Stock(ticker=ticker, **info)
+        db.add(stock)
+        await db.flush()
 
     existing = await db.execute(select(Watchlist).where(Watchlist.stock_id == stock.id))
     if existing.scalar_one_or_none():
