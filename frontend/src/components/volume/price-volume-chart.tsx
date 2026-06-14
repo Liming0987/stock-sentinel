@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
   Cell,
   ReferenceDot,
+  ReferenceLine,
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { VolumeHistoryPoint } from "@/lib/hooks";
@@ -64,9 +65,10 @@ interface PriceVolumeChartProps {
   data: VolumeHistoryPoint[];
   selectedPeriod: string;
   onPeriodChange: (period: string) => void;
+  tradingRange?: { support: number | null; resistance: number | null };
 }
 
-export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange }: PriceVolumeChartProps) {
+export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, tradingRange }: PriceVolumeChartProps) {
   const spikes = data.filter((d) => d.is_spike);
 
   return (
@@ -154,6 +156,28 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange }: Price
                   stroke="none"
                 />
               ))}
+              {tradingRange?.support != null && (
+                <ReferenceLine
+                  yAxisId="price"
+                  y={tradingRange.support}
+                  stroke="#22c55e"
+                  strokeDasharray="6 3"
+                  strokeWidth={1.5}
+                  ifOverflow="extendDomain"
+                  label={{ value: `Support $${tradingRange.support.toFixed(0)}`, position: "insideBottomLeft", fontSize: 10, fill: "#22c55e" }}
+                />
+              )}
+              {tradingRange?.resistance != null && (
+                <ReferenceLine
+                  yAxisId="price"
+                  y={tradingRange.resistance}
+                  stroke="#ef4444"
+                  strokeDasharray="6 3"
+                  strokeWidth={1.5}
+                  ifOverflow="extendDomain"
+                  label={{ value: `Resistance $${tradingRange.resistance.toFixed(0)}`, position: "insideTopLeft", fontSize: 10, fill: "#ef4444" }}
+                />
+              )}
             </ComposedChart>
           </ResponsiveContainer>
         </div>

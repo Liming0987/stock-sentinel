@@ -509,6 +509,68 @@ export interface VolumeChecklist {
   details: Record<string, string>;
 }
 
+export interface WyckoffCheckItem {
+  detected: boolean;
+  date?: string | null;
+  detail: string;
+}
+
+export interface WyckoffSide {
+  selling_climax?: WyckoffCheckItem;
+  automatic_rally?: WyckoffCheckItem;
+  secondary_test?: WyckoffCheckItem;
+  sign_of_strength?: WyckoffCheckItem;
+  last_point_support?: WyckoffCheckItem;
+  buying_climax?: WyckoffCheckItem;
+  automatic_reaction?: WyckoffCheckItem;
+  upthrust?: WyckoffCheckItem;
+  sign_of_weakness?: WyckoffCheckItem;
+  last_point_supply?: WyckoffCheckItem;
+  score: number;
+  overall: string;
+}
+
+export interface WyckoffAnalysis {
+  phase: string;
+  bias: "bullish" | "bearish" | "neutral";
+  trading_range: { support: number | null; resistance: number | null };
+  accumulation: WyckoffSide;
+  distribution: WyckoffSide;
+}
+
+export interface PnFAnalysis {
+  box_size: number | null;
+  reversal_boxes: number;
+  current_price: number | null;
+  bullish_vertical_target: number | null;
+  bearish_vertical_target: number | null;
+  horizontal_target: number | null;
+  column_count: number | null;
+  bias: string | null;
+  note: string;
+}
+
+export interface SwingEntry {
+  bias: string;
+  entry_zone_low: number | null;
+  entry_zone_high: number | null;
+  stop_loss: number | null;
+  target: number | null;
+  risk_reward: number | null;
+  time_horizon: string;
+  note: string;
+}
+
+export interface LongtermEntry {
+  entry_zone_low: number | null;
+  entry_zone_high: number | null;
+  stop_loss: number | null;
+  target: number | null;
+  risk_reward: number | null;
+  time_horizon: string;
+  note: string;
+}
+
 export interface VolumeAnalysisResponse {
   ticker: string;
   period: string;
@@ -519,6 +581,10 @@ export interface VolumeAnalysisResponse {
   history: VolumeHistoryPoint[];
   events: VolumeEvent[];
   checklist: VolumeChecklist;
+  wyckoff: WyckoffAnalysis;
+  pnf: PnFAnalysis;
+  swing_entry: SwingEntry;
+  longterm_entry: LongtermEntry;
 }
 
 export function useVolumeAnalysis(ticker: string, period = "90d") {

@@ -12,6 +12,7 @@ import { OBVChart } from "@/components/volume/obv-chart";
 import { ReversalChecklist } from "@/components/volume/reversal-checklist";
 import { VolumeTable } from "@/components/volume/volume-table";
 import { WatchlistSwitcher } from "@/components/volume/watchlist-switcher";
+import { TradeTargetsCard } from "@/components/volume/trade-targets-card";
 
 function SectionSkeleton({ title }: { title: string }) {
   return (
@@ -55,7 +56,8 @@ export default function VolumeAnalysisPage() {
         <>
           <SectionSkeleton title="Price & Volume" />
           <SectionSkeleton title="On-Balance Volume (OBV)" />
-          <SectionSkeleton title="Bullish Reversal Checklist (Wyckoff)" />
+          <SectionSkeleton title="Wyckoff Structural Analysis" />
+          <SectionSkeleton title="Trade Targets" />
           <SectionSkeleton title="Volume History" />
         </>
       ) : data ? (
@@ -64,9 +66,15 @@ export default function VolumeAnalysisPage() {
             data={data.history}
             selectedPeriod={period}
             onPeriodChange={setPeriod}
+            tradingRange={data.wyckoff?.trading_range}
           />
           <OBVChart data={data.history} />
-          <ReversalChecklist checklist={data.checklist} />
+          <ReversalChecklist wyckoff={data.wyckoff} />
+          <TradeTargetsCard
+            pnf={data.pnf}
+            swingEntry={data.swing_entry}
+            longtermEntry={data.longterm_entry}
+          />
           <Card>
             <CardHeader>
               <CardTitle className="text-base">Volume History</CardTitle>
