@@ -6,7 +6,7 @@ import {
   ResponsiveContainer, ReferenceLine,
 } from "recharts";
 import {
-  FlaskConical, Play, X, Plus, TrendingUp, TrendingDown,
+  Play, X, Plus, TrendingUp, TrendingDown,
   BarChart2, Trophy, AlertTriangle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";

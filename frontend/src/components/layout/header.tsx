@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Moon, Sun, TrendingUp, DollarSign, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useNotifications } from "@/lib/hooks";
 import type { AppNotification } from "@/lib/hooks";
 

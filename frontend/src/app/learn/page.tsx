@@ -8,7 +8,6 @@ import {
   Minus,
   BarChart2,
   ShieldCheck,
-  GraduationCap,
   ChevronDown,
   ChevronRight,
   Search,

@@ -113,7 +113,7 @@ export default function DashboardPage() {
         <p className="mb-1.5 text-[12.5px] font-semibold uppercase tracking-[0.1em] text-primary">{today}</p>
         <h1 className="font-serif text-[38px] font-medium leading-[1.05] tracking-[-0.02em]">Good morning, Alex.</h1>
         <p className="mt-2.5 max-w-[520px] text-[15px] leading-relaxed text-muted-foreground">
-          Here's what the crowd is talking about and where the signals are pointing today.
+          Here&apos;s what the crowd is talking about and where the signals are pointing today.
         </p>
       </div>
 
@@ -207,7 +207,7 @@ export default function DashboardPage() {
           className="rounded-[16px] border p-6 flex flex-col"
           style={{ background: "linear-gradient(160deg, var(--sentinel-accent-soft), transparent)" }}
         >
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-primary">Today's lesson</p>
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-primary">Today&apos;s lesson</p>
           <h3 className="font-serif text-[22px] font-semibold leading-[1.2] mb-2.5">{lesson.title}</h3>
           <p className="flex-1 text-[13.5px] leading-relaxed text-muted-foreground">{lesson.body}</p>
           <Link
