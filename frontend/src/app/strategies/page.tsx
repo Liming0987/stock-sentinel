@@ -24,6 +24,8 @@ const STRATEGY_COLORS: Record<string, string> = {
   macd_histogram:        "hsl(340, 82%, 55%)",  // rose
   opening_range_breakout:"hsl(173, 80%, 40%)",  // teal
   vwap_cross:            "hsl(24,  95%, 55%)",  // orange
+  fib_retracement:       "hsl(48,  95%, 50%)",  // gold
+  elliott_fib:           "hsl(199, 89%, 48%)",  // sky blue
 };
 
 function formatPnl(val: number) {
@@ -140,7 +142,7 @@ interface StrategyLivePanelProps {
 function StrategyLivePanel({
   stratName, summary, positions, chartData, isOpen, onToggle, marketOpen, loading,
 }: StrategyLivePanelProps) {
-  const color = STRATEGY_COLORS[stratName] || "hsl(var(--primary))";
+  const color = STRATEGY_COLORS[stratName] || "hsl(260, 70%, 60%)";
   const hasData = chartData.some(
     (pt) => !pt.time.startsWith("\x00") && pt[stratName] !== undefined
   );
@@ -650,7 +652,7 @@ export default function StrategiesPage() {
                           key={name}
                           type="monotone"
                           dataKey={name}
-                          stroke={STRATEGY_COLORS[name] || "hsl(var(--primary))"}
+                          stroke={STRATEGY_COLORS[name] || "hsl(260, 70%, 60%)"}
                           strokeWidth={2}
                           dot={false}
                           connectNulls
