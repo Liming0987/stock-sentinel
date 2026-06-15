@@ -78,6 +78,11 @@ function PositionRow({ pos }: { pos: LivePosition }) {
           </span>
         )}
       </td>
+      <td className="py-2 pr-3 font-mono text-muted-foreground whitespace-nowrap">
+        {pos.opened_at
+          ? new Date(pos.opened_at).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })
+          : "—"}
+      </td>
       <td className="py-2 pr-3 font-mono text-muted-foreground">${(pos.entry_price * pos.qty).toFixed(2)}</td>
       <td className="py-2 pr-3 font-mono font-semibold">
         <span className={positive ? "text-bullish" : "text-bearish"}>
@@ -231,6 +236,7 @@ function StrategyLivePanel({
                 <thead>
                   <tr className="border-b text-left text-muted-foreground">
                     <th className="pb-2 pr-3 font-medium">Ticker</th>
+                    <th className="pb-2 pr-3 font-medium">Opened</th>
                     <th className="pb-2 pr-3 font-medium">Cost</th>
                     <th className="pb-2 pr-3 font-medium">Price</th>
                     <th className="pb-2 pr-3 font-medium">Change</th>

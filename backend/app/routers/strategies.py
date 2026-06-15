@@ -318,6 +318,7 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
         if symbol not in alpaca_symbols:
             skipped.append({"order_id": order_id, "symbol": symbol, "reason": "position already closed in Alpaca"})
             continue
+
         filled_qty = float(order.filled_qty or order.qty or 0)
         fill_price = float(order.filled_avg_price or 0)
         filled_at = order.filled_at  # actual fill timestamp — preserved per order
@@ -345,6 +346,20 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
             db.add(strat_row)
             await db.flush()
             strats_by_name[strat_name] = strat_row
+
+        # Each strategy may hold at most one open position per ticker.
+        existing_open = await db.execute(
+            select(Trade).where(
+                and_(
+                    Trade.strategy_id == strat_row.id,
+                    Trade.ticker == symbol,
+                    Trade.status == "open",
+                )
+            )
+        )
+        if existing_open.scalar_one_or_none() is not None:
+            skipped.append({"order_id": order_id, "symbol": symbol, "reason": f"{strat_name} already has an open position for {symbol}"})
+            continue
 
         stock = stocks_by_ticker.get(symbol)
         if stock is None:
@@ -535,6 +550,7 @@ async def live_positions(db: AsyncSession = Depends(get_db)):
             "target": round(float(t.target), 4) if t.target else None,
             "unrealized_pnl": round(upnl, 2),
             "return_pct": round(ret_pct, 4),
+            "opened_at": t.opened_at.isoformat() if t.opened_at else None,
             "source": "db",
         })
 
