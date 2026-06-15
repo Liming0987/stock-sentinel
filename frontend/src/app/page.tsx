@@ -177,7 +177,8 @@ export default function DashboardPage() {
             <p className="px-6 pb-6 text-[13px] text-muted-foreground">No stocks in watchlist yet.</p>
           ) : (
             watchlistData.stocks.slice(0, 5).map((w) => (
-              <div key={w.ticker} className="grid items-center gap-3 border-t px-6 py-[13px]"
+              <Link key={w.ticker} href={`/watchlist/${w.ticker}/volume`}
+                className="grid items-center gap-3 border-t px-6 py-[13px] hover:bg-accent/30 transition-colors cursor-pointer"
                 style={{ gridTemplateColumns: "1.4fr 1fr 1fr 1.1fr" }}>
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span className="font-bold text-[14px]">{w.ticker}</span>
@@ -197,7 +198,7 @@ export default function DashboardPage() {
                   {w.change_pct != null ? `${w.change_pct >= 0 ? "+" : ""}${w.change_pct.toFixed(2)}%` : "—"}
                 </span>
                 <SentBar value={w.sentiment_score ?? 0} />
-              </div>
+              </Link>
             ))
           )}
         </div>
