@@ -339,7 +339,11 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
             stocks_by_ticker[symbol] = stock
 
         entry_price = float(pos.avg_entry_price) if pos.avg_entry_price else 0.0
-        qty = float(pos.qty) if pos.qty else 0.0
+        raw_qty = float(pos.qty) if pos.qty else 0.0
+        # Normalize to one position size — Alpaca aggregates multiple fills into
+        # a single position object, so raw_qty may represent several $500 buys.
+        from app.services.strategy_runner import POSITION_SIZE_USD
+        qty = round(POSITION_SIZE_USD / entry_price, 6) if entry_price else raw_qty
 
         trade = Trade(
             strategy_id=strat_row.id,
