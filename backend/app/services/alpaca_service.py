@@ -181,10 +181,27 @@ class AlpacaService:
                 limit=limit,
             )
             orders = self.trading_client.get_orders(req)
-            # Compare directly — str(enum) yields "ClassName.VALUE", not the value itself
             return [o for o in orders if o.status == "filled" and o.side == "buy"]
         except Exception as e:
             logger.warning(f"Failed to get orders: {e}")
+            return []
+
+    def get_all_filled_orders(self, symbols: list = None, limit: int = 500) -> list:
+        """Fetch all filled orders (both buy and sell). Used for order-level sync."""
+        if not self.is_configured:
+            return []
+        try:
+            from alpaca.trading.requests import GetOrdersRequest
+            from alpaca.trading.enums import QueryOrderStatus
+            req = GetOrdersRequest(
+                status=QueryOrderStatus.CLOSED,
+                symbols=symbols,
+                limit=limit,
+            )
+            orders = self.trading_client.get_orders(req)
+            return [o for o in orders if o.status == "filled"]
+        except Exception as e:
+            logger.warning(f"Failed to get all filled orders: {e}")
             return []
 
     def get_minute_bars(self, symbol: str, limit: int = 120):

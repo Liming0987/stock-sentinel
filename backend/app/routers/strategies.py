@@ -180,13 +180,19 @@ async def reset_positions(db: AsyncSession = Depends(get_db)):
 
 @router.post("/sync-alpaca")
 async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
-    """Reconcile Alpaca open positions with the DB.
+    """Reconcile Alpaca order history with the DB.
 
-    For each Alpaca position that has no open Trade record in the DB:
-    - Looks up the most recent filled buy order for that symbol to read its client_order_id
-    - Parses the strategy name from client_order_id (format: {strategy_name}-{ticker}-{uuid})
-    - Creates a Trade record attributed to that strategy (or 'untracked' if unknown)
-    After this runs, live-positions will show proper strategy attribution.
+    Syncs at the ORDER level, not the position level, so each strategy
+    execution gets its own Trade row with the correct timestamp and fill
+    price — even when Alpaca aggregates multiple fills into one position.
+
+    Two passes:
+    1. BUY orders: for each filled buy order not yet in DB (dedup by
+       alpaca_order_id), create a Trade row using the order's own
+       filled_qty, filled_avg_price, and filled_at.
+    2. Orphan close: DB open trades whose ticker has no Alpaca position
+       are closed at the last known price (the position was closed
+       externally — stop-loss, manual, etc.).
     """
     import asyncio
     from datetime import datetime, timezone
@@ -197,127 +203,126 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
         from app.services.alpaca_service import AlpacaService
         svc = AlpacaService()
         if not svc.is_configured:
-            return [], {}
+            return [], []
         positions = svc.get_positions()
-        if not positions:
-            return [], {}
-        # Batch-fetch all recent filled buy orders in one call
-        all_orders = svc.get_orders(limit=500)
-        # Group orders by symbol, keep only the most recent per symbol
-        orders_by_symbol: dict = {}
-        for order in all_orders:
-            sym = order.symbol
-            existing = orders_by_symbol.get(sym)
-            order_time = order.filled_at or order.created_at
-            if existing is None:
-                orders_by_symbol[sym] = order
-            else:
-                prev_time = existing.filled_at or existing.created_at
-                if order_time and (prev_time is None or order_time > prev_time):
-                    orders_by_symbol[sym] = order
-        return positions, orders_by_symbol
+        buy_orders = svc.get_all_filled_orders(limit=500)
+        buy_orders = [o for o in buy_orders if str(getattr(o.side, 'value', o.side)) == "buy"]
+        return positions, buy_orders
 
     loop = asyncio.get_event_loop()
-    alpaca_positions, orders_by_symbol = await loop.run_in_executor(None, _fetch_alpaca_data)
-
-    # Load existing open DB trades
-    open_result = await db.execute(select(Trade).where(Trade.status == "open"))
-    open_trades_list = open_result.scalars().all()
-    open_tickers = {t.ticker for t in open_trades_list}
+    alpaca_positions, buy_orders = await loop.run_in_executor(None, _fetch_alpaca_data)
 
     alpaca_symbols = {p.symbol for p in alpaca_positions}
+    now = datetime.now(timezone.utc)
 
-    # ── Close orphaned DB trades (open in DB but no Alpaca position) ──────────
-    # These are positions Alpaca already closed (stop-loss hit, manual close, etc.)
-    # that the strategy runner missed because close_position raised or was never called.
-    orphan_closed = []
-    if open_trades_list:
-        orphan_tickers = [t.ticker for t in open_trades_list if t.ticker not in alpaca_symbols]
-        orphan_prices: dict = {}
-        if orphan_tickers:
-            def _fetch_orphan_prices():
-                prices = {}
+    # ── Load all open DB trades ───────────────────────────────────────────────
+    open_result = await db.execute(select(Trade).where(Trade.status == "open"))
+    open_trades_list = open_result.scalars().all()
+
+    # Both columns are idempotency keys — a trade is "already tracked" if
+    # either its Alpaca order ID or client order ID is in the DB.
+    tracked_order_ids: set = set()
+    tracked_client_ids: set = set()
+    for t in open_trades_list:
+        if t.alpaca_order_id:
+            tracked_order_ids.add(t.alpaca_order_id)
+        if t.alpaca_client_order_id:
+            tracked_client_ids.add(t.alpaca_client_order_id)
+
+    # ── Pass 1: Close orphaned DB trades ─────────────────────────────────────
+    orphan_trades = [t for t in open_trades_list if t.ticker not in alpaca_symbols]
+    orphan_tickers = list({t.ticker for t in orphan_trades})
+    orphan_prices: dict = {}
+    if orphan_tickers:
+        def _fetch_orphan_prices():
+            prices = {}
+            try:
+                from app.services.alpaca_service import AlpacaService
+                svc = AlpacaService()
+                if svc.is_configured:
+                    prices = svc.get_latest_prices(orphan_tickers)
+            except Exception:
+                pass
+            missing = [t for t in orphan_tickers if t not in prices]
+            if missing:
                 try:
-                    from app.services.alpaca_service import AlpacaService
-                    svc = AlpacaService()
-                    if svc.is_configured:
-                        prices = svc.get_latest_prices(orphan_tickers)
+                    import yfinance as yf
+                    for sym in missing:
+                        fi = yf.Ticker(sym).fast_info
+                        p = getattr(fi, "last_price", None)
+                        if p:
+                            prices[sym] = float(p)
                 except Exception:
                     pass
-                missing = [t for t in orphan_tickers if t not in prices]
-                if missing:
-                    try:
-                        import yfinance as yf
-                        for sym in missing:
-                            fi = yf.Ticker(sym).fast_info
-                            p = getattr(fi, "last_price", None)
-                            if p:
-                                prices[sym] = float(p)
-                    except Exception:
-                        pass
-                return prices
-            orphan_prices = await loop.run_in_executor(None, _fetch_orphan_prices)
+            return prices
+        orphan_prices = await loop.run_in_executor(None, _fetch_orphan_prices)
 
-        now = datetime.now(timezone.utc)
-        for t in open_trades_list:
-            if t.ticker in alpaca_symbols:
-                continue
-            last_price = orphan_prices.get(t.ticker) or float(t.entry_price)
-            entry = float(t.entry_price)
-            qty = float(t.qty or 0)
-            pnl = round((last_price - entry) * qty, 2)
-            ret_pct = round((last_price - entry) / entry, 4) if entry else 0
-            t.status = "closed"
-            t.exit_price = Decimal(str(round(last_price, 4)))
-            t.pnl = Decimal(str(pnl))
-            t.return_pct = Decimal(str(ret_pct))
-            t.closed_at = now
-            t.reasoning = (t.reasoning or "") + " | sync-closed: position no longer in Alpaca"
-            db.add(t)
-            orphan_closed.append({"symbol": t.ticker, "pnl": pnl, "exit_price": last_price})
+    orphan_closed = []
+    for t in orphan_trades:
+        last_price = orphan_prices.get(t.ticker) or float(t.entry_price)
+        entry = float(t.entry_price)
+        qty = float(t.qty or 0)
+        pnl = round((last_price - entry) * qty, 2)
+        ret_pct = round((last_price - entry) / entry, 4) if entry else 0
+        t.status = "closed"
+        t.exit_price = Decimal(str(round(last_price, 4)))
+        t.pnl = Decimal(str(pnl))
+        t.return_pct = Decimal(str(ret_pct))
+        t.closed_at = now
+        t.reasoning = (t.reasoning or "") + " | sync-closed: no matching Alpaca position"
+        db.add(t)
+        orphan_closed.append({"symbol": t.ticker, "pnl": pnl, "exit_price": last_price})
 
-    if not alpaca_positions:
+    if not buy_orders:
         await db.commit()
         return {
-            "synced": 0,
-            "skipped": 0,
+            "orders_synced": 0,
+            "orders_skipped": 0,
             "orphans_closed": len(orphan_closed),
             "orphans": orphan_closed,
             "message": (
-                f"No open Alpaca positions. Closed {len(orphan_closed)} orphaned DB trade(s)."
-                if orphan_closed else "No open Alpaca positions and no orphaned DB trades."
+                f"No filled buy orders found in Alpaca. "
+                f"Closed {len(orphan_closed)} orphaned DB trade(s)."
+                if orphan_closed else "No filled buy orders and no orphaned DB trades."
             ),
         }
 
-    # Load strategy rows
+    # ── Load strategy and stock rows ──────────────────────────────────────────
     strats_result = await db.execute(select(StrategyRow))
     strats_by_name = {s.name: s for s in strats_result.scalars().all()}
 
-    # Load stocks by ticker
     stocks_result = await db.execute(select(Stock))
     stocks_by_ticker = {s.ticker: s for s in stocks_result.scalars().all()}
 
     synced = []
     skipped = []
 
-    for pos in alpaca_positions:
-        symbol = pos.symbol
+    # ── Pass 2: Create one Trade per untracked filled buy order ───────────────
+    for order in buy_orders:
+        order_id = str(order.id)
+        client_id = order.client_order_id or ""
 
-        if symbol in open_tickers:
-            skipped.append({"symbol": symbol, "reason": "already tracked in DB"})
+        if order_id in tracked_order_ids or (client_id and client_id in tracked_client_ids):
+            skipped.append({"order_id": order_id, "symbol": order.symbol, "reason": "already in DB"})
             continue
 
-        # Determine strategy from client_order_id
+        symbol = order.symbol
+        filled_qty = float(order.filled_qty or order.qty or 0)
+        fill_price = float(order.filled_avg_price or 0)
+        filled_at = order.filled_at  # actual fill timestamp — preserved per order
+
+        if not filled_qty or not fill_price:
+            skipped.append({"order_id": order_id, "symbol": symbol, "reason": "missing fill data"})
+            continue
+
+        # Parse strategy from client_order_id (format: {strategy_name}-{ticker}-{uuid8})
         strat_name = "untracked"
-        order = orders_by_symbol.get(symbol)
-        if order and order.client_order_id:
-            coid = order.client_order_id
+        if client_id:
             for name in strategy_names:
-                if coid.startswith(f"{name}-"):
+                if client_id.startswith(f"{name}-"):
                     strat_name = name
                     break
 
-        # Find or create Strategy row
         strat_row = strats_by_name.get(strat_name)
         if strat_row is None:
             strat_row = StrategyRow(
@@ -330,7 +335,6 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
             await db.flush()
             strats_by_name[strat_name] = strat_row
 
-        # Find or create Stock row (required FK)
         stock = stocks_by_ticker.get(symbol)
         if stock is None:
             stock = Stock(ticker=symbol, name=symbol)
@@ -338,37 +342,39 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
             await db.flush()
             stocks_by_ticker[symbol] = stock
 
-        entry_price = float(pos.avg_entry_price) if pos.avg_entry_price else 0.0
-        raw_qty = float(pos.qty) if pos.qty else 0.0
-        # Normalize to one position size — Alpaca aggregates multiple fills into
-        # a single position object, so raw_qty may represent several $500 buys.
-        from app.services.strategy_runner import POSITION_SIZE_USD
-        qty = round(POSITION_SIZE_USD / entry_price, 6) if entry_price else raw_qty
-
         trade = Trade(
             strategy_id=strat_row.id,
             stock_id=stock.id,
             ticker=symbol,
             side="buy",
-            qty=Decimal(str(round(qty, 6))),
-            entry_price=Decimal(str(round(entry_price, 4))),
+            qty=Decimal(str(round(filled_qty, 6))),
+            entry_price=Decimal(str(round(fill_price, 4))),
             status="open",
-            alpaca_order_id=str(order.id) if order else None,
-            alpaca_client_order_id=order.client_order_id if order else None,
-            reasoning=f"synced from Alpaca on {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} (strategy: {strat_name})",
+            alpaca_order_id=order_id,
+            alpaca_client_order_id=client_id or None,
+            opened_at=filled_at,
+            reasoning=f"order-synced from Alpaca | order_id={order_id} strategy={strat_name}",
         )
         db.add(trade)
-        synced.append({"symbol": symbol, "strategy": strat_name, "entry_price": entry_price, "qty": qty})
+        tracked_order_ids.add(order_id)
+        synced.append({
+            "order_id": order_id,
+            "symbol": symbol,
+            "strategy": strat_name,
+            "filled_qty": filled_qty,
+            "fill_price": fill_price,
+            "filled_at": filled_at.isoformat() if filled_at else None,
+        })
 
     await db.commit()
     return {
-        "synced": len(synced),
-        "skipped": len(skipped),
+        "orders_synced": len(synced),
+        "orders_skipped": len(skipped),
         "orphans_closed": len(orphan_closed),
-        "positions_synced": synced,
+        "orders_synced_detail": synced,
         "orphans": orphan_closed,
         "message": (
-            f"Synced {len(synced)} missing position(s) into DB; "
+            f"Synced {len(synced)} order(s) into DB; "
             f"closed {len(orphan_closed)} orphaned trade(s) no longer in Alpaca."
         ),
     }
