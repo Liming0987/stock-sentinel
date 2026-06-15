@@ -153,7 +153,7 @@ function StrategyLivePanel({
       <button
         onClick={onToggle}
         className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 hover:bg-accent/30 transition-colors rounded-t-lg"
-        style={{ borderBottom: isOpen ? "1px solid hsl(var(--border))" : undefined }}
+        style={{ borderBottom: isOpen ? "1px solid var(--border)" : undefined }}
       >
         <div className="flex items-center gap-3">
           <span className="h-3 w-3 rounded-full shrink-0" style={{ backgroundColor: color }} />
@@ -198,19 +198,19 @@ function StrategyLivePanel({
             ) : (
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
                   <XAxis
                     dataKey="time"
-                    tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
+                    tick={{ fontSize: 10, fill: "var(--muted-foreground)" }}
                     interval={7}
                     tickFormatter={(v: string) => (v.startsWith("\x00") ? "" : v)}
                   />
                   <YAxis tick={false} width={0} tickCount={10} />
-                  <ReferenceLine y={0} stroke="hsl(var(--muted-foreground))" strokeDasharray="4 4" />
+                  <ReferenceLine y={0} stroke="var(--muted-foreground)" strokeDasharray="4 4" />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "hsl(var(--card))",
-                      border: "1px solid hsl(var(--border))",
+                      backgroundColor: "var(--card)",
+                      border: "1px solid var(--border)",
                       borderRadius: "8px",
                       fontSize: "12px",
                     }}
@@ -639,11 +639,11 @@ export default function StrategiesPage() {
                 <div className="h-64">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={chartData} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                      <XAxis dataKey="date" tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} tickFormatter={(v) => v.slice(5)} />
-                      <YAxis tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} tickFormatter={(v) => `$${v}`} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                      <XAxis dataKey="date" tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} tickFormatter={(v) => v.slice(5)} />
+                      <YAxis tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} tickFormatter={(v) => `$${v}`} />
                       <Tooltip
-                        contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px", fontSize: "12px" }}
+                        contentStyle={{ backgroundColor: "var(--card)", border: "1px solid var(--border)", borderRadius: "8px", fontSize: "12px" }}
                         formatter={(val) => [`$${Number(val).toFixed(2)}`, ""]}
                       />
                       <Legend />

@@ -44,36 +44,36 @@ export function SentimentChart({ data, title = "Market Sentiment" }: SentimentCh
                   <stop offset="95%" stopColor="hsl(0, 84%, 60%)" stopOpacity={0.3} />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis
                 dataKey="date"
-                tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
                 tickFormatter={(v) => v.slice(5)}
               />
               <YAxis
                 yAxisId="sentiment"
                 domain={[-1, 1]}
-                tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
                 tickFormatter={(v: number) => v.toFixed(1)}
               />
               <YAxis
                 yAxisId="mentions"
                 orientation="right"
-                tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "hsl(var(--card))",
-                  border: "1px solid hsl(var(--border))",
+                  backgroundColor: "var(--card)",
+                  border: "1px solid var(--border)",
                   borderRadius: "8px",
                   fontSize: "12px",
                 }}
-                labelStyle={{ color: "hsl(var(--foreground))" }}
+                labelStyle={{ color: "var(--foreground)" }}
               />
               <Bar
                 yAxisId="mentions"
                 dataKey="mentions"
-                fill="hsl(var(--primary))"
+                fill="var(--primary)"
                 opacity={0.2}
                 radius={[2, 2, 0, 0]}
               />

@@ -38,9 +38,9 @@ const PILLAR_LABELS: Record<string, string> = {
 };
 
 function pillarColor(score: number): string {
-  if (score >= 0.65) return "hsl(var(--bullish))";
+  if (score >= 0.65) return "var(--bullish)";
   if (score >= 0.40) return "hsl(50 100% 50%)";
-  return "hsl(var(--bearish))";
+  return "var(--bearish)";
 }
 
 export function FundamentalsPanel({ data }: Props) {
@@ -114,12 +114,12 @@ export function FundamentalsPanel({ data }: Props) {
                       layout="vertical"
                       margin={{ top: 0, right: 40, left: 0, bottom: 0 }}
                     >
-                      <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="hsl(var(--border))" />
-                      <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }} tickFormatter={(v) => `${v}`} />
-                      <YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} />
+                      <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="var(--border)" />
+                      <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 10, fill: "var(--muted-foreground)" }} tickFormatter={(v) => `${v}`} />
+                      <YAxis type="category" dataKey="name" width={90} tick={{ fontSize: 11, fill: "var(--muted-foreground)" }} />
                       <Tooltip
                         formatter={(v) => [`${Number(v)}%`, "Score"]}
-                        contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: "8px", fontSize: "12px" }}
+                        contentStyle={{ backgroundColor: "var(--card)", border: "1px solid var(--border)", borderRadius: "8px", fontSize: "12px" }}
                       />
                       <Bar dataKey="score" radius={[0, 3, 3, 0]} maxBarSize={20}>
                         {pillarData.map((entry, idx) => (

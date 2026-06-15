@@ -35,7 +35,7 @@ export function SentimentGauge({ score, size = "md" }: SentimentGaugeProps) {
         <path
           d={`M ${d.stroke / 2} ${d.height} A ${radius} ${radius} 0 0 1 ${d.width - d.stroke / 2} ${d.height}`}
           fill="none"
-          stroke="hsl(var(--muted))"
+          stroke="var(--muted)"
           strokeWidth={d.stroke}
           strokeLinecap="round"
         />

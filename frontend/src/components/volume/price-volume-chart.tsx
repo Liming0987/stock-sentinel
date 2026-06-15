@@ -41,22 +41,22 @@ function CustomTooltip({ active, label, payload }: CustomTooltipProps) {
   return (
     <div
       style={{
-        backgroundColor: "hsl(var(--card))",
-        border: "1px solid hsl(var(--border))",
+        backgroundColor: "var(--card)",
+        border: "1px solid var(--border)",
         borderRadius: 8,
         fontSize: 12,
         padding: "8px 12px",
       }}
     >
-      <p style={{ color: "hsl(var(--foreground))", fontWeight: 600 }}>{label}</p>
+      <p style={{ color: "var(--foreground)", fontWeight: 600 }}>{label}</p>
       <p style={{ color: "#60a5fa" }}>Close: ${p.close?.toFixed(2)}</p>
-      <p style={{ color: "hsl(var(--muted-foreground))" }}>
+      <p style={{ color: "var(--muted-foreground)" }}>
         Volume: {p.volume != null ? (p.volume / 1_000_000).toFixed(2) + "M" : "—"}
       </p>
-      <p style={{ color: "hsl(var(--muted-foreground))" }}>
+      <p style={{ color: "var(--muted-foreground)" }}>
         Vol Ratio: {p.vol_ratio?.toFixed(2) ?? "—"}x
       </p>
-      <p style={{ color: "hsl(var(--muted-foreground))" }}>{p.interpretation}</p>
+      <p style={{ color: "var(--muted-foreground)" }}>{p.interpretation}</p>
     </div>
   );
 }
@@ -95,24 +95,24 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
         <div className="h-72">
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart data={data} margin={{ top: 5, right: 10, left: -10, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis
                 dataKey="date"
-                tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
                 tickFormatter={(v: string) => v.slice(5)}
                 interval="preserveStartEnd"
               />
               <YAxis
                 yAxisId="price"
                 orientation="left"
-                tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
                 tickFormatter={(v: number) => `$${v.toFixed(0)}`}
                 domain={["auto", "auto"]}
               />
               <YAxis
                 yAxisId="volume"
                 orientation="right"
-                tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                tick={{ fontSize: 11, fill: "var(--muted-foreground)" }}
                 tickFormatter={(v: number) =>
                   v >= 1_000_000 ? `${(v / 1_000_000).toFixed(1)}M` : `${(v / 1_000).toFixed(0)}K`
                 }
