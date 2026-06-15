@@ -215,19 +215,23 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
     alpaca_symbols = {p.symbol for p in alpaca_positions}
     now = datetime.now(timezone.utc)
 
-    # ── Load all open DB trades ───────────────────────────────────────────────
+    # ── Load all open DB trades (for orphan detection) ───────────────────────
     open_result = await db.execute(select(Trade).where(Trade.status == "open"))
     open_trades_list = open_result.scalars().all()
 
-    # Both columns are idempotency keys — a trade is "already tracked" if
-    # either its Alpaca order ID or client order ID is in the DB.
+    # Idempotency keys must span ALL trades (open + closed), not just open.
+    # A buy order whose position was already closed would otherwise pass the
+    # dedup check and be re-imported as a ghost "open" trade.
+    all_ids_result = await db.execute(
+        select(Trade.alpaca_order_id, Trade.alpaca_client_order_id)
+    )
     tracked_order_ids: set = set()
     tracked_client_ids: set = set()
-    for t in open_trades_list:
-        if t.alpaca_order_id:
-            tracked_order_ids.add(t.alpaca_order_id)
-        if t.alpaca_client_order_id:
-            tracked_client_ids.add(t.alpaca_client_order_id)
+    for order_id, client_id in all_ids_result.all():
+        if order_id:
+            tracked_order_ids.add(order_id)
+        if client_id:
+            tracked_client_ids.add(client_id)
 
     # ── Pass 1: Close orphaned DB trades ─────────────────────────────────────
     orphan_trades = [t for t in open_trades_list if t.ticker not in alpaca_symbols]
@@ -307,6 +311,13 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
             continue
 
         symbol = order.symbol
+
+        # Skip orders for positions no longer open in Alpaca — the position
+        # was bought and already closed. Importing these as "open" would
+        # create ghost trades with no corresponding Alpaca position.
+        if symbol not in alpaca_symbols:
+            skipped.append({"order_id": order_id, "symbol": symbol, "reason": "position already closed in Alpaca"})
+            continue
         filled_qty = float(order.filled_qty or order.qty or 0)
         fill_price = float(order.filled_avg_price or 0)
         filled_at = order.filled_at  # actual fill timestamp — preserved per order
