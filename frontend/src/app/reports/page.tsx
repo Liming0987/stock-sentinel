@@ -17,6 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/layout/page-header";
 
 function pnlColor(val: number | null | undefined): string {
   if (val == null) return "text-muted-foreground";
@@ -49,12 +50,12 @@ export default function ReportsPage() {
   const loading = reportsLoading || latestLoading;
 
   return (
-    <div className="flex flex-col gap-6 p-6">
-      {/* Page header */}
-      <div className="flex items-center gap-3">
-        <BarChart3 className="h-7 w-7 text-primary" />
-        <h1 className="text-2xl font-bold">Daily Performance Reports</h1>
-      </div>
+    <div className="mx-auto max-w-[1180px] space-y-[18px]">
+      <PageHeader
+        kicker="Research"
+        title="Daily Reports"
+        description="Generated automatically after market close. Each report sums the paper account's trades, win rate and signals for the day."
+      />
 
       {/* Stats row */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">

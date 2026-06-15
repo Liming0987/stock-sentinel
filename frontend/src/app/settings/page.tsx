@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Bell, Phone, CheckCircle, Send, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { PageHeader } from "@/components/layout/page-header";
 
 const API = process.env.NEXT_PUBLIC_API_URL || "";
 
@@ -91,13 +92,12 @@ export default function SettingsPage() {
     setForm((f) => ({ ...f, [key]: val }));
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Settings</h1>
-        <p className="text-sm text-muted-foreground">
-          Configure notifications and API connections
-        </p>
-      </div>
+    <div className="mx-auto max-w-[760px] space-y-[18px]">
+      <PageHeader
+        kicker="Grow"
+        title="Settings"
+        description="Get a text the moment something worth watching happens — so you can learn from each signal as it fires."
+      />
 
       <div className="grid gap-6 max-w-2xl">
         {/* Phone number */}

@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { api } from "@/lib/api";
+import { PageHeader } from "@/components/layout/page-header";
 
 // ── Types ──────────────────────────────────────────────────────────────────
 interface StrategyMeta { name: string; description: string }
@@ -149,17 +150,12 @@ export default function BacktestPage() {
   const usd = (v: number) => `${v >= 0 ? "+" : ""}$${Math.abs(v).toFixed(2)}`;
 
   return (
-    <div className="space-y-6">
-      {/* Page header */}
-      <div>
-        <h1 className="text-2xl font-bold flex items-center gap-2">
-          <FlaskConical className="h-6 w-6 text-primary" />
-          Backtest
-        </h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Replay a strategy against historical price data — no live orders, no Alpaca.
-        </p>
-      </div>
+    <div className="mx-auto max-w-[1180px] space-y-[18px]">
+      <PageHeader
+        kicker="Research"
+        title="Backtest"
+        description="Replay any strategy against historical prices to see how it would have performed — no live orders, just the lesson."
+      />
 
       {/* ── Configuration card ─────────────────────────────────────────── */}
       <Card>

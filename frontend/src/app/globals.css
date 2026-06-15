@@ -4,54 +4,76 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71% 4%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
-    --primary: 220 70% 50%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 9% 46%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
-    --accent: 220 14% 96%;
-    --accent-foreground: 224 71% 4%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 220 70% 50%;
-    --radius: 0.5rem;
-    --bullish: 142 71% 45%;
-    --bearish: 0 84% 60%;
-    --neutral-sentiment: 220 9% 46%;
+    /* ── Light theme (Sentinel editorial system) ── */
+    --background: oklch(0.985 0.005 120);
+    --foreground: oklch(0.22 0.012 155);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.22 0.012 155);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.22 0.012 155);
+    --primary: oklch(0.60 0.15 132);
+    --primary-foreground: oklch(0.99 0.01 130);
+    --secondary: oklch(0.975 0.006 130);
+    --secondary-foreground: oklch(0.22 0.012 155);
+    --muted: oklch(0.975 0.006 130);
+    --muted-foreground: oklch(0.46 0.012 155);
+    --accent: oklch(0.975 0.006 130);
+    --accent-foreground: oklch(0.22 0.012 155);
+    --destructive: oklch(0.55 0.20 27);
+    --destructive-foreground: oklch(0.99 0.005 100);
+    --border: oklch(0.91 0.006 140);
+    --input: oklch(0.91 0.006 140);
+    --ring: oklch(0.60 0.15 132);
+    --radius: 1rem;
+
+    /* Semantic aliases used by trading components */
+    --bullish: oklch(0.55 0.15 150);
+    --bearish: oklch(0.55 0.20 27);
+    --neutral-sentiment: oklch(0.46 0.012 155);
+
+    /* Sentinel design tokens */
+    --sentinel-sidebar: oklch(0.972 0.006 130);
+    --sentinel-surface-2: oklch(0.975 0.006 130);
+    --sentinel-faint: oklch(0.64 0.01 150);
+    --sentinel-accent-soft: oklch(0.60 0.15 132 / 0.12);
+    --sentinel-accent-ink: oklch(0.99 0.01 130);
+    --sentinel-up: oklch(0.55 0.15 150);
+    --sentinel-down: oklch(0.55 0.20 27);
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 210 20% 98%;
-    --card: 224 50% 8%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 50% 8%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 224 71% 4%;
-    --secondary: 215 28% 17%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 28% 17%;
-    --muted-foreground: 218 11% 65%;
-    --accent: 215 28% 17%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 28% 17%;
-    --input: 215 28% 17%;
-    --ring: 217 91% 60%;
-    --bullish: 142 71% 45%;
-    --bearish: 0 84% 60%;
-    --neutral-sentiment: 218 11% 65%;
+    /* ── Dark theme (Sentinel editorial system) ── */
+    --background: oklch(0.17 0.008 160);
+    --foreground: oklch(0.95 0.006 150);
+    --card: oklch(0.205 0.01 165);
+    --card-foreground: oklch(0.95 0.006 150);
+    --popover: oklch(0.205 0.01 165);
+    --popover-foreground: oklch(0.95 0.006 150);
+    --primary: oklch(0.86 0.19 128);
+    --primary-foreground: oklch(0.20 0.04 150);
+    --secondary: oklch(0.235 0.012 165);
+    --secondary-foreground: oklch(0.95 0.006 150);
+    --muted: oklch(0.235 0.012 165);
+    --muted-foreground: oklch(0.68 0.01 160);
+    --accent: oklch(0.235 0.012 165);
+    --accent-foreground: oklch(0.95 0.006 150);
+    --destructive: oklch(0.70 0.19 25);
+    --destructive-foreground: oklch(0.95 0.006 150);
+    --border: oklch(0.30 0.012 165);
+    --input: oklch(0.30 0.012 165);
+    --ring: oklch(0.86 0.19 128);
+
+    --bullish: oklch(0.83 0.17 148);
+    --bearish: oklch(0.70 0.19 25);
+    --neutral-sentiment: oklch(0.68 0.01 160);
+
+    --sentinel-sidebar: oklch(0.155 0.008 160);
+    --sentinel-surface-2: oklch(0.235 0.012 165);
+    --sentinel-faint: oklch(0.50 0.01 160);
+    --sentinel-accent-soft: oklch(0.86 0.19 128 / 0.14);
+    --sentinel-accent-ink: oklch(0.20 0.04 150);
+    --sentinel-up: oklch(0.83 0.17 148);
+    --sentinel-down: oklch(0.70 0.19 25);
   }
 }
 
@@ -61,11 +83,29 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-hanken), 'Hanken Grotesk', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .font-serif {
+    font-family: var(--font-newsreader), 'Newsreader', Georgia, serif;
+  }
+  .font-mono {
+    font-family: var(--font-jetbrains), 'JetBrains Mono', 'Fira Code', monospace;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
+  .text-bullish { color: var(--bullish); }
+  .text-bearish { color: var(--bearish); }
+  .text-faint { color: var(--sentinel-faint); }
+  .bg-accent-soft { background-color: var(--sentinel-accent-soft); }
 }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb { background: oklch(0.40 0.01 160 / 0.4); border-radius: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+@keyframes sentSpin { to { transform: rotate(360deg); } }

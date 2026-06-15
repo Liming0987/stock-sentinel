@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { PageHeader } from "@/components/layout/page-header";
 import { Clock, CheckCircle2, XCircle, Timer, Signal as SignalIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -63,13 +64,12 @@ export default function SignalsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Signals</h1>
-        <p className="text-sm text-muted-foreground">
-          Buy/hold recommendations from the multi-factor analysis engine
-        </p>
-      </div>
+    <div className="mx-auto max-w-[1180px] space-y-[18px]">
+      <PageHeader
+        kicker="Markets"
+        title="Signals"
+        description="Multi-factor buy points with an entry zone, a stop-loss and a target. Confidence reflects how many factors align — never a guarantee."
+      />
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
         <Card>

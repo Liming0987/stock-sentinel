@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/layout/page-header";
 
 // ---------------------------------------------------------------------------
 // Collapsible Section wrapper
@@ -457,17 +458,12 @@ function Glossary() {
 // ---------------------------------------------------------------------------
 export default function LearnPage() {
   return (
-    <div className="space-y-6">
-      {/* Page header */}
-      <div>
-        <h1 className="text-2xl font-bold flex items-center gap-2">
-          <GraduationCap className="h-6 w-6 text-primary" />
-          Learn to Trade
-        </h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Understand how Stock Sentinel generates signals and how to act on them.
-        </p>
-      </div>
+    <div className="mx-auto max-w-[1180px] space-y-[18px]">
+      <PageHeader
+        kicker="Grow"
+        title="Learn"
+        description="Short, plain-English lessons that explain the metrics you see across Sentinel — one concept at a time."
+      />
 
       {/* Section 1 */}
       <Section title="How to Read a Signal" icon={BookOpen} defaultOpen>

@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import { PageHeader } from "@/components/layout/page-header";
 import {
   Star, ArrowUpRight, ArrowDownRight,
   Trash2, Bell, Plus, Search, ChevronUp, ChevronDown, BarChart3,
@@ -100,15 +101,13 @@ export default function WatchlistPage() {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Page header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Watchlist</h1>
-          <p className="text-sm text-muted-foreground">
-            Track your favorite stocks with sentiment alerts
-          </p>
-        </div>
+    <div className="mx-auto max-w-[1180px] space-y-[18px]">
+      <div className="flex items-end justify-between gap-4">
+        <PageHeader
+          kicker="Markets"
+          title="Watchlist"
+          description="Sentiment blends Reddit, StockTwits & news mentions into a single −1 to +1 mood reading."
+        />
         <Button size="sm" onClick={() => { setAdding(true); setAddError(null); }}>
           <Star className="mr-2 h-4 w-4" />
           Add Ticker

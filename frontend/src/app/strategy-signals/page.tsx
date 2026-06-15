@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useStrategies, useStrategySignals } from "@/lib/hooks";
 import type { StrategySignalItem } from "@/lib/hooks";
 import { api } from "@/lib/api";
+import { PageHeader } from "@/components/layout/page-header";
 
 const ACTION_STYLES = {
   buy: {
@@ -216,12 +217,9 @@ export default function StrategySignalsPage() {
   const resetPage = () => setPage(1);
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-[1180px] space-y-[18px]">
       <div>
-        <h1 className="text-2xl font-bold flex items-center gap-2">
-          <Zap className="h-6 w-6 text-primary" />
-          Signal Log
-        </h1>
+        <PageHeader kicker="Research" title="Signal Log" />
         <div className="flex items-center gap-3 mt-1">
           <span className={
             "h-2 w-2 rounded-full " + (isLive ? "bg-green-500 animate-pulse" : "bg-muted-foreground")

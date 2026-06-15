@@ -3,109 +3,149 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  TrendingUp,
-  Signal,
-  Star,
-  Settings,
-  Activity,
-  Menu,
-  X,
-  BarChart2,
-  BarChart3,
-  FlaskConical,
-  Zap,
-  GraduationCap,
-} from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useWatchlist, useSignals } from "@/lib/hooks";
 
-const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/trending", label: "Trending", icon: TrendingUp },
-  { href: "/signals", label: "Signals", icon: Signal },
-  { href: "/strategies", label: "Strategies", icon: BarChart2 },
-  { href: "/strategy-signals", label: "Signal Log", icon: Zap },
-  { href: "/reports", label: "Reports", icon: BarChart3 },
-  { href: "/backtest", label: "Backtest", icon: FlaskConical },
-  { href: "/watchlist", label: "Watchlist", icon: Star },
-  { href: "/learn", label: "Learn", icon: GraduationCap },
-  { href: "/settings", label: "Settings", icon: Settings },
+const NAV_SECTIONS = [
+  {
+    label: "Overview",
+    items: [{ href: "/", label: "Dashboard" }],
+  },
+  {
+    label: "Markets",
+    items: [
+      { href: "/watchlist", label: "Watchlist", badgeKey: "watchlist" },
+      { href: "/signals", label: "Signals", badgeKey: "signals" },
+      { href: "/trending", label: "Trending" },
+    ],
+  },
+  {
+    label: "Research",
+    items: [
+      { href: "/strategies", label: "Strategies" },
+      { href: "/strategy-signals", label: "Signal Log" },
+      { href: "/backtest", label: "Backtest" },
+      { href: "/reports", label: "Reports" },
+    ],
+  },
+  {
+    label: "Grow",
+    items: [
+      { href: "/learn", label: "Learn" },
+      { href: "/settings", label: "Settings" },
+    ],
+  },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { data: watchlistData } = useWatchlist();
+  const { data: signalsData } = useSignals();
+
+  const badges: Record<string, string> = {
+    watchlist: watchlistData.stocks.length > 0 ? String(watchlistData.stocks.length) : "",
+    signals: signalsData.signals.length > 0 ? String(signalsData.signals.length) : "",
+  };
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   return (
     <>
       {/* Mobile hamburger */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed left-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-md border bg-card lg:hidden"
+        className="fixed left-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-xl border bg-card shadow-sm lg:hidden"
         aria-label="Open menu"
       >
-        <Menu className="h-5 w-5" />
+        <Menu className="h-4 w-4" />
       </button>
 
-      {/* Backdrop */}
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-40 bg-background/70 backdrop-blur-sm lg:hidden"
           onClick={() => setOpen(false)}
         />
       )}
 
-      {/* Sidebar */}
       <aside
+        style={{ background: "var(--sentinel-sidebar)", width: 248 }}
         className={cn(
-          "fixed left-0 top-0 z-50 flex h-screen w-64 flex-col border-r bg-card transition-transform duration-200",
+          "fixed left-0 top-0 z-50 flex h-screen flex-col border-r transition-transform duration-200",
           "lg:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="flex h-16 items-center justify-between border-b px-6">
-          <div className="flex items-center gap-2">
-            <Activity className="h-6 w-6 text-primary" />
-            <span className="text-lg font-bold">Stock Sentinel</span>
+        {/* Logo */}
+        <div className="flex items-center justify-between border-b px-6 py-[26px]">
+          <div className="flex items-center gap-2.5">
+            <span
+              className="h-[11px] w-[11px] rounded-full bg-primary"
+              style={{ boxShadow: "0 0 0 4px var(--sentinel-accent-soft)" }}
+            />
+            <span className="font-serif text-[23px] font-semibold tracking-tight leading-none">
+              Sentinel
+            </span>
           </div>
           <button
             onClick={() => setOpen(false)}
-            className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent lg:hidden"
+            className="flex h-7 w-7 items-center justify-center rounded-lg hover:bg-accent lg:hidden"
             aria-label="Close menu"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
 
-        <nav className="flex-1 space-y-1 px-3 py-4">
-          {navItems.map((item) => {
-            const isActive =
-              pathname === item.href ||
-              (item.href !== "/" && pathname.startsWith(item.href));
+        <p className="px-6 pt-2 pb-0 text-[11.5px] text-muted-foreground tracking-wide">
+          Social-signal market monitor
+        </p>
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
-                  isActive
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-                )}
-              >
-                <item.icon className="h-4 w-4" />
-                {item.label}
-              </Link>
-            );
-          })}
+        {/* Nav */}
+        <nav className="flex-1 overflow-y-auto px-3.5 py-[18px] space-y-5">
+          {NAV_SECTIONS.map((section) => (
+            <div key={section.label}>
+              <p className="mb-1.5 px-2.5 text-[10px] font-semibold uppercase tracking-[0.13em] text-muted-foreground/60">
+                {section.label}
+              </p>
+              <div className="space-y-0.5">
+                {section.items.map((item) => {
+                  const active = isActive(item.href);
+                  const badge = item.badgeKey ? badges[item.badgeKey] : "";
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        "flex items-center gap-2.5 rounded-[9px] px-2.5 py-[9px] text-[13.5px] transition-colors",
+                        active
+                          ? "bg-[var(--sentinel-accent-soft)] text-primary font-semibold"
+                          : "text-muted-foreground font-medium hover:bg-accent hover:text-foreground"
+                      )}
+                    >
+                      <span
+                        className="h-4 w-1 rounded-full flex-shrink-0 transition-colors"
+                        style={{ background: active ? "var(--primary)" : "transparent" }}
+                      />
+                      <span className="flex-1">{item.label}</span>
+                      {badge && (
+                        <span className="font-mono text-[10.5px] font-medium px-1.5 py-0.5 rounded-full bg-[var(--sentinel-accent-soft)] text-primary">
+                          {badge}
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </nav>
 
-        <div className="border-t p-4">
-          <p className="text-xs text-muted-foreground">
-            Not financial advice. For informational purposes only.
+        <div className="border-t px-[22px] py-4">
+          <p className="text-[10.5px] leading-relaxed text-muted-foreground">
+            Educational use only. Not financial advice.
           </p>
         </div>
       </aside>

@@ -6,6 +6,7 @@ import {
   Legend, ResponsiveContainer, ReferenceLine,
 } from "recharts";
 import { DollarSign, Activity, Radio, ChevronDown, ChevronRight, RefreshCw, AlertTriangle } from "lucide-react";
+import { PageHeader } from "@/components/layout/page-header";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { api } from "@/lib/api";
@@ -590,13 +591,12 @@ export default function StrategiesPage() {
   const selectedStrategy = activeTab ?? (strategies[0]?.name ?? null);
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Strategies</h1>
-        <p className="text-sm text-muted-foreground">
-          Live paper-trading results and backtesting comparison
-        </p>
-      </div>
+    <div className="mx-auto max-w-[1180px] space-y-[18px]">
+      <PageHeader
+        kicker="Research"
+        title="Strategies"
+        description="Rule-based strategies trading a paper account. Track which edges are working before risking real capital."
+      />
 
       <AlpacaBar />
 
