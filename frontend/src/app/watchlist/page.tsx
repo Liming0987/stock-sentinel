@@ -41,7 +41,7 @@ function WatchlistCard({
   stock: WatchlistItem;
   onRemove: (ticker: string) => void;
 }) {
-  const { data: priceData } = usePrices(stock.ticker, "1mo", "1d");
+  const { data: priceData } = usePrices(stock.ticker, "1M", "1d");
 
   return (
     <Card className="relative overflow-hidden">
