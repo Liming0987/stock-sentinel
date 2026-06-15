@@ -111,7 +111,7 @@ export default function DashboardPage() {
       {/* Page header */}
       <div className="mb-[30px]">
         <p className="mb-1.5 text-[12.5px] font-semibold uppercase tracking-[0.1em] text-primary">{today}</p>
-        <h1 className="font-serif text-[38px] font-medium leading-[1.05] tracking-[-0.02em]">Good morning, Alex.</h1>
+        <h1 className="font-serif text-[38px] font-medium leading-[1.05] tracking-[-0.02em]">Good morning, Ming.</h1>
         <p className="mt-2.5 max-w-[520px] text-[15px] leading-relaxed text-muted-foreground">
           Here&apos;s what the crowd is talking about and where the signals are pointing today.
         </p>

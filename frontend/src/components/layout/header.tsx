@@ -153,7 +153,7 @@ export function Header() {
         className="flex h-[38px] w-[38px] items-center justify-center rounded-full border font-serif text-[15px] font-semibold text-primary"
         style={{ background: "var(--sentinel-accent-soft)" }}
       >
-        A
+        M
       </div>
     </header>
   );
