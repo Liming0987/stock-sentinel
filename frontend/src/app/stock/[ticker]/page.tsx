@@ -13,7 +13,7 @@ import {
   BarChart,
   Bar,
 } from "recharts";
-import { ArrowUpRight, ArrowDownRight, Star, ExternalLink, MessageSquare } from "lucide-react";
+import { ArrowUpRight, ArrowDownRight, Star, ExternalLink, MessageSquare, StarOff } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -25,7 +25,8 @@ import {
   formatPercent,
   formatNumber,
 } from "@/lib/utils";
-import { useTrendingDetail, usePrices, useSentiment, useSignals, usePosts, useFundamentals } from "@/lib/hooks";
+import { useTrendingDetail, usePrices, useSentiment, useSignals, usePosts, useFundamentals, useWatchlist } from "@/lib/hooks";
+import { api } from "@/lib/api";
 
 function PostCard({ post, sentimentColor }: { post: ReturnType<typeof usePosts>["data"]["posts"][0]; sentimentColor: string }) {
   const [expanded, setExpanded] = useState(false);
@@ -86,6 +87,26 @@ export default function StockDetailPage() {
   const { data: signalsData } = useSignals();
   const { data: postsData } = usePosts(ticker);
   const { data: fundamentals } = useFundamentals(ticker);
+  const { data: watchlistData, refetch: refetchWatchlist } = useWatchlist();
+
+  const [watchlistLoading, setWatchlistLoading] = useState(false);
+  const inWatchlist = watchlistData.stocks.some((s) => s.ticker === ticker);
+
+  const handleWatchlistToggle = async () => {
+    setWatchlistLoading(true);
+    try {
+      if (inWatchlist) {
+        await api.watchlist.remove(ticker);
+      } else {
+        await api.watchlist.add(ticker);
+      }
+      refetchWatchlist();
+    } catch {
+      // silently ignore — the button will revert on next refetch
+    } finally {
+      setWatchlistLoading(false);
+    }
+  };
 
   const signal = signalsData.signals.find((s) => s.ticker === ticker);
   const candles = priceData.candles;
@@ -118,9 +139,16 @@ export default function StockDetailPage() {
           </div>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm">
-            <Star className="mr-1 h-4 w-4 sm:mr-2" />
-            <span className="hidden sm:inline">Watchlist</span>
+          <Button
+            variant={inWatchlist ? "default" : "outline"}
+            size="sm"
+            onClick={handleWatchlistToggle}
+            disabled={watchlistLoading}
+          >
+            {inWatchlist
+              ? <StarOff className="mr-1 h-4 w-4 sm:mr-2" />
+              : <Star className="mr-1 h-4 w-4 sm:mr-2" />}
+            <span className="hidden sm:inline">{inWatchlist ? "Remove" : "Watchlist"}</span>
           </Button>
           <Button variant="outline" size="sm" asChild>
             <a
