@@ -12,9 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SentimentGauge } from "@/components/dashboard/sentiment-gauge";
 import { formatPrice, formatPercent } from "@/lib/utils";
-import { useWatchlist, usePrices } from "@/lib/hooks";
+import { useWatchlist } from "@/lib/hooks";
 import { api } from "@/lib/api";
-import { CandlestickChart } from "@/components/watchlist/candlestick-chart";
 import type { WatchlistItem } from "@/lib/mock-data";
 
 type SortKey = "ticker" | "price" | "change_pct" | "sentiment_score";
@@ -41,8 +40,6 @@ function WatchlistCard({
   stock: WatchlistItem;
   onRemove: (ticker: string) => void;
 }) {
-  const { data: priceData } = usePrices(stock.ticker, "1M", "1d");
-
   return (
     <Card className="relative overflow-hidden">
       {stock.has_active_signal && (
@@ -75,11 +72,6 @@ function WatchlistCard({
             </p>
           </div>
           <SentimentGauge score={stock.sentiment_score} size="sm" />
-        </div>
-
-        {/* Candlestick chart */}
-        <div className="rounded-lg overflow-hidden border bg-background/50">
-          <CandlestickChart candles={priceData.candles} height={88} />
         </div>
 
         {/* Actions */}
