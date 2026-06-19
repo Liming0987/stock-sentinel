@@ -27,6 +27,7 @@ const NAV_SECTIONS = [
       { href: "/strategy-signals", label: "Signal Log" },
       { href: "/backtest", label: "Backtest" },
       { href: "/reports", label: "Reports" },
+      { href: "/youtube-digest", label: "YouTube Digest" },
     ],
   },
   {
