@@ -1,4 +1,4 @@
-"""Recent activity feed: buy signals, trade opens, trade closes."""
+"""Recent activity feed: buy signals, trade opens, trade closes, task errors."""
 from datetime import datetime, timezone, timedelta
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy import select, desc, and_
@@ -8,6 +8,7 @@ from app.models.database import get_db
 from app.models.stock import Stock
 from app.models.signal import Signal
 from app.models.trade import Strategy as StrategyRow, Trade
+from app.models.task_error import TaskError
 
 router = APIRouter()
 
@@ -82,6 +83,23 @@ async def get_notifications(
             "message": f"[{strat_name}] Closed ${trade.ticker} @ ${float(trade.exit_price or 0):.2f} | P&L {sign}${pnl:.2f}",
             "timestamp": trade.closed_at.isoformat(),
             "meta": {"pnl": pnl, "strategy": strat_name},
+        })
+
+    # ── Task errors ────────────────────────────────────────────────────────
+    error_result = await db.execute(
+        select(TaskError)
+        .where(TaskError.created_at >= cutoff)
+        .order_by(desc(TaskError.created_at))
+        .limit(limit)
+    )
+    for err in error_result.scalars().all():
+        notifications.append({
+            "id": f"task-error-{err.id}",
+            "type": "task_error",
+            "ticker": None,
+            "message": f"[{err.task_name}] {err.error_message}",
+            "timestamp": err.created_at.isoformat(),
+            "meta": {"task_name": err.task_name},
         })
 
     notifications.sort(key=lambda n: n["timestamp"], reverse=True)

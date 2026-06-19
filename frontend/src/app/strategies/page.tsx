@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { api } from "@/lib/api";
 import {
   useStrategies, useStrategyTrades, useEquityCurve, useAlpacaAccount,
-  useLivePositions,
+  useLivePositions, useTaskErrors,
 } from "@/lib/hooks";
 import type { LivePosition } from "@/lib/hooks";
 
@@ -359,6 +359,7 @@ export default function StrategiesPage() {
   const { data: curveData } = useEquityCurve();
   const { data: liveData } = useLivePositions();
   const { data: acc } = useAlpacaAccount();
+  const taskErrors = useTaskErrors();
 
   const [openMap, setOpenMap] = useState<Record<string, boolean>>({});
   const [syncing, setSyncing] = useState(false);
@@ -453,6 +454,24 @@ export default function StrategiesPage() {
         title="Strategies"
         description="Rule-based strategies trading a paper account. Track which edges are working before risking real capital."
       />
+
+      {/* Task error banner */}
+      {taskErrors.length > 0 && (
+        <div className="space-y-2">
+          {taskErrors.slice(0, 3).map((e) => (
+            <div key={e.id} className="flex items-start gap-2.5 rounded-lg border border-bearish/30 bg-bearish/5 px-4 py-3 text-sm">
+              <AlertTriangle className="h-4 w-4 text-bearish shrink-0 mt-0.5" />
+              <div className="min-w-0">
+                <span className="font-semibold text-bearish">[{(e.meta.task_name as string) ?? "task"}]</span>
+                <span className="ml-2 text-muted-foreground">{e.message.replace(/^\[.*?\]\s*/, "")}</span>
+                <span className="ml-2 text-[10px] text-muted-foreground">
+                  {new Date(e.timestamp).toLocaleString()}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Account + controls row */}
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card px-4 py-3">

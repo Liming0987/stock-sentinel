@@ -2,13 +2,14 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Moon, Sun, TrendingUp, DollarSign, X } from "lucide-react";
+import { Moon, Sun, TrendingUp, DollarSign, X, AlertTriangle } from "lucide-react";
 import { useNotifications } from "@/lib/hooks";
 import type { AppNotification } from "@/lib/hooks";
 
 function notifIcon(type: AppNotification["type"]) {
   if (type === "signal") return <TrendingUp className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />;
   if (type === "trade_open") return <DollarSign className="h-3.5 w-3.5 text-bullish shrink-0 mt-0.5" />;
+  if (type === "task_error") return <AlertTriangle className="h-3.5 w-3.5 text-bearish shrink-0 mt-0.5" />;
   return <DollarSign className="h-3.5 w-3.5 text-muted-foreground shrink-0 mt-0.5" />;
 }
 
@@ -125,10 +126,19 @@ export function Header() {
                 <p className="px-4 py-6 text-center text-sm text-muted-foreground">No recent activity</p>
               ) : (
                 notifications.map((n) => (
-                  <div key={n.id} className="flex gap-2.5 px-4 py-3 hover:bg-accent/40 transition-colors">
+                  <div
+                    key={n.id}
+                    className={`flex gap-2.5 px-4 py-3 transition-colors ${
+                      n.type === "task_error"
+                        ? "bg-bearish/5 hover:bg-bearish/10 border-l-2 border-bearish"
+                        : "hover:bg-accent/40"
+                    }`}
+                  >
                     {notifIcon(n.type)}
                     <div className="min-w-0">
-                      <p className="text-xs leading-snug">{n.message}</p>
+                      <p className={`text-xs leading-snug ${n.type === "task_error" ? "text-bearish" : ""}`}>
+                        {n.message}
+                      </p>
                       <p className="mt-0.5 text-[10px] text-muted-foreground">{timeAgo(n.timestamp)}</p>
                     </div>
                   </div>

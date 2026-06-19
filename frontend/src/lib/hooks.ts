@@ -426,8 +426,8 @@ export function useFundamentals(ticker: string) {
 
 export interface AppNotification {
   id: string;
-  type: "signal" | "trade_open" | "trade_close";
-  ticker: string;
+  type: "signal" | "trade_open" | "trade_close" | "task_error";
+  ticker: string | null;
   message: string;
   timestamp: string;
   meta: Record<string, unknown>;
@@ -644,4 +644,9 @@ export function useNotifications() {
   };
 
   return { notifications, unreadCount, markAllRead };
+}
+
+export function useTaskErrors() {
+  const { notifications } = useNotifications();
+  return notifications.filter((n) => n.type === "task_error");
 }

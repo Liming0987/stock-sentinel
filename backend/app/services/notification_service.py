@@ -99,6 +99,19 @@ class NotificationService:
         return self.notify(" | ".join(parts), SETTING_TRADE_OPEN)
 
     def notify_error(self, context: str, error: str) -> bool:
+        # Persist to DB so the UI can surface it
+        try:
+            from sqlalchemy import create_engine
+            from sqlalchemy.orm import Session
+            from app.models.task_error import TaskError
+            engine = create_engine(self.db_url)
+            with Session(engine) as s:
+                s.add(TaskError(task_name=context, error_message=error[:2000]))
+                s.commit()
+            engine.dispose()
+        except Exception as e:
+            logger.warning(f"notify_error: could not persist task error to DB: {e}")
+
         msg = f"Stock Sentinel ERROR [{context}]: {error[:200]}"
         return self.notify(msg)
 
