@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock Sentinel — 2026-06-19</title>
+<style>
+/* ── Reset & variables ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #fafafa;
+  --surface:  #ffffff;
+  --border:   #e5e7eb;
+  --text:     #111827;
+  --muted:    #6b7280;
+  --faint:    #9ca3af;
+  --accent:   #2563eb;
+  --bullish:  #16a34a;
+  --bearish:  #dc2626;
+  --neutral:  #6b7280;
+  --mixed:    #d97706;
+  --radius:   8px;
+  --shadow:   0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #0f1117;
+    --surface: #1a1d27;
+    --border:  #2d3142;
+    --text:    #f0f2f5;
+    --muted:   #9ca3af;
+    --faint:   #6b7280;
+    --accent:  #60a5fa;
+    --bullish: #4ade80;
+    --bearish: #f87171;
+    --neutral: #9ca3af;
+    --mixed:   #fbbf24;
+    --shadow:  0 1px 3px rgba(0,0,0,.4);
+  }
+}
+/* ── Base ────────────────────────────────────────────────────────── */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 2rem 1.5rem;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+h3 { font-size: 1rem; font-weight: 600; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin-bottom: 0.75rem; }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.3rem; }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+/* ── Card ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+/* ── Header ──────────────────────────────────────────────────────── */
+.report-header { margin-bottom: 2rem; }
+.report-header .kicker {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
+}
+.report-header h1 { margin-bottom: 0.3rem; }
+.meta-row { display: flex; gap: 1.5rem; flex-wrap: wrap; color: var(--muted); font-size: 0.82rem; margin-top: 0.5rem; }
+.meta-row span strong { color: var(--text); }
+/* ── Sentiment pill ──────────────────────────────────────────────── */
+.pill {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em; border-radius: 99px;
+}
+.pill-bullish  { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-bearish  { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-neutral  { background: color-mix(in srgb, var(--neutral) 15%, transparent); color: var(--neutral); }
+.pill-mixed    { background: color-mix(in srgb, var(--mixed)   15%, transparent); color: var(--mixed);   }
+/* ── Conviction bar ──────────────────────────────────────────────── */
+.conv-bar {
+  display: inline-block; width: 60px; height: 5px;
+  background: var(--border); border-radius: 3px; vertical-align: middle;
+  position: relative; overflow: hidden;
+}
+.conv-bar-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--accent); border-radius: 3px;
+}
+/* ── Ticker label ────────────────────────────────────────────────── */
+.ticker { font-family: "SF Mono", "Fira Code", ui-monospace, monospace; font-size: 0.9em; font-weight: 600; }
+/* ── Consensus table ─────────────────────────────────────────────── */
+.consensus-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.consensus-table thead th {
+  text-align: left; padding: 0.5rem 0.75rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+}
+.consensus-table tbody td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.consensus-table tbody tr:last-child td { border-bottom: none; }
+.consensus-table .thesis-cell { color: var(--muted); font-size: 0.82rem; max-width: 240px; }
+/* ── Section headings ────────────────────────────────────────────── */
+.section-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 0.75rem;
+}
+/* ── Channel cards ───────────────────────────────────────────────── */
+.channel-name { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-bottom: 0.25rem; }
+.video-title a { font-size: 1rem; font-weight: 600; color: var(--text); }
+.video-title a:hover { color: var(--accent); }
+.summary-text { color: var(--muted); font-size: 0.88rem; margin-top: 0.75rem; }
+.stock-chip-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+.stock-chip {
+  font-size: 0.75rem; padding: 0.2em 0.55em; border-radius: 4px;
+  border: 1px solid var(--border); color: var(--muted); background: var(--bg);
+}
+.stock-chip .ticker { color: var(--text); }
+/* ── By-stock blocks ─────────────────────────────────────────────── */
+.stock-block { margin-bottom: 0.75rem; }
+.stock-block-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+.stock-block-header h3 { font-size: 1rem; }
+.mention-item { padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.87rem; }
+.mention-item:last-child { border-bottom: none; }
+.mention-channel { font-weight: 600; color: var(--text); }
+.mention-thesis { color: var(--muted); margin-top: 0.2rem; }
+.mention-points { margin-top: 0.3rem; color: var(--muted); font-size: 0.83rem; }
+/* ── Macro topics ────────────────────────────────────────────────── */
+.macro-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.macro-tag {
+  font-size: 0.8rem; padding: 0.25em 0.7em; border-radius: 4px;
+  background: var(--bg); border: 1px solid var(--border); color: var(--muted);
+}
+/* ── Sources ─────────────────────────────────────────────────────── */
+.source-item { font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+.source-item:last-child { border-bottom: none; }
+.source-channel { font-size: 0.75rem; color: var(--faint); }
+/* ── Disclaimer ──────────────────────────────────────────────────── */
+.disclaimer {
+  font-size: 0.78rem; color: var(--faint); line-height: 1.5;
+  border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 2rem;
+}
+/* ── Nav / TOC ───────────────────────────────────────────────────── */
+.toc { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem; margin-bottom: 2rem; }
+.toc a { color: var(--muted); }
+.toc a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ── Header ──────────────────────────────────────────────────── -->
+<div class="report-header">
+  <div class="kicker">Stock Sentinel</div>
+  <h1>Daily YouTube Digest — 2026-06-19</h1>
+  <div class="meta-row">
+    <span>Generated <strong>2026-06-19 14:57 UTC</strong></span>
+    <span><strong>9</strong> videos</span>
+    <span><strong>13</strong> stocks identified</span>
+    <span><strong>2</strong> consensus picks</span>
+  </div>
+</div>
+
+<!-- ── TOC ──────────────────────────────────────────────────────── -->
+<nav class="toc" aria-label="Jump to section">
+  <a href="#consensus">Consensus</a>
+  <a href="#by-channel">By Channel</a>
+  <a href="#by-stock">By Stock</a>
+  <a href="#macro">Macro Topics</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<!-- ── Consensus picks ──────────────────────────────────────────── -->
+
+<section id="consensus">
+  <div class="section-title">Today's Consensus — 2 stocks mentioned by 2+ creators</div>
+  <div class="card" style="padding: 0; overflow: hidden;">
+    <table class="consensus-table">
+      <thead>
+        <tr>
+          <th>Stock</th>
+          <th>Sentiment</th>
+          <th>Conviction</th>
+          <th>Channels</th>
+          <th>Top thesis</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>
+            <a href="#stock-NVDA">
+              <span class="ticker">NVDA</span>
+              
+                <span style="color:var(--muted);font-size:0.8rem;margin-left:0.3rem">NVIDIA Corp</span>
+              
+            </a>
+          </td>
+          <td>
+            <span class="pill pill-bullish">bullish</span>
+          </td>
+          <td>
+            <span class="conv-bar" title="79%">
+              <span class="conv-bar-fill" style="width:79%"></span>
+            </span>
+            <span style="font-size:0.78rem;color:var(--muted);margin-left:0.3rem">79%</span>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted)">2</td>
+          <td class="thesis-cell">Data center revenue acceleration driven by sustained hyperscaler demand for AI inference infrastructure; fair value around $175.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <a href="#stock-AAPL">
+              <span class="ticker">AAPL</span>
+              
+                <span style="color:var(--muted);font-size:0.8rem;margin-left:0.3rem">Apple Inc</span>
+              
+            </a>
+          </td>
+          <td>
+            <span class="pill pill-neutral">neutral</span>
+          </td>
+          <td>
+            <span class="conv-bar" title="40%">
+              <span class="conv-bar-fill" style="width:40%"></span>
+            </span>
+            <span style="font-size:0.78rem;color:var(--muted);margin-left:0.3rem">40%</span>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted)">2</td>
+          <td class="thesis-cell">Cautious near-term due to slowing China iPhone sales and uncertain AI feature monetization; holding but not adding.</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</section>
+<hr>
+
+
+<!-- ── By channel ────────────────────────────────────────────────── -->
+<section id="by-channel">
+  <div class="section-title">By Channel — 9 videos analyzed</div>
+  
+  <div class="card">
+    <div class="channel-name">Gareth Soloway — Pro Trader</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=-L24MXKtzCo" target="_blank" rel="noopener noreferrer">
+        Epic Market Manipulation + Gold And Silver Deep Dive With Institutional Analysis
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-19 ·
+      16m
+    </div>
+
+    
+    <div class="summary-text">
+      Gareth Soloway opens with a macro thesis he calls outright market manipulation: the president is actively managing stock market sentiment by timing the release of geopolitical and corporate news to offset down days. He identifies three specific examples — the Iran deal being signed on Wednesday night instead of Friday to counter a hawkish Fed selloff, the Intel-Apple chip supply deal being publicly announced by the government rather than the companies, and subsequent cancellation of Iran negotiations over a holiday weekend when markets are closed.<br><br>His concern is structural: markets can absorb artificially induced rallies in the short term, but building a bubble on managed news flow makes the eventual correction more severe. S&P futures are down roughly half a percent at time of recording despite being closed for the holiday, which Gareth views as a preview of what corrective pressure looks like when the news flow dries up.<br><br>The bulk of the video is a technical commodity analysis. On gold, Gareth sees a near-term downtrend — lower highs and lower lows — and is watching a wedge pattern with support at $4,000 and then $3,900, with a potential flush to the $3,500 level if the lower trend line breaks. He is long-term bullish on gold (citing US debt, Social Security insolvency) but tactically patient for a better entry. Silver is in what he calls a bouncy-ball pattern — progressively smaller bounces from a high — suggesting more downside to $54 and potentially the $40-50 range before he adds significantly. He is short copper via the COPX ETF. Oil he bought near $74 and is targeting a bounce to the low $80s before reassessing. Palladium and platinum are also on his watchlist at specific technical support zones.<br><br>Gareth does not make equity stock picks in this video aside from contextual mentions of Apple and Intel as examples of price-manipulation-enabling news.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-AAPL"
+         class="stock-chip">
+        <span class="ticker">AAPL</span>
+        
+           · Apple Inc
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+      <a href="#stock-INTC"
+         class="stock-chip">
+        <span class="ticker">INTC</span>
+        
+           · Intel Corp
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+      <a href="#stock-COPX"
+         class="stock-chip">
+        <span class="ticker">COPX</span>
+        
+           · Global X Copper Miners ETF
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>The president is actively managing stock market news flow to offset hawkish Fed selloffs — a pattern Gareth finds increasingly transparent and destabilizing</li>
+        
+        <li>Precious metals (gold, silver) are in near-term downtrends despite long-term bull fundamentals driven by US debt levels — patient entry points below current prices are preferred</li>
+        
+        <li>Copper is technically broken and Gareth is short; silver likely sees further downside to the $40-50 range before a meaningful long-term entry</li>
+        
+        <li>Oil bought near $74 targeting a bounce to $80-84 — a tactical trade, not a structural bull call</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=WzwARIs_dPo" target="_blank" rel="noopener noreferrer">
+        RocketLab Reveals New Breakthrough Innovation! | RKLB Stock Deep Dive Part 4
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-18 ·
+      5m
+    </div>
+
+    
+    <div class="summary-text">
+      Part four of Parkev's Rocket Lab deep dive covers three major developments: a new electric propulsion thruster for satellites, aggressive expansion into the European defense and space market, and the largest contract in Rocket Lab's history. Together, these represent a significant acceleration in both product capability and revenue visibility.<br><br>The new electric propulsion system was introduced at a space symposium in April and already has a 200-unit production line running. Rocket Lab is receiving inquiries from external programs needing hundreds of units each — an early signal of commercial demand beyond internal constellation use. This product innovation story is particularly important for long-horizon investors, as it demonstrates R&D capacity translating into market traction.<br><br>On the European front, Rocket Lab established Rocket Lab Europe specifically to capture a projected $110B+ in sovereign space spending across the EU, Germany, and the UK through 2030. Heightened geopolitical tension and reduced US security commitments to Europe are the drivers.<br><br>The contract highlight is a multi-launch deal for Neutron — five dedicated Neutron flights plus three Electron launches, booked at full commercial pricing without discounts. Peter Beck explicitly confirmed that these are priced in line with standard commercial rates, which signals strong organic demand. Neutron's manifest is filling through end of the decade. Additionally, Beck stated that reusability for Neutron is now targeted as early as its second flight, which if achieved would significantly reduce cost-per-launch and expand the addressable market.<br><br>Shares are up 7.7% on the day of the video (January 11th reference in transcript), up 58% in 2026, and up over 300% in the past year, fueled in part by SpaceX IPO investor enthusiasm around the space economy.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-RKLB"
+         class="stock-chip">
+        <span class="ticker">RKLB</span>
+        
+           · Rocket Lab USA Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Rocket Lab is building a diversified space business — launch, propulsion, spacecraft — with growing revenue visibility from multi-year contracts</li>
+        
+        <li>European defense spending acceleration creates a structural growth market that Rocket Lab is positioning for with local presence</li>
+        
+        <li>Early-flight Neutron reusability would be a step-function improvement in unit economics and competitive positioning</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=cFwajsraBww" target="_blank" rel="noopener noreferrer">
+        Finally! Good News for Chargepoint Stock Investors | CHPT Stock Analysis
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-18 ·
+      7m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev discusses a genuine positive catalyst for ChargePoint: rising oil prices since the Iran conflict are pushing consumers toward EVs and plug-in hybrids, resulting in home charger sales doubling in mid-March and again in April, and a 45% increase in charging frequency. Used EV sales rose 12% year-over-year in Q1 2026, and May saw 85,000 EV unit sales — the strongest month since tax credits ended.<br><br>However, Parkev frames this improvement as encouraging but insufficient to change his rating. He maintains a hold on CHPT stock. Even with the surge in EV usage, EVs account for less than 10% of US car sales in 2026 — a figure not meaningfully different from prior years despite years of government subsidies, which have now been rolled back under the Trump administration. His math: 85,000 monthly units annualizes to roughly 1 million, against 15 million total US car sales.<br><br>He contextualizes this against ChargePoint's long-term stock performance — down 99% over five years — and the broader EV sector collapse that saw Fisker and Nikola go bankrupt. ChargePoint's most recent quarterly revenue grew just 4%, far below what the business needs to reach sustainability. The company was over-hyped in 2020-2021 and is still not generating revenue at levels that justify an attractive risk/reward.<br><br>Parkev upgraded ChargePoint from sell to hold in 2025 given the 99% price decline, but that hold rating is not changing. He hopes to be wrong but doesn't see a compelling buy case even at current prices.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-CHPT"
+         class="stock-chip">
+        <span class="ticker">CHPT</span>
+        
+           · ChargePoint Holdings Inc
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Higher oil prices from the Iran conflict are a genuine but modest catalyst for EV adoption and charging demand</li>
+        
+        <li>EV infrastructure and total adoption remain far below the levels needed to support ChargePoint&#39;s valuation even post-crash</li>
+        
+        <li>The broader EV sector saw a speculative excess in 2020-2021 that is still normalizing — multiple bankruptcies occurred</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=fB1Z4cbEISU" target="_blank" rel="noopener noreferrer">
+        4 Undervalued Semiconductor Stocks You Can Buy Now
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-19 ·
+      8m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev argues that despite a broad semiconductor rally in 2026 that has many investors worried about a bubble, four specific names remain attractively priced below their intrinsic values. His central thesis is that strong fundamentals — particularly free cash flow growth and AI-driven demand — justify higher valuations than the market is currently assigning.<br><br>Nvidia leads the list at $209/share, well below his $309 fair value. Parkev forecasts free cash flow scaling from $65B in 2025 to $350B by 2030, powered by locked-in orders and an asset-light model that enables aggressive buybacks. He notes that the $5T market cap may be psychologically discouraging investors, creating the undervaluation.<br><br>Taiwan Semiconductor ($425 vs. $587 fair value) benefits from being the manufacturing backbone for virtually every major chip designer — Nvidia, AMD, Apple, Broadcom, Qualcomm. Near-full capacity utilization combined with demand backlogs gives TSMC pricing power and exceptional margins. He regards it as the highest-quality manufacturer in any industry globally.<br><br>Broadcom ($377 vs. $493 fair value) is presented as a complementary diversifier alongside Nvidia because it helps hyperscalers like Alphabet, Meta, and OpenAI design proprietary accelerator chips. This custom-silicon opportunity expands as customers seek Nvidia alternatives. Parkev personally owns both AVGO and NVDA for this pairing.<br><br>Qualcomm ($216 vs. $274 fair value) rounds out the list. While its smartphone core faces headwinds from higher component costs, Parkev highlights early traction in automotive, PCs, and now data centers — where hyperscaler capex is expected to exceed $750B in 2026 and grow further through 2028.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-NVDA"
+         class="stock-chip">
+        <span class="ticker">NVDA</span>
+        
+           · NVIDIA Corp
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-TSM"
+         class="stock-chip">
+        <span class="ticker">TSM</span>
+        
+           · Taiwan Semiconductor Manufacturing Co
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-AVGO"
+         class="stock-chip">
+        <span class="ticker">AVGO</span>
+        
+           · Broadcom Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-QCOM"
+         class="stock-chip">
+        <span class="ticker">QCOM</span>
+        
+           · Qualcomm Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Semiconductor sector has high-profile bubbles but also genuine bargains — price discovery is uneven</li>
+        
+        <li>AI capex super-cycle ($750B+ in 2026 alone) creates durable revenue visibility for chip suppliers</li>
+        
+        <li>TSMC and Nvidia are foundational picks; Broadcom pairs well with Nvidia as a custom-silicon hedge</li>
+        
+        <li>Qualcomm&#39;s diversification strategy beyond smartphones gives it multiple data-center entry points</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=fixture_abc123" target="_blank" rel="noopener noreferrer">
+        NVDA and AAPL: My Top Picks for Q3 2026
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-19 ·
+      14m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev opens by reviewing the broader market context, noting that the S&P 500 has recovered from its April lows and is now testing all-time highs. He argues that while valuations are stretched, the earnings backdrop remains supportive for select mega-cap tech names.<br><br>The bulk of the video focuses on NVIDIA, which Parkev describes as in a league of its own among AI infrastructure plays. He walks through the company's data center revenue acceleration and argues the market is underestimating the sustained demand from hyperscalers building out inference capacity. His fair value estimate sits around $175, implying meaningful upside from current levels.<br><br>Apple receives roughly five minutes of coverage. Parkev is more cautious here, citing slowing iPhone growth in China and uncertainty around the Apple Intelligence rollout. He holds a small position but would not add aggressively at current prices.<br><br>He closes by reiterating a disciplined position-sizing approach, suggesting no single position exceed 5-10% of a portfolio given the macro uncertainty.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-NVDA"
+         class="stock-chip">
+        <span class="ticker">NVDA</span>
+        
+           · NVIDIA Corporation
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-AAPL"
+         class="stock-chip">
+        <span class="ticker">AAPL</span>
+        
+           · Apple Inc.
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>AI infrastructure spending cycle has further to run, with NVIDIA best-positioned to capture it</li>
+        
+        <li>Apple faces headwinds in China that the market may be underestimating</li>
+        
+        <li>Position sizing discipline is critical in a high-valuation environment</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Stocks with Josh</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=fixture_def456" target="_blank" rel="noopener noreferrer">
+        NVDA Breakout or Bull Trap? + TSLA Update
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-19 ·
+      16m
+    </div>
+
+    
+    <div class="summary-text">
+      Josh leads with a technical analysis of NVIDIA, examining whether the recent move above $140 constitutes a genuine breakout or is a bull trap ahead of a potential pullback. He overlays the 50-day and 200-day moving averages and notes that volume has been declining on recent up-days, which he views as a cautionary signal.<br><br>Despite the technical concern, Josh acknowledges the fundamental story remains compelling. He references Parkev-style fundamental backing but emphasizes that entry timing matters for his shorter-term viewers. He would wait for a confirmed retest of the breakout level before adding.<br><br>The second half covers Tesla. Josh is notably bearish, citing weak Q2 delivery numbers and the growing competitive threat from BYD in China. He walked through a bear case where Tesla's automotive margins compress further through year-end, with the stock potentially retesting the $200 level if Elon Musk continues to be distracted by political activities.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-NVDA"
+         class="stock-chip">
+        <span class="ticker">NVDA</span>
+        
+           · NVIDIA Corporation
+        
+        <span class="pill pill-mixed" style="margin-left:0.25rem">M</span>
+      </a>
+      
+      <a href="#stock-TSLA"
+         class="stock-chip">
+        <span class="ticker">TSLA</span>
+        
+           · Tesla, Inc.
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Technical confirmation matters — even strong fundamental stories require disciplined entry timing</li>
+        
+        <li>Tesla&#39;s China story is deteriorating faster than the street appreciates</li>
+        
+        <li>NVIDIA breakout needs volume confirmation before adding aggressively</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Dividend Data</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=nA4JGV8ipVc" target="_blank" rel="noopener noreferrer">
+        It&#39;s Time to Buy Microsoft Stock
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-18 ·
+      11m
+    </div>
+
+    
+    <div class="summary-text">
+      Zach from Dividend Data makes a strong buy case for Microsoft, arguing that the stock's 19.88% YTD decline and current prices near the March 2026 lows represent the best buying opportunity since fall 2022 — and on some metrics, the most attractive entry point in the past decade. The central argument is that Microsoft is a compounding machine trading at historically cheap valuation levels while its underlying business is growing faster than the market appreciates.<br><br>The video examines Microsoft across multiple valuation frameworks. The forward P/E of 22.55x is in the bottom 10% over the past five years. On a price-to-sales basis (8.8x vs. a 5-year median of 12.1x), the stock is 27% below fair value. Price-to-operating cash flow tells an even stronger story: at 16.5x versus a median of 26x, Microsoft is 36% below fair value — the cheapest in at least five years except for the March 2026 selloff. The one outlier metric is free cash flow multiple (38.6x vs. 41.3x median), only 7% cheap — but Zach explains why: Microsoft's capex has surged from $23B in 2022 to nearly $100B trailing, growing at a 38% CAGR, as the company invests heavily in AI data centers. This depresses free cash flow temporarily while operating cash flow, which grew 30% YoY to $170B, reflects the true earning power.<br><br>On growth, EPS has compounded at 19.84% over 10 years and accelerated in recent years. The company just posted its highest EPS ever. Analysts project 15–25% annual EPS growth through 2030, implying a 2030 EPS of $33.35 and a forward P/E of just 11.4x at today's price. Azure revenue is growing 40% YoY, driven primarily by AI token demand.<br><br>Zach's key structural thesis is that AI will be transformative for Microsoft across Azure, Microsoft 365 Copilot, and enterprise agentic use cases. He views the current selloff as a market mispricing of a business that is investing aggressively and correctly in AI infrastructure, and expects return on invested capital to remain strong. He closes with a direct buy recommendation, while noting this is his opinion and not financial advice.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-MSFT"
+         class="stock-chip">
+        <span class="ticker">MSFT</span>
+        
+           · Microsoft Corp
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Microsoft is trading at a historically cheap valuation while growing faster than at most prior cheap entry points — a rare combination</li>
+        
+        <li>The capex-driven free cash flow suppression is temporary and correctly reflects AI infrastructure investment, not business deterioration</li>
+        
+        <li>Azure&#39;s 40% growth and agentic AI potential represent a multi-year acceleration in Microsoft&#39;s earnings power</li>
+        
+        <li>For dividend growth investors, current yield is near peak historical levels — an additional margin of safety</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=nDzVO_tcRgU" target="_blank" rel="noopener noreferrer">
+        Why Is Everyone Talking About Adobe Stock? | ADBE Stock Deep Dive Part 2
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-19 ·
+      8m
+    </div>
+
+    
+    <div class="summary-text">
+      This is part two of Parkev's deep dive into Adobe, focused specifically on how AI is reshaping the business model. He acknowledges that the surge in traffic Adobe is seeing — up 35% year-over-year — sounds positive on the surface, but highlights an important concern: that traffic is not converting into paying subscribers, suggesting that the competitive pressure from free AI tools is eroding Adobe's traditional value proposition.<br><br>Adobe's strategic response is to introduce a freemium model, removing paywalls on products like Acrobat and Express to let users experience the services before being asked to pay. Early tests showed enough success to expand the approach more broadly. Monthly active users on creator freemium grew from 50 million to 90 million year-over-year. Parkev frames this as a company still in experimentation mode — it has the cash flow and customer base to iterate, but the outcome is uncertain.<br><br>A core structural argument Parkev raises: current AI competition (LLMs from Google, OpenAI, Anthropic) is largely free today because those companies are burning billions to acquire users. That is not a sustainable equilibrium. When AI providers eventually raise prices to reach profitability, the competitive landscape for Adobe will shift again, potentially in its favor. The current fear of mass exodus from Adobe may be premature.<br><br>Despite these pressures, Adobe is posting 10–12% revenue growth while losing market share, because the total addressable market is growing. AI-first ARR has tripled year-over-year but remains small — just above $500M — versus total ARR above $25B. Parkev says he is not yet convinced the strategy is working and plans to continue the deep dive in subsequent parts.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-ADBE"
+         class="stock-chip">
+        <span class="ticker">ADBE</span>
+        
+           · Adobe Inc
+        
+        <span class="pill pill-mixed" style="margin-left:0.25rem">M</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Adobe is caught in a structural transition — not a broken company but one whose traditional moat is eroding</li>
+        
+        <li>The freemium strategy is early-stage and unproven; patience required before drawing conclusions</li>
+        
+        <li>Free AI competitors are burning cash to gain adoption — when they monetize, Adobe&#39;s competitive position may improve</li>
+        
+        <li>AI-first revenue growth is impressive in rate but still too small to move the needle against overall business headwinds</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=nMzknXnt69g" target="_blank" rel="noopener noreferrer">
+        Celsius is Already Generating Strong Proft Margins | CELH Stock Deep Dive Part 4
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-18 ·
+      6m
+    </div>
+
+    
+    <div class="summary-text">
+      Part four of Parkev's Celsius deep dive focuses on margins and valuation, two areas where he sees compelling evidence for a buying opportunity. Celsius reported adjusted EBITDA of $195M in its most recent quarter — up approximately $125M year-over-year — and EBITDA margin expanded to 24.9%, up 370 basis points. Management expects further margin improvement throughout 2026 as integration costs from the Alani Nu and Rockstar acquisitions fade.<br><br>Parkev examines longer-term margin trajectory, noting that Celsius went from an operating margin of -12.5% in 2016 to 5.6% recently, though the path has been volatile — swinging between -24% and +20%. The more important metric, in his view, is operating cash flow to sales, which turned positive in 2022 and has remained above 14% for four consecutive years. Achieving self-funding cash flow generation removes the need to raise external capital, which is the critical inflection for a growth company.<br><br>On valuation, CELH stock is at approximately $29/share as of June 12, 2026 — down 38% year-to-date. This is below the price at which management repurchased ~700,000 shares ($35.39 average) in the most recently completed quarter. With $236M remaining in a $300M buyback authorization from November 2025, Parkev expects management to accelerate repurchases now that the price is even lower. He notes the forward P/E of 17.8x and forward price-to-operating cash flow are both at multi-year lows, calling this the cheapest entry point going back to at least January 2024. The video ends with a teaser for a valuation-focused part five.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-CELH"
+         class="stock-chip">
+        <span class="ticker">CELH</span>
+        
+           · Celsius Holdings Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Celsius is in an early growth stage with improving cash generation, making management buybacks at these levels a positive signal</li>
+        
+        <li>The 38% YTD price decline has created a valuation that is cheap on all forward multiples — historically unusual for a growth company</li>
+        
+        <li>Acquisition-related cost drag is fading, which should improve margins progressively through the rest of 2026</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+</section>
+<hr>
+
+<!-- ── By stock ──────────────────────────────────────────────────── -->
+
+<section id="by-stock">
+  <div class="section-title">By Stock — 13 mentioned today</div>
+  
+  <div class="card stock-block" id="stock-AAPL">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">AAPL</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Apple Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">2 mentions</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 25%">
+          <span class="conv-bar-fill" style="width:25%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Apple is mentioned only as a party to the Intel chip supply deal news — Gareth&#39;s view is that the timing of this announcement was deliberately manipulated to prop up markets, not that Apple itself is a buy or sell.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Intel-Apple chip supply deal used as market-propping news released directly by the president rather than a corporate press release</li>
+        
+        <li>Same rumor had already circulated twice in the prior six weeks — creator views this as recycled news timed to counter down markets</li>
+        
+        <li>No investment thesis offered on Apple itself</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=-L24MXKtzCo" target="_blank" rel="noopener noreferrer">Epic Market Manipulation + Gold And Silver Deep Dive With Institutional Analysis</a>
+      </div>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 55%">
+          <span class="conv-bar-fill" style="width:55%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Cautious near-term due to slowing China iPhone sales and uncertain AI feature monetization; holding but not adding.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>China iPhone shipments declined year-over-year for the third consecutive quarter</li>
+        
+        <li>Apple Intelligence features have not yet driven measurable upgrade cycle acceleration</li>
+        
+        <li>Services segment remains robust and provides valuation support</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=fixture_abc123" target="_blank" rel="noopener noreferrer">NVDA and AAPL: My Top Picks for Q3 2026</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-ADBE">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">ADBE</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Adobe Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-mixed">mixed</span>
+        <span class="conv-bar" title="Conviction 55%">
+          <span class="conv-bar-fill" style="width:55%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Adobe faces genuine market share pressure from free AI tools but retains massive cash generation, a large existing customer base, and sits in a growing total addressable market — the freemium pivot is an early-stage experiment with unclear outcome.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Website traffic grew 35% YoY but conversion to paid users is weak — a meaningful negative signal</li>
+        
+        <li>Freemium push on Acrobat and Express nearly doubled MAUs from 50M to 90M in one year</li>
+        
+        <li>AI-first ARR exceeded $500M and tripled YoY, but is a tiny fraction of the $25B+ total ARR</li>
+        
+        <li>Revenue still growing 10-12% despite losing market share, because the overall creative market is expanding</li>
+        
+        <li>Free LLM competition (Gemini, ChatGPT, Anthropic) is unsustainably priced — eventual monetization could reduce pressure on Adobe</li>
+        
+        <li>Company has the cash and customer scale to experiment, but management has not yet demonstrated a convincing strategy</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=nDzVO_tcRgU" target="_blank" rel="noopener noreferrer">Why Is Everyone Talking About Adobe Stock? | ADBE Stock Deep Dive Part 2</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-AVGO">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">AVGO</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Broadcom Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 80%">
+          <span class="conv-bar-fill" style="width:80%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $493 (fair value); buy below $400</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Helps hyperscalers build custom accelerator chips as an alternative to Nvidia, providing portfolio diversification for investors who own both names.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>At $377, trading ~23% below calculated fair value of $493</li>
+        
+        <li>Five to six large hyperscaler customers developing proprietary AI chips through Broadcom</li>
+        
+        <li>Alphabet&#39;s TPU program is a key anchor partnership</li>
+        
+        <li>Pairs well with Nvidia as a risk hedge against customer diversification away from NVDA</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=fB1Z4cbEISU" target="_blank" rel="noopener noreferrer">4 Undervalued Semiconductor Stocks You Can Buy Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-CELH">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">CELH</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Celsius Holdings Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 75%">
+          <span class="conv-bar-fill" style="width:75%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Margins are improving, the business turned cash-flow positive in 2022, and the stock is now trading below the price at which management was actively buying back shares — valuation is at multi-year lows with growth still intact.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Most recent quarter adjusted EBITDA of $195M, up ~$125M YoY; EBITDA margin at 24.9% (+370bps YoY)</li>
+        
+        <li>Management expects margins to continue improving as acquisition integration costs decline in H2 2026</li>
+        
+        <li>Stock at ~$29 is below the ~$35.39 average buyback price management paid in the most recent quarter</li>
+        
+        <li>$236M remains in a $300M buyback program — more repurchases expected at the current discount to prior buy price</li>
+        
+        <li>Forward P/E of 17.8x and forward price-to-OCF both at lowest levels since at least early 2024</li>
+        
+        <li>Operating cash flow positive since 2022 and has sustained double-digit OCF/sales ratio for four consecutive years</li>
+        
+        <li>International expansion and energy drink market share gains remain active growth vectors</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=nMzknXnt69g" target="_blank" rel="noopener noreferrer">Celsius is Already Generating Strong Proft Margins | CELH Stock Deep Dive Part 4</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-CHPT">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">CHPT</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · ChargePoint Holdings Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 65%">
+          <span class="conv-bar-fill" style="width:65%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Rising oil prices are providing a real demand tailwind, but revenue growth of only 4% and EVs still below 10% of US market share mean the business is not on a sustainable path yet — hold rating maintained.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Home charger daily sales doubled twice in March and April, driven by higher gas prices from Iran war</li>
+        
+        <li>EV charging frequency up 45% since March 1st among current EV owners</li>
+        
+        <li>Used EV sales rose 12% YoY in Q1 2026; May was strongest EV sales month since tax credits ended</li>
+        
+        <li>EVs still less than 10% of US auto market in 2026 — roughly 1M annualized against 15M total sales</li>
+        
+        <li>Most recent quarter revenue grew only 4% — far below what the business needs to become self-sustaining</li>
+        
+        <li>Stock is down 99% over 5 years; upgraded from sell to hold in 2025 purely on valuation normalization</li>
+        
+        <li>Risk/reward still unattractive even after the collapse — no buy case yet</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=cFwajsraBww" target="_blank" rel="noopener noreferrer">Finally! Good News for Chargepoint Stock Investors | CHPT Stock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-COPX">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">COPX</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Global X Copper Miners ETF</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 70%">
+          <span class="conv-bar-fill" style="width:70%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Copper broke support, retraced, and Gareth expects further downside from the retest — he is actively short COPX via his Smart Money Commodities service.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Broke key support level, bounced in a classic retest pattern, now expected to continue lower</li>
+        
+        <li>Gareth is actively short COPX in his managed service</li>
+        
+        <li>Bearish structure confirmed by failed support retest</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=-L24MXKtzCo" target="_blank" rel="noopener noreferrer">Epic Market Manipulation + Gold And Silver Deep Dive With Institutional Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-INTC">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">INTC</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Intel Corp</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 25%">
+          <span class="conv-bar-fill" style="width:25%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Intel is mentioned only in the context of the Apple chip supply deal being used as a government-timed market signal — no buy or sell thesis is offered on the stock.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Deal news was released by the president, not Intel or Apple — creator views this as unusual and deliberate market management</li>
+        
+        <li>Rumor had been circulating for six weeks and released when market needed a positive catalyst</li>
+        
+        <li>No valuation or fundamental analysis of Intel offered</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=-L24MXKtzCo" target="_blank" rel="noopener noreferrer">Epic Market Manipulation + Gold And Silver Deep Dive With Institutional Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-MSFT">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">MSFT</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Microsoft Corp</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Dividend Data</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 90%">
+          <span class="conv-bar-fill" style="width:90%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Microsoft is compounding EPS at nearly 20% annually, trading at the cheapest forward P/E and price-to-operating-cash-flow in at least five years, and is structurally well-positioned to monetize the AI wave through Azure, Copilot, and enterprise agentic solutions.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Stock down ~20% YTD and over the past year — near March 2026 lows; forward P/E of 22.55x is in the bottom 10% over 5 years</li>
+        
+        <li>Price-to-operating cash flow at 16.5x vs. 5-year median of 26x implies 36% undervaluation on this metric</li>
+        
+        <li>Operating cash flow grew 30% YoY to $170B; free cash flow lags because capex surged to ~$100B (38% CAGR) for AI data centers</li>
+        
+        <li>EPS CAGR of 19.84% over 10 years; highest EPS ever recorded in the latest quarter</li>
+        
+        <li>Analysts project 15–25% annual EPS growth through 2030, implying a 2030 forward P/E of ~11x at today&#39;s price</li>
+        
+        <li>Azure growing 40% YoY driven by AI compute demand; Microsoft is among first to receive latest Nvidia GPU generations</li>
+        
+        <li>Dividend yield near 90th percentile over the past 5 years — historically attractive for income-focused buyers</li>
+        
+        <li>Return on capital employed at 26.9%; ROIC at 21.6% — strong efficiency metrics despite large capex surge</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=nA4JGV8ipVc" target="_blank" rel="noopener noreferrer">It&#39;s Time to Buy Microsoft Stock</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-NVDA">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">NVDA</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · NVIDIA Corp</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">3 mentions</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 85%">
+          <span class="conv-bar-fill" style="width:85%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $309 (fair value)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Free cash flow forecast to grow from $65B to $350B by 2030 with orders largely locked in; asset-light model funds aggressive buybacks; market cap size is creating psychological undervaluation.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Trading at $209 against a calculated fair value of $309 — roughly 33% discount</li>
+        
+        <li>Forward revenue is largely secured by existing customer commitments</li>
+        
+        <li>Buyback capacity is unusually high given negligible capex requirements</li>
+        
+        <li>Large market cap (~$5T) is deterring some investors, but fundamentals remain very strong</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=fB1Z4cbEISU" target="_blank" rel="noopener noreferrer">4 Undervalued Semiconductor Stocks You Can Buy Now</a>
+      </div>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 88%">
+          <span class="conv-bar-fill" style="width:88%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $175</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Data center revenue acceleration driven by sustained hyperscaler demand for AI inference infrastructure; fair value around $175.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Data center segment revenue grew sharply quarter-over-quarter, beating already high expectations</li>
+        
+        <li>Hyperscalers are shifting from training to inference workloads, which sustains NVIDIA GPU demand longer term</li>
+        
+        <li>Blackwell architecture adoption is accelerating faster than the market anticipated</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=fixture_abc123" target="_blank" rel="noopener noreferrer">NVDA and AAPL: My Top Picks for Q3 2026</a>
+      </div>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Stocks with Josh</span>
+        <span class="pill pill-mixed">mixed</span>
+        <span class="conv-bar" title="Conviction 65%">
+          <span class="conv-bar-fill" style="width:65%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Fundamentals remain strong but technical setup is ambiguous — declining volume on the breakout warrants caution; would wait for retest before adding.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Price broke above $140 resistance but volume did not confirm the move</li>
+        
+        <li>50-day moving average is trending strongly upward, providing support</li>
+        
+        <li>Would look for a retest of $138-140 zone with higher volume before entering</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=fixture_def456" target="_blank" rel="noopener noreferrer">NVDA Breakout or Bull Trap? + TSLA Update</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-QCOM">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">QCOM</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Qualcomm Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 75%">
+          <span class="conv-bar-fill" style="width:75%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $274 (fair value)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Core smartphone business facing headwinds, but successful expansion into automotive and PCs provides a proven template for entering the fast-growing data center market.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Trading at $216 versus a $274 fair value — approximately 21% upside</li>
+        
+        <li>Smartphone segment will face near-term pressure from tariff-driven component cost increases</li>
+        
+        <li>Automotive entry was early and has proven successful — data center expansion follows same playbook</li>
+        
+        <li>Hyperscaler capex expected to exceed $750B in 2026, creating massive addressable market for Qualcomm chips</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=fB1Z4cbEISU" target="_blank" rel="noopener noreferrer">4 Undervalued Semiconductor Stocks You Can Buy Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-RKLB">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">RKLB</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Rocket Lab USA Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 80%">
+          <span class="conv-bar-fill" style="width:80%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">New propulsion product has strong early demand, the largest contract in company history fills Neutron&#39;s manifest at full pricing, and the European sovereign space market represents a large incremental opportunity — all while shares have shown strong momentum.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>New electric propulsion thruster launched in April with 200-unit production line; already receiving multi-hundred-unit inquiries from external customers</li>
+        
+        <li>Rocket Lab Europe created to pursue $110B+ European sovereign space market through 2030</li>
+        
+        <li>Largest contract ever: five dedicated Neutron launches plus three Electron launches through 2029, booked at full commercial pricing without discounts</li>
+        
+        <li>Peter Beck confirmed Neutron pricing is at standard commercial rates — indicating strong organic demand, not desperate backlog filling</li>
+        
+        <li>Reusability targeted for Neutron&#39;s second flight — could substantially lower cost-per-launch and expand addressable market</li>
+        
+        <li>Stock up 58% in 2026 and over 300% over the past year, boosted by space economy enthusiasm around SpaceX IPO</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=WzwARIs_dPo" target="_blank" rel="noopener noreferrer">RocketLab Reveals New Breakthrough Innovation! | RKLB Stock Deep Dive Part 4</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-TSLA">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">TSLA</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Tesla, Inc.</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Stocks with Josh</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 78%">
+          <span class="conv-bar-fill" style="width:78%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $200 downside target</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Weak Q2 deliveries combined with intensifying BYD competition in China puts automotive margins at risk; potential retest of $200 support.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Q2 delivery numbers came in below analyst consensus for the second consecutive quarter</li>
+        
+        <li>BYD is undercutting Tesla on price in the Chinese market, particularly in the mass-market segment</li>
+        
+        <li>CEO attention divided between political activities and running the company</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=fixture_def456" target="_blank" rel="noopener noreferrer">NVDA Breakout or Bull Trap? + TSLA Update</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-TSM">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">TSM</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Taiwan Semiconductor Manufacturing Co</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 85%">
+          <span class="conv-bar-fill" style="width:85%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $587 (fair value); attractive below $450</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Sole-source manufacturer for virtually every leading chip designer; demand backlog and near-full capacity utilization drive premium pricing and high margins.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Current price of ~$425 represents a significant discount to $587 fair value</li>
+        
+        <li>Demand exceeds supply, creating a backlog and enabling premium pricing</li>
+        
+        <li>Management&#39;s historically conservative capacity expansion keeps utilization near 100%</li>
+        
+        <li>Regarded as the world&#39;s best manufacturing business by any measure of profitability</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=fB1Z4cbEISU" target="_blank" rel="noopener noreferrer">4 Undervalued Semiconductor Stocks You Can Buy Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+</section>
+<hr>
+
+
+<!-- ── Macro topics ───────────────────────────────────────────────── -->
+
+<section id="macro">
+  <div class="section-title">Macro themes discussed today</div>
+  <div class="card">
+    <div class="macro-list">
+      
+      <span class="macro-tag">government market manipulation thesis</span>
+      
+      <span class="macro-tag">Federal Reserve hawkishness</span>
+      
+      <span class="macro-tag">Iran nuclear deal negotiations</span>
+      
+      <span class="macro-tag">US dollar volatility</span>
+      
+      <span class="macro-tag">long-term precious metals bull case</span>
+      
+      <span class="macro-tag">US debt and deficits</span>
+      
+      <span class="macro-tag">space economy growth</span>
+      
+      <span class="macro-tag">European defense spending surge</span>
+      
+      <span class="macro-tag">satellite propulsion innovation</span>
+      
+      <span class="macro-tag">reusable launch vehicles</span>
+      
+      <span class="macro-tag">EV adoption rate</span>
+      
+      <span class="macro-tag">oil price impact on EV demand</span>
+      
+      <span class="macro-tag">Iran conflict effect on energy</span>
+      
+      <span class="macro-tag">US EV infrastructure gap</span>
+      
+      <span class="macro-tag">Trump EV policy rollback</span>
+      
+      <span class="macro-tag">semiconductor AI demand</span>
+      
+      <span class="macro-tag">hyperscaler capex cycle</span>
+      
+      <span class="macro-tag">AI chip bubble concerns</span>
+      
+      <span class="macro-tag">data center build-out</span>
+      
+      <span class="macro-tag">EV alternative investments</span>
+      
+      <span class="macro-tag">AI infrastructure spending</span>
+      
+      <span class="macro-tag">Federal Reserve rate path</span>
+      
+      <span class="macro-tag">S&amp;P 500 valuation</span>
+      
+      <span class="macro-tag">China macro risk</span>
+      
+      <span class="macro-tag">Technical analysis</span>
+      
+      <span class="macro-tag">EV sector competition</span>
+      
+      <span class="macro-tag">China automotive market</span>
+      
+      <span class="macro-tag">AI infrastructure investment cycle</span>
+      
+      <span class="macro-tag">enterprise software AI integration</span>
+      
+      <span class="macro-tag">big tech valuation reset</span>
+      
+      <span class="macro-tag">data center capex boom</span>
+      
+      <span class="macro-tag">agentic AI in enterprise</span>
+      
+      <span class="macro-tag">AI disruption to SaaS</span>
+      
+      <span class="macro-tag">freemium model transition</span>
+      
+      <span class="macro-tag">creative software competitive dynamics</span>
+      
+      <span class="macro-tag">LLM monetization trajectory</span>
+      
+      <span class="macro-tag">energy drink market growth</span>
+      
+      <span class="macro-tag">international expansion</span>
+      
+      <span class="macro-tag">consumer staples acquisitions</span>
+      
+      <span class="macro-tag">buyback programs as value signal</span>
+      
+    </div>
+  </div>
+</section>
+<hr>
+
+
+<!-- ── Sources ───────────────────────────────────────────────────── -->
+<section id="sources">
+  <div class="section-title">Sources — 9 videos</div>
+  <div class="card" style="padding:0.5rem 1.5rem;">
+    
+    <div class="source-item">
+      <div class="source-channel">Gareth Soloway — Pro Trader</div>
+      <a href="https://www.youtube.com/watch?v=-L24MXKtzCo" target="_blank" rel="noopener noreferrer">Epic Market Manipulation + Gold And Silver Deep Dive With Institutional Analysis</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=WzwARIs_dPo" target="_blank" rel="noopener noreferrer">RocketLab Reveals New Breakthrough Innovation! | RKLB Stock Deep Dive Part 4</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=cFwajsraBww" target="_blank" rel="noopener noreferrer">Finally! Good News for Chargepoint Stock Investors | CHPT Stock Analysis</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=fB1Z4cbEISU" target="_blank" rel="noopener noreferrer">4 Undervalued Semiconductor Stocks You Can Buy Now</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=fixture_abc123" target="_blank" rel="noopener noreferrer">NVDA and AAPL: My Top Picks for Q3 2026</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Stocks with Josh</div>
+      <a href="https://www.youtube.com/watch?v=fixture_def456" target="_blank" rel="noopener noreferrer">NVDA Breakout or Bull Trap? + TSLA Update</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Dividend Data</div>
+      <a href="https://www.youtube.com/watch?v=nA4JGV8ipVc" target="_blank" rel="noopener noreferrer">It&#39;s Time to Buy Microsoft Stock</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=nDzVO_tcRgU" target="_blank" rel="noopener noreferrer">Why Is Everyone Talking About Adobe Stock? | ADBE Stock Deep Dive Part 2</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=nMzknXnt69g" target="_blank" rel="noopener noreferrer">Celsius is Already Generating Strong Proft Margins | CELH Stock Deep Dive Part 4</a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- ── Disclaimer ────────────────────────────────────────────────── -->
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> This report is generated automatically by Claude (Anthropic) summarizing publicly available YouTube content.
+  All summaries are paraphrased — they are not verbatim quotes from creators.
+  Nothing here constitutes financial advice. Do your own research before making any investment decisions.
+  Stock Sentinel is a personal learning tool, not a financial advisory service.
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>
