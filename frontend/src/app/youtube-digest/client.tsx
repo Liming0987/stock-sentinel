@@ -70,6 +70,11 @@ type Source = {
   url: string;
 };
 
+type MacroTopic = {
+  title: string;
+  description: string;
+};
+
 type ReportData = {
   date: string;
   generated_at: string;
@@ -78,7 +83,7 @@ type ReportData = {
   consensus: ConsensusItem[];
   analyses: Analysis[];
   all_stocks: AllStockEntry[];
-  macro_topics: string[];
+  macro_topics: MacroTopic[];
   sources: Source[];
 };
 
@@ -298,20 +303,27 @@ function MacroTab({ data }: { data: ReportData }) {
     );
   }
   return (
-    <Card>
-      <CardContent className="p-5">
-        <div className="flex flex-wrap gap-2">
-          {data.macro_topics.map((topic, i) => (
-            <span
-              key={i}
-              className="rounded-full border px-3 py-1 text-xs text-muted-foreground bg-card"
-            >
-              {topic}
-            </span>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+    <div className="space-y-3">
+      <p className="text-xs text-muted-foreground">
+        {data.macro_topics.length} themes discussed across today&apos;s videos
+      </p>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {data.macro_topics.map((topic, i) => (
+          <Card key={i}>
+            <CardContent className="p-4 space-y-1.5">
+              <p className="text-sm font-semibold">{topic.title}</p>
+              {topic.description ? (
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {topic.description}
+                </p>
+              ) : (
+                <p className="text-xs text-muted-foreground italic">No description available.</p>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
   );
 }
 

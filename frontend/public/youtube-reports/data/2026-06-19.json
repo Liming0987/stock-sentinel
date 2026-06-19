@@ -1,120 +1,9 @@
 {
   "date": "2026-06-19",
-  "generated_at": "2026-06-19 17:44 UTC",
-  "video_count": 9,
-  "stock_count": 13,
-  "consensus": [
-    {
-      "symbol": "NVDA",
-      "company_name": "NVIDIA Corp",
-      "display": "NVDA",
-      "channel_count": 2,
-      "channels": [
-        "Parkev Tatevosian, CFA",
-        "Stocks with Josh"
-      ],
-      "weighted_score": 1.73,
-      "avg_sentiment_score": 0.577,
-      "overall_sentiment": "bullish",
-      "avg_conviction": 0.79,
-      "top_thesis": "Data center revenue acceleration driven by sustained hyperscaler demand for AI inference infrastructure; fair value around $175.",
-      "mentions": [
-        {
-          "channel": "Parkev Tatevosian, CFA",
-          "sentiment": "bullish",
-          "conviction": 0.85,
-          "thesis": "Free cash flow forecast to grow from $65B to $350B by 2030 with orders largely locked in; asset-light model funds aggressive buybacks; market cap size is creating psychological undervaluation.",
-          "key_points": [
-            "Trading at $209 against a calculated fair value of $309 — roughly 33% discount",
-            "Forward revenue is largely secured by existing customer commitments",
-            "Buyback capacity is unusually high given negligible capex requirements",
-            "Large market cap (~$5T) is deterring some investors, but fundamentals remain very strong"
-          ],
-          "price_target": "$309 (fair value)",
-          "video_id": "fB1Z4cbEISU",
-          "video_title": "4 Undervalued Semiconductor Stocks You Can Buy Now",
-          "video_url": "https://www.youtube.com/watch?v=fB1Z4cbEISU"
-        },
-        {
-          "channel": "Parkev Tatevosian, CFA",
-          "sentiment": "bullish",
-          "conviction": 0.88,
-          "thesis": "Data center revenue acceleration driven by sustained hyperscaler demand for AI inference infrastructure; fair value around $175.",
-          "key_points": [
-            "Data center segment revenue grew sharply quarter-over-quarter, beating already high expectations",
-            "Hyperscalers are shifting from training to inference workloads, which sustains NVIDIA GPU demand longer term",
-            "Blackwell architecture adoption is accelerating faster than the market anticipated"
-          ],
-          "price_target": "$175",
-          "video_id": "fixture_abc123",
-          "video_title": "NVDA and AAPL: My Top Picks for Q3 2026",
-          "video_url": "https://www.youtube.com/watch?v=fixture_abc123"
-        },
-        {
-          "channel": "Stocks with Josh",
-          "sentiment": "mixed",
-          "conviction": 0.65,
-          "thesis": "Fundamentals remain strong but technical setup is ambiguous — declining volume on the breakout warrants caution; would wait for retest before adding.",
-          "key_points": [
-            "Price broke above $140 resistance but volume did not confirm the move",
-            "50-day moving average is trending strongly upward, providing support",
-            "Would look for a retest of $138-140 zone with higher volume before entering"
-          ],
-          "price_target": null,
-          "video_id": "fixture_def456",
-          "video_title": "NVDA Breakout or Bull Trap? + TSLA Update",
-          "video_url": "https://www.youtube.com/watch?v=fixture_def456"
-        }
-      ]
-    },
-    {
-      "symbol": "AAPL",
-      "company_name": "Apple Inc",
-      "display": "AAPL",
-      "channel_count": 2,
-      "channels": [
-        "Gareth Soloway — Pro Trader",
-        "Parkev Tatevosian, CFA"
-      ],
-      "weighted_score": 0.0,
-      "avg_sentiment_score": 0.0,
-      "overall_sentiment": "neutral",
-      "avg_conviction": 0.4,
-      "top_thesis": "Cautious near-term due to slowing China iPhone sales and uncertain AI feature monetization; holding but not adding.",
-      "mentions": [
-        {
-          "channel": "Gareth Soloway — Pro Trader",
-          "sentiment": "neutral",
-          "conviction": 0.25,
-          "thesis": "Apple is mentioned only as a party to the Intel chip supply deal news — Gareth's view is that the timing of this announcement was deliberately manipulated to prop up markets, not that Apple itself is a buy or sell.",
-          "key_points": [
-            "Intel-Apple chip supply deal used as market-propping news released directly by the president rather than a corporate press release",
-            "Same rumor had already circulated twice in the prior six weeks — creator views this as recycled news timed to counter down markets",
-            "No investment thesis offered on Apple itself"
-          ],
-          "price_target": null,
-          "video_id": "-L24MXKtzCo",
-          "video_title": "Epic Market Manipulation + Gold And Silver Deep Dive With Institutional Analysis",
-          "video_url": "https://www.youtube.com/watch?v=-L24MXKtzCo"
-        },
-        {
-          "channel": "Parkev Tatevosian, CFA",
-          "sentiment": "neutral",
-          "conviction": 0.55,
-          "thesis": "Cautious near-term due to slowing China iPhone sales and uncertain AI feature monetization; holding but not adding.",
-          "key_points": [
-            "China iPhone shipments declined year-over-year for the third consecutive quarter",
-            "Apple Intelligence features have not yet driven measurable upgrade cycle acceleration",
-            "Services segment remains robust and provides valuation support"
-          ],
-          "price_target": null,
-          "video_id": "fixture_abc123",
-          "video_title": "NVDA and AAPL: My Top Picks for Q3 2026",
-          "video_url": "https://www.youtube.com/watch?v=fixture_abc123"
-        }
-      ]
-    }
-  ],
+  "generated_at": "2026-06-19 18:27 UTC",
+  "video_count": 7,
+  "stock_count": 12,
+  "consensus": [],
   "analyses": [
     {
       "video_id": "-L24MXKtzCo",
@@ -125,12 +14,30 @@
       "duration_minutes": 15.6,
       "summary": "Gareth Soloway opens with a macro thesis he calls outright market manipulation: the president is actively managing stock market sentiment by timing the release of geopolitical and corporate news to offset down days. He identifies three specific examples — the Iran deal being signed on Wednesday night instead of Friday to counter a hawkish Fed selloff, the Intel-Apple chip supply deal being publicly announced by the government rather than the companies, and subsequent cancellation of Iran negotiations over a holiday weekend when markets are closed.\n\nHis concern is structural: markets can absorb artificially induced rallies in the short term, but building a bubble on managed news flow makes the eventual correction more severe. S&P futures are down roughly half a percent at time of recording despite being closed for the holiday, which Gareth views as a preview of what corrective pressure looks like when the news flow dries up.\n\nThe bulk of the video is a technical commodity analysis. On gold, Gareth sees a near-term downtrend — lower highs and lower lows — and is watching a wedge pattern with support at $4,000 and then $3,900, with a potential flush to the $3,500 level if the lower trend line breaks. He is long-term bullish on gold (citing US debt, Social Security insolvency) but tactically patient for a better entry. Silver is in what he calls a bouncy-ball pattern — progressively smaller bounces from a high — suggesting more downside to $54 and potentially the $40-50 range before he adds significantly. He is short copper via the COPX ETF. Oil he bought near $74 and is targeting a bounce to the low $80s before reassessing. Palladium and platinum are also on his watchlist at specific technical support zones.\n\nGareth does not make equity stock picks in this video aside from contextual mentions of Apple and Intel as examples of price-manipulation-enabling news.",
       "macro_topics": [
-        "government market manipulation thesis",
-        "Federal Reserve hawkishness",
-        "Iran nuclear deal negotiations",
-        "US dollar volatility",
-        "long-term precious metals bull case",
-        "US debt and deficits"
+        {
+          "title": "Government Market Manipulation Thesis",
+          "description": "Gareth Soloway argues that the White House is deliberately timing the release of geopolitical and corporate news to cushion stock market selloffs. Specific examples cited: the Iran nuclear deal was announced Wednesday evening rather than Friday to counter a hawkish Fed selloff; the Intel-Apple chip deal was disclosed by the president rather than by the companies. The concern is that artificial prop-ups create larger eventual corrections than natural market drawdowns."
+        },
+        {
+          "title": "Federal Reserve Hawkishness",
+          "description": "Fed governor Kevin Warsh struck a more hawkish tone than markets expected, triggering a sharp selloff in equities and a surge in bond yields. The market's sensitivity to Fed rhetoric reflects ongoing uncertainty about when and how aggressively the Fed will cut rates. Rate expectations are one of the primary drivers of equity multiples, particularly for growth stocks."
+        },
+        {
+          "title": "Iran Nuclear Deal Negotiations",
+          "description": "Ongoing US-Iran nuclear negotiations have been a source of significant market volatility. Each progress report has triggered oil price drops and equity rallies on hopes of supply normalization; each setback has reversed those moves. The geopolitical uncertainty makes energy prices unusually hard to forecast and is creating noise in market signals that traders must filter carefully."
+        },
+        {
+          "title": "US Dollar Volatility",
+          "description": "The DXY (dollar index) has been experiencing elevated volatility, moving with Fed hawkishness signals and geopolitical risk events. Dollar strength is a headwind for gold and other commodities priced in dollars — a key reason why gold sold off even on days when equity markets rallied. Dollar direction is one of the most watched macro inputs for commodity traders."
+        },
+        {
+          "title": "Long-Term Precious Metals Bull Case",
+          "description": "Despite near-term technical weakness, the structural case for gold and silver remains intact: US government debt is approaching $40 trillion with no credible path to surplus, Social Security faces funding shortfalls, and deficit spending continues to expand. These conditions historically support hard asset values over multi-year time horizons, even when short-term price action is bearish."
+        },
+        {
+          "title": "US Debt and Deficits",
+          "description": "Federal debt has surpassed $40 trillion with annual deficits running at multi-trillion dollar levels. Social Security is projected to face insolvency without structural reform, and neither political party is offering credible spending reduction plans. The long-term fiscal trajectory is the foundational argument for inflation hedges including gold, silver, and real assets."
+        }
       ],
       "stocks": [
         {
@@ -197,10 +104,22 @@
       "duration_minutes": 5.4,
       "summary": "Part four of Parkev's Rocket Lab deep dive covers three major developments: a new electric propulsion thruster for satellites, aggressive expansion into the European defense and space market, and the largest contract in Rocket Lab's history. Together, these represent a significant acceleration in both product capability and revenue visibility.\n\nThe new electric propulsion system was introduced at a space symposium in April and already has a 200-unit production line running. Rocket Lab is receiving inquiries from external programs needing hundreds of units each — an early signal of commercial demand beyond internal constellation use. This product innovation story is particularly important for long-horizon investors, as it demonstrates R&D capacity translating into market traction.\n\nOn the European front, Rocket Lab established Rocket Lab Europe specifically to capture a projected $110B+ in sovereign space spending across the EU, Germany, and the UK through 2030. Heightened geopolitical tension and reduced US security commitments to Europe are the drivers.\n\nThe contract highlight is a multi-launch deal for Neutron — five dedicated Neutron flights plus three Electron launches, booked at full commercial pricing without discounts. Peter Beck explicitly confirmed that these are priced in line with standard commercial rates, which signals strong organic demand. Neutron's manifest is filling through end of the decade. Additionally, Beck stated that reusability for Neutron is now targeted as early as its second flight, which if achieved would significantly reduce cost-per-launch and expand the addressable market.\n\nShares are up 7.7% on the day of the video (January 11th reference in transcript), up 58% in 2026, and up over 300% in the past year, fueled in part by SpaceX IPO investor enthusiasm around the space economy.",
       "macro_topics": [
-        "space economy growth",
-        "European defense spending surge",
-        "satellite propulsion innovation",
-        "reusable launch vehicles"
+        {
+          "title": "Space Economy Growth",
+          "description": "The SpaceX IPO has catalyzed a wave of investor interest in commercial space, lifting valuations and deal flow across the sector. Rocket Lab has risen over 300% in the past year on this enthusiasm, and sovereign governments are accelerating their own space investments in parallel. The space economy is transitioning from a niche defense market to a mainstream commercial infrastructure sector."
+        },
+        {
+          "title": "European Defense Spending Surge",
+          "description": "Reduced US security commitments to Europe and heightened geopolitical tension have triggered a major acceleration in European defense and space investment. The EU, Germany, and UK are collectively projected to spend over $110B on sovereign space capabilities through 2030. This is a structural new market for launch providers like Rocket Lab Europe, which is positioning to capture European government contracts outside the US defense supply chain."
+        },
+        {
+          "title": "Satellite Propulsion Innovation",
+          "description": "A new generation of electric propulsion systems is enabling smaller, more capable satellites at lower cost. Rocket Lab's new thruster has a 200-unit production line already running and is receiving unsolicited inquiries from programs needing hundreds of units each. Innovation at the propulsion layer expands what satellite constellations can do and opens new commercial markets beyond traditional communications."
+        },
+        {
+          "title": "Reusable Launch Vehicles",
+          "description": "SpaceX's Falcon 9 proved that launch vehicle reusability can dramatically reduce cost per kilogram to orbit. Rocket Lab is now targeting reusability for its Neutron rocket as early as its second flight. If achieved, this would compress launch costs enough to unlock new categories of customers and constellations that were not economically viable at current pricing, substantially expanding the total addressable space launch market."
+        }
       ],
       "stocks": [
         {
@@ -241,11 +160,26 @@
       "duration_minutes": 6.8,
       "summary": "Parkev discusses a genuine positive catalyst for ChargePoint: rising oil prices since the Iran conflict are pushing consumers toward EVs and plug-in hybrids, resulting in home charger sales doubling in mid-March and again in April, and a 45% increase in charging frequency. Used EV sales rose 12% year-over-year in Q1 2026, and May saw 85,000 EV unit sales — the strongest month since tax credits ended.\n\nHowever, Parkev frames this improvement as encouraging but insufficient to change his rating. He maintains a hold on CHPT stock. Even with the surge in EV usage, EVs account for less than 10% of US car sales in 2026 — a figure not meaningfully different from prior years despite years of government subsidies, which have now been rolled back under the Trump administration. His math: 85,000 monthly units annualizes to roughly 1 million, against 15 million total US car sales.\n\nHe contextualizes this against ChargePoint's long-term stock performance — down 99% over five years — and the broader EV sector collapse that saw Fisker and Nikola go bankrupt. ChargePoint's most recent quarterly revenue grew just 4%, far below what the business needs to reach sustainability. The company was over-hyped in 2020-2021 and is still not generating revenue at levels that justify an attractive risk/reward.\n\nParkev upgraded ChargePoint from sell to hold in 2025 given the 99% price decline, but that hold rating is not changing. He hopes to be wrong but doesn't see a compelling buy case even at current prices.",
       "macro_topics": [
-        "EV adoption rate",
-        "oil price impact on EV demand",
-        "Iran conflict effect on energy",
-        "US EV infrastructure gap",
-        "Trump EV policy rollback"
+        {
+          "title": "EV Adoption Rate",
+          "description": "Despite years of government subsidies and mandates, electric vehicles still represent less than 10% of US auto sales in 2026. May 2026 saw 85,000 EV units sold — annualizing to roughly 1M against 15M total sales. The Trump administration's rollback of EV tax credits has further slowed momentum, and high oil prices from the Iran conflict are providing the most meaningful tailwind to EV demand seen in years."
+        },
+        {
+          "title": "Oil Price Impact on EV Demand",
+          "description": "Rising fuel costs driven by the Iran conflict are changing consumer calculus on EVs in a way government incentives never fully achieved. ChargePoint reports home charging frequency up 45% since March 1st, and daily charger unit sales doubled in both March and April. Used EV sales rose 12% year-over-year in Q1 2026. The effect is real but modest — EVs remain a small fraction of overall auto sales."
+        },
+        {
+          "title": "Iran Conflict Effect on Energy",
+          "description": "Escalating tensions with Iran have disrupted oil supply expectations, pushing energy prices higher. This is simultaneously a negative for consumer spending and a positive for EV adoption and charging infrastructure. It is also creating significant geopolitical uncertainty that traders are watching closely for its impact on risk assets and the US dollar."
+        },
+        {
+          "title": "US EV Infrastructure Gap",
+          "description": "Beyond the charging network, EV ownership in the US faces systemic friction from immature support ecosystems: dealerships lack EV-trained mechanics, insurance products are poorly priced for EVs, and parts availability is limited. These structural gaps — not just range anxiety — are suppressing mainstream adoption and will require years to close even if charging infrastructure expands rapidly."
+        },
+        {
+          "title": "Trump EV Policy Rollback",
+          "description": "The Trump administration has reversed most Biden-era EV incentives, including the $7,500 consumer tax credit and fleet electrification mandates. This removes a structural demand tailwind that EV companies and charging infrastructure providers had relied on in their growth models, and increases the importance of organic demand drivers like high gas prices."
+        }
       ],
       "stocks": [
         {
@@ -288,11 +222,26 @@
       "duration_minutes": 7.9,
       "summary": "Parkev argues that despite a broad semiconductor rally in 2026 that has many investors worried about a bubble, four specific names remain attractively priced below their intrinsic values. His central thesis is that strong fundamentals — particularly free cash flow growth and AI-driven demand — justify higher valuations than the market is currently assigning.\n\nNvidia leads the list at $209/share, well below his $309 fair value. Parkev forecasts free cash flow scaling from $65B in 2025 to $350B by 2030, powered by locked-in orders and an asset-light model that enables aggressive buybacks. He notes that the $5T market cap may be psychologically discouraging investors, creating the undervaluation.\n\nTaiwan Semiconductor ($425 vs. $587 fair value) benefits from being the manufacturing backbone for virtually every major chip designer — Nvidia, AMD, Apple, Broadcom, Qualcomm. Near-full capacity utilization combined with demand backlogs gives TSMC pricing power and exceptional margins. He regards it as the highest-quality manufacturer in any industry globally.\n\nBroadcom ($377 vs. $493 fair value) is presented as a complementary diversifier alongside Nvidia because it helps hyperscalers like Alphabet, Meta, and OpenAI design proprietary accelerator chips. This custom-silicon opportunity expands as customers seek Nvidia alternatives. Parkev personally owns both AVGO and NVDA for this pairing.\n\nQualcomm ($216 vs. $274 fair value) rounds out the list. While its smartphone core faces headwinds from higher component costs, Parkev highlights early traction in automotive, PCs, and now data centers — where hyperscaler capex is expected to exceed $750B in 2026 and grow further through 2028.",
       "macro_topics": [
-        "semiconductor AI demand",
-        "hyperscaler capex cycle",
-        "AI chip bubble concerns",
-        "data center build-out",
-        "EV alternative investments"
+        {
+          "title": "Semiconductor AI Demand",
+          "description": "AI model training and inference are consuming compute at an unprecedented rate. Hyperscalers are committing over $750B to data center buildout in 2026 alone, creating demand backlogs at manufacturers like TSMC and driving revenue visibility for chip suppliers years into the future. The supply-demand imbalance is enabling premium pricing and near-full capacity utilization across the industry."
+        },
+        {
+          "title": "Hyperscaler Capex Cycle",
+          "description": "Amazon, Microsoft, Alphabet, and Meta are projected to collectively spend over $750B building AI data centers in 2026, a figure expected to accelerate through 2028. This is the primary demand engine for semiconductors, cloud infrastructure, and power equipment. Capital commitments are multi-year, providing unusually durable revenue visibility for suppliers across the stack."
+        },
+        {
+          "title": "AI Chip Bubble Concerns",
+          "description": "Investor enthusiasm has pushed valuations of some semiconductor stocks ahead of near-term earnings capacity, raising bubble concerns. However, bottom-up analysis reveals meaningful pockets of undervaluation even among the largest players — suggesting the bubble risk is concentrated in specific names rather than the sector as a whole. Disciplined stock selection matters more than ever."
+        },
+        {
+          "title": "Data Center Build-Out",
+          "description": "Physical AI infrastructure — server racks, power systems, cooling, and networking — is being deployed at historic scale. The buildout is increasingly constrained by power availability and construction timelines rather than capital or demand. This is creating a multi-year runway for companies in construction, power, and thermal management alongside the obvious chip beneficiaries."
+        },
+        {
+          "title": "EV as Alternative to High Gas Prices",
+          "description": "Rising oil prices from the Iran conflict are making electric vehicles more financially attractive relative to gas-powered alternatives. This demand pull is organic — driven by economics rather than policy incentives — which makes it potentially more durable. The effect is most visible in plug-in hybrid adoption and used EV sales rather than new pure EV purchases."
+        }
       ],
       "stocks": [
         {
@@ -370,113 +319,6 @@
       ]
     },
     {
-      "video_id": "fixture_abc123",
-      "channel_name": "Parkev Tatevosian, CFA",
-      "video_title": "NVDA and AAPL: My Top Picks for Q3 2026",
-      "video_url": "https://www.youtube.com/watch?v=fixture_abc123",
-      "published_at": "2026-06-19T14:00:00Z",
-      "duration_minutes": 14,
-      "summary": "Parkev opens by reviewing the broader market context, noting that the S&P 500 has recovered from its April lows and is now testing all-time highs. He argues that while valuations are stretched, the earnings backdrop remains supportive for select mega-cap tech names.\n\nThe bulk of the video focuses on NVIDIA, which Parkev describes as in a league of its own among AI infrastructure plays. He walks through the company's data center revenue acceleration and argues the market is underestimating the sustained demand from hyperscalers building out inference capacity. His fair value estimate sits around $175, implying meaningful upside from current levels.\n\nApple receives roughly five minutes of coverage. Parkev is more cautious here, citing slowing iPhone growth in China and uncertainty around the Apple Intelligence rollout. He holds a small position but would not add aggressively at current prices.\n\nHe closes by reiterating a disciplined position-sizing approach, suggesting no single position exceed 5-10% of a portfolio given the macro uncertainty.",
-      "macro_topics": [
-        "AI infrastructure spending",
-        "Federal Reserve rate path",
-        "S&P 500 valuation",
-        "China macro risk"
-      ],
-      "stocks": [
-        {
-          "symbol": "NVDA",
-          "company_name": "NVIDIA Corporation",
-          "sentiment": "bullish",
-          "conviction": 0.88,
-          "thesis": "Data center revenue acceleration driven by sustained hyperscaler demand for AI inference infrastructure; fair value around $175.",
-          "price_target": "$175",
-          "key_points": [
-            "Data center segment revenue grew sharply quarter-over-quarter, beating already high expectations",
-            "Hyperscalers are shifting from training to inference workloads, which sustains NVIDIA GPU demand longer term",
-            "Blackwell architecture adoption is accelerating faster than the market anticipated"
-          ],
-          "time_spent_estimate_minutes": 7
-        },
-        {
-          "symbol": "AAPL",
-          "company_name": "Apple Inc.",
-          "sentiment": "neutral",
-          "conviction": 0.55,
-          "thesis": "Cautious near-term due to slowing China iPhone sales and uncertain AI feature monetization; holding but not adding.",
-          "price_target": null,
-          "key_points": [
-            "China iPhone shipments declined year-over-year for the third consecutive quarter",
-            "Apple Intelligence features have not yet driven measurable upgrade cycle acceleration",
-            "Services segment remains robust and provides valuation support"
-          ],
-          "time_spent_estimate_minutes": 5
-        }
-      ],
-      "key_theses": [
-        "AI infrastructure spending cycle has further to run, with NVIDIA best-positioned to capture it",
-        "Apple faces headwinds in China that the market may be underestimating",
-        "Position sizing discipline is critical in a high-valuation environment"
-      ],
-      "warnings_or_risks": [
-        "NVIDIA valuation already prices in significant growth — any miss could trigger a sharp correction",
-        "Geopolitical escalation with China could accelerate hardware restriction expansion"
-      ]
-    },
-    {
-      "video_id": "fixture_def456",
-      "channel_name": "Stocks with Josh",
-      "video_title": "NVDA Breakout or Bull Trap? + TSLA Update",
-      "video_url": "https://www.youtube.com/watch?v=fixture_def456",
-      "published_at": "2026-06-19T12:30:00Z",
-      "duration_minutes": 16,
-      "summary": "Josh leads with a technical analysis of NVIDIA, examining whether the recent move above $140 constitutes a genuine breakout or is a bull trap ahead of a potential pullback. He overlays the 50-day and 200-day moving averages and notes that volume has been declining on recent up-days, which he views as a cautionary signal.\n\nDespite the technical concern, Josh acknowledges the fundamental story remains compelling. He references Parkev-style fundamental backing but emphasizes that entry timing matters for his shorter-term viewers. He would wait for a confirmed retest of the breakout level before adding.\n\nThe second half covers Tesla. Josh is notably bearish, citing weak Q2 delivery numbers and the growing competitive threat from BYD in China. He walked through a bear case where Tesla's automotive margins compress further through year-end, with the stock potentially retesting the $200 level if Elon Musk continues to be distracted by political activities.",
-      "macro_topics": [
-        "Technical analysis",
-        "EV sector competition",
-        "China automotive market"
-      ],
-      "stocks": [
-        {
-          "symbol": "NVDA",
-          "company_name": "NVIDIA Corporation",
-          "sentiment": "mixed",
-          "conviction": 0.65,
-          "thesis": "Fundamentals remain strong but technical setup is ambiguous — declining volume on the breakout warrants caution; would wait for retest before adding.",
-          "price_target": null,
-          "key_points": [
-            "Price broke above $140 resistance but volume did not confirm the move",
-            "50-day moving average is trending strongly upward, providing support",
-            "Would look for a retest of $138-140 zone with higher volume before entering"
-          ],
-          "time_spent_estimate_minutes": 9
-        },
-        {
-          "symbol": "TSLA",
-          "company_name": "Tesla, Inc.",
-          "sentiment": "bearish",
-          "conviction": 0.78,
-          "thesis": "Weak Q2 deliveries combined with intensifying BYD competition in China puts automotive margins at risk; potential retest of $200 support.",
-          "price_target": "$200 downside target",
-          "key_points": [
-            "Q2 delivery numbers came in below analyst consensus for the second consecutive quarter",
-            "BYD is undercutting Tesla on price in the Chinese market, particularly in the mass-market segment",
-            "CEO attention divided between political activities and running the company"
-          ],
-          "time_spent_estimate_minutes": 7
-        }
-      ],
-      "key_theses": [
-        "Technical confirmation matters — even strong fundamental stories require disciplined entry timing",
-        "Tesla's China story is deteriorating faster than the street appreciates",
-        "NVIDIA breakout needs volume confirmation before adding aggressively"
-      ],
-      "warnings_or_risks": [
-        "NVIDIA volume divergence could signal institutional distribution",
-        "Tesla bear case requires $200 level to hold as support"
-      ]
-    },
-    {
       "video_id": "nA4JGV8ipVc",
       "channel_name": "Dividend Data",
       "video_title": "It's Time to Buy Microsoft Stock",
@@ -485,11 +327,26 @@
       "duration_minutes": 11.4,
       "summary": "Zach from Dividend Data makes a strong buy case for Microsoft, arguing that the stock's 19.88% YTD decline and current prices near the March 2026 lows represent the best buying opportunity since fall 2022 — and on some metrics, the most attractive entry point in the past decade. The central argument is that Microsoft is a compounding machine trading at historically cheap valuation levels while its underlying business is growing faster than the market appreciates.\n\nThe video examines Microsoft across multiple valuation frameworks. The forward P/E of 22.55x is in the bottom 10% over the past five years. On a price-to-sales basis (8.8x vs. a 5-year median of 12.1x), the stock is 27% below fair value. Price-to-operating cash flow tells an even stronger story: at 16.5x versus a median of 26x, Microsoft is 36% below fair value — the cheapest in at least five years except for the March 2026 selloff. The one outlier metric is free cash flow multiple (38.6x vs. 41.3x median), only 7% cheap — but Zach explains why: Microsoft's capex has surged from $23B in 2022 to nearly $100B trailing, growing at a 38% CAGR, as the company invests heavily in AI data centers. This depresses free cash flow temporarily while operating cash flow, which grew 30% YoY to $170B, reflects the true earning power.\n\nOn growth, EPS has compounded at 19.84% over 10 years and accelerated in recent years. The company just posted its highest EPS ever. Analysts project 15–25% annual EPS growth through 2030, implying a 2030 EPS of $33.35 and a forward P/E of just 11.4x at today's price. Azure revenue is growing 40% YoY, driven primarily by AI token demand.\n\nZach's key structural thesis is that AI will be transformative for Microsoft across Azure, Microsoft 365 Copilot, and enterprise agentic use cases. He views the current selloff as a market mispricing of a business that is investing aggressively and correctly in AI infrastructure, and expects return on invested capital to remain strong. He closes with a direct buy recommendation, while noting this is his opinion and not financial advice.",
       "macro_topics": [
-        "AI infrastructure investment cycle",
-        "enterprise software AI integration",
-        "big tech valuation reset",
-        "data center capex boom",
-        "agentic AI in enterprise"
+        {
+          "title": "AI Infrastructure Investment Cycle",
+          "description": "Microsoft's capex has surged from $23B in 2022 to nearly $100B trailing twelve months, growing at a 38% CAGR. This investment is depressing free cash flow but not operating cash flow, which grew 30% year-over-year to $170B. The bet is that AI data center capacity will generate returns well above Microsoft's cost of capital — a thesis supported by Azure's 40% year-over-year revenue growth but not yet fully reflected in free cash flow metrics."
+        },
+        {
+          "title": "Enterprise Software AI Integration",
+          "description": "Microsoft is embedding AI across its enterprise product suite — M365 Copilot, Power Platform, Dynamics — creating upsell opportunities in its existing customer base. Enterprise AI adoption is accelerating as companies move from pilots to production deployments. Microsoft's distribution advantage (existing relationships with virtually every large enterprise) is a significant moat in the AI race."
+        },
+        {
+          "title": "Big Tech Valuation Reset",
+          "description": "Microsoft is trading at a forward P/E of 22.55x, in the bottom 10% of its 5-year range, despite accelerating earnings growth. The disconnect between operating performance and stock price is attributed to capex concerns and near-term FCF suppression from AI investment. The stock is 36% below its 5-year median price-to-operating-cash-flow multiple — the cheapest it has been on this metric outside of March 2026."
+        },
+        {
+          "title": "Data Center Capex Boom",
+          "description": "Microsoft's capital expenditures are approaching $100B annually as it races to build AI-capable data center capacity globally. The company has a close relationship with Nvidia and is typically among the first to receive and deploy new GPU generations. This first-mover access to compute creates an advantage in Azure performance for AI workloads, which is the fastest-growing segment of cloud spending."
+        },
+        {
+          "title": "Agentic AI in Enterprise",
+          "description": "The next phase of enterprise AI adoption is moving from copilots (AI that assists humans) to agents (AI that completes tasks autonomously). Microsoft is positioned to bring agentic workflows into enterprise settings through its combination of Azure compute, M365 data access, and Copilot Studio tooling. 'Digital employees' that handle repetitive knowledge work represent a potential step-function expansion in the value AI delivers — and the revenue it generates."
+        }
       ],
       "stocks": [
         {
@@ -533,10 +390,22 @@
       "duration_minutes": 8.3,
       "summary": "This is part two of Parkev's deep dive into Adobe, focused specifically on how AI is reshaping the business model. He acknowledges that the surge in traffic Adobe is seeing — up 35% year-over-year — sounds positive on the surface, but highlights an important concern: that traffic is not converting into paying subscribers, suggesting that the competitive pressure from free AI tools is eroding Adobe's traditional value proposition.\n\nAdobe's strategic response is to introduce a freemium model, removing paywalls on products like Acrobat and Express to let users experience the services before being asked to pay. Early tests showed enough success to expand the approach more broadly. Monthly active users on creator freemium grew from 50 million to 90 million year-over-year. Parkev frames this as a company still in experimentation mode — it has the cash flow and customer base to iterate, but the outcome is uncertain.\n\nA core structural argument Parkev raises: current AI competition (LLMs from Google, OpenAI, Anthropic) is largely free today because those companies are burning billions to acquire users. That is not a sustainable equilibrium. When AI providers eventually raise prices to reach profitability, the competitive landscape for Adobe will shift again, potentially in its favor. The current fear of mass exodus from Adobe may be premature.\n\nDespite these pressures, Adobe is posting 10–12% revenue growth while losing market share, because the total addressable market is growing. AI-first ARR has tripled year-over-year but remains small — just above $500M — versus total ARR above $25B. Parkev says he is not yet convinced the strategy is working and plans to continue the deep dive in subsequent parts.",
       "macro_topics": [
-        "AI disruption to SaaS",
-        "freemium model transition",
-        "creative software competitive dynamics",
-        "LLM monetization trajectory"
+        {
+          "title": "AI Disruption to SaaS",
+          "description": "Generative AI tools are commoditizing capabilities that SaaS companies previously charged premium subscription prices for. Adobe is experiencing this directly: website traffic is up 35% year-over-year, but conversion to paid users is falling because free AI alternatives (Gemini, ChatGPT, Midjourney) satisfy many use cases. The key question across SaaS is whether companies can pivot fast enough to make AI a feature rather than a substitute."
+        },
+        {
+          "title": "Freemium Model Transition",
+          "description": "Adobe is removing paywalls on Acrobat and Express to capture users who would otherwise leave for free AI tools, betting that free engagement converts to paid over time. Creator MAUs grew from 50M to 90M year-over-year under this strategy. This transition is playing out across SaaS — companies are sacrificing near-term revenue to defend long-term retention, with uncertain payoff timelines."
+        },
+        {
+          "title": "Creative Software Competitive Dynamics",
+          "description": "The creative tools market is fragmenting rapidly. Adobe faces competition from Canva, Figma, and free AI image/video generators simultaneously. The total market for creative output is growing (AI enables more people to create more content), but Adobe is losing market share within that expanding pie. Its response — freemium plus AI-first product lines — is early-stage and unproven."
+        },
+        {
+          "title": "LLM Monetization Trajectory",
+          "description": "The leading AI companies (OpenAI, Google, Anthropic) are currently pricing their models at or near zero to drive adoption, burning billions in the process. This introductory pricing is disrupting incumbent software businesses. When these companies eventually price for sustainability, competitive dynamics will shift again — potentially reducing pressure on companies like Adobe that are losing customers to 'free' AI. The timing of this repricing is one of the most watched transitions in tech."
+        }
       ],
       "stocks": [
         {
@@ -578,10 +447,22 @@
       "duration_minutes": 5.9,
       "summary": "Part four of Parkev's Celsius deep dive focuses on margins and valuation, two areas where he sees compelling evidence for a buying opportunity. Celsius reported adjusted EBITDA of $195M in its most recent quarter — up approximately $125M year-over-year — and EBITDA margin expanded to 24.9%, up 370 basis points. Management expects further margin improvement throughout 2026 as integration costs from the Alani Nu and Rockstar acquisitions fade.\n\nParkev examines longer-term margin trajectory, noting that Celsius went from an operating margin of -12.5% in 2016 to 5.6% recently, though the path has been volatile — swinging between -24% and +20%. The more important metric, in his view, is operating cash flow to sales, which turned positive in 2022 and has remained above 14% for four consecutive years. Achieving self-funding cash flow generation removes the need to raise external capital, which is the critical inflection for a growth company.\n\nOn valuation, CELH stock is at approximately $29/share as of June 12, 2026 — down 38% year-to-date. This is below the price at which management repurchased ~700,000 shares ($35.39 average) in the most recently completed quarter. With $236M remaining in a $300M buyback authorization from November 2025, Parkev expects management to accelerate repurchases now that the price is even lower. He notes the forward P/E of 17.8x and forward price-to-operating cash flow are both at multi-year lows, calling this the cheapest entry point going back to at least January 2024. The video ends with a teaser for a valuation-focused part five.",
       "macro_topics": [
-        "energy drink market growth",
-        "international expansion",
-        "consumer staples acquisitions",
-        "buyback programs as value signal"
+        {
+          "title": "Energy Drink Market Growth",
+          "description": "The global energy drink market continues to grow, with Celsius capturing share from legacy players through health-positioning and channel expansion. The category is benefiting from the shift away from sugary sodas and the broader premiumization of beverages. Celsius is growing internationally while also integrating acquired brands (Alani Nu, Rockstar) to extend its shelf footprint."
+        },
+        {
+          "title": "International Expansion",
+          "description": "Celsius is in active international expansion, with its core US market maturing and new geographies offering higher growth rates. International markets represent a significant portion of the long-term opportunity for energy drink brands, as health-forward beverages gain acceptance globally. The integration of acquired brands provides additional distribution leverage for international rollout."
+        },
+        {
+          "title": "Consumer Staples Acquisitions",
+          "description": "Celsius completed acquisitions of Alani Nu and Rockstar, adding brand portfolio depth and distribution reach. Integration costs have been depressing margins, but management expects this headwind to fade through the rest of 2026. M&A in consumer staples is frequently used to buy distribution rather than build it organically — the ROI depends on how quickly the acquired brands leverage the buyer's existing relationships."
+        },
+        {
+          "title": "Buyback Programs as Value Signal",
+          "description": "When management repurchases stock at or above current market prices, it signals conviction that the shares are undervalued. Celsius management bought back 700,000 shares at ~$35.39 in the most recent quarter; the stock now trades at $29, below that price. The remaining $236M in authorization suggests further buybacks ahead, which historically is a positive technical signal when fundamentals are intact."
+        }
       ],
       "stocks": [
         {
@@ -632,20 +513,6 @@
             "Intel-Apple chip supply deal used as market-propping news released directly by the president rather than a corporate press release",
             "Same rumor had already circulated twice in the prior six weeks — creator views this as recycled news timed to counter down markets",
             "No investment thesis offered on Apple itself"
-          ],
-          "price_target": null
-        },
-        {
-          "channel": "Parkev Tatevosian, CFA",
-          "video_title": "NVDA and AAPL: My Top Picks for Q3 2026",
-          "video_url": "https://www.youtube.com/watch?v=fixture_abc123",
-          "sentiment": "neutral",
-          "conviction": 0.55,
-          "thesis": "Cautious near-term due to slowing China iPhone sales and uncertain AI feature monetization; holding but not adding.",
-          "key_points": [
-            "China iPhone shipments declined year-over-year for the third consecutive quarter",
-            "Apple Intelligence features have not yet driven measurable upgrade cycle acceleration",
-            "Services segment remains robust and provides valuation support"
           ],
           "price_target": null
         }
@@ -834,34 +701,6 @@
             "Large market cap (~$5T) is deterring some investors, but fundamentals remain very strong"
           ],
           "price_target": "$309 (fair value)"
-        },
-        {
-          "channel": "Parkev Tatevosian, CFA",
-          "video_title": "NVDA and AAPL: My Top Picks for Q3 2026",
-          "video_url": "https://www.youtube.com/watch?v=fixture_abc123",
-          "sentiment": "bullish",
-          "conviction": 0.88,
-          "thesis": "Data center revenue acceleration driven by sustained hyperscaler demand for AI inference infrastructure; fair value around $175.",
-          "key_points": [
-            "Data center segment revenue grew sharply quarter-over-quarter, beating already high expectations",
-            "Hyperscalers are shifting from training to inference workloads, which sustains NVIDIA GPU demand longer term",
-            "Blackwell architecture adoption is accelerating faster than the market anticipated"
-          ],
-          "price_target": "$175"
-        },
-        {
-          "channel": "Stocks with Josh",
-          "video_title": "NVDA Breakout or Bull Trap? + TSLA Update",
-          "video_url": "https://www.youtube.com/watch?v=fixture_def456",
-          "sentiment": "mixed",
-          "conviction": 0.65,
-          "thesis": "Fundamentals remain strong but technical setup is ambiguous — declining volume on the breakout warrants caution; would wait for retest before adding.",
-          "key_points": [
-            "Price broke above $140 resistance but volume did not confirm the move",
-            "50-day moving average is trending strongly upward, providing support",
-            "Would look for a retest of $138-140 zone with higher volume before entering"
-          ],
-          "price_target": null
         }
       ]
     },
@@ -912,27 +751,6 @@
       ]
     },
     {
-      "symbol": "TSLA",
-      "company_name": "Tesla, Inc.",
-      "display": "TSLA",
-      "mentions": [
-        {
-          "channel": "Stocks with Josh",
-          "video_title": "NVDA Breakout or Bull Trap? + TSLA Update",
-          "video_url": "https://www.youtube.com/watch?v=fixture_def456",
-          "sentiment": "bearish",
-          "conviction": 0.78,
-          "thesis": "Weak Q2 deliveries combined with intensifying BYD competition in China puts automotive margins at risk; potential retest of $200 support.",
-          "key_points": [
-            "Q2 delivery numbers came in below analyst consensus for the second consecutive quarter",
-            "BYD is undercutting Tesla on price in the Chinese market, particularly in the mass-market segment",
-            "CEO attention divided between political activities and running the company"
-          ],
-          "price_target": "$200 downside target"
-        }
-      ]
-    },
-    {
       "symbol": "TSM",
       "company_name": "Taiwan Semiconductor Manufacturing Co",
       "display": "TSM",
@@ -956,46 +774,138 @@
     }
   ],
   "macro_topics": [
-    "government market manipulation thesis",
-    "Federal Reserve hawkishness",
-    "Iran nuclear deal negotiations",
-    "US dollar volatility",
-    "long-term precious metals bull case",
-    "US debt and deficits",
-    "space economy growth",
-    "European defense spending surge",
-    "satellite propulsion innovation",
-    "reusable launch vehicles",
-    "EV adoption rate",
-    "oil price impact on EV demand",
-    "Iran conflict effect on energy",
-    "US EV infrastructure gap",
-    "Trump EV policy rollback",
-    "semiconductor AI demand",
-    "hyperscaler capex cycle",
-    "AI chip bubble concerns",
-    "data center build-out",
-    "EV alternative investments",
-    "AI infrastructure spending",
-    "Federal Reserve rate path",
-    "S&P 500 valuation",
-    "China macro risk",
-    "Technical analysis",
-    "EV sector competition",
-    "China automotive market",
-    "AI infrastructure investment cycle",
-    "enterprise software AI integration",
-    "big tech valuation reset",
-    "data center capex boom",
-    "agentic AI in enterprise",
-    "AI disruption to SaaS",
-    "freemium model transition",
-    "creative software competitive dynamics",
-    "LLM monetization trajectory",
-    "energy drink market growth",
-    "international expansion",
-    "consumer staples acquisitions",
-    "buyback programs as value signal"
+    {
+      "title": "Government Market Manipulation Thesis",
+      "description": "Gareth Soloway argues that the White House is deliberately timing the release of geopolitical and corporate news to cushion stock market selloffs. Specific examples cited: the Iran nuclear deal was announced Wednesday evening rather than Friday to counter a hawkish Fed selloff; the Intel-Apple chip deal was disclosed by the president rather than by the companies. The concern is that artificial prop-ups create larger eventual corrections than natural market drawdowns."
+    },
+    {
+      "title": "Federal Reserve Hawkishness",
+      "description": "Fed governor Kevin Warsh struck a more hawkish tone than markets expected, triggering a sharp selloff in equities and a surge in bond yields. The market's sensitivity to Fed rhetoric reflects ongoing uncertainty about when and how aggressively the Fed will cut rates. Rate expectations are one of the primary drivers of equity multiples, particularly for growth stocks."
+    },
+    {
+      "title": "Iran Nuclear Deal Negotiations",
+      "description": "Ongoing US-Iran nuclear negotiations have been a source of significant market volatility. Each progress report has triggered oil price drops and equity rallies on hopes of supply normalization; each setback has reversed those moves. The geopolitical uncertainty makes energy prices unusually hard to forecast and is creating noise in market signals that traders must filter carefully."
+    },
+    {
+      "title": "US Dollar Volatility",
+      "description": "The DXY (dollar index) has been experiencing elevated volatility, moving with Fed hawkishness signals and geopolitical risk events. Dollar strength is a headwind for gold and other commodities priced in dollars — a key reason why gold sold off even on days when equity markets rallied. Dollar direction is one of the most watched macro inputs for commodity traders."
+    },
+    {
+      "title": "Long-Term Precious Metals Bull Case",
+      "description": "Despite near-term technical weakness, the structural case for gold and silver remains intact: US government debt is approaching $40 trillion with no credible path to surplus, Social Security faces funding shortfalls, and deficit spending continues to expand. These conditions historically support hard asset values over multi-year time horizons, even when short-term price action is bearish."
+    },
+    {
+      "title": "US Debt and Deficits",
+      "description": "Federal debt has surpassed $40 trillion with annual deficits running at multi-trillion dollar levels. Social Security is projected to face insolvency without structural reform, and neither political party is offering credible spending reduction plans. The long-term fiscal trajectory is the foundational argument for inflation hedges including gold, silver, and real assets."
+    },
+    {
+      "title": "Space Economy Growth",
+      "description": "The SpaceX IPO has catalyzed a wave of investor interest in commercial space, lifting valuations and deal flow across the sector. Rocket Lab has risen over 300% in the past year on this enthusiasm, and sovereign governments are accelerating their own space investments in parallel. The space economy is transitioning from a niche defense market to a mainstream commercial infrastructure sector."
+    },
+    {
+      "title": "European Defense Spending Surge",
+      "description": "Reduced US security commitments to Europe and heightened geopolitical tension have triggered a major acceleration in European defense and space investment. The EU, Germany, and UK are collectively projected to spend over $110B on sovereign space capabilities through 2030. This is a structural new market for launch providers like Rocket Lab Europe, which is positioning to capture European government contracts outside the US defense supply chain."
+    },
+    {
+      "title": "Satellite Propulsion Innovation",
+      "description": "A new generation of electric propulsion systems is enabling smaller, more capable satellites at lower cost. Rocket Lab's new thruster has a 200-unit production line already running and is receiving unsolicited inquiries from programs needing hundreds of units each. Innovation at the propulsion layer expands what satellite constellations can do and opens new commercial markets beyond traditional communications."
+    },
+    {
+      "title": "Reusable Launch Vehicles",
+      "description": "SpaceX's Falcon 9 proved that launch vehicle reusability can dramatically reduce cost per kilogram to orbit. Rocket Lab is now targeting reusability for its Neutron rocket as early as its second flight. If achieved, this would compress launch costs enough to unlock new categories of customers and constellations that were not economically viable at current pricing, substantially expanding the total addressable space launch market."
+    },
+    {
+      "title": "EV Adoption Rate",
+      "description": "Despite years of government subsidies and mandates, electric vehicles still represent less than 10% of US auto sales in 2026. May 2026 saw 85,000 EV units sold — annualizing to roughly 1M against 15M total sales. The Trump administration's rollback of EV tax credits has further slowed momentum, and high oil prices from the Iran conflict are providing the most meaningful tailwind to EV demand seen in years."
+    },
+    {
+      "title": "Oil Price Impact on EV Demand",
+      "description": "Rising fuel costs driven by the Iran conflict are changing consumer calculus on EVs in a way government incentives never fully achieved. ChargePoint reports home charging frequency up 45% since March 1st, and daily charger unit sales doubled in both March and April. Used EV sales rose 12% year-over-year in Q1 2026. The effect is real but modest — EVs remain a small fraction of overall auto sales."
+    },
+    {
+      "title": "Iran Conflict Effect on Energy",
+      "description": "Escalating tensions with Iran have disrupted oil supply expectations, pushing energy prices higher. This is simultaneously a negative for consumer spending and a positive for EV adoption and charging infrastructure. It is also creating significant geopolitical uncertainty that traders are watching closely for its impact on risk assets and the US dollar."
+    },
+    {
+      "title": "US EV Infrastructure Gap",
+      "description": "Beyond the charging network, EV ownership in the US faces systemic friction from immature support ecosystems: dealerships lack EV-trained mechanics, insurance products are poorly priced for EVs, and parts availability is limited. These structural gaps — not just range anxiety — are suppressing mainstream adoption and will require years to close even if charging infrastructure expands rapidly."
+    },
+    {
+      "title": "Trump EV Policy Rollback",
+      "description": "The Trump administration has reversed most Biden-era EV incentives, including the $7,500 consumer tax credit and fleet electrification mandates. This removes a structural demand tailwind that EV companies and charging infrastructure providers had relied on in their growth models, and increases the importance of organic demand drivers like high gas prices."
+    },
+    {
+      "title": "Semiconductor AI Demand",
+      "description": "AI model training and inference are consuming compute at an unprecedented rate. Hyperscalers are committing over $750B to data center buildout in 2026 alone, creating demand backlogs at manufacturers like TSMC and driving revenue visibility for chip suppliers years into the future. The supply-demand imbalance is enabling premium pricing and near-full capacity utilization across the industry."
+    },
+    {
+      "title": "Hyperscaler Capex Cycle",
+      "description": "Amazon, Microsoft, Alphabet, and Meta are projected to collectively spend over $750B building AI data centers in 2026, a figure expected to accelerate through 2028. This is the primary demand engine for semiconductors, cloud infrastructure, and power equipment. Capital commitments are multi-year, providing unusually durable revenue visibility for suppliers across the stack."
+    },
+    {
+      "title": "AI Chip Bubble Concerns",
+      "description": "Investor enthusiasm has pushed valuations of some semiconductor stocks ahead of near-term earnings capacity, raising bubble concerns. However, bottom-up analysis reveals meaningful pockets of undervaluation even among the largest players — suggesting the bubble risk is concentrated in specific names rather than the sector as a whole. Disciplined stock selection matters more than ever."
+    },
+    {
+      "title": "Data Center Build-Out",
+      "description": "Physical AI infrastructure — server racks, power systems, cooling, and networking — is being deployed at historic scale. The buildout is increasingly constrained by power availability and construction timelines rather than capital or demand. This is creating a multi-year runway for companies in construction, power, and thermal management alongside the obvious chip beneficiaries."
+    },
+    {
+      "title": "EV as Alternative to High Gas Prices",
+      "description": "Rising oil prices from the Iran conflict are making electric vehicles more financially attractive relative to gas-powered alternatives. This demand pull is organic — driven by economics rather than policy incentives — which makes it potentially more durable. The effect is most visible in plug-in hybrid adoption and used EV sales rather than new pure EV purchases."
+    },
+    {
+      "title": "AI Infrastructure Investment Cycle",
+      "description": "Microsoft's capex has surged from $23B in 2022 to nearly $100B trailing twelve months, growing at a 38% CAGR. This investment is depressing free cash flow but not operating cash flow, which grew 30% year-over-year to $170B. The bet is that AI data center capacity will generate returns well above Microsoft's cost of capital — a thesis supported by Azure's 40% year-over-year revenue growth but not yet fully reflected in free cash flow metrics."
+    },
+    {
+      "title": "Enterprise Software AI Integration",
+      "description": "Microsoft is embedding AI across its enterprise product suite — M365 Copilot, Power Platform, Dynamics — creating upsell opportunities in its existing customer base. Enterprise AI adoption is accelerating as companies move from pilots to production deployments. Microsoft's distribution advantage (existing relationships with virtually every large enterprise) is a significant moat in the AI race."
+    },
+    {
+      "title": "Big Tech Valuation Reset",
+      "description": "Microsoft is trading at a forward P/E of 22.55x, in the bottom 10% of its 5-year range, despite accelerating earnings growth. The disconnect between operating performance and stock price is attributed to capex concerns and near-term FCF suppression from AI investment. The stock is 36% below its 5-year median price-to-operating-cash-flow multiple — the cheapest it has been on this metric outside of March 2026."
+    },
+    {
+      "title": "Data Center Capex Boom",
+      "description": "Microsoft's capital expenditures are approaching $100B annually as it races to build AI-capable data center capacity globally. The company has a close relationship with Nvidia and is typically among the first to receive and deploy new GPU generations. This first-mover access to compute creates an advantage in Azure performance for AI workloads, which is the fastest-growing segment of cloud spending."
+    },
+    {
+      "title": "Agentic AI in Enterprise",
+      "description": "The next phase of enterprise AI adoption is moving from copilots (AI that assists humans) to agents (AI that completes tasks autonomously). Microsoft is positioned to bring agentic workflows into enterprise settings through its combination of Azure compute, M365 data access, and Copilot Studio tooling. 'Digital employees' that handle repetitive knowledge work represent a potential step-function expansion in the value AI delivers — and the revenue it generates."
+    },
+    {
+      "title": "AI Disruption to SaaS",
+      "description": "Generative AI tools are commoditizing capabilities that SaaS companies previously charged premium subscription prices for. Adobe is experiencing this directly: website traffic is up 35% year-over-year, but conversion to paid users is falling because free AI alternatives (Gemini, ChatGPT, Midjourney) satisfy many use cases. The key question across SaaS is whether companies can pivot fast enough to make AI a feature rather than a substitute."
+    },
+    {
+      "title": "Freemium Model Transition",
+      "description": "Adobe is removing paywalls on Acrobat and Express to capture users who would otherwise leave for free AI tools, betting that free engagement converts to paid over time. Creator MAUs grew from 50M to 90M year-over-year under this strategy. This transition is playing out across SaaS — companies are sacrificing near-term revenue to defend long-term retention, with uncertain payoff timelines."
+    },
+    {
+      "title": "Creative Software Competitive Dynamics",
+      "description": "The creative tools market is fragmenting rapidly. Adobe faces competition from Canva, Figma, and free AI image/video generators simultaneously. The total market for creative output is growing (AI enables more people to create more content), but Adobe is losing market share within that expanding pie. Its response — freemium plus AI-first product lines — is early-stage and unproven."
+    },
+    {
+      "title": "LLM Monetization Trajectory",
+      "description": "The leading AI companies (OpenAI, Google, Anthropic) are currently pricing their models at or near zero to drive adoption, burning billions in the process. This introductory pricing is disrupting incumbent software businesses. When these companies eventually price for sustainability, competitive dynamics will shift again — potentially reducing pressure on companies like Adobe that are losing customers to 'free' AI. The timing of this repricing is one of the most watched transitions in tech."
+    },
+    {
+      "title": "Energy Drink Market Growth",
+      "description": "The global energy drink market continues to grow, with Celsius capturing share from legacy players through health-positioning and channel expansion. The category is benefiting from the shift away from sugary sodas and the broader premiumization of beverages. Celsius is growing internationally while also integrating acquired brands (Alani Nu, Rockstar) to extend its shelf footprint."
+    },
+    {
+      "title": "International Expansion",
+      "description": "Celsius is in active international expansion, with its core US market maturing and new geographies offering higher growth rates. International markets represent a significant portion of the long-term opportunity for energy drink brands, as health-forward beverages gain acceptance globally. The integration of acquired brands provides additional distribution leverage for international rollout."
+    },
+    {
+      "title": "Consumer Staples Acquisitions",
+      "description": "Celsius completed acquisitions of Alani Nu and Rockstar, adding brand portfolio depth and distribution reach. Integration costs have been depressing margins, but management expects this headwind to fade through the rest of 2026. M&A in consumer staples is frequently used to buy distribution rather than build it organically — the ROI depends on how quickly the acquired brands leverage the buyer's existing relationships."
+    },
+    {
+      "title": "Buyback Programs as Value Signal",
+      "description": "When management repurchases stock at or above current market prices, it signals conviction that the shares are undervalued. Celsius management bought back 700,000 shares at ~$35.39 in the most recent quarter; the stock now trades at $29, below that price. The remaining $236M in authorization suggests further buybacks ahead, which historically is a positive technical signal when fundamentals are intact."
+    }
   ],
   "sources": [
     {
@@ -1017,16 +927,6 @@
       "channel": "Parkev Tatevosian, CFA",
       "title": "4 Undervalued Semiconductor Stocks You Can Buy Now",
       "url": "https://www.youtube.com/watch?v=fB1Z4cbEISU"
-    },
-    {
-      "channel": "Parkev Tatevosian, CFA",
-      "title": "NVDA and AAPL: My Top Picks for Q3 2026",
-      "url": "https://www.youtube.com/watch?v=fixture_abc123"
-    },
-    {
-      "channel": "Stocks with Josh",
-      "title": "NVDA Breakout or Bull Trap? + TSLA Update",
-      "url": "https://www.youtube.com/watch?v=fixture_def456"
     },
     {
       "channel": "Dividend Data",
