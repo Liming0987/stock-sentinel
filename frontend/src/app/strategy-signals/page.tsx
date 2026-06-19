@@ -172,7 +172,7 @@ export default function StrategySignalsPage() {
   const strategies = strategiesData.strategies;
 
   const [selectedStrategy, setSelectedStrategy] = useState<string>("all");
-  const [selectedAction, setSelectedAction] = useState<"all" | "buy" | "sell" | "hold">("all");
+  const [selectedAction, setSelectedAction] = useState<"buy" | "sell" | "hold" | null>(null);
   const [page, setPage] = useState(1);
   const [isLive, setIsLive] = useState(true)
   const [newCount, setNewCount] = useState(0)
@@ -184,7 +184,7 @@ export default function StrategySignalsPage() {
       offset: (page - 1) * PAGE_SIZE,
     };
     if (selectedStrategy !== "all") f.strategy = selectedStrategy;
-    if (selectedAction !== "all") f.action = selectedAction;
+    if (selectedAction !== null) f.action = selectedAction;
     return f;
   }, [selectedStrategy, selectedAction, page]);
 
@@ -280,23 +280,21 @@ export default function StrategySignalsPage() {
 
       {/* Action filter */}
       <div className="flex gap-2">
-        {(["all", "buy", "sell", "hold"] as const).map((a) => (
+        {(["buy", "sell", "hold"] as const).map((a) => (
           <button
             key={a}
-            onClick={() => { setSelectedAction(a); resetPage(); }}
+            onClick={() => { setSelectedAction(selectedAction === a ? null : a); resetPage(); }}
             className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-colors uppercase ${
               selectedAction === a
                 ? a === "buy"
                   ? "bg-green-600 text-white"
                   : a === "sell"
                   ? "bg-red-600 text-white"
-                  : a === "hold"
-                  ? "bg-yellow-500 text-white"
-                  : "bg-primary text-primary-foreground"
+                  : "bg-yellow-500 text-white"
                 : "bg-muted text-muted-foreground hover:bg-accent"
             }`}
           >
-            {a === "all" ? "All Actions" : a}
+            {a}
           </button>
         ))}
       </div>
@@ -306,7 +304,7 @@ export default function StrategySignalsPage() {
         <p className="text-sm text-muted-foreground">
           Showing {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, total)} of {total} signal{total !== 1 ? "s" : ""}
           {selectedStrategy !== "all" && ` for ${selectedStrategy.replace(/_/g, " ")}`}
-          {selectedAction !== "all" && ` · ${selectedAction} only`}
+          {selectedAction !== null && ` · ${selectedAction} only`}
         </p>
       )}
 
