@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useWatchlist, useSignals } from "@/lib/hooks";
+import { useWatchlist } from "@/lib/hooks";
 
 const NAV_SECTIONS = [
   {
@@ -16,7 +16,6 @@ const NAV_SECTIONS = [
     label: "Markets",
     items: [
       { href: "/watchlist", label: "Watchlist", badgeKey: "watchlist" },
-      { href: "/signals", label: "Signals", badgeKey: "signals" },
       { href: "/trending", label: "Trending" },
     ],
   },
@@ -43,11 +42,9 @@ export function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const { data: watchlistData } = useWatchlist();
-  const { data: signalsData } = useSignals();
 
   const badges: Record<string, string> = {
     watchlist: watchlistData.stocks.length > 0 ? String(watchlistData.stocks.length) : "",
-    signals: signalsData.signals.length > 0 ? String(signalsData.signals.length) : "",
   };
 
   const isActive = (href: string) =>

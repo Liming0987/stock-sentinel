@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useTrending, useSignals, useMarketSentiment, useWatchlist } from "@/lib/hooks";
+import { useTrending, useMarketSentiment, useWatchlist } from "@/lib/hooks";
 
 const DAILY_LESSONS = [
   {
@@ -69,11 +69,8 @@ function SentBar({ value }: { value: number }) {
 
 export default function DashboardPage() {
   const { data: trendingData, loading } = useTrending();
-  const { data: signalsData } = useSignals();
   const { data: marketSentiment } = useMarketSentiment();
   const { data: watchlistData } = useWatchlist();
-
-  const signals = signalsData.signals.slice(0, 3);
   const sentHistory = marketSentiment.history;
   const moodValues = sentHistory.map((h) => h.sentiment);
   const currentMood = moodValues.length ? moodValues[moodValues.length - 1] : 0;
@@ -93,7 +90,6 @@ export default function DashboardPage() {
 
   const glance = [
     { label: "Trending now", value: String(trendingData.stocks.length), color: "var(--foreground)" },
-    { label: "Active signals", value: String(signalsData.signals.length), color: "var(--primary)" },
     { label: "Total mentions (24h)", value: fmtMentions, color: "var(--foreground)" },
     { label: "Watchlist avg", value: `${watchlistAvgChg >= 0 ? "+" : ""}${watchlistAvgChg.toFixed(2)}%`, color: watchlistAvgChg >= 0 ? "var(--sentinel-up)" : "var(--sentinel-down)" },
   ];
@@ -113,7 +109,7 @@ export default function DashboardPage() {
         <p className="mb-1.5 text-[12.5px] font-semibold uppercase tracking-[0.1em] text-primary">{today}</p>
         <h1 className="font-serif text-[38px] font-medium leading-[1.05] tracking-[-0.02em]">Good morning, Ming.</h1>
         <p className="mt-2.5 max-w-[520px] text-[15px] leading-relaxed text-muted-foreground">
-          Here&apos;s what the crowd is talking about and where the signals are pointing today.
+          Here&apos;s what the crowd is talking about today.
         </p>
       </div>
 
@@ -221,60 +217,6 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Row 3: Active signals */}
-      <div className="rounded-[16px] border bg-card p-5 pb-6">
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="font-serif text-[21px] font-semibold leading-none">Active signals</h2>
-          <Link href="/signals" className="text-[13px] font-medium text-primary hover:underline">
-            View all →
-          </Link>
-        </div>
-        {signals.length === 0 ? (
-          <p className="text-[13px] text-muted-foreground">No active signals right now.</p>
-        ) : (
-          <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 xl:grid-cols-3">
-            {signals.map((s) => (
-              <div key={s.id} className="rounded-[13px] border p-[16px] bg-card" style={{ background: "var(--muted)" }}>
-                <div className="mb-3 flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <span
-                      className="rounded-[6px] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide"
-                      style={{
-                        background: s.signal_type === "BUY" ? "var(--sentinel-accent-soft)" : "var(--border)",
-                        color: s.signal_type === "BUY" ? "var(--primary)" : "var(--muted-foreground)",
-                      }}
-                    >
-                      {s.signal_type}
-                    </span>
-                    <span className="font-bold text-[15px]">{s.ticker}</span>
-                  </div>
-                  <span className="font-mono text-[12px] text-muted-foreground">
-                    {Math.round(s.confidence * 100)}%
-                  </span>
-                </div>
-                <div className="flex justify-between gap-1.5 font-mono text-[12px]">
-                  <div>
-                    <p className="mb-0.5 text-[10px] font-sans text-muted-foreground/70">Entry</p>
-                    {s.entry_low ? `$${s.entry_low.toFixed(0)}–${s.entry_high.toFixed(0)}` : "—"}
-                  </div>
-                  <div className="text-center">
-                    <p className="mb-0.5 text-[10px] font-sans text-muted-foreground/70">Stop</p>
-                    <span style={{ color: "var(--sentinel-down)" }}>
-                      {s.stop_loss ? `$${s.stop_loss.toFixed(2)}` : "—"}
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <p className="mb-0.5 text-[10px] font-sans text-muted-foreground/70">Target</p>
-                    <span style={{ color: "var(--sentinel-up)" }}>
-                      {s.target ? `$${s.target.toFixed(2)}` : "—"}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
     </div>
   );
 }
