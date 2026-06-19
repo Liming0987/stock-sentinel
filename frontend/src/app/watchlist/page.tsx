@@ -5,7 +5,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import {
   Star, ArrowUpRight, ArrowDownRight,
-  Trash2, Bell, Plus, Search, ChevronUp, ChevronDown, BarChart3,
+  Trash2, Plus, Search, ChevronUp, ChevronDown,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -41,61 +41,52 @@ function WatchlistCard({
   onRemove: (ticker: string) => void;
 }) {
   return (
-    <Card className="relative overflow-hidden">
+    <Card className="relative overflow-hidden group">
       {stock.has_active_signal && (
         <div className="absolute right-3 top-3 z-10">
           <Badge variant="bullish" className="text-[10px]">SIGNAL</Badge>
         </div>
       )}
 
-      <CardHeader className="pb-2">
-        <Link href={`/stock/${stock.ticker}`} className="group">
+      <Link href={`/watchlist/${stock.ticker}/volume`} className="block">
+        <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 group-hover:text-primary transition-colors">
             {stock.ticker}
             <span className="text-sm font-normal text-muted-foreground">{stock.name}</span>
           </CardTitle>
-        </Link>
-      </CardHeader>
+        </CardHeader>
 
-      <CardContent className="space-y-3">
-        {/* Price + change */}
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-2xl font-bold font-mono">{formatPrice(stock.price)}</p>
-            <p className={`flex items-center gap-0.5 text-sm font-mono ${
-              stock.change_pct >= 0 ? "text-bullish" : "text-bearish"
-            }`}>
-              {stock.change_pct >= 0
-                ? <ArrowUpRight className="h-3 w-3" />
-                : <ArrowDownRight className="h-3 w-3" />}
-              {formatPercent(stock.change_pct)}
-            </p>
+        <CardContent className="space-y-3">
+          {/* Price + change */}
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-2xl font-bold font-mono">{formatPrice(stock.price)}</p>
+              <p className={`flex items-center gap-0.5 text-sm font-mono ${
+                stock.change_pct >= 0 ? "text-bullish" : "text-bearish"
+              }`}>
+                {stock.change_pct >= 0
+                  ? <ArrowUpRight className="h-3 w-3" />
+                  : <ArrowDownRight className="h-3 w-3" />}
+                {formatPercent(stock.change_pct)}
+              </p>
+            </div>
+            <SentimentGauge score={stock.sentiment_score} size="sm" />
           </div>
-          <SentimentGauge score={stock.sentiment_score} size="sm" />
-        </div>
+        </CardContent>
+      </Link>
 
-        {/* Actions */}
-        <div className="flex gap-2">
-          <Button variant="ghost" size="sm" className="flex-1 text-xs">
-            <Bell className="mr-1 h-3 w-3" />
-            Alerts
-          </Button>
-          <Link href={`/watchlist/${stock.ticker}/volume`}>
-            <Button variant="outline" size="sm" className="text-xs">
-              <BarChart3 className="mr-1 h-3 w-3" />
-              Volume
-            </Button>
-          </Link>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-xs text-bearish hover:text-bearish"
-            onClick={() => onRemove(stock.ticker)}
-          >
-            <Trash2 className="h-3 w-3" />
-          </Button>
-        </div>
-      </CardContent>
+      {/* Remove button sits outside the Link to avoid nested interaction */}
+      <div className="px-6 pb-4">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-xs text-muted-foreground hover:text-bearish w-full"
+          onClick={() => onRemove(stock.ticker)}
+        >
+          <Trash2 className="mr-1 h-3 w-3" />
+          Remove
+        </Button>
+      </div>
     </Card>
   );
 }
