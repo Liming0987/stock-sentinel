@@ -172,7 +172,7 @@ export default function StrategySignalsPage() {
   const strategies = strategiesData.strategies;
 
   const [selectedStrategy, setSelectedStrategy] = useState<string>("all");
-  const [selectedAction, setSelectedAction] = useState<"all" | "buy" | "sell">("all");
+  const [selectedAction, setSelectedAction] = useState<"all" | "buy" | "sell" | "hold">("all");
   const [page, setPage] = useState(1);
   const [isLive, setIsLive] = useState(true)
   const [newCount, setNewCount] = useState(0)
@@ -280,7 +280,7 @@ export default function StrategySignalsPage() {
 
       {/* Action filter */}
       <div className="flex gap-2">
-        {(["all", "buy", "sell"] as const).map((a) => (
+        {(["all", "buy", "sell", "hold"] as const).map((a) => (
           <button
             key={a}
             onClick={() => { setSelectedAction(a); resetPage(); }}
@@ -290,6 +290,8 @@ export default function StrategySignalsPage() {
                   ? "bg-green-600 text-white"
                   : a === "sell"
                   ? "bg-red-600 text-white"
+                  : a === "hold"
+                  ? "bg-yellow-500 text-white"
                   : "bg-primary text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:bg-accent"
             }`}
