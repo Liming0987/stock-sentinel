@@ -27,6 +27,7 @@ class BaseStrategy(ABC):
     description: str = ""
     max_positions: int = 2  # max concurrent open trades across the whole universe
     FUNDAMENTAL_WEIGHT: float = 0.30
+    requires_intraday: bool = False  # True for strategies that need 5-min bars (ORB, VWAP)
 
     @abstractmethod
     def evaluate(self, ticker: str, context: Dict) -> Signal:

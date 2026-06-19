@@ -1,5 +1,6 @@
 """Opening Range Breakout (ORB): buy when price breaks above the first-30-min high with volume."""
-from typing import Dict
+from datetime import datetime, time as dt_time
+from typing import Dict, Optional
 from app.strategies.base import BaseStrategy, Signal
 
 
@@ -8,6 +9,7 @@ class OpeningRangeBreakoutStrategy(BaseStrategy):
     description = "Intraday: buy breakout above the first 30-min high with volume surge. EOD close."
 
     max_positions = 2
+    requires_intraday = True
     ORB_BARS = 6            # 6 × 5 min = 30 min opening range
     ENTRY_WINDOW_BARS = 12  # only enter within 60 min after ORB forms
     MIN_VOL_RATIO = 2.0
@@ -83,16 +85,27 @@ class OpeningRangeBreakoutStrategy(BaseStrategy):
             reasoning=reasoning,
         )
 
-    def should_close(self, trade, context: Dict):
+    def should_close(self, trade, context: Dict) -> Optional[str]:
         reason = super().should_close(trade, context)
         if reason:
             return reason
+
+        # Wall-clock EOD safety net: close any open ORB position after 3:45 ET
+        # regardless of intraday context availability (e.g. when run_strategies
+        # calls should_close after the intraday runner has stopped for the day).
+        try:
+            import pytz
+            et = pytz.timezone("America/New_York")
+            if datetime.now(et).time() >= dt_time(15, 45):
+                return "end_of_day"
+        except Exception:
+            pass
 
         intraday = context.get("intraday") or {}
         if not intraday:
             return None
 
-        # Force close at 3:45 PM (bar 75 of 78 total)
+        # Force close at bar 75 (3:45 PM with 5-min bars)
         if intraday.get("bars_elapsed", 0) >= 75:
             return "end_of_day"
 

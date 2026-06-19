@@ -129,6 +129,14 @@ class StrategyRunner:
             return {}
         indicators = self.price_service.compute_indicators(df)
 
+        # Override last_price with live Alpaca quote when market is open so
+        # stops and targets are calculated relative to the actual fill price,
+        # not yesterday's close.
+        if _is_market_open():
+            rt_price = self.alpaca.get_latest_price(stock.ticker)
+            if rt_price:
+                indicators["last_price"] = rt_price
+
         # Sentiment from mentions table (last 24h)
         cutoff = datetime.now(timezone.utc) - timedelta(hours=24)
         mentions = session.execute(
@@ -386,8 +394,13 @@ class StrategyRunner:
         except Exception:
             pass
 
-    def _recompute_metrics(self, session: Session, strat_row: StrategyRow):
-        """Recompute aggregate metrics for a strategy."""
+    def _recompute_metrics(self, session: Session, strat_row: StrategyRow, compute_unrealized: bool = True):
+        """Recompute aggregate metrics for a strategy.
+
+        compute_unrealized=False skips the per-trade yfinance fetch — used in
+        run_intraday (60s cadence) to avoid hammering the API. The daily run
+        always computes unrealized so the UI stays accurate.
+        """
         closed = session.execute(
             select(Trade).where(
                 and_(Trade.strategy_id == strat_row.id, Trade.status == "closed")
@@ -410,13 +423,15 @@ class StrategyRunner:
         )
         win_rate = wins / total if total else 0.0
 
-        # Unrealized P&L on open trades using current price
+        # Unrealized P&L on open trades using current price.
+        # Skipped in the intraday path to avoid a yfinance call per trade per minute.
         unrealized = 0.0
-        for t in open_trades:
-            df = self.price_service.get_price_data(t.ticker, period="5d")
-            if df is not None and not df.empty:
-                last = float(df["Close"].iloc[-1])
-                unrealized += (last - float(t.entry_price)) * float(t.qty)
+        if compute_unrealized:
+            for t in open_trades:
+                df = self.price_service.get_price_data(t.ticker, period="5d")
+                if df is not None and not df.empty:
+                    last = float(df["Close"].iloc[-1])
+                    unrealized += (last - float(t.entry_price)) * float(t.qty)
 
         strat_row.total_trades = total
         strat_row.winning_trades = wins
@@ -576,7 +591,11 @@ class StrategyRunner:
                             open_count -= 1
                             continue
 
-                    # 2) Collect entry signals — only where no existing position
+                    # 2) Collect entry signals — skip for intraday-only strategies;
+                    #    they need 5-min bars that are only available in run_intraday.
+                    if strat.requires_intraday:
+                        continue
+
                     if not open_trade and ticker not in held_by_any:
                         sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
                         if sig.action == "buy":
@@ -588,6 +607,7 @@ class StrategyRunner:
                 buy_candidates.sort(key=lambda x: x[0], reverse=True)
                 slots_available = max(0, strat.max_positions - open_count)
                 executed_tickers = {t for _, t, _, _ in buy_candidates[:slots_available]}
+                dedup_cutoff = datetime.now(timezone.utc) - timedelta(minutes=32)
                 for _, ticker, stock, sig in buy_candidates:
                     will_execute = ticker in executed_tickers
                     if will_execute:
@@ -599,7 +619,17 @@ class StrategyRunner:
                             logger.error(f"[{strat_row.name}] Failed to open position for {ticker}: {e}")
                             self._record_signal(session, strat_row, stock, sig, executed=False)
                     else:
-                        self._record_signal(session, strat_row, stock, sig, executed=False)
+                        # Dedup: skip if an identical unexecuted buy was already recorded
+                        # within the last run interval to avoid flooding the signal log.
+                        existing = session.query(StrategySignal).filter(
+                            StrategySignal.strategy_id == strat_row.id,
+                            StrategySignal.ticker == ticker,
+                            StrategySignal.action == "buy",
+                            StrategySignal.executed == False,
+                            StrategySignal.created_at >= dedup_cutoff,
+                        ).first()
+                        if not existing:
+                            self._record_signal(session, strat_row, stock, sig, executed=False)
 
                 # Update aggregate metrics
                 self._recompute_metrics(session, strat_row)
@@ -736,7 +766,9 @@ class StrategyRunner:
                             continue
                         self._record_signal(session, strat_row, stock, sig, executed=False)
 
-                self._recompute_metrics(session, strat_row)
+                # Skip unrealized P&L fetch in the intraday path — too expensive
+                # at 60s cadence (yfinance call per open trade per strategy).
+                self._recompute_metrics(session, strat_row, compute_unrealized=False)
                 session.commit()
 
                 summary["strategies"][strat_name] = {

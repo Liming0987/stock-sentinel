@@ -96,8 +96,19 @@ class MACDHistogramStrategy(BaseStrategy):
         if reason:
             return reason
 
-        histogram = context.get("indicators", {}).get("macd_histogram")
-        if histogram is not None and histogram < -0.01:
-            return "macd_histogram_turned_negative"
+        # Require 2 consecutive negative histogram bars before exiting.
+        # Single-bar dips caused 35 premature exits in backtesting (see docstring).
+        df = context.get("price_df")
+        if df is not None and len(df) >= 35:
+            from app.services.price_service import _macd
+            macd_df = _macd(df["Close"])
+            if macd_df is not None and len(macd_df) >= 2:
+                if all(h < -0.01 for h in macd_df["histogram"].iloc[-2:]):
+                    return "macd_histogram_turned_negative"
+        else:
+            # Fallback when price_df is unavailable
+            histogram = context.get("indicators", {}).get("macd_histogram")
+            if histogram is not None and histogram < -0.01:
+                return "macd_histogram_turned_negative"
 
         return None
