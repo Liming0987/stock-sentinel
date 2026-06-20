@@ -1,8 +1,8 @@
 {
   "date": "2026-06-20",
-  "generated_at": "2026-06-20 21:49 UTC",
-  "video_count": 4,
-  "stock_count": 3,
+  "generated_at": "2026-06-20 22:08 UTC",
+  "video_count": 7,
+  "stock_count": 10,
   "consensus": [],
   "analyses": [
     {
@@ -101,6 +101,38 @@
         "Valuation of ~62x forward P/S is historically rich and leaves little margin for execution missteps",
         "SpaceX IPO could cause valuation compression across the space sector if enthusiasm is lower than expected",
         "Continued equity dilution as management raises capital at market prices"
+      ]
+    },
+    {
+      "video_id": "BX9q_sdMd8c",
+      "channel_name": "Gareth Soloway — Pro Trader",
+      "video_title": "This Chart Lines Up Eerily With 1929, Great Depression Coming?",
+      "video_url": "https://www.youtube.com/watch?v=BX9q_sdMd8c",
+      "published_at": "2026-06-20T13:30:01Z",
+      "duration_minutes": 17,
+      "summary": "Gareth Soloway presents a macro bear case built around a 100-year cycle comparison between the 1920s and today. He argues that multiple structural parallels — post-pandemic boom, transformative technology euphoria, retail speculation, elite information weaponization, circular capital flows among mega-caps, and extreme market concentration — closely mirror the conditions of the late 1920s ahead of the 1929 crash and Great Depression.\n\nSoloway draws specific parallels: the Spanish flu of 1918 maps to COVID-19 in 2020 as the demand catalyst; electrification and the automobile map to AI and cloud infrastructure; bucket shops and margin speculation map to zero-day options and prediction markets; and 1920s utility holding companies recycling capital internally maps to today's mega-cap tech firms investing in AI startups that immediately route funds back to buy cloud and chips from the same parent companies.\n\nHis chart analysis centers on the Dow Jones logarithmic chart, where he identifies a long-term parallel channel. He notes the market currently sits above the upper band of this channel — the same position it was in just before the 1929 crash. Using a date-range measurement, he calculates that approximately 3,000 days elapsed from the post-Spanish flu bull market start to the 1929 top. Applying the same 3,000-day window from the COVID low in 2020 projects a potential market top around mid-to-late 2028, leading into a 2029 crash — the 100-year anniversary. He is explicit that this is speculative and markets could see further 20–30% corrections along the way before any final top.\n\nSoloway stops short of making any specific stock recommendations. The video is a macro warning framework, not a trade idea, and he acknowledges the scenario may not materialize.",
+      "macro_topics": [
+        "100-year market cycle",
+        "Great Depression parallels",
+        "Market concentration risk",
+        "AI bubble risk",
+        "US debt trajectory",
+        "Logarithmic chart analysis"
+      ],
+      "stocks": [],
+      "key_theses": [
+        "The current market environment has striking structural similarities to the late 1920s — post-pandemic boom, transformative tech, retail speculation, and extreme index concentration",
+        "A logarithmic Dow chart shows the market above its long-term upper channel band, the same position it occupied just before the 1929 crash",
+        "Date-range analysis from COVID low (2020) projects a potential cyclical top around mid-to-late 2028, followed by a 2029 crash — the 100-year cycle",
+        "Extreme concentration in 10–15 AI-related stocks masks underlying market weakness; advance-decline breadth is poor",
+        "US debt trajectory ($4T+ annual additions, compounding) becomes unsustainable by the 2028–2029 window"
+      ],
+      "warnings_or_risks": [
+        "Gareth is explicit this is speculative — the cycle may not materialize or could arrive later",
+        "Markets can continue rallying 20–30% from here before any major top",
+        "Circular capital flows among mega-cap tech firms (investing in AI startups that immediately buy cloud/chips back) may be creating synthetic demand that overstates real earnings power",
+        "Zero-day options and retail prediction platforms have increased systemic fragility relative to historical norms",
+        "Federal Reserve money printing and government deficit spending may delay but ultimately worsen the eventual correction"
       ]
     },
     {
@@ -216,9 +248,252 @@
         "The stock has declined 38%+ YTD, suggesting the market sees risks Parkev may be underweighting",
         "Acquisition integration risk: Alani Nu and A-Shoc still need to prove they add lasting value beyond inflated near-term revenue"
       ]
+    },
+    {
+      "video_id": "tkzycFHW7Lc",
+      "channel_name": "Daniel Pronk",
+      "video_title": "5 Undervalued Stocks to Buy Now",
+      "video_url": "https://www.youtube.com/watch?v=tkzycFHW7Lc",
+      "published_at": "2026-06-19T22:00:14Z",
+      "duration_minutes": 37,
+      "summary": "Daniel Pronk presents five stocks he is actively buying, framing all of them as undervalued relative to their fundamental growth. The video is driven by recent news catalysts and updated DCF models across each name.\n\nAmazon leads the list. Pronk argues the market is overlooking Amazon's chips business, which Andy Jassy disclosed has an annualized revenue run rate of $20 billion growing triple digits year-over-year, with a $50 billion potential if sold externally — which would make it larger than AMD today. Amazon is also exploring selling Trainium chips directly to third parties, a major potential monetization unlock. Despite this news, the stock has sold off roughly 11% in the past month. Pronk's conservative DCF (16% operating cash flow growth, 20x multiple) yields a $309 fair value and a 19% three-year CAGR. He has been buying heavily and it is one of his largest positions.\n\nMeta is his second pick. Pronk acknowledges a swirl of negative sentiment — the CTO publicly flagged employee morale at a 20-year low following repeated layoff waves — but argues the underlying business is accelerating anyway (30%+ revenue growth, record operating cash flow), making morale a short-term noise factor. At 18x forward earnings and 11.8x forward operating cash flow, both well below historical averages and below the S&P 500, he views the stock as pricing in the risks already. He has been adding shares.\n\nMercado Libre is Pronk's third pick and one he has held since $1,800 per share (now ~$1,600, so he is down). He remains highly convicted, citing a new investor presentation showing 49% revenue CAGR since 2020, 73% advertising growth acceleration, a YouTube partnership for in-video commerce in Mexico and Argentina, and a string of recent insider buys — the first since 2022. He views the 40% correction from all-time highs as an opportunity and has been increasing his position significantly.\n\nBrookfield Asset Management is his fourth pick, described as a dividend-growth compounder. Management is projecting 20% earnings growth through 2030 and 15% annual dividend growth on top of a current 4%+ yield. Pronk's DCF (15% earnings growth, 25x PE) generates a ~16% CAGR, which he views as conservative given the company's historical trading multiple closer to 30x.\n\nConstellation Software rounds out the list. Pronk highlights that despite a 50%+ correction from highs, the business is still growing 20%+ annually and now trades at only 15x free cash flow. AI has not caused customer churn; instead customers are coming to Constellation to build new AI features on top of existing software. He also mentions buying Topicus and Signity (a Polish subsidiary growing 40% at 12x cash flows) as extensions of the same thesis.",
+      "macro_topics": [
+        "AI chip competition",
+        "Latin America digital banking",
+        "Software sector AI disruption",
+        "Dividend growth investing",
+        "Vertical market software"
+      ],
+      "stocks": [
+        {
+          "symbol": "AMZN",
+          "company_name": "Amazon",
+          "sentiment": "bullish",
+          "conviction": 0.95,
+          "thesis": "Amazon is trading as though its chips, advertising, and AWS businesses are being ignored by the market; a potential $50B annual revenue chips business is embedded in the stock at zero credit, and the stock has sold off 11% in a month despite accelerating AI demand for AWS.",
+          "price_target": "$309 (conservative DCF, 19% 3-year CAGR)",
+          "key_points": [
+            "Trainium chips business has $20B annualized revenue run rate, growing triple-digits YoY; $50B potential if sold externally, which would make it larger than AMD",
+            "Exploring selling Trainium chips to third parties — a major revenue unlock not currently reflected in the stock",
+            "AWS revenue at $137B trailing 12 months, growing ~30% and accelerating",
+            "Advertising growing 20%+, subscriptions 15%, third-party seller services 18% — all compounding simultaneously",
+            "Stock down ~11% in the past month despite these catalysts — Pronk views this as irrational and has been buying heavily",
+            "Conservative DCF at 16% OCF growth / 20x multiple yields $309 fair value; well below analyst consensus of 28% OCF growth"
+          ],
+          "time_spent_estimate_minutes": 8
+        },
+        {
+          "symbol": "META",
+          "company_name": "Meta Platforms",
+          "sentiment": "bullish",
+          "conviction": 0.85,
+          "thesis": "Meta is the fastest-growing hyperscaler yet trades at the lowest multiple (18x forward earnings, 11.8x OCF) due to negative sentiment around employee morale and legal risks — Pronk believes the risks are already priced in and the business is proving resilient.",
+          "price_target": null,
+          "key_points": [
+            "CTO publicly flagged employee morale at a 20-year low following May 2026 layoffs of ~8,000 employees (~10% of workforce)",
+            "Despite morale headwinds, revenue is growing 30%+ and operating cash flow is at record highs — suggesting structural business strength",
+            "Trading at 18x forward earnings and 11.8x forward OCF — both well below its own historical averages and well below S&P 500 multiples",
+            "Fastest-growing hyperscaler by a wide margin, yet cheapest on multiples — Pronk attributes the discount to sentiment, not fundamentals",
+            "Pronk sees dual catalyst potential: fundamental growth continues while sentiment normalization drives multiple expansion"
+          ],
+          "time_spent_estimate_minutes": 8
+        },
+        {
+          "symbol": "MELI",
+          "company_name": "MercadoLibre",
+          "sentiment": "bullish",
+          "conviction": 0.9,
+          "thesis": "MercadoLibre has compounded revenue at 49% annually since 2020 and is still growing at that rate on a $32B base, yet the stock is in a 40% drawdown from highs — Pronk views the disconnection between fundamentals and price as a major buying opportunity.",
+          "price_target": null,
+          "key_points": [
+            "Revenue 8x since 2020 at a 49% CAGR; still growing 49% YoY on a $32B revenue base",
+            "Advertising business growing 73% YoY, accelerating from 65% CAGR; market share grew from 2% to 10% in six years",
+            "Digital bank has 83M monthly active users; credit portfolio at $15B doubling annually; customer savings at $20B growing 80% YoY",
+            "YouTube partnership for in-video commerce in Mexico and Argentina — Google chose Mercado Libre for its logistics network dominance",
+            "Insider buys in June and May 2026 — the first insider buying since 2022 bear market lows, which historically preceded strong returns",
+            "Only 54% of Mexicans have a bank account; 85% still use cash for small purchases — decades of digital banking runway ahead",
+            "Pronk has been buying since $1,800 (now ~$1,600) and has significantly increased his position size"
+          ],
+          "time_spent_estimate_minutes": 10
+        },
+        {
+          "symbol": "BAM",
+          "company_name": "Brookfield Asset Management",
+          "sentiment": "bullish",
+          "conviction": 0.75,
+          "thesis": "Brookfield is a rare combination of a 4%+ current dividend yield and 15%+ projected dividend growth, backed by infrastructure assets that are becoming more valuable as AI and global capex buildout accelerate.",
+          "price_target": null,
+          "key_points": [
+            "Management projecting 20% earnings growth annually through 2030",
+            "Current dividend yield over 4% with projected 15%+ annual dividend growth",
+            "DCF at 15% earnings growth and 25x PE generates ~16% CAGR — Pronk views this as conservative given historical ~30x PE",
+            "Owns physical infrastructure backbone assets (data centers, pipelines, railroads, terminals) seeing tailwinds from AI capex buildout"
+          ],
+          "time_spent_estimate_minutes": 5
+        },
+        {
+          "symbol": null,
+          "company_name": "Constellation Software",
+          "sentiment": "bullish",
+          "conviction": 0.85,
+          "thesis": "Constellation Software trades at only 15x free cash flow while still growing 20%+ annually; AI is creating more acquisition targets (software valuations down, competition for deals reduced) rather than disrupting its existing customer base.",
+          "price_target": null,
+          "key_points": [
+            "Stock down 50%+ from highs but business growing 20%+ annually; now at 15x free cash flow",
+            "Vertical market software customers are not churning to AI alternatives — they are instead asking Constellation to build AI features on top of existing software",
+            "Private equity and public market sentiment toward software is negative, creating a record acquisition pipeline at lower prices and higher ROIC",
+            "Zero dilution, zero stock-based compensation, strong management/shareholder alignment",
+            "Pronk also buying Topicus (European subsidiary) and Signity (Polish subsidiary, 40% growth at 12x cash flows)"
+          ],
+          "time_spent_estimate_minutes": 6
+        }
+      ],
+      "key_theses": [
+        "Amazon's chips business is a hidden $50B revenue opportunity that the market is not crediting — the stock is cheap on a sum-of-parts basis",
+        "Meta's negative sentiment is already priced in; the fastest-growing hyperscaler at the lowest multiple is a mispricing",
+        "MercadoLibre's 40% drawdown is disconnected from fundamentals; insider buying signals near a generational opportunity in Latin American digital infrastructure",
+        "Brookfield Asset Management offers rare combination of high yield and high growth backed by irreplaceable physical assets",
+        "Constellation Software is proving AI is a net positive for vertical market software through increased acquisition opportunities and stickier customers"
+      ],
+      "warnings_or_risks": [
+        "Meta employee morale at 20-year low could eventually impact product quality and talent retention",
+        "MercadoLibre has underperformed for 5 years at the stock level despite strong fundamentals — timing risk is real",
+        "Semiconductor cycle risk for Amazon's chips business if AI capex spending slows",
+        "Constellation Software is a Canadian-listed stock not accessible through most US retail brokerages"
+      ]
+    },
+    {
+      "video_id": "wqjaifI5LkU",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Massive News for Adobe Stock Investors! | ADBE Stock Deep Dive Part 3",
+      "video_url": "https://www.youtube.com/watch?v=wqjaifI5LkU",
+      "published_at": "2026-06-20T10:45:14Z",
+      "duration_minutes": 11,
+      "summary": "In Part 3 of his Adobe deep dive, Parkev Tatevosian focuses on leadership transitions at the company and what they mean for the freemium strategy Adobe has recently adopted. The news catalyst is the CFO's announced resignation to become CEO of Marvell, with a 20-year Adobe veteran named as interim CFO. Separately, the sitting CEO is transitioning to chairman, meaning Adobe is simultaneously searching for both a new CEO and has recently lost its CFO — an unusual situation that coincides with a beat-and-raise quarter and raised fiscal 2026 revenue and EPS guidance.\n\nParkev's central concern is the strategic uncertainty this creates. Adobe is mid-pivot to a freemium model designed to convert high traffic volumes into paying customers. However, management transitions at this scale typically make incoming leaders hesitant to inherit a fixed strategy they didn't design. If the board constrains the new CEO to continue the freemium path, it makes the role less attractive to strong candidates. If the new CEO gets full discretion, the current strategy may be abandoned. Either outcome introduces meaningful uncertainty.\n\nOn the underlying business, Parkev notes that Adobe is seeing impressive demand signals — website traffic grew 40% year-over-year — but the company has so far struggled to convert free users into paying subscribers. He draws an analogy to Nike's failed direct-to-consumer pivot as a cautionary example of a strategy that sounded compelling but destroyed value in practice. That said, he acknowledges Adobe's structural strengths: nearly a billion monthly active users across its suite and significant cash generation that gives management room to experiment.\n\nParkev does not deliver a buy or sell rating in this video, framing it as part three of an ongoing series. The tone is cautious — he is watching whether the conversion from free to paid accelerates before committing to a bullish view.",
+      "macro_topics": [
+        "AI creativity tools",
+        "Freemium business model",
+        "Software sector leadership transitions",
+        "Consumer willingness to pay for AI"
+      ],
+      "stocks": [
+        {
+          "symbol": "ADBE",
+          "company_name": "Adobe Inc.",
+          "sentiment": "neutral",
+          "conviction": 0.8,
+          "thesis": "Adobe is at a strategic inflection point — strong traffic growth and nearly a billion monthly active users are encouraging, but the company has not yet demonstrated the ability to convert free users into paying customers, and dual leadership vacancies create execution risk at a critical juncture.",
+          "price_target": null,
+          "key_points": [
+            "CFO resigned to become CEO of Marvell; 20-year Adobe veteran steps in as interim CFO",
+            "CEO transitioning to chairman role; Adobe is actively searching for a new CEO",
+            "Both changes arrive simultaneously with a beat-and-raise quarter and raised FY2026 guidance — an unusual combination",
+            "Website traffic grew 40% year-over-year, signaling strong demand, but conversion to paid users has been limited",
+            "Freemium strategy designed to onboard free users and convert them over time — Parkev draws comparison to Nike's failed DTC pivot as a reminder that plausible strategies sometimes fail",
+            "Nearly 1 billion monthly active users and strong cash flow give the company room to test and iterate on its strategy",
+            "Key risk: incoming CEO may not have freedom to redirect strategy, or may reject the current approach entirely"
+          ],
+          "time_spent_estimate_minutes": 10
+        },
+        {
+          "symbol": "MRVL",
+          "company_name": "Marvell Technology",
+          "sentiment": "neutral",
+          "conviction": 0.2,
+          "thesis": "Mentioned only in the context of Adobe's CFO departure — the CFO is leaving to become Marvell's new CEO.",
+          "price_target": null,
+          "key_points": [
+            "Adobe's outgoing CFO is joining Marvell as its new CEO"
+          ],
+          "time_spent_estimate_minutes": 0.5
+        }
+      ],
+      "key_theses": [
+        "Adobe's dual leadership vacuum (CEO + CFO) is the dominant near-term risk, arriving at a critical point in the company's strategic pivot",
+        "Traffic growth is strong but monetization remains the unresolved question — 40% website growth with limited paid conversion is a mixed signal",
+        "The freemium strategy is logical on paper but unproven in execution; Parkev warns investors not to assume it will work",
+        "Adobe's scale (~1B MAUs) and cash generation provide a meaningful safety net if the strategy needs to be revised"
+      ],
+      "warnings_or_risks": [
+        "Searching for both a new CEO and operating with an interim CFO simultaneously is destabilizing",
+        "New leadership may reject or revise the freemium pivot, resetting investor expectations",
+        "Free-to-paid conversion has been disappointing despite high traffic growth",
+        "Consumer resistance to paid software is growing as large language models and AI tools increasingly offer free tiers"
+      ]
     }
   ],
   "all_stocks": [
+    {
+      "symbol": "ADBE",
+      "company_name": "Adobe Inc.",
+      "display": "ADBE",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Massive News for Adobe Stock Investors! | ADBE Stock Deep Dive Part 3",
+          "video_url": "https://www.youtube.com/watch?v=wqjaifI5LkU",
+          "sentiment": "neutral",
+          "conviction": 0.8,
+          "thesis": "Adobe is at a strategic inflection point — strong traffic growth and nearly a billion monthly active users are encouraging, but the company has not yet demonstrated the ability to convert free users into paying customers, and dual leadership vacancies create execution risk at a critical juncture.",
+          "key_points": [
+            "CFO resigned to become CEO of Marvell; 20-year Adobe veteran steps in as interim CFO",
+            "CEO transitioning to chairman role; Adobe is actively searching for a new CEO",
+            "Both changes arrive simultaneously with a beat-and-raise quarter and raised FY2026 guidance — an unusual combination",
+            "Website traffic grew 40% year-over-year, signaling strong demand, but conversion to paid users has been limited",
+            "Freemium strategy designed to onboard free users and convert them over time — Parkev draws comparison to Nike's failed DTC pivot as a reminder that plausible strategies sometimes fail",
+            "Nearly 1 billion monthly active users and strong cash flow give the company room to test and iterate on its strategy",
+            "Key risk: incoming CEO may not have freedom to redirect strategy, or may reject the current approach entirely"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "AMZN",
+      "company_name": "Amazon",
+      "display": "AMZN",
+      "mentions": [
+        {
+          "channel": "Daniel Pronk",
+          "video_title": "5 Undervalued Stocks to Buy Now",
+          "video_url": "https://www.youtube.com/watch?v=tkzycFHW7Lc",
+          "sentiment": "bullish",
+          "conviction": 0.95,
+          "thesis": "Amazon is trading as though its chips, advertising, and AWS businesses are being ignored by the market; a potential $50B annual revenue chips business is embedded in the stock at zero credit, and the stock has sold off 11% in a month despite accelerating AI demand for AWS.",
+          "key_points": [
+            "Trainium chips business has $20B annualized revenue run rate, growing triple-digits YoY; $50B potential if sold externally, which would make it larger than AMD",
+            "Exploring selling Trainium chips to third parties — a major revenue unlock not currently reflected in the stock",
+            "AWS revenue at $137B trailing 12 months, growing ~30% and accelerating",
+            "Advertising growing 20%+, subscriptions 15%, third-party seller services 18% — all compounding simultaneously",
+            "Stock down ~11% in the past month despite these catalysts — Pronk views this as irrational and has been buying heavily",
+            "Conservative DCF at 16% OCF growth / 20x multiple yields $309 fair value; well below analyst consensus of 28% OCF growth"
+          ],
+          "price_target": "$309 (conservative DCF, 19% 3-year CAGR)"
+        }
+      ]
+    },
+    {
+      "symbol": "BAM",
+      "company_name": "Brookfield Asset Management",
+      "display": "BAM",
+      "mentions": [
+        {
+          "channel": "Daniel Pronk",
+          "video_title": "5 Undervalued Stocks to Buy Now",
+          "video_url": "https://www.youtube.com/watch?v=tkzycFHW7Lc",
+          "sentiment": "bullish",
+          "conviction": 0.75,
+          "thesis": "Brookfield is a rare combination of a 4%+ current dividend yield and 15%+ projected dividend growth, backed by infrastructure assets that are becoming more valuable as AI and global capex buildout accelerate.",
+          "key_points": [
+            "Management projecting 20% earnings growth annually through 2030",
+            "Current dividend yield over 4% with projected 15%+ annual dividend growth",
+            "DCF at 15% earnings growth and 25x PE generates ~16% CAGR — Pronk views this as conservative given historical ~30x PE",
+            "Owns physical infrastructure backbone assets (data centers, pipelines, railroads, terminals) seeing tailwinds from AI capex buildout"
+          ],
+          "price_target": null
+        }
+      ]
+    },
     {
       "symbol": "CELH",
       "company_name": "Celsius Holdings Inc",
@@ -242,6 +517,96 @@
             "International expansion still in early stages — provides multi-year incremental growth runway beyond current analyst estimates"
           ],
           "price_target": "$58 (DCF fair value)"
+        }
+      ]
+    },
+    {
+      "symbol": null,
+      "company_name": "Constellation Software",
+      "display": "Constellation Software",
+      "mentions": [
+        {
+          "channel": "Daniel Pronk",
+          "video_title": "5 Undervalued Stocks to Buy Now",
+          "video_url": "https://www.youtube.com/watch?v=tkzycFHW7Lc",
+          "sentiment": "bullish",
+          "conviction": 0.85,
+          "thesis": "Constellation Software trades at only 15x free cash flow while still growing 20%+ annually; AI is creating more acquisition targets (software valuations down, competition for deals reduced) rather than disrupting its existing customer base.",
+          "key_points": [
+            "Stock down 50%+ from highs but business growing 20%+ annually; now at 15x free cash flow",
+            "Vertical market software customers are not churning to AI alternatives — they are instead asking Constellation to build AI features on top of existing software",
+            "Private equity and public market sentiment toward software is negative, creating a record acquisition pipeline at lower prices and higher ROIC",
+            "Zero dilution, zero stock-based compensation, strong management/shareholder alignment",
+            "Pronk also buying Topicus (European subsidiary) and Signity (Polish subsidiary, 40% growth at 12x cash flows)"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "MELI",
+      "company_name": "MercadoLibre",
+      "display": "MELI",
+      "mentions": [
+        {
+          "channel": "Daniel Pronk",
+          "video_title": "5 Undervalued Stocks to Buy Now",
+          "video_url": "https://www.youtube.com/watch?v=tkzycFHW7Lc",
+          "sentiment": "bullish",
+          "conviction": 0.9,
+          "thesis": "MercadoLibre has compounded revenue at 49% annually since 2020 and is still growing at that rate on a $32B base, yet the stock is in a 40% drawdown from highs — Pronk views the disconnection between fundamentals and price as a major buying opportunity.",
+          "key_points": [
+            "Revenue 8x since 2020 at a 49% CAGR; still growing 49% YoY on a $32B revenue base",
+            "Advertising business growing 73% YoY, accelerating from 65% CAGR; market share grew from 2% to 10% in six years",
+            "Digital bank has 83M monthly active users; credit portfolio at $15B doubling annually; customer savings at $20B growing 80% YoY",
+            "YouTube partnership for in-video commerce in Mexico and Argentina — Google chose Mercado Libre for its logistics network dominance",
+            "Insider buys in June and May 2026 — the first insider buying since 2022 bear market lows, which historically preceded strong returns",
+            "Only 54% of Mexicans have a bank account; 85% still use cash for small purchases — decades of digital banking runway ahead",
+            "Pronk has been buying since $1,800 (now ~$1,600) and has significantly increased his position size"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "META",
+      "company_name": "Meta Platforms",
+      "display": "META",
+      "mentions": [
+        {
+          "channel": "Daniel Pronk",
+          "video_title": "5 Undervalued Stocks to Buy Now",
+          "video_url": "https://www.youtube.com/watch?v=tkzycFHW7Lc",
+          "sentiment": "bullish",
+          "conviction": 0.85,
+          "thesis": "Meta is the fastest-growing hyperscaler yet trades at the lowest multiple (18x forward earnings, 11.8x OCF) due to negative sentiment around employee morale and legal risks — Pronk believes the risks are already priced in and the business is proving resilient.",
+          "key_points": [
+            "CTO publicly flagged employee morale at a 20-year low following May 2026 layoffs of ~8,000 employees (~10% of workforce)",
+            "Despite morale headwinds, revenue is growing 30%+ and operating cash flow is at record highs — suggesting structural business strength",
+            "Trading at 18x forward earnings and 11.8x forward OCF — both well below its own historical averages and well below S&P 500 multiples",
+            "Fastest-growing hyperscaler by a wide margin, yet cheapest on multiples — Pronk attributes the discount to sentiment, not fundamentals",
+            "Pronk sees dual catalyst potential: fundamental growth continues while sentiment normalization drives multiple expansion"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "MRVL",
+      "company_name": "Marvell Technology",
+      "display": "MRVL",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Massive News for Adobe Stock Investors! | ADBE Stock Deep Dive Part 3",
+          "video_url": "https://www.youtube.com/watch?v=wqjaifI5LkU",
+          "sentiment": "neutral",
+          "conviction": 0.2,
+          "thesis": "Mentioned only in the context of Adobe's CFO departure — the CFO is leaving to become Marvell's new CEO.",
+          "key_points": [
+            "Adobe's outgoing CFO is joining Marvell as its new CEO"
+          ],
+          "price_target": null
         }
       ]
     },
@@ -356,6 +721,30 @@
       "description": ""
     },
     {
+      "title": "100-year market cycle",
+      "description": ""
+    },
+    {
+      "title": "Great Depression parallels",
+      "description": ""
+    },
+    {
+      "title": "Market concentration risk",
+      "description": ""
+    },
+    {
+      "title": "AI bubble risk",
+      "description": ""
+    },
+    {
+      "title": "US debt trajectory",
+      "description": ""
+    },
+    {
+      "title": "Logarithmic chart analysis",
+      "description": ""
+    },
+    {
       "title": "Space Economy Growth",
       "description": "The commercial space industry is in an early expansion phase with revenue opportunities that are genuinely difficult to forecast. Launch services, satellite platforms, and space systems components are all scaling simultaneously as demand from government and commercial customers accelerates."
     },
@@ -382,6 +771,42 @@
     {
       "title": "Buyback Programs as Value Signal",
       "description": "Management is repurchasing shares at prices well below Parkev's calculated fair value of $58. When insiders buy at a significant discount to intrinsic value, it signals confidence in the business trajectory and provides a floor of support for the stock price."
+    },
+    {
+      "title": "AI chip competition",
+      "description": ""
+    },
+    {
+      "title": "Latin America digital banking",
+      "description": ""
+    },
+    {
+      "title": "Software sector AI disruption",
+      "description": ""
+    },
+    {
+      "title": "Dividend growth investing",
+      "description": ""
+    },
+    {
+      "title": "Vertical market software",
+      "description": ""
+    },
+    {
+      "title": "AI creativity tools",
+      "description": ""
+    },
+    {
+      "title": "Freemium business model",
+      "description": ""
+    },
+    {
+      "title": "Software sector leadership transitions",
+      "description": ""
+    },
+    {
+      "title": "Consumer willingness to pay for AI",
+      "description": ""
     }
   ],
   "sources": [
@@ -396,6 +821,11 @@
       "url": "https://www.youtube.com/watch?v=2krY_eCPkFI"
     },
     {
+      "channel": "Gareth Soloway — Pro Trader",
+      "title": "This Chart Lines Up Eerily With 1929, Great Depression Coming?",
+      "url": "https://www.youtube.com/watch?v=BX9q_sdMd8c"
+    },
+    {
       "channel": "Parkev Tatevosian, CFA",
       "title": "Is RocketLab Stock Financially Viable? | RKLB Stock Deep Dive Part 5",
       "url": "https://www.youtube.com/watch?v=Osn13jmFwvk"
@@ -404,6 +834,16 @@
       "channel": "Parkev Tatevosian, CFA",
       "title": "Celsius Stock Analysis: My Final Verdict (Buy or Sell) | CELH Stock Deep Dive Part 5",
       "url": "https://www.youtube.com/watch?v=r6ezJ4EJP-s"
+    },
+    {
+      "channel": "Daniel Pronk",
+      "title": "5 Undervalued Stocks to Buy Now",
+      "url": "https://www.youtube.com/watch?v=tkzycFHW7Lc"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Massive News for Adobe Stock Investors! | ADBE Stock Deep Dive Part 3",
+      "url": "https://www.youtube.com/watch?v=wqjaifI5LkU"
     }
   ]
 }
