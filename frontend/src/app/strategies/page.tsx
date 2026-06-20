@@ -18,6 +18,8 @@ import {
 } from "@/lib/hooks";
 import type { LivePosition } from "@/lib/hooks";
 
+const INTRADAY_STRATEGY_NAMES = new Set(["opening_range_breakout", "vwap_cross"]);
+
 const STRATEGY_COLORS: Record<string, string> = {
   momentum:               "hsl(217, 91%, 60%)",
   rsi_meanreversion:      "hsl(142, 71%, 45%)",
@@ -432,6 +434,8 @@ export default function StrategiesPage() {
   };
 
   const strategies = strategiesData.strategies;
+  const dailyStrategies = strategies.filter((s) => !INTRADAY_STRATEGY_NAMES.has(s.name));
+  const intradayStrategies = strategies.filter((s) => INTRADAY_STRATEGY_NAMES.has(s.name));
   const isOpen = (name: string) => openMap[name] === true;
   const toggle = (name: string) =>
     setOpenMap((prev) => ({ ...prev, [name]: !isOpen(name) }));
@@ -679,26 +683,64 @@ export default function StrategiesPage() {
             </CardContent>
           </Card>
 
-          {/* Strategy accordion */}
-          <Card className="overflow-hidden p-0">
-            {strategies.length === 0 ? (
+          {/* Strategy accordion — split by execution model */}
+          {strategies.length === 0 ? (
+            <Card className="overflow-hidden p-0">
               <div className="flex h-24 items-center justify-center text-sm text-muted-foreground">
                 No strategies registered.
               </div>
-            ) : (
-              strategies.map((strat) => (
-                <StrategyRow
-                  key={strat.name}
-                  strat={strat}
-                  liveUnrealized={liveData.by_strategy[strat.name]?.unrealized_pnl}
-                  positions={liveData.positions.filter((p) => p.strategy === strat.name)}
-                  isOpen={isOpen(strat.name)}
-                  onToggle={() => toggle(strat.name)}
-                  onEnabledChange={handleEnabledChange}
-                />
-              ))
-            )}
-          </Card>
+            </Card>
+          ) : (
+            <div className="space-y-5">
+              {dailyStrategies.length > 0 && (
+                <div className="space-y-2">
+                  <div className="px-1">
+                    <h3 className="text-sm font-semibold">Daily Strategies</h3>
+                    <p className="text-xs text-muted-foreground">
+                      Evaluated at market close (4:15 PM ET) — orders queue for next open
+                    </p>
+                  </div>
+                  <Card className="overflow-hidden p-0">
+                    {dailyStrategies.map((strat) => (
+                      <StrategyRow
+                        key={strat.name}
+                        strat={strat}
+                        liveUnrealized={liveData.by_strategy[strat.name]?.unrealized_pnl}
+                        positions={liveData.positions.filter((p) => p.strategy === strat.name)}
+                        isOpen={isOpen(strat.name)}
+                        onToggle={() => toggle(strat.name)}
+                        onEnabledChange={handleEnabledChange}
+                      />
+                    ))}
+                  </Card>
+                </div>
+              )}
+
+              {intradayStrategies.length > 0 && (
+                <div className="space-y-2">
+                  <div className="px-1">
+                    <h3 className="text-sm font-semibold">Intraday Strategies</h3>
+                    <p className="text-xs text-muted-foreground">
+                      Evaluated every minute during market hours — orders fill immediately
+                    </p>
+                  </div>
+                  <Card className="overflow-hidden p-0">
+                    {intradayStrategies.map((strat) => (
+                      <StrategyRow
+                        key={strat.name}
+                        strat={strat}
+                        liveUnrealized={liveData.by_strategy[strat.name]?.unrealized_pnl}
+                        positions={liveData.positions.filter((p) => p.strategy === strat.name)}
+                        isOpen={isOpen(strat.name)}
+                        onToggle={() => toggle(strat.name)}
+                        onEnabledChange={handleEnabledChange}
+                      />
+                    ))}
+                  </Card>
+                </div>
+              )}
+            </div>
+          )}
         </>
       )}
     </div>
