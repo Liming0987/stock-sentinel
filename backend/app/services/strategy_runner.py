@@ -670,14 +670,6 @@ class StrategyRunner:
                     ))
                 ).scalar() or 0
 
-                # Tickers held by ANY strategy — prevents multiple strategies
-                # from each opening a $500 position on the same ticker.
-                held_by_any = {
-                    row[0] for row in session.execute(
-                        select(Trade.ticker).where(Trade.status == "open")
-                    ).all()
-                }
-
                 # Collect buy signals so we can rank by confidence and respect max_positions
                 buy_candidates = []
 
@@ -721,7 +713,7 @@ class StrategyRunner:
                     if strat.requires_intraday:
                         continue
 
-                    if not open_trade and ticker not in held_by_any:
+                    if not open_trade:
                         sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, payload["stock"], sig))
@@ -823,12 +815,6 @@ class StrategyRunner:
                     ))
                 ).scalar() or 0
 
-                held_by_any = {
-                    row[0] for row in session.execute(
-                        select(Trade.ticker).where(Trade.status == "open")
-                    ).all()
-                }
-
                 buy_candidates = []
 
                 for ticker, payload in stocks_ctx.items():
@@ -887,7 +873,7 @@ class StrategyRunner:
                     if strat.requires_intraday:
                         continue
 
-                    if not open_trade and ticker not in held_by_any:
+                    if not open_trade:
                         sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, payload["stock"], sig))
@@ -978,12 +964,6 @@ class StrategyRunner:
                     ))
                 ).scalar() or 0
 
-                held_by_any = {
-                    row[0] for row in session.execute(
-                        select(Trade.ticker).where(Trade.status == "open")
-                    ).all()
-                }
-
                 buy_candidates = []
 
                 for ticker, payload in stocks_ctx.items():
@@ -1025,7 +1005,7 @@ class StrategyRunner:
                     if not strat.requires_intraday:
                         continue
 
-                    if not open_trade and ticker not in held_by_any:
+                    if not open_trade:
                         sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, stock, sig))
