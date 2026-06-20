@@ -1,0 +1,409 @@
+{
+  "date": "2026-06-20",
+  "generated_at": "2026-06-20 21:49 UTC",
+  "video_count": 4,
+  "stock_count": 3,
+  "consensus": [],
+  "analyses": [
+    {
+      "video_id": "1nQvwfY0yTA",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Should You Buy Micron Stock Before the Huge Investor Update? | MU Stock Analysis",
+      "video_url": "https://www.youtube.com/watch?v=1nQvwfY0yTA",
+      "published_at": "2026-06-20T11:45:24Z",
+      "duration_minutes": 14,
+      "summary": "Parkev Tatevosian addresses a common viewer question ahead of Micron's June 24, 2026 earnings report: should you buy MU stock now or wait? He begins by recapping the company's extraordinary recent performance — Micron's stock is up over 775% in the past year — and reaffirming his long-standing buy thesis, which he first published over a year ago. The catalyst has been surging AI-driven demand from data centers at a time when industry supply remains constrained, creating a pricing environment where Micron holds significant leverage.\n\nThe recent quarterly numbers are striking. Revenue came in at $23.9 billion, nearly tripling year-over-year. Gross margins expanded to 74.4% and operating margins to 67.6% — figures Parkev notes are approaching software-company territory for a manufacturer that produces physical chips entirely in-house. Free cash flow was $7 billion after $5 billion in capital expenditure. Looking ahead, management guided Q3 revenue of $33.5 billion (a ~50% sequential jump) and gross margins climbing to an unprecedented 81%.\n\nDespite the bullish fundamental picture, Parkev raises a structural concern: semiconductors are a cyclical industry, and current peak margins make forward multiples look deceptively cheap. At 11x forward earnings and 12x forward operating cash flow — roughly half the S&P 500 average — the stock screens inexpensively, but those multiples are built on record-high denominators. He also flags a subtle management signal: with the stock near all-time highs, the team chose to pay down $4.6 billion in debt rather than execute meaningful buybacks, suggesting insiders see the valuation as stretched.\n\nParkev updated his DCF model to an intrinsic value of $915 per share against a market price of $1,054, placing the stock above his margin of safety threshold. He maintains a buy rating but explicitly advises against purchasing before earnings given the heightened volatility event risk and his view that downside exceeds upside at current prices after an 800% run. His recommendation: wait for the results and the post-earnings price reaction before adding exposure.",
+      "macro_topics": [
+        "AI infrastructure demand",
+        "Semiconductor cycle",
+        "Memory chip pricing",
+        "Earnings preview",
+        "Capital allocation"
+      ],
+      "stocks": [
+        {
+          "symbol": "MU",
+          "company_name": "Micron Technology",
+          "sentiment": "bullish",
+          "conviction": 0.85,
+          "thesis": "Micron is benefiting from record AI-driven demand and tight industry supply that have pushed revenue, margins, and free cash flow to all-time highs; Parkev maintains a buy rating but advises waiting until after the June 24 earnings report before initiating or adding to positions.",
+          "price_target": "$915 intrinsic value (DCF); current price $1,054 above margin of safety",
+          "key_points": [
+            "Revenue nearly tripled year-over-year to $23.9 billion, driven by AI data center demand and constrained memory supply",
+            "Gross margins reached 74.4% and operating margins 67.6% — exceptional for a vertically integrated manufacturer",
+            "Management guided Q3 revenue of $33.5 billion (~50% sequential growth) and gross margins climbing to 81%",
+            "Generated $7 billion in free cash flow after $5 billion in CapEx; cash from operations nearly tripled in the first six months",
+            "Management chose to pay down $4.6 billion in debt rather than buy back stock at highs — interpreted as a signal that insiders consider the valuation stretched",
+            "Trades at 11x forward P/E and 12x forward operating cash flow, but both denominators are at cyclical peak levels that are likely unsustainable",
+            "Updated DCF puts intrinsic value at $915/share; market price of $1,054 exceeds Parkev's margin of safety threshold",
+            "Despite maintaining a buy rating, Parkev explicitly recommends waiting until after the June 24 earnings report and observing the post-result price action before buying"
+          ],
+          "time_spent_estimate_minutes": 13
+        }
+      ],
+      "key_theses": [
+        "Micron is at a cyclical peak driven by AI demand — strong fundamentals but the boom creates unrealistic baseline expectations for valuation",
+        "The stock is fairly valued or slightly above intrinsic value at current prices; margin of safety has been consumed by the 775% rally",
+        "Management's preference for debt repayment over buybacks near all-time highs is a subtle bearish signal worth noting",
+        "Earnings on June 24 represent a high-volatility event with asymmetric downside; better to wait for the print than buy into it",
+        "Long-term buy thesis remains intact — AI-driven memory demand is structural, though growth rates will moderate as replacement cycles replace new-market expansion"
+      ],
+      "warnings_or_risks": [
+        "Semiconductor industry is cyclical; current supply shortages historically give way to gluts as capacity expansions across the industry come online",
+        "Forward multiples of 11x P/E look cheap but are based on peak-cycle earnings — normalized earnings would show a far higher multiple",
+        "Stock has risen ~800% in one year; high beta to any negative macro or demand shift",
+        "Management is not aggressively buying back stock at current prices, suggesting insider skepticism about sustaining current levels",
+        "Post-earnings volatility is elevated; buying before the print concentrates risk unnecessarily"
+      ]
+    },
+    {
+      "video_id": "2krY_eCPkFI",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "RocketLab Stock: My Final Verdict (Buy or Sell) | RKLB Stock Deep Dive Part 6",
+      "video_url": "https://www.youtube.com/watch?v=2krY_eCPkFI",
+      "published_at": "2026-06-20T14:45:35Z",
+      "duration_minutes": 10,
+      "summary": "In the sixth and final installment of his Rocket Lab deep dive, Parkev Tatevosian examines the company's cash flow situation and delivers his investment verdict. He notes that RKLB burned roughly $75 million in free cash flow during the most recent quarter — $50 million in operating cash outflows plus $27 million in capital expenditure — and expects that elevated burn rate to persist through Neutron's first launch. Despite the losses, management sits on $1.5 billion in cash and equivalents, giving the company roughly 15 quarters of runway even at peak burn levels, and total liquidity exceeds $2 billion when including available credit facilities.\n\nParkev highlights that management has been opportunistically issuing equity — raising around $450 million in the latest quarter alone — while the stock has surged over 300% in the past year. He frames this favorably: each capital raise has occurred at higher prices as the company hits milestones, reducing the long-term cost of capital. For Q2 2026, management guided revenue of $225–240 million (roughly 16% above Q1's $200 million) with gross margins improving to around 34%.\n\nThe discussion then pivots to valuation in the context of SpaceX's anticipated IPO the following day. Parkev estimates SpaceX would price at a trailing price-to-sales near 90–95 at a $1.77 trillion valuation. By comparison, Rocket Lab trades at a forward P/S of approximately 62 — about two-thirds of SpaceX's multiple. He argues this relative discount is deserved given that Rocket Lab is a pure-play space company, whereas SpaceX is a conglomerate that now includes XAI (an AI company with excess computing capacity and modest customer traction) and a social media business — both of which traditionally command far lower multiples on their own.\n\nDespite finding Rocket Lab's strategic position compelling and its valuation more attractive than SpaceX's, Parkev concludes the current price-to-sales of 62 is still too rich for him to rate the stock a buy. He speculates the SpaceX IPO could serve as a sentiment catalyst in either direction and suggests waiting for a more attractive entry point before committing capital.",
+      "macro_topics": [
+        "Space industry",
+        "SpaceX IPO",
+        "Semiconductor/AI infrastructure",
+        "Growth company valuation",
+        "Capital raise strategy"
+      ],
+      "stocks": [
+        {
+          "symbol": "RKLB",
+          "company_name": "Rocket Lab USA",
+          "sentiment": "neutral",
+          "conviction": 0.9,
+          "thesis": "Compelling pure-play space company with a strong cash runway and improving unit economics, but the current forward P/S of ~62 is too elevated relative to the risk profile; Parkev wants a lower entry point before upgrading to buy.",
+          "price_target": null,
+          "key_points": [
+            "Burned approximately $75 million in free cash flow last quarter, with management expecting elevated spending to continue through Neutron's first launch",
+            "Holds $1.5 billion in cash and has access to over $2 billion in total liquidity, providing ample runway even at peak burn rates",
+            "Has issued equity opportunistically at progressively higher prices as it hits milestones, reducing long-term cost of capital",
+            "Q2 2026 revenue guidance of $225–240 million implies roughly 16% sequential growth, with gross margins expected near 34%",
+            "Trades at a forward P/S of ~62, roughly two-thirds of SpaceX's estimated valuation multiple, with the pure-play space focus seen as a structural advantage",
+            "SpaceX IPO (the following day) may act as a valuation catalyst — outcome could push RKLB higher or provide a better entry opportunity"
+          ],
+          "time_spent_estimate_minutes": 9
+        }
+      ],
+      "key_theses": [
+        "Rocket Lab has sufficient liquidity (~$2B) to reach Neutron's first launch without existential funding risk",
+        "The pure-play space positioning is more attractive than SpaceX's mixed-asset conglomerate structure at comparable or higher multiples",
+        "At a forward P/S of 62, the current price already reflects a lot of optimism; Parkev rates RKLB a hold and is waiting for a better entry",
+        "SpaceX's IPO is a near-term sentiment event that could move RKLB in either direction"
+      ],
+      "warnings_or_risks": [
+        "Company is burning ~$75 million per quarter in free cash flow and expects this to remain elevated",
+        "Valuation of ~62x forward P/S is historically rich and leaves little margin for execution missteps",
+        "SpaceX IPO could cause valuation compression across the space sector if enthusiasm is lower than expected",
+        "Continued equity dilution as management raises capital at market prices"
+      ]
+    },
+    {
+      "video_id": "Osn13jmFwvk",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Is RocketLab Stock Financially Viable? | RKLB Stock Deep Dive Part 5",
+      "video_url": "https://www.youtube.com/watch?v=Osn13jmFwvk",
+      "published_at": "2026-06-19T14:45:38Z",
+      "duration_minutes": 6.2,
+      "summary": "Part five of Parkev's Rocket Lab deep dive shifts from innovation narrative to financial fundamentals. He breaks down revenue by segment: Space Systems generated $137M in the most recent quarter (up 57% YoY, 32% QoQ), while Launch Services contributed $63.7M (up 79% YoY but down 16% QoQ due to fewer launches in the period). Space Systems is the larger revenue contributor today, but Launch Services is growing faster and generating more contract value — pointing to where the long-term business mix is heading.\n\nThe company ended Q1 with approximately $2.2B in total backlog, split 41.5% Launch and 58.5% Space Systems. Management expects roughly 36% of that backlog to convert to revenue within the next 12 months — approximately $800M — which aligns with a run-rate of about $200M/quarter. Parkev frames this conversion visibility as a meaningful de-risking factor for near-term revenue. Headcount in production roles grew by 250 to ~1,450, largely from personnel moving from R&D into production, signaling the transition from development to commercial scale.\n\nParkev is candid that Rocket Lab is early stage and that financial analysis is secondary to the innovation story at this point. He frames the investment case as a potential 5x, 10x, or even 100x opportunity given the vast and difficult-to-quantify upside of the space economy. The video closes as a teaser for a final part of the series, with the valuation verdict presumably coming next.",
+      "macro_topics": [
+        {
+          "title": "Space Economy Growth",
+          "description": "The commercial space industry is in an early expansion phase with revenue opportunities that are genuinely difficult to forecast. Launch services, satellite platforms, and space systems components are all scaling simultaneously as demand from government and commercial customers accelerates."
+        },
+        {
+          "title": "Defense and Government Space Spending",
+          "description": "Rocket Lab's backlog is diversified across government and commercial programs. The European defense spending surge and US government satellite programs are structural drivers of launch and space systems demand that extend well beyond near-term earnings visibility."
+        },
+        {
+          "title": "Reusable Launch Vehicles",
+          "description": "The economics of the launch business are being fundamentally reshaped by reusability. Rocket Lab's progress toward reusable Neutron launches is the key swing factor in determining long-term unit economics and the addressable market size for launch services."
+        }
+      ],
+      "stocks": [
+        {
+          "symbol": "RKLB",
+          "company_name": "Rocket Lab USA Inc",
+          "sentiment": "bullish",
+          "conviction": 0.75,
+          "thesis": "Rocket Lab's financials show accelerating revenue in both segments with $2.2B in backlog providing ~11 quarters of revenue visibility, and the broader space economy thesis supports a potential multi-bagger outcome over a long horizon.",
+          "price_target": null,
+          "key_points": [
+            "Space Systems revenue of $137M in most recent quarter — up 57% YoY and 32% QoQ",
+            "Launch Services revenue of $63.7M — up 79% YoY though down 16% QoQ on fewer launches",
+            "Total backlog of $2.2B with ~36% expected to convert to revenue in next 12 months (~$800M)",
+            "Backlog is diversifying toward launch contracts, which now exceed space systems in new contract value",
+            "Production headcount grew 250 to ~1,450 as R&D personnel shift into manufacturing — signals scaling",
+            "Management frames 5x, 10x, or even 100x as plausible long-term outcomes given space economy potential",
+            "Financial viability confirmed — company is generating meaningful and growing revenue from both segments"
+          ],
+          "time_spent_estimate_minutes": 5.5
+        }
+      ],
+      "key_theses": [
+        "Rocket Lab's financials are viable and improving — both segments growing strongly year-over-year with multi-year backlog",
+        "The $2.2B backlog provides exceptional revenue visibility (~11 quarters) that is rare for an early-stage growth company",
+        "The shift from R&D to production headcount signals the company is crossing the commercialization threshold",
+        "Long-term upside is difficult to quantify but potentially enormous given the nascent state of the space economy"
+      ],
+      "warnings_or_risks": [
+        "Launch Services revenue fell 16% quarter-over-quarter due to launch cadence variability — revenue is inherently lumpy",
+        "Still an early-stage company where execution risk on Neutron and reusability is high",
+        "No valuation or fair value given in this part — financial viability confirmed but whether the current price is attractive is deferred"
+      ]
+    },
+    {
+      "video_id": "r6ezJ4EJP-s",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Celsius Stock Analysis: My Final Verdict (Buy or Sell) | CELH Stock Deep Dive Part 5",
+      "video_url": "https://www.youtube.com/watch?v=r6ezJ4EJP-s",
+      "published_at": "2026-06-19T15:45:16Z",
+      "duration_minutes": 8.05,
+      "summary": "This is the concluding part of Parkev's five-part Celsius deep dive, covering growth opportunities and delivering a final buy/sell verdict. He opens by highlighting a structural retail tailwind: store managers are actively expanding energy drink shelf space — and specifically the premium cold section — as the category grows as a percentage of total beverage sales. Cold placement drives impulse purchases, making it a durable demand driver beyond just the drinks themselves.\n\nOn financials, Parkev walks through Wall Street consensus estimates: analysts project 33% revenue growth in fiscal 2026 (boosted by the Alani Nu and A-Shoc acquisitions), normalizing to roughly 10% in 2027 and 7% in 2028. He acknowledges near-term margin compression from tariffs and Iranian conflict-related commodity cost increases, but notes management's confidence in returning gross margins above 50% and operating margins above 20%.\n\nFor valuation, Parkev uses two methods. On a market multiples basis, the forward P/E of 17.8x and forward price-to-OCF of 16x are both the lowest since January 2024 — suggesting slight undervaluation relative to peers and history. On a DCF basis, he models free cash flow growing from $400M in 2026 to over $2B by 2035, using an 11.5% WACC (cost of equity 12%, beta 1.25, risk-free rate 4.5%). This produces a fair value of approximately $58/share against a current price near the 52-week low of $28.26 — roughly 100% upside.\n\nHis final verdict is a clear buy: the stock is meaningfully undervalued on DCF and at least fairly valued on multiples, with intact long-term growth drivers (international expansion, shelf space gains, margin recovery as acquisition costs fade) providing multi-year runway.",
+      "macro_topics": [
+        {
+          "title": "Energy Drink Market Growth",
+          "description": "Energy drinks are taking a rising share of total beverages consumed globally, and retailers are allocating more premium cold shelf space to the category. Higher average selling prices relative to standard beverages make the category attractive for retailers, and cold placement drives impulse purchases — a structural tailwind for leading brands."
+        },
+        {
+          "title": "Tariff and Commodity Cost Pressure",
+          "description": "The Iran conflict and Strait of Hormuz closure have elevated oil and commodity prices, feeding through to input costs for consumer brands. Celsius is experiencing near-term gross margin compression as a result, though management expects recovery above 50% gross margins once these pressures ease."
+        },
+        {
+          "title": "Consumer Staples Acquisitions",
+          "description": "Celsius completed acquisitions of Alani Nu and A-Shoc, which inflate reported revenue growth to 33% in fiscal 2026 before normalizing to single digits in 2027–2028. M&A integration costs are depressing near-term margins but expanding total addressable market and distribution reach."
+        },
+        {
+          "title": "Buyback Programs as Value Signal",
+          "description": "Management is repurchasing shares at prices well below Parkev's calculated fair value of $58. When insiders buy at a significant discount to intrinsic value, it signals confidence in the business trajectory and provides a floor of support for the stock price."
+        }
+      ],
+      "stocks": [
+        {
+          "symbol": "CELH",
+          "company_name": "Celsius Holdings Inc",
+          "sentiment": "bullish",
+          "conviction": 0.85,
+          "thesis": "Celsius is meaningfully undervalued on a DCF basis (fair value ~$58 vs. ~$28 current price) and at the cheapest market multiples in over two years, while retaining intact long-term growth drivers in international expansion, shelf space gains, and margin recovery.",
+          "price_target": "$58 (DCF fair value)",
+          "key_points": [
+            "Final verdict: explicit buy rating, updated June 12, 2026",
+            "DCF fair value of ~$58 implies roughly 100% upside from the ~$28 current price near 52-week lows",
+            "Forward P/E of 17.8x and forward price-to-OCF of 16x are the cheapest levels since January 2024",
+            "Retailers are expanding energy drink shelf space and upgrading cold section allocations — a structural demand tailwind",
+            "Revenue expected to grow 33% in 2026 (acquisition-boosted), normalizing to ~10% in 2027 and ~7% in 2028",
+            "Management targets return to 50%+ gross margins and 20%+ operating margins as integration costs fade",
+            "Four consecutive years of positive operating cash flow with double-digit OCF/sales ratios",
+            "International expansion still in early stages — provides multi-year incremental growth runway beyond current analyst estimates"
+          ],
+          "time_spent_estimate_minutes": 7.5
+        }
+      ],
+      "key_theses": [
+        "Celsius is a clear buy at current prices — meaningfully undervalued on DCF and at multi-year low multiples",
+        "Near-term margin pressure from acquisitions and commodity costs is temporary; management has a credible path back to 50%+ gross margins",
+        "Retail shelf expansion into premium cold space is a durable structural tailwind, not just a post-acquisition bump",
+        "International markets remain a large underpenetrated opportunity providing runway well beyond the 3-year analyst forecast window"
+      ],
+      "warnings_or_risks": [
+        "Revenue growth normalizes sharply to single digits in 2027–2028 once acquisition contribution fades — the business is not a high-growth compounder at that point",
+        "Tariff and commodity cost inflation from the Iran conflict could persist longer than expected, keeping margins compressed",
+        "The stock has declined 38%+ YTD, suggesting the market sees risks Parkev may be underweighting",
+        "Acquisition integration risk: Alani Nu and A-Shoc still need to prove they add lasting value beyond inflated near-term revenue"
+      ]
+    }
+  ],
+  "all_stocks": [
+    {
+      "symbol": "CELH",
+      "company_name": "Celsius Holdings Inc",
+      "display": "CELH",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Celsius Stock Analysis: My Final Verdict (Buy or Sell) | CELH Stock Deep Dive Part 5",
+          "video_url": "https://www.youtube.com/watch?v=r6ezJ4EJP-s",
+          "sentiment": "bullish",
+          "conviction": 0.85,
+          "thesis": "Celsius is meaningfully undervalued on a DCF basis (fair value ~$58 vs. ~$28 current price) and at the cheapest market multiples in over two years, while retaining intact long-term growth drivers in international expansion, shelf space gains, and margin recovery.",
+          "key_points": [
+            "Final verdict: explicit buy rating, updated June 12, 2026",
+            "DCF fair value of ~$58 implies roughly 100% upside from the ~$28 current price near 52-week lows",
+            "Forward P/E of 17.8x and forward price-to-OCF of 16x are the cheapest levels since January 2024",
+            "Retailers are expanding energy drink shelf space and upgrading cold section allocations — a structural demand tailwind",
+            "Revenue expected to grow 33% in 2026 (acquisition-boosted), normalizing to ~10% in 2027 and ~7% in 2028",
+            "Management targets return to 50%+ gross margins and 20%+ operating margins as integration costs fade",
+            "Four consecutive years of positive operating cash flow with double-digit OCF/sales ratios",
+            "International expansion still in early stages — provides multi-year incremental growth runway beyond current analyst estimates"
+          ],
+          "price_target": "$58 (DCF fair value)"
+        }
+      ]
+    },
+    {
+      "symbol": "MU",
+      "company_name": "Micron Technology",
+      "display": "MU",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Should You Buy Micron Stock Before the Huge Investor Update? | MU Stock Analysis",
+          "video_url": "https://www.youtube.com/watch?v=1nQvwfY0yTA",
+          "sentiment": "bullish",
+          "conviction": 0.85,
+          "thesis": "Micron is benefiting from record AI-driven demand and tight industry supply that have pushed revenue, margins, and free cash flow to all-time highs; Parkev maintains a buy rating but advises waiting until after the June 24 earnings report before initiating or adding to positions.",
+          "key_points": [
+            "Revenue nearly tripled year-over-year to $23.9 billion, driven by AI data center demand and constrained memory supply",
+            "Gross margins reached 74.4% and operating margins 67.6% — exceptional for a vertically integrated manufacturer",
+            "Management guided Q3 revenue of $33.5 billion (~50% sequential growth) and gross margins climbing to 81%",
+            "Generated $7 billion in free cash flow after $5 billion in CapEx; cash from operations nearly tripled in the first six months",
+            "Management chose to pay down $4.6 billion in debt rather than buy back stock at highs — interpreted as a signal that insiders consider the valuation stretched",
+            "Trades at 11x forward P/E and 12x forward operating cash flow, but both denominators are at cyclical peak levels that are likely unsustainable",
+            "Updated DCF puts intrinsic value at $915/share; market price of $1,054 exceeds Parkev's margin of safety threshold",
+            "Despite maintaining a buy rating, Parkev explicitly recommends waiting until after the June 24 earnings report and observing the post-result price action before buying"
+          ],
+          "price_target": "$915 intrinsic value (DCF); current price $1,054 above margin of safety"
+        }
+      ]
+    },
+    {
+      "symbol": "RKLB",
+      "company_name": "Rocket Lab USA",
+      "display": "RKLB",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "RocketLab Stock: My Final Verdict (Buy or Sell) | RKLB Stock Deep Dive Part 6",
+          "video_url": "https://www.youtube.com/watch?v=2krY_eCPkFI",
+          "sentiment": "neutral",
+          "conviction": 0.9,
+          "thesis": "Compelling pure-play space company with a strong cash runway and improving unit economics, but the current forward P/S of ~62 is too elevated relative to the risk profile; Parkev wants a lower entry point before upgrading to buy.",
+          "key_points": [
+            "Burned approximately $75 million in free cash flow last quarter, with management expecting elevated spending to continue through Neutron's first launch",
+            "Holds $1.5 billion in cash and has access to over $2 billion in total liquidity, providing ample runway even at peak burn rates",
+            "Has issued equity opportunistically at progressively higher prices as it hits milestones, reducing long-term cost of capital",
+            "Q2 2026 revenue guidance of $225–240 million implies roughly 16% sequential growth, with gross margins expected near 34%",
+            "Trades at a forward P/S of ~62, roughly two-thirds of SpaceX's estimated valuation multiple, with the pure-play space focus seen as a structural advantage",
+            "SpaceX IPO (the following day) may act as a valuation catalyst — outcome could push RKLB higher or provide a better entry opportunity"
+          ],
+          "price_target": null
+        },
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Is RocketLab Stock Financially Viable? | RKLB Stock Deep Dive Part 5",
+          "video_url": "https://www.youtube.com/watch?v=Osn13jmFwvk",
+          "sentiment": "bullish",
+          "conviction": 0.75,
+          "thesis": "Rocket Lab's financials show accelerating revenue in both segments with $2.2B in backlog providing ~11 quarters of revenue visibility, and the broader space economy thesis supports a potential multi-bagger outcome over a long horizon.",
+          "key_points": [
+            "Space Systems revenue of $137M in most recent quarter — up 57% YoY and 32% QoQ",
+            "Launch Services revenue of $63.7M — up 79% YoY though down 16% QoQ on fewer launches",
+            "Total backlog of $2.2B with ~36% expected to convert to revenue in next 12 months (~$800M)",
+            "Backlog is diversifying toward launch contracts, which now exceed space systems in new contract value",
+            "Production headcount grew 250 to ~1,450 as R&D personnel shift into manufacturing — signals scaling",
+            "Management frames 5x, 10x, or even 100x as plausible long-term outcomes given space economy potential",
+            "Financial viability confirmed — company is generating meaningful and growing revenue from both segments"
+          ],
+          "price_target": null
+        }
+      ]
+    }
+  ],
+  "macro_topics": [
+    {
+      "title": "AI infrastructure demand",
+      "description": ""
+    },
+    {
+      "title": "Semiconductor cycle",
+      "description": ""
+    },
+    {
+      "title": "Memory chip pricing",
+      "description": ""
+    },
+    {
+      "title": "Earnings preview",
+      "description": ""
+    },
+    {
+      "title": "Capital allocation",
+      "description": ""
+    },
+    {
+      "title": "Space industry",
+      "description": ""
+    },
+    {
+      "title": "SpaceX IPO",
+      "description": ""
+    },
+    {
+      "title": "Semiconductor/AI infrastructure",
+      "description": ""
+    },
+    {
+      "title": "Growth company valuation",
+      "description": ""
+    },
+    {
+      "title": "Capital raise strategy",
+      "description": ""
+    },
+    {
+      "title": "Space Economy Growth",
+      "description": "The commercial space industry is in an early expansion phase with revenue opportunities that are genuinely difficult to forecast. Launch services, satellite platforms, and space systems components are all scaling simultaneously as demand from government and commercial customers accelerates."
+    },
+    {
+      "title": "Defense and Government Space Spending",
+      "description": "Rocket Lab's backlog is diversified across government and commercial programs. The European defense spending surge and US government satellite programs are structural drivers of launch and space systems demand that extend well beyond near-term earnings visibility."
+    },
+    {
+      "title": "Reusable Launch Vehicles",
+      "description": "The economics of the launch business are being fundamentally reshaped by reusability. Rocket Lab's progress toward reusable Neutron launches is the key swing factor in determining long-term unit economics and the addressable market size for launch services."
+    },
+    {
+      "title": "Energy Drink Market Growth",
+      "description": "Energy drinks are taking a rising share of total beverages consumed globally, and retailers are allocating more premium cold shelf space to the category. Higher average selling prices relative to standard beverages make the category attractive for retailers, and cold placement drives impulse purchases — a structural tailwind for leading brands."
+    },
+    {
+      "title": "Tariff and Commodity Cost Pressure",
+      "description": "The Iran conflict and Strait of Hormuz closure have elevated oil and commodity prices, feeding through to input costs for consumer brands. Celsius is experiencing near-term gross margin compression as a result, though management expects recovery above 50% gross margins once these pressures ease."
+    },
+    {
+      "title": "Consumer Staples Acquisitions",
+      "description": "Celsius completed acquisitions of Alani Nu and A-Shoc, which inflate reported revenue growth to 33% in fiscal 2026 before normalizing to single digits in 2027–2028. M&A integration costs are depressing near-term margins but expanding total addressable market and distribution reach."
+    },
+    {
+      "title": "Buyback Programs as Value Signal",
+      "description": "Management is repurchasing shares at prices well below Parkev's calculated fair value of $58. When insiders buy at a significant discount to intrinsic value, it signals confidence in the business trajectory and provides a floor of support for the stock price."
+    }
+  ],
+  "sources": [
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Should You Buy Micron Stock Before the Huge Investor Update? | MU Stock Analysis",
+      "url": "https://www.youtube.com/watch?v=1nQvwfY0yTA"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "RocketLab Stock: My Final Verdict (Buy or Sell) | RKLB Stock Deep Dive Part 6",
+      "url": "https://www.youtube.com/watch?v=2krY_eCPkFI"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Is RocketLab Stock Financially Viable? | RKLB Stock Deep Dive Part 5",
+      "url": "https://www.youtube.com/watch?v=Osn13jmFwvk"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Celsius Stock Analysis: My Final Verdict (Buy or Sell) | CELH Stock Deep Dive Part 5",
+      "url": "https://www.youtube.com/watch?v=r6ezJ4EJP-s"
+    }
+  ]
+}
