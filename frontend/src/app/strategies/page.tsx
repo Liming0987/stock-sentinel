@@ -262,16 +262,29 @@ function StrategyRow({
   positions,
   isOpen,
   onToggle,
+  onEnabledChange,
 }: {
   strat: StrategyData;
   liveUnrealized: number | undefined;
   positions: LivePosition[];
   isOpen: boolean;
   onToggle: () => void;
+  onEnabledChange: (name: string, enabled: boolean) => Promise<void>;
 }) {
   const color = STRATEGY_COLORS[strat.name] || "hsl(260, 70%, 60%)";
   const unrealized = liveUnrealized ?? strat.unrealized_pnl;
   const winPct = (strat.win_rate * 100).toFixed(0);
+  const [toggling, setToggling] = useState(false);
+
+  const handleEnabledClick = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setToggling(true);
+    try {
+      await onEnabledChange(strat.name, !strat.enabled);
+    } finally {
+      setToggling(false);
+    }
+  };
 
   return (
     <div className="border-b last:border-0">
@@ -285,12 +298,21 @@ function StrategyRow({
           {strat.name.replace(/_/g, " ")}
         </span>
 
-        <Badge
-          variant={strat.enabled ? "bullish" : "secondary"}
-          className="text-[10px] px-1.5 py-0.5 shrink-0"
+        {/* Enable/disable toggle — stopPropagation so it doesn't expand the accordion */}
+        <button
+          onClick={handleEnabledClick}
+          disabled={toggling}
+          title={strat.enabled ? "Click to disable" : "Click to enable"}
+          className={`relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none disabled:opacity-50 ${
+            strat.enabled ? "bg-green-500" : "bg-muted"
+          }`}
         >
-          {strat.enabled ? "Active" : "Off"}
-        </Badge>
+          <span
+            className={`inline-block h-3.5 w-3.5 rounded-full bg-white shadow-sm transition-transform duration-200 ${
+              strat.enabled ? "translate-x-4" : "translate-x-0"
+            }`}
+          />
+        </button>
 
         <div className="flex flex-1 items-center gap-6 ml-2 overflow-hidden">
           <StatCell label="Realized">
@@ -355,7 +377,7 @@ function StrategyRow({
 }
 
 export default function StrategiesPage() {
-  const { data: strategiesData, loading } = useStrategies();
+  const { data: strategiesData, loading, refetch: refetchStrategies } = useStrategies();
   const { data: curveData } = useEquityCurve();
   const { data: liveData } = useLivePositions();
   const { data: acc } = useAlpacaAccount();
@@ -413,6 +435,11 @@ export default function StrategiesPage() {
   const isOpen = (name: string) => openMap[name] === true;
   const toggle = (name: string) =>
     setOpenMap((prev) => ({ ...prev, [name]: !isOpen(name) }));
+
+  const handleEnabledChange = async (name: string, enabled: boolean) => {
+    await api.strategies.setEnabled(name, enabled);
+    refetchStrategies();
+  };
 
   const totalRealized = useMemo(
     () => strategies.reduce((s, x) => s + x.total_pnl, 0),
@@ -667,6 +694,7 @@ export default function StrategiesPage() {
                   positions={liveData.positions.filter((p) => p.strategy === strat.name)}
                   isOpen={isOpen(strat.name)}
                   onToggle={() => toggle(strat.name)}
+                  onEnabledChange={handleEnabledChange}
                 />
               ))
             )}

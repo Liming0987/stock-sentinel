@@ -75,6 +75,38 @@ async def list_strategies(db: AsyncSession = Depends(get_db)):
     return {"strategies": strategies}
 
 
+@router.patch("/{name}/enabled")
+async def set_strategy_enabled(
+    name: str,
+    body: dict,
+    db: AsyncSession = Depends(get_db),
+):
+    """Enable or disable a strategy. Body: { "enabled": true | false }"""
+    enabled = body.get("enabled")
+    if not isinstance(enabled, bool):
+        from fastapi import HTTPException
+        raise HTTPException(status_code=422, detail="'enabled' must be a boolean")
+
+    row = await db.execute(select(StrategyRow).where(StrategyRow.name == name))
+    row = row.scalar_one_or_none()
+
+    if row is None:
+        # Strategy exists in registry but hasn't run yet — create the row
+        from app.strategies import STRATEGY_REGISTRY
+        cls = STRATEGY_REGISTRY.get(name)
+        if cls is None:
+            from fastapi import HTTPException
+            raise HTTPException(status_code=404, detail=f"Strategy '{name}' not found")
+        row = StrategyRow(name=name, description=cls.description, paper=True, enabled=enabled)
+        db.add(row)
+    else:
+        row.enabled = enabled
+        db.add(row)
+
+    await db.commit()
+    return {"name": name, "enabled": enabled}
+
+
 @router.get("/{name}/trades")
 async def get_strategy_trades(
     name: str,
