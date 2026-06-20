@@ -80,11 +80,17 @@ class FibRetracementStrategy(BaseStrategy):
         if context.get("current_position"):
             return Signal.hold()
 
-        # EMA-50 slope guard: trend must be rising, not declining
+        # EMA-50 slope guard: today > 5 days ago > 10 days ago.
+        # Two-interval check confirms sustained direction without demanding
+        # monotonic movement every bar.
         if ema_50 is not None and len(df) >= EMA_SLOPE_BARS + 50:
             from app.services.price_service import _ema
             ema50_series = _ema(df["Close"], 50)
-            if float(ema50_series.iloc[-1]) < float(ema50_series.iloc[-(EMA_SLOPE_BARS + 1)]):
+            half = EMA_SLOPE_BARS // 2
+            if not (
+                float(ema50_series.iloc[-1]) > float(ema50_series.iloc[-(half + 1)])
+                > float(ema50_series.iloc[-(EMA_SLOPE_BARS + 1)])
+            ):
                 return Signal.hold()
 
         swing = _find_swing(df)

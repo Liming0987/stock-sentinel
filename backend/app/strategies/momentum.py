@@ -40,11 +40,18 @@ class MomentumStrategy(BaseStrategy):
         if context.get("current_position"):
             return Signal.hold()
 
-        # EMA-50 must be trending up over last N bars
+        # EMA-50 slope check: today > 5 days ago > 10 days ago.
+        # Two-interval check confirms sustained direction without requiring
+        # monotonic movement every bar (EMA-50 naturally pauses 1-2 days
+        # even in strong uptrends due to smoothing).
         if df is not None and len(df) >= self.EMA_SLOPE_BARS + 50:
             from app.services.price_service import _ema
             ema50_series = _ema(df["Close"], 50)
-            if float(ema50_series.iloc[-1]) <= float(ema50_series.iloc[-(self.EMA_SLOPE_BARS + 1)]):
+            half = self.EMA_SLOPE_BARS // 2
+            if not (
+                float(ema50_series.iloc[-1]) > float(ema50_series.iloc[-(half + 1)])
+                > float(ema50_series.iloc[-(self.EMA_SLOPE_BARS + 1)])
+            ):
                 return Signal.hold()
 
         bullish_trend = (
