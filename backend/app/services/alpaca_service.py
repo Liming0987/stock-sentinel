@@ -155,6 +155,22 @@ class AlpacaService:
             logger.warning(f"close_position failed for {symbol}: {e}")
             return None
 
+    def close_position_with_order_id(self, symbol: str) -> tuple:
+        """Close a position and return (fill_price, order_id).
+
+        fill_price is None when the market is closed and the sell is queued for
+        next open. order_id is always set on a successful submission so the
+        reconciler can fetch the actual fill price the following morning.
+        """
+        try:
+            order = self.trading_client.close_position(symbol)
+            order_id = str(order.id)
+            fill_price = self.get_order_fill(order_id)
+            return fill_price, order_id
+        except Exception as e:
+            logger.warning(f"close_position_with_order_id failed for {symbol}: {e}")
+            return None, None
+
     def get_latest_prices(self, symbols: list) -> dict:
         """Get latest trade price for multiple symbols in one call. Returns {symbol: price}."""
         if not self.is_configured:

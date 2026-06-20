@@ -74,6 +74,54 @@ def _is_market_open() -> bool:
             return True
 
 
+def _has_market_closed_today() -> bool:
+    """Return True if NYSE has closed for the current trading day (after 4 PM ET on a trading day)."""
+    try:
+        import pandas_market_calendars as mcal
+        import pytz
+        et = pytz.timezone("America/New_York")
+        now_et = datetime.now(et)
+        if now_et.weekday() >= 5:
+            return False
+        nyse = mcal.get_calendar("NYSE")
+        today = now_et.date().isoformat()
+        schedule = nyse.schedule(start_date=today, end_date=today)
+        if schedule.empty:
+            return False
+        market_close = schedule.iloc[0]["market_close"].to_pydatetime()
+        return datetime.now(timezone.utc) > market_close
+    except Exception:
+        try:
+            import pytz
+            from datetime import time as dt_time
+            et = pytz.timezone("America/New_York")
+            now = datetime.now(et)
+            return now.weekday() < 5 and now.time() > dt_time(16, 0)
+        except Exception:
+            return False
+
+
+def _eod_already_ran_today() -> bool:
+    """True if the EOD strategy run already completed today (Redis dedup key)."""
+    try:
+        import redis
+        from datetime import date
+        r = redis.from_url(settings.redis_url)
+        return bool(r.exists(f"sentinel:eod_ran:{date.today().isoformat()}"))
+    except Exception:
+        return False
+
+
+def _mark_eod_ran_today() -> None:
+    try:
+        import redis
+        from datetime import date
+        r = redis.from_url(settings.redis_url)
+        r.setex(f"sentinel:eod_ran:{date.today().isoformat()}", 86400, "1")
+    except Exception:
+        pass
+
+
 class StrategyRunner:
     """Runs all enabled strategies against a stock universe."""
 
@@ -334,18 +382,95 @@ class StrategyRunner:
 
         return trade
 
+    def _open_position_eod(
+        self, session: Session, strat_row: StrategyRow, stock: Stock, signal, ticker: str
+    ) -> Trade:
+        """Submit a buy order after market close — queues for next open.
+
+        Does not wait for a fill. Records entry_price as today's close (placeholder);
+        the reconciler corrects it to the actual fill price at 9:45 AM the next morning.
+        """
+        client_order_id = f"{strat_row.name}-{ticker}-{uuid4().hex[:8]}-eod"
+        signal_price = signal.entry_price or 1.0
+        qty = round(POSITION_SIZE_USD / signal_price, 6)
+        qty = max(qty, 0.000001)
+
+        order = self.alpaca.submit_order(
+            symbol=ticker,
+            qty=qty,
+            side="buy",
+            client_order_id=client_order_id,
+        )
+        alpaca_order_id = str(order.id)
+        logger.info(
+            f"[{strat_row.name}] EOD order queued {ticker}: {alpaca_order_id} "
+            f"(fills at next open; placeholder entry={signal_price})"
+        )
+
+        trade = Trade(
+            strategy_id=strat_row.id,
+            stock_id=stock.id,
+            ticker=ticker,
+            side="buy",
+            qty=Decimal(str(qty)),
+            entry_price=Decimal(str(round(signal_price, 4))),
+            stop_loss=Decimal(str(signal.stop_loss)) if signal.stop_loss else None,
+            target=Decimal(str(signal.target)) if signal.target else None,
+            status="open",
+            alpaca_client_order_id=client_order_id,
+            alpaca_order_id=alpaca_order_id,
+            reasoning=" | ".join(signal.reasoning) + " | entry: next-open (EOD)",
+        )
+        open_event = TradeEvent(
+            trade_id=None,
+            event_type="opened_eod",
+            ticker=ticker,
+            strategy_name=strat_row.name,
+            side="buy",
+            qty=Decimal(str(qty)),
+            price=Decimal(str(round(signal_price, 4))),
+            alpaca_order_id=alpaca_order_id,
+            meta={
+                "client_order_id": client_order_id,
+                "signal_price": str(signal_price),
+                "eod": True,
+            },
+        )
+        session.add(trade)
+        session.flush()
+        open_event.trade_id = trade.id
+        session.add(open_event)
+        logger.info(f"[{strat_row.name}] EOD OPEN {ticker} qty={qty} (estimated @ {signal_price})")
+
+        try:
+            from app.services.notification_service import NotificationService
+            NotificationService(_sync_db_url()).notify_trade_open(
+                strategy=strat_row.name,
+                ticker=ticker,
+                price=float(signal_price),
+                stop=float(signal.stop_loss) if signal.stop_loss else None,
+                target=float(signal.target) if signal.target else None,
+            )
+        except Exception:
+            pass
+
+        return trade
+
     def _close_position(self, session: Session, trade: Trade, exit_price: float, reason: str):
         """Close an open trade via Alpaca and record the fill price.
 
-        Falls back to the last_price passed by the caller when Alpaca returns no fill
-        (e.g. position already closed on Alpaca side, partial fill, API hiccup).
-        This ensures the DB is always updated to 'closed' — never left stuck as 'open'.
+        When the market is open the sell fills immediately and exit_price is exact.
+        When the market is closed the sell is queued for next open; exit_price is
+        today's close (placeholder) and alpaca_close_order_id is stored so the
+        reconciler can correct it to the actual fill price the following morning.
         """
-        fill_price = self.alpaca.close_position(trade.ticker)
+        fill_price, sell_order_id = self.alpaca.close_position_with_order_id(trade.ticker)
         if fill_price:
             exit_price = fill_price
             logger.info(f"Alpaca close fill {trade.ticker} @ {fill_price}")
         else:
+            if sell_order_id:
+                trade.alpaca_close_order_id = sell_order_id
             logger.warning(
                 f"Alpaca close_position({trade.ticker}) returned no fill — "
                 f"recording exit at last price {exit_price:.4f}"
@@ -649,6 +774,169 @@ class StrategyRunner:
         engine.dispose()
         return summary
 
+    def run_eod(self) -> Dict:
+        """Evaluate strategies using today's close data and queue orders for next open.
+
+        Called after market close (4:15 PM ET). Orders submitted here are queued
+        by Alpaca and execute at tomorrow's 9:30 AM open. The position reconciler
+        (runs at 9:45 AM) updates entry_price to the actual fill price.
+        """
+        if not _has_market_closed_today():
+            logger.info("EOD run: market has not yet closed — skipping")
+            return {"skipped": "market_not_closed"}
+        if _eod_already_ran_today():
+            logger.info("EOD run: already completed today — skipping duplicate")
+            return {"skipped": "already_ran_today"}
+
+        engine = create_engine(_sync_db_url())
+        summary = {"strategies": {}, "trades_opened": 0, "trades_closed": 0, "eod": True}
+
+        with Session(engine) as session:
+            universe = self._build_universe(session)
+            stocks_ctx: Dict[str, Dict] = {}
+            for ticker in universe:
+                try:
+                    stock = self._ensure_stock(session, ticker)
+                    ctx = self._build_context(session, stock)
+                    if ctx:
+                        stocks_ctx[ticker] = {"stock": stock, "ctx": ctx}
+                except Exception as e:
+                    logger.warning(f"EOD: skipping {ticker}: {e}")
+            session.commit()
+
+            # Fetch all live Alpaca positions once so we can guard against
+            # trying to close a position that only has a pending buy order.
+            alpaca_positions_now = self.alpaca.get_all_positions_dict()
+
+            for strat_name, strat_cls in STRATEGY_REGISTRY.items():
+                strat: BaseStrategy = strat_cls()
+                strat_row = self._ensure_strategy_row(session, strat)
+                if not strat_row.enabled:
+                    continue
+
+                opened = closed = 0
+
+                open_count = session.execute(
+                    select(func.count()).select_from(Trade).where(and_(
+                        Trade.strategy_id == strat_row.id,
+                        Trade.status == "open",
+                    ))
+                ).scalar() or 0
+
+                held_by_any = {
+                    row[0] for row in session.execute(
+                        select(Trade.ticker).where(Trade.status == "open")
+                    ).all()
+                }
+
+                buy_candidates = []
+
+                for ticker, payload in stocks_ctx.items():
+                    stock: Stock = payload["stock"]
+                    ctx = dict(payload["ctx"])
+
+                    open_trade = session.execute(
+                        select(Trade).where(and_(
+                            Trade.strategy_id == strat_row.id,
+                            Trade.stock_id == stock.id,
+                            Trade.status == "open",
+                        ))
+                    ).scalar_one_or_none()
+                    ctx["current_position"] = open_trade
+
+                    if open_trade:
+                        close_reason = strat.should_close(open_trade, ctx)
+                        if close_reason:
+                            # Only close if Alpaca has a real open position.
+                            # If the buy order is still pending (e.g. opened
+                            # in the same EOD run), cancel the buy instead.
+                            if open_trade.ticker not in alpaca_positions_now:
+                                cancelled = self.alpaca.cancel_order(open_trade.alpaca_order_id or "")
+                                open_trade.status = "cancelled"
+                                open_trade.closed_at = datetime.now(timezone.utc)
+                                open_trade.reasoning = (
+                                    (open_trade.reasoning or "")
+                                    + f" | eod-no-position: buy cancelled ({close_reason})"
+                                )
+                                session.add(open_trade)
+                                logger.info(
+                                    f"[{strat_row.name}] {ticker}: no Alpaca position — "
+                                    f"buy order cancelled (close reason: {close_reason})"
+                                )
+                                closed += 1
+                                open_count -= 1
+                                continue
+
+                            last_price = ctx["indicators"].get("last_price")
+                            close_price = float(last_price) if last_price else float(open_trade.entry_price)
+                            self._close_position(session, open_trade, close_price, close_reason)
+                            from app.strategies.base import Signal as SigDC
+                            sell_sig = SigDC(
+                                action="sell",
+                                confidence=1.0,
+                                entry_price=close_price,
+                                stop_loss=float(open_trade.stop_loss) if open_trade.stop_loss else None,
+                                target=float(open_trade.target) if open_trade.target else None,
+                                reasoning=[close_reason],
+                            )
+                            self._record_signal(session, strat_row, stock, sell_sig, executed=True, trade_id=open_trade.id)
+                            closed += 1
+                            open_count -= 1
+                            continue
+
+                    if strat.requires_intraday:
+                        continue
+
+                    if not open_trade and ticker not in held_by_any:
+                        sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
+                        if sig.action == "buy":
+                            buy_candidates.append((sig.confidence, ticker, payload["stock"], sig))
+                        else:
+                            self._record_signal(session, strat_row, stock, sig, executed=False)
+
+                buy_candidates.sort(key=lambda x: x[0], reverse=True)
+                slots_available = max(0, strat.max_positions - open_count)
+                executed_tickers = {t for _, t, _, _ in buy_candidates[:slots_available]}
+                dedup_cutoff = datetime.now(timezone.utc) - timedelta(hours=25)
+                for _, ticker, stock, sig in buy_candidates:
+                    will_execute = ticker in executed_tickers
+                    if will_execute:
+                        try:
+                            trade = self._open_position_eod(session, strat_row, stock, sig, ticker)
+                            self._record_signal(session, strat_row, stock, sig, executed=True, trade_id=trade.id)
+                            opened += 1
+                        except Exception as e:
+                            logger.error(f"[{strat_row.name}] EOD failed to open {ticker}: {e}")
+                            self._record_signal(session, strat_row, stock, sig, executed=False)
+                    else:
+                        existing = session.query(StrategySignal).filter(
+                            StrategySignal.strategy_id == strat_row.id,
+                            StrategySignal.ticker == ticker,
+                            StrategySignal.action == "buy",
+                            StrategySignal.executed == False,
+                            StrategySignal.created_at >= dedup_cutoff,
+                        ).first()
+                        if not existing:
+                            self._record_signal(session, strat_row, stock, sig, executed=False)
+
+                self._recompute_metrics(session, strat_row)
+                session.commit()
+
+                summary["strategies"][strat_name] = {
+                    "opened": opened,
+                    "closed": closed,
+                    "total_trades": strat_row.total_trades,
+                    "win_rate": float(strat_row.win_rate or 0),
+                    "total_pnl": float(strat_row.total_pnl or 0),
+                    "unrealized_pnl": float(strat_row.unrealized_pnl or 0),
+                }
+                summary["trades_opened"] += opened
+                summary["trades_closed"] += closed
+
+        _mark_eod_ran_today()
+        engine.dispose()
+        return summary
+
     def run_intraday(self) -> Dict:
         """Run strategies using real-time Alpaca prices. Market-hours-only."""
         from app.services.alpaca_service import AlpacaService
@@ -730,6 +1018,12 @@ class StrategyRunner:
                             closed += 1
                             open_count -= 1
                             continue
+
+                    # Daily strategies generate entries only via run_eod (after close).
+                    # run_intraday handles exits for daily strategies and both
+                    # entries + exits for intraday-only strategies (ORB, VWAP).
+                    if not strat.requires_intraday:
+                        continue
 
                     if not open_trade and ticker not in held_by_any:
                         sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)

@@ -375,6 +375,30 @@ def cleanup_strategy_signals(self: Task):
     return {"strategy_signals_deleted": deleted}
 
 
+@celery_app.task(**_RETRY_DEFAULTS, name="app.workers.tasks.run_strategies_eod")
+def run_strategies_eod(self: Task):
+    """Evaluate strategies at market close using today's complete candles.
+
+    Signals are based on today's actual close data. Orders are submitted to Alpaca
+    and queued for execution at tomorrow's 9:30 AM open. The position reconciler
+    (13:45 UTC) updates entry_price to the actual fill price after orders execute.
+    """
+    from app.services.strategy_runner import StrategyRunner
+    from app.services.notification_service import NotificationService
+    try:
+        runner = StrategyRunner()
+        return runner.run_eod()
+    except Exception as exc:
+        msg = str(exc)
+        logger.error(f"run_strategies_eod failed: {msg}")
+        try:
+            sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+            NotificationService(sync_url).notify_error("run_strategies_eod", msg)
+        except Exception:
+            pass
+        raise
+
+
 @celery_app.task(
     bind=True, name="app.workers.tasks.run_strategies_intraday",
     max_retries=0, time_limit=55, soft_time_limit=50,

@@ -157,59 +157,6 @@ async def get_strategy_trades(
     }
 
 
-@router.post("/reset")
-async def reset_positions(db: AsyncSession = Depends(get_db)):
-    """Close all Alpaca positions and cancel all open DB trades so both are in sync."""
-    import asyncio
-    from datetime import datetime, timezone
-    from app.services.alpaca_service import AlpacaService
-
-    def _close_alpaca_positions():
-        svc = AlpacaService()
-        if not svc.is_configured:
-            return [], "Alpaca not configured"
-        positions = svc.get_positions()
-        closed = []
-        errors = []
-        for p in positions:
-            fill = svc.close_position(p.symbol)
-            if fill:
-                closed.append({"symbol": p.symbol, "fill_price": fill})
-            else:
-                errors.append(p.symbol)
-        return closed, errors
-
-    loop = asyncio.get_event_loop()
-    alpaca_closed, errors = await loop.run_in_executor(None, _close_alpaca_positions)
-
-    # Cancel all open trades in DB
-    open_trades_result = await db.execute(
-        select(Trade).where(Trade.status == "open")
-    )
-    open_trades = open_trades_result.scalars().all()
-    now = datetime.now(timezone.utc)
-    for trade in open_trades:
-        trade.status = "cancelled"
-        trade.closed_at = now
-        trade.reasoning = (trade.reasoning or "") + " | reset: positions cleared for sync"
-        db.add(trade)
-
-    # Zero unrealized P&L on all strategies
-    strats_result = await db.execute(select(StrategyRow))
-    for strat in strats_result.scalars().all():
-        strat.unrealized_pnl = 0
-        db.add(strat)
-
-    await db.commit()
-
-    return {
-        "alpaca_positions_closed": alpaca_closed,
-        "alpaca_close_errors": errors,
-        "db_trades_cancelled": len(open_trades),
-        "message": "All positions closed and DB synced. Ready for fresh start.",
-    }
-
-
 @router.post("/sync-alpaca")
 async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
     """Reconcile Alpaca order history with the DB.
@@ -266,7 +213,34 @@ async def sync_alpaca_positions(db: AsyncSession = Depends(get_db)):
             tracked_client_ids.add(client_id)
 
     # ── Pass 1: Close orphaned DB trades ─────────────────────────────────────
-    orphan_trades = [t for t in open_trades_list if t.ticker not in alpaca_symbols]
+    # A trade whose ticker has no Alpaca position is normally an orphan. The
+    # exception: EOD orders queued after market close that haven't filled yet.
+    # We check the Alpaca order status and skip any trade whose order is still
+    # pending so we don't accidentally close a queued buy before it executes.
+    candidate_orphans = [t for t in open_trades_list if t.ticker not in alpaca_symbols]
+
+    def _check_pending_orders(trades):
+        from app.services.alpaca_service import AlpacaService
+        from alpaca.trading.requests import GetOrderByIdRequest
+        svc = AlpacaService()
+        pending_ids = set()
+        for t in trades:
+            if not t.alpaca_order_id:
+                continue
+            try:
+                order = svc.trading_client.get_order_by_id(
+                    t.alpaca_order_id, filter=GetOrderByIdRequest(nested=False)
+                )
+                status = order.status.value if hasattr(order.status, "value") else str(order.status)
+                if status in ("accepted", "pending_new", "new", "held"):
+                    pending_ids.add(t.id)
+            except Exception:
+                pass
+        return pending_ids
+
+    pending_trade_ids = await loop.run_in_executor(None, _check_pending_orders, candidate_orphans)
+    orphan_trades = [t for t in candidate_orphans if t.id not in pending_trade_ids]
+
     orphan_tickers = list({t.ticker for t in orphan_trades})
     orphan_prices: dict = {}
     if orphan_tickers:

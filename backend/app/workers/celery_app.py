@@ -78,14 +78,20 @@ celery_app.conf.beat_schedule = {
         "task": "app.workers.tasks.refresh_fundamentals",
         "schedule": crontab(hour=1, minute=0),
     },
-    # Daily-candle strategies: run once at market open using yesterday's closes
-    # for all indicators (MACD, EMA, RSI) + today's live Alpaca price.
-    # 14:35 UTC = 10:35 AM EDT / 9:35 AM EST — inside market hours year-round
-    # without DST gymnastics. Running every 30 min was wasteful: daily indicators
-    # don't change until 4pm, so all intermediate runs produced identical signals.
-    "run-strategies": {
-        "task": "app.workers.tasks.run_strategies",
-        "schedule": crontab(hour=14, minute=35),
+    # EOD strategies: run after market close using today's complete candles.
+    # Orders are submitted to Alpaca and queue for tomorrow's 9:30 AM open.
+    # Two crontab entries cover both DST offsets (EDT=UTC-4, EST=UTC-5):
+    #   20:15 UTC = 4:15 PM EDT (April–October)
+    #   21:15 UTC = 4:15 PM EST (November–March)
+    # run_eod() guards against running before market close and deduplicates
+    # via a Redis key so only one of the two entries executes per trading day.
+    "run-strategies-eod-edt": {
+        "task": "app.workers.tasks.run_strategies_eod",
+        "schedule": crontab(hour=20, minute=15),
+    },
+    "run-strategies-eod-est": {
+        "task": "app.workers.tasks.run_strategies_eod",
+        "schedule": crontab(hour=21, minute=15),
     },
     "run-strategies-intraday": {
         "task": "app.workers.tasks.run_strategies_intraday",
@@ -95,9 +101,11 @@ celery_app.conf.beat_schedule = {
         "task": "tasks.generate_daily_report",
         "schedule": crontab(hour=21, minute=0),  # 21:00 UTC = 5pm ET
     },
+    # Reconciler runs at 13:45 UTC (9:45 AM ET) — 15 min after open so that
+    # EOD orders queued the previous evening have time to fill before we check.
     "reconcile-positions": {
         "task": "tasks.reconcile_positions",
-        "schedule": crontab(hour=13, minute=30),  # 13:30 UTC = 9:30am ET (market open)
+        "schedule": crontab(hour=13, minute=45),
     },
 }
 

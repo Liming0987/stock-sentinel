@@ -57,6 +57,7 @@ class Trade(Base):
     # Alpaca order tracking (for paper trading via Alpaca)
     alpaca_order_id = Column(String(50))
     alpaca_client_order_id = Column(String(50))
+    alpaca_close_order_id = Column(String(50))  # sell order ID; set when close queued after hours, cleared by reconciler
 
     reasoning = Column(Text)  # why the strategy entered
 
