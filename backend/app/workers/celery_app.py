@@ -78,9 +78,14 @@ celery_app.conf.beat_schedule = {
         "task": "app.workers.tasks.refresh_fundamentals",
         "schedule": crontab(hour=1, minute=0),
     },
+    # Daily-candle strategies: run once at market open using yesterday's closes
+    # for all indicators (MACD, EMA, RSI) + today's live Alpaca price.
+    # 14:35 UTC = 10:35 AM EDT / 9:35 AM EST — inside market hours year-round
+    # without DST gymnastics. Running every 30 min was wasteful: daily indicators
+    # don't change until 4pm, so all intermediate runs produced identical signals.
     "run-strategies": {
         "task": "app.workers.tasks.run_strategies",
-        "schedule": 1800.0,
+        "schedule": crontab(hour=14, minute=35),
     },
     "run-strategies-intraday": {
         "task": "app.workers.tasks.run_strategies_intraday",
