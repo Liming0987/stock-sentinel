@@ -58,7 +58,22 @@ class MomentumStrategy(BaseStrategy):
             last_price > ema_50 * (1 + self.MIN_TREND_GAP)
             and ema_50 > ema_200
         )
-        bullish_macd = macd > macd_sig and macd > 0
+
+        # Require MACD above signal line for 2 consecutive bars, not just today.
+        # Filters one-day false crossovers while still catching genuine momentum.
+        bullish_macd = False
+        if df is not None and len(df) >= 35:
+            from app.services.price_service import _macd
+            macd_df = _macd(df["Close"])
+            if macd_df is not None and len(macd_df) >= 2:
+                last2_macd = macd_df["macd"].iloc[-2:]
+                last2_sig = macd_df["signal"].iloc[-2:]
+                bullish_macd = (
+                    all(last2_macd.iloc[i] > last2_sig.iloc[i] for i in range(2))
+                    and float(last2_macd.iloc[-1]) > 0
+                )
+        else:
+            bullish_macd = macd > macd_sig and macd > 0
         volume_ok = vol_ratio >= self.MIN_VOL_RATIO
 
         score = 0.0
