@@ -81,7 +81,7 @@ def detect_vcp(df: pd.DataFrame) -> dict:
     )
 
     # ── Swing detection in last ~90 bars (the "base") ────────────────────────
-    base_len = min(90, n)
+    base_len = min(150, n)
     base_df = df.iloc[-base_len:]
     base_high = base_df["High"]
     base_low = base_df["Low"]
