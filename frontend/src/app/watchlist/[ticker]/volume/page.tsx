@@ -14,6 +14,7 @@ import { VolumeTable } from "@/components/volume/volume-table";
 import { WatchlistSwitcher } from "@/components/volume/watchlist-switcher";
 import { TradeTargetsCard } from "@/components/volume/trade-targets-card";
 import { FundamentalsCard } from "@/components/volume/fundamentals-card";
+import { VCPCard } from "@/components/volume/vcp-card";
 
 function SectionSkeleton({ title }: { title: string }) {
   return (
@@ -69,8 +70,10 @@ export default function VolumeAnalysisPage() {
             selectedPeriod={period}
             onPeriodChange={setPeriod}
             tradingRange={data.wyckoff?.trading_range}
+            vcp={data.vcp}
           />
           <OBVChart data={data.history} />
+          {data.vcp && <VCPCard vcp={data.vcp} />}
           <ReversalChecklist wyckoff={data.wyckoff} />
           <TradeTargetsCard
             pnf={data.pnf}

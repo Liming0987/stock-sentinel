@@ -584,6 +584,25 @@ export interface LongtermEntry {
   note: string;
 }
 
+export interface VCPContraction {
+  high: number;
+  low: number;
+  high_date: string;
+  low_date: string;
+  depth_pct: number;
+  vol_dry: boolean;
+}
+
+export interface VCPAnalysis {
+  detected: boolean;
+  stage2: boolean;
+  pivot: number | null;
+  contractions: VCPContraction[];
+  base_start_date: string | null;
+  status: "forming" | "ready" | "breaking_out" | "not_detected";
+  note: string;
+}
+
 export interface VolumeAnalysisResponse {
   ticker: string;
   period: string;
@@ -598,6 +617,7 @@ export interface VolumeAnalysisResponse {
   pnf: PnFAnalysis;
   swing_entry: SwingEntry;
   longterm_entry: LongtermEntry;
+  vcp: VCPAnalysis;
 }
 
 export function useVolumeAnalysis(ticker: string, period = "90d") {

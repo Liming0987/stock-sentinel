@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { VolumeHistoryPoint } from "@/lib/hooks";
+import type { VolumeHistoryPoint, VCPAnalysis } from "@/lib/hooks";
 
 const PERIODS = [
   { label: "1M", value: "30d" },
@@ -41,9 +41,10 @@ interface PriceVolumeChartProps {
   selectedPeriod: string;
   onPeriodChange: (period: string) => void;
   tradingRange?: { support: number | null; resistance: number | null };
+  vcp?: VCPAnalysis | null;
 }
 
-export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, tradingRange }: PriceVolumeChartProps) {
+export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, tradingRange, vcp }: PriceVolumeChartProps) {
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<SVGSVGElement>) => {
@@ -77,6 +78,9 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
   const bodyW = Math.max(2, slotW * 0.7);
   const wickW = Math.max(1, bodyW * 0.2);
 
+  // Date → index map for VCP overlay
+  const dateIndexMap = new Map<string, number>(data.map((d, i) => [d.date, i]));
+
   // Price scale (candlestick pane)
   const priceValues = data.flatMap(c => [c.high ?? c.close ?? 0, c.low ?? c.open ?? 0]).filter(Boolean);
   const priceMin = Math.min(...priceValues);
@@ -85,9 +89,11 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
   const pLo = priceMin - pricePad;
   const pHi = priceMax + pricePad;
 
-  // Extend domain to include support/resistance if outside price range
+  // Extend domain to include support/resistance and VCP pivot if outside range
+  const vcpPivot = vcp?.detected ? vcp.pivot : null;
   const effLo = tradingRange?.support != null && tradingRange.support < pLo ? tradingRange.support - pricePad : pLo;
-  const effHi = tradingRange?.resistance != null && tradingRange.resistance > pHi ? tradingRange.resistance + pricePad : pHi;
+  const effHiBase = tradingRange?.resistance != null && tradingRange.resistance > pHi ? tradingRange.resistance + pricePad : pHi;
+  const effHi = vcpPivot != null && vcpPivot > effHiBase ? vcpPivot + pricePad : effHiBase;
 
   const py = (v: number) => lerp(v, effLo, effHi, CANDLE_TOP, CANDLE_BOT);
 
@@ -190,6 +196,57 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
             </>
           )}
 
+          {/* ── VCP overlay ── */}
+          {vcp?.detected && (() => {
+            const pivotY = vcp.pivot != null ? py(vcp.pivot) : null;
+            const pivotColor = vcp.status === "breaking_out" ? "#22c55e" : vcp.status === "ready" ? "#e8a33d" : "#e8a33d";
+            const contColors = ["#e8a33d", "#f59e0b", "#fbbf24", "#fde68a"];
+            return (
+              <g>
+                {/* Contraction zone rectangles */}
+                {vcp.contractions.map((c, ci) => {
+                  const hiIdx = dateIndexMap.get(c.high_date) ?? -1;
+                  const loIdx = dateIndexMap.get(c.low_date) ?? -1;
+                  if (hiIdx < 0 || loIdx < 0) return null;
+                  const x1 = ML + hiIdx * slotW;
+                  const x2 = ML + loIdx * slotW + slotW;
+                  const y1 = py(c.high);
+                  const y2 = py(c.low);
+                  const color = contColors[ci % contColors.length];
+                  return (
+                    <g key={`vcp-c${ci}`}>
+                      {/* Zone band */}
+                      <rect x={x1} y={y1} width={x2 - x1} height={y2 - y1}
+                        fill={color} fillOpacity={0.07} stroke={color} strokeOpacity={0.35}
+                        strokeWidth={1} rx={2} />
+                      {/* Contraction label */}
+                      <text x={x1 + 3} y={y1 - 3} fontSize={9} fill={color} opacity={0.9} fontWeight="600">
+                        C{ci + 1} {c.depth_pct}%{c.vol_dry ? " ✓" : ""}
+                      </text>
+                      {/* High tick */}
+                      <line x1={x1} x2={x2} y1={y1} y2={y1} stroke={color} strokeOpacity={0.5} strokeWidth={1} />
+                      {/* Low tick */}
+                      <line x1={x1} x2={x2} y1={y2} y2={y2} stroke={color} strokeOpacity={0.5} strokeWidth={1} />
+                    </g>
+                  );
+                })}
+                {/* Pivot line */}
+                {pivotY != null && (
+                  <>
+                    <line x1={ML} x2={W - MR} y1={pivotY} y2={pivotY}
+                      stroke={pivotColor} strokeWidth={1.5} strokeDasharray="8 4" opacity={0.9} />
+                    <rect x={W - MR - 72} y={pivotY - 9} width={70} height={14} rx={3}
+                      fill={pivotColor} fillOpacity={0.15} />
+                    <text x={W - MR - 5} y={pivotY + 3} textAnchor="end"
+                      fontSize={10} fill={pivotColor} fontWeight="600">
+                      VCP Pivot ${vcp.pivot?.toFixed(2)}
+                    </text>
+                  </>
+                )}
+              </g>
+            );
+          })()}
+
           {/* ── Candlesticks ── */}
           {data.map((c, i) => {
             if (c.open == null || c.high == null || c.low == null || c.close == null) return null;
@@ -288,6 +345,11 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
           <span className="flex items-center gap-1.5">
             <span className="inline-block h-2 w-2 rounded-full bg-amber-400" />Volume spike
           </span>
+          {vcp?.detected && (
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block h-2 w-5 rounded-sm bg-amber-400/20 border border-amber-400/50" />VCP zones
+            </span>
+          )}
         </div>
       </CardContent>
     </Card>
