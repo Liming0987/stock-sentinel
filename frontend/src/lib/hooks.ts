@@ -364,11 +364,12 @@ export function useLivePositions() {
 
 export interface EdgarQuarter {
   period: string;
-  frame: string;
+  period_key: string;
   revenue: number | null;
   net_income: number | null;
   eps_diluted: number | null;
   operating_income: number | null;
+  q4_computed: boolean;
 }
 
 export interface FundamentalsData {

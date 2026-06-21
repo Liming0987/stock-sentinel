@@ -75,8 +75,13 @@ function EdgarTable({ quarters }: { quarters: EdgarQuarter[] }) {
           </thead>
           <tbody>
             {quarters.map((q) => (
-              <tr key={q.frame} className="border-b border-border/50 last:border-0">
-                <td className="py-1.5 font-medium tabular-nums">{q.period}</td>
+              <tr key={q.period_key} className="border-b border-border/50 last:border-0">
+                <td className="py-1.5 font-medium tabular-nums">
+                  {q.period}
+                  {q.q4_computed && (
+                    <span className="ml-1 text-[9px] text-muted-foreground/60">est.</span>
+                  )}
+                </td>
                 <td className="py-1.5 text-right tabular-nums">{fmtBillions(q.revenue)}</td>
                 <td className={`py-1.5 text-right tabular-nums ${q.net_income != null && q.net_income < 0 ? "text-red-400" : ""}`}>
                   {fmtBillions(q.net_income)}
