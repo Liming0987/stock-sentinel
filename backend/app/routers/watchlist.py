@@ -1,8 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from datetime import datetime, timezone, timedelta
-from sqlalchemy import select, and_
+from sqlalchemy import create_engine, select, and_
+from sqlalchemy.orm import Session
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.config import settings
 from app.models.database import get_db
 from app.models.stock import Stock
 from app.models.mention import Mention
@@ -10,10 +12,15 @@ from app.models.signal import Signal
 from app.models.watchlist import Watchlist
 from app.services.volume_service import VolumeService
 from app.services.price_service import PriceService
+from app.services.fundamentals_service import FundamentalsService
 
 router = APIRouter()
 volume_service = VolumeService()
 price_service = PriceService()
+_fundamentals_service = FundamentalsService()
+
+_sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+_sync_engine = create_engine(_sync_url, pool_size=2, max_overflow=2)
 
 
 def _change_pct(stock: Stock) -> float:
@@ -74,7 +81,15 @@ async def get_volume_analysis(
     ticker: str,
     period: str = Query(default="90d", pattern="^(30d|60d|90d|6mo|1y)$"),
 ):
-    return volume_service.analyze(ticker.upper(), period)
+    ticker = ticker.upper()
+    edgar_quarters: list = []
+    try:
+        with Session(_sync_engine) as session:
+            fund = _fundamentals_service.get(ticker, session, allow_fetch=False)
+            edgar_quarters = fund.get("edgar_quarters") or []
+    except Exception:
+        pass
+    return volume_service.analyze(ticker, period, edgar_quarters=edgar_quarters)
 
 
 @router.post("/{ticker}")

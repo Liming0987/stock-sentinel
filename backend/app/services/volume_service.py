@@ -422,11 +422,79 @@ class VolumeService:
             "note": note,
         }
 
-    def _compute_longterm_entry(self, df: pd.DataFrame, wyckoff: Dict) -> Dict[str, Any]:
-        """Compute long-term (DCA) entry zone based on 52w support and prior resistance."""
-        resistance = wyckoff.get("trading_range", {}).get("resistance")
+    def _compute_edgar_dca(self, edgar_quarters: List[dict], wyckoff: Dict) -> Optional[Dict[str, Any]]:
+        """
+        Fundamental DCA zone derived from SEC EDGAR quarterly EPS.
+        Returns None if there isn't enough data, so the caller can fall back.
+        """
+        # Need 4 quarters with non-null EPS
+        eps_vals = [q.get("eps_diluted") for q in edgar_quarters[:4]]
+        if len(eps_vals) < 4 or any(v is None for v in eps_vals):
+            return None
 
-        # 52-week support: min close over full window, or Wyckoff support
+        ttm_eps = sum(eps_vals)
+        if ttm_eps <= 0:
+            # Loss-making company — price-based DCA is more appropriate
+            return None
+
+        # Annualised EPS growth: compare newest quarter vs oldest over 3 intervals
+        newest, oldest = eps_vals[0], eps_vals[3]
+        if oldest > 0:
+            total_growth = (newest - oldest) / oldest
+            # 3 quarter span → annualise to 4 quarters
+            annual_growth_pct = total_growth * (4 / 3) * 100
+        else:
+            annual_growth_pct = 0.0
+
+        # Fair P/E via PEG ≈ 1.2, bounded [10, 35]
+        if annual_growth_pct > 0:
+            fair_pe = min(35.0, max(10.0, annual_growth_pct * 1.2))
+        else:
+            fair_pe = 12.0  # low/no-growth baseline multiple
+
+        fair_value = ttm_eps * fair_pe
+
+        # DCA zone: 5–20% below fair value (margin of safety)
+        entry_low = fair_value * 0.80
+        entry_high = fair_value * 0.95
+        entry_mid = (entry_low + entry_high) / 2.0
+        # Stop: 35% below fair value — fundamental thesis is broken
+        stop_loss = fair_value * 0.65
+
+        # Target: whichever is higher — fair value or Wyckoff resistance
+        resistance = wyckoff.get("trading_range", {}).get("resistance")
+        target = max(fair_value, resistance) if resistance else fair_value
+
+        r_diff = abs(target - entry_mid)
+        s_diff = abs(entry_mid - stop_loss)
+        risk_reward = _safe_float(r_diff / s_diff) if s_diff > 0 else None
+
+        growth_str = f"{annual_growth_pct:+.1f}%" if annual_growth_pct != 0 else "flat"
+        note = (
+            f"Fair value ${fair_value:.2f} = TTM EPS ${ttm_eps:.2f} × P/E {fair_pe:.1f} "
+            f"(EPS growth {growth_str} annualised). "
+            f"DCA 5–20% below fair value. Stop 35% below fair value."
+        )
+
+        return {
+            "entry_zone_low": _safe_float(entry_low),
+            "entry_zone_high": _safe_float(entry_high),
+            "stop_loss": _safe_float(stop_loss),
+            "target": _safe_float(target),
+            "risk_reward": risk_reward,
+            "time_horizon": "6–18 months (long-term position)",
+            "note": note,
+        }
+
+    def _compute_longterm_entry(self, df: pd.DataFrame, wyckoff: Dict, edgar_quarters: Optional[List[dict]] = None) -> Dict[str, Any]:
+        """Fundamental DCA when EDGAR EPS data is available; price-based fallback otherwise."""
+        if edgar_quarters:
+            result = self._compute_edgar_dca(edgar_quarters, wyckoff)
+            if result:
+                return result
+
+        # ── price-based fallback ─────────────────────────────────────────────
+        resistance = wyckoff.get("trading_range", {}).get("resistance")
         lt_support = float(df["Close"].min())
         lt_resistance = resistance if resistance is not None else float(df["Close"].max())
 
@@ -434,7 +502,6 @@ class VolumeService:
         entry_zone_high = lt_support * 1.02
         entry_mid = (entry_zone_low + entry_zone_high) / 2.0
         stop_loss = entry_mid * 0.85
-
         target = lt_resistance
 
         price_diff = abs(target - entry_mid)
@@ -448,10 +515,10 @@ class VolumeService:
             "target": _safe_float(target),
             "risk_reward": risk_reward,
             "time_horizon": "6–18 months (long-term position)",
-            "note": "DCA into support zone. Stop 15% below entry. Target prior resistance.",
+            "note": "DCA into 52w support zone. Stop 15% below entry. Target prior resistance.",
         }
 
-    def analyze(self, ticker: str, period: str = "90d") -> Dict[str, Any]:
+    def analyze(self, ticker: str, period: str = "90d", edgar_quarters: Optional[List[dict]] = None) -> Dict[str, Any]:
         _empty_pnf = {
             "box_size": None,
             "reversal_boxes": 3,
@@ -703,5 +770,5 @@ class VolumeService:
             "wyckoff": wyckoff,
             "pnf": self._compute_pnf(df, atr_14),
             "swing_entry": self._compute_swing_entry(wyckoff, current_price, atr_14),
-            "longterm_entry": self._compute_longterm_entry(df, wyckoff),
+            "longterm_entry": self._compute_longterm_entry(df, wyckoff, edgar_quarters),
         }
