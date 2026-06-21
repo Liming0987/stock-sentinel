@@ -362,6 +362,15 @@ export function useLivePositions() {
   return { data, history, loading };
 }
 
+export interface EdgarQuarter {
+  period: string;
+  frame: string;
+  revenue: number | null;
+  net_income: number | null;
+  eps_diluted: number | null;
+  operating_income: number | null;
+}
+
 export interface FundamentalsData {
   ticker: string;
   score: number | null;
@@ -371,6 +380,7 @@ export interface FundamentalsData {
   flags: string[];
   next_earnings: string | null;
   reasoning: string[];
+  edgar_quarters: EdgarQuarter[];
 }
 
 const EMPTY_FUNDAMENTALS: FundamentalsData = {
@@ -382,6 +392,7 @@ const EMPTY_FUNDAMENTALS: FundamentalsData = {
   flags: [],
   next_earnings: null,
   reasoning: [],
+  edgar_quarters: [],
 };
 
 export interface StrategySignalItem {

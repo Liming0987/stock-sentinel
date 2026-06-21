@@ -8,6 +8,9 @@ from sqlalchemy.orm import Session
 
 from app.models.stock import Stock
 from app.models.fundamentals import StockFundamentals
+from app.services.edgar_service import EdgarService
+
+_edgar = EdgarService()
 
 logger = logging.getLogger(__name__)
 
@@ -428,6 +431,8 @@ class FundamentalsService:
                     except Exception:
                         pass
 
+                edgar_data = _edgar.get_quarterly(ticker)
+
                 if row is None:
                     row = StockFundamentals(stock_id=stock.id)
                     session.add(row)
@@ -438,6 +443,7 @@ class FundamentalsService:
                 row.pillars = result["pillars"]
                 row.flags = result["flags"]
                 row.next_earnings = next_earnings_dt
+                row.edgar_quarters = edgar_data.get("quarters") or []
                 row.fetched_at = datetime.now(timezone.utc)
                 session.commit()
 
@@ -450,6 +456,7 @@ class FundamentalsService:
                 "metrics": row.raw_metrics or {},
                 "next_earnings": row.next_earnings.isoformat() if row.next_earnings else None,
                 "reasoning": [],
+                "edgar_quarters": row.edgar_quarters or [],
             }
         except Exception as e:
             logger.warning(f"FundamentalsService.get({ticker}) failed: {e}")
@@ -483,12 +490,14 @@ class FundamentalsService:
                     row = StockFundamentals(stock_id=stock.id)
                     session.add(row)
 
+                edgar_data = _edgar.get_quarterly(ticker)
                 row.raw_metrics = result["metrics"]
                 row.score = result["score"]
                 row.grade = result["grade"]
                 row.pillars = result["pillars"]
                 row.flags = result["flags"]
                 row.next_earnings = next_earnings_dt
+                row.edgar_quarters = edgar_data.get("quarters") or []
                 row.fetched_at = datetime.now(timezone.utc)
                 session.flush()
             except Exception as e:

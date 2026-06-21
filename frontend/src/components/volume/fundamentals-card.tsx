@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { FundamentalsData } from "@/lib/hooks";
+import type { FundamentalsData, EdgarQuarter } from "@/lib/hooks";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -43,6 +43,51 @@ function MetricRow({ label, value, sub }: { label: string; value: string; sub?: 
       <div className="text-right">
         <span className="text-xs font-medium">{value}</span>
         {sub && <span className="ml-1.5 text-[10px] text-muted-foreground">{sub}</span>}
+      </div>
+    </div>
+  );
+}
+
+function fmtEps(v: number | null | undefined): string {
+  if (v == null) return "—";
+  return `$${v.toFixed(2)}`;
+}
+
+function EdgarTable({ quarters }: { quarters: EdgarQuarter[] }) {
+  if (!quarters.length) return null;
+  return (
+    <div>
+      <div className="mb-2 flex items-center justify-between">
+        <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground/60">
+          SEC Quarterly Financials
+        </p>
+        <span className="text-[9px] text-muted-foreground/50">Source: SEC EDGAR</span>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="border-b border-border">
+              <th className="pb-1 text-left font-medium text-muted-foreground">Quarter</th>
+              <th className="pb-1 text-right font-medium text-muted-foreground">Revenue</th>
+              <th className="pb-1 text-right font-medium text-muted-foreground">Net Income</th>
+              <th className="pb-1 text-right font-medium text-muted-foreground">EPS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {quarters.map((q) => (
+              <tr key={q.frame} className="border-b border-border/50 last:border-0">
+                <td className="py-1.5 font-medium tabular-nums">{q.period}</td>
+                <td className="py-1.5 text-right tabular-nums">{fmtBillions(q.revenue)}</td>
+                <td className={`py-1.5 text-right tabular-nums ${q.net_income != null && q.net_income < 0 ? "text-red-400" : ""}`}>
+                  {fmtBillions(q.net_income)}
+                </td>
+                <td className={`py-1.5 text-right tabular-nums ${q.eps_diluted != null && q.eps_diluted < 0 ? "text-red-400" : ""}`}>
+                  {fmtEps(q.eps_diluted)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
@@ -221,6 +266,11 @@ export function FundamentalsCard({ data, loading }: FundamentalsCardProps) {
                 )}
               </div>
             </div>
+
+            {/* SEC EDGAR quarterly financials */}
+            {data.edgar_quarters && data.edgar_quarters.length > 0 && (
+              <EdgarTable quarters={data.edgar_quarters} />
+            )}
           </>
         )}
       </CardContent>

@@ -14,4 +14,5 @@ class StockFundamentals(Base):
     pillars = Column(JSONB)
     flags = Column(JSONB)
     next_earnings = Column(DateTime(timezone=True), nullable=True)
+    edgar_quarters = Column(JSONB, nullable=True)
     fetched_at = Column(DateTime(timezone=True), server_default=func.now())
