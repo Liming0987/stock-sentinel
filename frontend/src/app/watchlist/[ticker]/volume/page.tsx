@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useVolumeAnalysis } from "@/lib/hooks";
+import { useVolumeAnalysis, useFundamentals } from "@/lib/hooks";
 import { VolumeHeader } from "@/components/volume/volume-header";
 import { PriceVolumeChart } from "@/components/volume/price-volume-chart";
 import { OBVChart } from "@/components/volume/obv-chart";
@@ -13,6 +13,7 @@ import { ReversalChecklist } from "@/components/volume/reversal-checklist";
 import { VolumeTable } from "@/components/volume/volume-table";
 import { WatchlistSwitcher } from "@/components/volume/watchlist-switcher";
 import { TradeTargetsCard } from "@/components/volume/trade-targets-card";
+import { FundamentalsCard } from "@/components/volume/fundamentals-card";
 
 function SectionSkeleton({ title }: { title: string }) {
   return (
@@ -32,6 +33,7 @@ export default function VolumeAnalysisPage() {
   const ticker = (params?.ticker as string ?? "").toUpperCase();
   const [period, setPeriod] = useState("90d");
   const { data, loading } = useVolumeAnalysis(ticker, period);
+  const { data: fundamentals, loading: fundLoading } = useFundamentals(ticker);
 
   return (
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-6">
@@ -75,6 +77,7 @@ export default function VolumeAnalysisPage() {
             swingEntry={data.swing_entry}
             longtermEntry={data.longterm_entry}
           />
+          <FundamentalsCard data={fundamentals} loading={fundLoading} />
           <Card>
             <CardHeader>
               <CardTitle className="text-base">Volume History</CardTitle>
