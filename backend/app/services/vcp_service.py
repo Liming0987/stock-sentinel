@@ -106,7 +106,7 @@ def detect_vcp(df: pd.DataFrame) -> dict:
         l_i = following[0]
         l_val = float(base_low.iloc[l_i])
         depth = (h_val - l_val) / h_val * 100
-        if depth < 2:
+        if depth < 1.5:
             continue
         avg_at_l = float(avg_vol.iloc[l_i]) if not np.isnan(avg_vol.iloc[l_i]) else 1
         vol_dry = float(base_vol.iloc[l_i]) < avg_at_l * 0.85

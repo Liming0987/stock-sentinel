@@ -199,11 +199,11 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
           {/* ── VCP overlay ── */}
           {vcp?.detected && (() => {
             const pivotY = vcp.pivot != null ? py(vcp.pivot) : null;
-            const pivotColor = vcp.status === "breaking_out" ? "#22c55e" : vcp.status === "ready" ? "#e8a33d" : "#e8a33d";
-            const contColors = ["#e8a33d", "#f59e0b", "#fbbf24", "#fde68a"];
+            const pivotColor = vcp.status === "breaking_out" ? "#22c55e" : "#e8a33d";
+            const zoneColor = "#e8a33d";
             return (
               <g>
-                {/* Contraction zone rectangles */}
+                {/* Contraction zone rectangles — same amber, let size & label show tightening */}
                 {vcp.contractions.map((c, ci) => {
                   const hiIdx = dateIndexMap.get(c.high_date) ?? -1;
                   const loIdx = dateIndexMap.get(c.low_date) ?? -1;
@@ -212,21 +212,15 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
                   const x2 = ML + loIdx * slotW + slotW;
                   const y1 = py(c.high);
                   const y2 = py(c.low);
-                  const color = contColors[ci % contColors.length];
+                  const labelY = Math.max(CANDLE_TOP + 10, y1 - 6);
                   return (
                     <g key={`vcp-c${ci}`}>
-                      {/* Zone band */}
                       <rect x={x1} y={y1} width={x2 - x1} height={y2 - y1}
-                        fill={color} fillOpacity={0.07} stroke={color} strokeOpacity={0.35}
+                        fill={zoneColor} fillOpacity={0.10} stroke={zoneColor} strokeOpacity={0.50}
                         strokeWidth={1} rx={2} />
-                      {/* Contraction label */}
-                      <text x={x1 + 3} y={y1 - 3} fontSize={9} fill={color} opacity={0.9} fontWeight="600">
-                        C{ci + 1} {c.depth_pct}%{c.vol_dry ? " ✓" : ""}
+                      <text x={x1 + 4} y={labelY} fontSize={9} fill={zoneColor} opacity={0.95} fontWeight="600">
+                        C{ci + 1} {c.depth_pct}%{c.vol_dry ? " vol✓" : ""}
                       </text>
-                      {/* High tick */}
-                      <line x1={x1} x2={x2} y1={y1} y2={y1} stroke={color} strokeOpacity={0.5} strokeWidth={1} />
-                      {/* Low tick */}
-                      <line x1={x1} x2={x2} y1={y2} y2={y2} stroke={color} strokeOpacity={0.5} strokeWidth={1} />
                     </g>
                   );
                 })}
@@ -235,7 +229,7 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
                   <>
                     <line x1={ML} x2={W - MR} y1={pivotY} y2={pivotY}
                       stroke={pivotColor} strokeWidth={1.5} strokeDasharray="8 4" opacity={0.9} />
-                    <rect x={W - MR - 72} y={pivotY - 9} width={70} height={14} rx={3}
+                    <rect x={W - MR - 78} y={pivotY - 9} width={76} height={14} rx={3}
                       fill={pivotColor} fillOpacity={0.15} />
                     <text x={W - MR - 5} y={pivotY + 3} textAnchor="end"
                       fontSize={10} fill={pivotColor} fontWeight="600">
