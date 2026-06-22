@@ -6,6 +6,19 @@ from app.services.price_service import PriceService
 from app.services.vcp_service import detect_vcp, detect_vcp_history
 
 
+def _filter_vcp_history(history: list, current_vcp: dict) -> list:
+    """Remove historical VCP setups that overlap with the current active setup.
+
+    A historical setup overlaps when its detection_date >= the current VCP's
+    base_start_date — meaning the sliding window was still scanning a period
+    that the current detector also covers, producing duplicate zones on the chart.
+    """
+    current_base = current_vcp.get("base_start_date") if current_vcp.get("detected") else None
+    if not current_base:
+        return history
+    return [s for s in history if s["detection_date"] < current_base]
+
+
 def _safe_float(val) -> Optional[float]:
     if val is None:
         return None
@@ -782,6 +795,6 @@ class VolumeService:
             "pnf": self._compute_pnf(df, atr_14),
             "swing_entry": self._compute_swing_entry(wyckoff, current_price, atr_14),
             "longterm_entry": self._compute_longterm_entry(df, wyckoff, edgar_quarters),
-            "vcp": detect_vcp(df),
-            "vcp_history": detect_vcp_history(df),
+            "vcp": (current_vcp := detect_vcp(df)),
+            "vcp_history": _filter_vcp_history(detect_vcp_history(df), current_vcp),
         }
