@@ -603,6 +603,15 @@ export interface VCPAnalysis {
   note: string;
 }
 
+export interface VCPHistoricalSetup {
+  detection_date: string;
+  pivot: number;
+  base_start_date: string | null;
+  contractions: VCPContraction[];
+  broke_out: boolean;
+  breakout_date: string | null;
+}
+
 export interface VolumeAnalysisResponse {
   ticker: string;
   period: string;
@@ -618,6 +627,7 @@ export interface VolumeAnalysisResponse {
   swing_entry: SwingEntry;
   longterm_entry: LongtermEntry;
   vcp: VCPAnalysis;
+  vcp_history: VCPHistoricalSetup[];
 }
 
 export function useVolumeAnalysis(ticker: string, period = "90d") {

@@ -71,6 +71,7 @@ export default function VolumeAnalysisPage() {
             onPeriodChange={setPeriod}
             tradingRange={data.wyckoff?.trading_range}
             vcp={data.vcp}
+            vcpHistory={data.vcp_history}
           />
           <OBVChart data={data.history} />
           {data.vcp && <VCPCard vcp={data.vcp} />}

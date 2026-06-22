@@ -3,7 +3,7 @@ import pandas as pd
 from typing import Any, Dict, List, Optional
 
 from app.services.price_service import PriceService
-from app.services.vcp_service import detect_vcp
+from app.services.vcp_service import detect_vcp, detect_vcp_history
 
 
 def _safe_float(val) -> Optional[float]:
@@ -605,6 +605,7 @@ class VolumeService:
                 "status": "not_detected",
                 "note": "No data available.",
             },
+            "vcp_history": [],
         }
 
         try:
@@ -782,4 +783,5 @@ class VolumeService:
             "swing_entry": self._compute_swing_entry(wyckoff, current_price, atr_14),
             "longterm_entry": self._compute_longterm_entry(df, wyckoff, edgar_quarters),
             "vcp": detect_vcp(df),
+            "vcp_history": detect_vcp_history(df),
         }

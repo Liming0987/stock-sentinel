@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import type { VolumeHistoryPoint, VCPAnalysis } from "@/lib/hooks";
+import type { VolumeHistoryPoint, VCPAnalysis, VCPHistoricalSetup } from "@/lib/hooks";
 
 const PERIODS = [
   { label: "1M", value: "30d" },
@@ -42,9 +42,10 @@ interface PriceVolumeChartProps {
   onPeriodChange: (period: string) => void;
   tradingRange?: { support: number | null; resistance: number | null };
   vcp?: VCPAnalysis | null;
+  vcpHistory?: VCPHistoricalSetup[];
 }
 
-export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, tradingRange, vcp }: PriceVolumeChartProps) {
+export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, tradingRange, vcp, vcpHistory }: PriceVolumeChartProps) {
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<SVGSVGElement>) => {
@@ -196,7 +197,53 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
             </>
           )}
 
-          {/* ── VCP overlay ── */}
+          {/* ── VCP historical setups ── */}
+          {vcpHistory && vcpHistory.length > 0 && vcpHistory.map((setup, si) => {
+            const color = setup.broke_out ? "#22c55e" : "#94a3b8";
+            const pivotY = py(setup.pivot);
+            const lastC = setup.contractions[setup.contractions.length - 1];
+            const pivotStartIdx = lastC ? (dateIndexMap.get(lastC.high_date) ?? -1) : -1;
+            const pivotEndDate = setup.breakout_date ?? setup.detection_date;
+            const pivotEndIdx = dateIndexMap.get(pivotEndDate) ?? -1;
+            return (
+              <g key={`hist-${si}`}>
+                {/* Contraction zones — very faint */}
+                {setup.contractions.map((c, ci) => {
+                  const hiIdx = dateIndexMap.get(c.high_date) ?? -1;
+                  const loIdx = dateIndexMap.get(c.low_date) ?? -1;
+                  if (hiIdx < 0 || loIdx < 0) return null;
+                  return (
+                    <rect key={ci}
+                      x={ML + hiIdx * slotW} y={py(c.high)}
+                      width={ML + loIdx * slotW + slotW - (ML + hiIdx * slotW)}
+                      height={Math.max(1, py(c.low) - py(c.high))}
+                      fill={color} fillOpacity={0.05}
+                      stroke={color} strokeOpacity={0.20} strokeWidth={0.75} rx={2}
+                    />
+                  );
+                })}
+                {/* Pivot line from last contraction high to breakout/detection date */}
+                {pivotStartIdx >= 0 && pivotEndIdx >= 0 && (
+                  <line
+                    x1={ML + pivotStartIdx * slotW} x2={ML + pivotEndIdx * slotW + slotW}
+                    y1={pivotY} y2={pivotY}
+                    stroke={color} strokeWidth={1} strokeDasharray="5 3" opacity={0.55}
+                  />
+                )}
+                {/* Breakout marker */}
+                {setup.broke_out && setup.breakout_date && (() => {
+                  const bIdx = dateIndexMap.get(setup.breakout_date) ?? -1;
+                  if (bIdx < 0) return null;
+                  return (
+                    <circle cx={ML + bIdx * slotW + slotW / 2} cy={pivotY}
+                      r={4} fill={color} opacity={0.85} />
+                  );
+                })()}
+              </g>
+            );
+          })}
+
+          {/* ── VCP overlay (current) ── */}
           {vcp?.detected && (() => {
             const pivotY = vcp.pivot != null ? py(vcp.pivot) : null;
             const pivotColor = vcp.status === "breaking_out" ? "#22c55e" : "#e8a33d";
@@ -341,7 +388,17 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
           </span>
           {vcp?.detected && (
             <span className="flex items-center gap-1.5">
-              <span className="inline-block h-2 w-5 rounded-sm bg-amber-400/20 border border-amber-400/50" />VCP zones
+              <span className="inline-block h-2 w-5 rounded-sm bg-amber-400/20 border border-amber-400/50" />VCP (active)
+            </span>
+          )}
+          {vcpHistory && vcpHistory.some(s => s.broke_out) && (
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block h-2 w-2 rounded-full bg-green-500/80" />VCP breakout
+            </span>
+          )}
+          {vcpHistory && vcpHistory.some(s => !s.broke_out) && (
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block h-2 w-2 rounded-full bg-slate-400/80" />VCP no-break
             </span>
           )}
         </div>

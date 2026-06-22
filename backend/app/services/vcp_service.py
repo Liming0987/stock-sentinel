@@ -1,7 +1,7 @@
 """VCP (Volatility Contraction Pattern) detection — Minervini methodology."""
 import numpy as np
 import pandas as pd
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
 
 def _get_date(df: pd.DataFrame, idx: int) -> str:
@@ -184,3 +184,61 @@ def detect_vcp(df: pd.DataFrame) -> dict:
         "status": status,
         "note": note,
     }
+
+
+def detect_vcp_history(df: pd.DataFrame, step: int = 10) -> List[Dict[str, Any]]:
+    """
+    Slide a detection window across the full price history and collect each
+    distinct VCP setup that was visible at the time.
+
+    step=10 means we check every 10 bars (~2 weeks on daily data).
+    Stops 20 bars from the end so the current VCP (rendered separately)
+    is not duplicated.
+
+    Returns up to 5 most-recent historical setups, oldest-first, each with:
+        detection_date, pivot, base_start_date, contractions,
+        broke_out (bool), breakout_date (str|None)
+    """
+    n = len(df)
+    results: List[Dict[str, Any]] = []
+    seen_base_starts: set = set()
+
+    # Leave last 20 bars as the "current" window handled by detect_vcp()
+    for end in range(50, max(50, n - 20), step):
+        window = df.iloc[:end]
+        vcp = detect_vcp(window)
+        if not vcp["detected"] or vcp["pivot"] is None:
+            continue
+
+        base_start = vcp["base_start_date"]
+        if base_start in seen_base_starts:
+            continue
+        seen_base_starts.add(base_start)
+
+        pivot = float(vcp["pivot"])
+
+        # Did price close above pivot (+1%) after this detection point?
+        future = df.iloc[end:]
+        broke_out = False
+        breakout_date: Optional[str] = None
+        if len(future) > 0:
+            above = future["Close"] > pivot * 1.01
+            if above.any():
+                idx = future.index[int(above.values.argmax())]
+                broke_out = True
+                breakout_date = (
+                    str(idx.date()) if hasattr(idx, "date") else str(idx)[:10]
+                )
+
+        results.append({
+            "detection_date": _get_date(df, end - 1),
+            "pivot": pivot,
+            "base_start_date": base_start,
+            "contractions": vcp["contractions"],
+            "broke_out": broke_out,
+            "breakout_date": breakout_date,
+        })
+
+    # Keep the 5 most recent, sorted oldest-first for rendering order
+    results.sort(key=lambda x: x["detection_date"])
+    return results[-5:]
