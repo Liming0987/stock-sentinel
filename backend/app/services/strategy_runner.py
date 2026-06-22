@@ -677,14 +677,16 @@ class StrategyRunner:
                     stock: Stock = payload["stock"]
                     ctx = dict(payload["ctx"])  # copy
 
-                    # Inject current open position for this strategy+ticker
+                    # Inject current open position for this strategy+ticker.
+                    # Use scalars().first() — overlapping intraday runs can create
+                    # duplicate open trades; scalar_one_or_none() would raise here.
                     open_trade = session.execute(
                         select(Trade).where(and_(
                             Trade.strategy_id == strat_row.id,
                             Trade.stock_id == stock.id,
                             Trade.status == "open",
                         ))
-                    ).scalar_one_or_none()
+                    ).scalars().first()
                     ctx["current_position"] = open_trade
 
                     # 1) Manage open positions
@@ -827,7 +829,7 @@ class StrategyRunner:
                             Trade.stock_id == stock.id,
                             Trade.status == "open",
                         ))
-                    ).scalar_one_or_none()
+                    ).scalars().first()
                     ctx["current_position"] = open_trade
 
                     if open_trade:
@@ -976,7 +978,7 @@ class StrategyRunner:
                             Trade.stock_id == stock.id,
                             Trade.status == "open",
                         ))
-                    ).scalar_one_or_none()
+                    ).scalars().first()
                     ctx["current_position"] = open_trade
 
                     if open_trade:
