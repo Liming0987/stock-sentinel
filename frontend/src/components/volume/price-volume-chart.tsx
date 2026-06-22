@@ -102,9 +102,14 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
   const maxVol = Math.max(...data.map(c => c.volume ?? 0), 1);
   const vy = (v: number) => lerp(v, 0, maxVol, VOL_TOP, VOL_BOT);
 
-  // X-axis tick indices — show ~6 labels
+  // X-axis tick indices — show ~6 labels, drop the forced last tick if it
+  // falls within half a step of the previous one to prevent label overlap.
   const tickStep = Math.max(1, Math.floor(n / 6));
-  const xTicks = Array.from({ length: n }, (_, i) => i).filter(i => i % tickStep === 0 || i === n - 1);
+  const regularTicks = Array.from({ length: n }, (_, i) => i).filter(i => i % tickStep === 0);
+  const lastRegular = regularTicks[regularTicks.length - 1] ?? 0;
+  const xTicks = (n - 1 - lastRegular >= tickStep / 2)
+    ? [...regularTicks, n - 1]
+    : regularTicks;
 
   // Price Y-axis ticks
   const priceTicks = 5;
