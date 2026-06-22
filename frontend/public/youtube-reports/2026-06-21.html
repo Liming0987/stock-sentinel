@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock Sentinel — 2026-06-21</title>
+<style>
+/* ── Reset & variables ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #fafafa;
+  --surface:  #ffffff;
+  --border:   #e5e7eb;
+  --text:     #111827;
+  --muted:    #6b7280;
+  --faint:    #9ca3af;
+  --accent:   #2563eb;
+  --bullish:  #16a34a;
+  --bearish:  #dc2626;
+  --neutral:  #6b7280;
+  --mixed:    #d97706;
+  --radius:   8px;
+  --shadow:   0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #0f1117;
+    --surface: #1a1d27;
+    --border:  #2d3142;
+    --text:    #f0f2f5;
+    --muted:   #9ca3af;
+    --faint:   #6b7280;
+    --accent:  #60a5fa;
+    --bullish: #4ade80;
+    --bearish: #f87171;
+    --neutral: #9ca3af;
+    --mixed:   #fbbf24;
+    --shadow:  0 1px 3px rgba(0,0,0,.4);
+  }
+}
+/* ── Base ────────────────────────────────────────────────────────── */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 2rem 1.5rem;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+h3 { font-size: 1rem; font-weight: 600; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin-bottom: 0.75rem; }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.3rem; }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+/* ── Card ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+/* ── Header ──────────────────────────────────────────────────────── */
+.report-header { margin-bottom: 2rem; }
+.report-header .kicker {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
+}
+.report-header h1 { margin-bottom: 0.3rem; }
+.meta-row { display: flex; gap: 1.5rem; flex-wrap: wrap; color: var(--muted); font-size: 0.82rem; margin-top: 0.5rem; }
+.meta-row span strong { color: var(--text); }
+/* ── Sentiment pill ──────────────────────────────────────────────── */
+.pill {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em; border-radius: 99px;
+}
+.pill-bullish  { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-bearish  { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-neutral  { background: color-mix(in srgb, var(--neutral) 15%, transparent); color: var(--neutral); }
+.pill-mixed    { background: color-mix(in srgb, var(--mixed)   15%, transparent); color: var(--mixed);   }
+/* ── Conviction bar ──────────────────────────────────────────────── */
+.conv-bar {
+  display: inline-block; width: 60px; height: 5px;
+  background: var(--border); border-radius: 3px; vertical-align: middle;
+  position: relative; overflow: hidden;
+}
+.conv-bar-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--accent); border-radius: 3px;
+}
+/* ── Ticker label ────────────────────────────────────────────────── */
+.ticker { font-family: "SF Mono", "Fira Code", ui-monospace, monospace; font-size: 0.9em; font-weight: 600; }
+/* ── Consensus table ─────────────────────────────────────────────── */
+.consensus-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.consensus-table thead th {
+  text-align: left; padding: 0.5rem 0.75rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+}
+.consensus-table tbody td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.consensus-table tbody tr:last-child td { border-bottom: none; }
+.consensus-table .thesis-cell { color: var(--muted); font-size: 0.82rem; max-width: 240px; }
+/* ── Section headings ────────────────────────────────────────────── */
+.section-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 0.75rem;
+}
+/* ── Channel cards ───────────────────────────────────────────────── */
+.channel-name { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-bottom: 0.25rem; }
+.video-title a { font-size: 1rem; font-weight: 600; color: var(--text); }
+.video-title a:hover { color: var(--accent); }
+.summary-text { color: var(--muted); font-size: 0.88rem; margin-top: 0.75rem; }
+.stock-chip-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+.stock-chip {
+  font-size: 0.75rem; padding: 0.2em 0.55em; border-radius: 4px;
+  border: 1px solid var(--border); color: var(--muted); background: var(--bg);
+}
+.stock-chip .ticker { color: var(--text); }
+/* ── By-stock blocks ─────────────────────────────────────────────── */
+.stock-block { margin-bottom: 0.75rem; }
+.stock-block-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+.stock-block-header h3 { font-size: 1rem; }
+.mention-item { padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.87rem; }
+.mention-item:last-child { border-bottom: none; }
+.mention-channel { font-weight: 600; color: var(--text); }
+.mention-thesis { color: var(--muted); margin-top: 0.2rem; }
+.mention-points { margin-top: 0.3rem; color: var(--muted); font-size: 0.83rem; }
+/* ── Macro topics ────────────────────────────────────────────────── */
+.macro-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.macro-tag {
+  font-size: 0.8rem; padding: 0.25em 0.7em; border-radius: 4px;
+  background: var(--bg); border: 1px solid var(--border); color: var(--muted);
+}
+/* ── Sources ─────────────────────────────────────────────────────── */
+.source-item { font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+.source-item:last-child { border-bottom: none; }
+.source-channel { font-size: 0.75rem; color: var(--faint); }
+/* ── Disclaimer ──────────────────────────────────────────────────── */
+.disclaimer {
+  font-size: 0.78rem; color: var(--faint); line-height: 1.5;
+  border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 2rem;
+}
+/* ── Nav / TOC ───────────────────────────────────────────────────── */
+.toc { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem; margin-bottom: 2rem; }
+.toc a { color: var(--muted); }
+.toc a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ── Header ──────────────────────────────────────────────────── -->
+<div class="report-header">
+  <div class="kicker">Stock Sentinel</div>
+  <h1>Daily YouTube Digest — 2026-06-21</h1>
+  <div class="meta-row">
+    <span>Generated <strong>2026-06-22 00:36 UTC</strong></span>
+    <span><strong>11</strong> videos</span>
+    <span><strong>19</strong> stocks identified</span>
+    
+  </div>
+</div>
+
+<!-- ── TOC ──────────────────────────────────────────────────────── -->
+<nav class="toc" aria-label="Jump to section">
+  
+  <a href="#by-channel">By Channel</a>
+  <a href="#by-stock">By Stock</a>
+  <a href="#macro">Macro Topics</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<!-- ── Consensus picks ──────────────────────────────────────────── -->
+
+
+<!-- ── By channel ────────────────────────────────────────────────── -->
+<section id="by-channel">
+  <div class="section-title">By Channel — 11 videos analyzed</div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=1nQvwfY0yTA" target="_blank" rel="noopener noreferrer">
+        Should You Buy Micron Stock Before the Huge Investor Update? | MU Stock Analysis
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-20 ·
+      14m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev Tatevosian addresses a common viewer question ahead of Micron's June 24, 2026 earnings report: should you buy MU stock now or wait? He begins by recapping the company's extraordinary recent performance — Micron's stock is up over 775% in the past year — and reaffirming his long-standing buy thesis, which he first published over a year ago. The catalyst has been surging AI-driven demand from data centers at a time when industry supply remains constrained, creating a pricing environment where Micron holds significant leverage.<br><br>The recent quarterly numbers are striking. Revenue came in at $23.9 billion, nearly tripling year-over-year. Gross margins expanded to 74.4% and operating margins to 67.6% — figures Parkev notes are approaching software-company territory for a manufacturer that produces physical chips entirely in-house. Free cash flow was $7 billion after $5 billion in capital expenditure. Looking ahead, management guided Q3 revenue of $33.5 billion (a ~50% sequential jump) and gross margins climbing to an unprecedented 81%.<br><br>Despite the bullish fundamental picture, Parkev raises a structural concern: semiconductors are a cyclical industry, and current peak margins make forward multiples look deceptively cheap. At 11x forward earnings and 12x forward operating cash flow — roughly half the S&P 500 average — the stock screens inexpensively, but those multiples are built on record-high denominators. He also flags a subtle management signal: with the stock near all-time highs, the team chose to pay down $4.6 billion in debt rather than execute meaningful buybacks, suggesting insiders see the valuation as stretched.<br><br>Parkev updated his DCF model to an intrinsic value of $915 per share against a market price of $1,054, placing the stock above his margin of safety threshold. He maintains a buy rating but explicitly advises against purchasing before earnings given the heightened volatility event risk and his view that downside exceeds upside at current prices after an 800% run. His recommendation: wait for the results and the post-earnings price reaction before adding exposure.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-MU"
+         class="stock-chip">
+        <span class="ticker">MU</span>
+        
+           · Micron Technology
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Micron is at a cyclical peak driven by AI demand — strong fundamentals but the boom creates unrealistic baseline expectations for valuation</li>
+        
+        <li>The stock is fairly valued or slightly above intrinsic value at current prices; margin of safety has been consumed by the 775% rally</li>
+        
+        <li>Management&#39;s preference for debt repayment over buybacks near all-time highs is a subtle bearish signal worth noting</li>
+        
+        <li>Earnings on June 24 represent a high-volatility event with asymmetric downside; better to wait for the print than buy into it</li>
+        
+        <li>Long-term buy thesis remains intact — AI-driven memory demand is structural, though growth rates will moderate as replacement cycles replace new-market expansion</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=2krY_eCPkFI" target="_blank" rel="noopener noreferrer">
+        RocketLab Stock: My Final Verdict (Buy or Sell) | RKLB Stock Deep Dive Part 6
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-20 ·
+      10m
+    </div>
+
+    
+    <div class="summary-text">
+      In the sixth and final installment of his Rocket Lab deep dive, Parkev Tatevosian examines the company's cash flow situation and delivers his investment verdict. He notes that RKLB burned roughly $75 million in free cash flow during the most recent quarter — $50 million in operating cash outflows plus $27 million in capital expenditure — and expects that elevated burn rate to persist through Neutron's first launch. Despite the losses, management sits on $1.5 billion in cash and equivalents, giving the company roughly 15 quarters of runway even at peak burn levels, and total liquidity exceeds $2 billion when including available credit facilities.<br><br>Parkev highlights that management has been opportunistically issuing equity — raising around $450 million in the latest quarter alone — while the stock has surged over 300% in the past year. He frames this favorably: each capital raise has occurred at higher prices as the company hits milestones, reducing the long-term cost of capital. For Q2 2026, management guided revenue of $225–240 million (roughly 16% above Q1's $200 million) with gross margins improving to around 34%.<br><br>The discussion then pivots to valuation in the context of SpaceX's anticipated IPO the following day. Parkev estimates SpaceX would price at a trailing price-to-sales near 90–95 at a $1.77 trillion valuation. By comparison, Rocket Lab trades at a forward P/S of approximately 62 — about two-thirds of SpaceX's multiple. He argues this relative discount is deserved given that Rocket Lab is a pure-play space company, whereas SpaceX is a conglomerate that now includes XAI (an AI company with excess computing capacity and modest customer traction) and a social media business — both of which traditionally command far lower multiples on their own.<br><br>Despite finding Rocket Lab's strategic position compelling and its valuation more attractive than SpaceX's, Parkev concludes the current price-to-sales of 62 is still too rich for him to rate the stock a buy. He speculates the SpaceX IPO could serve as a sentiment catalyst in either direction and suggests waiting for a more attractive entry point before committing capital.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-RKLB"
+         class="stock-chip">
+        <span class="ticker">RKLB</span>
+        
+           · Rocket Lab USA
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Rocket Lab has sufficient liquidity (~$2B) to reach Neutron&#39;s first launch without existential funding risk</li>
+        
+        <li>The pure-play space positioning is more attractive than SpaceX&#39;s mixed-asset conglomerate structure at comparable or higher multiples</li>
+        
+        <li>At a forward P/S of 62, the current price already reflects a lot of optimism; Parkev rates RKLB a hold and is waiting for a better entry</li>
+        
+        <li>SpaceX&#39;s IPO is a near-term sentiment event that could move RKLB in either direction</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=8E0z0HcLqLk" target="_blank" rel="noopener noreferrer">
+        Nu Holdings Stock Analysis: Buy or Sell? | NU Stock Analysis
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-21 ·
+      6m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev Tatevosian revisits Nu Holdings after a painful year-to-date decline of approximately 24%, addressing whether the pullback constitutes a buying opportunity. He opens by contextualizing the underperformance: multiple investment-bank downgrades from Bank of America (to underperform), Citigroup, and Susquehanna have pressured the stock, each citing leadership changes and mounting credit concerns driven by rising 30-, 60-, and 90-day loan delinquency rates.<br><br>Parkev emphasizes that defaults in Latin American consumer lending carry a higher loss-given-default than secured lending categories because there is limited collateral to recover. He notes, however, that management retains meaningful levers — curtailing new loan origination or selling debt to third parties — to manage cash flows if conditions deteriorate further.<br><br>On the positive side, the company has maintained an operating-cash-flow-to-sales ratio around 41% consistently for four years, and the forward price-to-earnings multiple has compressed to roughly 13.9x, near multi-year lows. His discounted cash flow model places fair value near $23.70 against a current price around $12.66, suggesting the stock trades at a deep discount. He acknowledges the inherent difficulty in valuing lending businesses but reiterates a buy rating, which he formally reasserted on June 16, 2026.<br><br>Parkev also flags a macro headwind: investor attention in emerging markets has rotated toward Southeast Asian semiconductor companies tied to the AI wave, leaving Latin American fintech comparatively neglected. He views this sentiment discount as part of what creates the opportunity.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-NU"
+         class="stock-chip">
+        <span class="ticker">NU</span>
+        
+           · Nu Holdings
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Nu Holdings&#39; 24% YTD drawdown is primarily sentiment-driven (bank downgrades, AI-rotation away from LatAm) rather than fundamental collapse</li>
+        
+        <li>Credit quality is a real but manageable risk given management&#39;s cash-flow levers</li>
+        
+        <li>Valuation at ~13.9x forward earnings with a DCF fair value nearly double the current price provides meaningful margin of safety</li>
+        
+        <li>Investor attention rotating to Southeast Asian AI plays has created a temporary discount in LatAm fintech</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">New Money</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=AstlgGD6j-Y" target="_blank" rel="noopener noreferrer">
+        This Shouldn&#39;t Be Possible...
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-21 ·
+      13m
+    </div>
+
+    
+    <div class="summary-text">
+      New Money's creator breaks down the anatomy of Elon Musk's newly achieved trillion-dollar net worth following SpaceX's IPO on June 12, 2026. He explains that the wealth is concentrated almost entirely in two companies: SpaceX (approximately 42-43% economic stake, valued at roughly $850 billion post-IPO listing and constituting about 75% of total net worth) and Tesla (approximately 20% economic interest worth roughly $280 billion, including options from the landmark 2018 compensation package reinstated by the Delaware Supreme Court in December 2025).<br><br>The creator methodically addresses why this trillion-dollar figure is largely inaccessible in practice. First, any meaningful liquidation would create selling pressure and signal a loss of founder confidence, depressing the very asset being sold. Second, SpaceX's IPO imposes a 366-day lock-up period through approximately June 13, 2027, legally barring Musk from selling the shares. Third, nearly 75% of the portfolio sits in a single recently-listed company — textbook concentration risk.<br><br>He then reveals the workaround used by ultra-high-net-worth individuals: pledging shares as collateral to borrow cash, avoiding both a taxable event and market selling pressure — though at the risk of margin calls in a downturn. The creator closes with the thesis that for Musk, the endgame was never liquidity — it is voting control over SpaceX and Tesla to pursue his long-term missions including a Mars colony, which is literally a condition for some of his SpaceX performance-share vesting tranches.<br><br>The creator is explicitly skeptical of the SpaceX valuation, stating he considers it massively overvalued and places his own fair value around $440 billion versus the $1.75 trillion+ IPO price, suggesting Musk's true net worth could be far lower if market sentiment corrects.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-TSLA"
+         class="stock-chip">
+        <span class="ticker">TSLA</span>
+        
+           · Tesla Inc.
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+      <a href="#stock-spacex"
+         class="stock-chip">
+        
+        
+          SpaceX
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Musk&#39;s trillion-dollar net worth is almost entirely illiquid ownership in SpaceX and Tesla, not accessible cash</li>
+        
+        <li>SpaceX&#39;s $1.75 trillion IPO valuation is speculative and the creator considers it massively overvalued relative to fundamentals</li>
+        
+        <li>The lock-up period, liquidity constraints, and concentration risk make Musk&#39;s paper wealth highly fragile to sentiment shifts</li>
+        
+        <li>The real motivation behind accumulating ownership is voting control to pursue long-term missions, not wealth realization</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Gareth Soloway — Pro Trader</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=BX9q_sdMd8c" target="_blank" rel="noopener noreferrer">
+        This Chart Lines Up Eerily With 1929, Great Depression Coming?
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-20 ·
+      17m
+    </div>
+
+    
+    <div class="summary-text">
+      Gareth Soloway presents a macro bear case built around a 100-year cycle comparison between the 1920s and today. He argues that multiple structural parallels — post-pandemic boom, transformative technology euphoria, retail speculation, elite information weaponization, circular capital flows among mega-caps, and extreme market concentration — closely mirror the conditions of the late 1920s ahead of the 1929 crash and Great Depression.<br><br>Soloway draws specific parallels: the Spanish flu of 1918 maps to COVID-19 in 2020 as the demand catalyst; electrification and the automobile map to AI and cloud infrastructure; bucket shops and margin speculation map to zero-day options and prediction markets; and 1920s utility holding companies recycling capital internally maps to today's mega-cap tech firms investing in AI startups that immediately route funds back to buy cloud and chips from the same parent companies.<br><br>His chart analysis centers on the Dow Jones logarithmic chart, where he identifies a long-term parallel channel. He notes the market currently sits above the upper band of this channel — the same position it was in just before the 1929 crash. Using a date-range measurement, he calculates that approximately 3,000 days elapsed from the post-Spanish flu bull market start to the 1929 top. Applying the same 3,000-day window from the COVID low in 2020 projects a potential market top around mid-to-late 2028, leading into a 2029 crash — the 100-year anniversary. He is explicit that this is speculative and markets could see further 20–30% corrections along the way before any final top.<br><br>Soloway stops short of making any specific stock recommendations. The video is a macro warning framework, not a trade idea, and he acknowledges the scenario may not materialize.
+    </div>
+    
+
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>The current market environment has striking structural similarities to the late 1920s — post-pandemic boom, transformative tech, retail speculation, and extreme index concentration</li>
+        
+        <li>A logarithmic Dow chart shows the market above its long-term upper channel band, the same position it occupied just before the 1929 crash</li>
+        
+        <li>Date-range analysis from COVID low (2020) projects a potential cyclical top around mid-to-late 2028, followed by a 2029 crash — the 100-year cycle</li>
+        
+        <li>Extreme concentration in 10–15 AI-related stocks masks underlying market weakness; advance-decline breadth is poor</li>
+        
+        <li>US debt trajectory ($4T+ annual additions, compounding) becomes unsustainable by the 2028–2029 window</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Gareth Soloway — Pro Trader</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=IAwAeA4cnWo" target="_blank" rel="noopener noreferrer">
+        Crypto Technical Analysis  Bitcoin  Ethereum  Solana And Alts
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-21 ·
+      15m
+    </div>
+
+    
+    <div class="summary-text">
+      Gareth Soloway delivers a technical analysis sweep of the major crypto markets, combining chart pattern reading with Elliott Wave concepts. His overarching view is cautiously bearish on Bitcoin in the medium term, with selective bullishness on specific altcoins showing relative strength.<br><br>On Bitcoin, Gareth is concerned about a breakout level that was reclaimed but subsequently broken back below, which he likens to a door being knocked off its hinges — the psychological and technical damage lingers even after price recovers above the level. He expects Bitcoin to need one more meaningful leg down to flush out the weak hands, particularly noting that Michael Saylor's average cost in the low $70,000s represents a magnet for a potential squeeze. That said, he is not outright bearish for swing traders and has maintained profitable long positions throughout the year.<br><br>Solana is his top altcoin pick. He highlights the asset's long-term ascending trend line dating to 2024 as a reliable support level that has held on multiple tests, and notes exceptional relative strength versus both Bitcoin and the broader altcoin market in recent sessions. He targets a move to $83 near-term and a retest of the $97–100 zone on a broader crypto rally.<br><br>XRP presents an interesting technical setup — a well-defined descending trend line that has been tested six times. The more times a trend line is tested without breaking, the more explosive the eventual breakout tends to be. Gareth is neutral-to-cautiously optimistic; support at $1 defines the risk. Ethereum is holding its key support line better than Bitcoin. Avalanche needs to reclaim $6.38 on a daily close before becoming actionable. Sui (SUI) at ~$0.71 with a stop at $0.66 offers a defined 7% risk for potential 10-40% upside. Hyperliquid shows a potential bear-flag formation.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-BTC"
+         class="stock-chip">
+        <span class="ticker">BTC</span>
+        
+           · Bitcoin
+        
+        <span class="pill pill-mixed" style="margin-left:0.25rem">M</span>
+      </a>
+      
+      <a href="#stock-SOL"
+         class="stock-chip">
+        <span class="ticker">SOL</span>
+        
+           · Solana
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-XRP"
+         class="stock-chip">
+        <span class="ticker">XRP</span>
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+      <a href="#stock-ETH"
+         class="stock-chip">
+        <span class="ticker">ETH</span>
+        
+           · Ethereum
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+      <a href="#stock-SUI"
+         class="stock-chip">
+        <span class="ticker">SUI</span>
+        
+           · Sui
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-AVAX"
+         class="stock-chip">
+        <span class="ticker">AVAX</span>
+        
+           · Avalanche
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Bitcoin has technical damage from a failed breakout and likely needs one more fear-driven leg down to establish a durable bottom</li>
+        
+        <li>Solana is the strongest chart in crypto right now with confirmed trend-line support and relative outperformance</li>
+        
+        <li>Altcoin sentiment is at extreme bearish levels, setting up for a potential sharp relief rally similar to software stocks that were sold off for AI names</li>
+        
+        <li>XRP&#39;s coiling descending trend line setup means a confirmed breakout would be unusually explosive</li>
+        
+        <li>Swing trading bounces remains the preferred approach over outright long-term positioning in most altcoins</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=Osn13jmFwvk" target="_blank" rel="noopener noreferrer">
+        Is RocketLab Stock Financially Viable? | RKLB Stock Deep Dive Part 5
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-19 ·
+      6m
+    </div>
+
+    
+    <div class="summary-text">
+      Part five of Parkev's Rocket Lab deep dive shifts from innovation narrative to financial fundamentals. He breaks down revenue by segment: Space Systems generated $137M in the most recent quarter (up 57% YoY, 32% QoQ), while Launch Services contributed $63.7M (up 79% YoY but down 16% QoQ due to fewer launches in the period). Space Systems is the larger revenue contributor today, but Launch Services is growing faster and generating more contract value — pointing to where the long-term business mix is heading.<br><br>The company ended Q1 with approximately $2.2B in total backlog, split 41.5% Launch and 58.5% Space Systems. Management expects roughly 36% of that backlog to convert to revenue within the next 12 months — approximately $800M — which aligns with a run-rate of about $200M/quarter. Parkev frames this conversion visibility as a meaningful de-risking factor for near-term revenue. Headcount in production roles grew by 250 to ~1,450, largely from personnel moving from R&D into production, signaling the transition from development to commercial scale.<br><br>Parkev is candid that Rocket Lab is early stage and that financial analysis is secondary to the innovation story at this point. He frames the investment case as a potential 5x, 10x, or even 100x opportunity given the vast and difficult-to-quantify upside of the space economy. The video closes as a teaser for a final part of the series, with the valuation verdict presumably coming next.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-RKLB"
+         class="stock-chip">
+        <span class="ticker">RKLB</span>
+        
+           · Rocket Lab USA Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Rocket Lab&#39;s financials are viable and improving — both segments growing strongly year-over-year with multi-year backlog</li>
+        
+        <li>The $2.2B backlog provides exceptional revenue visibility (~11 quarters) that is rare for an early-stage growth company</li>
+        
+        <li>The shift from R&amp;D to production headcount signals the company is crossing the commercialization threshold</li>
+        
+        <li>Long-term upside is difficult to quantify but potentially enormous given the nascent state of the space economy</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=mRQ1RTgTUcw" target="_blank" rel="noopener noreferrer">
+        Adobe Stock Investors are Skeptical About the Freemium Strategy | Adobe Stock Deep Dive Part 4
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-21 ·
+      6m
+    </div>
+
+    
+    <div class="summary-text">
+      In the fourth installment of his Adobe deep dive, Parkev Tatevosian examines the company's pivot toward a freemium acquisition model and its implications for near-term revenue and long-term growth. Adobe management has explicitly acknowledged that the shift will weigh on short-term annual recurring revenue (ARR) while accelerating user acquisition and monthly active users, with the intent of building lifetime customer value by removing friction from onboarding.<br><br>A centerpiece of the freemium push is the Productivity Agent embedded in Acrobat — an AI tool that draws on document intelligence to create presentations, podcasts, and social content from PDFs, and enables conversational editing within the document itself. Parkev notes this is a logical move: users already extract PDF content into external AI platforms, and Adobe is simply offering that workflow natively. AI Acrobat Assistant paid monthly active users grew 150% year-over-year in the most recent quarter, and lifetime AI users in Acrobat tripled year-over-year.<br><br>Despite these metrics, Parkev acknowledges investor skepticism: the AI user base remains a small fraction of overall ARR, insufficient to move the aggregate revenue needle meaningfully. He frames the early results as directionally encouraging — freemium creative monthly active users expanded from just over 50 million to over 90 million, and adobe.com traffic for content-creation categories rose more than 50% — but notes the critical unresolved question is whether Adobe can convert that engagement into monetization at scale.<br><br>His overall stance is cautiously optimistic: Adobe's strategy is reasonable, the early data is promising, and the current stock price is relatively depressed. If monetization follows user adoption, he expects a significant re-rating of the shares.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-ADBE"
+         class="stock-chip">
+        <span class="ticker">ADBE</span>
+        
+           · Adobe Inc.
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Adobe&#39;s freemium shift is a deliberate, reasonable strategy to counter AI-driven disruption in content creation</li>
+        
+        <li>Early AI adoption metrics (150% MAU growth, tripling lifetime users) are encouraging but not yet material to overall financials</li>
+        
+        <li>The unresolved monetization question is the key variable that will determine whether the stock re-rates</li>
+        
+        <li>Explosive growth in AI-driven content creation benefits the addressable market; Adobe&#39;s ability to capture share is the open question</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=r6ezJ4EJP-s" target="_blank" rel="noopener noreferrer">
+        Celsius Stock Analysis: My Final Verdict (Buy or Sell) | CELH Stock Deep Dive Part 5
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-19 ·
+      8m
+    </div>
+
+    
+    <div class="summary-text">
+      This is the concluding part of Parkev's five-part Celsius deep dive, covering growth opportunities and delivering a final buy/sell verdict. He opens by highlighting a structural retail tailwind: store managers are actively expanding energy drink shelf space — and specifically the premium cold section — as the category grows as a percentage of total beverage sales. Cold placement drives impulse purchases, making it a durable demand driver beyond just the drinks themselves.<br><br>On financials, Parkev walks through Wall Street consensus estimates: analysts project 33% revenue growth in fiscal 2026 (boosted by the Alani Nu and A-Shoc acquisitions), normalizing to roughly 10% in 2027 and 7% in 2028. He acknowledges near-term margin compression from tariffs and Iranian conflict-related commodity cost increases, but notes management's confidence in returning gross margins above 50% and operating margins above 20%.<br><br>For valuation, Parkev uses two methods. On a market multiples basis, the forward P/E of 17.8x and forward price-to-OCF of 16x are both the lowest since January 2024 — suggesting slight undervaluation relative to peers and history. On a DCF basis, he models free cash flow growing from $400M in 2026 to over $2B by 2035, using an 11.5% WACC (cost of equity 12%, beta 1.25, risk-free rate 4.5%). This produces a fair value of approximately $58/share against a current price near the 52-week low of $28.26 — roughly 100% upside.<br><br>His final verdict is a clear buy: the stock is meaningfully undervalued on DCF and at least fairly valued on multiples, with intact long-term growth drivers (international expansion, shelf space gains, margin recovery as acquisition costs fade) providing multi-year runway.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-CELH"
+         class="stock-chip">
+        <span class="ticker">CELH</span>
+        
+           · Celsius Holdings Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Celsius is a clear buy at current prices — meaningfully undervalued on DCF and at multi-year low multiples</li>
+        
+        <li>Near-term margin pressure from acquisitions and commodity costs is temporary; management has a credible path back to 50%+ gross margins</li>
+        
+        <li>Retail shelf expansion into premium cold space is a durable structural tailwind, not just a post-acquisition bump</li>
+        
+        <li>International markets remain a large underpenetrated opportunity providing runway well beyond the 3-year analyst forecast window</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Daniel Pronk</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=tkzycFHW7Lc" target="_blank" rel="noopener noreferrer">
+        5 Undervalued Stocks to Buy Now
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-19 ·
+      37m
+    </div>
+
+    
+    <div class="summary-text">
+      Daniel Pronk presents five stocks he is actively buying, framing all of them as undervalued relative to their fundamental growth. The video is driven by recent news catalysts and updated DCF models across each name.<br><br>Amazon leads the list. Pronk argues the market is overlooking Amazon's chips business, which Andy Jassy disclosed has an annualized revenue run rate of $20 billion growing triple digits year-over-year, with a $50 billion potential if sold externally — which would make it larger than AMD today. Amazon is also exploring selling Trainium chips directly to third parties, a major potential monetization unlock. Despite this news, the stock has sold off roughly 11% in the past month. Pronk's conservative DCF (16% operating cash flow growth, 20x multiple) yields a $309 fair value and a 19% three-year CAGR. He has been buying heavily and it is one of his largest positions.<br><br>Meta is his second pick. Pronk acknowledges a swirl of negative sentiment — the CTO publicly flagged employee morale at a 20-year low following repeated layoff waves — but argues the underlying business is accelerating anyway (30%+ revenue growth, record operating cash flow), making morale a short-term noise factor. At 18x forward earnings and 11.8x forward operating cash flow, both well below historical averages and below the S&P 500, he views the stock as pricing in the risks already. He has been adding shares.<br><br>Mercado Libre is Pronk's third pick and one he has held since $1,800 per share (now ~$1,600, so he is down). He remains highly convicted, citing a new investor presentation showing 49% revenue CAGR since 2020, 73% advertising growth acceleration, a YouTube partnership for in-video commerce in Mexico and Argentina, and a string of recent insider buys — the first since 2022. He views the 40% correction from all-time highs as an opportunity and has been increasing his position significantly.<br><br>Brookfield Asset Management is his fourth pick, described as a dividend-growth compounder. Management is projecting 20% earnings growth through 2030 and 15% annual dividend growth on top of a current 4%+ yield. Pronk's DCF (15% earnings growth, 25x PE) generates a ~16% CAGR, which he views as conservative given the company's historical trading multiple closer to 30x.<br><br>Constellation Software rounds out the list. Pronk highlights that despite a 50%+ correction from highs, the business is still growing 20%+ annually and now trades at only 15x free cash flow. AI has not caused customer churn; instead customers are coming to Constellation to build new AI features on top of existing software. He also mentions buying Topicus and Signity (a Polish subsidiary growing 40% at 12x cash flows) as extensions of the same thesis.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-AMZN"
+         class="stock-chip">
+        <span class="ticker">AMZN</span>
+        
+           · Amazon
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-META"
+         class="stock-chip">
+        <span class="ticker">META</span>
+        
+           · Meta Platforms
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-MELI"
+         class="stock-chip">
+        <span class="ticker">MELI</span>
+        
+           · MercadoLibre
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-BAM"
+         class="stock-chip">
+        <span class="ticker">BAM</span>
+        
+           · Brookfield Asset Management
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-constellation-software"
+         class="stock-chip">
+        
+        
+          Constellation Software
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Amazon&#39;s chips business is a hidden $50B revenue opportunity that the market is not crediting — the stock is cheap on a sum-of-parts basis</li>
+        
+        <li>Meta&#39;s negative sentiment is already priced in; the fastest-growing hyperscaler at the lowest multiple is a mispricing</li>
+        
+        <li>MercadoLibre&#39;s 40% drawdown is disconnected from fundamentals; insider buying signals near a generational opportunity in Latin American digital infrastructure</li>
+        
+        <li>Brookfield Asset Management offers rare combination of high yield and high growth backed by irreplaceable physical assets</li>
+        
+        <li>Constellation Software is proving AI is a net positive for vertical market software through increased acquisition opportunities and stickier customers</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=wqjaifI5LkU" target="_blank" rel="noopener noreferrer">
+        Massive News for Adobe Stock Investors! | ADBE Stock Deep Dive Part 3
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-06-20 ·
+      11m
+    </div>
+
+    
+    <div class="summary-text">
+      In Part 3 of his Adobe deep dive, Parkev Tatevosian focuses on leadership transitions at the company and what they mean for the freemium strategy Adobe has recently adopted. The news catalyst is the CFO's announced resignation to become CEO of Marvell, with a 20-year Adobe veteran named as interim CFO. Separately, the sitting CEO is transitioning to chairman, meaning Adobe is simultaneously searching for both a new CEO and has recently lost its CFO — an unusual situation that coincides with a beat-and-raise quarter and raised fiscal 2026 revenue and EPS guidance.<br><br>Parkev's central concern is the strategic uncertainty this creates. Adobe is mid-pivot to a freemium model designed to convert high traffic volumes into paying customers. However, management transitions at this scale typically make incoming leaders hesitant to inherit a fixed strategy they didn't design. If the board constrains the new CEO to continue the freemium path, it makes the role less attractive to strong candidates. If the new CEO gets full discretion, the current strategy may be abandoned. Either outcome introduces meaningful uncertainty.<br><br>On the underlying business, Parkev notes that Adobe is seeing impressive demand signals — website traffic grew 40% year-over-year — but the company has so far struggled to convert free users into paying subscribers. He draws an analogy to Nike's failed direct-to-consumer pivot as a cautionary example of a strategy that sounded compelling but destroyed value in practice. That said, he acknowledges Adobe's structural strengths: nearly a billion monthly active users across its suite and significant cash generation that gives management room to experiment.<br><br>Parkev does not deliver a buy or sell rating in this video, framing it as part three of an ongoing series. The tone is cautious — he is watching whether the conversion from free to paid accelerates before committing to a bullish view.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-ADBE"
+         class="stock-chip">
+        <span class="ticker">ADBE</span>
+        
+           · Adobe Inc.
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+      <a href="#stock-MRVL"
+         class="stock-chip">
+        <span class="ticker">MRVL</span>
+        
+           · Marvell Technology
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Adobe&#39;s dual leadership vacuum (CEO + CFO) is the dominant near-term risk, arriving at a critical point in the company&#39;s strategic pivot</li>
+        
+        <li>Traffic growth is strong but monetization remains the unresolved question — 40% website growth with limited paid conversion is a mixed signal</li>
+        
+        <li>The freemium strategy is logical on paper but unproven in execution; Parkev warns investors not to assume it will work</li>
+        
+        <li>Adobe&#39;s scale (~1B MAUs) and cash generation provide a meaningful safety net if the strategy needs to be revised</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+</section>
+<hr>
+
+<!-- ── By stock ──────────────────────────────────────────────────── -->
+
+<section id="by-stock">
+  <div class="section-title">By Stock — 19 mentioned today</div>
+  
+  <div class="card stock-block" id="stock-ADBE">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">ADBE</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Adobe Inc.</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">2 mentions</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 65%">
+          <span class="conv-bar-fill" style="width:65%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Adobe&#39;s freemium pivot is strategically sound and early AI adoption metrics are strong, but monetization conversion remains unproven; if it works, the stock at relatively low levels has significant upside.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Freemium strategy will compress near-term ARR but aims to accelerate user acquisition and lifetime value</li>
+        
+        <li>AI Acrobat Productivity Agent enables document-to-presentation, podcast, and social content creation natively in PDF</li>
+        
+        <li>AI Acrobat Assistant paid MAUs grew 150% year-over-year; lifetime AI users in Acrobat tripled YoY</li>
+        
+        <li>Creative freemium MAUs grew from above 50 million to above 90 million; adobe.com content-creation traffic up 50%+</li>
+        
+        <li>AI usage base still too small relative to total ARR to materially move revenue — investors remain skeptical</li>
+        
+        <li>Management is iterating and gathering feedback; early results show genuine consumer demand for the product</li>
+        
+        <li>If monetization of expanded user base succeeds, stock expected to re-rate significantly higher from current depressed levels</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=mRQ1RTgTUcw" target="_blank" rel="noopener noreferrer">Adobe Stock Investors are Skeptical About the Freemium Strategy | Adobe Stock Deep Dive Part 4</a>
+      </div>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 80%">
+          <span class="conv-bar-fill" style="width:80%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Adobe is at a strategic inflection point — strong traffic growth and nearly a billion monthly active users are encouraging, but the company has not yet demonstrated the ability to convert free users into paying customers, and dual leadership vacancies create execution risk at a critical juncture.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>CFO resigned to become CEO of Marvell; 20-year Adobe veteran steps in as interim CFO</li>
+        
+        <li>CEO transitioning to chairman role; Adobe is actively searching for a new CEO</li>
+        
+        <li>Both changes arrive simultaneously with a beat-and-raise quarter and raised FY2026 guidance — an unusual combination</li>
+        
+        <li>Website traffic grew 40% year-over-year, signaling strong demand, but conversion to paid users has been limited</li>
+        
+        <li>Freemium strategy designed to onboard free users and convert them over time — Parkev draws comparison to Nike&#39;s failed DTC pivot as a reminder that plausible strategies sometimes fail</li>
+        
+        <li>Nearly 1 billion monthly active users and strong cash flow give the company room to test and iterate on its strategy</li>
+        
+        <li>Key risk: incoming CEO may not have freedom to redirect strategy, or may reject the current approach entirely</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=wqjaifI5LkU" target="_blank" rel="noopener noreferrer">Massive News for Adobe Stock Investors! | ADBE Stock Deep Dive Part 3</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-AMZN">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">AMZN</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Amazon</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Daniel Pronk</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 95%">
+          <span class="conv-bar-fill" style="width:95%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $309 (conservative DCF, 19% 3-year CAGR)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Amazon is trading as though its chips, advertising, and AWS businesses are being ignored by the market; a potential $50B annual revenue chips business is embedded in the stock at zero credit, and the stock has sold off 11% in a month despite accelerating AI demand for AWS.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Trainium chips business has $20B annualized revenue run rate, growing triple-digits YoY; $50B potential if sold externally, which would make it larger than AMD</li>
+        
+        <li>Exploring selling Trainium chips to third parties — a major revenue unlock not currently reflected in the stock</li>
+        
+        <li>AWS revenue at $137B trailing 12 months, growing ~30% and accelerating</li>
+        
+        <li>Advertising growing 20%+, subscriptions 15%, third-party seller services 18% — all compounding simultaneously</li>
+        
+        <li>Stock down ~11% in the past month despite these catalysts — Pronk views this as irrational and has been buying heavily</li>
+        
+        <li>Conservative DCF at 16% OCF growth / 20x multiple yields $309 fair value; well below analyst consensus of 28% OCF growth</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=tkzycFHW7Lc" target="_blank" rel="noopener noreferrer">5 Undervalued Stocks to Buy Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-AVAX">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">AVAX</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Avalanche</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 40%">
+          <span class="conv-bar-fill" style="width:40%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Avalanche is currently un-investable until it can reclaim $6.38 on a daily close; avoid unless that level is restored.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Significant recent decline; had a strong reversal candle but needs to reclaim $6.38 on a daily close</li>
+        
+        <li>Current price action hitting the reclaim level from below — stay away until confirmed</li>
+        
+        <li>No active position</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=IAwAeA4cnWo" target="_blank" rel="noopener noreferrer">Crypto Technical Analysis  Bitcoin  Ethereum  Solana And Alts</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-BAM">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">BAM</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Brookfield Asset Management</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Daniel Pronk</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 75%">
+          <span class="conv-bar-fill" style="width:75%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Brookfield is a rare combination of a 4%+ current dividend yield and 15%+ projected dividend growth, backed by infrastructure assets that are becoming more valuable as AI and global capex buildout accelerate.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Management projecting 20% earnings growth annually through 2030</li>
+        
+        <li>Current dividend yield over 4% with projected 15%+ annual dividend growth</li>
+        
+        <li>DCF at 15% earnings growth and 25x PE generates ~16% CAGR — Pronk views this as conservative given historical ~30x PE</li>
+        
+        <li>Owns physical infrastructure backbone assets (data centers, pipelines, railroads, terminals) seeing tailwinds from AI capex buildout</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=tkzycFHW7Lc" target="_blank" rel="noopener noreferrer">5 Undervalued Stocks to Buy Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-BTC">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">BTC</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Bitcoin</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-mixed">mixed</span>
+        <span class="conv-bar" title="Conviction 55%">
+          <span class="conv-bar-fill" style="width:55%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Technical damage from a failed breakout suggests Bitcoin needs one more leg down to flush out leveraged longs before a durable bottom forms; near-term bounces are tradeable but medium-term risk is skewed lower.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Double-bottom breakout was violated and reclaimed but left technical damage — less reliable support now</li>
+        
+        <li>Expects three-wave structure to the downside to complete; final fear leg likely still ahead</li>
+        
+        <li>Michael Saylor&#39;s average cost in the low $70,000s seen as a potential price target for a squeeze</li>
+        
+        <li>Long-term bullish on Bitcoin but current chart favors swing trading bounces rather than holding through</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=IAwAeA4cnWo" target="_blank" rel="noopener noreferrer">Crypto Technical Analysis  Bitcoin  Ethereum  Solana And Alts</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-CELH">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">CELH</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Celsius Holdings Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 85%">
+          <span class="conv-bar-fill" style="width:85%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $58 (DCF fair value)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Celsius is meaningfully undervalued on a DCF basis (fair value ~$58 vs. ~$28 current price) and at the cheapest market multiples in over two years, while retaining intact long-term growth drivers in international expansion, shelf space gains, and margin recovery.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Final verdict: explicit buy rating, updated June 12, 2026</li>
+        
+        <li>DCF fair value of ~$58 implies roughly 100% upside from the ~$28 current price near 52-week lows</li>
+        
+        <li>Forward P/E of 17.8x and forward price-to-OCF of 16x are the cheapest levels since January 2024</li>
+        
+        <li>Retailers are expanding energy drink shelf space and upgrading cold section allocations — a structural demand tailwind</li>
+        
+        <li>Revenue expected to grow 33% in 2026 (acquisition-boosted), normalizing to ~10% in 2027 and ~7% in 2028</li>
+        
+        <li>Management targets return to 50%+ gross margins and 20%+ operating margins as integration costs fade</li>
+        
+        <li>Four consecutive years of positive operating cash flow with double-digit OCF/sales ratios</li>
+        
+        <li>International expansion still in early stages — provides multi-year incremental growth runway beyond current analyst estimates</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=r6ezJ4EJP-s" target="_blank" rel="noopener noreferrer">Celsius Stock Analysis: My Final Verdict (Buy or Sell) | CELH Stock Deep Dive Part 5</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-constellation-software">
+    <div class="stock-block-header">
+      <h3>
+        
+        
+          Constellation Software
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Daniel Pronk</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 85%">
+          <span class="conv-bar-fill" style="width:85%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Constellation Software trades at only 15x free cash flow while still growing 20%+ annually; AI is creating more acquisition targets (software valuations down, competition for deals reduced) rather than disrupting its existing customer base.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Stock down 50%+ from highs but business growing 20%+ annually; now at 15x free cash flow</li>
+        
+        <li>Vertical market software customers are not churning to AI alternatives — they are instead asking Constellation to build AI features on top of existing software</li>
+        
+        <li>Private equity and public market sentiment toward software is negative, creating a record acquisition pipeline at lower prices and higher ROIC</li>
+        
+        <li>Zero dilution, zero stock-based compensation, strong management/shareholder alignment</li>
+        
+        <li>Pronk also buying Topicus (European subsidiary) and Signity (Polish subsidiary, 40% growth at 12x cash flows)</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=tkzycFHW7Lc" target="_blank" rel="noopener noreferrer">5 Undervalued Stocks to Buy Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-ETH">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">ETH</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Ethereum</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 45%">
+          <span class="conv-bar-fill" style="width:45%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Ethereum is holding its key horizontal support level better than Bitcoin, making it slightly preferred among the large-caps, but the broader chart remains cautiously bearish alongside the overall crypto market.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Key horizontal support line held on the recent pullback — outperforming Bitcoin on relative basis</li>
+        
+        <li>Gareth has a partial Ethereum long after taking profits on the recent bounce</li>
+        
+        <li>Not compelling enough to add to versus Solana on a chart basis</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=IAwAeA4cnWo" target="_blank" rel="noopener noreferrer">Crypto Technical Analysis  Bitcoin  Ethereum  Solana And Alts</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-MELI">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">MELI</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · MercadoLibre</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Daniel Pronk</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 90%">
+          <span class="conv-bar-fill" style="width:90%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">MercadoLibre has compounded revenue at 49% annually since 2020 and is still growing at that rate on a $32B base, yet the stock is in a 40% drawdown from highs — Pronk views the disconnection between fundamentals and price as a major buying opportunity.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Revenue 8x since 2020 at a 49% CAGR; still growing 49% YoY on a $32B revenue base</li>
+        
+        <li>Advertising business growing 73% YoY, accelerating from 65% CAGR; market share grew from 2% to 10% in six years</li>
+        
+        <li>Digital bank has 83M monthly active users; credit portfolio at $15B doubling annually; customer savings at $20B growing 80% YoY</li>
+        
+        <li>YouTube partnership for in-video commerce in Mexico and Argentina — Google chose Mercado Libre for its logistics network dominance</li>
+        
+        <li>Insider buys in June and May 2026 — the first insider buying since 2022 bear market lows, which historically preceded strong returns</li>
+        
+        <li>Only 54% of Mexicans have a bank account; 85% still use cash for small purchases — decades of digital banking runway ahead</li>
+        
+        <li>Pronk has been buying since $1,800 (now ~$1,600) and has significantly increased his position size</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=tkzycFHW7Lc" target="_blank" rel="noopener noreferrer">5 Undervalued Stocks to Buy Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-META">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">META</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Meta Platforms</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Daniel Pronk</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 85%">
+          <span class="conv-bar-fill" style="width:85%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Meta is the fastest-growing hyperscaler yet trades at the lowest multiple (18x forward earnings, 11.8x OCF) due to negative sentiment around employee morale and legal risks — Pronk believes the risks are already priced in and the business is proving resilient.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>CTO publicly flagged employee morale at a 20-year low following May 2026 layoffs of ~8,000 employees (~10% of workforce)</li>
+        
+        <li>Despite morale headwinds, revenue is growing 30%+ and operating cash flow is at record highs — suggesting structural business strength</li>
+        
+        <li>Trading at 18x forward earnings and 11.8x forward OCF — both well below its own historical averages and well below S&amp;P 500 multiples</li>
+        
+        <li>Fastest-growing hyperscaler by a wide margin, yet cheapest on multiples — Pronk attributes the discount to sentiment, not fundamentals</li>
+        
+        <li>Pronk sees dual catalyst potential: fundamental growth continues while sentiment normalization drives multiple expansion</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=tkzycFHW7Lc" target="_blank" rel="noopener noreferrer">5 Undervalued Stocks to Buy Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-MRVL">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">MRVL</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Marvell Technology</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 20%">
+          <span class="conv-bar-fill" style="width:20%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Mentioned only in the context of Adobe&#39;s CFO departure — the CFO is leaving to become Marvell&#39;s new CEO.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Adobe&#39;s outgoing CFO is joining Marvell as its new CEO</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=wqjaifI5LkU" target="_blank" rel="noopener noreferrer">Massive News for Adobe Stock Investors! | ADBE Stock Deep Dive Part 3</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-MU">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">MU</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Micron Technology</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 85%">
+          <span class="conv-bar-fill" style="width:85%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $915 intrinsic value (DCF); current price $1,054 above margin of safety</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Micron is benefiting from record AI-driven demand and tight industry supply that have pushed revenue, margins, and free cash flow to all-time highs; Parkev maintains a buy rating but advises waiting until after the June 24 earnings report before initiating or adding to positions.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Revenue nearly tripled year-over-year to $23.9 billion, driven by AI data center demand and constrained memory supply</li>
+        
+        <li>Gross margins reached 74.4% and operating margins 67.6% — exceptional for a vertically integrated manufacturer</li>
+        
+        <li>Management guided Q3 revenue of $33.5 billion (~50% sequential growth) and gross margins climbing to 81%</li>
+        
+        <li>Generated $7 billion in free cash flow after $5 billion in CapEx; cash from operations nearly tripled in the first six months</li>
+        
+        <li>Management chose to pay down $4.6 billion in debt rather than buy back stock at highs — interpreted as a signal that insiders consider the valuation stretched</li>
+        
+        <li>Trades at 11x forward P/E and 12x forward operating cash flow, but both denominators are at cyclical peak levels that are likely unsustainable</li>
+        
+        <li>Updated DCF puts intrinsic value at $915/share; market price of $1,054 exceeds Parkev&#39;s margin of safety threshold</li>
+        
+        <li>Despite maintaining a buy rating, Parkev explicitly recommends waiting until after the June 24 earnings report and observing the post-result price action before buying</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=1nQvwfY0yTA" target="_blank" rel="noopener noreferrer">Should You Buy Micron Stock Before the Huge Investor Update? | MU Stock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-NU">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">NU</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Nu Holdings</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 80%">
+          <span class="conv-bar-fill" style="width:80%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $23.70</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Deep valuation discount (forward P/E ~13.9, DCF fair value ~$23.70 vs $12.66 price) makes the dip a buying opportunity despite legitimate credit quality concerns and bank downgrades.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Stock down ~24% year-to-date in 2026, underperforming broader market</li>
+        
+        <li>Downgrades from Bank of America (underperform), Citigroup, and Susquehanna citing leadership and credit risks</li>
+        
+        <li>Rising 30/60/90-day loan delinquency rates; high loss-given-default in LatAm markets due to limited collateral</li>
+        
+        <li>Management can tighten lending or sell debt to third parties to manage cash flow if needed</li>
+        
+        <li>Operating cash flow to sales ~41% maintained for four consecutive years</li>
+        
+        <li>Forward P/E near 13.9x, close to the lowest level since at least January 2025</li>
+        
+        <li>Current price ~$12.66, near 52-week low of $11.20; analyst&#39;s DCF fair value ~$23.70</li>
+        
+        <li>Buy rating formally reiterated on June 16, 2026</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=8E0z0HcLqLk" target="_blank" rel="noopener noreferrer">Nu Holdings Stock Analysis: Buy or Sell? | NU Stock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-RKLB">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">RKLB</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Rocket Lab USA</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">2 mentions</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 90%">
+          <span class="conv-bar-fill" style="width:90%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Compelling pure-play space company with a strong cash runway and improving unit economics, but the current forward P/S of ~62 is too elevated relative to the risk profile; Parkev wants a lower entry point before upgrading to buy.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Burned approximately $75 million in free cash flow last quarter, with management expecting elevated spending to continue through Neutron&#39;s first launch</li>
+        
+        <li>Holds $1.5 billion in cash and has access to over $2 billion in total liquidity, providing ample runway even at peak burn rates</li>
+        
+        <li>Has issued equity opportunistically at progressively higher prices as it hits milestones, reducing long-term cost of capital</li>
+        
+        <li>Q2 2026 revenue guidance of $225–240 million implies roughly 16% sequential growth, with gross margins expected near 34%</li>
+        
+        <li>Trades at a forward P/S of ~62, roughly two-thirds of SpaceX&#39;s estimated valuation multiple, with the pure-play space focus seen as a structural advantage</li>
+        
+        <li>SpaceX IPO (the following day) may act as a valuation catalyst — outcome could push RKLB higher or provide a better entry opportunity</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=2krY_eCPkFI" target="_blank" rel="noopener noreferrer">RocketLab Stock: My Final Verdict (Buy or Sell) | RKLB Stock Deep Dive Part 6</a>
+      </div>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 75%">
+          <span class="conv-bar-fill" style="width:75%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Rocket Lab&#39;s financials show accelerating revenue in both segments with $2.2B in backlog providing ~11 quarters of revenue visibility, and the broader space economy thesis supports a potential multi-bagger outcome over a long horizon.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Space Systems revenue of $137M in most recent quarter — up 57% YoY and 32% QoQ</li>
+        
+        <li>Launch Services revenue of $63.7M — up 79% YoY though down 16% QoQ on fewer launches</li>
+        
+        <li>Total backlog of $2.2B with ~36% expected to convert to revenue in next 12 months (~$800M)</li>
+        
+        <li>Backlog is diversifying toward launch contracts, which now exceed space systems in new contract value</li>
+        
+        <li>Production headcount grew 250 to ~1,450 as R&amp;D personnel shift into manufacturing — signals scaling</li>
+        
+        <li>Management frames 5x, 10x, or even 100x as plausible long-term outcomes given space economy potential</li>
+        
+        <li>Financial viability confirmed — company is generating meaningful and growing revenue from both segments</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=Osn13jmFwvk" target="_blank" rel="noopener noreferrer">Is RocketLab Stock Financially Viable? | RKLB Stock Deep Dive Part 5</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-SOL">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">SOL</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Solana</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 80%">
+          <span class="conv-bar-fill" style="width:80%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $97–100</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Solana is showing superior relative strength versus Bitcoin and peers, holding a long-term ascending trend line from 2024 with repeated bounce confirmations; targets $83 near-term and $97–100 on a broader crypto rally.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Long-term ascending trend line from 2024 has been support on every test — currently tagging it again</li>
+        
+        <li>Notably stronger price action in recent sessions compared to Bitcoin and other altcoins</li>
+        
+        <li>Near-term resistance at $83; full target retest of the $97–100 zone</li>
+        
+        <li>Gareth maintains a live long position in Solana</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=IAwAeA4cnWo" target="_blank" rel="noopener noreferrer">Crypto Technical Analysis  Bitcoin  Ethereum  Solana And Alts</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-SUI">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">SUI</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Sui</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 55%">
+          <span class="conv-bar-fill" style="width:55%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Sui offers a defined-risk setup at current prices (~$0.71) with a clear stop at its long-term trend line (~$0.66) and potential for 10–40% upside on a crypto relief rally.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Long-term trend line dating to 2023 provides well-defined support and stop level at ~$0.66</li>
+        
+        <li>Risk/reward attractive: 7% downside risk for potential 10-40% upside</li>
+        
+        <li>Chart is not strong in isolation, but defined risk parameters make it a tradeable setup</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=IAwAeA4cnWo" target="_blank" rel="noopener noreferrer">Crypto Technical Analysis  Bitcoin  Ethereum  Solana And Alts</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-spacex">
+    <div class="stock-block-header">
+      <h3>
+        
+        
+          SpaceX
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">New Money</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 70%">
+          <span class="conv-bar-fill" style="width:70%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $440B market cap (creator&#39;s bear case fair value)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Creator believes SpaceX IPO&#39;d at a &#39;massively overvalued&#39; price of $1.75 trillion, with his own fair-value estimate around $440 billion — implying roughly 75% downside from IPO valuation if sentiment normalizes.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>SpaceX IPO&#39;d on June 12, 2026 at a ~$1.75 trillion valuation</li>
+        
+        <li>Musk holds ~42-43% economic stake (4.8B shares + 350M options) worth ~$850B at listing</li>
+        
+        <li>X/xAI/Grok merged into SpaceX prior to IPO; $250B xAI valuation now embedded in SpaceX price</li>
+        
+        <li>Creator&#39;s own valuation of SpaceX is approximately $440 billion — far below the $1.75T+ market price</li>
+        
+        <li>366-day lock-up period prevents Musk from selling until approximately June 13, 2027</li>
+        
+        <li>Additional 1 billion performance-based restricted shares vest in 15 tranches tied to market cap milestones up to $7.5T and a Mars colony of 1 million people</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=AstlgGD6j-Y" target="_blank" rel="noopener noreferrer">This Shouldn&#39;t Be Possible...</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-TSLA">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">TSLA</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Tesla Inc.</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">New Money</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 30%">
+          <span class="conv-bar-fill" style="width:30%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Tesla is discussed solely as a component of Musk&#39;s net worth (~$280B stake including 2018 options package), with no investment recommendation made for public investors.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Musk holds approximately 20% economic interest in Tesla including options</li>
+        
+        <li>2018 compensation package (304 million shares via options) was reinstated by Delaware Supreme Court in December 2025 and registered for exercise in April 2026</li>
+        
+        <li>Tesla stake worth ~$280 billion; represents roughly 25% of Musk&#39;s total net worth</li>
+        
+        <li>No buy or sell recommendation made for the stock</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=AstlgGD6j-Y" target="_blank" rel="noopener noreferrer">This Shouldn&#39;t Be Possible...</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-XRP">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">XRP</span>
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 50%">
+          <span class="conv-bar-fill" style="width:50%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">XRP has been hammered into a well-tested descending trend line six times — a spring-coil setup where an eventual breakout could be explosive, but price action has not yet confirmed the break; support sits at $1.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Descending trend line tested six times — tighter coiling implies more explosive breakout if it comes</li>
+        
+        <li>Recent price action weaker than Solana, which is why Gareth prefers SOL over XRP currently</li>
+        
+        <li>Key support at $1 on a descending trend line; a break below is a stop signal</li>
+        
+        <li>No active long position taken — watching for confirmed breakout</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=IAwAeA4cnWo" target="_blank" rel="noopener noreferrer">Crypto Technical Analysis  Bitcoin  Ethereum  Solana And Alts</a>
+      </div>
+    </div>
+    
+  </div>
+  
+</section>
+<hr>
+
+
+<!-- ── Macro topics ───────────────────────────────────────────────── -->
+
+<section id="macro">
+  <div class="section-title">Macro themes discussed today</div>
+  <div class="card">
+    <div class="macro-list">
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;AI infrastructure demand&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Semiconductor cycle&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Memory chip pricing&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Earnings preview&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Capital allocation&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Space industry&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;SpaceX IPO&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Semiconductor/AI infrastructure&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Growth company valuation&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Capital raise strategy&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Latin American fintech&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Emerging market credit&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;AI-driven investor reallocation&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Consumer lending defaults&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Billionaire wealth concentration&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;SpaceX IPO valuation&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Founder control structures&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Borrow-against-shares tax strategy&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;100-year market cycle&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Great Depression parallels&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Market concentration risk&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;AI bubble risk&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;US debt trajectory&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Logarithmic chart analysis&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Crypto technical analysis&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Elliott Wave patterns&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Altcoin relative strength&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Bitcoin cycle bottoming&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Space Economy Growth&#39;, &#39;description&#39;: &#39;The commercial space industry is in an early expansion phase with revenue opportunities that are genuinely difficult to forecast. Launch services, satellite platforms, and space systems components are all scaling simultaneously as demand from government and commercial customers accelerates.&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Defense and Government Space Spending&#39;, &#39;description&#39;: &#34;Rocket Lab&#39;s backlog is diversified across government and commercial programs. The European defense spending surge and US government satellite programs are structural drivers of launch and space systems demand that extend well beyond near-term earnings visibility.&#34;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Reusable Launch Vehicles&#39;, &#39;description&#39;: &#34;The economics of the launch business are being fundamentally reshaped by reusability. Rocket Lab&#39;s progress toward reusable Neutron launches is the key swing factor in determining long-term unit economics and the addressable market size for launch services.&#34;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;AI-driven content creation&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;SaaS freemium models&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Enterprise software monetization&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;AI productivity tooling&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Energy Drink Market Growth&#39;, &#39;description&#39;: &#39;Energy drinks are taking a rising share of total beverages consumed globally, and retailers are allocating more premium cold shelf space to the category. Higher average selling prices relative to standard beverages make the category attractive for retailers, and cold placement drives impulse purchases — a structural tailwind for leading brands.&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Tariff and Commodity Cost Pressure&#39;, &#39;description&#39;: &#39;The Iran conflict and Strait of Hormuz closure have elevated oil and commodity prices, feeding through to input costs for consumer brands. Celsius is experiencing near-term gross margin compression as a result, though management expects recovery above 50% gross margins once these pressures ease.&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Consumer Staples Acquisitions&#39;, &#39;description&#39;: &#39;Celsius completed acquisitions of Alani Nu and A-Shoc, which inflate reported revenue growth to 33% in fiscal 2026 before normalizing to single digits in 2027–2028. M&amp;A integration costs are depressing near-term margins but expanding total addressable market and distribution reach.&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Buyback Programs as Value Signal&#39;, &#39;description&#39;: &#34;Management is repurchasing shares at prices well below Parkev&#39;s calculated fair value of $58. When insiders buy at a significant discount to intrinsic value, it signals confidence in the business trajectory and provides a floor of support for the stock price.&#34;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;AI chip competition&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Latin America digital banking&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Software sector AI disruption&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Dividend growth investing&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Vertical market software&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;AI creativity tools&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Freemium business model&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Software sector leadership transitions&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+      <span class="macro-tag">{&#39;title&#39;: &#39;Consumer willingness to pay for AI&#39;, &#39;description&#39;: &#39;&#39;}</span>
+      
+    </div>
+  </div>
+</section>
+<hr>
+
+
+<!-- ── Sources ───────────────────────────────────────────────────── -->
+<section id="sources">
+  <div class="section-title">Sources — 11 videos</div>
+  <div class="card" style="padding:0.5rem 1.5rem;">
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=1nQvwfY0yTA" target="_blank" rel="noopener noreferrer">Should You Buy Micron Stock Before the Huge Investor Update? | MU Stock Analysis</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=2krY_eCPkFI" target="_blank" rel="noopener noreferrer">RocketLab Stock: My Final Verdict (Buy or Sell) | RKLB Stock Deep Dive Part 6</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=8E0z0HcLqLk" target="_blank" rel="noopener noreferrer">Nu Holdings Stock Analysis: Buy or Sell? | NU Stock Analysis</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">New Money</div>
+      <a href="https://www.youtube.com/watch?v=AstlgGD6j-Y" target="_blank" rel="noopener noreferrer">This Shouldn&#39;t Be Possible...</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Gareth Soloway — Pro Trader</div>
+      <a href="https://www.youtube.com/watch?v=BX9q_sdMd8c" target="_blank" rel="noopener noreferrer">This Chart Lines Up Eerily With 1929, Great Depression Coming?</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Gareth Soloway — Pro Trader</div>
+      <a href="https://www.youtube.com/watch?v=IAwAeA4cnWo" target="_blank" rel="noopener noreferrer">Crypto Technical Analysis  Bitcoin  Ethereum  Solana And Alts</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=Osn13jmFwvk" target="_blank" rel="noopener noreferrer">Is RocketLab Stock Financially Viable? | RKLB Stock Deep Dive Part 5</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=mRQ1RTgTUcw" target="_blank" rel="noopener noreferrer">Adobe Stock Investors are Skeptical About the Freemium Strategy | Adobe Stock Deep Dive Part 4</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=r6ezJ4EJP-s" target="_blank" rel="noopener noreferrer">Celsius Stock Analysis: My Final Verdict (Buy or Sell) | CELH Stock Deep Dive Part 5</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Daniel Pronk</div>
+      <a href="https://www.youtube.com/watch?v=tkzycFHW7Lc" target="_blank" rel="noopener noreferrer">5 Undervalued Stocks to Buy Now</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=wqjaifI5LkU" target="_blank" rel="noopener noreferrer">Massive News for Adobe Stock Investors! | ADBE Stock Deep Dive Part 3</a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- ── Disclaimer ────────────────────────────────────────────────── -->
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> This report is generated automatically by Claude (Anthropic) summarizing publicly available YouTube content.
+  All summaries are paraphrased — they are not verbatim quotes from creators.
+  Nothing here constitutes financial advice. Do your own research before making any investment decisions.
+  Stock Sentinel is a personal learning tool, not a financial advisory service.
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>
