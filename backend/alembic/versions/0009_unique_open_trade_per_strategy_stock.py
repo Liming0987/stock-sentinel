@@ -16,6 +16,21 @@ depends_on = None
 
 
 def upgrade():
+    # Remove duplicate open trades first — keep the oldest (lowest id) per
+    # (strategy_id, stock_id) pair, close the rest as 'cancelled'.
+    # This handles rows created by the concurrent-worker race condition.
+    op.execute("""
+        UPDATE trades
+        SET status = 'cancelled'
+        WHERE status = 'open'
+          AND id NOT IN (
+              SELECT MIN(id)
+              FROM trades
+              WHERE status = 'open'
+              GROUP BY strategy_id, stock_id
+          )
+    """)
+
     op.execute("""
         CREATE UNIQUE INDEX uq_trades_open_strategy_stock
         ON trades (strategy_id, stock_id)
