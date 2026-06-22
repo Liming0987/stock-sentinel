@@ -146,6 +146,8 @@ def detect_vcp(df: pd.DataFrame) -> dict:
             continue
         if valid and c["high"] > valid[-1]["high"]:
             continue  # each contraction must start from a lower high (lower-highs pattern)
+        if valid and c["low"] < valid[-1]["low"]:
+            continue  # each contraction low must be higher than the previous (higher-lows = tightening range)
         valid.append(c)
         last_end = c["_l_i"]
 

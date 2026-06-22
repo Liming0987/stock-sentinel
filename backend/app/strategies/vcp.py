@@ -58,7 +58,8 @@ class VCPStrategy(BaseStrategy):
             return Signal.hold()
 
         # ── No position — look for entry ──────────────────────────────────────
-        if not vcp["detected"] or vcp["pivot"] is None:
+        # Stage 2 uptrend is a hard requirement per Minervini — no stage 2, no trade.
+        if not vcp["detected"] or not vcp["stage2"] or vcp["pivot"] is None:
             return Signal.hold()
 
         last_price = float(df["Close"].iloc[-1])
