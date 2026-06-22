@@ -96,6 +96,12 @@ def detect_vcp(df: pd.DataFrame) -> dict:
     if len(sh_idx) < 2 or len(sl_idx) < 2:
         return {**EMPTY, "stage2": stage2, "note": "Too few swing points in base window."}
 
+    # Each contraction (high → low span) must fit within 50 bars (~10 weeks).
+    # The recovery rally between contractions must not exceed 30 bars (~6 weeks)
+    # — enforcing that C1, C2, C3 are genuinely consecutive.
+    MAX_CONTRACTION_BARS = 50
+    MAX_GAP_BARS = 30
+
     # ── Build (high → next low) contraction candidates ───────────────────────
     candidates = []
     for h_i in sh_idx:
@@ -104,6 +110,8 @@ def detect_vcp(df: pd.DataFrame) -> dict:
         if not following:
             continue
         l_i = following[0]
+        if l_i - h_i > MAX_CONTRACTION_BARS:
+            continue
         l_val = float(base_low.iloc[l_i])
         depth = (h_val - l_val) / h_val * 100
         if depth < 1.5:
@@ -123,11 +131,16 @@ def detect_vcp(df: pd.DataFrame) -> dict:
 
     candidates.sort(key=lambda x: x["_h_i"])
 
-    # ── Filter: non-overlapping, strictly decreasing depth ───────────────────
+    # ── Filter: non-overlapping, consecutive, strictly decreasing depth ───────
     valid = []
     last_end = -1
     for c in candidates:
         if c["_h_i"] <= last_end:
+            continue
+        # Gap from previous low to this high must be within MAX_GAP_BARS.
+        # A larger gap means the recovery took too long — the contractions
+        # are not truly consecutive and the chain resets here.
+        if valid and c["_h_i"] - valid[-1]["_l_i"] > MAX_GAP_BARS:
             continue
         if valid and c["depth_pct"] >= valid[-1]["depth_pct"]:
             continue
