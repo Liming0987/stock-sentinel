@@ -384,6 +384,9 @@ export default function StrategiesPage() {
   const { data: liveData } = useLivePositions();
   const { data: acc } = useAlpacaAccount();
   const taskErrors = useTaskErrors();
+  const [dismissedErrors, setDismissedErrors] = useState<Set<string>>(new Set());
+  const visibleErrors = taskErrors.filter((e) => !dismissedErrors.has(e.id));
+  const dismissError = (id: string) => setDismissedErrors((prev) => new Set(Array.from(prev).concat(id)));
 
   const [openMap, setOpenMap] = useState<Record<string, boolean>>({});
   const [syncing, setSyncing] = useState(false);
@@ -487,18 +490,25 @@ export default function StrategiesPage() {
       />
 
       {/* Task error banner */}
-      {taskErrors.length > 0 && (
+      {visibleErrors.length > 0 && (
         <div className="space-y-2">
-          {taskErrors.slice(0, 3).map((e) => (
+          {visibleErrors.slice(0, 3).map((e) => (
             <div key={e.id} className="flex items-start gap-2.5 rounded-lg border border-bearish/30 bg-bearish/5 px-4 py-3 text-sm">
               <AlertTriangle className="h-4 w-4 text-bearish shrink-0 mt-0.5" />
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <span className="font-semibold text-bearish">[{(e.meta.task_name as string) ?? "task"}]</span>
                 <span className="ml-2 text-muted-foreground">{e.message.replace(/^\[.*?\]\s*/, "")}</span>
                 <span className="ml-2 text-[10px] text-muted-foreground">
                   {new Date(e.timestamp).toLocaleString()}
                 </span>
               </div>
+              <button
+                onClick={() => dismissError(e.id)}
+                className="shrink-0 text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Dismiss"
+              >
+                ×
+              </button>
             </div>
           ))}
         </div>
