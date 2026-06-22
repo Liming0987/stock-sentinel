@@ -22,6 +22,7 @@ def _serialize(sig: StrategySignal, strategy_name: str) -> dict:
         "target": float(sig.target) if sig.target is not None else None,
         "reasoning": sig.reasoning if isinstance(sig.reasoning, list) else [],
         "executed": sig.executed,
+        "not_executed_reason": sig.not_executed_reason,
         "trade_id": sig.trade_id,
         "created_at": sig.created_at.isoformat() if sig.created_at else None,
     }

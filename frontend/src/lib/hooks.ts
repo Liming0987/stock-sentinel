@@ -407,6 +407,7 @@ export interface StrategySignalItem {
   target: number | null;
   reasoning: string[];
   executed: boolean;
+  not_executed_reason: string | null;
   trade_id: number | null;
   created_at: string | null;
 }

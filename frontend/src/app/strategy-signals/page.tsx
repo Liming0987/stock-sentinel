@@ -33,6 +33,13 @@ const ACTION_STYLES = {
   },
 };
 
+const NOT_EXECUTED_LABELS: Record<string, string> = {
+  max_positions_reached: "Max positions reached",
+  outranked: "Outranked by higher-confidence signal",
+  order_fill_failed: "Order did not fill",
+  no_open_position: "No open position to close",
+};
+
 function timeAgo(iso: string | null): string {
   if (!iso) return "—";
   const diff = Date.now() - new Date(iso).getTime();
@@ -112,9 +119,9 @@ function SignalCard({ sig }: { sig: StrategySignalItem }) {
               Executed
             </span>
           ) : (
-            <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
+            <span className="flex items-center gap-1 text-[10px] text-muted-foreground" title={NOT_EXECUTED_LABELS[sig.not_executed_reason ?? ""] ?? "Signal was generated but not acted on"}>
               <Clock className="h-3 w-3" />
-              Not executed
+              {NOT_EXECUTED_LABELS[sig.not_executed_reason ?? ""] ?? "Not executed"}
             </span>
           )}
           <span className="text-[10px] text-muted-foreground">{timeAgo(sig.created_at)}</span>

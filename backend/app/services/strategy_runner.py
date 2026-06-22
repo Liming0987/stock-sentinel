@@ -271,6 +271,7 @@ class StrategyRunner:
         signal,
         executed: bool,
         trade_id: int | None = None,
+        not_executed_reason: str | None = None,
     ) -> None:
         row = StrategySignal(
             strategy_id=strat_row.id,
@@ -284,6 +285,7 @@ class StrategyRunner:
             reasoning=signal.reasoning if isinstance(signal.reasoning, list) else [],
             executed=executed,
             trade_id=trade_id,
+            not_executed_reason=not_executed_reason if not executed else None,
         )
         session.add(row)
 
@@ -720,7 +722,8 @@ class StrategyRunner:
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, payload["stock"], sig))
                         elif sig.action == "sell":
-                            self._record_signal(session, strat_row, stock, sig, executed=False)
+                            self._record_signal(session, strat_row, stock, sig, executed=False,
+                                                not_executed_reason="no_open_position")
                         # hold signals are not recorded — not actionable, flood the log
 
                 # Open highest-confidence entries up to max_positions cap
@@ -737,8 +740,10 @@ class StrategyRunner:
                             opened += 1
                         except Exception as e:
                             logger.error(f"[{strat_row.name}] Failed to open position for {ticker}: {e}")
-                            self._record_signal(session, strat_row, stock, sig, executed=False)
+                            self._record_signal(session, strat_row, stock, sig, executed=False,
+                                                not_executed_reason="order_fill_failed")
                     else:
+                        reason = "max_positions_reached" if slots_available == 0 else "outranked"
                         # Dedup: skip if an identical unexecuted buy was already recorded
                         # within the last run interval to avoid flooding the signal log.
                         existing = session.query(StrategySignal).filter(
@@ -749,7 +754,8 @@ class StrategyRunner:
                             StrategySignal.created_at >= dedup_cutoff,
                         ).first()
                         if not existing:
-                            self._record_signal(session, strat_row, stock, sig, executed=False)
+                            self._record_signal(session, strat_row, stock, sig, executed=False,
+                                                not_executed_reason=reason)
 
                 # Update aggregate metrics
                 self._recompute_metrics(session, strat_row)
@@ -881,7 +887,8 @@ class StrategyRunner:
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, payload["stock"], sig))
                         elif sig.action == "sell":
-                            self._record_signal(session, strat_row, stock, sig, executed=False)
+                            self._record_signal(session, strat_row, stock, sig, executed=False,
+                                                not_executed_reason="no_open_position")
                         # hold signals are not recorded — not actionable, flood the log
 
                 buy_candidates.sort(key=lambda x: x[0], reverse=True)
@@ -897,8 +904,10 @@ class StrategyRunner:
                             opened += 1
                         except Exception as e:
                             logger.error(f"[{strat_row.name}] EOD failed to open {ticker}: {e}")
-                            self._record_signal(session, strat_row, stock, sig, executed=False)
+                            self._record_signal(session, strat_row, stock, sig, executed=False,
+                                                not_executed_reason="order_fill_failed")
                     else:
+                        reason = "max_positions_reached" if slots_available == 0 else "outranked"
                         existing = session.query(StrategySignal).filter(
                             StrategySignal.strategy_id == strat_row.id,
                             StrategySignal.ticker == ticker,
@@ -907,7 +916,8 @@ class StrategyRunner:
                             StrategySignal.created_at >= dedup_cutoff,
                         ).first()
                         if not existing:
-                            self._record_signal(session, strat_row, stock, sig, executed=False)
+                            self._record_signal(session, strat_row, stock, sig, executed=False,
+                                                not_executed_reason=reason)
 
                 self._recompute_metrics(session, strat_row)
                 session.commit()
@@ -1014,7 +1024,8 @@ class StrategyRunner:
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, stock, sig))
                         elif sig.action == "sell":
-                            self._record_signal(session, strat_row, stock, sig, executed=False)
+                            self._record_signal(session, strat_row, stock, sig, executed=False,
+                                                not_executed_reason="no_open_position")
                         # hold signals are skipped in the intraday path — they fire too frequently
 
                 buy_candidates.sort(key=lambda x: x[0], reverse=True)
@@ -1030,8 +1041,10 @@ class StrategyRunner:
                             opened += 1
                         except Exception as e:
                             logger.error(f"[{strat_row.name}] Failed to open position for {ticker}: {e}")
-                            self._record_signal(session, strat_row, stock, sig, executed=False)
+                            self._record_signal(session, strat_row, stock, sig, executed=False,
+                                                not_executed_reason="order_fill_failed")
                     else:
+                        reason = "max_positions_reached" if slots_available == 0 else "outranked"
                         # Dedup: skip if an identical unexecuted buy was already recorded within the last 5 min
                         existing = session.query(StrategySignal).filter(
                             StrategySignal.strategy_id == strat_row.id,
@@ -1042,7 +1055,8 @@ class StrategyRunner:
                         ).first()
                         if existing:
                             continue
-                        self._record_signal(session, strat_row, stock, sig, executed=False)
+                        self._record_signal(session, strat_row, stock, sig, executed=False,
+                                            not_executed_reason=reason)
 
                 # Skip unrealized P&L fetch in the intraday path — too expensive
                 # at 60s cadence (yfinance call per open trade per strategy).

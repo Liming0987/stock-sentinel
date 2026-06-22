@@ -17,6 +17,7 @@ class StrategySignal(Base):
     target = Column(Numeric(12, 4))
     reasoning = Column(JSONB)  # list[str] preserved as JSON
     executed = Column(Boolean, default=False, nullable=False)
+    not_executed_reason = Column(String(50), nullable=True)
     trade_id = Column(Integer, ForeignKey("trades.id"), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False, index=True)
 
