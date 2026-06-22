@@ -9,6 +9,7 @@ const PERIODS = [
   { label: "3M", value: "90d" },
   { label: "6M", value: "6mo" },
   { label: "1Y", value: "1y" },
+  { label: "3Y", value: "3y" },
 ] as const;
 
 // SVG coordinate system

@@ -79,7 +79,7 @@ async def get_watchlist(db: AsyncSession = Depends(get_db)):
 @router.get("/{ticker}/volume-analysis")
 async def get_volume_analysis(
     ticker: str,
-    period: str = Query(default="90d", pattern="^(30d|60d|90d|6mo|1y)$"),
+    period: str = Query(default="90d", pattern="^(30d|60d|90d|6mo|1y|2y|3y)$"),
 ):
     ticker = ticker.upper()
     edgar_quarters: list = []
