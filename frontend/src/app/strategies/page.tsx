@@ -6,7 +6,7 @@ import {
   Legend, ResponsiveContainer,
 } from "recharts";
 import {
-  Activity, ChevronDown, ChevronRight, RefreshCw, AlertTriangle,
+  Activity, ChevronDown, ChevronRight, RefreshCw, AlertTriangle, X,
 } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { Badge } from "@/components/ui/badge";
@@ -503,11 +503,12 @@ export default function StrategiesPage() {
                 </span>
               </div>
               <button
+                type="button"
                 onClick={() => dismissError(e.id)}
-                className="shrink-0 text-muted-foreground hover:text-foreground transition-colors"
+                className="shrink-0 rounded p-1 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                 aria-label="Dismiss"
               >
-                ×
+                <X className="h-3.5 w-3.5" />
               </button>
             </div>
           ))}
