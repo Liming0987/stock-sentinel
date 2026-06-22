@@ -384,9 +384,9 @@ export default function StrategiesPage() {
   const { data: liveData } = useLivePositions();
   const { data: acc } = useAlpacaAccount();
   const taskErrors = useTaskErrors();
-  const [dismissedErrors, setDismissedErrors] = useState<Set<string>>(new Set());
-  const visibleErrors = taskErrors.filter((e) => !dismissedErrors.has(e.id));
-  const dismissError = (id: string) => setDismissedErrors((prev) => new Set(Array.from(prev).concat(id)));
+  const [dismissedIds, setDismissedIds] = useState<Record<string, true>>({});
+  const visibleErrors = taskErrors.filter((e) => !dismissedIds[e.id]);
+  const dismissError = (id: string) => setDismissedIds((prev) => ({ ...prev, [id]: true }));
 
   const [openMap, setOpenMap] = useState<Record<string, boolean>>({});
   const [syncing, setSyncing] = useState(false);
