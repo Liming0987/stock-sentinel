@@ -127,9 +127,7 @@ function SignalCard({ sig }: { sig: StrategySignalItem }) {
       </p>
 
       {/* Price grid */}
-      {sig.action !== "hold" && (
-        <PriceGrid entry={sig.entry_price} stop={sig.stop_loss} target={sig.target} />
-      )}
+      <PriceGrid entry={sig.entry_price} stop={sig.stop_loss} target={sig.target} />
 
       {/* Reasoning */}
       {sig.reasoning.length > 0 && (
@@ -154,7 +152,7 @@ function SignalCard({ sig }: { sig: StrategySignalItem }) {
       </p>
 
       {/* Educational action hint */}
-      {sig.entry_price != null && sig.action !== "hold" && (
+      {sig.entry_price != null && (
         <div className="rounded bg-muted/50 p-2 text-[10px] text-muted-foreground leading-relaxed">
           {sig.action === "buy"
             ? `Enter near $${sig.entry_price.toFixed(2)}. Set stop loss at $${sig.stop_loss != null ? sig.stop_loss.toFixed(2) : "—"} and take profit at $${sig.target != null ? sig.target.toFixed(2) : "—"}.`

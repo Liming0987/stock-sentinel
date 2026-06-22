@@ -400,7 +400,7 @@ export interface StrategySignalItem {
   id: number;
   strategy_name: string;
   ticker: string;
-  action: "buy" | "sell" | "hold";
+  action: "buy" | "sell";
   confidence: number | null;
   entry_price: number | null;
   stop_loss: number | null;

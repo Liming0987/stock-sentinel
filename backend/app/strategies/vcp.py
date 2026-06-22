@@ -67,9 +67,8 @@ class VCPStrategy(BaseStrategy):
         contractions = vcp["contractions"]
 
         breaking_out = last_price > pivot and vol_ratio >= _MIN_VOL_RATIO
-        near_pivot = pivot * 0.99 <= last_price <= pivot * 1.02
 
-        if not (breaking_out or near_pivot):
+        if not breaking_out:
             return Signal.hold()
 
         n_c = len(contractions)
@@ -80,12 +79,10 @@ class VCPStrategy(BaseStrategy):
         conf += 0.05 * n_c                           # +0.05 per contraction (max +0.20)
         if vol_dry_n >= n_c - 1:
             conf += 0.15                             # most lows had quiet volume
-        if breaking_out and vol_ratio >= 1.5:
+        if vol_ratio >= 1.5:
             conf += 0.10
         if vcp["stage2"]:
             conf += 0.10
-        if near_pivot and not breaking_out:
-            conf -= 0.10                             # pre-breakout discount
         conf = max(0.30, min(0.92, conf))
 
         entry_price = last_price
@@ -101,10 +98,7 @@ class VCPStrategy(BaseStrategy):
             f"Pivot ${pivot:.2f}",
             f"Volume dry in {vol_dry_n}/{n_c} pullbacks",
         ]
-        if breaking_out:
-            reasoning.append(f"Breaking out — volume {vol_ratio:.1f}×")
-        else:
-            reasoning.append("Near pivot, awaiting breakout")
+        reasoning.append(f"Breaking out — volume {vol_ratio:.1f}×")
         if vcp["stage2"]:
             reasoning.append("Stage 2 uptrend confirmed")
 

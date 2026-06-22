@@ -45,8 +45,12 @@ async def get_strategy_signals(
         .order_by(desc(StrategySignal.created_at))
         .limit(limit)
     )
-    if action != "all":
+    if action == "hold":
+        query = query.where(StrategySignal.action == "hold")
+    elif action != "all":
         query = query.where(StrategySignal.action == action)
+    else:
+        query = query.where(StrategySignal.action != "hold")
 
     result = await db.execute(query)
     signals = result.scalars().all()
@@ -67,7 +71,7 @@ async def get_latest_signals(
     strats_result = await db.execute(select(StrategyRow))
     strats_by_id = {s.id: s.name for s in strats_result.scalars().all()}
 
-    filters = []
+    filters = [StrategySignal.action != "hold"]
     if since:
         try:
             since_dt = datetime.fromisoformat(since.replace("Z", "+00:00"))
@@ -102,8 +106,12 @@ async def list_strategy_signals(
     strats_by_id = {s.id: s.name for s in strats_result.scalars().all()}
 
     filters = []
-    if action != "all":
+    if action == "hold":
+        filters.append(StrategySignal.action == "hold")
+    elif action != "all":
         filters.append(StrategySignal.action == action)
+    else:
+        filters.append(StrategySignal.action != "hold")
 
     if strategy:
         strat_row = await db.execute(select(StrategyRow).where(StrategyRow.name == strategy))
