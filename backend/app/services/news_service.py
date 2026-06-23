@@ -61,18 +61,40 @@ class NewsService:
             raw = yf.Ticker(ticker).news or []
             items = []
             for n in raw:
-                ts = n.get("providerPublishTime")
-                published_at = (
-                    datetime.fromtimestamp(ts, tz=timezone.utc).isoformat() if ts else None
-                )
+                # yfinance >= 0.2.x nests everything under 'content'; fall back to
+                # the flat old schema so both versions work
+                c = n.get("content") or n
+                title = c.get("title", "")
+                summary = c.get("summary", "")
+                # new schema: ISO pubDate string; old schema: providerPublishTime unix int
+                pub_date: Optional[str] = c.get("pubDate")
+                if not pub_date:
+                    ts = c.get("providerPublishTime") or n.get("providerPublishTime")
+                    if ts:
+                        pub_date = datetime.fromtimestamp(int(ts), tz=timezone.utc).isoformat()
+                # URL: new schema has clickThroughUrl/canonicalUrl dicts; old has 'link'
+                url_obj = c.get("clickThroughUrl") or c.get("canonicalUrl") or {}
+                url = url_obj.get("url") if isinstance(url_obj, dict) else ""
+                url = url or c.get("link") or n.get("link", "")
+                # Source
+                provider = c.get("provider") or {}
+                source = (provider.get("displayName") if isinstance(provider, dict) else None) \
+                    or c.get("publisher") or n.get("publisher", "Yahoo Finance")
+                # Thumbnail: new schema has resolutions list; pick smallest available
+                thumb = c.get("thumbnail") or {}
+                resolutions = (thumb.get("resolutions") or []) if isinstance(thumb, dict) else []
+                image_url = resolutions[0]["url"] if resolutions else None
+
+                if not title:
+                    continue
                 items.append({
-                    "title": n.get("title", ""),
-                    "summary": "",
-                    "url": n.get("link", ""),
-                    "source": n.get("publisher", "Yahoo Finance"),
-                    "published_at": published_at,
+                    "title": title,
+                    "summary": summary,
+                    "url": url,
+                    "source": source,
+                    "published_at": pub_date,
                     "tickers": n.get("relatedTickers", []),
-                    "image_url": None,
+                    "image_url": image_url,
                 })
             return items
         except Exception as e:
