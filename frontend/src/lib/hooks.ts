@@ -693,3 +693,21 @@ export function useTaskErrors() {
   const { notifications } = useNotifications();
   return notifications.filter((n) => n.type === "task_error");
 }
+
+export interface StockNewsItem {
+  title: string;
+  summary: string;
+  url: string;
+  source: string;
+  published_at: string | null;
+  tickers: string[];
+  image_url: string | null;
+}
+
+export function useStockNews(ticker: string) {
+  const fetcher = useCallback(
+    () => api.watchlist.news(ticker) as Promise<{ ticker: string; news: StockNewsItem[] }>,
+    [ticker]
+  );
+  return useApi(fetcher, { ticker, news: [] });
+}

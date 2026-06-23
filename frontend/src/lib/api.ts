@@ -38,6 +38,8 @@ export const api = {
       fetch(`${API_BASE}/api/watchlist/${ticker}`, { method: "DELETE" }),
     volumeAnalysis: (ticker: string, period = "90d") =>
       fetchApi(`/api/watchlist/${ticker}/volume-analysis?period=${period}`),
+    news: (ticker: string, limit = 20) =>
+      fetchApi(`/api/watchlist/${ticker}/news?limit=${limit}`),
   },
   notifications: {
     list: (limit = 30) => fetchApi(`/api/notifications?limit=${limit}`),

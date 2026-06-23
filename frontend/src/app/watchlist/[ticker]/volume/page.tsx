@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useVolumeAnalysis, useFundamentals } from "@/lib/hooks";
+import { useVolumeAnalysis, useFundamentals, useStockNews } from "@/lib/hooks";
 import { VolumeHeader } from "@/components/volume/volume-header";
 import { PriceVolumeChart } from "@/components/volume/price-volume-chart";
 import { OBVChart } from "@/components/volume/obv-chart";
@@ -15,6 +15,7 @@ import { WatchlistSwitcher } from "@/components/volume/watchlist-switcher";
 import { TradeTargetsCard } from "@/components/volume/trade-targets-card";
 import { FundamentalsCard } from "@/components/volume/fundamentals-card";
 import { VCPCard } from "@/components/volume/vcp-card";
+import { NewsCard } from "@/components/volume/news-card";
 
 function SectionSkeleton({ title }: { title: string }) {
   return (
@@ -35,6 +36,7 @@ export default function VolumeAnalysisPage() {
   const [period, setPeriod] = useState("90d");
   const { data, loading } = useVolumeAnalysis(ticker, period);
   const { data: fundamentals, loading: fundLoading } = useFundamentals(ticker);
+  const { data: newsData, loading: newsLoading } = useStockNews(ticker);
 
   return (
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-6">
@@ -82,6 +84,7 @@ export default function VolumeAnalysisPage() {
             longtermEntry={data.longterm_entry}
           />
           <FundamentalsCard data={fundamentals} loading={fundLoading} />
+          <NewsCard news={newsData.news} loading={newsLoading} ticker={ticker} />
           <Card>
             <CardHeader>
               <CardTitle className="text-base">Volume History</CardTitle>
