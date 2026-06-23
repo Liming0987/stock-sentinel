@@ -27,17 +27,18 @@ class NewsService:
 
     def _fetch_alpaca(self, ticker: str, limit: int) -> List[Dict]:
         try:
-            from app.services.secrets import SecretNotConfiguredError, get_alpaca_credentials
+            from app.services.secrets import get_alpaca_credentials
             creds = get_alpaca_credentials()
             from alpaca.data.historical.news import NewsClient
             from alpaca.data.requests import NewsRequest
 
             client = NewsClient(api_key=creds["api_key"], secret_key=creds["api_secret"])
-            resp = client.get_news(NewsRequest(symbols=[ticker], limit=limit))
-            news = getattr(resp, "news", resp) if not isinstance(resp, list) else resp
+            # symbols must be a string, not a list; articles live at resp.data["news"]
+            resp = client.get_news(NewsRequest(symbols=ticker, limit=limit))
+            articles = (resp.data or {}).get("news") or []
 
             items = []
-            for a in news:
+            for a in articles:
                 images = getattr(a, "images", None) or []
                 image_url = images[0].url if images else None
                 published = getattr(a, "created_at", None)
