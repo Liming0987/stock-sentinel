@@ -118,11 +118,14 @@ def detect_vcp(df: pd.DataFrame) -> dict:
             continue
         avg_at_l = float(avg_vol.iloc[l_i]) if not np.isnan(avg_vol.iloc[l_i]) else 1
         vol_dry = float(base_vol.iloc[l_i]) < avg_at_l * 0.85
+        # Average volume over the entire contraction period (more robust than single-bar)
+        vol_avg = float(base_vol.iloc[h_i : l_i + 1].mean()) if l_i > h_i else float(base_vol.iloc[h_i])
         candidates.append({
             "high": round(h_val, 2),
             "low": round(l_val, 2),
             "_h_i": h_i,
             "_l_i": l_i,
+            "_vol_avg": vol_avg,
             "high_date": _get_date(base_df, h_i),
             "low_date": _get_date(base_df, l_i),
             "depth_pct": round(depth, 1),
@@ -148,6 +151,8 @@ def detect_vcp(df: pd.DataFrame) -> dict:
             continue  # each contraction must start from a lower high (lower-highs pattern)
         if valid and c["low"] < valid[-1]["low"]:
             continue  # each contraction low must be higher than the previous (higher-lows = tightening range)
+        if valid and c["_vol_avg"] >= valid[-1]["_vol_avg"]:
+            continue  # average volume must shrink with each contraction (supply drying up)
         valid.append(c)
         last_end = c["_l_i"]
 
@@ -159,6 +164,29 @@ def detect_vcp(df: pd.DataFrame) -> dict:
         }
 
     valid = valid[-4:]  # keep most recent 4
+
+    # ── Prior advance check ───────────────────────────────────────────────────
+    # The base must digest a real prior advance (≥20% gain in the 100 bars
+    # before C1's high). Without this, a flat stock with small wiggles looks
+    # like a VCP but has no institutional demand behind it.
+    c1_abs_idx = (n - base_len) + valid[0]["_h_i"]
+    prior_lookback = 100
+    prior_start = max(0, c1_abs_idx - prior_lookback)
+    prior_df = df.iloc[prior_start : c1_abs_idx + 1]
+    prior_advance = False
+    prior_advance_pct = 0.0
+    if len(prior_df) >= 10:
+        prior_low = float(prior_df["Low"].min())
+        c1_high = float(valid[0]["high"])
+        if prior_low > 0:
+            prior_advance_pct = (c1_high - prior_low) / prior_low * 100
+            prior_advance = prior_advance_pct >= 20.0
+
+    # Incorporate prior advance into stage2 — all three must be true for a
+    # tradeable setup: trend alignment, 200 EMA rising, near 52w high, AND
+    # a meaningful prior advance into the base.
+    stage2 = stage2 and (prior_advance or len(prior_df) < 10)
+
     contractions = [{k: v for k, v in c.items() if not k.startswith("_")} for c in valid]
 
     pivot = valid[-1]["high"]
@@ -177,7 +205,10 @@ def detect_vcp(df: pd.DataFrame) -> dict:
         f"Pivot ${pivot:.2f}."
     )
     if not stage2:
-        note = "Stage 2 conditions not fully met. " + note
+        if prior_advance_pct > 0 and prior_advance_pct < 20.0:
+            note = f"Prior advance only {prior_advance_pct:.0f}% (need ≥20%). " + note
+        else:
+            note = "Stage 2 conditions not fully met. " + note
 
     return {
         "detected": True,
