@@ -124,20 +124,20 @@ class VolumeService:
             st_det = False; st_date = None
             st_detail = "No prior selling climax to anchor secondary test"
 
-        # 4. Sign of Strength — must come AFTER AR (Phase A) or at least after SC;
-        #    a breakout that precedes the accumulation base is not a SOS
-        _sos_after = pd.Series(True, index=df.index)
+        # 4. Sign of Strength — requires a prior SC; a strong up day with no
+        #    accumulation base is not a Wyckoff SOS, just a momentum move
+        _sos_after = pd.Series(False, index=df.index)
         if ar_abs_idx is not None:
-            _sos_after.iloc[:ar_abs_idx + 1] = False
+            _sos_after.iloc[ar_abs_idx + 1:] = True
         elif sc_idx_val is not None:
-            _sos_after.iloc[:sc_idx_val + 1] = False
+            _sos_after.iloc[sc_idx_val + 1:] = True
         sos_mask = (price_change_pct >= 3) & (vol_ratio >= 2.0) & (df["Close"] >= resistance * 0.97) & _sos_after
         sos_det = bool(sos_mask.any())
         sos_date = _last_date(sos_mask, df)
         sos_detail = (
             "Strong up day 3%+ on 2x+ volume reaching resistance (breakout from range)"
             if sos_det
-            else "No sign of strength detected"
+            else ("No sign of strength detected" if sc_det else "No prior selling climax to anchor SOS")
         )
 
         # 5. Last Point of Support — after SOS, price pulls back above midpoint on low volume
@@ -208,39 +208,39 @@ class VolumeService:
             ar2_det = False; ar2_date = None
             ar2_detail = "No prior buying climax to follow"
 
-        # 3. Upthrust — must come AFTER AR2 (Phase A-B); an intraday pierce of resistance
-        #    that predates the distribution top is not a meaningful upthrust
-        _ut_after = pd.Series(True, index=df.index)
+        # 3. Upthrust — requires a prior BC; a resistance pierce with no
+        #    distribution top established is not a Wyckoff upthrust
+        _ut_after = pd.Series(False, index=df.index)
         if ar2_abs_idx is not None:
-            _ut_after.iloc[:ar2_abs_idx + 1] = False
+            _ut_after.iloc[ar2_abs_idx + 1:] = True
         elif bc_idx_val is not None:
-            _ut_after.iloc[:bc_idx_val + 1] = False
+            _ut_after.iloc[bc_idx_val + 1:] = True
         ut_mask = (df["High"] > resistance * 1.01) & (df["Close"] < resistance * 0.995) & (vol_ratio >= 1.5) & _ut_after
         ut_det = bool(ut_mask.any())
         ut_date = _last_date(ut_mask, df)
         ut_detail = (
             "Intraday pierce ≥1% above resistance on elevated volume with close back inside range"
             if ut_det
-            else "No upthrust detected"
+            else ("No upthrust detected" if bc_det else "No prior buying climax to anchor upthrust")
         )
 
-        # 4. Sign of Weakness — must come AFTER UT (Phase B-C) where possible;
-        #    falls back to after AR2 or BC so the sequence stays coherent
+        # 4. Sign of Weakness — requires a prior BC; a strong down day with no
+        #    distribution top is not a Wyckoff SOW
         _ut_abs_idx: Optional[int] = int(np.where(ut_mask.values)[0][-1]) if ut_det else None
-        _sow_after = pd.Series(True, index=df.index)
+        _sow_after = pd.Series(False, index=df.index)
         if _ut_abs_idx is not None:
-            _sow_after.iloc[:_ut_abs_idx + 1] = False
+            _sow_after.iloc[_ut_abs_idx + 1:] = True
         elif ar2_abs_idx is not None:
-            _sow_after.iloc[:ar2_abs_idx + 1] = False
+            _sow_after.iloc[ar2_abs_idx + 1:] = True
         elif bc_idx_val is not None:
-            _sow_after.iloc[:bc_idx_val + 1] = False
+            _sow_after.iloc[bc_idx_val + 1:] = True
         sow_mask = (price_change_pct <= -3) & (vol_ratio >= 1.5) & (df["Close"] < bar_midpoint) & _sow_after
         sow_det = bool(sow_mask.any())
         sow_date = _last_date(sow_mask, df)
         sow_detail = (
             "Sharp decline 3%+ on 1.5x+ volume closing in lower half of bar"
             if sow_det
-            else "No sign of weakness detected"
+            else ("No sign of weakness detected" if bc_det else "No prior buying climax to anchor SOW")
         )
 
         # 5. Last Point of Supply — after SOW, weak low-volume bounce that stays below resistance
