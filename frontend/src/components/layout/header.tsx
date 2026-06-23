@@ -37,8 +37,19 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const { notifications, unreadCount, markAllRead } = useNotifications();
+  const { notifications, markAllRead } = useNotifications();
   const marketOpen = isMarketOpen();
+
+  const today = new Date().toDateString();
+  const seenErrors = new Set<string>();
+  const displayNotifications = notifications.filter((n) => {
+    if (n.type !== "task_error") return true;
+    if (new Date(n.timestamp).toDateString() !== today) return false;
+    if (seenErrors.has(n.message)) return false;
+    seenErrors.add(n.message);
+    return true;
+  });
+  const unreadCount = displayNotifications.filter((n) => n.timestamp > (typeof window !== "undefined" ? localStorage.getItem("notif_last_seen") ?? new Date(0).toISOString() : new Date(0).toISOString())).length;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -122,10 +133,10 @@ export function Header() {
               </button>
             </div>
             <div className="max-h-96 overflow-y-auto divide-y">
-              {notifications.length === 0 ? (
+              {displayNotifications.length === 0 ? (
                 <p className="px-4 py-6 text-center text-sm text-muted-foreground">No recent activity</p>
               ) : (
-                notifications.map((n) => (
+                displayNotifications.map((n) => (
                   <div
                     key={n.id}
                     className={`flex gap-2.5 px-4 py-3 transition-colors ${
