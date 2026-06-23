@@ -71,8 +71,10 @@ class VolumeService:
 
         # 2. Automatic Rally — cumulative 5%+ recovery from SC low within 15 bars
         ar_abs_idx: Optional[int] = None
+        sc_idx_val: Optional[int] = None  # exposed outside if-block for SOS anchor
         if sc_det:
             sc_idx = int(np.where(sc_mask.values)[0][-1])
+            sc_idx_val = sc_idx
             sc_low = float(df["Low"].iat[sc_idx])
             sc_vol = float(vol_ratio.iat[sc_idx])
             ar_window_end = min(sc_idx + 16, len(df))
@@ -122,8 +124,14 @@ class VolumeService:
             st_det = False; st_date = None
             st_detail = "No prior selling climax to anchor secondary test"
 
-        # 4. Sign of Strength — strong up day that carries price to or above resistance
-        sos_mask = (price_change_pct >= 3) & (vol_ratio >= 2.0) & (df["Close"] >= resistance * 0.97)
+        # 4. Sign of Strength — must come AFTER AR (Phase A) or at least after SC;
+        #    a breakout that precedes the accumulation base is not a SOS
+        _sos_after = pd.Series(True, index=df.index)
+        if ar_abs_idx is not None:
+            _sos_after.iloc[:ar_abs_idx + 1] = False
+        elif sc_idx_val is not None:
+            _sos_after.iloc[:sc_idx_val + 1] = False
+        sos_mask = (price_change_pct >= 3) & (vol_ratio >= 2.0) & (df["Close"] >= resistance * 0.97) & _sos_after
         sos_det = bool(sos_mask.any())
         sos_date = _last_date(sos_mask, df)
         sos_detail = (
@@ -170,8 +178,11 @@ class VolumeService:
         )
 
         # 2. Automatic Reaction — cumulative 5%+ drop from BC high within 15 bars
+        bc_idx_val: Optional[int] = None   # exposed outside if-block for UT/SOW anchor
+        ar2_abs_idx: Optional[int] = None  # exposed outside if-block for UT/SOW anchor
         if bc_det:
             bc_idx = int(np.where(bc_mask.values)[0][-1])
+            bc_idx_val = bc_idx
             bc_high = float(df["High"].iat[bc_idx])
             bc_vol = float(vol_ratio.iat[bc_idx])
             ar2_window_end = min(bc_idx + 16, len(df))
@@ -182,7 +193,7 @@ class VolumeService:
                 ar2_det = bool(ar2_found.any())
                 if ar2_det:
                     ar2_idx_local = int(np.where(ar2_found.values)[0][0])
-                    ar2_abs_idx = bc_idx + 1 + ar2_idx_local
+                    ar2_abs_idx = bc_idx + 1 + ar2_idx_local  # noqa: F841 (used by UT/SOW)
                     ar2_ts = df.index[ar2_abs_idx]
                     ar2_date = str(ar2_ts.date()) if hasattr(ar2_ts, "date") else str(ar2_ts)[:10]
                     ar2_detail = "Price dropped 5%+ from BC high within 15 bars"
@@ -197,9 +208,14 @@ class VolumeService:
             ar2_det = False; ar2_date = None
             ar2_detail = "No prior buying climax to follow"
 
-        # 3. Upthrust — price pierces resistance by ≥1% intraday but closes back below
-        #    with elevated volume (supply overpowers demand at highs)
-        ut_mask = (df["High"] > resistance * 1.01) & (df["Close"] < resistance * 0.995) & (vol_ratio >= 1.5)
+        # 3. Upthrust — must come AFTER AR2 (Phase A-B); an intraday pierce of resistance
+        #    that predates the distribution top is not a meaningful upthrust
+        _ut_after = pd.Series(True, index=df.index)
+        if ar2_abs_idx is not None:
+            _ut_after.iloc[:ar2_abs_idx + 1] = False
+        elif bc_idx_val is not None:
+            _ut_after.iloc[:bc_idx_val + 1] = False
+        ut_mask = (df["High"] > resistance * 1.01) & (df["Close"] < resistance * 0.995) & (vol_ratio >= 1.5) & _ut_after
         ut_det = bool(ut_mask.any())
         ut_date = _last_date(ut_mask, df)
         ut_detail = (
@@ -208,8 +224,17 @@ class VolumeService:
             else "No upthrust detected"
         )
 
-        # 4. Sign of Weakness — strong down day breaking toward support
-        sow_mask = (price_change_pct <= -3) & (vol_ratio >= 1.5) & (df["Close"] < bar_midpoint)
+        # 4. Sign of Weakness — must come AFTER UT (Phase B-C) where possible;
+        #    falls back to after AR2 or BC so the sequence stays coherent
+        _ut_abs_idx: Optional[int] = int(np.where(ut_mask.values)[0][-1]) if ut_det else None
+        _sow_after = pd.Series(True, index=df.index)
+        if _ut_abs_idx is not None:
+            _sow_after.iloc[:_ut_abs_idx + 1] = False
+        elif ar2_abs_idx is not None:
+            _sow_after.iloc[:ar2_abs_idx + 1] = False
+        elif bc_idx_val is not None:
+            _sow_after.iloc[:bc_idx_val + 1] = False
+        sow_mask = (price_change_pct <= -3) & (vol_ratio >= 1.5) & (df["Close"] < bar_midpoint) & _sow_after
         sow_det = bool(sow_mask.any())
         sow_date = _last_date(sow_mask, df)
         sow_detail = (
