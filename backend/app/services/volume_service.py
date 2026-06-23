@@ -43,12 +43,11 @@ class VolumeService:
         resistance = float(np.nanpercentile(win["High"].values, 95))
         midpoint = (support + resistance) / 2.0
 
-        def _first_date(mask, df):
-            idx = mask[mask].index
-            if len(idx) == 0:
-                return None
-            i = idx[0]
-            return str(i.date()) if hasattr(i, "date") else str(i)[:10]
+        # Wide-bar mask: bar range > 1.5× the 20-bar average range
+        bar_range = df["High"] - df["Low"]
+        avg_bar_range = bar_range.rolling(20, min_periods=5).mean()
+        wide_bar = bar_range > avg_bar_range * 1.5
+        bar_midpoint = (df["High"] + df["Low"]) / 2.0
 
         def _last_date(mask, df):
             idx = mask[mask].index
@@ -57,184 +56,202 @@ class VolumeService:
             i = idx[-1]
             return str(i.date()) if hasattr(i, "date") else str(i)[:10]
 
-        # --- Accumulation ---
+        # ── Accumulation ──────────────────────────────────────────────────────
 
-        # 1. Selling Climax
-        sc_mask = (vol_ratio >= 2.5) & gap_down & (df["Close"] > df["Open"])
+        # 1. Selling Climax — high volume + wide spread + close above bar midpoint
+        # (buyers absorbed supply at the lows; gap-down is NOT required)
+        sc_mask = (vol_ratio >= 2.5) & wide_bar & (df["Close"] > bar_midpoint)
         sc_det = bool(sc_mask.any())
         sc_date = _last_date(sc_mask, df)
         sc_detail = (
-            "Vol spike 2.5x+ with gap-down open and intraday recovery"
+            "Climactic volume (2.5x+) on wide-spread bar with close above bar midpoint"
             if sc_det
             else "No selling climax detected"
         )
 
-        # 2. Automatic Rally
+        # 2. Automatic Rally — cumulative 5%+ recovery from SC low within 15 bars
         ar_abs_idx: Optional[int] = None
         if sc_det:
             sc_idx = int(np.where(sc_mask.values)[0][-1])
             sc_low = float(df["Low"].iat[sc_idx])
-            ar_window_end = min(sc_idx + 6, len(df))
+            sc_vol = float(vol_ratio.iat[sc_idx])
+            ar_window_end = min(sc_idx + 16, len(df))
             if sc_idx + 1 < len(df):
-                ar_pct = price_change_pct.iloc[sc_idx + 1 : ar_window_end]
-                ar_vr = vol_ratio.iloc[sc_idx + 1 : ar_window_end]
-                ar_found = (ar_pct >= 3) & (ar_vr >= 1.0)
+                ar_window_close = df["Close"].iloc[sc_idx + 1 : ar_window_end]
+                ar_cum = (ar_window_close / sc_low - 1) * 100
+                ar_found = ar_cum >= 5.0
                 ar_det = bool(ar_found.any())
                 if ar_det:
                     ar_idx_local = int(np.where(ar_found.values)[0][0])
                     ar_abs_idx = sc_idx + 1 + ar_idx_local
                     ar_ts = df.index[ar_abs_idx]
                     ar_date = str(ar_ts.date()) if hasattr(ar_ts, "date") else str(ar_ts)[:10]
-                    ar_detail = "3%+ bounce on volume within 5 bars of selling climax"
+                    ar_detail = "Price recovered 5%+ from SC low within 15 bars"
                 else:
                     ar_date = None
-                    ar_detail = "No 3%+ bounce within 5 bars of selling climax"
+                    ar_detail = "No 5%+ recovery from SC low within 15 bars"
             else:
-                ar_det = False
-                ar_date = None
-                ar_detail = "No 3%+ bounce within 5 bars of selling climax"
+                ar_det = False; ar_date = None
+                ar_detail = "Insufficient bars after SC for AR"
         else:
-            sc_low = None
-            ar_det = False
-            ar_date = None
+            sc_low = None; sc_vol = None
+            ar_det = False; ar_date = None
             ar_detail = "No prior selling climax to follow"
 
-        # 3. Secondary Test
-        if sc_det and sc_low is not None:
-            start_idx = ar_abs_idx + 1 if ar_abs_idx is not None else (int(np.where(sc_mask.values)[0][-1]) + 1)
-            if start_idx < len(df):
-                st_vol = vol_ratio.iloc[start_idx:]
-                st_close = df["Close"].iloc[start_idx:]
-                st_cond = (st_vol < 0.8) & (st_close > sc_low)
-                consec = st_cond.astype(int)
-                rolling_3 = consec.rolling(3).sum()
-                st_det = bool((rolling_3 >= 3).any())
+        # 3. Secondary Test — price revisits SC area (within 10%) on lower volume than SC
+        if sc_det and sc_low is not None and sc_vol is not None:
+            st_start = ar_abs_idx + 1 if ar_abs_idx is not None else sc_idx + 1
+            if st_start < len(df):
+                st_close = df["Close"].iloc[st_start:]
+                st_vr = vol_ratio.iloc[st_start:]
+                # Must approach SC_low (within 10%) AND volume must be < SC volume
+                st_cond = (st_close <= sc_low * 1.10) & (st_close >= sc_low * 0.90) & (st_vr < sc_vol * 0.7)
+                st_det = bool(st_cond.any())
                 if st_det:
-                    first_end = int(np.where((rolling_3 >= 3).values)[0][0])
-                    st_ts = st_vol.index[first_end - 2]
+                    st_idx_local = int(np.where(st_cond.values)[0][0])
+                    st_ts = st_close.index[st_idx_local]
                     st_date = str(st_ts.date()) if hasattr(st_ts, "date") else str(st_ts)[:10]
-                    st_detail = "3+ consecutive low-vol bars above SC low"
+                    st_detail = "Price revisited SC area (±10%) on volume below SC level"
                 else:
                     st_date = None
-                    st_detail = "No secondary test pattern found"
+                    st_detail = "No secondary test of SC area on reduced volume"
             else:
-                st_det = False
-                st_date = None
+                st_det = False; st_date = None
                 st_detail = "No secondary test pattern found"
         else:
-            st_det = False
-            st_date = None
+            st_det = False; st_date = None
             st_detail = "No prior selling climax to anchor secondary test"
 
-        # 4. Sign of Strength
-        sos_mask = (price_change_pct >= 4) & (vol_ratio >= 2.0) & (df["Close"] > midpoint)
+        # 4. Sign of Strength — strong up day that carries price to or above resistance
+        sos_mask = (price_change_pct >= 3) & (vol_ratio >= 2.0) & (df["Close"] >= resistance * 0.97)
         sos_det = bool(sos_mask.any())
         sos_date = _last_date(sos_mask, df)
-        sos_detail = "Strong up day 4%+ on 2x+ volume above range midpoint" if sos_det else "No sign of strength detected"
+        sos_detail = (
+            "Strong up day 3%+ on 2x+ volume reaching resistance (breakout from range)"
+            if sos_det
+            else "No sign of strength detected"
+        )
 
-        # 5. Last Point of Support
-        if len(df) >= 20:
-            lows = df["Low"].iloc[-20:]
-            half1_min = float(lows.iloc[:10].min())
-            half2_min = float(lows.iloc[10:].min())
-            last_close_val = float(df["Close"].iloc[-1])
-            lps_higher_low = half2_min > half1_min
-            lps_near_support = (last_close_val <= support * 1.03) and (last_close_val >= support * 0.97)
-            lps_det = lps_higher_low and lps_near_support
+        # 5. Last Point of Support — after SOS, price pulls back above midpoint on low volume
+        if sos_det:
+            sos_idx = int(np.where(sos_mask.values)[0][-1])
+            if sos_idx + 1 < len(df):
+                lps_close = df["Close"].iloc[sos_idx + 1:]
+                lps_vr = vol_ratio.iloc[sos_idx + 1:]
+                # Pullback that stays above midpoint and has drying volume
+                lps_cond = (lps_close >= midpoint) & (lps_close <= resistance * 0.99) & (lps_vr < 0.8)
+                lps_det = bool(lps_cond.any())
+                if lps_det:
+                    lps_idx_local = int(np.where(lps_cond.values)[0][0])
+                    lps_ts = lps_close.index[lps_idx_local]
+                    lps_date = str(lps_ts.date()) if hasattr(lps_ts, "date") else str(lps_ts)[:10]
+                    lps_detail = "Low-volume pullback above midpoint after SOS — re-entry zone"
+                else:
+                    lps_date = None
+                    lps_detail = "No low-volume pullback above midpoint after SOS"
+            else:
+                lps_det = False; lps_date = None
+                lps_detail = "No bars after SOS to check LPS"
         else:
-            lps_det = False
-        lps_date = str(df.index[-1].date()) if lps_det and hasattr(df.index[-1], "date") else (str(df.index[-1])[:10] if lps_det else None)
-        lps_detail = "Higher low pivot with price near support zone" if lps_det else "No last point of support confirmed"
+            lps_det = False; lps_date = None
+            lps_detail = "No prior sign of strength to anchor LPS"
 
-        # --- Distribution ---
+        # ── Distribution ──────────────────────────────────────────────────────
 
-        # 1. Buying Climax
+        # 1. Buying Climax — new period high on climactic volume with bearish wide-spread bar
         window_high = float(df["High"].max())
-        bc_mask = (df["High"] >= window_high * 0.999) & (vol_ratio >= 2.0) & (df["Close"] < df["Open"])
+        bc_mask = (df["High"] >= window_high * 0.999) & (vol_ratio >= 2.5) & wide_bar & (df["Close"] < bar_midpoint)
         bc_det = bool(bc_mask.any())
         bc_date = _last_date(bc_mask, df)
         bc_detail = (
-            "New period high on 2x+ volume with bearish close (in-window high — may not be true 52w high for periods < 1y)"
+            "Climactic volume (2.5x+) at period high on wide-spread bar closing in lower half"
             if bc_det
             else "No buying climax detected"
         )
 
-        # 2. Automatic Reaction
+        # 2. Automatic Reaction — cumulative 5%+ drop from BC high within 15 bars
         if bc_det:
             bc_idx = int(np.where(bc_mask.values)[0][-1])
-            ar2_window_end = min(bc_idx + 11, len(df))
+            bc_high = float(df["High"].iat[bc_idx])
+            bc_vol = float(vol_ratio.iat[bc_idx])
+            ar2_window_end = min(bc_idx + 16, len(df))
             if bc_idx + 1 < len(df):
-                ar2_pct = price_change_pct.iloc[bc_idx + 1 : ar2_window_end]
-                ar2_vr = vol_ratio.iloc[bc_idx + 1 : ar2_window_end]
-                ar2_found = (ar2_pct <= -3) & (ar2_vr >= 1.5)
+                ar2_window_close = df["Close"].iloc[bc_idx + 1 : ar2_window_end]
+                ar2_cum = (1 - ar2_window_close / bc_high) * 100
+                ar2_found = ar2_cum >= 5.0
                 ar2_det = bool(ar2_found.any())
                 if ar2_det:
                     ar2_idx_local = int(np.where(ar2_found.values)[0][0])
                     ar2_abs_idx = bc_idx + 1 + ar2_idx_local
                     ar2_ts = df.index[ar2_abs_idx]
                     ar2_date = str(ar2_ts.date()) if hasattr(ar2_ts, "date") else str(ar2_ts)[:10]
-                    ar2_detail = "3%+ drop on 1.5x+ volume within 10 bars of buying climax"
+                    ar2_detail = "Price dropped 5%+ from BC high within 15 bars"
                 else:
                     ar2_date = None
-                    ar2_detail = "No sharp reaction within 10 bars of buying climax"
+                    ar2_detail = "No 5%+ decline from BC high within 15 bars"
             else:
-                ar2_det = False
-                ar2_date = None
-                ar2_detail = "No sharp reaction within 10 bars of buying climax"
+                ar2_det = False; ar2_date = None
+                ar2_detail = "Insufficient bars after BC for AR"
         else:
-            ar2_det = False
-            ar2_date = None
+            bc_high = None; bc_vol = None
+            ar2_det = False; ar2_date = None
             ar2_detail = "No prior buying climax to follow"
 
-        # 3. Upthrust
-        ut_mask = (df["High"] > resistance * 1.005) & (df["Close"] < resistance)
+        # 3. Upthrust — price pierces resistance by ≥1% intraday but closes back below
+        #    with elevated volume (supply overpowers demand at highs)
+        ut_mask = (df["High"] > resistance * 1.01) & (df["Close"] < resistance * 0.995) & (vol_ratio >= 1.5)
         ut_det = bool(ut_mask.any())
         ut_date = _last_date(ut_mask, df)
-        ut_detail = "Price pierced resistance intraday but closed below it" if ut_det else "No upthrust detected"
+        ut_detail = (
+            "Intraday pierce ≥1% above resistance on elevated volume with close back inside range"
+            if ut_det
+            else "No upthrust detected"
+        )
 
-        # 4. Sign of Weakness
-        sow_mask = (price_change_pct <= -3) & (vol_ratio >= 1.5) & (df["Close"] < (df["High"] + df["Low"]) / 2)
+        # 4. Sign of Weakness — strong down day breaking toward support
+        sow_mask = (price_change_pct <= -3) & (vol_ratio >= 1.5) & (df["Close"] < bar_midpoint)
         sow_det = bool(sow_mask.any())
         sow_date = _last_date(sow_mask, df)
-        sow_detail = "Sharp decline 3%+ on 1.5x+ volume closing near lows" if sow_det else "No sign of weakness detected"
+        sow_detail = (
+            "Sharp decline 3%+ on 1.5x+ volume closing in lower half of bar"
+            if sow_det
+            else "No sign of weakness detected"
+        )
 
-        # 5. Last Point of Supply
+        # 5. Last Point of Supply — after SOW, weak low-volume bounce that stays below resistance
         if sow_det:
             sow_idx = int(np.where(sow_mask.values)[0][-1])
             if sow_idx + 1 < len(df):
-                lps2_pct = price_change_pct.iloc[sow_idx + 1:]
-                lps2_vr = vol_ratio.iloc[sow_idx + 1:]
                 lps2_close = df["Close"].iloc[sow_idx + 1:]
-                lps2_avg = avg_vol_30.iloc[sow_idx + 1:]
-                lps2_cond = (lps2_pct > 0) & (lps2_close < resistance) & (df["Volume"].iloc[sow_idx + 1:] < lps2_avg)
+                lps2_vr = vol_ratio.iloc[sow_idx + 1:]
+                # Feeble rally below resistance on shrinking volume
+                lps2_cond = (lps2_close > midpoint) & (lps2_close < resistance * 0.98) & (lps2_vr < 0.8)
                 consec2 = lps2_cond.astype(int)
                 rolling2_3 = consec2.rolling(3).sum()
                 lps2_det = bool((rolling2_3 >= 3).any())
                 if lps2_det:
                     first2_end = int(np.where((rolling2_3 >= 3).values)[0][0])
-                    lps2_ts = lps2_vr.index[first2_end - 2]
+                    lps2_ts = lps2_close.index[first2_end - 2]
                     lps2_date = str(lps2_ts.date()) if hasattr(lps2_ts, "date") else str(lps2_ts)[:10]
-                    lps2_detail = "3+ low-vol up-days below resistance after SOW"
+                    lps2_detail = "3+ consecutive low-volume days between midpoint and resistance after SOW"
                 else:
                     lps2_date = None
                     lps2_detail = "No last point of supply pattern found"
             else:
-                lps2_det = False
-                lps2_date = None
+                lps2_det = False; lps2_date = None
                 lps2_detail = "No last point of supply pattern found"
         else:
-            lps2_det = False
-            lps2_date = None
+            lps2_det = False; lps2_date = None
             lps2_detail = "No prior sign of weakness to anchor LPSY"
 
-        # Scoring
+        # ── Scoring & phase ───────────────────────────────────────────────────
         acc_score = sum([sc_det, ar_det, st_det, sos_det, lps_det])
         dist_score = sum([bc_det, ar2_det, ut_det, sow_det, lps2_det])
 
         bias = "bullish" if acc_score > dist_score else ("bearish" if dist_score > acc_score else "neutral")
 
         def phase_label(score, side):
-            mapping = {0: "No Signal", 1: "Phase A", 2: "Phase B", 3: "Phase B", 4: "Phase C-D", 5: "Phase E (Complete)"}
+            mapping = {0: "No Signal", 1: "Phase A", 2: "Phase A-B", 3: "Phase B", 4: "Phase C-D", 5: "Phase E (Complete)"}
             return f"{side} {mapping.get(score, 'Phase B')}"
 
         if bias == "bullish":
@@ -245,17 +262,13 @@ class VolumeService:
             phase = "Consolidation / No Clear Phase"
 
         def acc_overall(s):
-            if s >= 4:
-                return "Strong Accumulation (Phase C-D)"
-            if s >= 2:
-                return "Early Accumulation (Phase A-B)"
+            if s >= 4: return "Strong Accumulation (Phase C-D)"
+            if s >= 2: return "Early Accumulation (Phase A-B)"
             return "No Accumulation Signal"
 
         def dist_overall(s):
-            if s >= 4:
-                return "Distribution Warning (Phase C-D)"
-            if s >= 2:
-                return "Distribution Warning (Phase B)"
+            if s >= 4: return "Distribution Warning (Phase C-D)"
+            if s >= 2: return "Distribution Warning (Phase B)"
             return "No Distribution Signal"
 
         return {
@@ -299,12 +312,12 @@ class VolumeService:
         if len(df) < 20:
             return empty_pnf
 
-        box_size = max(round(atr_14 * 0.1, 2), 0.01)
-        reversal_boxes = 3
-        reversal_amount = reversal_boxes * box_size
-
         closes = df["Close"].values
         current_price = float(closes[-1])
+        # 1% of price is the standard daily P&F box size; ATR-based was too small
+        box_size = max(round(current_price * 0.01, 2), 0.01)
+        reversal_boxes = 3
+        reversal_amount = reversal_boxes * box_size
 
         # Build P&F columns iteratively
         # Each column is represented as (direction, high, low, num_boxes)
@@ -350,13 +363,15 @@ class VolumeService:
 
         if x_cols:
             tallest_x = max(x_cols, key=lambda c: c["boxes"])
-            bullish_vertical_target = _safe_float(tallest_x["high"] + tallest_x["boxes"] * box_size * 3)
+            # Vertical count: add (boxes × box_size × reversal) to the BOTTOM of the column
+            bullish_vertical_target = _safe_float(tallest_x["low"] + tallest_x["boxes"] * box_size * 3)
         else:
             bullish_vertical_target = None
 
         if o_cols:
             tallest_o = max(o_cols, key=lambda c: c["boxes"])
-            bearish_vertical_target = _safe_float(tallest_o["low"] - tallest_o["boxes"] * box_size * 3)
+            # Vertical count: subtract (boxes × box_size × reversal) from the TOP of the column
+            bearish_vertical_target = _safe_float(tallest_o["high"] - tallest_o["boxes"] * box_size * 3)
         else:
             bearish_vertical_target = None
 
@@ -385,7 +400,7 @@ class VolumeService:
             "horizontal_target": horizontal_target,
             "column_count": column_count,
             "bias": bias,
-            "note": "Targets computed via 3-box reversal ATR-based P&F. Use 1y period for most accurate targets.",
+            "note": "Targets computed via 3-box reversal, 1%-of-price box size. Use 1y period for most accurate targets.",
         }
 
     def _compute_swing_entry(self, wyckoff: Dict, current_price: Optional[float], atr_14: float) -> Dict[str, Any]:
@@ -406,19 +421,32 @@ class VolumeService:
                 "note": "Insufficient data to compute swing entry.",
             }
 
-        if bias == "bullish":
+        midpoint = (support + resistance) / 2.0
+        # For neutral bias, infer direction from current price position in the range
+        lean_long = bias == "bullish" or (
+            bias == "neutral" and current_price is not None and current_price <= midpoint
+        )
+
+        if lean_long:
             entry_zone_low = support
             entry_zone_high = support + atr_14
             stop_loss = support - atr_14
             target = resistance
-            note = "Long at support with stop below. R/R based on trading range width."
+            note = (
+                "Neutral Wyckoff bias; price in lower half of range — tentative long at support."
+                if bias == "neutral"
+                else "Long at support with stop below. R/R based on trading range width."
+            )
         else:
-            # bearish or neutral — use short setup
             entry_zone_low = resistance - atr_14
             entry_zone_high = resistance
             stop_loss = resistance + atr_14
             target = support
-            note = "Short at resistance with stop above. R/R based on trading range width."
+            note = (
+                "Neutral Wyckoff bias; price in upper half of range — tentative short at resistance."
+                if bias == "neutral"
+                else "Short at resistance with stop above. R/R based on trading range width."
+            )
 
         entry_mid = (entry_zone_low + entry_zone_high) / 2.0
         price_diff = abs(target - entry_mid)
@@ -475,19 +503,21 @@ class VolumeService:
         # Stop: 35% below fair value — fundamental thesis is broken
         stop_loss = fair_value * 0.65
 
-        # Target: whichever is higher — fair value or Wyckoff resistance
+        # Target: fair value — this is a fundamentals-driven strategy; Wyckoff resistance
+        # is a short-term technical level unrelated to earnings valuation
         resistance = wyckoff.get("trading_range", {}).get("resistance")
-        target = max(fair_value, resistance) if resistance else fair_value
+        target = fair_value
 
         r_diff = abs(target - entry_mid)
         s_diff = abs(entry_mid - stop_loss)
         risk_reward = _safe_float(r_diff / s_diff) if s_diff > 0 else None
 
         growth_str = f"{annual_growth_pct:+.1f}%" if annual_growth_pct != 0 else "flat"
+        resistance_note = f" Technical resistance at ${resistance:.2f}." if resistance else ""
         note = (
             f"Fair value ${fair_value:.2f} = TTM EPS ${ttm_eps:.2f} × P/E {fair_pe:.1f} "
             f"(EPS growth {growth_str} annualised). "
-            f"DCA 5–20% below fair value. Stop 35% below fair value."
+            f"DCA 5–20% below fair value. Stop 35% below fair value.{resistance_note}"
         )
 
         return {
@@ -700,7 +730,11 @@ class VolumeService:
         prev_close = df["Close"].shift(1)
         gap_down = df["Open"] < prev_close
 
-        selling_climax = bool(((vol_ratio >= 2.5) & gap_down & (df["Close"] > df["Open"])).any())
+        bar_range_cl = df["High"] - df["Low"]
+        avg_bar_range_cl = bar_range_cl.rolling(20, min_periods=5).mean()
+        wide_bar_cl = bar_range_cl > avg_bar_range_cl * 1.5
+        bar_mid_cl = (df["High"] + df["Low"]) / 2.0
+        selling_climax = bool(((vol_ratio >= 2.5) & wide_bar_cl & (df["Close"] > bar_mid_cl)).any())
         high_vol_breakout = bool(((price_change_pct >= 3) & (vol_ratio >= 1.5)).any())
 
         spike_mask = is_spike
@@ -748,7 +782,7 @@ class VolumeService:
             "overall": overall,
             "score": score,
             "details": {
-                "selling_climax": "Vol spike 2.5x+ with intraday recovery after gap down",
+                "selling_climax": "Vol spike 2.5x+ on wide-spread bar with close above bar midpoint",
                 "high_vol_breakout": "Price +3%+ on 1.5x+ volume",
                 "low_vol_retest": "3+ consecutive bars below avg vol after last spike",
                 "higher_low_pivot": "Trailing 20-bar second half low > first half low",
