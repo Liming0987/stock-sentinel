@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { StockNewsItem } from "@/lib/hooks";
 
@@ -64,37 +65,46 @@ interface NewsCardProps {
 }
 
 export function NewsCard({ news, loading, ticker }: NewsCardProps) {
+  const [open, setOpen] = useState(false);
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="text-base">Latest News — {ticker}</CardTitle>
+      <CardHeader
+        className="cursor-pointer select-none"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <CardTitle className="flex items-center justify-between text-base">
+          <span>Latest News — {ticker}</span>
+          {open ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+        </CardTitle>
       </CardHeader>
-      <CardContent className="p-2">
-        {loading ? (
-          <div className="space-y-2 p-2">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="flex gap-3">
-                <div className="h-14 w-20 shrink-0 animate-pulse rounded-md bg-muted" />
-                <div className="flex-1 space-y-2 pt-1">
-                  <div className="h-3 w-full animate-pulse rounded bg-muted" />
-                  <div className="h-3 w-4/5 animate-pulse rounded bg-muted" />
-                  <div className="h-2.5 w-1/3 animate-pulse rounded bg-muted" />
+      {open && (
+        <CardContent className="p-2">
+          {loading ? (
+            <div className="space-y-2 p-2">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="flex gap-3">
+                  <div className="h-14 w-20 shrink-0 animate-pulse rounded-md bg-muted" />
+                  <div className="flex-1 space-y-2 pt-1">
+                    <div className="h-3 w-full animate-pulse rounded bg-muted" />
+                    <div className="h-3 w-4/5 animate-pulse rounded bg-muted" />
+                    <div className="h-2.5 w-1/3 animate-pulse rounded bg-muted" />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ) : news.length === 0 ? (
-          <p className="py-8 text-center text-sm text-muted-foreground">
-            No recent news found for {ticker}.
-          </p>
-        ) : (
-          <div className="divide-y">
-            {news.map((item, i) => (
-              <NewsItem key={item.url || i} item={item} />
-            ))}
-          </div>
-        )}
-      </CardContent>
+              ))}
+            </div>
+          ) : news.length === 0 ? (
+            <p className="py-8 text-center text-sm text-muted-foreground">
+              No recent news found for {ticker}.
+            </p>
+          ) : (
+            <div className="divide-y">
+              {news.map((item, i) => (
+                <NewsItem key={item.url || i} item={item} />
+              ))}
+            </div>
+          )}
+        </CardContent>
+      )}
     </Card>
   );
 }

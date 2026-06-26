@@ -84,6 +84,7 @@ export default function VolumeAnalysisPage() {
   const ticker = (params?.ticker as string ?? "").toUpperCase();
   const [period, setPeriod] = useState("90d");
   const [postsOpen, setPostsOpen] = useState(false);
+  const [volumeHistoryOpen, setVolumeHistoryOpen] = useState(false);
   const { data, loading } = useVolumeAnalysis(ticker, period);
   const { data: fundamentals, loading: fundLoading } = useFundamentals(ticker);
   const { data: newsData, loading: newsLoading } = useStockNews(ticker);
@@ -145,12 +146,20 @@ export default function VolumeAnalysisPage() {
           <FundamentalsCard data={fundamentals} loading={fundLoading} />
           <NewsCard news={newsData.news} loading={newsLoading} ticker={ticker} />
           <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Volume History</CardTitle>
+            <CardHeader
+              className="cursor-pointer select-none"
+              onClick={() => setVolumeHistoryOpen((v) => !v)}
+            >
+              <CardTitle className="flex items-center justify-between text-base">
+                <span>Volume History</span>
+                {volumeHistoryOpen ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+              </CardTitle>
             </CardHeader>
-            <CardContent>
-              <VolumeTable data={data.history} />
-            </CardContent>
+            {volumeHistoryOpen && (
+              <CardContent>
+                <VolumeTable data={data.history} />
+              </CardContent>
+            )}
           </Card>
 
           <Card>
