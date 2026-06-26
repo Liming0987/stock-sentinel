@@ -25,6 +25,8 @@ export const api = {
   prices: {
     get: (ticker: string, period = "1M", interval = "1d") =>
       fetchApi(`/api/prices/${ticker}?period=${period}&interval=${interval}`),
+    live: (ticker: string) =>
+      fetchApi(`/api/prices/${ticker}/live`),
   },
   signals: {
     active: () => fetchApi("/api/signals"),

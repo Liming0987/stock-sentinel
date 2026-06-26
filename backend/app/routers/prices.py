@@ -1,11 +1,22 @@
 from fastapi import APIRouter, Query
 
 from app.services.price_service import PriceService
+from app.services.alpaca_service import AlpacaService
 
 router = APIRouter()
 price_service = PriceService()
+_alpaca = AlpacaService()
 
 PERIOD_MAP = {"1D": "1d", "5D": "5d", "1M": "1mo", "3M": "3mo", "6M": "6mo", "1Y": "1y", "5Y": "5y"}
+
+
+@router.get("/{ticker}/live")
+async def get_live_price(ticker: str):
+    """Return the latest Alpaca trade price when the market is open."""
+    ticker = ticker.upper()
+    market_open = _alpaca.is_market_open()
+    price = _alpaca.get_latest_price(ticker) if market_open else None
+    return {"ticker": ticker, "price": price, "market_open": market_open}
 
 
 @router.get("/{ticker}")

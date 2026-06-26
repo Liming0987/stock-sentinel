@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useVolumeAnalysis, useFundamentals, useStockNews } from "@/lib/hooks";
+import { useVolumeAnalysis, useFundamentals, useStockNews, useLivePrice } from "@/lib/hooks";
 import { VolumeHeader } from "@/components/volume/volume-header";
 import { PriceVolumeChart } from "@/components/volume/price-volume-chart";
 import { OBVChart } from "@/components/volume/obv-chart";
@@ -38,6 +38,7 @@ export default function VolumeAnalysisPage() {
   const { data, loading } = useVolumeAnalysis(ticker, period);
   const { data: fundamentals, loading: fundLoading } = useFundamentals(ticker);
   const { data: newsData, loading: newsLoading } = useStockNews(ticker);
+  const { price: livePrice, marketOpen } = useLivePrice(ticker);
 
   return (
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-6">
@@ -75,6 +76,8 @@ export default function VolumeAnalysisPage() {
             tradingRange={data.wyckoff?.trading_range}
             vcp={data.vcp}
             vcpHistory={data.vcp_history}
+            livePrice={livePrice}
+            marketOpen={marketOpen}
           />
           <OBVChart data={data.history} />
           {data.vcp && <VCPCard vcp={data.vcp} />}

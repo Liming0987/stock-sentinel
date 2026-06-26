@@ -705,6 +705,29 @@ export function useNotifications() {
   return { notifications, unreadCount, markAllRead };
 }
 
+export function useLivePrice(ticker: string) {
+  const [price, setPrice] = useState<number | null>(null);
+  const [marketOpen, setMarketOpen] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    const poll = async () => {
+      try {
+        const res = await api.prices.live(ticker) as { price: number | null; market_open: boolean };
+        if (active) {
+          setPrice(res.price);
+          setMarketOpen(res.market_open);
+        }
+      } catch { /* ignore */ }
+      if (active) setTimeout(poll, 10_000);
+    };
+    poll();
+    return () => { active = false; };
+  }, [ticker]);
+
+  return { price, marketOpen };
+}
+
 export function useTaskErrors() {
   const { notifications } = useNotifications();
   return notifications.filter((n) => n.type === "task_error");

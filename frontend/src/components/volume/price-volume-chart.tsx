@@ -44,9 +44,11 @@ interface PriceVolumeChartProps {
   tradingRange?: { support: number | null; resistance: number | null };
   vcp?: VCPAnalysis | null;
   vcpHistory?: VCPHistoricalSetup[];
+  livePrice?: number | null;
+  marketOpen?: boolean;
 }
 
-export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, tradingRange, vcp, vcpHistory }: PriceVolumeChartProps) {
+export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, tradingRange, vcp, vcpHistory, livePrice, marketOpen }: PriceVolumeChartProps) {
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<SVGSVGElement>) => {
@@ -93,9 +95,11 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
 
   // Extend domain to include support/resistance and VCP pivot if outside range
   const vcpPivot = vcp?.detected ? vcp.pivot : null;
-  const effLo = tradingRange?.support != null && tradingRange.support < pLo ? tradingRange.support - pricePad : pLo;
+  const effLoBase = tradingRange?.support != null && tradingRange.support < pLo ? tradingRange.support - pricePad : pLo;
+  const effLo = livePrice != null && livePrice < effLoBase ? livePrice - pricePad : effLoBase;
   const effHiBase = tradingRange?.resistance != null && tradingRange.resistance > pHi ? tradingRange.resistance + pricePad : pHi;
-  const effHi = vcpPivot != null && vcpPivot > effHiBase ? vcpPivot + pricePad : effHiBase;
+  const effHiVcp = vcpPivot != null && vcpPivot > effHiBase ? vcpPivot + pricePad : effHiBase;
+  const effHi = livePrice != null && livePrice > effHiVcp ? livePrice + pricePad : effHiVcp;
 
   const py = (v: number) => lerp(v, effLo, effHi, CANDLE_TOP, CANDLE_BOT);
 
@@ -293,6 +297,36 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
               </g>
             );
           })()}
+
+          {/* ── Live price line ── */}
+          {marketOpen && livePrice != null && (
+            <g>
+              <line
+                x1={ML} x2={W - MR}
+                y1={py(livePrice)} y2={py(livePrice)}
+                stroke="#facc15" strokeWidth={1.5} strokeDasharray="4 3"
+              />
+              {/* Price label on right edge */}
+              <rect
+                x={W - MR + 2} y={py(livePrice) - 8}
+                width={54} height={16} rx={3}
+                fill="#facc15"
+              />
+              <text
+                x={W - MR + 29} y={py(livePrice) + 4}
+                textAnchor="middle" fontSize={10} fontWeight="bold" fill="#000"
+              >
+                ${livePrice.toFixed(2)}
+              </text>
+              {/* Pulsing dot at the right end of the line */}
+              <circle cx={W - MR} cy={py(livePrice)} r={4} fill="#facc15" opacity={0.9} />
+              {/* LIVE badge top-left of pane */}
+              <rect x={ML} y={CANDLE_TOP} width={32} height={13} rx={3} fill="#facc15" />
+              <text x={ML + 16} y={CANDLE_TOP + 9.5} textAnchor="middle" fontSize={9} fontWeight="bold" fill="#000">
+                LIVE
+              </text>
+            </g>
+          )}
 
           {/* ── Candlesticks ── */}
           {data.map((c, i) => {
