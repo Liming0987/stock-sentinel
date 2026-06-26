@@ -215,24 +215,57 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
             const pivotStartIdx = lastC ? (dateIndexMap.get(lastC.high_date) ?? -1) : -1;
             const pivotEndDate = setup.breakout_date ?? setup.detection_date;
             const pivotEndIdx = dateIndexMap.get(pivotEndDate) ?? -1;
+
+            // Group bracket: span from first contraction start to last contraction end
+            const firstC = setup.contractions[0];
+            const groupX1 = firstC ? ML + (dateIndexMap.get(firstC.high_date) ?? -1) * slotW : -1;
+            const groupX2 = lastC ? ML + (dateIndexMap.get(lastC.low_date) ?? -1) * slotW + slotW : -1;
+            const groupTopY = firstC
+              ? Math.max(CANDLE_TOP + 2, py(Math.max(...setup.contractions.map(c => c.high))) - 14)
+              : -1;
+
             return (
               <g key={`hist-${si}`}>
-                {/* Contraction zones — very faint */}
+                {/* Group header bracket + VCP label */}
+                {groupX1 >= 0 && groupX2 >= 0 && groupTopY >= 0 && (
+                  <g opacity={0.65}>
+                    <line x1={groupX1} x2={groupX2} y1={groupTopY + 12} y2={groupTopY + 12}
+                      stroke={color} strokeWidth={0.75} />
+                    <line x1={groupX1} x2={groupX1} y1={groupTopY + 12} y2={groupTopY + 15}
+                      stroke={color} strokeWidth={0.75} />
+                    <line x1={groupX2} x2={groupX2} y1={groupTopY + 12} y2={groupTopY + 15}
+                      stroke={color} strokeWidth={0.75} />
+                    <text x={groupX1 + 3} y={groupTopY + 10} fontSize={8} fill={color} fontWeight="700">
+                      VCP {si + 1}{setup.broke_out ? " ✓" : ""}
+                    </text>
+                  </g>
+                )}
+                {/* Contraction zones with stage labels */}
                 {setup.contractions.map((c, ci) => {
                   const hiIdx = dateIndexMap.get(c.high_date) ?? -1;
                   const loIdx = dateIndexMap.get(c.low_date) ?? -1;
                   if (hiIdx < 0 || loIdx < 0) return null;
+                  const rx1 = ML + hiIdx * slotW;
+                  const rx2 = ML + loIdx * slotW + slotW;
+                  const ry1 = py(c.high);
+                  const ry2 = py(c.low);
+                  const boxH = Math.max(1, ry2 - ry1);
                   return (
-                    <rect key={ci}
-                      x={ML + hiIdx * slotW} y={py(c.high)}
-                      width={ML + loIdx * slotW + slotW - (ML + hiIdx * slotW)}
-                      height={Math.max(1, py(c.low) - py(c.high))}
-                      fill={color} fillOpacity={0.05}
-                      stroke={color} strokeOpacity={0.20} strokeWidth={0.75} rx={2}
-                    />
+                    <g key={ci}>
+                      <rect x={rx1} y={ry1} width={rx2 - rx1} height={boxH}
+                        fill={color} fillOpacity={0.06}
+                        stroke={color} strokeOpacity={0.25} strokeWidth={0.75} rx={2} />
+                      {/* Stage label inside box */}
+                      {boxH > 10 && (
+                        <text x={rx1 + 3} y={Math.min(ry2 - 3, ry1 + 11)}
+                          fontSize={8} fill={color} opacity={0.85} fontWeight="600">
+                          C{ci + 1}
+                        </text>
+                      )}
+                    </g>
                   );
                 })}
-                {/* Pivot line from last contraction high to breakout/detection date */}
+                {/* Pivot line */}
                 {pivotStartIdx >= 0 && pivotEndIdx >= 0 && (
                   <line
                     x1={ML + pivotStartIdx * slotW} x2={ML + pivotEndIdx * slotW + slotW}
@@ -258,9 +291,34 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
             const pivotY = vcp.pivot != null ? py(vcp.pivot) : null;
             const pivotColor = vcp.status === "breaking_out" ? "#22c55e" : "#e8a33d";
             const zoneColor = "#e8a33d";
+
+            // Group bracket across all contractions
+            const firstC = vcp.contractions[0];
+            const lastC = vcp.contractions[vcp.contractions.length - 1];
+            const gx1 = firstC ? ML + (dateIndexMap.get(firstC.high_date) ?? -1) * slotW : -1;
+            const gx2 = lastC ? ML + (dateIndexMap.get(lastC.low_date) ?? -1) * slotW + slotW : -1;
+            const gTopY = firstC
+              ? Math.max(CANDLE_TOP + 2, py(Math.max(...vcp.contractions.map(c => c.high))) - 14)
+              : -1;
+            const vcpLabel = vcp.status === "breaking_out" ? "Active VCP ↗" : "Active VCP";
+
             return (
               <g>
-                {/* Contraction zone rectangles — same amber, let size & label show tightening */}
+                {/* Group header bracket */}
+                {gx1 >= 0 && gx2 >= 0 && gTopY >= 0 && (
+                  <g>
+                    <line x1={gx1} x2={gx2} y1={gTopY + 12} y2={gTopY + 12}
+                      stroke={zoneColor} strokeWidth={1} opacity={0.8} />
+                    <line x1={gx1} x2={gx1} y1={gTopY + 12} y2={gTopY + 16}
+                      stroke={zoneColor} strokeWidth={1} opacity={0.8} />
+                    <line x1={gx2} x2={gx2} y1={gTopY + 12} y2={gTopY + 16}
+                      stroke={zoneColor} strokeWidth={1} opacity={0.8} />
+                    <text x={gx1 + 3} y={gTopY + 10} fontSize={9} fill={zoneColor} fontWeight="700" opacity={0.95}>
+                      {vcpLabel}
+                    </text>
+                  </g>
+                )}
+                {/* Contraction zone rectangles */}
                 {vcp.contractions.map((c, ci) => {
                   const hiIdx = dateIndexMap.get(c.high_date) ?? -1;
                   const loIdx = dateIndexMap.get(c.low_date) ?? -1;
@@ -269,14 +327,20 @@ export function PriceVolumeChart({ data, selectedPeriod, onPeriodChange, trading
                   const x2 = ML + loIdx * slotW + slotW;
                   const y1 = py(c.high);
                   const y2 = py(c.low);
-                  const labelY = Math.max(CANDLE_TOP + 10, y1 - 6);
                   return (
                     <g key={`vcp-c${ci}`}>
                       <rect x={x1} y={y1} width={x2 - x1} height={y2 - y1}
                         fill={zoneColor} fillOpacity={0.10} stroke={zoneColor} strokeOpacity={0.50}
                         strokeWidth={1} rx={2} />
-                      <text x={x1 + 4} y={labelY} fontSize={9} fill={zoneColor} opacity={0.95} fontWeight="600">
-                        C{ci + 1} {c.depth_pct}%{c.vol_dry ? " vol✓" : ""}
+                      {/* Stage number inside top-left of box */}
+                      <text x={x1 + 4} y={Math.min(y2 - 3, y1 + 12)}
+                        fontSize={9} fill={zoneColor} opacity={0.95} fontWeight="700">
+                        C{ci + 1}
+                      </text>
+                      {/* Depth + volume info above the box */}
+                      <text x={x1 + 4} y={Math.max(CANDLE_TOP + 10, y1 - 3)}
+                        fontSize={8} fill={zoneColor} opacity={0.80} fontWeight="500">
+                        {c.depth_pct}%{c.vol_dry ? " vol✓" : ""}
                       </text>
                     </g>
                   );
