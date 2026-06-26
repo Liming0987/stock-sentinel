@@ -97,6 +97,8 @@ async def list_strategy_signals(
     strategy: str = Query(default=""),
     action: str = Query(default="all", pattern="^(all|buy|sell|hold)$"),
     ticker: str = Query(default=""),
+    date_from: str = Query(default=""),
+    date_to: str = Query(default=""),
     limit: int = Query(default=50, le=200),
     offset: int = Query(default=0, ge=0),
     db: AsyncSession = Depends(get_db),
@@ -124,6 +126,22 @@ async def list_strategy_signals(
 
     if ticker:
         filters.append(StrategySignal.ticker == ticker.upper())
+
+    if date_from:
+        try:
+            from datetime import datetime, timezone
+            dt = datetime.fromisoformat(date_from).replace(tzinfo=timezone.utc)
+            filters.append(StrategySignal.created_at >= dt)
+        except ValueError:
+            pass
+
+    if date_to:
+        try:
+            from datetime import datetime, timezone, timedelta
+            dt = datetime.fromisoformat(date_to).replace(tzinfo=timezone.utc) + timedelta(days=1)
+            filters.append(StrategySignal.created_at < dt)
+        except ValueError:
+            pass
 
     where_clause = and_(*filters) if filters else True
 

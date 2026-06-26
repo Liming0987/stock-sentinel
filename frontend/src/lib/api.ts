@@ -82,11 +82,13 @@ export const api = {
   },
   strategySignalsLatest: (since: string, limit = 20) =>
     fetchApi(`/api/strategy-signals/latest?since=${encodeURIComponent(since)}&limit=${limit}`),
-  strategySignals: (filters: { strategy?: string; action?: string; ticker?: string; limit?: number; offset?: number } = {}) => {
+  strategySignals: (filters: { strategy?: string; action?: string; ticker?: string; date_from?: string; date_to?: string; limit?: number; offset?: number } = {}) => {
     const params = new URLSearchParams();
     if (filters.strategy) params.set("strategy", filters.strategy);
     if (filters.action) params.set("action", filters.action);
     if (filters.ticker) params.set("ticker", filters.ticker);
+    if (filters.date_from) params.set("date_from", filters.date_from);
+    if (filters.date_to) params.set("date_to", filters.date_to);
     if (filters.limit) params.set("limit", String(filters.limit));
     if (filters.offset) params.set("offset", String(filters.offset));
     const qs = params.toString();

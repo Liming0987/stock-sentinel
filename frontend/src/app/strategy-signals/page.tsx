@@ -178,20 +178,44 @@ export default function StrategySignalsPage() {
 
   const [selectedStrategy, setSelectedStrategy] = useState<string>("all");
   const [selectedAction, setSelectedAction] = useState<"buy" | "sell" | "hold" | null>(null);
+  const [datePreset, setDatePreset] = useState<"today" | "7d" | "30d" | "all">("all");
+  const [customFrom, setCustomFrom] = useState("");
+  const [customTo, setCustomTo] = useState("");
   const [page, setPage] = useState(1);
   const [isLive, setIsLive] = useState(true)
   const [newCount, setNewCount] = useState(0)
   const latestTsRef = useRef<string | null>(null)
 
+  // Resolve date range from preset or custom inputs
+  const { dateFrom, dateTo } = useMemo(() => {
+    const today = new Date();
+    const fmt = (d: Date) => d.toISOString().slice(0, 10);
+    if (datePreset === "today") {
+      return { dateFrom: fmt(today), dateTo: fmt(today) };
+    }
+    if (datePreset === "7d") {
+      const d = new Date(today); d.setDate(d.getDate() - 6);
+      return { dateFrom: fmt(d), dateTo: fmt(today) };
+    }
+    if (datePreset === "30d") {
+      const d = new Date(today); d.setDate(d.getDate() - 29);
+      return { dateFrom: fmt(d), dateTo: fmt(today) };
+    }
+    // custom or all
+    return { dateFrom: customFrom, dateTo: customTo };
+  }, [datePreset, customFrom, customTo]);
+
   const filters = useMemo(() => {
-    const f: { strategy?: string; action?: string; limit: number; offset: number } = {
+    const f: { strategy?: string; action?: string; date_from?: string; date_to?: string; limit: number; offset: number } = {
       limit: PAGE_SIZE,
       offset: (page - 1) * PAGE_SIZE,
     };
     if (selectedStrategy !== "all") f.strategy = selectedStrategy;
     if (selectedAction !== null) f.action = selectedAction;
+    if (dateFrom) f.date_from = dateFrom;
+    if (dateTo) f.date_to = dateTo;
     return f;
-  }, [selectedStrategy, selectedAction, page]);
+  }, [selectedStrategy, selectedAction, dateFrom, dateTo, page]);
 
   const { data, loading } = useStrategySignals(filters);
   const signals = data.signals;
@@ -283,33 +307,84 @@ export default function StrategySignalsPage() {
         </CardContent>
       </Card>
 
-      {/* Action filter */}
-      <div className="flex gap-2">
-        {(["buy", "sell", "hold"] as const).map((a) => (
-          <button
-            key={a}
-            onClick={() => { setSelectedAction(selectedAction === a ? null : a); resetPage(); }}
-            className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-colors uppercase ${
-              selectedAction === a
-                ? a === "buy"
-                  ? "bg-green-600 text-white"
-                  : a === "sell"
-                  ? "bg-red-600 text-white"
-                  : "bg-yellow-500 text-white"
-                : "bg-muted text-muted-foreground hover:bg-accent"
-            }`}
-          >
-            {a}
-          </button>
-        ))}
+      {/* Action + Date filters row */}
+      <div className="flex flex-wrap items-center gap-3">
+        {/* Action pills */}
+        <div className="flex gap-2">
+          {(["buy", "sell", "hold"] as const).map((a) => (
+            <button
+              key={a}
+              onClick={() => { setSelectedAction(selectedAction === a ? null : a); resetPage(); }}
+              className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-colors uppercase ${
+                selectedAction === a
+                  ? a === "buy"
+                    ? "bg-green-600 text-white"
+                    : a === "sell"
+                    ? "bg-red-600 text-white"
+                    : "bg-yellow-500 text-white"
+                  : "bg-muted text-muted-foreground hover:bg-accent"
+              }`}
+            >
+              {a}
+            </button>
+          ))}
+        </div>
+
+        <div className="w-px h-5 bg-border hidden sm:block" />
+
+        {/* Date preset pills */}
+        <div className="flex flex-wrap gap-1.5">
+          {(["today", "7d", "30d", "all"] as const).map((p) => (
+            <button
+              key={p}
+              onClick={() => { setDatePreset(p); setCustomFrom(""); setCustomTo(""); resetPage(); }}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                datePreset === p && !(datePreset === "all" && (customFrom || customTo))
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted text-muted-foreground hover:bg-accent"
+              }`}
+            >
+              {p === "today" ? "Today" : p === "7d" ? "Last 7 days" : p === "30d" ? "Last 30 days" : "All time"}
+            </button>
+          ))}
+        </div>
+
+        {/* Custom date range */}
+        <div className="flex items-center gap-1.5 ml-auto">
+          <input
+            type="date"
+            value={customFrom}
+            onChange={(e) => { setCustomFrom(e.target.value); setDatePreset("all"); resetPage(); }}
+            className="rounded border bg-card px-2 py-1 text-xs text-foreground focus:outline-none focus:ring-1 ring-primary/40"
+            placeholder="From"
+          />
+          <span className="text-xs text-muted-foreground">—</span>
+          <input
+            type="date"
+            value={customTo}
+            onChange={(e) => { setCustomTo(e.target.value); setDatePreset("all"); resetPage(); }}
+            className="rounded border bg-card px-2 py-1 text-xs text-foreground focus:outline-none focus:ring-1 ring-primary/40"
+            placeholder="To"
+          />
+          {(customFrom || customTo) && (
+            <button
+              onClick={() => { setCustomFrom(""); setCustomTo(""); setDatePreset("all"); resetPage(); }}
+              className="text-[10px] text-muted-foreground hover:text-foreground underline"
+            >
+              Clear
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Signal count */}
       {!loading && (
         <p className="text-sm text-muted-foreground">
-          Showing {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, total)} of {total} signal{total !== 1 ? "s" : ""}
-          {selectedStrategy !== "all" && ` for ${selectedStrategy.replace(/_/g, " ")}`}
+          Showing {total === 0 ? 0 : (page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, total)} of {total} signal{total !== 1 ? "s" : ""}
+          {selectedStrategy !== "all" && ` · ${selectedStrategy.replace(/_/g, " ")}`}
           {selectedAction !== null && ` · ${selectedAction} only`}
+          {dateFrom && ` · from ${dateFrom}`}
+          {dateTo && ` to ${dateTo}`}
         </p>
       )}
 
