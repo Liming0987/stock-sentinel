@@ -53,7 +53,7 @@ function MoSGauge({ mos, current, iv }: { mos: number; current: number; iv: numb
 
 // ── Scenario column ───────────────────────────────────────────────────────────
 
-function ScenarioCol({ label, s, current }: { label: string; s: DCFScenario | null | undefined; current: number }) {
+function ScenarioCol({ label, s }: { label: string; s: DCFScenario | null | undefined; current: number }) {
   if (!s) return (
     <div className="flex flex-col items-center gap-1">
       <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">{label}</p>

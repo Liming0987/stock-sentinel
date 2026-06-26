@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { StockNewsItem } from "@/lib/hooks";
@@ -25,11 +26,13 @@ function NewsItem({ item }: { item: StockNewsItem }) {
       className="group flex gap-3 rounded-lg p-3 transition-colors hover:bg-accent/40"
     >
       {item.image_url && (
-        <img
+        <Image
           src={item.image_url}
           alt=""
+          width={80}
+          height={56}
+          unoptimized
           className="h-14 w-20 shrink-0 rounded-md object-cover"
-          onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
         />
       )}
       <div className="min-w-0 flex-1">
