@@ -103,7 +103,7 @@ export default function VolumeAnalysisPage() {
             Back to Watchlist
           </Link>
           <span className="text-muted-foreground">/</span>
-          <span className="text-sm font-medium">{ticker} Volume Analysis</span>
+          <span className="text-sm font-medium">{ticker} Analysis</span>
         </div>
         <WatchlistSwitcher currentTicker={ticker} />
       </div>

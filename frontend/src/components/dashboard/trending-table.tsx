@@ -178,7 +178,7 @@ export function TrendingTable({ stocks, compact = false }: TrendingTableProps) {
                   >
                     <td className="py-3 pr-3 text-muted-foreground">{i + 1}</td>
                     <td className="py-3 pr-3">
-                      <Link href={`/watchlist/${stock.ticker}/volume`} className="group">
+                      <Link href={`/watchlist/${stock.ticker}/analysis`} className="group">
                         <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
                           {stock.ticker}
                         </span>

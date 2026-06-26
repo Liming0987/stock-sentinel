@@ -173,7 +173,7 @@ export default function DashboardPage() {
             <p className="px-6 pb-6 text-[13px] text-muted-foreground">No stocks in watchlist yet.</p>
           ) : (
             watchlistData.stocks.slice(0, 5).map((w) => (
-              <Link key={w.ticker} href={`/watchlist/${w.ticker}/volume`}
+              <Link key={w.ticker} href={`/watchlist/${w.ticker}/analysis`}
                 className="grid items-center gap-3 border-t px-6 py-[13px] hover:bg-accent/30 transition-colors cursor-pointer"
                 style={{ gridTemplateColumns: "1.4fr 1fr 1fr 1.1fr" }}>
                 <div className="flex items-center gap-2.5 min-w-0">

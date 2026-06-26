@@ -16,7 +16,7 @@ export function WatchlistSwitcher({ currentTicker }: WatchlistSwitcherProps) {
   return (
     <select
       value={currentTicker}
-      onChange={(e) => router.push(`/watchlist/${e.target.value}/volume`)}
+      onChange={(e) => router.push(`/watchlist/${e.target.value}/analysis`)}
       className="rounded-md border border-input bg-background px-3 py-1.5 text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-ring"
     >
       {data.stocks.map((s) => (

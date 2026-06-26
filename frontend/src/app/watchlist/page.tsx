@@ -48,7 +48,7 @@ function WatchlistCard({
         </div>
       )}
 
-      <Link href={`/watchlist/${stock.ticker}/volume`} className="block">
+      <Link href={`/watchlist/${stock.ticker}/analysis`} className="block">
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 group-hover:text-primary transition-colors">
             {stock.ticker}
