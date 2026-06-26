@@ -841,6 +841,27 @@ class VolumeService:
         wyckoff = self._compute_wyckoff(df, vol_ratio, avg_vol_30, gap_down, price_change_pct)
         short_interest = self._price_service.get_short_interest(ticker)
 
+        # Annotate each history row with Wyckoff events detected on that date
+        _wy_events: dict = {}
+        _acc = wyckoff["accumulation"]
+        _dist = wyckoff["distribution"]
+        for _label, _ev in [
+            ("SC",   _acc["selling_climax"]),
+            ("AR",   _acc["automatic_rally"]),
+            ("ST",   _acc["secondary_test"]),
+            ("SOS",  _acc["sign_of_strength"]),
+            ("LPS",  _acc["last_point_support"]),
+            ("BC",   _dist["buying_climax"]),
+            ("AR2",  _dist["automatic_reaction"]),
+            ("UT",   _dist["upthrust"]),
+            ("SOW",  _dist["sign_of_weakness"]),
+            ("LPSY", _dist["last_point_supply"]),
+        ]:
+            if _ev.get("detected") and _ev.get("date"):
+                _wy_events.setdefault(_ev["date"], []).append(_label)
+        for row in history:
+            row["wyckoff_events"] = _wy_events.get(row["date"], [])
+
         return {
             "ticker": ticker,
             "period": period,

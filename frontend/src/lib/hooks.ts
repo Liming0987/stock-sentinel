@@ -503,6 +503,7 @@ export interface VolumeHistoryPoint {
   price_change_pct: number | null;
   interpretation: string;
   is_spike: boolean;
+  wyckoff_events: string[];
 }
 
 export interface VolumeEvent {
