@@ -705,6 +705,60 @@ export function useNotifications() {
   return { notifications, unreadCount, markAllRead };
 }
 
+export interface DCFScenario {
+  growth_rate: number;
+  discount_rate: number;
+  intrinsic_value: number;
+  upside_pct: number | null;
+}
+
+export interface DCFSensitivityCell {
+  discount_rate: number;
+  terminal_growth: number;
+  intrinsic_value: number | null;
+}
+
+export interface DCFProjectedCashflow {
+  year: number | string;
+  fcf: number;
+  pv: number;
+}
+
+export interface DCFResult {
+  feasible: boolean;
+  reason?: string;
+  ticker: string;
+  current_price?: number;
+  base_intrinsic_value?: number | null;
+  margin_of_safety_pct?: number | null;
+  inputs?: {
+    fcf_ttm: number;
+    net_debt: number;
+    shares_outstanding: number;
+    growth_rate: number;
+    growth_rate_source: string;
+    discount_rate: number;
+    discount_rate_note: string;
+    terminal_growth_rate: number;
+    forecast_years: number;
+  };
+  scenarios?: {
+    bear: DCFScenario | null;
+    base: DCFScenario | null;
+    bull: DCFScenario | null;
+  };
+  sensitivity?: DCFSensitivityCell[];
+  projected_cashflows?: DCFProjectedCashflow[];
+}
+
+export function useStockDCF(ticker: string) {
+  const fetcher = useCallback(
+    () => api.watchlist.dcf(ticker) as Promise<DCFResult>,
+    [ticker]
+  );
+  return useApi(fetcher, { feasible: false, ticker } as DCFResult);
+}
+
 export function useLivePrice(ticker: string) {
   const [price, setPrice] = useState<number | null>(null);
   const [marketOpen, setMarketOpen] = useState(false);

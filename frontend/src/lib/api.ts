@@ -44,6 +44,8 @@ export const api = {
       fetchApi(`/api/watchlist/${ticker}/volume-analysis?period=${period}`),
     news: (ticker: string, limit = 20) =>
       fetchApi(`/api/watchlist/${ticker}/news?limit=${limit}`),
+    dcf: (ticker: string) =>
+      fetchApi(`/api/watchlist/${ticker}/dcf`),
   },
   notifications: {
     list: (limit = 30) => fetchApi(`/api/notifications?limit=${limit}`),

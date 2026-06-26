@@ -14,12 +14,14 @@ from app.services.volume_service import VolumeService
 from app.services.price_service import PriceService
 from app.services.fundamentals_service import FundamentalsService
 from app.services.news_service import NewsService
+from app.services.dcf_service import DCFService
 
 router = APIRouter()
 volume_service = VolumeService()
 price_service = PriceService()
 _fundamentals_service = FundamentalsService()
 _news_service = NewsService()
+_dcf_service = DCFService()
 
 _sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
 _sync_engine = create_engine(_sync_url, pool_size=2, max_overflow=2)
@@ -92,6 +94,11 @@ async def get_volume_analysis(
     except Exception:
         pass
     return volume_service.analyze(ticker, period, edgar_quarters=edgar_quarters)
+
+
+@router.get("/{ticker}/dcf")
+async def get_dcf(ticker: str):
+    return _dcf_service.analyze(ticker.upper())
 
 
 @router.get("/{ticker}/news")

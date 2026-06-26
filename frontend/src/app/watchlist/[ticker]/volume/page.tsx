@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useVolumeAnalysis, useFundamentals, useStockNews, useLivePrice } from "@/lib/hooks";
+import { useVolumeAnalysis, useFundamentals, useStockNews, useLivePrice, useStockDCF } from "@/lib/hooks";
 import { VolumeHeader } from "@/components/volume/volume-header";
 import { PriceVolumeChart } from "@/components/volume/price-volume-chart";
 import { OBVChart } from "@/components/volume/obv-chart";
@@ -17,6 +17,7 @@ import { FundamentalsCard } from "@/components/volume/fundamentals-card";
 import { VCPCard } from "@/components/volume/vcp-card";
 import { NewsCard } from "@/components/volume/news-card";
 import { ShortInterestCard } from "@/components/volume/short-interest-card";
+import { DCFCard } from "@/components/volume/dcf-card";
 
 function SectionSkeleton({ title }: { title: string }) {
   return (
@@ -39,6 +40,7 @@ export default function VolumeAnalysisPage() {
   const { data: fundamentals, loading: fundLoading } = useFundamentals(ticker);
   const { data: newsData, loading: newsLoading } = useStockNews(ticker);
   const { price: livePrice, marketOpen } = useLivePrice(ticker);
+  const { data: dcfData, loading: dcfLoading } = useStockDCF(ticker);
 
   return (
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-6">
@@ -90,6 +92,7 @@ export default function VolumeAnalysisPage() {
             swingEntry={data.swing_entry}
             longtermEntry={data.longterm_entry}
           />
+          <DCFCard data={dcfData} loading={dcfLoading} />
           <FundamentalsCard data={fundamentals} loading={fundLoading} />
           <NewsCard news={newsData.news} loading={newsLoading} ticker={ticker} />
           <Card>
