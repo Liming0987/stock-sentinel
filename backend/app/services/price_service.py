@@ -164,11 +164,12 @@ class PriceService:
         """
         Return short interest metrics + size qualification for a ticker.
 
-        Qualification rules (show = True when either is met):
-          - market_cap < $2B  (small-cap or below)
-          - float_shares < 50M shares (tight float)
+        Qualification rules (show = True when any is met):
+          - market_cap < $2B           (small-cap or below)
+          - float_shares < 50M         (tight float)
+          - pct_float_shorted >= 10%   (high short interest — squeeze risk regardless of size)
 
-        squeeze_candidate = both conditions met simultaneously.
+        squeeze_candidate = small_cap AND tight_float.
         """
         _EMPTY = {
             "show": False,
@@ -202,13 +203,18 @@ class PriceService:
 
             small_cap = bool(market_cap and market_cap < 2e9)
             tight_float = bool(float_shares and float_shares < 50e6)
-            show = small_cap or tight_float
+            high_short = bool(pct_shorted and pct_shorted >= 0.10)
+            show = small_cap or tight_float or high_short
             squeeze = small_cap and tight_float
 
             if squeeze:
                 note = "Small-cap + tight float — short squeeze dynamics can be violent"
             elif tight_float:
                 note = "Tight float (<50M shares) — squeeze-susceptible despite larger market cap"
+            elif small_cap and high_short:
+                note = f"Small-cap with {pct_shorted*100:.1f}% float shorted — elevated squeeze risk"
+            elif high_short:
+                note = f"{pct_shorted*100:.1f}% of float is short — significant short interest"
             elif small_cap:
                 note = "Small-cap — elevated volatility on volume spikes"
             else:
