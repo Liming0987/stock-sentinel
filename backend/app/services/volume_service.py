@@ -839,6 +839,7 @@ class VolumeService:
         atr_14 = float(atr_series.iloc[-1]) if not atr_series.empty and not np.isnan(atr_series.iloc[-1]) else 1.0
 
         wyckoff = self._compute_wyckoff(df, vol_ratio, avg_vol_30, gap_down, price_change_pct)
+        short_interest = self._price_service.get_short_interest(ticker)
 
         return {
             "ticker": ticker,
@@ -854,6 +855,7 @@ class VolumeService:
             "pnf": self._compute_pnf(df, atr_14),
             "swing_entry": self._compute_swing_entry(wyckoff, current_price, atr_14),
             "longterm_entry": self._compute_longterm_entry(df, wyckoff, edgar_quarters),
+            "short_interest": short_interest,
             "vcp": (current_vcp := detect_vcp(df)),
             "vcp_history": _filter_vcp_history(detect_vcp_history(df), current_vcp),
         }

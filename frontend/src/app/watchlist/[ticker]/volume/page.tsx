@@ -16,6 +16,7 @@ import { TradeTargetsCard } from "@/components/volume/trade-targets-card";
 import { FundamentalsCard } from "@/components/volume/fundamentals-card";
 import { VCPCard } from "@/components/volume/vcp-card";
 import { NewsCard } from "@/components/volume/news-card";
+import { ShortInterestCard } from "@/components/volume/short-interest-card";
 
 function SectionSkeleton({ title }: { title: string }) {
   return (
@@ -78,6 +79,9 @@ export default function VolumeAnalysisPage() {
           <OBVChart data={data.history} />
           {data.vcp && <VCPCard vcp={data.vcp} />}
           <ReversalChecklist wyckoff={data.wyckoff} />
+          {data.short_interest?.show && (
+            <ShortInterestCard data={data.short_interest} ticker={ticker} />
+          )}
           <TradeTargetsCard
             pnf={data.pnf}
             swingEntry={data.swing_entry}

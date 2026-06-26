@@ -613,6 +613,20 @@ export interface VCPHistoricalSetup {
   breakout_date: string | null;
 }
 
+export interface ShortInterestData {
+  show: boolean;
+  market_cap: number | null;
+  market_cap_category: string | null;
+  float_shares: number | null;
+  shares_outstanding: number | null;
+  pct_float_shorted: number | null;
+  days_to_cover: number | null;
+  tight_float: boolean;
+  small_cap: boolean;
+  squeeze_candidate: boolean;
+  note: string | null;
+}
+
 export interface VolumeAnalysisResponse {
   ticker: string;
   period: string;
@@ -627,6 +641,7 @@ export interface VolumeAnalysisResponse {
   pnf: PnFAnalysis;
   swing_entry: SwingEntry;
   longterm_entry: LongtermEntry;
+  short_interest: ShortInterestData;
   vcp: VCPAnalysis;
   vcp_history: VCPHistoricalSetup[];
 }

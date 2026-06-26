@@ -160,6 +160,76 @@ class PriceService:
             print(f"Error fetching info for {ticker}: {e}")
             return {}
 
+    def get_short_interest(self, ticker: str) -> Dict:
+        """
+        Return short interest metrics + size qualification for a ticker.
+
+        Qualification rules (show = True when either is met):
+          - market_cap < $2B  (small-cap or below)
+          - float_shares < 50M shares (tight float)
+
+        squeeze_candidate = both conditions met simultaneously.
+        """
+        _EMPTY = {
+            "show": False,
+            "market_cap": None,
+            "market_cap_category": None,
+            "float_shares": None,
+            "shares_outstanding": None,
+            "pct_float_shorted": None,
+            "days_to_cover": None,
+            "tight_float": False,
+            "small_cap": False,
+            "squeeze_candidate": False,
+            "note": None,
+        }
+        try:
+            info = yf.Ticker(ticker).info
+            market_cap = info.get("marketCap")
+            float_shares = info.get("floatShares")
+            shares_out = info.get("sharesOutstanding") or info.get("impliedSharesOutstanding")
+            pct_shorted = info.get("shortPercentOfFloat")
+            days_to_cover = info.get("shortRatio")
+
+            def _cap_label(mc):
+                if mc is None: return None
+                if mc >= 200e9: return "Mega-cap"
+                if mc >= 10e9:  return "Large-cap"
+                if mc >= 2e9:   return "Mid-cap"
+                if mc >= 300e6: return "Small-cap"
+                if mc >= 50e6:  return "Micro-cap"
+                return "Nano-cap"
+
+            small_cap = bool(market_cap and market_cap < 2e9)
+            tight_float = bool(float_shares and float_shares < 50e6)
+            show = small_cap or tight_float
+            squeeze = small_cap and tight_float
+
+            if squeeze:
+                note = "Small-cap + tight float — short squeeze dynamics can be violent"
+            elif tight_float:
+                note = "Tight float (<50M shares) — squeeze-susceptible despite larger market cap"
+            elif small_cap:
+                note = "Small-cap — elevated volatility on volume spikes"
+            else:
+                note = None
+
+            return {
+                "show": show,
+                "market_cap": market_cap,
+                "market_cap_category": _cap_label(market_cap),
+                "float_shares": float_shares,
+                "shares_outstanding": shares_out,
+                "pct_float_shorted": pct_shorted,
+                "days_to_cover": days_to_cover,
+                "tight_float": tight_float,
+                "small_cap": small_cap,
+                "squeeze_candidate": squeeze,
+                "note": note,
+            }
+        except Exception:
+            return _EMPTY
+
     def update_all(self) -> int:
         """Fetch latest prices for every Stock row and update last_price + updated_at.
 
