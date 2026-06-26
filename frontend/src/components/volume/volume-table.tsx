@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronUp, ChevronDown, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { VolumeHistoryPoint } from "@/lib/hooks";
 
@@ -90,6 +90,69 @@ function rowBg(row: VolumeHistoryPoint): string {
   return "";
 }
 
+// ── Glyph legend ─────────────────────────────────────────────────────────────
+
+const GLYPH_LEGEND = [
+  {
+    glyph: "▲",
+    color: "text-bullish",
+    name: "Bullish bar",
+    desc: "Close is above open — buyers controlled the session.",
+  },
+  {
+    glyph: "▼",
+    color: "text-bearish",
+    name: "Bearish bar",
+    desc: "Close is below open — sellers controlled the session.",
+  },
+  {
+    glyph: "—",
+    color: "text-muted-foreground",
+    name: "Doji",
+    desc: "Open ≈ close (body < 10% of range) — indecision between buyers and sellers. Often signals a potential reversal.",
+  },
+  {
+    glyph: "🔨",
+    color: "",
+    name: "Hammer",
+    desc: "Small body near the top, long lower wick (wick > 2× body). Sellers pushed price down but buyers recovered it — bullish reversal signal after a downtrend. In Wyckoff this is often the Selling Climax bar.",
+  },
+  {
+    glyph: "⭐",
+    color: "",
+    name: "Shooting Star",
+    desc: "Small body near the bottom, long upper wick (wick > 2× body). Buyers pushed price up but sellers rejected it — bearish reversal signal after an uptrend. In Wyckoff this is often the Buying Climax or Upthrust bar.",
+  },
+] as const;
+
+function GlyphLegend() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="flex items-center gap-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+      >
+        <Info className="h-3 w-3" />
+        {open ? "Hide candle legend" : "What do the candle glyphs mean?"}
+      </button>
+      {open && (
+        <div className="mt-2 grid gap-2 rounded-lg border bg-muted/30 p-3 sm:grid-cols-2 lg:grid-cols-3">
+          {GLYPH_LEGEND.map(({ glyph, color, name, desc }) => (
+            <div key={name} className="flex gap-2.5">
+              <span className={`text-base shrink-0 w-5 text-center leading-snug ${color}`}>{glyph}</span>
+              <div>
+                <p className="text-xs font-semibold">{name}</p>
+                <p className="text-[11px] text-muted-foreground leading-snug">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
 
 interface VolumeTableProps {
@@ -170,6 +233,8 @@ export function VolumeTable({ data }: VolumeTableProps) {
           ))}
         </div>
       </div>
+
+      <GlyphLegend />
 
       <div className="overflow-x-auto rounded-lg border">
         <table className="w-full text-sm">
