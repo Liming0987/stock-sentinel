@@ -198,9 +198,23 @@ export function DCFCard({ data, loading }: Props) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-base">DCF Valuation</CardTitle>
+        <div className="flex items-start justify-between gap-2">
+          <CardTitle className="text-base">DCF Valuation</CardTitle>
+          {data.inputs && (
+            <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${
+              data.inputs.growth_outlook === "forward"
+                ? "bg-bullish/15 text-bullish border border-bullish/30"
+                : "bg-amber-500/15 text-amber-400 border border-amber-500/30"
+            }`}>
+              {data.inputs.growth_outlook === "forward" ? "▲ Forward-looking" : "◀ Historical"}
+            </span>
+          )}
+        </div>
         <p className="text-[11px] text-muted-foreground">
           10-year FCF projection · Gordon Growth terminal value · CAPM discount rate
+          {data.inputs?.beta_multiplier && data.inputs.beta_multiplier > 1 && (
+            <> · {data.inputs.beta_multiplier}× beta ({data.inputs.sector})</>
+          )}
         </p>
       </CardHeader>
       <CardContent className="space-y-5">
@@ -244,8 +258,28 @@ export function DCFCard({ data, loading }: Props) {
                 <div><p className="text-muted-foreground">TTM Free Cash Flow</p><p className="font-mono font-medium">{fmtB(inputs.fcf_ttm)}</p></div>
                 <div><p className="text-muted-foreground">Net Debt</p><p className="font-mono font-medium">{fmtB(inputs.net_debt)}</p></div>
                 <div><p className="text-muted-foreground">Shares Outstanding</p><p className="font-mono font-medium">{fmtShares(inputs.shares_outstanding)}</p></div>
-                <div><p className="text-muted-foreground">Base Growth Rate</p><p className="font-mono font-medium">{fmtPct(inputs.growth_rate)}<span className="ml-1 text-[10px] text-muted-foreground">({inputs.growth_rate_source})</span></p></div>
-                <div><p className="text-muted-foreground">Discount Rate</p><p className="font-mono font-medium">{fmtPct(inputs.discount_rate)}<span className="ml-1 text-[10px] text-muted-foreground">({inputs.discount_rate_note})</span></p></div>
+                <div>
+                  <p className="text-muted-foreground">Base Growth Rate</p>
+                  <p className="font-mono font-medium">{fmtPct(inputs.growth_rate)}</p>
+                  <p className="text-[10px] text-muted-foreground">{inputs.growth_rate_source}</p>
+                  <span className={`inline-block mt-0.5 rounded px-1 text-[9px] font-semibold ${
+                    inputs.growth_outlook === "forward"
+                      ? "bg-bullish/15 text-bullish"
+                      : "bg-amber-500/15 text-amber-400"
+                  }`}>
+                    {inputs.growth_outlook === "forward" ? "▲ Forward-looking" : "◀ Historical"}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-muted-foreground">Discount Rate</p>
+                  <p className="font-mono font-medium">{fmtPct(inputs.discount_rate)}</p>
+                  <p className="text-[10px] text-muted-foreground">{inputs.discount_rate_note}</p>
+                  {inputs.beta_multiplier > 1 && (
+                    <p className="text-[10px] text-amber-400">
+                      Raw β {inputs.beta_raw.toFixed(2)} × {inputs.beta_multiplier}× multiplier
+                    </p>
+                  )}
+                </div>
                 <div><p className="text-muted-foreground">Terminal Growth</p><p className="font-mono font-medium">{fmtPct(inputs.terminal_growth_rate)}</p></div>
               </div>
             )}

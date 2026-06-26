@@ -737,8 +737,12 @@ export interface DCFResult {
     shares_outstanding: number;
     growth_rate: number;
     growth_rate_source: string;
+    growth_outlook: "forward" | "historical";
     discount_rate: number;
     discount_rate_note: string;
+    beta_raw: number;
+    beta_multiplier: number;
+    sector: string;
     terminal_growth_rate: number;
     forecast_years: number;
   };
