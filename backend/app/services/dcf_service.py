@@ -61,6 +61,34 @@ class DCFService:
 
             net_debt = total_debt - total_cash
 
+            # ── Capex-cycle normalization ─────────────────────────────────────
+            # When FCF is severely compressed by heavy investment spending
+            # (FCF < 30% of OCF), TTM FCF understates earning power. Use the
+            # average of recent positive annual FCF years from the cashflow
+            # statement instead, and flag the adjustment clearly.
+            ocf_ttm: float = float(info.get("operatingCashflow") or 0)
+            fcf_normalized = False
+            fcf_normalization_note: Optional[str] = None
+            if ocf_ttm > 0 and fcf_ttm < ocf_ttm * 0.30:
+                try:
+                    cf = t.cashflow
+                    if cf is not None and not cf.empty and "Free Cash Flow" in cf.index:
+                        hist = cf.loc["Free Cash Flow"].dropna().sort_index()
+                        positive_hist = [float(v) for v in hist.values if v > 0]
+                        if len(positive_hist) >= 2:
+                            norm_fcf = sum(positive_hist) / len(positive_hist)
+                            if norm_fcf > fcf_ttm * 2:
+                                fcf_normalization_note = (
+                                    f"TTM FCF (${fcf_ttm/1e9:.1f}B) is severely compressed by "
+                                    f"heavy capex (${(ocf_ttm - fcf_ttm)/1e9:.1f}B investment "
+                                    f"spending). Using {len(positive_hist)}-year average FCF "
+                                    f"(${norm_fcf/1e9:.1f}B) as a normalized base."
+                                )
+                                fcf_ttm = norm_fcf
+                                fcf_normalized = True
+                except Exception:
+                    pass
+
             # ── Beta multiplier (sector-specific) ────────────────────────────
             applies_multiplier = sector in BETA_MULTIPLIER_SECTORS
             beta_multiplier = BETA_MULTIPLIER if applies_multiplier else 1.0
@@ -78,6 +106,16 @@ class DCFService:
 
             # ── Growth rate — forward first, historical fallback ─────────────
             growth_rate, growth_source, growth_outlook = self._estimate_growth(t, info)
+
+            # ── OCF-based estimate (when FCF is capex-distorted) ─────────────
+            ocf_intrinsic_value: Optional[float] = None
+            if fcf_normalized and ocf_ttm > 0:
+                ocf_iv = self._dcf(
+                    ocf_ttm, growth_rate, discount_rate,
+                    TERMINAL_GROWTH, FORECAST_YEARS, net_debt, shares
+                )
+                if ocf_iv and ocf_iv > 0:
+                    ocf_intrinsic_value = round(ocf_iv, 2)
 
             # ── Build scenarios ──────────────────────────────────────────────
             scenarios = {}
@@ -130,8 +168,12 @@ class DCFService:
                 "current_price": round(current_price, 2),
                 "base_intrinsic_value": round(base_iv, 2) if base_iv else None,
                 "margin_of_safety_pct": round(margin_of_safety * 100, 1) if margin_of_safety is not None else None,
+                "ocf_intrinsic_value": ocf_intrinsic_value,
                 "inputs": {
                     "fcf_ttm": round(fcf_ttm),
+                    "fcf_normalized": fcf_normalized,
+                    "fcf_normalization_note": fcf_normalization_note,
+                    "ocf_ttm": round(ocf_ttm) if ocf_ttm else None,
                     "net_debt": round(net_debt),
                     "shares_outstanding": round(shares),
                     "growth_rate": round(growth_rate, 4),

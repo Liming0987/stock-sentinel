@@ -193,7 +193,7 @@ export function DCFCard({ data, loading }: Props) {
     );
   }
 
-  const { current_price, base_intrinsic_value, margin_of_safety_pct, inputs, scenarios, sensitivity, projected_cashflows } = data;
+  const { current_price, base_intrinsic_value, margin_of_safety_pct, ocf_intrinsic_value, inputs, scenarios, sensitivity, projected_cashflows } = data;
 
   return (
     <Card>
@@ -222,6 +222,34 @@ export function DCFCard({ data, loading }: Props) {
         {/* Gauge */}
         {current_price != null && base_intrinsic_value != null && margin_of_safety_pct != null && (
           <MoSGauge mos={margin_of_safety_pct} current={current_price} iv={base_intrinsic_value} />
+        )}
+
+        {/* Capex-cycle distortion warning + OCF alternative */}
+        {inputs?.fcf_normalized && (
+          <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 space-y-2">
+            <p className="text-xs font-semibold text-amber-400">⚠ FCF distorted by heavy capex cycle</p>
+            <p className="text-[11px] text-muted-foreground leading-snug">
+              {inputs.fcf_normalization_note}
+            </p>
+            {ocf_intrinsic_value != null && current_price != null && (
+              <div className="flex items-center gap-3 pt-1 border-t border-amber-500/20">
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wide font-semibold">
+                    OCF-based estimate
+                  </p>
+                  <p className="text-[10px] text-muted-foreground">
+                    Assumes all capex generates returns (optimistic upper bound)
+                  </p>
+                </div>
+                <div className="ml-auto text-right">
+                  <p className="text-base font-bold font-mono">${ocf_intrinsic_value.toFixed(2)}</p>
+                  <p className={`text-xs font-semibold ${ocf_intrinsic_value >= current_price ? "text-bullish" : "text-bearish"}`}>
+                    {ocf_intrinsic_value >= current_price ? "+" : ""}{(((ocf_intrinsic_value - current_price) / current_price) * 100).toFixed(1)}%
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
         )}
 
         {/* Three scenarios */}

@@ -731,8 +731,12 @@ export interface DCFResult {
   current_price?: number;
   base_intrinsic_value?: number | null;
   margin_of_safety_pct?: number | null;
+  ocf_intrinsic_value?: number | null;
   inputs?: {
     fcf_ttm: number;
+    fcf_normalized?: boolean;
+    fcf_normalization_note?: string | null;
+    ocf_ttm?: number | null;
     net_debt: number;
     shares_outstanding: number;
     growth_rate: number;
