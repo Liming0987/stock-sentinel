@@ -33,9 +33,11 @@ export const api = {
   watchlist: {
     list: () => fetchApi("/api/watchlist"),
     add: (ticker: string) =>
-      fetch(`${API_BASE}/api/watchlist/${ticker}`, { method: "POST" }),
+      fetch(`${API_BASE}/api/watchlist/${ticker}`, { method: "POST" })
+        .then(r => { if (!r.ok) throw new Error(`Failed to add ${ticker}`); return r.json(); }),
     remove: (ticker: string) =>
-      fetch(`${API_BASE}/api/watchlist/${ticker}`, { method: "DELETE" }),
+      fetch(`${API_BASE}/api/watchlist/${ticker}`, { method: "DELETE" })
+        .then(r => { if (!r.ok) throw new Error(`Failed to remove ${ticker}`); return r.json(); }),
     volumeAnalysis: (ticker: string, period = "90d") =>
       fetchApi(`/api/watchlist/${ticker}/volume-analysis?period=${period}`),
     news: (ticker: string, limit = 20) =>

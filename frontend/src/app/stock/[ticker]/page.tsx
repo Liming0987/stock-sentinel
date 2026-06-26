@@ -90,10 +90,12 @@ export default function StockDetailPage() {
   const { data: watchlistData, refetch: refetchWatchlist } = useWatchlist();
 
   const [watchlistLoading, setWatchlistLoading] = useState(false);
+  const [watchlistError, setWatchlistError] = useState<string | null>(null);
   const inWatchlist = watchlistData.stocks.some((s) => s.ticker === ticker);
 
   const handleWatchlistToggle = async () => {
     setWatchlistLoading(true);
+    setWatchlistError(null);
     try {
       if (inWatchlist) {
         await api.watchlist.remove(ticker);
@@ -101,8 +103,8 @@ export default function StockDetailPage() {
         await api.watchlist.add(ticker);
       }
       refetchWatchlist();
-    } catch {
-      // silently ignore — the button will revert on next refetch
+    } catch (e) {
+      setWatchlistError(e instanceof Error ? e.message : "Watchlist update failed");
     } finally {
       setWatchlistLoading(false);
     }
@@ -138,7 +140,8 @@ export default function StockDetailPage() {
             </span>
           </div>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col items-end gap-1">
+          <div className="flex gap-2">
           <Button
             variant={inWatchlist ? "default" : "outline"}
             size="sm"
@@ -148,7 +151,9 @@ export default function StockDetailPage() {
             {inWatchlist
               ? <StarOff className="mr-1 h-4 w-4 sm:mr-2" />
               : <Star className="mr-1 h-4 w-4 sm:mr-2" />}
-            <span className="hidden sm:inline">{inWatchlist ? "Remove" : "Watchlist"}</span>
+            <span className="hidden sm:inline">
+              {watchlistLoading ? "…" : inWatchlist ? "Remove" : "Watchlist"}
+            </span>
           </Button>
           <Button variant="outline" size="sm" asChild>
             <a
@@ -160,6 +165,10 @@ export default function StockDetailPage() {
               <span className="hidden sm:inline">Yahoo Finance</span>
             </a>
           </Button>
+          </div>
+          {watchlistError && (
+            <p className="text-[11px] text-bearish">{watchlistError}</p>
+          )}
         </div>
       </div>
 
