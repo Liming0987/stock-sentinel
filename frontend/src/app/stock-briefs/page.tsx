@@ -20,6 +20,17 @@ export interface StrategySignal {
   target: number | null;
 }
 
+export interface PriceAction {
+  open: number | null;
+  high: number | null;
+  low: number | null;
+  close: number | null;
+  volume: number | null;
+  vol_ratio: number | null;
+  vol_rank: string;           // e.g. "Highest in dataset", "Top-5 spike"
+  intraday_story: string;     // narrative of intraday price action
+}
+
 export interface StockAnalysis {
   ticker: string;
   company_name: string;
@@ -30,6 +41,10 @@ export interface StockAnalysis {
   conviction: number;
   one_liner: string;
   watchlist_priority: "high" | "medium" | "low";
+  // Optional richer fields populated by newer analysis runs
+  price_action?: PriceAction;
+  wyckoff_narrative?: string;   // multi-paragraph Wyckoff framework analysis
+  framework_analysis?: string;  // how this reads through all active frameworks
   news_catalyst: NewsCatalyst;
   technical: {
     trend: string;
