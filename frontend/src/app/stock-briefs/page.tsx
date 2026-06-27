@@ -1,15 +1,7 @@
 import { readdir } from "fs/promises";
 import path from "path";
-import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 import { Card, CardContent } from "@/components/ui/card";
-
-const STANCE_COLOR: Record<string, string> = {
-  accumulate: "text-bullish",
-  watch: "text-yellow-500",
-  hold: "text-primary",
-  avoid: "text-bearish",
-};
 
 async function getLatestBriefs() {
   const briefsDir = path.join(process.cwd(), "public", "morning-briefs");
