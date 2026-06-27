@@ -1,0 +1,72 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVIDIA Corporation",
+  "report_date": "2026-06-27",
+  "price": 192.53,
+  "change_pct": -1.64,
+  "overall_stance": "watch",
+  "conviction": 0.65,
+  "one_liner": "NVDA pulling back to RSI 34 support zone with bearish MACD — sitting at mid-range between $175 support and $230 resistance; DCF base case of $334 offers massive upside but near-term momentum has stalled.",
+  "news_catalyst": {
+    "headline": "NVIDIA consolidating after AI infrastructure boom; no major new catalysts today",
+    "summary": "NVDA is down 1.6% in quiet trading with RSI at 34 approaching oversold territory. No major company-specific news today — the stock is digesting gains from recent AI infrastructure enthusiasm. The stock is in neutral Wyckoff consolidation between $175 support and $230 resistance. A hold signal is active with entry range $189-$195 and target $213.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 175.50,
+    "key_resistance": 229.81,
+    "rsi": 34.47,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.05,
+    "volume_signal": "normal",
+    "summary": "NVDA is in neutral Wyckoff consolidation with no accumulation or distribution signals detected. RSI at 34.5 is approaching oversold territory which could provide a bounce level. MACD is in a bearish crossover on below-average volume. Watch for a hold or reversal at the $175-180 support zone — a break below would be bearish; a reclaim of $200 would re-open the path to resistance at $230."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 333.93,
+    "upside_pct": 73.4,
+    "bear_value": 192.02,
+    "bull_value": 518.73,
+    "discount_rate": 0.15,
+    "growth_rate": 0.50,
+    "summary": "DCF base case of $334 implies 73% upside from current price at the maximum 15% discount rate with 50% growth assumption — compelling long-term value. Bear case at $192 is essentially the current price, limiting downside."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.82,
+    "key_strengths": ["Dominant AI accelerator market share", "50% projected FCF growth", "Best-in-class gross margins ~75%"],
+    "key_concerns": ["High leverage (D/E > 3)", "Valuation depends on sustained AI capex cycle"],
+    "summary": "Grade A fundamentals with dominant market position in AI accelerators. High leverage is the only flag — offset by exceptional cash generation. Long-term thesis intact; current pullback is a cooling period, not a breakdown."
+  },
+  "sentiment": {
+    "score": 0.029,
+    "label": "Neutral",
+    "mentions_24h": 4,
+    "trend": "flat"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "RSI Mean Reversion",
+      "action": "buy",
+      "confidence": 0.43,
+      "entry_low": 189.16,
+      "entry_high": 194.55,
+      "stop_loss": 179.07,
+      "target": 212.72
+    }
+  ],
+  "risks": [
+    "Break below $175 support would signal a deeper correction toward $150",
+    "Bearish MACD crossover with no accumulation Wyckoff signals — no structural floor confirmed",
+    "AI capex cycle slowdown or export restriction escalation could compress multiples"
+  ],
+  "watchlist_priority": "medium"
+}

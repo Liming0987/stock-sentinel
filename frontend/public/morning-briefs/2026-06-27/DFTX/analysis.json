@@ -1,0 +1,73 @@
+{
+  "ticker": "DFTX",
+  "company_name": "Definium Therapeutics, Inc.",
+  "report_date": "2026-06-27",
+  "price": 44.95,
+  "change_pct": 0.36,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "DFTX consolidating after a $700M upsized public offering at $34 — RSI at 90.7 is dangerously overbought with a Selling Climax signal on 3.33x volume; Jones Trading raised target to $74 but the offering dilution needs to digest.",
+  "news_catalyst": {
+    "headline": "Definium Therapeutics Prices Upsized $700M Public Offering at $34; Jones Trading Raises Target to $74",
+    "summary": "DFTX priced a massive $700M upsized public offering at $34 per share (over 20M new shares) — significant dilution. Jones Trading maintained Buy and raised the price target to $74 (65% upside), suggesting analysts remain bullish on the psychedelics biotech pipeline. However, RSI at 90.8 is extremely overbought, and the Selling Climax signal on 3.33x volume suggests the post-offering squeeze is exhausting near-term buyers. The HOLD signal has entry $43-$46, stop $38, target $55.54.",
+    "source_url": "https://www.benzinga.com",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 19.94,
+    "key_resistance": 39.43,
+    "rsi": 90.77,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 3.33,
+    "volume_signal": "climactic",
+    "summary": "RSI at 90.8 is the most extreme overbought reading in the watchlist — a pullback is nearly certain in the near term. The Selling Climax signal on 3.33x volume with the stock at $44.95 (well above the $34 offering price) suggests early investors and institutions are distributing at a premium. Wyckoff Phase A-B with bullish bias is structurally positive, but RSI needs to cool to at least 60-65 before a new entry makes sense."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.52,
+    "key_strengths": ["Jones Trading Buy with $74 target — 65% upside", "Psychedelics drug pipeline with FDA potential"],
+    "key_concerns": ["Negative FCF — pre-commercial stage", "$700M dilutive offering creates near-term supply overhang"],
+    "summary": "Grade C fundamentals reflecting a pre-revenue biotech. The $700M offering provides runway but creates significant share dilution. Pipeline success is binary and speculative."
+  },
+  "sentiment": {
+    "score": 0.205,
+    "label": "Neutral",
+    "mentions_24h": 2,
+    "trend": "flat"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "Momentum",
+      "action": "buy",
+      "confidence": 0.40,
+      "entry_low": 43.19,
+      "entry_high": 46.01,
+      "stop_loss": 37.89,
+      "target": 55.54
+    }
+  ],
+  "risks": [
+    "RSI at 90.8 — extreme overbought; mean reversion to 60-65 RSI likely before continuation",
+    "$700M dilutive offering creates supply overhang as new shareholders look to take profits",
+    "Negative FCF — binary pipeline risk on clinical outcomes",
+    "Selling Climax signal on 3.33x volume suggests institutional distribution at current levels"
+  ],
+  "watchlist_priority": "medium"
+}

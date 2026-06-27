@@ -1,0 +1,73 @@
+{
+  "ticker": "AMZN",
+  "company_name": "Amazon.com, Inc.",
+  "report_date": "2026-06-27",
+  "price": 232.69,
+  "change_pct": 2.50,
+  "overall_stance": "watch",
+  "conviction": 0.58,
+  "one_liner": "AMZN bouncing 2.5% on massive 4.69x volume — a Selling Climax absorption signal — but DCF shows 76% downside to $56 fair value; the capex-cycle FCF distortion makes this a 'watch not trade' situation.",
+  "news_catalyst": {
+    "headline": "Amazon Showing Selling Climax Signal on 4.69x Volume — Absorption or Distribution?",
+    "summary": "AMZN is up 2.5% today on 4.69x average volume — as discussed earlier this week, this pattern (large volume, small price change) is a sign that sellers were met by aggressive buyers (absorption). A HOLD signal is active with entry $228-$235, stop $216, target $257. However, the DCF analysis shows a base intrinsic value of only $56 due to Amazon's massive capex program depressing near-term free cash flow — the same Amazon capex-cycle distortion the backend handles separately. The $56 DCF figure should be treated as distorted by AWS/AI infrastructure investment, not as the true fair value.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 209.56,
+    "key_resistance": 276.13,
+    "rsi": 35.25,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 4.69,
+    "volume_signal": "climactic",
+    "summary": "AMZN shows the exact absorption pattern discussed this week: 4.69x volume with only 2.5% price change — massive supply being absorbed by buyers at this level. RSI at 35.2 is approaching oversold territory. Bearish MACD persists. Watch for a secondary test of the recent low on lower volume — if the stock holds above $209 support on drying volume, the absorption thesis is confirmed and $257 target becomes viable."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 56.27,
+    "upside_pct": -75.8,
+    "bear_value": 28.16,
+    "bull_value": 97.02,
+    "discount_rate": 0.1244,
+    "growth_rate": 0.1745,
+    "summary": "DCF shows $56 base case — but this is heavily distorted by Amazon's capex-cycle FCF depression from massive AWS/AI infrastructure investment. This DCF figure is not representative of Amazon's true earnings power. Treat valuation as 'not meaningful at this time' rather than 76% downside."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.79,
+    "key_strengths": ["AWS #1 cloud provider with 30%+ market share", "Advertising revenue growing 20%+ annually", "Prime ecosystem creates structural revenue moat"],
+    "key_concerns": ["Massive capex distorts near-term FCF and DCF analysis", "Retail margin pressure from logistics investment"],
+    "summary": "Grade B fundamentals — the business is fundamentally sound but FCF-based analysis is distorted by the AI infrastructure buildout cycle. AWS and advertising together justify a much higher intrinsic value than the $56 DCF suggests."
+  },
+  "sentiment": {
+    "score": 0.058,
+    "label": "Neutral",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "Volume Absorption",
+      "action": "buy",
+      "confidence": 0.45,
+      "entry_low": 228.56,
+      "entry_high": 235.16,
+      "stop_loss": 216.19,
+      "target": 257.44
+    }
+  ],
+  "risks": [
+    "4.69x volume absorption signal is promising but needs secondary test to confirm",
+    "Bearish MACD — trend not reversed yet",
+    "DCF distorted by capex cycle — difficult to value precisely",
+    "If support at $209 breaks, next level is much lower"
+  ],
+  "watchlist_priority": "medium"
+}

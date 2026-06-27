@@ -1,0 +1,63 @@
+{
+  "ticker": "WEN",
+  "company_name": "The Wendy's Company",
+  "report_date": "2026-06-27",
+  "price": 7.80,
+  "change_pct": 6.41,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "WEN surging 6.4% on viral 'Save Wendy's' meme campaign with 3.7x volume spike triggering both a Selling Climax (SC) and Buying Climax (BC) signal — extreme distribution warning, treat as a sell-the-pop setup.",
+  "news_catalyst": {
+    "headline": "Wendy's Gains 6% Amid 'Save Wendy's' Meme Campaign: Low P/E and Huge Yield Could Make WEN Worth Saving",
+    "summary": "Wendy's is up 6.4% on 3.7x average volume driven by a viral social media 'Save Wendy's' meme campaign after the company closed hundreds of locations. The Wyckoff analysis is flashing a rare simultaneous Selling Climax (accumulation signal) AND Buying Climax (distribution signal) — massive volume with erratic price action is a sign of speculative excess, not institutional accumulation. The distribution phase shows BC + Automatic Reaction already triggered (Phase A-B). Motley Fool and 24/7 Wall St. note the low P/E and 10%+ dividend yield as genuine value, but the Wyckoff distribution pattern suggests selling into this meme pop.",
+    "source_url": "https://247wallst.com",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Distribution Phase A-B",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 6.39,
+    "key_resistance": 8.25,
+    "rsi": 60.18,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 3.71,
+    "volume_signal": "climactic",
+    "summary": "WEN triggered a Selling Climax AND Buying Climax signal simultaneously yesterday — climactic volume (3.7x avg) with both accumulation and distribution patterns detected. The Wyckoff bias is bearish (Distribution Phase A-B), meaning the spike is more likely a blow-off top than a genuine reversal. RSI at 60 and MACD bullish, but the volume pattern suggests the meme crowd bought the top. Support at $6.39; the stock may fade back toward that level once the meme momentum exhausts."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": ["High dividend yield (~10%)", "Low P/E relative to fast food peers"],
+    "key_concerns": ["Store closures signal structural demand problems", "Meme-driven volume is not fundamental buying"],
+    "summary": "The fundamental case (value + yield) is real but the meme catalyst is temporary. Institutional investors will likely sell into this retail-driven pop. Wait for the volume to dry up and the stock to consolidate near $6-7 before considering a fundamental long."
+  },
+  "sentiment": {
+    "score": 0.01,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Wyckoff Distribution Phase A-B — bearish structural bias despite today's pop",
+    "Meme-driven volume is speculative, not institutional — likely to reverse",
+    "Buying Climax detected on 2026-06-25 followed by Automatic Reaction — classic distribution sequence",
+    "Store closure trend signals fundamental business deterioration"
+  ],
+  "watchlist_priority": "medium"
+}

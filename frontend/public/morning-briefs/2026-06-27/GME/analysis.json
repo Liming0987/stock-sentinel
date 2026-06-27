@@ -1,0 +1,62 @@
+{
+  "ticker": "GME",
+  "company_name": "GameStop Corp.",
+  "report_date": "2026-06-27",
+  "price": 21.76,
+  "change_pct": 3.57,
+  "overall_stance": "watch",
+  "conviction": 0.45,
+  "one_liner": "GME up 3.6% with Wyckoff Accumulation A-B signals and Grade B fundamentals (unusual for a meme stock) — high Reddit mentions (34) but negative FCF; watch the $20.93 support.",
+  "news_catalyst": {
+    "headline": "GameStop Active on Reddit — Cash-Rich Balance Sheet Supports Floor",
+    "summary": "GME is up 3.6% today with 34 Reddit mentions — the highest social mention count in the watchlist after AAPL (49). GameStop now holds substantial cash from prior equity offerings, improving its Grade B fundamental score. However, the core retail gaming business generates negative FCF, making the fundamental case speculative. Wyckoff shows Accumulation Phase A-B (2/5 signals) with bullish bias. The meme stock dynamic makes this position sizing-sensitive.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 20.93,
+    "key_resistance": 25.75,
+    "rsi": 52.25,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 0.97,
+    "volume_signal": "normal",
+    "summary": "GME showing Accumulation A-B signals with RSI at 52 and support at $20.93 just $0.83 below current price. MACD is in a slight bearish crossover despite the bullish Wyckoff reading. Volume below average. The tight support ($20.93) limits downside risk if held — but upside to resistance at $25.75 is only 18%."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.73,
+    "key_strengths": ["Large cash balance from equity raises provides downside floor", "Debt-free balance sheet"],
+    "key_concerns": ["Negative FCF from declining core retail gaming business", "No clear reinvention strategy yet"],
+    "summary": "Grade B is misleading — it reflects the cash-heavy balance sheet, not business quality. The operating business is in structural decline. Watch for news of the cash being deployed (acquisition, buyback, investment) as the key catalyst."
+  },
+  "sentiment": {
+    "score": 0.114,
+    "label": "Neutral",
+    "mentions_24h": 34,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Meme stock dynamics — can reverse violently on no news",
+    "Negative FCF from core business — cash is being depleted",
+    "MACD bearish crossover despite Wyckoff accumulation signals",
+    "No clear capital allocation plan for cash reserve"
+  ],
+  "watchlist_priority": "low"
+}

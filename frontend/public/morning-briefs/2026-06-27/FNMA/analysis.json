@@ -1,0 +1,61 @@
+{
+  "ticker": "FNMA",
+  "company_name": "Federal National Mortgage Association",
+  "report_date": "2026-06-27",
+  "price": 6.88,
+  "change_pct": -5.49,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "FNMA down 5.5% with no grade, no DCF, and no clear catalyst — pure speculative conservatorship-exit play; the Wyckoff Accumulation A-B signals are real but binary political/regulatory risk dominates.",
+  "news_catalyst": {
+    "headline": "Fannie Mae Down 5.5% — No Specific News; Conservatorship Exit Timeline Uncertainty",
+    "summary": "FNMA is down 5.5% with no specific news catalyst. This is a pure speculative play on the potential exit from government conservatorship — a regulatory event that has been 'imminent' for years without materializing. The stock has no DCF (no conventional valuation applies) and no grade. Wyckoff shows Accumulation Phase A-B with 2/5 signals and bullish MACD, but the regulatory binary makes technical analysis of limited value.",
+    "source_url": "",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 6.04,
+    "key_resistance": 8.55,
+    "rsi": 51.39,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 0.89,
+    "volume_signal": "drying up",
+    "summary": "RSI neutral at 51, MACD bullish crossover, but volume drying up. Wyckoff shows Accumulation A-B. Technical setup is modestly positive but the binary regulatory catalyst makes this a speculation, not an investment. Support at $6.04 ($0.84 below) is close."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": ["If privatized, enormous mortgage guarantee franchise value unlocked"],
+    "key_concerns": ["Binary conservatorship exit risk — political not fundamental", "No conventional financial metrics applicable under current structure"],
+    "summary": "Not gradeable under conventional metrics. FNMA is a regulatory arbitrage play. Position sizing should reflect the binary nature of the outcome."
+  },
+  "sentiment": {
+    "score": -0.072,
+    "label": "Neutral",
+    "mentions_24h": 4,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Binary regulatory risk — conservatorship exit could be delayed indefinitely",
+    "Down 5.5% with no news — suggests forced selling or loss of confidence",
+    "No grade, no DCF — purely speculative"
+  ],
+  "watchlist_priority": "low"
+}

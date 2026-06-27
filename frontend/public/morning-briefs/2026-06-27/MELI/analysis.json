@@ -1,0 +1,62 @@
+{
+  "ticker": "MELI",
+  "company_name": "MercadoLibre, Inc.",
+  "report_date": "2026-06-27",
+  "price": 1675.10,
+  "change_pct": 3.45,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "MELI up 3.5% in neutral Wyckoff consolidation with bullish MACD — DCF not feasible (negative FCF) but Latin American e-commerce dominance makes it a high-conviction long-term hold near $1,538 support.",
+  "news_catalyst": {
+    "headline": "MercadoLibre Consolidating Near Highs — LatAm E-Commerce and Fintech Dominance Intact",
+    "summary": "MELI is up 3.5% today with no specific news catalyst — momentum driven by broader market recovery in growth stocks. No Wyckoff structural signals yet with neutral bias, but MACD in bullish crossover is positive. The stock is between $1,538 support and $1,887 resistance. DCF is not feasible due to negative FCF, but MELI's negative FCF reflects heavy reinvestment in MercadoPago (fintech) and logistics — similar to Amazon's early investment phase.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 1538.04,
+    "key_resistance": 1887.22,
+    "rsi": 53.93,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 0.91,
+    "volume_signal": "normal",
+    "summary": "MELI in neutral consolidation with RSI 54 and bullish MACD. Below-average volume (0.91x) suggests the bounce is not yet institutional. The stock needs to break above $1,887 resistance on elevated volume to signal a new leg up. Support at $1,538 — a 8% decline from current levels — is the key level to hold."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.55,
+    "key_strengths": ["Dominant LatAm e-commerce marketplace (60%+ market share in key markets)", "MercadoPago fintech growing at 40%+ annually", "Logistics network (MercadoEnvíos) creates infrastructure moat"],
+    "key_concerns": ["Negative FCF from heavy reinvestment phase", "Currency risk across BRL, ARS, MXN exposure"],
+    "summary": "Grade C on fundamentals reflects negative FCF masking a genuinely dominant business. MELI's investment phase is comparable to Amazon circa 2015 — high reinvestment, high growth, building lasting competitive advantages."
+  },
+  "sentiment": {
+    "score": 0.256,
+    "label": "Bullish",
+    "mentions_24h": 3,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Negative FCF — valuation requires growth-investor framework, not value metrics",
+    "LatAm currency exposure (BRL/ARS depreciation risk)",
+    "Neutral Wyckoff — no structural signal yet to confirm trend"
+  ],
+  "watchlist_priority": "medium"
+}

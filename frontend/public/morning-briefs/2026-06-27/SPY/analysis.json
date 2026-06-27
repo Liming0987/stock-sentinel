@@ -1,0 +1,61 @@
+{
+  "ticker": "SPY",
+  "company_name": "SPDR S&P 500 ETF Trust",
+  "report_date": "2026-06-27",
+  "price": 728.99,
+  "change_pct": -0.72,
+  "overall_stance": "watch",
+  "conviction": 0.50,
+  "one_liner": "SPY down 0.72% with RSI at 39 in bearish MACD territory — broad market in neutral-to-bearish consolidation; watch $653 support, no structural entry signal yet.",
+  "news_catalyst": {
+    "headline": "S&P 500 Market at Tipping Point — Rally Rotation Underway Per IBD",
+    "summary": "The broader S&P 500 (via SPY) is down 0.72% with RSI at 39.1 approaching oversold territory. IBD noted the market is 'at a tipping point' with a rally rotation into select sectors (healthcare, energy). The market is in Wyckoff neutral consolidation with bearish MACD — not a favorable macro environment for aggressive long exposure. SPY's $653 support is 10% below current levels — meaningful drawdown risk if economic data disappoints.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 653.71,
+    "key_resistance": 756.39,
+    "rsi": 39.12,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.24,
+    "volume_signal": "normal",
+    "summary": "SPY in neutral Wyckoff consolidation with no structural signals. RSI at 39 approaching oversold, bearish MACD persists. The broad market macro context is cautious — no clear accumulation phase. Use SPY as a market regime indicator: a reclaim of RSI>50 and MACD bullish crossover would signal a return to risk-on conditions across the watchlist."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.53,
+    "key_strengths": ["Diversified across 500 largest US companies", "Long-term positive expected return"],
+    "key_concerns": ["Concentration risk in top 10 holdings (Mag 7)", "Bearish technical regime at current reading"],
+    "summary": "SPY as a market regime indicator: Grade C reflects a mixed economic environment. The 'rally rotation' noted by IBD suggests selective opportunities in healthcare and energy, not broad market exposure."
+  },
+  "sentiment": {
+    "score": 0.020,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI 39 and bearish MACD — broad market in a weak technical regime",
+    "10% downside to $653 support if macro deteriorates",
+    "Bearish MACD crossover in place — no confirmation of trend reversal yet"
+  ],
+  "watchlist_priority": "medium"
+}

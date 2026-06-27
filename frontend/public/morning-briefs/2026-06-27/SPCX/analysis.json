@@ -1,0 +1,62 @@
+{
+  "ticker": "SPCX",
+  "company_name": "Space Exploration Technologies Corp. Class A",
+  "report_date": "2026-06-27",
+  "price": 153.23,
+  "change_pct": 0.15,
+  "overall_stance": "watch",
+  "conviction": 0.45,
+  "one_liner": "SPCX flat with no RSI or MACD data available — low-volume drift (buyers exhausted) in a neutral consolidation range; hold existing position but no new entry signal.",
+  "news_catalyst": {
+    "headline": "SpaceX Consolidating — No Major Catalysts Today",
+    "summary": "SPCX is essentially flat (+0.15%) on 0.62x below-average volume — classified as 'Low-volume drift, buyers exhausted.' No major SpaceX news today. The stock has been consolidating between $147 support and $220 resistance. Watch for a Starship launch or Starlink subscriber milestone announcement as potential catalysts.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 147.74,
+    "key_resistance": 220.31,
+    "rsi": null,
+    "macd_signal": "flat",
+    "volume_ratio_today": 0.62,
+    "volume_signal": "drying up",
+    "summary": "SPCX lacks RSI and MACD data — likely due to limited trading history as a recently listed stock. Volume is drying up at $153 with no directional signal. No Wyckoff signals detected. The 44% gap between current price and $220 resistance offers significant upside if a catalyst emerges."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.39,
+    "key_strengths": ["Starlink recurring revenue growing rapidly", "Government launch contracts provide baseline revenue"],
+    "key_concerns": ["Grade D fundamentals — limited public financial data", "Private company metrics hard to value"],
+    "summary": "Grade D reflects limited public financial disclosure. SpaceX's fundamental business (Starlink + launches) is strong but difficult to value precisely without full financial statements."
+  },
+  "sentiment": {
+    "score": 0.059,
+    "label": "Neutral",
+    "mentions_24h": 2,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "No technical indicators available (RSI/MACD) — limited analytical visibility",
+    "Low volume drift suggests no institutional activity — thin market",
+    "Grade D fundamentals with limited financial disclosure"
+  ],
+  "watchlist_priority": "low"
+}

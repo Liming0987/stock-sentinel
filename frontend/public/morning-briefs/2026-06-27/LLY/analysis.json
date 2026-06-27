@@ -1,0 +1,72 @@
+{
+  "ticker": "LLY",
+  "company_name": "Eli Lilly and Company",
+  "report_date": "2026-06-27",
+  "price": 1208.12,
+  "change_pct": 7.13,
+  "overall_stance": "accumulate",
+  "conviction": 0.88,
+  "one_liner": "LLY surging 7% on EMA approval of Jaypirca and a BioArctic research collaboration — Wyckoff Phase C-D accumulation with 4/5 signals detected and strong DCF upside to $1,980.",
+  "news_catalyst": {
+    "headline": "Eli Lilly Wins EMA Backing For Jaypirca In Chronic Lymphocytic Leukemia; BioArctic Collaboration Announced",
+    "summary": "Eli Lilly is up 7.1% today on two simultaneous catalysts: the EMA recommended approval of Jaypirca (pirtobrutinib) for chronic lymphocytic leukemia in Europe, and a new research collaboration agreement with BioArctic AB. The stock is breaking above its 90-day Wyckoff resistance at $1,170 on 2.35x average volume — a textbook high-volume accumulation bar confirming the Phase C-D transition. IBD notes LLY is leading a market rally rotation into defensive/healthcare names, reinforcing the institutional buying signal.",
+    "source_url": "https://simplywall.st",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase C-D",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 4,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 870.05,
+    "key_resistance": 1170.34,
+    "rsi": 72.74,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 2.35,
+    "volume_signal": "climactic",
+    "summary": "LLY is breaking out above its 90-day resistance of $1,170 on climactic accumulation volume (2.35x avg) with RSI at 72.7 — elevated but confirming trend strength rather than signaling reversal. MACD in bullish crossover. Four of five Wyckoff accumulation signals are detected (Phase C-D), suggesting the smart money positioning phase is near completion and markup is beginning. The $1,170 level, previously resistance, should now act as support."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1980.36,
+    "upside_pct": 63.9,
+    "bear_value": 941.23,
+    "bull_value": 3343.18,
+    "discount_rate": 0.0877,
+    "growth_rate": 0.362,
+    "summary": "DCF base case of $1,980 implies 64% upside from current price, driven by 36% projected FCF growth from GLP-1/weight loss drug leadership. Even the bear case at $941 is only 22% below current price — asymmetric risk/reward."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.74,
+    "key_strengths": ["GLP-1 market leadership with tirzepatide/Mounjaro", "36% analyst-estimated growth rate", "Strong pipeline including oncology (Jaypirca, cancer assets)"],
+    "key_concerns": ["High valuation relative to near-term earnings", "Pipeline binary risk on clinical outcomes"],
+    "summary": "Grade B fundamentals with strong growth and health scores. The 36% DCF growth rate reflects genuine analyst consensus around Lilly's GLP-1 dominance and oncology pipeline — not speculative. Upcoming EMA approval of Jaypirca in CLL expands the revenue base beyond metabolic disease."
+  },
+  "sentiment": {
+    "score": 0.258,
+    "label": "Bullish",
+    "mentions_24h": 26,
+    "trend": "rising"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "Momentum",
+      "action": "buy",
+      "confidence": 0.40,
+      "entry_low": 1189.07,
+      "entry_high": 1219.55,
+      "stop_loss": 1131.94,
+      "target": 1322.39
+    }
+  ],
+  "risks": [
+    "RSI at 72.7 — overbought short-term; a 3-5% pullback to $1,170 support is likely before continuation",
+    "GLP-1 competitive pressure from Novo Nordisk semaglutide pipeline",
+    "Clinical trial failures could reverse the entire thesis quickly"
+  ],
+  "watchlist_priority": "high"
+}

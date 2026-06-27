@@ -1,0 +1,62 @@
+{
+  "ticker": "LULU",
+  "company_name": "lululemon athletica inc.",
+  "report_date": "2026-06-27",
+  "price": 117.57,
+  "change_pct": 4.92,
+  "overall_stance": "accumulate",
+  "conviction": 0.70,
+  "one_liner": "LULU up 4.9% in confirmed Wyckoff Accumulation Phase B (3/5 signals) with bullish MACD and 7.5% DCF upside — selling a durable premium brand at a discount after a 30%+ drawdown.",
+  "news_catalyst": {
+    "headline": "Lululemon Bouncing in Accumulation Phase — No Specific Catalyst Today",
+    "summary": "LULU is up 4.9% today with no specific news catalyst — the move appears technical and sentiment-driven as the stock has been oversold. Wyckoff Accumulation Phase B is confirmed with 3/5 signals detected and bullish bias. The stock has pulled back over 30% from highs creating a value entry in a premium athleisure brand with strong brand loyalty. Consumer spending headwinds are real but LULU's premium positioning insulates it more than mass-market apparel.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 3,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 110.13,
+    "key_resistance": 167.96,
+    "rsi": 47.07,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 1.26,
+    "volume_signal": "normal",
+    "summary": "LULU is in confirmed Wyckoff Accumulation Phase B with 3 of 5 signals detected and bullish structural bias. RSI at 47 is neutral — not yet overbought, with room to run to resistance at $168. MACD in a fresh bullish crossover. Support at $110 is strong. The stock needs a volume expansion day above $120 to confirm Phase C entry."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 126.39,
+    "upside_pct": 7.5,
+    "bear_value": 97.51,
+    "bull_value": 148.28,
+    "discount_rate": 0.0924,
+    "growth_rate": -0.0655,
+    "summary": "DCF base case of $126 implies modest 7.5% upside — the negative growth rate (-6.6%) in the model reflects current analyst estimates and keeps the intrinsic value conservative. If LULU can stabilize or grow revenue, the bull case at $148 is more likely."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.72,
+    "key_strengths": ["Premium brand with pricing power", "International expansion still early-stage", "Strong customer loyalty metrics"],
+    "key_concerns": ["Negative growth rate in DCF model reflects revenue deceleration", "Consumer discretionary spending headwinds in 2026"],
+    "summary": "Grade B fundamentals with a brand moat that justifies a premium valuation. The current selldown from $300+ highs reflects growth deceleration, not brand deterioration. A re-acceleration to even modest positive growth would significantly move the DCF."
+  },
+  "sentiment": {
+    "score": 0.128,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "DCF growth rate is negative (-6.6%) — requires business stabilization to justify thesis",
+    "Consumer spending slowdown disproportionately hits discretionary apparel",
+    "Resistance at $168 is 43% above current price — a long path to recovery"
+  ],
+  "watchlist_priority": "medium"
+}

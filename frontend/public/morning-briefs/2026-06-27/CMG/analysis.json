@@ -1,0 +1,62 @@
+{
+  "ticker": "CMG",
+  "company_name": "Chipotle Mexican Grill, Inc.",
+  "report_date": "2026-06-27",
+  "price": 33.34,
+  "change_pct": 3.28,
+  "overall_stance": "watch",
+  "conviction": 0.50,
+  "one_liner": "CMG up 3.3% on 2.96x volume (Selling Climax signal) with RSI at 61 approaching overbought — DCF shows 56% downside to $14.59; a premium brand but significantly overvalued at current levels.",
+  "news_catalyst": {
+    "headline": "Chipotle Bouncing on No Specific News — Premium QSR Valuation Under Scrutiny",
+    "summary": "CMG is up 3.3% today on 2.96x volume — the analysis flags this as a 'Selling Climax — possible reversal' from a recent low. No specific news catalyst. Chipotle's brand remains best-in-class in fast casual dining, but the DCF shows the stock trading at $33 vs. $14.59 intrinsic value (56% downside). The premium valuation reflects growth expectations that may be difficult to sustain in a consumer spending slowdown.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 28.94,
+    "key_resistance": 35.78,
+    "rsi": 60.78,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 2.96,
+    "volume_signal": "climactic",
+    "summary": "CMG bouncing toward resistance at $35.78 (only 7% above) on climactic volume. RSI at 61 approaching overbought. MACD in bullish crossover. The Selling Climax interpretation suggests this could be a short-term reversal point. Risk/reward is poor with only $2.44 to resistance vs. $4.40 to support."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 14.59,
+    "upside_pct": -56.2,
+    "bear_value": 6.36,
+    "bull_value": 27.45,
+    "discount_rate": 0.0988,
+    "growth_rate": 0.0828,
+    "summary": "56% DCF downside — even the bull case of $27.45 is 18% below current price. CMG is priced for exceptional growth that the 8.3% growth model can't justify. Would need to see 15%+ sustained growth to approach current market price."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.59,
+    "key_strengths": ["Best-in-class QSR brand with digital ordering moat", "Unit economics improving with throughput initiatives"],
+    "key_concerns": ["Significant DCF overvaluation", "Consumer spending slowdown in 2026"],
+    "summary": "Grade C fundamentals — excellent business, poor value at current price. Chipotle is the kind of company you want to own at the right price. The right price is significantly lower than $33."
+  },
+  "sentiment": {
+    "score": 0.369,
+    "label": "Bullish",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "56% DCF downside — significantly overvalued on any reasonable growth assumption",
+    "Resistance only 7% above current price ($35.78) — asymmetric risk/reward",
+    "Consumer spending slowdown will impact discretionary dining"
+  ],
+  "watchlist_priority": "low"
+}

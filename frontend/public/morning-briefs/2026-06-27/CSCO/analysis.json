@@ -1,0 +1,63 @@
+{
+  "ticker": "CSCO",
+  "company_name": "Cisco Systems, Inc.",
+  "report_date": "2026-06-27",
+  "price": 113.77,
+  "change_pct": -4.37,
+  "overall_stance": "avoid",
+  "conviction": 0.72,
+  "one_liner": "CSCO down 4.4% on layoff news and high distribution volume — DCF shows 47% downside to fair value of $60 and bearish MACD; avoid until the stock stabilizes near $80 support.",
+  "news_catalyst": {
+    "headline": "Cisco to Lay Off More Than 400 Workers in California",
+    "summary": "Cisco is falling 4.4% on a LA Times report of 400+ California layoffs, adding to existing bearish sentiment around the company's AI transition story. This high-volume down day (1.82x average volume) is classified as 'distribution' in the Wyckoff analysis. Bearish MACD crossover and RSI at 36 confirm weakening momentum. The DCF analysis shows Cisco trading at $113 vs. a base intrinsic value of $60 — the stock remains significantly overvalued even after today's decline.",
+    "source_url": "https://www.latimes.com",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 79.40,
+    "key_resistance": 128.25,
+    "rsi": 36.29,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.82,
+    "volume_signal": "elevated",
+    "summary": "CSCO is breaking down on high distribution volume with bearish MACD and RSI approaching oversold at 36. No Wyckoff accumulation signals are present. The 90-day support is at $79 — a long way down from current price. The stock may find temporary support at $100 psychological level but the trend and valuation work against it."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 60.18,
+    "upside_pct": -47.1,
+    "bear_value": 30.32,
+    "bull_value": 106.25,
+    "discount_rate": 0.1002,
+    "growth_rate": 0.1198,
+    "summary": "Significantly overvalued — DCF base case of $60 implies 47% downside from current price of $113. Even the bull case of $106 is below current price. The stock has been bid up on AI narrative without the growth to justify it."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.73,
+    "key_strengths": ["Stable recurring revenue from networking infrastructure", "Dividend payer with consistent cash flows"],
+    "key_concerns": ["AI transition slow relative to pure-play competitors", "Layoffs signal revenue growth challenges ahead"],
+    "summary": "Grade B fundamentals but the valuation-to-growth mismatch is severe. Cisco's 12% projected growth is adequate for a value stock but not for a stock trading at $113 vs. $60 intrinsic value. Layoffs suggest management sees the same headwinds."
+  },
+  "sentiment": {
+    "score": 0.004,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "47% DCF downside — significantly overvalued on fundamentals",
+    "Layoff announcement signals revenue headwinds ahead",
+    "High-volume distribution day — institutional selling pressure",
+    "Bearish MACD crossover with no technical support until $79"
+  ],
+  "watchlist_priority": "low"
+}

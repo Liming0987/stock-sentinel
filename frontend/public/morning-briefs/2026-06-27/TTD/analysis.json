@@ -1,0 +1,63 @@
+{
+  "ticker": "TTD",
+  "company_name": "The Trade Desk, Inc.",
+  "report_date": "2026-06-27",
+  "price": 18.37,
+  "change_pct": 6.00,
+  "overall_stance": "watch",
+  "conviction": 0.62,
+  "one_liner": "TTD up 6% but in Wyckoff Distribution Phase C-D with 4/5 distribution signals — the bounce is a potential Last Point of Supply (LPSY); DCF shows 86% upside if the fundamental thesis holds.",
+  "news_catalyst": {
+    "headline": "The Trade Desk Seeing Bounce in Distribution Phase — Caution Warranted",
+    "summary": "TTD is up 6% today but the Wyckoff structure is concerning: the stock is in Distribution Phase C-D with 4 of 5 distribution signals detected, the highest warning level. In Wyckoff methodology, a bounce in late distribution (near the LPSY level) is often the final opportunity for smart money to distribute remaining shares to retail buyers. The DCF base case of $34 implies 86% upside — but that requires the distribution to resolve as a false signal and the programmatic advertising business to recover. VCP is also 'forming' which adds a contradictory bullish signal worth monitoring.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Distribution Phase C-D",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 4,
+    "vcp_detected": true,
+    "vcp_pivot": 24.32,
+    "vcp_stage": "Forming — 2 contractions",
+    "key_support": 17.64,
+    "key_resistance": 24.73,
+    "rsi": 38.67,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.26,
+    "volume_signal": "normal",
+    "summary": "TTD is in a high-conviction Wyckoff bearish structure — Distribution Phase C-D with 4/5 signals. RSI at 38.7 and bearish MACD align. The VCP forming is a contradictory signal worth watching — if a genuine VCP breakout occurs above $24.32, it would invalidate the distribution thesis. Today's 6% bounce on only 1.26x volume is insufficient to confirm a reversal. The $17.64 support is critical — a break below would confirm full distribution and open a move toward much lower levels."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 34.16,
+    "upside_pct": 86.0,
+    "bear_value": 19.56,
+    "bull_value": 56.73,
+    "discount_rate": 0.101,
+    "growth_rate": 0.1034,
+    "summary": "DCF base case of $34 implies 86% upside — but only if the 10% growth assumption materializes. Bear case of $19.56 is close to current price ($18.37), suggesting limited downside if growth decelerates only modestly."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.69,
+    "key_strengths": ["Leader in programmatic advertising demand-side platform", "10% FCF growth rate — positive and growing"],
+    "key_concerns": ["Distribution Wyckoff structure contradicts fundamental case", "Ad market sensitivity to economic slowdown"],
+    "summary": "Grade B fundamentals — solid but not exceptional. The disconnect between the bearish Wyckoff structure and the 86% DCF upside creates an interesting setup. Wait for Wyckoff to resolve: if the stock reclaims $24.32 VCP pivot on strong volume, the fundamental case becomes very compelling."
+  },
+  "sentiment": {
+    "score": 0.008,
+    "label": "Neutral",
+    "mentions_24h": 5,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "4/5 Wyckoff distribution signals — highest bearish structural warning",
+    "Break below $17.64 support would confirm distribution and signal further downside",
+    "Today's bounce on moderate volume (1.26x) is insufficient to confirm trend reversal",
+    "Bearish MACD crossover persists"
+  ],
+  "watchlist_priority": "medium"
+}

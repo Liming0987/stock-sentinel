@@ -1,0 +1,62 @@
+{
+  "ticker": "RKLB",
+  "company_name": "Rocket Lab Corporation",
+  "report_date": "2026-06-27",
+  "price": 84.54,
+  "change_pct": 4.77,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "RKLB up 4.8% in Wyckoff Accumulation Phase B (3/5 signals) but RSI at 26.8 is deeply oversold and MACD remains bearish — accumulation signals are present but trend hasn't reversed; wait for MACD crossover.",
+  "news_catalyst": {
+    "headline": "Rocket Lab Bouncing in Oversold Territory — No Specific News Catalyst",
+    "summary": "RKLB is up 4.8% today from very oversold levels (RSI 26.8 is the second-most oversold reading after CRCL in the watchlist). No specific company news today — the move is a technical bounce from oversold conditions. Wyckoff Accumulation Phase B with 3/5 signals suggests institutional accumulation is occurring, but negative FCF and high leverage remain fundamental concerns. The stock is in an 'accumulation watch' phase — not yet a confirmed buy.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 3,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 66.29,
+    "key_resistance": 144.10,
+    "rsi": 26.78,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.18,
+    "volume_signal": "normal",
+    "summary": "RSI at 26.8 is deeply oversold — the most oversold in the watchlist after CRCL. Wyckoff shows 3/5 accumulation signals (bullish bias) but MACD remains in a bearish crossover. The 4.8% bounce today on only 1.18x volume is a relief rally, not a confirmed trend reversal. Wait for MACD to cross bullish and RSI to recover above 35-40 before adding exposure. Support at $66 is firm."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.53,
+    "key_strengths": ["Neutron rocket development differentiates from Electron small-sat launcher", "Government contracts provide revenue visibility"],
+    "key_concerns": ["Negative FCF — pre-profitable launch company", "High leverage with burning cash"],
+    "summary": "Grade C fundamentals for a growth-stage space company. Rocket Lab's expansion into medium-lift launch (Neutron) and space systems is the long-term value driver, but profitability remains years away."
+  },
+  "sentiment": {
+    "score": 0.108,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Negative FCF and high leverage — cash burn risk if revenue growth slows",
+    "MACD still bearish despite oversold RSI — no confirmed trend reversal",
+    "Resistance at $144 is 70% above current price — long recovery path"
+  ],
+  "watchlist_priority": "low"
+}

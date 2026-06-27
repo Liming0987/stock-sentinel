@@ -1,0 +1,62 @@
+{
+  "ticker": "BAM",
+  "company_name": "Brookfield Asset Management Ltd.",
+  "report_date": "2026-06-27",
+  "price": 44.62,
+  "change_pct": -0.09,
+  "overall_stance": "accumulate",
+  "conviction": 0.68,
+  "one_liner": "BAM essentially flat with 12% DCF upside to $50, RSI at 33 approaching oversold, and high-volume day flagged as distribution — a dip-buy setup if the $43.44 support holds.",
+  "news_catalyst": {
+    "headline": "Brookfield Asset Management Quiet Day — Alternative Asset Manager With 12% DCF Upside",
+    "summary": "BAM is essentially flat on 1.85x above-average volume that the analysis flags as a 'High-volume down day — distribution' despite the negligible price change. This could be sector rotation out of financials. RSI at 33 is approaching oversold territory. DCF base case of $50 implies 12% upside with a risk/reward of roughly 2:1 against the bear case of $27. Brookfield's alternative asset management fee streams are relatively defensive.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 43.44,
+    "key_resistance": 49.34,
+    "rsi": 33.09,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.85,
+    "volume_signal": "elevated",
+    "summary": "BAM at RSI 33 is approaching oversold territory with bearish MACD. The elevated volume flagged as distribution near a support level at $43.44 is worth monitoring. If the stock holds above $43.44 on the next few sessions and volume dries up, that would be a classic secondary test and accumulation signal."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 50.04,
+    "upside_pct": 12.1,
+    "bear_value": 27.22,
+    "bull_value": 83.94,
+    "discount_rate": 0.1136,
+    "growth_rate": 0.1504,
+    "summary": "DCF base case of $50 implies 12% upside. Risk/reward is roughly 2:1 — 12% up to base case vs. ~38% down to bear case. The 15% growth rate reflects Brookfield's growing alternative AUM and fee income."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.74,
+    "key_strengths": ["Recurring fee income from $900B+ AUM", "Diversified across real estate, infrastructure, private equity, credit"],
+    "key_concerns": ["Rate sensitivity — higher rates compress private market valuations", "Carried interest is lumpy and unpredictable"],
+    "summary": "Grade B fundamentals — a high-quality alternative asset manager at a modest discount to intrinsic value. BAM benefits from growing institutional demand for alternatives but is sensitive to the rate environment."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Bearish MACD crossover — trend not favorable",
+    "High-volume distribution signal at support level — watch $43.44",
+    "Bear case DCF of $27 is 39% downside if AUM growth disappoints"
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,62 @@
+{
+  "ticker": "CELH",
+  "company_name": "Celsius Holdings, Inc.",
+  "report_date": "2026-06-27",
+  "price": 29.85,
+  "change_pct": 5.78,
+  "overall_stance": "accumulate",
+  "conviction": 0.75,
+  "one_liner": "CELH up 5.8% in Wyckoff Accumulation Phase A-B with 53% DCF upside to $45.79 — multiple analyst buy ratings maintained despite lowered targets; energy drink market share recovery thesis intact.",
+  "news_catalyst": {
+    "headline": "Multiple Analysts Maintain Buy on Celsius Holdings — Roth Capital, B of A, Morgan Stanley All Bullish Despite Lower Targets",
+    "summary": "Three major banks (Roth Capital, B of A Securities, Morgan Stanley) all maintained Buy/Overweight ratings on CELH today while lowering price targets to $45-57, all well above the current price of $29.85. Reddit enthusiasm for CELH was highlighted by 24/7 Wall St., suggesting retail accumulation is accompanying institutional interest. At $29.85, the stock trades at 53% discount to the DCF base case of $45.79 — a compelling value entry in the energy drink space.",
+    "source_url": "https://www.benzinga.com",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 27.74,
+    "key_resistance": 36.24,
+    "rsi": 50.46,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 1.05,
+    "volume_signal": "normal",
+    "summary": "CELH is in Wyckoff Accumulation Phase A-B with 2/5 signals detected and bullish bias. RSI at 50 is neutral — plenty of room to run. MACD in bullish crossover. The stock is building a base between $27.74 support and $36.24 resistance. A break above $36 on elevated volume would confirm Phase C entry and signal accumulation phase completion."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 45.79,
+    "upside_pct": 53.4,
+    "bear_value": 22.95,
+    "bull_value": 80.52,
+    "discount_rate": 0.0947,
+    "growth_rate": 0.2286,
+    "summary": "53% DCF upside to base case of $45.79 with 23% growth rate — reflects recovery in energy drink market share. Bear case of $23 is 23% downside, making risk/reward approximately 2.3:1 in favor of longs at current price."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.81,
+    "key_strengths": ["Grade A fundamentals — top-tier for consumer staples", "23% growth rate in competitive energy drink market", "Strong brand loyalty and distribution expansion"],
+    "key_concerns": ["PepsiCo distribution partnership risk if relationship sours", "Premium positioning under pressure in discretionary spending slowdown"],
+    "summary": "Grade A fundamentals with 23% projected growth — outstanding for a consumer products company. Multiple institutional buy ratings with targets averaging $50 confirm the fundamental case. The selldown from $43 high to $30 appears overdone."
+  },
+  "sentiment": {
+    "score": 0.114,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Consumer discretionary spending slowdown per Chewy guidance — energy drinks are semi-discretionary",
+    "Energy drink market competition intensifying (Monster, Prime, Alani Nu)",
+    "Bear case DCF at $22.95 — 23% downside if growth disappoints"
+  ],
+  "watchlist_priority": "high"
+}

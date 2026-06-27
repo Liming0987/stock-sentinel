@@ -1,0 +1,63 @@
+{
+  "ticker": "MU",
+  "company_name": "Micron Technology, Inc.",
+  "report_date": "2026-06-27",
+  "price": 1132.33,
+  "change_pct": -6.69,
+  "overall_stance": "watch",
+  "conviction": 0.60,
+  "one_liner": "MU down 6.7% on high distribution volume after its blowout earnings — a classic 'sell the news' reaction; DCF upside is modest at 5% and the stock is approaching key resistance at $1,152.",
+  "news_catalyst": {
+    "headline": "Micron Surpasses Market Cap of Meta and Tesla Briefly Following Blowout Earnings; Now Pulling Back",
+    "summary": "Micron reported a stunning Q3 with $41.5B revenue (25% above guidance) and 84.6% gross margins, briefly making it one of the largest US companies by market cap. However, today's 6.7% decline on 1.52x average volume represents a 'sell the news' distribution — Reuters reported Micron's valuation briefly exceeded both Meta and Tesla, which likely triggered profit-taking by institutions. The high-volume down day on the volume analysis is flagged as 'distribution.' At $1,132, the stock is testing its 90-day resistance level of $1,152.",
+    "source_url": "https://www.insidermonkey.com",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 370.28,
+    "key_resistance": 1151.89,
+    "rsi": 56.67,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 1.52,
+    "volume_signal": "elevated",
+    "summary": "MU is near its 90-day resistance at $1,152 and pulling back on elevated distribution volume following its earnings beat. MACD remains in a bullish crossover and RSI at 56.7 is healthy, suggesting the correction may be limited. However, no Wyckoff accumulation signals are present to signal a new base is forming. Watch the $1,152 resistance — a reclaim would be bullish; a rejection sends the stock toward interim support."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1192.24,
+    "upside_pct": 5.3,
+    "bear_value": 690.46,
+    "bull_value": 1845.66,
+    "discount_rate": 0.15,
+    "growth_rate": 0.50,
+    "summary": "DCF base case of $1,192 implies only 5% upside — the stock is essentially fairly valued at current levels after the earnings pop. The bull case at $1,846 requires the current margin levels to sustain, which is unlikely beyond 2027 per management guidance."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.84,
+    "key_strengths": ["Record Q3 revenue $41.5B — 4x year-over-year", "84.6% gross margins — industry-leading", "Multi-year customer agreements reducing cyclicality"],
+    "key_concerns": ["High leverage (D/E > 3)", "Current margins are price-driven and unsustainable past 2H 2027"],
+    "summary": "Grade A fundamentals but peak cycle dynamics are baked in. The exceptional margins are driven by memory price inflation rather than structural change — management confirmed a normalization is expected in 2H 2027 as new supply comes online."
+  },
+  "sentiment": {
+    "score": 0.085,
+    "label": "Neutral",
+    "mentions_24h": 4,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Sell-the-news distribution after blowout earnings — institutional profit-taking likely not done",
+    "High-volume down day interpretation is 'distribution' — Wyckoff caution",
+    "Memory price normalization in 2H 2027 could halve current gross margins",
+    "DCF only 5% upside at base — limited margin of safety at current price"
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,63 @@
+{
+  "ticker": "OPEN",
+  "company_name": "Opendoor Technologies Inc.",
+  "report_date": "2026-06-27",
+  "price": 4.37,
+  "change_pct": 1.63,
+  "overall_stance": "avoid",
+  "conviction": 0.72,
+  "one_liner": "OPEN showing a Selling Climax signal on 4x volume despite a 1.6% gain — negative revenue growth, Grade D fundamentals, and DCF distorted by housing cycle; avoid until FCF turns positive.",
+  "news_catalyst": {
+    "headline": "Opendoor Up on High Volume — Housing Market Weakness Persists",
+    "summary": "OPEN is up 1.6% on 4.01x volume — the volume analysis flags this as 'Selling Climax — possible reversal.' However, Opendoor's business model (iBuying) is severely challenged in a high-rate, low-volume housing market. Negative revenue growth and Grade D fundamentals reflect real business deterioration, not a temporary blip. The climactic volume is more likely a speculative spike than genuine institutional accumulation.",
+    "source_url": "",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 4.17,
+    "key_resistance": 5.66,
+    "rsi": 43.12,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 4.01,
+    "volume_signal": "climactic",
+    "summary": "OPEN at $4.37 is very close to its support at $4.17 — limited buffer. 4x volume on a small gain with bearish MACD and no Wyckoff accumulation signals suggests the high volume is speculative, not institutional. Resistance at $5.66 limits upside to 29%."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 231.06,
+    "upside_pct": 5187.4,
+    "bear_value": 132.22,
+    "bull_value": 359.76,
+    "discount_rate": 0.15,
+    "growth_rate": 0.50,
+    "summary": "DCF is completely distorted — the $231 intrinsic value at max 50% growth/15% discount reflects a best-case recovery scenario that doesn't apply to the current business. Treat as not meaningful."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.42,
+    "key_strengths": ["Technology-first approach could be revived if housing market recovers"],
+    "key_concerns": ["Negative revenue growth — business contracting", "iBuying model fundamentally challenged by high mortgage rates"],
+    "summary": "Grade D fundamentals. Opendoor's iBuying model requires high transaction velocity and low holding costs — both are impossible in the current high-rate housing market. Without a Fed pivot, this business faces existential pressure."
+  },
+  "sentiment": {
+    "score": -0.003,
+    "label": "Neutral",
+    "mentions_24h": 6,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Business model (iBuying) structurally challenged by elevated mortgage rates",
+    "Negative revenue growth — not a turnaround yet",
+    "Grade D fundamentals — weak across all dimensions",
+    "Support at $4.17 is only $0.20 below — limited cushion before breakdown"
+  ],
+  "watchlist_priority": "low"
+}

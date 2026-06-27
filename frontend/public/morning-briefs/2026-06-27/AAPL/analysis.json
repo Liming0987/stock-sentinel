@@ -1,0 +1,63 @@
+{
+  "ticker": "AAPL",
+  "company_name": "Apple Inc.",
+  "report_date": "2026-06-27",
+  "price": 283.78,
+  "change_pct": 3.14,
+  "overall_stance": "avoid",
+  "conviction": 0.70,
+  "one_liner": "AAPL up 3.1% on 4.4x volume — a Selling Climax reversal signal — but DCF shows 31% downside to $196 fair value; the massive volume at a lower RSI (35) suggests buyers are trying to absorb supply from $283+ sellers.",
+  "news_catalyst": {
+    "headline": "Apple Raises Prices 15-25% on Mac and iPad Due to Soaring Memory Component Costs",
+    "summary": "AAPL is up 3.1% today on 4.42x average volume — the volume analysis flags this as a 'Selling Climax — possible reversal.' The counterintuitive bounce follows Wednesday's 6% selloff on Apple's forced product price increases of 15-25% (MacBook Air up $200, iPad Air up $150). Today's high volume with only a modest 3% recovery suggests sellers are still distributing at these levels. DCF base case of $196 implies the stock at $283 is 31% overvalued, consistent with Parkev Tatevosian's $200 fair value estimate.",
+    "source_url": "",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 255.70,
+    "key_resistance": 315.18,
+    "rsi": 35.84,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 4.42,
+    "volume_signal": "climactic",
+    "summary": "Climactic 4.42x volume on a 3% bounce with RSI at 35.8 — the volume analysis interpretation is 'Selling Climax — possible reversal.' While this could mark a short-term low, the bearish MACD and no Wyckoff accumulation signals suggest this bounce is more likely a dead-cat reaction than a genuine reversal. Wait for volume to dry up and RSI to stabilize above 40 before considering entry. Support at $255.70; resistance at $315."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 195.89,
+    "upside_pct": -31.0,
+    "bear_value": 105.52,
+    "bull_value": 333.20,
+    "discount_rate": 0.1047,
+    "growth_rate": 0.1356,
+    "summary": "31% DCF downside to base case of $196. The bull case of $333 is near current price only in an optimistic scenario — not a favorable risk/reward. Apple's asset-light model is showing cracks as supplier leverage erodes in the AI era."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.73,
+    "key_strengths": ["Unmatched brand loyalty and ecosystem lock-in", "Services segment growing to 25%+ of revenue at higher margins"],
+    "key_concerns": ["Forced 15-25% price increases will reduce device units and service attach rates", "Supplier leverage eroded as hyperscalers displace Apple at TSMC and Micron"],
+    "summary": "Grade B fundamentals but the component cost inflation is a structural headwind, not a temporary one. Apple's outsourced supply chain is now a liability in an environment where AI demand makes Apple's suppliers prioritize data center customers."
+  },
+  "sentiment": {
+    "score": 0.036,
+    "label": "Neutral",
+    "mentions_24h": 49,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "31% DCF downside — meaningfully overvalued at $283",
+    "Price hikes will reduce device units and service revenue — double negative on earnings",
+    "4.42x volume Selling Climax may be exhaustion bounce, not sustainable reversal",
+    "Hyperscaler competition for TSMC/Micron supply is structural, not temporary"
+  ],
+  "watchlist_priority": "low"
+}

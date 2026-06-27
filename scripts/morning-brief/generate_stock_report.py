@@ -190,9 +190,14 @@ def main():
     analysis = json.loads(Path(args.analysis).read_text())
     template = TEMPLATE_PATH.read_text()
     html = render(analysis, template)
-    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
-    Path(args.output).write_text(html)
+    out = Path(args.output)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(html)
     print(f"INFO  Report written: {args.output}")
+    # Also copy analysis JSON alongside HTML so the Next.js page can read it
+    ticker_dir = out.parent / analysis.get("ticker", out.stem)
+    ticker_dir.mkdir(parents=True, exist_ok=True)
+    (ticker_dir / "analysis.json").write_text(json.dumps(analysis, indent=2))
 
 
 if __name__ == "__main__":

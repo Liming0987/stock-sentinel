@@ -1,0 +1,63 @@
+{
+  "ticker": "INTC",
+  "company_name": "Intel Corporation",
+  "report_date": "2026-06-27",
+  "price": 128.32,
+  "change_pct": -3.42,
+  "overall_stance": "avoid",
+  "conviction": 0.68,
+  "one_liner": "INTC down 3.4% with negative FCF and Wyckoff Accumulation Phase B signals masked by a Grade D fundamental score — a value trap masquerading as a recovery play; no DCF feasible.",
+  "news_catalyst": {
+    "headline": "Intel Declining on Below-Analyst-Target Price Action; Negative FCF Persists",
+    "summary": "INTC is down 3.4% today on low volume (0.76x avg) — 'Low-volume drift, buyers exhausted' per the Wyckoff analysis. While the Wyckoff structure shows Accumulation Phase B (3/5 signals), Intel's negative FCF makes a DCF impossible to construct. The stock is trading below analyst targets by more than 10%, and negative revenue growth flags indicate the turnaround is taking longer than expected. Without positive FCF, the Wyckoff accumulation signal may reflect speculative positioning rather than fundamental institutional buying.",
+    "source_url": "",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 3,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 51.15,
+    "key_resistance": 136.18,
+    "rsi": 54.69,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 0.76,
+    "volume_signal": "drying up",
+    "summary": "Wyckoff shows Accumulation Phase B but the bullish technical signals are undermined by negative FCF and the low-volume 'buyers exhausted' interpretation. MACD in bullish crossover and RSI at 55 are positive, but the resistance at $136 is very close ($7.86 above current price) — limited upside near-term."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.38,
+    "key_strengths": ["Foundry expansion could be a long-term catalyst if government subsidies materialize"],
+    "key_concerns": ["Negative FCF — burning cash", "Below analyst targets by more than 10%", "Revenue declining — turnaround not yet visible in the numbers"],
+    "summary": "Grade D fundamentals. Intel is in the midst of a painful transition to compete in AI chip manufacturing. The CHIPS Act subsidies provide a floor but do not guarantee the foundry business will be competitive with TSMC. Avoid until positive FCF is restored."
+  },
+  "sentiment": {
+    "score": 0.137,
+    "label": "Neutral",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Negative FCF — DCF not feasible; valuation is speculative",
+    "Revenue growth is negative — turnaround delayed",
+    "Resistance at $136 limits near-term upside to 6%",
+    "Grade D fundamentals — poor across most financial metrics"
+  ],
+  "watchlist_priority": "low"
+}

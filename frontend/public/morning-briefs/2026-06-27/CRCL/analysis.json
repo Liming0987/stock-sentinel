@@ -1,0 +1,63 @@
+{
+  "ticker": "CRCL",
+  "company_name": "Circle Internet Group",
+  "report_date": "2026-06-27",
+  "price": 73.57,
+  "change_pct": 6.92,
+  "overall_stance": "watch",
+  "conviction": 0.58,
+  "one_liner": "CRCL up 6.9% with a VCP setup forming (pivot $111, 2 contractions) but RSI at 34 and bearish MACD suggest the pattern is still building — watch for volume dry-up and pivot break above $111.",
+  "news_catalyst": {
+    "headline": "Circle Stock Price on the Verge as USDC Creator Faces Triple Risks; Why Is Circle Stock Surging Friday?",
+    "summary": "Circle is up 6.9% today with conflicting headlines — Benzinga cites 'triple risks' around the USDC stablecoin issuer while simultaneously reporting surge buying. The stock is forming a Wyckoff Accumulation Phase B structure with a VCP pattern building (pivot at $111, 2 contractions detected). At $73, the stock is 34% below the VCP pivot — the setup is early and needs more base-building. Crypto market conditions and regulatory stablecoin framework developments are the key catalyst to watch.",
+    "source_url": "https://www.benzinga.com",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 3,
+    "vcp_detected": true,
+    "vcp_pivot": 111.20,
+    "vcp_stage": "Stage 2 — 2 contractions forming",
+    "key_support": 74.47,
+    "key_resistance": 130.82,
+    "rsi": 34.02,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.09,
+    "volume_signal": "normal",
+    "summary": "CRCL has a VCP pattern forming with 2 contractions detected and a pivot at $111.20. Wyckoff shows 3/5 accumulation signals in Phase B — the base is building. However, RSI at 34 and bearish MACD suggest the stock is still in the 'shakeout' phase of the VCP before the breakout. The ideal entry is a break above $111 on volume ≥1.5x average. Current price at $73 is 34% below the pivot — too early to buy the breakout, but worth watching closely."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.38,
+    "key_strengths": ["USDC is #2 stablecoin globally", "Regulatory-first approach positions well for US stablecoin legislation"],
+    "key_concerns": ["Negative FCF — not yet profitable", "Regulatory risk from evolving stablecoin rules"],
+    "summary": "Grade D fundamentals reflect a pre-profit growth company. The USDC business model is simple (interest income on reserves) but highly interest-rate sensitive. A US stablecoin bill passage would be a major catalyst."
+  },
+  "sentiment": {
+    "score": 0.111,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "VCP pivot at $111 is 51% above current price — long way to breakout confirmation",
+    "Negative FCF and Grade D fundamentals make it a speculative hold",
+    "Crypto regulatory uncertainty (stablecoin legislation) could gap the stock either direction",
+    "Bearish MACD despite today's bounce — trend not confirmed"
+  ],
+  "watchlist_priority": "medium"
+}
