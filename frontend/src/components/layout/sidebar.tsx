@@ -27,6 +27,7 @@ const NAV_SECTIONS = [
       { href: "/backtest", label: "Backtest" },
       { href: "/reports", label: "Reports" },
       { href: "/youtube-digest", label: "YouTube Digest" },
+      { href: "/stock-briefs", label: "Stock Briefs" },
     ],
   },
   {
