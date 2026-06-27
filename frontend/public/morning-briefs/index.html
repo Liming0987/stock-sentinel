@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock Sentinel — Morning Brief 2026-06-27</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:      #fafafa;  --surface: #ffffff;  --border:  #e5e7eb;
+  --text:    #111827;  --muted:   #6b7280;  --faint:   #9ca3af;
+  --accent:  #2563eb;  --bullish: #16a34a;  --bearish: #dc2626;
+  --neutral: #6b7280;  --mixed:   #d97706;
+  --radius:  8px;      --shadow:  0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #0f1117;  --surface: #1a1d27;  --border:  #2d3142;
+    --text:    #f0f2f5;  --muted:   #9ca3af;  --faint:   #6b7280;
+    --accent:  #60a5fa;  --bullish: #4ade80;  --bearish: #f87171;
+    --neutral: #9ca3af;  --mixed:   #fbbf24;
+    --shadow:  0 1px 3px rgba(0,0,0,.4);
+  }
+}
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg); color: var(--text);
+  font-size: 15px; line-height: 1.6; padding: 2rem 1.5rem;
+}
+.wrap { max-width: 1060px; margin: 0 auto; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+/* header */
+.kicker { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
+.meta { color: var(--muted); font-size: 0.82rem; margin-bottom: 1.25rem; }
+
+/* summary chips */
+.chips { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.chip {
+  font-size: 0.78rem; font-weight: 600; padding: 0.3em 0.85em; border-radius: 99px;
+  border: 1px solid;
+}
+.chip-accumulate { color: var(--bullish); background: color-mix(in srgb, var(--bullish) 12%, transparent); border-color: color-mix(in srgb, var(--bullish) 30%, transparent); }
+.chip-watch      { color: var(--mixed);   background: color-mix(in srgb, var(--mixed)   12%, transparent); border-color: color-mix(in srgb, var(--mixed)   30%, transparent); }
+.chip-avoid      { color: var(--bearish); background: color-mix(in srgb, var(--bearish) 12%, transparent); border-color: color-mix(in srgb, var(--bearish) 30%, transparent); }
+
+/* nav */
+nav { display: flex; gap: 1.25rem; font-size: 0.82rem; margin-bottom: 1.5rem; color: var(--muted); }
+nav a { color: var(--accent); }
+
+/* grid */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+
+/* stock card */
+.stock-card {
+  display: block; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 1rem 1.25rem; color: var(--text); text-decoration: none;
+  transition: border-color 0.15s, transform 0.12s;
+}
+.stock-card:hover { border-color: var(--accent); transform: translateY(-2px); text-decoration: none; }
+.card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.3rem; gap: 0.5rem; }
+.card-ticker { font-family: "SF Mono","Fira Code",ui-monospace,monospace; font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.card-company { color: var(--muted); font-size: 0.78rem; margin-bottom: 0.5rem; }
+.card-price { font-family: "SF Mono","Fira Code",ui-monospace,monospace; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+.card-oneliner { font-size: 0.82rem; color: var(--muted); font-style: italic; margin-bottom: 0.5rem; line-height: 1.4; }
+.card-meta { font-size: 0.72rem; color: var(--faint); }
+
+/* pills */
+.pill { display: inline-flex; align-items: center; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.2em 0.6em; border-radius: 99px; }
+.pill-accumulate { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-watch      { background: color-mix(in srgb, var(--mixed)   15%, transparent); color: var(--mixed);   }
+.pill-hold       { background: color-mix(in srgb, var(--accent)  15%, transparent); color: var(--accent);  }
+.pill-avoid      { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-neutral    { background: color-mix(in srgb, var(--neutral) 15%, transparent); color: var(--neutral); }
+
+/* small badges */
+.badge { font-size: 0.62rem; font-weight: 700; padding: 0.15em 0.5em; border-radius: 4px; }
+.badge-signal { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+.badge-vcp    { background: color-mix(in srgb, var(--bullish) 12%, transparent); color: var(--bullish); border: 1px solid color-mix(in srgb, var(--bullish) 25%, transparent); }
+
+/* color helpers */
+.up   { color: var(--bullish); }
+.down { color: var(--bearish); }
+
+/* archive */
+.archive { margin-top: 1rem; }
+.archive-title { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.6rem; }
+.archive a { font-size: 0.82rem; margin-right: 1rem; }
+
+@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Stock Sentinel</div>
+  <h1>Morning Brief — 2026-06-27</h1>
+  <p class="meta">Generated 2026-06-27 21:14 UTC · 24 stocks analyzed</p>
+
+  <div class="chips">
+    <span class="chip chip-accumulate">✓ 5 Accumulate</span>
+    <span class="chip chip-watch">👁 13 Watch</span>
+    <span class="chip chip-avoid">✗ 6 Avoid</span>
+  </div>
+
+  <nav>
+    <a href="/">← Home</a>
+    <a href="/youtube-reports/index.html">YouTube Digest</a>
+  </nav>
+
+  <div class="grid">
+    
+<a href="2026-06-27/CELH.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">CELH  </span>
+    <span class="pill pill-accumulate">ACCUMULATE</span>
+  </div>
+  <div class="card-company">Celsius Holdings, Inc.</div>
+  <div class="card-price">
+    $29.85
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+5.8%</span>
+  </div>
+  <div class="card-oneliner">CELH up 5.8% in Wyckoff Accumulation Phase A-B with 53% DCF upside to $45.79 — multiple analyst buy ratings maintained despite lowered targets; energy drink market share recovery thesis intact.</div>
+  <div class="card-meta">
+    Accumulation Phase A-B &nbsp;·&nbsp;
+    RSI 50 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/LLY.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">LLY  <span class="badge badge-signal">⚡ 1 signal</span></span>
+    <span class="pill pill-accumulate">ACCUMULATE</span>
+  </div>
+  <div class="card-company">Eli Lilly and Company</div>
+  <div class="card-price">
+    $1,208.12
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+7.1%</span>
+  </div>
+  <div class="card-oneliner">LLY surging 7% on EMA approval of Jaypirca and a BioArctic research collaboration — Wyckoff Phase C-D accumulation with 4/5 signals detected and strong DCF upside to $1,980.</div>
+  <div class="card-meta">
+    Accumulation Phase C-D &nbsp;·&nbsp;
+    RSI 73 &nbsp;·&nbsp;
+    Bullish
+  </div>
+</a>
+<a href="2026-06-27/TSM.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">TSM  </span>
+    <span class="pill pill-accumulate">ACCUMULATE</span>
+  </div>
+  <div class="card-company">Taiwan Semiconductor Manufacturing Company</div>
+  <div class="card-price">
+    $432.35
+    <span class="down" style="margin-left:6px;font-size:0.9rem">-0.6%</span>
+  </div>
+  <div class="card-oneliner">TSM essentially flat with neutral Wyckoff consolidation — Grade A fundamentals (0.89 score), MACD bullish crossover, and a DCF intrinsic value astronomically distorted by ADR share structure; accumulate on any pullback toward $338 support.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 50 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/BAM.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">BAM  </span>
+    <span class="pill pill-accumulate">ACCUMULATE</span>
+  </div>
+  <div class="card-company">Brookfield Asset Management Ltd.</div>
+  <div class="card-price">
+    $44.62
+    <span class="down" style="margin-left:6px;font-size:0.9rem">-0.1%</span>
+  </div>
+  <div class="card-oneliner">BAM essentially flat with 12% DCF upside to $50, RSI at 33 approaching oversold, and high-volume day flagged as distribution — a dip-buy setup if the $43.44 support holds.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 33 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/LULU.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">LULU  </span>
+    <span class="pill pill-accumulate">ACCUMULATE</span>
+  </div>
+  <div class="card-company">lululemon athletica inc.</div>
+  <div class="card-price">
+    $117.57
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+4.9%</span>
+  </div>
+  <div class="card-oneliner">LULU up 4.9% in confirmed Wyckoff Accumulation Phase B (3/5 signals) with bullish MACD and 7.5% DCF upside — selling a durable premium brand at a discount after a 30%+ drawdown.</div>
+  <div class="card-meta">
+    Accumulation Phase B &nbsp;·&nbsp;
+    RSI 47 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/AMZN.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">AMZN  <span class="badge badge-signal">⚡ 1 signal</span></span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">Amazon.com, Inc.</div>
+  <div class="card-price">
+    $232.69
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+2.5%</span>
+  </div>
+  <div class="card-oneliner">AMZN bouncing 2.5% on massive 4.69x volume — a Selling Climax absorption signal — but DCF shows 76% downside to $56 fair value; the capex-cycle FCF distortion makes this a 'watch not trade' situation.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 35 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/CRCL.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">CRCL <span class="badge badge-vcp">VCP</span> </span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">Circle Internet Group</div>
+  <div class="card-price">
+    $73.57
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+6.9%</span>
+  </div>
+  <div class="card-oneliner">CRCL up 6.9% with a VCP setup forming (pivot $111, 2 contractions) but RSI at 34 and bearish MACD suggest the pattern is still building — watch for volume dry-up and pivot break above $111.</div>
+  <div class="card-meta">
+    Accumulation Phase B &nbsp;·&nbsp;
+    RSI 34 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/DFTX.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">DFTX  <span class="badge badge-signal">⚡ 1 signal</span></span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">Definium Therapeutics, Inc.</div>
+  <div class="card-price">
+    $44.95
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+0.4%</span>
+  </div>
+  <div class="card-oneliner">DFTX consolidating after a $700M upsized public offering at $34 — RSI at 90.7 is dangerously overbought with a Selling Climax signal on 3.33x volume; Jones Trading raised target to $74 but the offering dilution needs to digest.</div>
+  <div class="card-meta">
+    Accumulation Phase A-B &nbsp;·&nbsp;
+    RSI 91 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/MELI.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">MELI  </span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">MercadoLibre, Inc.</div>
+  <div class="card-price">
+    $1,675.10
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+3.5%</span>
+  </div>
+  <div class="card-oneliner">MELI up 3.5% in neutral Wyckoff consolidation with bullish MACD — DCF not feasible (negative FCF) but Latin American e-commerce dominance makes it a high-conviction long-term hold near $1,538 support.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 54 &nbsp;·&nbsp;
+    Bullish
+  </div>
+</a>
+<a href="2026-06-27/MU.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">MU  </span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">Micron Technology, Inc.</div>
+  <div class="card-price">
+    $1,132.33
+    <span class="down" style="margin-left:6px;font-size:0.9rem">-6.7%</span>
+  </div>
+  <div class="card-oneliner">MU down 6.7% on high distribution volume after its blowout earnings — a classic 'sell the news' reaction; DCF upside is modest at 5% and the stock is approaching key resistance at $1,152.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 57 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/NVDA.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">NVDA  <span class="badge badge-signal">⚡ 1 signal</span></span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">NVIDIA Corporation</div>
+  <div class="card-price">
+    $192.53
+    <span class="down" style="margin-left:6px;font-size:0.9rem">-1.6%</span>
+  </div>
+  <div class="card-oneliner">NVDA pulling back to RSI 34 support zone with bearish MACD — sitting at mid-range between $175 support and $230 resistance; DCF base case of $334 offers massive upside but near-term momentum has stalled.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 34 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/SPY.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">SPY  </span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">SPDR S&P 500 ETF Trust</div>
+  <div class="card-price">
+    $728.99
+    <span class="down" style="margin-left:6px;font-size:0.9rem">-0.7%</span>
+  </div>
+  <div class="card-oneliner">SPY down 0.72% with RSI at 39 in bearish MACD territory — broad market in neutral-to-bearish consolidation; watch $653 support, no structural entry signal yet.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 39 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/TTD.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">TTD <span class="badge badge-vcp">VCP</span> </span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">The Trade Desk, Inc.</div>
+  <div class="card-price">
+    $18.37
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+6.0%</span>
+  </div>
+  <div class="card-oneliner">TTD up 6% but in Wyckoff Distribution Phase C-D with 4/5 distribution signals — the bounce is a potential Last Point of Supply (LPSY); DCF shows 86% upside if the fundamental thesis holds.</div>
+  <div class="card-meta">
+    Distribution Phase C-D &nbsp;·&nbsp;
+    RSI 39 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/WEN.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">WEN  </span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">The Wendy's Company</div>
+  <div class="card-price">
+    $7.80
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+6.4%</span>
+  </div>
+  <div class="card-oneliner">WEN surging 6.4% on viral 'Save Wendy's' meme campaign with 3.7x volume spike triggering both a Selling Climax (SC) and Buying Climax (BC) signal — extreme distribution warning, treat as a sell-the-pop setup.</div>
+  <div class="card-meta">
+    Distribution Phase A-B &nbsp;·&nbsp;
+    RSI 60 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/CMG.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">CMG  </span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">Chipotle Mexican Grill, Inc.</div>
+  <div class="card-price">
+    $33.34
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+3.3%</span>
+  </div>
+  <div class="card-oneliner">CMG up 3.3% on 2.96x volume (Selling Climax signal) with RSI at 61 approaching overbought — DCF shows 56% downside to $14.59; a premium brand but significantly overvalued at current levels.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 61 &nbsp;·&nbsp;
+    Bullish
+  </div>
+</a>
+<a href="2026-06-27/GME.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">GME  </span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">GameStop Corp.</div>
+  <div class="card-price">
+    $21.76
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+3.6%</span>
+  </div>
+  <div class="card-oneliner">GME up 3.6% with Wyckoff Accumulation A-B signals and Grade B fundamentals (unusual for a meme stock) — high Reddit mentions (34) but negative FCF; watch the $20.93 support.</div>
+  <div class="card-meta">
+    Accumulation Phase A-B &nbsp;·&nbsp;
+    RSI 52 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/RKLB.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">RKLB  </span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">Rocket Lab Corporation</div>
+  <div class="card-price">
+    $84.54
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+4.8%</span>
+  </div>
+  <div class="card-oneliner">RKLB up 4.8% in Wyckoff Accumulation Phase B (3/5 signals) but RSI at 26.8 is deeply oversold and MACD remains bearish — accumulation signals are present but trend hasn't reversed; wait for MACD crossover.</div>
+  <div class="card-meta">
+    Accumulation Phase B &nbsp;·&nbsp;
+    RSI 27 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/SPCX.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">SPCX  </span>
+    <span class="pill pill-watch">WATCH</span>
+  </div>
+  <div class="card-company">Space Exploration Technologies Corp. Class A</div>
+  <div class="card-price">
+    $153.23
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+0.1%</span>
+  </div>
+  <div class="card-oneliner">SPCX flat with no RSI or MACD data available — low-volume drift (buyers exhausted) in a neutral consolidation range; hold existing position but no new entry signal.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI — &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/AAPL.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">AAPL  </span>
+    <span class="pill pill-avoid">AVOID</span>
+  </div>
+  <div class="card-company">Apple Inc.</div>
+  <div class="card-price">
+    $283.78
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+3.1%</span>
+  </div>
+  <div class="card-oneliner">AAPL up 3.1% on 4.4x volume — a Selling Climax reversal signal — but DCF shows 31% downside to $196 fair value; the massive volume at a lower RSI (35) suggests buyers are trying to absorb supply from $283+ sellers.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 36 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/CSCO.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">CSCO  </span>
+    <span class="pill pill-avoid">AVOID</span>
+  </div>
+  <div class="card-company">Cisco Systems, Inc.</div>
+  <div class="card-price">
+    $113.77
+    <span class="down" style="margin-left:6px;font-size:0.9rem">-4.4%</span>
+  </div>
+  <div class="card-oneliner">CSCO down 4.4% on layoff news and high distribution volume — DCF shows 47% downside to fair value of $60 and bearish MACD; avoid until the stock stabilizes near $80 support.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 36 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/DE.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">DE  </span>
+    <span class="pill pill-avoid">AVOID</span>
+  </div>
+  <div class="card-company">Deere & Company</div>
+  <div class="card-price">
+    $613.24
+    <span class="down" style="margin-left:6px;font-size:0.9rem">-2.8%</span>
+  </div>
+  <div class="card-oneliner">DE down 2.8% on high distribution volume with RSI at 67 (near overbought) and DCF showing 68% downside to $199 fair value — near 90-day resistance at $619; the agricultural equipment cycle is turning.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 67 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/FNMA.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">FNMA  </span>
+    <span class="pill pill-avoid">AVOID</span>
+  </div>
+  <div class="card-company">Federal National Mortgage Association</div>
+  <div class="card-price">
+    $6.88
+    <span class="down" style="margin-left:6px;font-size:0.9rem">-5.5%</span>
+  </div>
+  <div class="card-oneliner">FNMA down 5.5% with no grade, no DCF, and no clear catalyst — pure speculative conservatorship-exit play; the Wyckoff Accumulation A-B signals are real but binary political/regulatory risk dominates.</div>
+  <div class="card-meta">
+    Accumulation Phase A-B &nbsp;·&nbsp;
+    RSI 51 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/INTC.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">INTC  </span>
+    <span class="pill pill-avoid">AVOID</span>
+  </div>
+  <div class="card-company">Intel Corporation</div>
+  <div class="card-price">
+    $128.32
+    <span class="down" style="margin-left:6px;font-size:0.9rem">-3.4%</span>
+  </div>
+  <div class="card-oneliner">INTC down 3.4% with negative FCF and Wyckoff Accumulation Phase B signals masked by a Grade D fundamental score — a value trap masquerading as a recovery play; no DCF feasible.</div>
+  <div class="card-meta">
+    Accumulation Phase B &nbsp;·&nbsp;
+    RSI 55 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+<a href="2026-06-27/OPEN.html" class="stock-card">
+  <div class="card-top">
+    <span class="card-ticker">OPEN  </span>
+    <span class="pill pill-avoid">AVOID</span>
+  </div>
+  <div class="card-company">Opendoor Technologies Inc.</div>
+  <div class="card-price">
+    $4.37
+    <span class="up" style="margin-left:6px;font-size:0.9rem">+1.6%</span>
+  </div>
+  <div class="card-oneliner">OPEN showing a Selling Climax signal on 4x volume despite a 1.6% gain — negative revenue growth, Grade D fundamentals, and DCF distorted by housing cycle; avoid until FCF turns positive.</div>
+  <div class="card-meta">
+    Consolidation / No Clear Phase &nbsp;·&nbsp;
+    RSI 43 &nbsp;·&nbsp;
+    Neutral
+  </div>
+</a>
+  </div>
+
+  <hr>
+
+  <div class="archive">
+    <div class="archive-title">Past Reports</div>
+    <a href="2026-06-27/index.html">2026-06-27</a>
+  </div>
+
+</div>
+</body>
+</html>
