@@ -157,7 +157,7 @@ export default function VolumeAnalysisPage() {
             </CardHeader>
             {volumeHistoryOpen && (
               <CardContent>
-                <VolumeTable data={data.history} />
+                <VolumeTable data={data.history} ticker={ticker} />
               </CardContent>
             )}
           </Card>

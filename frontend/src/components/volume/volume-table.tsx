@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronUp, ChevronDown, Info } from "lucide-react";
+import { ChevronUp, ChevronDown, Info, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { VolumeHistoryPoint } from "@/lib/hooks";
 
@@ -157,6 +157,36 @@ function GlyphLegend() {
 
 interface VolumeTableProps {
   data: VolumeHistoryPoint[];
+  ticker?: string;
+}
+
+function downloadCSV(data: VolumeHistoryPoint[], ticker: string) {
+  const headers = ["Date", "Open", "High", "Low", "Close", "Range%", "Volume", "Vol Ratio", "Chg%", "Wyckoff Events"];
+  const rows = data.map(row => {
+    const rangePct = row.high != null && row.low != null && row.close != null && row.close > 0
+      ? ((row.high - row.low) / row.close * 100).toFixed(1)
+      : "";
+    return [
+      row.date,
+      row.open?.toFixed(2) ?? "",
+      row.high?.toFixed(2) ?? "",
+      row.low?.toFixed(2) ?? "",
+      row.close?.toFixed(2) ?? "",
+      rangePct,
+      row.volume ?? "",
+      row.vol_ratio?.toFixed(2) ?? "",
+      row.price_change_pct?.toFixed(2) ?? "",
+      (row.wyckoff_events ?? []).join("|"),
+    ];
+  });
+  const csv = [headers, ...rows].map(r => r.map(v => `"${v}"`).join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${ticker}-volume-history.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 const FILTER_LABELS: Record<Filter, string> = {
@@ -165,7 +195,7 @@ const FILTER_LABELS: Record<Filter, string> = {
   notable: "Notable (spike or ≥2%)",
 };
 
-export function VolumeTable({ data }: VolumeTableProps) {
+export function VolumeTable({ data, ticker = "stock" }: VolumeTableProps) {
   const [sortKey, setSortKey] = useState<SortKey>("date");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [showAll, setShowAll] = useState(false);
@@ -214,10 +244,10 @@ export function VolumeTable({ data }: VolumeTableProps) {
 
   return (
     <div className="space-y-3">
-      {/* Filter pills */}
+      {/* Filter pills + download */}
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-xs text-muted-foreground">{filtered.length} rows</span>
-        <div className="flex gap-1.5 ml-auto">
+        <div className="flex gap-1.5 ml-auto items-center">
           {(["all", "spikes", "notable"] as Filter[]).map(f => (
             <button
               key={f}
@@ -231,6 +261,15 @@ export function VolumeTable({ data }: VolumeTableProps) {
               {FILTER_LABELS[f]}
             </button>
           ))}
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-6 px-2 text-[11px] gap-1"
+            onClick={() => downloadCSV(sorted, ticker)}
+          >
+            <Download className="h-3 w-3" />
+            CSV
+          </Button>
         </div>
       </div>
 
