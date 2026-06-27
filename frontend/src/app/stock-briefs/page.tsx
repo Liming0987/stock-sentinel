@@ -3,24 +3,75 @@ import path from "path";
 import { StockBriefsClient } from "./client";
 import { PageHeader } from "@/components/layout/page-header";
 
+export interface NewsCatalyst {
+  headline: string;
+  summary: string;
+  source_url: string;
+  sentiment: "bullish" | "bearish" | "neutral";
+}
+
+export interface StrategySignal {
+  strategy: string;
+  action: "buy" | "sell" | "hold";
+  confidence: number;
+  entry_low: number | null;
+  entry_high: number | null;
+  stop_loss: number | null;
+  target: number | null;
+}
+
 export interface StockAnalysis {
   ticker: string;
   company_name: string;
+  report_date: string;
   price: number;
   change_pct: number;
   overall_stance: "accumulate" | "watch" | "hold" | "avoid";
   conviction: number;
   one_liner: string;
   watchlist_priority: "high" | "medium" | "low";
+  news_catalyst: NewsCatalyst;
   technical: {
+    trend: string;
     wyckoff_phase: string;
-    rsi: number | null;
-    vcp_detected: boolean;
     wyckoff_bias: string;
     wyckoff_signals_detected: number;
+    vcp_detected: boolean;
+    vcp_pivot: number | null;
+    vcp_stage: string;
+    key_support: number | null;
+    key_resistance: number | null;
+    rsi: number | null;
+    macd_signal: string;
+    volume_ratio_today: number | null;
+    volume_signal: string;
+    summary: string;
   };
-  sentiment: { label: string; score: number };
-  strategy_signals: unknown[];
+  valuation: {
+    feasible: boolean;
+    base_intrinsic_value: number | null;
+    upside_pct: number | null;
+    bear_value: number | null;
+    bull_value: number | null;
+    discount_rate: number | null;
+    growth_rate: number | null;
+    summary: string;
+  };
+  fundamentals: {
+    grade: string;
+    score: number | null;
+    key_strengths: string[];
+    key_concerns: string[];
+    summary: string;
+  };
+  sentiment: {
+    score: number;
+    label: string;
+    mentions_24h: number;
+    trend: string;
+  };
+  strategy_signals: StrategySignal[];
+  risks: string[];
 }
 
 async function getBriefDates(): Promise<string[]> {
