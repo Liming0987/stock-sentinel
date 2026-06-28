@@ -110,7 +110,10 @@ export function StockBriefsClient({ dates, allData }: Props) {
   const [stanceFilter, setStanceFilter] = useState<StanceFilter>("all");
   const [selectedTicker, setSelectedTicker] = useState<string | null>(null);
 
-  const analyses = allData[selectedDate] ?? [];
+  const analyses = useMemo(
+    () => allData[selectedDate] ?? [],
+    [allData, selectedDate]
+  );
 
   const counts = useMemo<Record<Stance, number>>(
     () => ({

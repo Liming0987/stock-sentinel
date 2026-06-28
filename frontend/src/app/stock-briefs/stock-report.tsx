@@ -129,7 +129,7 @@ export function StockReport({ analysis: a }: { analysis: StockAnalysis }) {
       {/* ── The story: news + technical narrative ────────────────────────────── */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold">Today's Reading</CardTitle>
+          <CardTitle className="text-sm font-semibold">Today&apos;s Reading</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
 
