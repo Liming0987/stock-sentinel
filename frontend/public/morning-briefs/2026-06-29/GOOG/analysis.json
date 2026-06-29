@@ -1,0 +1,95 @@
+{
+  "ticker": "GOOG",
+  "company_name": "Alphabet Inc.",
+  "report_date": "2026-06-29",
+  "price": 334.69,
+  "change_pct": -2.19,
+  "overall_stance": "watch",
+  "conviction": 0.58,
+  "one_liner": "GOOG enters the Dow today at a 13% discount to its May peak \u2014 the June 26 selling climax (82M shares, highest in 90 days) + RSI 28 hints at exhaustion, but the downtrend needs a confirmed Automatic Rally before this is an accumulate.",
+  "price_action": {
+    "open": 340.98,
+    "high": 344.12,
+    "low": 333.69,
+    "close": 334.69,
+    "volume": 82450400,
+    "vol_ratio": 3.29,
+    "vol_rank": "Highest in 90-day dataset \u2014 71% above next-biggest spike (48M on May 29)",
+    "intraday_story": "June 26 opened at 340.98, briefly tagged 344.12, then sold down hard to close at 333.69 before recovering slightly to 334.69 \u2014 a tight close near the session low. What's striking is the shape: a failed intraday rally followed by distribution close, not a wide-ranging reversal candle. Volume at 82.45M dwarfs the next-biggest session (48M on May 29) and is 3.29x the 30-day average. The backend algorithm explicitly flagged this as a 'Selling Climax \u2014 heavy distribution.' The prior four sessions (June 22\u201325) showed declining price on 22M\u201332M shares \u2014 ordinary selling pressure. The sudden volume explosion on June 26 suggests a possible exhaustion move: panicked sellers dominating the tape, potentially transferring shares to stronger hands near support."
+  },
+  "news_catalyst": {
+    "headline": "Alphabet Joins Dow Jones Industrial Average Today, Replacing Verizon",
+    "summary": "Effective today (June 29), Alphabet replaces Verizon in the 30-stock Dow Jones Industrial Average \u2014 the first index reshuffle since Nvidia and Sherwin-Williams joined in late 2024. S&P Global cited AI, cloud infrastructure, and advertising exposure as the rationale. Premarket, GOOG was trading up ~1.2% on the news per Barron's, despite a broader 5-week selloff. The timing is notable: GOOG enters the Dow at a 13% discount to its May 27 close of $384.60, meaning index funds benchmarked to the DJIA must accumulate shares right at a technical support zone near the lower Bollinger Band. Secondary headwinds include AI talent departures (John Jumper and Noam Shazeer left in June), Google limiting Meta's Gemini API access due to compute constraints (a sign of resource pressure, not strength), and Australia's proposal to fine YouTube up to $68M under a tightened social-media law. Earnings are set for July 23 \u2014 a near-term binary event that could either validate or break the bottoming thesis.",
+    "source_url": "https://www.cnbc.com/2026/06/23/alphabet-verizon-dow-djia.html",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 333.69,
+    "key_resistance": 358.64,
+    "rsi": 27.95,
+    "macd_signal": "bearish \u2014 histogram at -2.17, below signal line",
+    "volume_ratio_today": 3.29,
+    "volume_signal": "climactic",
+    "summary": "GOOG sits in deep oversold territory: RSI at 27.95 is the most extreme reading in the 90-day dataset, the stock is trading below the lower Bollinger Band ($336.56), and the 50 EMA ($369.34) and 200 EMA ($379.82) are both well overhead \u2014 a clean bearish alignment that has been in force since mid-May. The 5-week selloff has erased $49.91/share (13%) from the May 27 close of $384.60.\n\nThe standout fact from June 26 is volume. At 82.45M shares, it was the single largest session in the 90-day dataset by a wide margin \u2014 71% above the next-biggest spike (May 29 at 48M, itself a heavy distribution day). The OBV line has been deteriorating steadily since mid-June, falling from -58M on June 18 to -246M on June 26 \u2014 a relentless outflow that says sellers have been in control for nearly two weeks. Nothing in the OBV profile suggests quiet institutional accumulation underpinning the price.\n\nAnd yet the June 26 volume spike itself complicates the story. Climactic volume after a multi-week decline is one of the most reliable early-warning signals in Wyckoff analysis \u2014 it marks the point where the last panicked sellers dump into the hands of buyers willing to absorb the float. The fact that the close ($334.69) was near the session low rather than a mid-range close means the climax character isn't confirmed by the price structure alone, but the raw volume is undeniable.\n\nThe key levels to watch: $333.69 is the June 26 low \u2014 that's the line in the sand. Below it on expanding volume is a breakdown signal. Above it with volume drying up below 20M over the next 2\u20133 sessions would be classic post-SC behavior and would strengthen the bottoming thesis. The Dow inclusion today forces mechanical buying from DJIA-tracking instruments, which may provide exactly the Automatic Rally Wyckoff would predict after a selling climax."
+  },
+  "wyckoff_narrative": "The formal Wyckoff phase is tagged as 'Consolidation / No Clear Phase' with zero discrete signals \u2014 the algorithm has not yet annotated a Selling Climax (SC), Automatic Rally (AR), or Secondary Test (ST). But the raw data tells a coherent preliminary story: GOOG has been in a Phase A (Stopping the Downtrend) setup since late June. The sustained decline from $384.60 (May 27) to $334.69 (June 26) with progressively heavier selling volume \u2014 culminating in the 82.45M-share climactic bar \u2014 fits the preconditions for an SC event. If June 26 was the SC, the textbook next event is an Automatic Rally (AR) in the next 1\u20133 sessions, likely to the $345\u2013$352 zone (the June 23\u201324 consolidation area), followed by a Secondary Test (ST) pulling back with notably lighter volume.\n\nWhat would confirm the SC-AR-ST sequence: (1) Volume drying up sharply over the next 2\u20133 sessions, ideally below 20M; (2) An AR candle with decent upside and moderate volume; (3) A subsequent retest of the June 26 low zone ($333\u2013$335) that holds on less than half the June 26 volume. If all three conditions are met, the base-building for Phase B accumulation would be underway and a re-evaluation to 'accumulate' stance would be warranted.\n\nThe bearish countercase: if GOOG breaks decisively below $333.69 on elevated volume, the 'selling climax' interpretation is invalidated and the next structural support sits around $310 (the strategy stop-loss level). The AI talent departures and ongoing OBV deterioration are legitimate reasons to stay skeptical until the AR-ST sequence proves out.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 411.13,
+    "upside_pct": 22.8,
+    "bear_value": 228.4,
+    "bull_value": 681.61,
+    "discount_rate": 0.113,
+    "growth_rate": 0.1695,
+    "summary": "The DCF uses a normalized 4-year average FCF of $68.9B rather than TTM FCF ($27.9B), which is severely compressed by $146.4B in investment spending \u2014 a deliberate capex surge into AI infrastructure. At the base case ($411.13, 16.95% growth, 11.3% WACC), GOOG trades at a 22.8% discount, offering a meaningful margin of safety. The bear case ($228.40) prices in slower growth with a higher cost of capital \u2014 not the base expectation for an A-grade business with 38.8% ROE and 82% earnings growth YoY. At current levels, the risk/reward skews favorably: 22.8% upside to base vs. 31.8% downside to bear, and fundamentals do not support the bear scenario as a base case."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.82,
+    "key_strengths": [
+      "82% YoY earnings growth (Q1 2026 EPS $2.81 vs $1.89 prior year)",
+      "37.9% net profit margins \u2014 best-in-class for mega-cap",
+      "38.9% return on equity with only 20x debt/equity (net cash positive at $31B)",
+      "Analyst consensus: 1.43 mean rating (Strong Buy), $426.62 mean target = 27.5% upside from current price",
+      "Revenue growth 21.8% YoY \u2014 accelerating, not decelerating"
+    ],
+    "key_concerns": [
+      "Heavy capex cycle ($146.4B investment spend in TTM) compresses FCF to $27.9B \u2014 sustainability of this reinvestment pace is key",
+      "Valuation pillar score only 0.425 \u2014 price-to-book of 8.47x and P/S of 9.67x reflect premium pricing even after the selloff",
+      "AI talent risk: John Jumper and Noam Shazeer departures in June raise questions about Gemini competitive roadmap"
+    ],
+    "summary": "The A-grade reflects a business firing on nearly all cylinders: perfect growth score (1.0), near-perfect financial health (0.92), and profitability (1.0). The sole drag is valuation (0.425) \u2014 even after a 13% drawdown, the market still prices in substantial future compounding. The fundamentals unambiguously support the technical case for buying at a discount: this is not a business in distress, it's a premium business experiencing a sentiment-driven pullback."
+  },
+  "sentiment": {
+    "score": 0.058,
+    "label": "Neutral",
+    "mentions_24h": 10,
+    "trend": "flat"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "RSI MeanReversion / Multi-Strategy Hold",
+      "action": "hold",
+      "confidence": 0.58,
+      "entry_low": 328.53,
+      "entry_high": 341.19,
+      "stop_loss": 310.05,
+      "target": 375.43
+    }
+  ],
+  "risks": [
+    "If volume stays elevated (>40M) in the next 2 sessions without a meaningful bounce, the June 26 'selling climax' interpretation fails and $310 (strategy stop) comes into view",
+    "Earnings on July 23 are a binary event \u2014 if capex guidance accelerates further or Gemini growth disappoints vs. Claude/GPT-4o, the DCF growth assumption unravels",
+    "AI talent departures (Jumper, Shazeer) could accelerate if Google's internal culture shifts post-Dow inclusion \u2014 hard to price but watch for further announcements",
+    "OBV at -246M and deteriorating: until OBV turns flat or positive, there is no confirmed institutional accumulation underpinning the price",
+    "Australia's proposed $68M YouTube fines could set a regulatory precedent across the EU and US, adding compliance cost and creating headline risk in coming months"
+  ],
+  "watchlist_priority": "high"
+}
