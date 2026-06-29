@@ -1,0 +1,89 @@
+{
+  "ticker": "OPEN",
+  "company_name": "Opendoor Technologies Inc.",
+  "report_date": "2026-06-29",
+  "price": 4.6,
+  "change_pct": 5.26,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "OPEN +5.3% to $4.60 following Russell 3000 inclusion (June 26, 171M share volume spike) \u2014 index-fund buying is mechanical not fundamental; DCF shows 98% upside but company is Grade D fundamentally.",
+  "price_action": {
+    "open": 4.36,
+    "high": 4.63,
+    "low": 4.26,
+    "close": 4.6,
+    "volume": 77950102,
+    "vol_ratio": 1.77,
+    "vol_rank": "#3 in 90-day dataset \u2014 June 26 had 171M (3.90x avg)",
+    "intraday_story": "Today's 78M volume (1.77x) is elevated follow-through from June 26's 171M climactic Russell-rebalancing session. Close near the high at $4.60 continues the index-inclusion momentum."
+  },
+  "news_catalyst": {
+    "headline": "Opendoor Added to Russell 3000 Index \u2014 Effective June 26",
+    "summary": "Russell rebalancing added OPEN to the Russell 3000 on June 26, driving 171M shares of mechanical index-fund buying (3.90x average volume). Today's follow-through is from momentum traders. The DCF model shows $231 'intrinsic value' which is clearly a model artifact given OPEN's financial profile \u2014 the company is an iBuyer losing money in a challenging housing market. Former CEO Eric Wu's NavigateAI launch keeps OPEN in the proptech/AI conversation.",
+    "source_url": "https://www.stocktitan.net/news/OPEN/opendoor-announces-inclusion-in-russell-3000-k2puakhnr99v.html",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 4.26,
+    "key_resistance": 5.24,
+    "rsi": 47.2,
+    "macd_signal": "flat \u2014 MACD +0.02",
+    "volume_ratio_today": 1.77,
+    "volume_signal": "elevated",
+    "summary": "RSI 47.2 is neutral. MACD flat. The June 26 volume spike (171M = 3.90x) is the Russell rebalancing event \u2014 mechanical, not informative for price action analysis. EMA50 at $4.88 is overhead."
+  },
+  "wyckoff_narrative": "The Russell rebalancing volume is not Wyckoff-meaningful \u2014 it's forced buying at arbitrary index weights, not institutional price discovery. Post-rebalancing, OPEN typically reverts to its fundamental trading range.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 231.06,
+    "upside_pct": 98.0,
+    "bear_value": 1.0,
+    "bull_value": 50.0,
+    "discount_rate": 0.12,
+    "growth_rate": 0.15,
+    "summary": "The $231 DCF value is a model artifact and should not be taken at face value \u2014 OPEN is a pre-profitability iBuyer in a difficult housing market. Avoid using DCF here."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.42,
+    "key_strengths": [
+      "Russell 3000 inclusion provides passive buyer floor",
+      "NavigateAI connection keeps story in AI proptech narrative"
+    ],
+    "key_concerns": [
+      "Grade D fundamentals \u2014 iBuyer model challenged by high interest rates",
+      "DCF model output unreliable for this business model"
+    ],
+    "summary": "Grade D. Avoid on fundamentals. The Russell inclusion provides tactical support but not investment thesis."
+  },
+  "sentiment": {
+    "score": 0.009,
+    "label": "Neutral",
+    "mentions_24h": 6,
+    "trend": "flat"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "Hold Signal",
+      "action": "hold",
+      "confidence": 0.4,
+      "entry_low": 4.21,
+      "entry_high": 4.46,
+      "stop_loss": 3.75,
+      "target": 5.3
+    }
+  ],
+  "risks": [
+    "Post-Russell-rebalancing price decay is common \u2014 mechanical buying ends immediately after rebalancing",
+    "Grade D fundamentals with challenging iBuyer market dynamics",
+    "EMA50 at $4.88 is 6% overhead resistance"
+  ],
+  "watchlist_priority": "low"
+}

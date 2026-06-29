@@ -1,0 +1,80 @@
+{
+  "ticker": "DE",
+  "company_name": "Deere & Company",
+  "report_date": "2026-06-29",
+  "price": 626.63,
+  "change_pct": 2.22,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "DE +2.2% to $627 \u2014 RSI 70.1 at overbought threshold, close above upper BB, and DCF shows -215% overvaluation; momentum is stretched.",
+  "price_action": {
+    "open": 614.11,
+    "high": 628.17,
+    "low": 608.62,
+    "close": 626.63,
+    "volume": 1191000,
+    "vol_ratio": 0.79,
+    "vol_rank": "#53 \u2014 below average",
+    "intraday_story": "DE closed just below the $628 high on below-average volume \u2014 overbought RSI 70 with a close above the upper BB ($628.62) on low volume is a classic distribution signal."
+  },
+  "news_catalyst": {
+    "headline": "No Specific Catalyst \u2014 Agricultural Equipment Sector Participating in Broad Market Rally",
+    "summary": "DE is rising with the market. Deere benefits from farmer equipment replacement cycles and precision agriculture AI technology. No specific company news.",
+    "source_url": "https://finance.yahoo.com/quote/DE/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 608.62,
+    "key_resistance": 628.17,
+    "rsi": 70.1,
+    "macd_signal": "bullish \u2014 MACD +3.89",
+    "volume_ratio_today": 0.79,
+    "volume_signal": "drying up",
+    "summary": "RSI 70.1 is the overbought threshold. Close above upper BB on below-average volume = low-conviction overbought extension. DCF at $199 shows -215% overvaluation. This is a momentum stock with no fundamental support at current prices."
+  },
+  "wyckoff_narrative": "No Wyckoff signals. The RSI 70 overbought condition on low volume suggests distribution into the rally rather than institutional accumulation.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 198.86,
+    "upside_pct": -215.1,
+    "bear_value": 120.0,
+    "bull_value": 350.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.08,
+    "summary": "DCF at $199 \u2014 DE is trading at 3x fair value on a traditional DCF basis. The precision agriculture premium is not justified by current earnings growth."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.49,
+    "key_strengths": [
+      "Precision agriculture AI is a genuine long-term growth opportunity",
+      "Dominant market position in large farm equipment"
+    ],
+    "key_concerns": [
+      "DCF -215% overvalued",
+      "Grade D fundamentals \u2014 agricultural cycle is near peak",
+      "RSI 70 overbought on low volume"
+    ],
+    "summary": "Grade D with significant DCF overvaluation. Avoid at current prices."
+  },
+  "sentiment": {
+    "score": 0.255,
+    "label": "Neutral-Bullish",
+    "mentions_24h": 3,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI 70 overbought \u2014 historically followed by 5\u201310% pullbacks even in uptrends",
+    "DCF overvaluation leaves no fundamental floor on a correction",
+    "Agricultural commodity cycle turning \u2014 farm equipment orders slowing"
+  ],
+  "watchlist_priority": "low"
+}

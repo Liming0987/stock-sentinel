@@ -1,0 +1,73 @@
+{
+  "ticker": "MELI",
+  "company_name": "MercadoLibre Inc.",
+  "report_date": "2026-06-29",
+  "price": 1683.13,
+  "change_pct": 0.48,
+  "overall_stance": "watch",
+  "conviction": 0.52,
+  "one_liner": "MELI flat at $1,683 \u2014 consolidating inside BB channel, MACD +8.79 bullish, but just below EMA50 ($1,678) and DCF not feasible; Latin American e-commerce leader in a quiet session.",
+  "price_action": {
+    "open": 1685.96,
+    "high": 1744.14,
+    "low": 1682.4,
+    "close": 1683.13,
+    "volume": 403378,
+    "vol_ratio": 0.78,
+    "vol_rank": "#64 \u2014 below average",
+    "intraday_story": "MELI hit $1,744 high then pulled back sharply to close at $1,683 \u2014 a significant intraday rejection from the high. The close at the low end of the day's range on declining volume is mildly bearish near-term."
+  },
+  "news_catalyst": {
+    "headline": "No Significant MELI News \u2014 LatAm E-Commerce and Fintech Stable",
+    "summary": "MercadoLibre continues its dominant position in Latin American e-commerce and digital payments. No specific news today. The MELI story is long-term compounding in underpenetrated LatAm markets with MercadoPago fintech as a high-growth segment.",
+    "source_url": "https://finance.yahoo.com/quote/MELI/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1559.46,
+    "key_resistance": 1712.89,
+    "rsi": 53.9,
+    "macd_signal": "bullish \u2014 MACD +8.79",
+    "volume_ratio_today": 0.78,
+    "summary": "MELI is consolidating inside BB ($1,559\u2013$1,712). RSI 53.9 and MACD +8.79 are both mildly positive. EMA50 at $1,678 is right at current price \u2014 MELI needs to hold above this level. The $1,744 intraday high rejection is a near-term concern."
+  },
+  "wyckoff_narrative": "No formal events. Consolidation in a neutral phase. The EMA50 test at $1,678 is the key level.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "summary": "DCF not feasible \u2014 MELI's LatAm growth optionality and reinvestment cycle makes FCF-based valuation unreliable. Multiple-based valuation is preferred."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.55,
+    "key_strengths": [
+      "Dominant LatAm e-commerce and fintech platform with network effects",
+      "MercadoPago fintech growing faster than the e-commerce segment"
+    ],
+    "key_concerns": [
+      "Grade C fundamentals \u2014 high reinvestment capex suppresses FCF",
+      "Currency risk in Brazil/Argentina operations"
+    ],
+    "summary": "Grade C but the long-term compounding story remains intact. Not a near-term trade setup."
+  },
+  "sentiment": {
+    "score": 0.338,
+    "label": "Bullish",
+    "mentions_24h": 3,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "$1,744 intraday rejection \u2014 sellers active at resistance",
+    "EMA50 $1,678 support needs to hold on a closing basis"
+  ],
+  "watchlist_priority": "medium"
+}

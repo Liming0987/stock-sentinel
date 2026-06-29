@@ -1,0 +1,77 @@
+{
+  "ticker": "SOUN",
+  "company_name": "SoundHound AI Inc.",
+  "report_date": "2026-06-29",
+  "price": 6.4,
+  "change_pct": -0.16,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "SOUN flat at $6.40 \u2014 RSI 26.8 is deep oversold, below lower BB, Wyckoff Accumulation Phase B; no DCF feasibility and this is purely a voice AI speculative name.",
+  "price_action": {
+    "open": 6.54,
+    "high": 6.62,
+    "low": 6.15,
+    "close": 6.4,
+    "volume": 24550247,
+    "vol_ratio": 0.94,
+    "vol_rank": "#51 \u2014 near average",
+    "intraday_story": "SOUN dipped to $6.15 (testing the lower BB at $5.57) then recovered to close at $6.40. RSI at 26.8 is deep oversold \u2014 any further selling into $5.57\u2013$6.00 could trigger a bounce."
+  },
+  "news_catalyst": {
+    "headline": "No Significant SOUN News \u2014 Voice AI Sector Quiet",
+    "summary": "No specific SOUN news. SoundHound continues to build its voice AI platform for automotive and enterprise clients. The oversold RSI at 26.8 suggests significant recent selling \u2014 likely macro risk-off in AI speculative names.",
+    "source_url": "https://finance.yahoo.com/quote/SOUN/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 5.57,
+    "key_resistance": 8.03,
+    "rsi": 26.8,
+    "macd_signal": "bearish \u2014 MACD -0.03",
+    "volume_ratio_today": 0.94,
+    "summary": "RSI 26.8 is the second-most oversold reading in the watchlist (after GOOG's 27.95 on June 26). Below EMA50 ($8.03) and EMA200 ($8.87) \u2014 full bearish EMA alignment. The Wyckoff Phase B bullish tag combined with RSI <30 suggests this could be near a local bottom, but the downtrend hasn't been broken."
+  },
+  "wyckoff_narrative": "Phase B accumulation at extreme oversold RSI. The $5.57 lower BB is the key support level. A spike to that level on elevated volume followed by recovery would be the Wyckoff Spring \u2014 the final shakeout that ends Phase B and begins Phase C/D.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF not feasible \u2014 pre-revenue AI voice platform. Value is entirely optionality."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.54,
+    "key_strengths": [
+      "Voice AI technology with automotive OEM partnerships",
+      "Strategic partnerships with automotive majors provide recurring contract revenue"
+    ],
+    "key_concerns": [
+      "Pre-profitability, speculative AI voice platform",
+      "Significant dilution risk \u2014 frequent equity raises"
+    ],
+    "summary": "Grade C. Speculative voice AI at extreme oversold levels. Not investment-grade but RSI 26.8 warrants monitoring for a bounce trade setup."
+  },
+  "sentiment": {
+    "score": 0.083,
+    "label": "Neutral",
+    "mentions_24h": 5,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI 26.8 oversold but downtrend still intact \u2014 catching a falling knife risk",
+    "EMA50 at $8.03 is 25% overhead \u2014 full recovery is a long road",
+    "Dilution risk from capital raises"
+  ],
+  "watchlist_priority": "low"
+}

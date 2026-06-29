@@ -1,0 +1,79 @@
+{
+  "ticker": "LULU",
+  "company_name": "Lululemon Athletica Inc.",
+  "report_date": "2026-06-29",
+  "price": 114.29,
+  "change_pct": -2.79,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "LULU -2.8% to $114 underperforms on a strong market day \u2014 Wyckoff flags Accumulation Phase B; DCF at $126 shows modest upside but EMA50/200 are both overhead resistance.",
+  "price_action": {
+    "open": 117.21,
+    "high": 117.8,
+    "low": 112.8,
+    "close": 114.29,
+    "volume": 3212386,
+    "vol_ratio": 0.74,
+    "vol_rank": "#35 \u2014 below average",
+    "intraday_story": "LULU opened near the high and sold down steadily to close at $114.29, near the session low. Down 2.79% on a day the S&P was up 1.64% \u2014 significant relative weakness suggesting ongoing distribution or sector rotation out of consumer discretionary."
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Consumer Discretionary Underperformance Continues",
+    "summary": "No material LULU-specific news. The stock is declining on relative weakness vs. the tech-led rally. Consumer discretionary names like LULU have been underperforming as higher memory costs (from Micron's pricing cycle) and inflation concerns weigh on premium apparel demand expectations.",
+    "source_url": "https://finance.yahoo.com/quote/LULU/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 104.31,
+    "key_resistance": 123.43,
+    "rsi": 42.3,
+    "macd_signal": "slightly bullish \u2014 MACD +0.27",
+    "volume_ratio_today": 0.74,
+    "volume_signal": "drying up",
+    "summary": "Wyckoff Phase B with below-average volume on declining price is an interesting setup \u2014 volume drying up during a price decline suggests sellers are exhausted rather than aggressive. The lower BB at $104.31 is the key downside level. RSI at 42.3 is below-neutral but not oversold. DCF at $126 shows 9.6% upside \u2014 modest."
+  },
+  "wyckoff_narrative": "Accumulation Phase B with low-volume price decline is the Wyckoff 'secondary test' pattern \u2014 price tests prior lows but volume is insufficient to break through, suggesting the supply overhang is being absorbed. The $104\u2013$112 zone is the accumulation range. A close below $104 on elevated volume would invalidate the accumulation thesis.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 126.39,
+    "upside_pct": 9.6,
+    "bear_value": 80.0,
+    "bull_value": 180.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.1,
+    "summary": "DCF at $126 \u2014 9.6% upside \u2014 is not compelling enough to enter against an intermediate downtrend. Wait for EMA50 ($123.43) reclaim before considering accumulation."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.72,
+    "key_strengths": [
+      "Premium brand with loyal customer base and strong international expansion",
+      "B grade reflects solid profitability and manageable debt"
+    ],
+    "key_concerns": [
+      "Relative market weakness is a red flag on a broadly positive day",
+      "Consumer discretionary headwinds from sticky inflation"
+    ],
+    "summary": "Grade B fundamentals but technical picture doesn't support adding here. Watch for EMA50 reclaim or a proper Wyckoff Spring (final shakeout low) before acting."
+  },
+  "sentiment": {
+    "score": 0.119,
+    "label": "Neutral",
+    "mentions_24h": 5,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Relative weakness on positive market day suggests ongoing institutional distribution",
+    "EMA50 at $123.43 is 8% overhead \u2014 recovery requires sustained buying pressure",
+    "Consumer spending slowdown would directly impact premium athleisure demand"
+  ],
+  "watchlist_priority": "low"
+}

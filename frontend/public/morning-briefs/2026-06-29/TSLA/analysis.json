@@ -1,0 +1,81 @@
+{
+  "ticker": "TSLA",
+  "company_name": "Tesla Inc.",
+  "report_date": "2026-06-29",
+  "price": 411.84,
+  "change_pct": 8.46,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "TSLA gaps +8.5% to $411 on NHTSA probe closure and Q2 delivery upgrades \u2014 stock now tests the EMA200 at $412.97 which has been overhead resistance for weeks.",
+  "price_action": {
+    "open": 381.79,
+    "high": 413.27,
+    "low": 379.3,
+    "close": 411.84,
+    "volume": 56907966,
+    "vol_ratio": 1.21,
+    "vol_rank": "Middle of 90-day range \u2014 1.21x average",
+    "intraday_story": "TSLA opened at $381.79 on a gap from Friday's $379.71, ran to a high of $413.27, and closed at $411.84 \u2014 the close is just $1.43 below the intraday high and critically just below the 200-day EMA at $412.97. The rejection at the century price ($413) and the 200-day EMA is notable: this is the third test of this level in recent weeks. Volume at 57M shares is 1.21x average \u2014 solid but not exceptional for a move of this magnitude, suggesting the rally is being driven more by news repricing than by aggressive institutional accumulation."
+  },
+  "news_catalyst": {
+    "headline": "NHTSA Closes 3-Year Safety Probe; Morgan Stanley Raises Q2 Delivery Forecast to 413K",
+    "summary": "The National Highway Traffic Safety Administration formally closed its engineering analysis into power steering loss affecting ~376,241 Tesla Model 3 and Model Y vehicles (2023 model year), with Tesla resolving the issue via over-the-air software recall. The closure removes an overhang that had weighed on sentiment for nearly three years. Simultaneously, Morgan Stanley raised its Q2 delivery estimate to 413,000 vehicles from 373,000, citing demand recovery in Europe and China. These two catalysts arriving together \u2014 regulatory relief plus demand recovery evidence \u2014 create a compelling near-term re-rating story. The Q2 delivery report is imminent and will be the next major catalyst or potential disappointment.",
+    "source_url": "https://www.investing.com/news/stock-market-news/why-is-tesla-stock-rallying-today-93CH-4765843",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 379.3,
+    "key_resistance": 413.27,
+    "rsi": 55.0,
+    "macd_signal": "slightly bearish \u2014 histogram -0.36",
+    "volume_ratio_today": 1.21,
+    "volume_signal": "normal",
+    "summary": "TSLA is now testing its 200-day EMA at $412.97 \u2014 the single most important technical level in the chart. The stock has been in a consolidation range roughly bounded by the 50-day EMA ($406.20) below and the 200-day EMA ($412.97) above, with today's close at $411.84 sitting inside that $6 band. RSI at 55.0 is neutral, not overbought. MACD histogram at -0.36 is barely negative, suggesting the bearish momentum is exhausted.\n\nThe DCF model shows TSLA is dramatically overvalued by traditional metrics ($53 intrinsic value vs $411 market price) \u2014 but Tesla is not a DCF stock. The market prices it as an AI, robotaxi, and energy storage story. Fundamental analysis provides limited edge here.\n\nThe key technical question: can TSLA close convincingly above $413 (the 200-day EMA) with expanding volume? Three tests of overhead resistance typically mean either a clean break or a sharp rejection. The Q2 delivery report \u2014 likely in the next 1\u20133 days \u2014 will determine which."
+  },
+  "wyckoff_narrative": "No formal Wyckoff phase or events detected. The $379\u2013$413 range represents a tight consolidation zone where TSLA has chopped for several weeks. This range compression \u2014 lower highs meeting at the 200-day EMA \u2014 is consistent with a coiling structure before a directional break. The bias is uncertain: a delivery beat breaks it up, a miss breaks it down.\n\nFor Wyckoff practitioners: today's news-driven markup to the 200-day EMA could be the SOS (Sign of Strength) bar, but the failure to close cleanly above the level means it's unconfirmed. Ideal scenario: TSLA consolidates $405\u2013$413 for 2\u20133 sessions with volume declining, then breaks above $413 on delivery day with 2x average volume. That would be a high-conviction long entry.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 53.22,
+    "upside_pct": -673.8,
+    "bear_value": 30.0,
+    "bull_value": 150.0,
+    "discount_rate": 0.12,
+    "growth_rate": 0.15,
+    "summary": "Tesla's DCF value of $53 reflects its automotive business in a traditional discounted cash flow framework \u2014 the market is pricing in robotaxi, AI, and energy at a massive premium. This is not a valuation-driven trade; it's a catalyst-driven trade around Q2 deliveries and product announcements."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.48,
+    "key_strengths": [
+      "NHTSA probe closure removes a 3-year regulatory overhang",
+      "Q2 delivery recovery in Europe and China \u2014 demand improving"
+    ],
+    "key_concerns": [
+      "Traditional DCF shows -674% downside \u2014 valued entirely on optionality",
+      "Competitive pressure from BYD, Xiaomi intensifying in China",
+      "Robotaxi and AI revenue remain speculative \u2014 not in current financials"
+    ],
+    "summary": "Grade D reflects current fundamentals, not the bull case. Tesla's valuation requires belief in the robotaxi and AI energy narratives. The NHTSA closure and delivery recovery are genuine positive catalysts, but the stock is pricing in outcomes 5\u201310 years out."
+  },
+  "sentiment": {
+    "score": 0.048,
+    "label": "Neutral",
+    "mentions_24h": 20,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "200-day EMA at $412.97 is three-test overhead resistance \u2014 a third rejection could trigger a sharp reversal to $379 support",
+    "Q2 delivery report is the binary event: Morgan Stanley raised to 413K, so the bar is high \u2014 a miss vs expectations would erase today's gains",
+    "MACD still barely negative \u2014 no bullish crossover confirmed yet",
+    "DCF overvaluation by 8x makes it vulnerable to any macro risk-off rotation out of high-multiple names"
+  ],
+  "watchlist_priority": "high"
+}

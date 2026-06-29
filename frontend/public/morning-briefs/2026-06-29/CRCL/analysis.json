@@ -1,0 +1,80 @@
+{
+  "ticker": "CRCL",
+  "company_name": "Circle Internet Group Inc.",
+  "report_date": "2026-06-29",
+  "price": 75.96,
+  "change_pct": 3.29,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "CRCL +3.3% to $76 on Nomura FX settlement partnership; VCP detected but stock is -29% from $105 IPO-era high with RSI 36 still in downtrend territory.",
+  "price_action": {
+    "open": 75.18,
+    "high": 76.14,
+    "low": 72.39,
+    "close": 75.96,
+    "volume": 8190937,
+    "vol_ratio": 0.65,
+    "vol_rank": "#84 \u2014 below average",
+    "intraday_story": "CRCL dipped to $72.39 (testing June 26 support) then recovered to close at $75.96 near the high. Low volume (0.65x) on the recovery is mixed \u2014 not enough conviction to call a bottom, but the support test held."
+  },
+  "news_catalyst": {
+    "headline": "Circle + Nomura Partner on Stablecoin FX Settlement for Japanese Corporations",
+    "summary": "Circle Internet Group revealed a planned FX settlement tie-up with Nomura for Japanese corporate clients using USDC stablecoins for yen conversions and cross-border payments, targeting 2027 deployment. The Nomura partnership drove a 6.92% close on June 26. Japan's FX settlement market is massive and stablecoin regulatory clarity in Japan makes USDC well-positioned. However, CRCL has declined from $105+ in early June to $76 today \u2014 the Nomura news is positive but hasn't reversed the broader downtrend.",
+    "source_url": "https://stockstotrade.com/news/circle-internet-group-inc-crcl-news-2026_06_26/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 64.09,
+    "key_resistance": 91.41,
+    "rsi": 36.1,
+    "macd_signal": "slightly bearish \u2014 MACD -0.24",
+    "volume_ratio_today": 0.65,
+    "volume_signal": "drying up",
+    "summary": "VCP detected + Accumulation Phase B + RSI 36 approaching oversold. The trifecta of technical signals points to a base-building setup, but the stock is still 29% below EMA50 ($91.41) and EMA200 ($100.72). Low-volume support hold is constructive but needs a catalyst to trigger the breakout."
+  },
+  "wyckoff_narrative": "Phase B accumulation with VCP detected in the $64\u2013$76 range. The $72.39 today is the secondary test of the prior swing low. If volume dries up further over the next 2\u20133 sessions while price holds $72+, that's the LPS setup for a VCP breakout attempt above the $76 pivot.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not applicable to CRCL \u2014 the company's value derives from USDC in circulation (interest income on reserves) and the stablecoin ecosystem optionality. Bull case at $340 per some analysts; current $76 is deep in the bear scenario for a company with the Nomura and global enterprise partnerships."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.38,
+    "key_strengths": [
+      "Nomura partnership positions USDC in Japan's massive corporate FX market",
+      "USDC is the #2 stablecoin with regulatory clarity advantages over USDT"
+    ],
+    "key_concerns": [
+      "Grade D fundamentals reflect pre-profitability crypto-adjacent business model",
+      "-29% from recent high \u2014 institutional distribution ongoing",
+      "Stablecoin regulatory framework still evolving globally"
+    ],
+    "summary": "Grade D reflects early-stage economics. The Nomura partnership is genuinely strategic but 2027 revenue is speculative at this stage."
+  },
+  "sentiment": {
+    "score": 0.078,
+    "label": "Neutral",
+    "mentions_24h": 4,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "EMA50 at $91 and EMA200 at $100 are both 20\u201332% overhead \u2014 full recovery requires sustained catalyst flow",
+    "Stablecoin regulatory surprise (SEC action, GENIUS Act amendment) could gap the stock lower",
+    "VCP pivot undefined \u2014 pattern hasn't completed enough contractions to identify the exact breakout level"
+  ],
+  "watchlist_priority": "medium"
+}

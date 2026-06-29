@@ -1,0 +1,79 @@
+{
+  "ticker": "TTD",
+  "company_name": "The Trade Desk Inc.",
+  "report_date": "2026-06-29",
+  "price": 18.65,
+  "change_pct": 1.52,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "TTD +1.5% to $18.65 \u2014 VCP detected, Wyckoff Distribution Phase C-D bearish tag conflicts with 45% DCF upside; resolution depends on next earnings.",
+  "price_action": {
+    "open": 18.97,
+    "high": 19.33,
+    "low": 18.51,
+    "close": 18.65,
+    "volume": 15363774,
+    "vol_ratio": 0.71,
+    "vol_rank": "#66 \u2014 below average",
+    "intraday_story": "TTD opened high and sold off to close near the low \u2014 a bearish intraday reversal. The failed attempt to hold above $19 on low volume is a warning sign."
+  },
+  "news_catalyst": {
+    "headline": "No Significant TTD News \u2014 Programmatic Ad Tech Sector Quiet",
+    "summary": "No specific TTD news today. The stock is riding the broader tech rally. TTD has faced headwinds from CTV ad market concerns and competition from retail media networks (Amazon, Walmart). The Wyckoff algorithm's Distribution Phase C-D tag (bearish) conflicts with the VCP technical signal \u2014 this tension requires resolution via earnings.",
+    "source_url": "https://finance.yahoo.com/quote/TTD/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Distribution Phase C-D",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 16.47,
+    "key_resistance": 22.08,
+    "rsi": 37.9,
+    "macd_signal": "flat \u2014 MACD +0.02",
+    "volume_ratio_today": 0.71,
+    "volume_signal": "drying up",
+    "summary": "Conflicting signals: VCP detected (accumulation pattern) vs. Distribution Phase C-D (bearish bias). RSI 37.9 approaching oversold. EMA50 ($20.90) and EMA200 ($22.49) are both overhead. The lower BB at $16.47 is the downside target if distribution continues. 45.4% DCF upside is compelling but the bearish Wyckoff bias is a red flag."
+  },
+  "wyckoff_narrative": "Distribution Phase C-D with VCP detected is a contradictory signal set. Distribution C-D implies institutions are selling into retail buying; VCP suggests institutional accumulation. The resolution: if TTD breaks below $16.47 (lower BB) on volume, distribution wins. If it holds $18.50 with drying volume and then breaks $19.33 on expanding volume, VCP wins.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 34.16,
+    "upside_pct": 45.4,
+    "bear_value": 10.0,
+    "bull_value": 60.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.18,
+    "summary": "45.4% DCF upside with Grade B fundamentals (0.69 score). The valuation case is compelling but the bearish Wyckoff distribution tag means the discount may deepen before recovering."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.69,
+    "key_strengths": [
+      "Dominant independent programmatic advertising platform",
+      "CTV advertising secular growth tailwind"
+    ],
+    "key_concerns": [
+      "Distribution Phase C-D tag \u2014 institutional selling",
+      "Retail media network competition from Amazon/Walmart threatening open web ad spend"
+    ],
+    "summary": "Grade B with genuine structural opportunity in programmatic advertising. The Wyckoff distribution tag is the primary concern; it suggests insiders may be selling into this recovery."
+  },
+  "sentiment": {
+    "score": 0.009,
+    "label": "Neutral",
+    "mentions_24h": 3,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Wyckoff Distribution Phase C-D conflicts with VCP \u2014 one signal will be proven wrong",
+    "Lower BB at $16.47 is the key downside level to watch",
+    "Retail media network encroachment on open web ad spend is a structural headwind"
+  ],
+  "watchlist_priority": "medium"
+}

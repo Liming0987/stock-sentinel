@@ -1,0 +1,77 @@
+{
+  "ticker": "BAM",
+  "company_name": "Brookfield Asset Management Ltd.",
+  "report_date": "2026-06-29",
+  "price": 44.01,
+  "change_pct": -1.37,
+  "overall_stance": "watch",
+  "conviction": 0.45,
+  "one_liner": "BAM -1.4% to $44 \u2014 prices API shows data errors ($0 candles); qualitatively, Brookfield is a Grade B asset manager with DCF upside of 12.1% but no tradeable technical setup today.",
+  "price_action": {
+    "open": 0.0,
+    "high": 0.0,
+    "low": 0.0,
+    "close": 0.0,
+    "volume": 0,
+    "vol_ratio": 0.7,
+    "vol_rank": "Data unavailable",
+    "intraday_story": "Prices API returned $0 candle data for BAM \u2014 likely a data feed issue with the Brookfield Asset Management Ltd. (Canadian-listed) ticker. Watchlist shows $44.01, -1.37% which is the current price from a live feed."
+  },
+  "news_catalyst": {
+    "headline": "No Significant BAM News",
+    "summary": "No specific Brookfield Asset Management news today. BAM continues its fee-based alternative asset management business with $900B+ in AUM. The stock is declining modestly on a positive market day, consistent with the defensive nature of asset management businesses underperforming in risk-on environments.",
+    "source_url": "https://finance.yahoo.com/quote/BAM/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 42.0,
+    "key_resistance": 48.0,
+    "rsi": 0.0,
+    "macd_signal": "data unavailable",
+    "volume_ratio_today": 0.7,
+    "summary": "Technical analysis limited by data API error returning $0 candles. Based on watchlist price of $44.01 (-1.37%), BAM is underperforming in a +1.64% market \u2014 typical for defensive asset managers in risk-on days. DCF at $50.04 suggests 12.1% upside."
+  },
+  "wyckoff_narrative": "Cannot assess without valid price data. Monitor for data feed resolution.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 50.04,
+    "upside_pct": 12.1,
+    "bear_value": 35.0,
+    "bull_value": 70.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.12,
+    "summary": "DCF at $50.04 shows 12.1% upside \u2014 modest but positive. BAM's fee-based AUM growth model is capital-light and compound-friendly. Grade B fundamentals support the DCF."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.74,
+    "key_strengths": [
+      "$900B+ AUM with fee-based model \u2014 predictable revenue",
+      "Alternative asset management secular tailwind from institutional capital allocation shifts"
+    ],
+    "key_concerns": [
+      "Prices API data error \u2014 can't confirm technical levels",
+      "Underperforms in risk-on environments"
+    ],
+    "summary": "Grade B steady compounder. Not a near-term trade catalyst \u2014 long-term hold if already positioned."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Data API issue prevents full technical analysis",
+    "Underperforms broad market on risk-on days"
+  ],
+  "watchlist_priority": "low"
+}

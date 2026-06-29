@@ -1,0 +1,78 @@
+{
+  "ticker": "CSCO",
+  "company_name": "Cisco Systems Inc.",
+  "report_date": "2026-06-29",
+  "price": 117.7,
+  "change_pct": 3.45,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "CSCO +3.5% to $118 on tech rally but DCF shows -95.6% overvaluation \u2014 this is a yield stock priced as a growth stock; avoid at these levels.",
+  "price_action": {
+    "open": 114.98,
+    "high": 118.18,
+    "low": 114.72,
+    "close": 117.7,
+    "volume": 21164497,
+    "vol_ratio": 0.79,
+    "vol_rank": "#45 \u2014 below average",
+    "intraday_story": "Steady grind higher on below-average volume \u2014 passive tech-rally participation rather than active buying."
+  },
+  "news_catalyst": {
+    "headline": "Cisco Participates in Broad Tech Rally \u2014 No Specific Catalyst",
+    "summary": "CSCO is rising with the broader tech sector. No specific company catalyst identified. Cisco's networking infrastructure is an AI data center enabler, which gives it a peripheral AI tailwind, but the primary business (enterprise networking/security) faces competitive pressure.",
+    "source_url": "https://finance.yahoo.com/quote/CSCO/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 113.71,
+    "key_resistance": 128.61,
+    "rsi": 44.5,
+    "macd_signal": "bearish \u2014 MACD -0.52",
+    "volume_ratio_today": 0.79,
+    "volume_signal": "drying up",
+    "summary": "Below EMA50 ($120.91) and EMA200 ($121.27). RSI 44.5 below neutral. MACD slightly bearish. No compelling technical setup. The DCF at $60 shows massive overvaluation \u2014 CSCO's growth rate doesn't support the current premium."
+  },
+  "wyckoff_narrative": "No Wyckoff events. Consolidation in an uninteresting range. The EMA50/200 cluster at $120\u2013$121 is immediate overhead resistance.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 60.18,
+    "upside_pct": -95.6,
+    "bear_value": 40.0,
+    "bull_value": 90.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.05,
+    "summary": "DCF at $60 \u2014 95.6% overvalued. CSCO trades at a premium that assumes growth the business isn't generating. It's best viewed as a dividend/buyback vehicle, not a growth stock."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.73,
+    "key_strengths": [
+      "AI networking infrastructure peripheral beneficiary",
+      "Consistent buyback and dividend program"
+    ],
+    "key_concerns": [
+      "DCF -95.6% overvalued for a low-growth business",
+      "Below both EMAs \u2014 no technical catalyst"
+    ],
+    "summary": "Grade B fundamentals but significant DCF overvaluation. Not a setup to add to here."
+  },
+  "sentiment": {
+    "score": 0.004,
+    "label": "Neutral",
+    "mentions_24h": 4,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "DCF overvaluation leaves no margin of safety",
+    "Below EMA50/200 \u2014 intermediate downtrend intact"
+  ],
+  "watchlist_priority": "low"
+}

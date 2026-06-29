@@ -1,0 +1,79 @@
+{
+  "ticker": "GME",
+  "company_name": "GameStop Corp.",
+  "report_date": "2026-06-29",
+  "price": 22.02,
+  "change_pct": 1.19,
+  "overall_stance": "avoid",
+  "conviction": 0.7,
+  "one_liner": "GME +1.2% to $22 \u2014 Wyckoff Accumulation Phase A-B with bullish bias but no DCF feasibility; WEN meme activity this week could spill over but GME is a sentiment trade, not an investment.",
+  "price_action": {
+    "open": 22.05,
+    "high": 22.15,
+    "low": 21.88,
+    "close": 22.03,
+    "volume": 3376254,
+    "vol_ratio": 0.59,
+    "vol_rank": "#84 \u2014 low volume",
+    "intraday_story": "Tight range on very low volume \u2014 GME is dormant today despite WEN meme activity. No catalyst for a squeeze evident."
+  },
+  "news_catalyst": {
+    "headline": "No Significant GME News \u2014 Meme Stock Sector Watch",
+    "summary": "WEN's 42% meme rally this week could attract attention to GME if Reddit WallStreetBets rotates. No specific GME catalyst. Ryan Cohen's treasury strategy and bitcoin holdings remain the primary narrative.",
+    "source_url": "https://finance.yahoo.com/quote/GME/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 20.77,
+    "key_resistance": 22.64,
+    "rsi": 57.3,
+    "macd_signal": "flat \u2014 MACD -0.01",
+    "volume_ratio_today": 0.59,
+    "volume_signal": "drying up",
+    "summary": "Tight accumulation range with very low volume. Wyckoff Phase A-B bullish bias. RSI 57.3 neutral. The $20.77\u2013$22.64 BB channel is the current range. A WEN-style retail catalyst could trigger a GME squeeze but no evidence of one today."
+  },
+  "wyckoff_narrative": "Phase A-B low-volume range is consistent with quiet accumulation. Ryan Cohen's bitcoin treasury strategy makes GME more of a BTC proxy than a gaming retailer. If BTC moves significantly, GME often follows.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible \u2014 GME's value is entirely narrative-driven (Ryan Cohen, meme energy, bitcoin treasury). No operational cash flow basis for DCF."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.73,
+    "key_strengths": [
+      "$4B+ cash treasury (BTC conversion ongoing)",
+      "Zero debt \u2014 fortress balance sheet"
+    ],
+    "key_concerns": [
+      "No organic revenue growth \u2014 gaming retail secular decline",
+      "Meme stock volatility unpredictable",
+      "DCF not feasible \u2014 value entirely narrative-driven"
+    ],
+    "summary": "Grade B reflects the treasury strength, not operating momentum. GME is a sentiment vehicle."
+  },
+  "sentiment": {
+    "score": -0.05,
+    "label": "Neutral",
+    "mentions_24h": 8,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Meme-driven \u2014 WEN spill-over potential but also potential for rapid deflation",
+    "Bitcoin treasury strategy introduces crypto volatility to the stock"
+  ],
+  "watchlist_priority": "low"
+}

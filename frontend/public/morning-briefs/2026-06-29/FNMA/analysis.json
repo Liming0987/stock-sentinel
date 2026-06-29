@@ -1,0 +1,73 @@
+{
+  "ticker": "FNMA",
+  "company_name": "Federal National Mortgage Association (Fannie Mae)",
+  "report_date": "2026-06-29",
+  "price": 6.86,
+  "change_pct": -0.29,
+  "overall_stance": "avoid",
+  "conviction": 0.7,
+  "one_liner": "FNMA flat at $6.86 \u2014 near-zero volume (0.12x avg, lowest in 90-day dataset), RSI 49.8, and Wyckoff Accumulation Phase A-B; GSE conservatorship resolution remains the only catalyst.",
+  "price_action": {
+    "open": 0.0,
+    "high": 0.0,
+    "low": 0.0,
+    "close": 0.0,
+    "volume": 532789,
+    "vol_ratio": 0.12,
+    "vol_rank": "#90/90 \u2014 lowest in 90-day dataset",
+    "intraday_story": "Prices API returned $0 candle data for FNMA. Volume at 532K (0.12x average) is the lowest single session in the 90-day dataset \u2014 FNMA is essentially trading on no conviction. The watchlist shows $6.86, -0.29%."
+  },
+  "news_catalyst": {
+    "headline": "No Significant FNMA News \u2014 GSE Reform Speculation Ongoing",
+    "summary": "Fannie Mae continues to trade as a binary bet on GSE conservatorship exit. No new government announcements. FNMA's value is entirely dependent on whether the Treasury and FHFA release it from conservatorship \u2014 a political and legislative process with uncertain timeline.",
+    "source_url": "https://finance.yahoo.com/quote/FNMA/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 5.91,
+    "key_resistance": 7.35,
+    "rsi": 49.8,
+    "macd_signal": "flat \u2014 MACD +0.08",
+    "volume_ratio_today": 0.12,
+    "summary": "FNMA is effectively dormant \u2014 volume at 0.12x average is near-zero. RSI 49.8 is perfectly neutral. The BB channel ($5.91\u2013$7.35) defines the current range. DCF not feasible. The Wyckoff Phase A-B bullish tag is likely a model artifact given the near-zero trading activity."
+  },
+  "wyckoff_narrative": "Impossible to apply Wyckoff meaningfully to a near-zero-volume stock. FNMA's price discovery is almost entirely news-driven (GSE policy announcements), not market-driven.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "summary": "DCF not feasible \u2014 FNMA's value is a binary outcome based on conservatorship exit. No reliable way to model intrinsic value."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.0,
+    "key_strengths": [
+      "Potential GSE conservatorship exit could cause 100%+ stock appreciation overnight"
+    ],
+    "key_concerns": [
+      "Conservatorship exit is politically uncertain \u2014 could be years away",
+      "Near-zero trading volume \u2014 not a liquid investment",
+      "Speculative political bet, not an investment"
+    ],
+    "summary": "Avoid. FNMA is a pure political speculation position with no fundamental analysis applicable."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Binary political risk \u2014 conservatorship exit could be cancelled or delayed indefinitely",
+    "Near-zero volume makes exit from a position difficult in adverse scenarios"
+  ],
+  "watchlist_priority": "low"
+}

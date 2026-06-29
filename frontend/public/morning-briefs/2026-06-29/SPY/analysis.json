@@ -1,0 +1,74 @@
+{
+  "ticker": "SPY",
+  "company_name": "SPDR S&P 500 ETF Trust",
+  "report_date": "2026-06-29",
+  "price": 741.0,
+  "change_pct": 1.64,
+  "overall_stance": "hold",
+  "conviction": 0.55,
+  "one_liner": "SPY +1.6% to $741 \u2014 broad market rebounding in holiday-shortened week; RSI 48 is neutral with EMA50 ($747) just overhead; Gareth Soloway warns of 8% further downside if 50-day EMA isn't recaptured.",
+  "price_action": {
+    "open": 736.53,
+    "high": 741.56,
+    "low": 732.11,
+    "close": 741.0,
+    "volume": 52910882,
+    "vol_ratio": 0.92,
+    "vol_rank": "#60 \u2014 slightly below average",
+    "intraday_story": "SPY recovered from Friday's close, rallied to $741.56, and held the gains. Volume below average on a +1.6% day suggests this is index-fund rebalancing (Alphabet/Dow) and short covering rather than aggressive institutional buying."
+  },
+  "news_catalyst": {
+    "headline": "Broad Tech Rally Driven by Alphabet Dow Addition, TSLA NHTSA Closure, Space Sector Momentum",
+    "summary": "Multiple individual stock catalysts are lifting the index today: GOOG Dow addition creating mechanical buying, TSLA NHTSA probe closure, RKLB/ASTS space sector momentum, LLY all-time high, APP AXON launch. The holiday-shortened week (Friday July 4 closure) means reduced institutional participation per Gareth Soloway's analysis. Iran-US ceasefire Sunday night removed the weekend geopolitical overhang. Market is +1.6% but below the critical 50-day EMA at $747.",
+    "source_url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-29-2026",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 732.11,
+    "key_resistance": 761.03,
+    "rsi": 48.0,
+    "macd_signal": "slightly bearish \u2014 MACD -0.26",
+    "volume_ratio_today": 0.92,
+    "summary": "SPY is between EMA50 ($747.76) and EMA200 ($753.82) \u2014 both overhead. RSI 48 is neutral. Soloway's key thesis: if SPY fails to recapture the daily 50-day EMA ($747) on this bounce, the 70\u201375% probability scenario is a 8% further decline to the ~24,000 NASDAQ equivalent. Holiday week low participation amplifies volatility in either direction."
+  },
+  "wyckoff_narrative": "No formal Wyckoff events. Soloway's 50-day EMA framework is the most relevant indicator: break below and hold below = 8% drawdown scenario; recapture and hold above = continued recovery to upper BB ($761).",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "summary": "DCF not applicable to the S&P 500 ETF."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.53,
+    "key_strengths": [
+      "Broad market diversification",
+      "Tech/AI weighting benefits from current cycle"
+    ],
+    "key_concerns": [
+      "Below EMA50 and EMA200 \u2014 intermediate downtrend",
+      "Gareth Soloway warns of 8% further downside if EMA50 not recaptured"
+    ],
+    "summary": "SPY is the risk thermometer. Watch the $747 EMA50 level this week for the key directional tell."
+  },
+  "sentiment": {
+    "score": 0.015,
+    "label": "Neutral",
+    "mentions_24h": 15,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "EMA50 at $747 \u2014 failure to recapture = 8% drawdown scenario per Soloway analysis",
+    "Holiday-shortened week = thin liquidity amplifies moves in either direction",
+    "Iran-US ceasefire held Sunday but geopolitical flare-up risk remains"
+  ],
+  "watchlist_priority": "high"
+}

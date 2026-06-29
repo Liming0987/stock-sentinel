@@ -1,0 +1,82 @@
+{
+  "ticker": "RKLB",
+  "company_name": "Rocket Lab Corporation",
+  "report_date": "2026-06-29",
+  "price": 98.01,
+  "change_pct": 15.86,
+  "overall_stance": "watch",
+  "conviction": 0.65,
+  "one_liner": "RKLB surges +16% to $98 on the Iridium acquisition ($8B deal) \u2014 transformational news but the stock is still -20% off its June high and the deal math needs scrutiny before chasing.",
+  "price_action": {
+    "open": 91.29,
+    "high": 99.04,
+    "low": 89.85,
+    "close": 98.01,
+    "volume": 40852804,
+    "vol_ratio": 1.38,
+    "vol_rank": "Top-7 in 90-day dataset \u2014 1.38x average",
+    "intraday_story": "RKLB gapped from Friday's $84.54 close to open at $91.29, surged to a high of $99.04 before 11am, pulled back to $89.85 (nearly filling the gap), then rallied to close at $98.01. The intraday dip to $89.85 \u2014 a full rejection of the gap fill \u2014 is actually constructive: buyers stepped in aggressively at the gap support level. Closing at $98 vs the $99.04 high shows slight resistance just below the $100 round number, which will be the first psychological test in tomorrow's session."
+  },
+  "news_catalyst": {
+    "headline": "Rocket Lab to Acquire Iridium Communications for ~$8B in Cash-and-Stock Deal",
+    "summary": "Rocket Lab announced it would acquire satellite communications company Iridium at $54/share in a cash-and-stock transaction valued at approximately $8 billion. The deal creates a vertically integrated space company capable of building satellites, launching them on Electron, and operating the network \u2014 a major strategic shift from launch-only revenue. KeyBanc upgraded RKLB to Overweight with a $135 price target, calling the company the clear #2 to SpaceX. Context: RKLB had fallen 40% from its June high near $122 into the low $80s before this announcement, so today's +16% recovers only a portion of that drawdown. The Iridium deal also extends a NASA manifest of three dedicated Electron launches starting 2027, plus a record VICTUS HAZE mission for the U.S. Space Force (16h 42min from notice to launch).",
+    "source_url": "https://www.timothysykes.com/news/rocket-lab-corporation-rklb-news-2026_06_29-2/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 89.85,
+    "key_resistance": 99.04,
+    "rsi": 43.8,
+    "macd_signal": "bearish \u2014 MACD -1.65, below zero",
+    "volume_ratio_today": 1.38,
+    "volume_signal": "elevated",
+    "summary": "RKLB's RSI at 43.8 is neutral-to-slightly-bearish, not overbought despite the 16% gap \u2014 the RSI doesn't fully capture gap moves. The stock remains below both the 50-day EMA ($111.72) and 200-day EMA ($119.20), meaning today's move, while powerful, doesn't yet reverse the intermediate-term downtrend. MACD at -1.65 is still in bearish territory.\n\nThe Wyckoff algorithm tags this as Accumulation Phase B with a bullish bias \u2014 consistent with the multi-week base building in the $80\u2013$86 range before today's breakout. If the Iridium deal holds investor confidence, the $89.85 intraday low becomes the new line in the sand. A pullback and hold above $90 with drying volume would be the classic Wyckoff LPS (Last Point of Support) entry setup.\n\nThe distance to the EMA50 ($111.72) is significant \u2014 a 14% gap overhead. RKLB needs to decisively reclaim $99\u2013$100 in the next few sessions and then build a new base before challenging the prior downtrend. The deal size ($8B) vs RKLB's market cap (~$20B at current prices) creates meaningful dilution risk that the market will scrutinize."
+  },
+  "wyckoff_narrative": "The Wyckoff algorithm tags RKLB as Accumulation Phase B with bullish bias, which aligns with the multi-week consolidation at $80\u2013$87 after the 40% drawdown from the June peak at $122. Phase B accumulation is characterized by choppy, range-bound trading as institutional participants establish positions \u2014 the low-volume retests on June 23\u201324 were consistent with this phase.\n\nToday's breakout on news could be the SOS (Sign of Strength) that Wyckoff analysts look for at the end of Phase B / beginning of Phase C-D. However, the news-driven nature of the move (M&A announcement) means it's harder to read as organic accumulation. The critical test will be: does RKLB hold above $89\u2013$90 on pullbacks with declining volume? If yes, that's the LPS and Phase C setup. If it fails back below $85, the Iridium deal has been rejected by the market and the accumulation thesis is invalidated.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF is not feasible for RKLB as a standalone entity at this stage. The Iridium acquisition fundamentally changes the financial profile \u2014 Iridium generates ~$700M in annual revenue and is cash-flow positive, which would be the first material revenue contribution to RKLB's consolidated financials. Post-deal valuation requires reassessment."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.53,
+    "key_strengths": [
+      "Iridium acquisition creates a vertically integrated launch-and-operate business model",
+      "10 consecutive Synspective launches booked through decade-end \u2014 growing recurring revenue",
+      "VICTUS HAZE record (16h 42min to launch) demonstrates tactical responsiveness premium"
+    ],
+    "key_concerns": [
+      "$8B acquisition is 40% of RKLB's market cap \u2014 significant dilution risk",
+      "Pre-profitability on standalone basis \u2014 deal execution and integration risk are high",
+      "Still 20% below June highs; broader downtrend not yet reversed on technicals"
+    ],
+    "summary": "Grade C reflects Rocket Lab's pre-profitability stage and execution risks, partially offset by genuine strategic wins. The Iridium deal is transformational if integration succeeds, but it's also complex \u2014 operating a legacy LEO satellite network while scaling Electron launches is a multifaceted challenge."
+  },
+  "sentiment": {
+    "score": 0.141,
+    "label": "Neutral",
+    "mentions_24h": 15,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Iridium deal dilution: $8B acquisition at 40% of market cap is a large equity commitment \u2014 the stock-component of the deal will pressure share price if arbitrageurs short",
+    "$99\u2013$100 round number resistance: closing just below $99.04 high signals sellers at the century mark; needs clean break to continue",
+    "EMA50 at $111.72 and EMA200 at $119.20 are both significant overhead resistance \u2014 full trend reversal requires closing above both",
+    "Iridium integration risk: operating a global satellite constellation is operationally different from launch services \u2014 management bandwidth concerns"
+  ],
+  "watchlist_priority": "high"
+}

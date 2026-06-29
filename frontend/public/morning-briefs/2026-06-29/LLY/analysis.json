@@ -1,0 +1,83 @@
+{
+  "ticker": "LLY",
+  "company_name": "Eli Lilly and Company",
+  "report_date": "2026-06-29",
+  "price": 1229.93,
+  "change_pct": 1.74,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "LLY hits all-time high territory at $1,230 \u2014 RSI 78.2 and close above the upper Bollinger Band signal overbought momentum; Medicare GLP-1 coverage is the structural catalyst but a near-term pullback is likely.",
+  "price_action": {
+    "open": 1222.78,
+    "high": 1238.0,
+    "low": 1203.14,
+    "close": 1229.93,
+    "volume": 3429325,
+    "vol_ratio": 1.03,
+    "vol_rank": "Average \u2014 1.03x 30-day mean",
+    "intraday_story": "LLY opened at $1,222.78, touched $1,238.00 (a potential all-time high or near it), pulled back to $1,203.14, then recovered to close at $1,229.93. The intraday rejection from $1,238 and the wide high-to-low range of $34.86 shows some profit-taking at the highs. Friday (June 26) saw a massive +7.13% surge on Medicare news; today's +1.74% is a follow-through session. The two-session advance from $1,127.69 (June 25) to $1,229.93 is +$102 or +9%."
+  },
+  "news_catalyst": {
+    "headline": "Medicare GLP-1 Bridge Program at $50/Month; CVS Caremark Begins Foundayo Coverage June 1",
+    "summary": "The Medicare GLP-1 Bridge program details announced June 25 subsidize Lilly's Foundayo and Zepbound to $50/month, dramatically expanding patient access across the largest payer in the U.S. This follows CVS Caremark beginning coverage of Foundayo on June 1. All three largest U.S. pharmacy benefit managers now cover Lilly's obesity portfolio. The European Medicines Agency's CHMP issued a positive opinion recommending approval of Jaypirca (pirtobrutinib) for chronic lymphocytic leukemia. With GLP-1 coverage expanding and EU oncology approvals in motion, the fundamental growth narrative is accelerating across multiple product lines.",
+    "source_url": "https://www.tikr.com/blog/eli-lilly-stock-jumps-7-as-medicare-opens-glp-1-access-what-a-2100-target-means-for-investors",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase C-D",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1203.14,
+    "key_resistance": 1238.0,
+    "rsi": 78.2,
+    "macd_signal": "bullish \u2014 MACD +8.65, rising",
+    "volume_ratio_today": 1.03,
+    "volume_signal": "normal",
+    "summary": "LLY's RSI at 78.2 is firmly overbought \u2014 a reading that historically precedes 5\u201310% pullbacks even in strong uptrends. The close above the upper Bollinger Band ($1,207.12) for two consecutive sessions signals extreme price extension. MACD at +8.65 is bullish and rising, confirming trend strength.\n\nThe Wyckoff algorithm tags Phase C-D (the late accumulation / markup phase), which is consistent with the breakout above prior resistance at $1,100\u2013$1,200. This is NOT a setup to initiate a new position \u2014 it's a hold for those already positioned. The $1,203 intraday low is the nearest structural support; a close below that would be the first warning of distribution.\n\nThe June 26 candle (+7.13%, high volume at 2.31x avg) was the institutional SOS bar \u2014 the kind of big up-day on volume that defines the Wyckoff SOS event. Today's +1.74% on normal volume is the follow-through. Next expected Wyckoff move: a pullback to test the breakout zone around $1,100\u2013$1,150 (prior resistance now support) with light volume."
+  },
+  "wyckoff_narrative": "LLY is in Phase C-D of a Wyckoff accumulation cycle. The June 26 SOS bar (+7.13% on 2.31x volume after the Medicare news) is the defining event of this phase. The subsequent follow-through today on normal volume confirms institutions are holding, not distributing.\n\nHowever, RSI at 78.2 marks the highest momentum reading in recent history and suggests the markup phase may be getting extended. Wyckoff would anticipate an 'ordinary correction' \u2014 a pullback that tests the $1,150\u2013$1,180 zone (former breakout resistance) on low volume. That pullback, if it comes, is the Last Point of Support (LPS) for a new accumulate signal. Entering at current levels means buying the most extended point of the markup \u2014 not ideal risk/reward.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1980.36,
+    "upside_pct": 37.9,
+    "bear_value": 900.0,
+    "bull_value": 2500.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.18,
+    "summary": "DCF base case at $1,980 suggests 37.9% upside from current prices, driven by GLP-1 adoption curves and a growing oncology pipeline. The Medicare GLP-1 bridge program is a direct revenue-accelerant not fully priced into the model. The margin of safety is meaningful but RSI at 78.2 means timing the entry matters."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.74,
+    "key_strengths": [
+      "All three largest U.S. PBMs now cover obesity portfolio \u2014 TAM expansion is structurally confirmed",
+      "Medicare $50/month GLP-1 access dramatically expands patient volumes",
+      "EU CHMP positive opinion for Jaypirca CLL \u2014 oncology pipeline diversifies beyond GLP-1",
+      "$1.02T market cap with $1,980 DCF fair value = genuine margin of safety at a megacap"
+    ],
+    "key_concerns": [
+      "RSI 78.2 \u2014 technically overbought, near-term pullback likely",
+      "GLP-1 competition from Novo Nordisk, pipeline entrants is intensifying",
+      "Manufacturing capacity constraints may limit near-term revenue upside"
+    ],
+    "summary": "Grade B reflects Eli Lilly's exceptional growth profile (GLP-1 + oncology), partially constrained by a premium valuation. The Medicare bridge program is a structural catalyst that expands the addressable patient population by potentially millions. Fundamentals strongly support the long-term bull case; the near-term concern is price extension after a 9% two-session rally."
+  },
+  "sentiment": {
+    "score": 0.228,
+    "label": "Neutral-Bullish",
+    "mentions_24h": 12,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI 78.2 with close above upper Bollinger Band \u2014 statistically elevated probability of mean reversion; $1,150\u2013$1,180 is the support test zone to watch",
+    "Any PBM coverage reversal or GLP-1 access restriction would crater the stock \u2014 concentration risk in one drug class",
+    "Manufacturing bottlenecks for Zepbound/Mounjaro could limit revenue upside vs. the coverage expansion",
+    "EU Commission could reject the CHMP positive opinion on Jaypirca \u2014 low probability but binary event"
+  ],
+  "watchlist_priority": "high"
+}

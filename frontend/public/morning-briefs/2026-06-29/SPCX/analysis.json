@@ -1,0 +1,82 @@
+{
+  "ticker": "SPCX",
+  "company_name": "SpaceX (Space Exploration Technologies Corp.)",
+  "report_date": "2026-06-29",
+  "price": 164.19,
+  "change_pct": 7.15,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "SPCX +7% to $164 \u2014 SpaceX's June 12 IPO continues post-listing strength above the $135 offering price, but 11 sessions of data makes technicals unreliable.",
+  "price_action": {
+    "open": 157.35,
+    "high": 166.17,
+    "low": 151.74,
+    "close": 164.19,
+    "volume": 79159072,
+    "vol_ratio": 0.41,
+    "vol_rank": "3rd lowest in 11-session history",
+    "intraday_story": "SPCX opened at $157.35, dipped to $151.74 (near the IPO-week support range), then rallied strongly to close at $164.19, just below the $166.17 intraday high. The $12.43 intraday range was wide but the close in the upper quartile is constructive. The $151.74 low held above the prior week's base around $153, maintaining the post-IPO uptrend."
+  },
+  "news_catalyst": {
+    "headline": "SpaceX Continues Post-IPO Momentum; Elon Musk Projects $1 Trillion Revenue by 2030",
+    "summary": "SpaceX completed the largest IPO in history on June 12 at $135/share, raising $75B. The stock closed around $161 on its first full trading day. Elon Musk has publicly stated SpaceX 'might be able to reach approximately $1 trillion in revenue by 2030,' up from $18.7B in its most recent year, driven by Starlink's 10,000-satellite constellation, launch contracts, and the xAI unit. The stock has settled into a $153\u2013$166 trading range since its debut, supported by analyst targets averaging $187.80. The general AI and space sector tailwind \u2014 visible in today's ASTS and RKLB moves \u2014 is lifting the entire space ecosystem.",
+    "source_url": "https://www.cnbc.com/2026/06/15/spacex-stock-record-ipo-debut.html",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 151.74,
+    "key_resistance": 166.17,
+    "rsi": 0.0,
+    "macd_signal": "insufficient data",
+    "volume_ratio_today": 0.41,
+    "volume_signal": "drying up",
+    "summary": "SPCX has only 11 sessions of trading history \u2014 technical indicators are unreliable. RSI and MACD return 0 due to insufficient data. The post-IPO trajectory from $135 to $164 (+21% in 17 days) follows a typical strong-IPO pattern. The $151\u2013$153 range has served as consistent post-IPO support. Volume declining from the first-week peak (126M on June 26) to 79M today is normal post-IPO settlement.\n\nFor new IPOs, the key technical levels are the IPO price ($135) as ultimate support, the first-week low as intermediate support (~$148\u2013$151), and the intraday highs as resistance. As more sessions accumulate, traditional technical analysis will become more applicable."
+  },
+  "wyckoff_narrative": "Too early for Wyckoff analysis \u2014 11 sessions of data don't provide the distribution/accumulation context that Wyckoff methodology requires. The IPO itself is a Form of distribution event (insiders selling to the public), so in a pure Wyckoff framework, post-IPO price action for the first 30\u201390 days is often best treated as the initial supply/demand discovery phase rather than a classic accumulation or distribution structure.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible given the extreme growth projections and multiple business units (launch, Starlink, xAI). The $2T+ market cap at current prices implies massive future revenue discounting that cannot be modeled reliably at this stage."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.39,
+    "key_strengths": [
+      "Largest IPO in history \u2014 institutional endorsement and massive float",
+      "$18.7B in current revenue with Starlink as a growing recurring income stream",
+      "Dominant market position: NASA's biggest launch partner"
+    ],
+    "key_concerns": [
+      "Extremely early-stage public market history \u2014 governance and disclosure norms being established",
+      "Elon Musk's attention split across Tesla, xAI, and SpaceX creates management risk",
+      "Valuation requires believing in $1T revenue by 2030 \u2014 an 53x revenue increase"
+    ],
+    "summary": "Grade D reflects limited financial history as a public company and extreme valuation multiples. The business is operationally excellent; the valuation requires extraordinary execution."
+  },
+  "sentiment": {
+    "score": 0.056,
+    "label": "Neutral",
+    "mentions_24h": 8,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Post-IPO lock-up expiration: insider selling pressure will increase when the lock-up period ends (typically 180 days post-IPO, around December 2026)",
+    "Sector correlation: ASTS and RKLB swings show space stocks are highly correlated on momentum \u2014 a sector risk-off event hits all simultaneously",
+    "Only 11 sessions of data \u2014 technical signals are noise at this stage",
+    "Musk governance risk: any negative Tesla/xAI headline creates contagion selling in SPCX"
+  ],
+  "watchlist_priority": "medium"
+}

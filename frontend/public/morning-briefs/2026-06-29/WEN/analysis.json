@@ -1,0 +1,81 @@
+{
+  "ticker": "WEN",
+  "company_name": "The Wendy's Company",
+  "report_date": "2026-06-29",
+  "price": 8.26,
+  "change_pct": 5.9,
+  "overall_stance": "avoid",
+  "conviction": 0.7,
+  "one_liner": "WEN is a meme-driven squeeze \u2014 up 42% in a week on Reddit hype and a CFO hire, but this is speculative froth with no valuation support; avoid chasing.",
+  "price_action": {
+    "open": 7.7,
+    "high": 8.28,
+    "low": 7.41,
+    "close": 8.26,
+    "volume": 35985093,
+    "vol_ratio": 1.61,
+    "vol_rank": "Top-5 in 90-day dataset \u2014 volume spike cluster over last 3 sessions",
+    "intraday_story": "WEN opened at $7.70, dipped to $7.41 (testing prior support from June 26's $7.22 low), then rallied to close at $8.26 near the $8.28 high. The three-session context is telling: June 25 saw 102.7M shares (4.59x avg) with a wide range, June 26 saw 80.3M shares (3.58x avg), and today's 36M (1.61x) is substantially lower \u2014 classic volume exhaustion pattern after a meme squeeze. The stock is still up 42% from its pre-squeeze level around $5.80."
+  },
+  "news_catalyst": {
+    "headline": "Wendy's Surges 42% on WallStreetBets Meme Rally + New CFO Steve Cirulis Appointment",
+    "summary": "Wendy's stock was swept up in a WallStreetBets meme-stock rally after a viral Reddit post cited the new CFO appointment (Steve Cirulis, formerly of Potbelly alongside CEO Bob Wright), China expansion plans, store closures as a restructuring catalyst, and rumors of activist investor Nelson Peltz (Trian Fund Management) interest. Cirulis's appointment news on June 24 initially drove 15\u201330% premarket gains. The subsequent meme amplification layer pushed shares from ~$5.80 to $8.26 (+42%). Fundamentally, Wendy's faces declining same-store sales, franchise pressure, and menu pricing challenges \u2014 the CFO hire is real but the valuation re-rating is speculative.",
+    "source_url": "https://finance.yahoo.com/markets/stocks/article/wendys-stock-swept-up-in-meme-like-rally-after-viral-reddit-post-leadership-hire-171701010.html",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 7.22,
+    "key_resistance": 8.28,
+    "rsi": 63.6,
+    "macd_signal": "bullish \u2014 MACD +0.18",
+    "volume_ratio_today": 1.61,
+    "volume_signal": "elevated but declining from climax",
+    "summary": "Volume peaked at 102.7M on June 25 (4.59x avg) and has declined each session since: 80.3M \u2192 36.0M today. This is the classic post-climax volume decay pattern. RSI at 63.6 remains elevated but not extreme. The stock's close at $8.26 is above the prior upper Bollinger Band ($8.10), indicating price extension. MACD is bullish but in meme stocks this indicator is meaningless \u2014 the move is Reddit-driven, not institutional.\n\nThe squeeze dynamics: meme rallies typically exhibit a sharp 3\u20135 day spike followed by rapid mean reversion once Reddit attention moves to the next story. The volume exhaustion pattern over three sessions suggests WEN may be in the late stage of this squeeze."
+  },
+  "wyckoff_narrative": "This is a distribution event masquerading as an accumulation event. The massive volume spikes (4.59x and 3.58x) are more consistent with Wyckoff distribution (insiders/early buyers selling into public enthusiasm) than accumulation. The post-June 25 volume decline pattern fits Distribution Phase B-C: buyers are decreasing, but the stock hasn't broken down yet.\n\nWyckoff would identify the $7.22\u2013$7.41 zone as the Last Point of Supply (LPSY) to watch \u2014 if WEN bounces there and then rolls over with expanding volume, that's the distribution phase completing. The Effort vs Result principle applies: three days of climactic effort (massive volume) produced a gain from ~$5.80 to $8.26 \u2014 but if the next three sessions can't hold $8, the effort has been exhausted.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "The DCF returned a null result for WEN's base intrinsic value, likely due to the volatile free cash flow profile. At $8.26, WEN trades at a forward P/E typical for a fast-food chain under operational stress. There is no fundamental basis for the 42% appreciation \u2014 the CFO hire is a real catalyst but worth at most 5\u201310% rerating, not 42%."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.56,
+    "key_strengths": [
+      "New CFO Cirulis has track record with CEO Wright at Potbelly \u2014 management alignment is positive",
+      "Nelson Peltz/Trian Fund Management interest would be a legitimate activist catalyst"
+    ],
+    "key_concerns": [
+      "Meme-driven rally has outpaced any fundamental justification",
+      "Declining same-store sales and franchisee profitability concerns remain unresolved",
+      "China expansion is speculative \u2014 no concrete plan announced"
+    ],
+    "summary": "Grade C reflects an average-quality QSR business with real operational challenges. The CFO hire is genuinely positive for execution credibility, but $8.26 prices in a turnaround that hasn't started. Fundamentals do not support chasing this move."
+  },
+  "sentiment": {
+    "score": 0.095,
+    "label": "Neutral",
+    "mentions_24h": 25,
+    "trend": "falling"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Meme-stock mean reversion: Reddit-driven spikes average 50\u201370% peak-to-trough reversions within 2 weeks \u2014 WEN pre-squeeze level was ~$5.80",
+    "Volume exhaustion: 4.59x \u2192 3.58x \u2192 1.61x confirms declining buyer conviction",
+    "No Trian announcement yet: if Peltz rumor is false, another leg down likely",
+    "Short interest potentially elevated from the meme rally \u2014 covering squeeze may already be complete"
+  ],
+  "watchlist_priority": "low"
+}

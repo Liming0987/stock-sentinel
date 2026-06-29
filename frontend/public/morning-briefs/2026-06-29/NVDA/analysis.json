@@ -1,0 +1,81 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVIDIA Corporation",
+  "report_date": "2026-06-29",
+  "price": 194.97,
+  "change_pct": 1.27,
+  "overall_stance": "watch",
+  "conviction": 0.58,
+  "one_liner": "NVDA +1.3% to $195 \u2014 RSI 33.3 is oversold territory and DCF shows 41.6% upside, but the stock is 9% below the 50-day EMA with no Wyckoff accumulation signal yet.",
+  "price_action": {
+    "open": 193.85,
+    "high": 196.17,
+    "low": 189.8,
+    "close": 194.97,
+    "volume": 146600013,
+    "vol_ratio": 0.87,
+    "vol_rank": "#65 in 90-day dataset \u2014 below average",
+    "intraday_story": "NVDA opened at $193.85, dipped to $189.80 (near its recent multi-week low), then recovered to close at $194.97. Volume at 146.6M (0.87x avg) was below average \u2014 consistent with a low-conviction bounce rather than an institutional accumulation event."
+  },
+  "news_catalyst": {
+    "headline": "AI Chip Rally Extends as Cantor Says Chip Upcycle Is Far from Over",
+    "summary": "NVDA is participating in the broad tech recovery today. Cantor noted the AI chip demand cycle has significant runway remaining, and the broader market tech rally (SPY +1.64%) is lifting semiconductor names. NVDA's 13% drawdown from its recent high reflects concerns about supply chain and competition but analysts remain broadly bullish. AWS GPU price hikes (Amazon news) signal data center operators are still constrained \u2014 a structural positive for Nvidia.",
+    "source_url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-june-29-2026",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 189.8,
+    "key_resistance": 213.77,
+    "rsi": 33.3,
+    "macd_signal": "bearish \u2014 MACD -1.15",
+    "volume_ratio_today": 0.87,
+    "volume_signal": "drying up",
+    "summary": "RSI at 33.3 is approaching oversold territory (<30) for the first time since the current drawdown began. Stock sits between EMA50 ($213.77) and EMA200 ($220.91) \u2014 both well overhead. Lower BB at $189.56 is being tested. Volume drying up below average is the first positive sign for a base-building thesis, but no Wyckoff accumulation signals have fired. DCF at $333.93 (41.6% upside) provides a fundamental anchor."
+  },
+  "wyckoff_narrative": "No formal Wyckoff events detected. The low-volume consolidation near the lower Bollinger Band could be the early stages of Phase A (Stopping the Downtrend), but a climactic volume event is needed to confirm the SC. Watch for a high-volume flush below $190 followed by a V-reversal as the potential SC setup.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 333.93,
+    "upside_pct": 41.6,
+    "bear_value": 150.0,
+    "bull_value": 500.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.25,
+    "summary": "DCF base case at $333.93 represents 41.6% upside \u2014 one of the larger margins of safety in the watchlist for a profitable, growing business. Grade A fundamentals with 82% earnings growth support the DCF inputs."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.82,
+    "key_strengths": [
+      "Dominant AI training and inference GPU market share",
+      "Data center revenue continuing to grow >100% YoY",
+      "Grade A fundamentals score 0.82 \u2014 best-in-class profitability"
+    ],
+    "key_concerns": [
+      "13% drawdown suggests institutional distribution \u2014 no confirmed bottom",
+      "Chinese AI competition (DeepSeek, Huawei) challenging inference market share",
+      "Supply constraints from TSMC could limit upside in near term"
+    ],
+    "summary": "Grade A business at a reasonable valuation after the drawdown. The stock is watch, not accumulate, because no technical bottom has been confirmed."
+  },
+  "sentiment": {
+    "score": 0.026,
+    "label": "Neutral",
+    "mentions_24h": 20,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "No Wyckoff SC event confirmed \u2014 could see further drawdown to $175\u2013$180 before a proper bottom forms",
+    "EMA50 at $213.77 is 9.6% overhead \u2014 full trend reversal requires significant work",
+    "Chinese competition in inference chips accelerating \u2014 long-term market share at risk"
+  ],
+  "watchlist_priority": "medium"
+}

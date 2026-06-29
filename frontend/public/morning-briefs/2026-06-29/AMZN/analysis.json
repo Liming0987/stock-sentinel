@@ -1,0 +1,91 @@
+{
+  "ticker": "AMZN",
+  "company_name": "Amazon.com Inc.",
+  "report_date": "2026-06-29",
+  "price": 240.14,
+  "change_pct": 3.2,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "AMZN +3.2% to $240 \u2014 AWS GPU price hikes signal infrastructure demand remains tight; stock bouncing off $233 support toward the $250\u2013$257 EMA cluster overhead.",
+  "price_action": {
+    "open": 234.21,
+    "high": 249.71,
+    "low": 233.8,
+    "close": 240.14,
+    "volume": 74685016,
+    "vol_ratio": 1.37,
+    "vol_rank": "Top-5 in 90-day dataset",
+    "intraday_story": "AMZN had a wide $15.91 intraday range. The dip to $233.80 held the lower BB ($225.21) support zone, and the close at $240.14 recovered most of the range. Volume at 1.37x average is elevated, consistent with institutional interest at the $233\u2013$240 demand zone."
+  },
+  "news_catalyst": {
+    "headline": "AWS GPU Price Hikes Prompt Analyst Buy Rating \u2014 Infrastructure Scarcity Continues",
+    "summary": "Amazon raised AWS GPU compute pricing in late June, with analysts interpreting this as a demand signal rather than a competitiveness concern \u2014 when cloud providers raise prices, it means supply is constrained relative to demand. This supports the broader AI infrastructure thesis and Amazon's ability to monetize its significant data center investment. The price hike news drove at least one analyst to issue a Buy rating upgrade on AMZN.",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 233.8,
+    "key_resistance": 257.79,
+    "rsi": 45.6,
+    "macd_signal": "slightly bearish \u2014 MACD -0.28",
+    "volume_ratio_today": 1.37,
+    "volume_signal": "elevated",
+    "summary": "AMZN is below EMA50 ($250.07) and EMA200 ($257.79) \u2014 bearish intermediate trend. RSI at 45.6 is below-neutral. The $233\u2013$225 zone (lower BB) is key support. The DCF at $56.27 is flagged as suspect \u2014 Amazon's capex-heavy model produces low FCF vs. actual business value. Traditional DCF undervalues AMZN significantly; the stock trades on AWS margins and GMV growth."
+  },
+  "wyckoff_narrative": "The high volume at $233 support (1.37x average, Top-5 in 90-day dataset) combined with a recovery close could be the beginning of an Automatic Rally. No formal Wyckoff events detected, but the volume pattern at support is constructive. The EMA cluster at $250\u2013$257 is the next major resistance to navigate.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 56.27,
+    "upside_pct": -326.8,
+    "bear_value": 30.0,
+    "bull_value": 350.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.12,
+    "summary": "DCF at $56 is misleading \u2014 Amazon's FCF is suppressed by massive capex investment in AI infrastructure, not underlying business weakness. On a normalized basis, AMZN is significantly undervalued relative to AWS's profit potential. Use operating income multiple rather than DCF for AMZN."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.79,
+    "key_strengths": [
+      "AWS GPU price hikes signal infrastructure demand exceeds supply \u2014 pricing power confirmed",
+      "B grade at 0.79 \u2014 strong across growth, health, and profitability pillars",
+      "AWS operating margin expansion ongoing"
+    ],
+    "key_concerns": [
+      "Below both EMAs \u2014 intermediate downtrend",
+      "MACD slightly negative",
+      "DCF distorted by capex cycle \u2014 not a reliable valuation anchor"
+    ],
+    "summary": "Grade B fundamentals with strong AWS fundamentals. The AWS GPU price hike news is a genuine positive signal. Watch for a close above $250 (EMA50) as the trend reversal confirmation."
+  },
+  "sentiment": {
+    "score": 0.089,
+    "label": "Neutral",
+    "mentions_24h": 10,
+    "trend": "rising"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "Multi-Strategy Hold",
+      "action": "hold",
+      "confidence": 0.45,
+      "entry_low": 228.56,
+      "entry_high": 235.16,
+      "stop_loss": 216.19,
+      "target": 257.44
+    }
+  ],
+  "risks": [
+    "EMA50 at $250 and EMA200 at $257 are overhead resistance cluster \u2014 needs two separate closes above both to confirm trend reversal",
+    "Macro risk-off would hit AMZN disproportionately given its growth premium",
+    "AWS GPU price hikes could trigger customer migration to GCP or Azure if maintained"
+  ],
+  "watchlist_priority": "medium"
+}

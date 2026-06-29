@@ -1,0 +1,80 @@
+{
+  "ticker": "INTC",
+  "company_name": "Intel Corporation",
+  "report_date": "2026-06-29",
+  "price": 131.72,
+  "change_pct": 2.65,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "INTC +2.7% to $131 \u2014 up 250% YTD on Google's 3M TPU foundry win, RSI 60.1 approaching overbought on a Grade D fundamental profile; AI foundry thesis is real but priced aggressively.",
+  "price_action": {
+    "open": 127.0,
+    "high": 131.91,
+    "low": 118.5,
+    "close": 131.72,
+    "volume": 105041639,
+    "vol_ratio": 0.81,
+    "vol_rank": "#50 \u2014 slightly below average",
+    "intraday_story": "INTC had a wide intraday range ($118.50\u2013$131.91) \u2014 a $13.41 spread suggesting indecision and volatility. The close at $131.72 near the high is positive, but the $118.50 dip to start the session indicates sellers are active. The +250% YTD run means there are significant profit-taking overhangs at every rally."
+  },
+  "news_catalyst": {
+    "headline": "Intel Foundry Secures Google TPU Order for 3M+ Chips; +250% YTD as AI Comeback Story",
+    "summary": "Intel's primary catalyst of 2026 was a Google order for 3M+ Tensor Processing Units at Intel Foundry for 2028, announced June 8 (+11% on that day). The AI foundry strategy is winning market share from TSMC at the margin. Additional catalysts: $3.3B advanced packaging facility in India, Hitachi factory automation collaboration, and Xeon 6+ data center CPUs. The stock started 2026 at $36.90 and has been one of the best-performing stocks in the market, raising the bar for future catalysts significantly.",
+    "source_url": "https://www.vantagemarkets.com/market-analysis/intel-stock-price-analysis-june-9-2026/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 118.5,
+    "key_resistance": 143.74,
+    "rsi": 60.1,
+    "macd_signal": "bullish \u2014 MACD +1.05",
+    "volume_ratio_today": 0.81,
+    "volume_signal": "normal",
+    "summary": "INTC is in a clear uptrend with EMA50 ($116.57) and EMA200 ($111.41) both well below current price \u2014 a bullish EMA alignment. RSI at 60.1 is not yet overbought. The upper BB at $143.74 is the next major resistance. The +250% YTD gain creates a crowded long situation where any catalyst disappointment triggers sharp profit-taking \u2014 the intraday low of $118.50 today shows how quickly sellers emerge."
+  },
+  "wyckoff_narrative": "Phase B accumulation tag, but the +250% YTD move suggests INTC may be past the accumulation phase and into the markup phase. The key risk in a Wyckoff context is that INTC attracts distribution (insiders and early buyers selling) into retail enthusiasm around the AI foundry narrative.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible given Intel's negative free cash flow profile in recent years. The stock is valued on the AI foundry revenue potential for 2027\u20132028, not current earnings. Grade D fundamentals (0.38 score) reflect the current operating reality."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.38,
+    "key_strengths": [
+      "Google TPU foundry win validates the 18A process node strategy",
+      "AI inference market entry with Xeon 6+ and SambaNova partnership"
+    ],
+    "key_concerns": [
+      "Grade D fundamentals \u2014 still negative FCF, no profitability on AI foundry yet",
+      "+250% YTD creates dangerous expectation-setting for future quarters",
+      "TSMC maintains dominant market share \u2014 Intel TPU win is one customer, not a trend yet"
+    ],
+    "summary": "Grade D fundamentals contrast with a momentum-driven market narrative. INTC's AI foundry thesis is real but 2028 revenue is being discounted at 2026 prices after a 250% run. Hold if already positioned; don't chase."
+  },
+  "sentiment": {
+    "score": 0.166,
+    "label": "Neutral",
+    "mentions_24h": 12,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "+250% YTD creates a crowded long \u2014 any foundry execution concern triggers mass profit-taking",
+    "Intraday low of $118.50 shows how volatile INTC is \u2014 10% intraday swings are becoming normal",
+    "2028 TPU production timing could slip \u2014 Intel foundry has historically missed delivery targets"
+  ],
+  "watchlist_priority": "medium"
+}

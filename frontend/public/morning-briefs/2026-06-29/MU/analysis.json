@@ -1,0 +1,81 @@
+{
+  "ticker": "MU",
+  "company_name": "Micron Technology Inc.",
+  "report_date": "2026-06-29",
+  "price": 1145.28,
+  "change_pct": 1.14,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "MU +1.1% to $1,145 \u2014 consolidating post-earnings gains (+17% on June 24 results); RSI 56 in neutral zone with near-BB-upper resistance at $1,234; demand exceeds supply beyond 2027 per management.",
+  "price_action": {
+    "open": 1128.7,
+    "high": 1148.79,
+    "low": 1023.65,
+    "close": 1145.28,
+    "volume": 59956349,
+    "vol_ratio": 1.05,
+    "vol_rank": "#22 \u2014 average",
+    "intraday_story": "The wide intraday range ($1,023\u2013$1,148) reflects the post-earnings volatility settling. Close at $1,145 near the high is constructive. The $1,023 low represents a significant intraday pullback of 9.3% that recovered \u2014 typical of a stock that gapped up sharply on earnings and is now finding its post-gap equilibrium."
+  },
+  "news_catalyst": {
+    "headline": "Micron Q3 FY2026: Revenue, Margin, EPS All Beat; Data Center SSD >$5B, Doubled QoQ; Supply Tight Beyond 2027",
+    "summary": "Micron reported blowout Q3 results on June 24 with all three components (revenue, gross margin, EPS) above the high end of guidance. Data center SSD revenue exceeded $5B (more than doubled QoQ). Management extended the tight-supply outlook from 2026 to beyond calendar 2027. DRAM prices up 60% YoY. 16 multi-year strategic customer agreements (5-year terms through 2030) covering 20% of DRAM volume and one-third of NAND volume were announced, structurally reducing cyclicality. Apple price increases on consumer electronics the day after earnings highlighted Micron's upstream pricing power.",
+    "source_url": "https://finance.yahoo.com/quote/MU/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1023.65,
+    "key_resistance": 1234.38,
+    "rsi": 56.0,
+    "macd_signal": "bullish \u2014 MACD +15.47",
+    "volume_ratio_today": 1.05,
+    "volume_signal": "normal",
+    "summary": "MU is post-earnings consolidation. RSI at 56 is neutral, MACD at +15.47 is firmly bullish. The stock sits below the upper BB ($1,234) with room to run. EMA50 ($1,047) and EMA200 ($1,037) are both well below current price \u2014 a clean uptrend. DCF at $1,192 shows modest 3.9% upside at current prices \u2014 not a deep value play at these levels but the earnings quality justifies the premium."
+  },
+  "wyckoff_narrative": "Post-earnings consolidation in neutral Wyckoff phase. The earnings gap-up was the SOS event; current price action is the post-SOS consolidation. If MU holds $1,023+ with declining volume over the next 1\u20132 weeks, that's the base for the next leg up toward $1,234 (BB upper). Any pullback to the $1,050\u2013$1,100 zone on low volume would be the LPS entry.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1192.24,
+    "upside_pct": 3.9,
+    "bear_value": 700.0,
+    "bull_value": 1800.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.22,
+    "summary": "DCF at $1,192 reflects modest upside from current prices \u2014 MU's massive earnings beat is partially priced in. Grade A fundamentals (0.84 score) support the valuation. The strategic agreements reducing cyclicality are a qualitative positive that may justify a premium above DCF."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.84,
+    "key_strengths": [
+      "60% DRAM price increases YoY \u2014 pricing power at historic highs",
+      "16 multi-year strategic agreements reduce historical cyclicality",
+      "Data center SSD revenue >$5B, doubled QoQ \u2014 explosive growth in highest-margin segment"
+    ],
+    "key_concerns": [
+      "Post-2028 demand moderation risk as data center builds complete",
+      "DCF shows only 3.9% upside \u2014 much of the earnings beat is priced in",
+      "Cyclical industry \u2014 multi-year agreements reduce but don't eliminate volatility"
+    ],
+    "summary": "Grade A fundamentals with genuinely transformational earnings results. MU is priced for excellence but the structural supply-demand thesis extending beyond 2027 justifies the premium. Hold if positioned; new entry needs a pullback to the $1,050\u2013$1,100 range."
+  },
+  "sentiment": {
+    "score": 0.083,
+    "label": "Neutral",
+    "mentions_24h": 15,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "DCF only 3.9% upside at current price \u2014 valuation is full; a consensus miss would crater the stock",
+    "Post-2028 replacement cycle vs. new-build cycle shift could trigger the next downturn earlier than management guides",
+    "Apple component price increases flowing through are good for MU near-term but signal peak cycle pricing"
+  ],
+  "watchlist_priority": "medium"
+}

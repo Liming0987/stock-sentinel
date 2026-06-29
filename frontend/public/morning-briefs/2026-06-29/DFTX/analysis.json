@@ -1,0 +1,81 @@
+{
+  "ticker": "DFTX",
+  "company_name": "Definium Therapeutics Inc.",
+  "report_date": "2026-06-29",
+  "price": 46.55,
+  "change_pct": 3.56,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "DFTX +3.6% to $46.55 \u2014 RSI 91.6 is the most extreme overbought reading in the entire watchlist after a 55%+ Phase 3 spike; avoid chasing, wait for a 20\u201330% consolidation.",
+  "price_action": {
+    "open": 44.26,
+    "high": 47.2,
+    "low": 44.25,
+    "close": 46.55,
+    "volume": 4662724,
+    "vol_ratio": 1.23,
+    "vol_rank": "Top-7 in 90-day dataset",
+    "intraday_story": "DFTX continues to consolidate the June 22\u201324 Phase 3 breakout (+55% in two days from mid-$20s to $44\u2013$47 range). Today's +3.56% continues the post-catalyst momentum. Volume at 1.23x average is elevated but declining from the spike session. The stock is trading just below Baird's raised price target of $57."
+  },
+  "news_catalyst": {
+    "headline": "Phase 3 Emerge Trial of DT120 Hits All Primary and Key Secondary Endpoints in Major Depression",
+    "summary": "Definium Therapeutics (formerly MindMed, renamed January 2026) reported on June 22 that its Phase 3 Emerge trial of DT120 (a novel psychedelic-derived compound) hit its primary endpoint and all key secondary endpoints in major depressive disorder. The stock surged 55%+ on the news from the mid-$20s. Baird raised its price target to $57 with Outperform. Simply Wall St analysis suggests 30.5% undervaluation. The company also has DT120 in Phase 3 for generalized anxiety disorder. The MindMed-to-Definium rebrand signals a strategic pivot toward a broader neurological therapeutics platform.",
+    "source_url": "https://stockstotrade.com/news/definium-therapeutics-inc-dftx-news-2026_06_24/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 42.84,
+    "key_resistance": 47.2,
+    "rsi": 91.6,
+    "macd_signal": "bullish \u2014 MACD +2.46",
+    "volume_ratio_today": 1.23,
+    "volume_signal": "elevated",
+    "summary": "RSI at 91.6 is the highest reading in the entire 29-stock watchlist \u2014 extreme overbought. Close above the upper Bollinger Band ($46.85) for multiple sessions. The stock has gone from mid-$20s to $47 in one week \u2014 a near-doubling on Phase 3 data. This is a classic biotech spike-and-consolidate setup. While the Phase 3 data is genuinely important, RSI at 91.6 has historically preceded 20\u201340% pullbacks even in cases where the catalyst was real."
+  },
+  "wyckoff_narrative": "Not a Wyckoff setup \u2014 this is a catalyst-driven Phase 3 biotech pop. Wyckoff applies poorly to biotech events where binary announcements reshape the entire probability distribution. The relevant analysis is: Phase 3 success \u2192 NDA filing expected \u2192 FDA review timeline. The stock needs to consolidate the spike before a new entry makes sense.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible \u2014 pre-revenue clinical stage biotech. Valuation is entirely driven by DT120's probability of FDA approval, market size for depression/anxiety treatments, and partnership potential. Phase 3 success is a major de-risking event, but multiple additional catalysts (NDA, FDA approval, launch) remain."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.52,
+    "key_strengths": [
+      "Phase 3 Emerge trial primary + all secondary endpoints achieved \u2014 strongest possible Phase 3 result",
+      "Dual indication (MDD + GAD) multiplies addressable patient population",
+      "Baird $57 target implies another 22% upside from current levels"
+    ],
+    "key_concerns": [
+      "RSI 91.6 \u2014 statistically the most dangerous entry point after a catalytic spike",
+      "Pre-revenue stage \u2014 cash burn, dilution risk before commercialization",
+      "FDA approval not guaranteed even after Phase 3 success \u2014 regulatory pathway risk"
+    ],
+    "summary": "Grade C reflects pre-revenue fundamentals. The Phase 3 win is real and meaningful, but entering at RSI 91.6 after a 55%+ spike is one of the highest-risk entry points in the watchlist."
+  },
+  "sentiment": {
+    "score": 0.236,
+    "label": "Neutral-Bullish",
+    "mentions_24h": 6,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI 91.6 \u2014 the #1 risk is a 20\u201330% mean reversion before the next catalyst (NDA filing); $35\u2013$38 is the likely consolidation zone",
+    "FDA regulatory pathway: Phase 3 success doesn't guarantee approval \u2014 clinical review + manufacturing inspection still required",
+    "Dilution risk: clinical-stage biotechs typically raise capital before commercialization; any offering at current prices is dilutive"
+  ],
+  "watchlist_priority": "medium"
+}

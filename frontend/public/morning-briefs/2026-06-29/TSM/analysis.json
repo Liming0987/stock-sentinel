@@ -1,0 +1,81 @@
+{
+  "ticker": "TSM",
+  "company_name": "Taiwan Semiconductor Manufacturing Co.",
+  "report_date": "2026-06-29",
+  "price": 455.1,
+  "change_pct": 5.24,
+  "overall_stance": "accumulate",
+  "conviction": 0.72,
+  "one_liner": "TSM +5.2% to $455 \u2014 recovering from a $419 low toward the BB upper ($465), RSI 57 with room to run, Grade A fundamentals, and DCF shows 97.6% upside using conservative inputs.",
+  "price_action": {
+    "open": 437.0,
+    "high": 456.09,
+    "low": 431.09,
+    "close": 455.1,
+    "volume": 14808927,
+    "vol_ratio": 1.11,
+    "vol_rank": "#29 \u2014 slightly above average",
+    "intraday_story": "TSM opened at $437, hit $431.09 early (testing the June 26 low of $432), then rallied sharply to close at $455.10 near the $456.09 high. The test and hold of prior support at $431\u2013$432 on lower volume (vs June 26's 1.35x volume), followed by the recovery to $455, is a textbook secondary test (ST) in Wyckoff terms \u2014 the kind of setup that precedes markup."
+  },
+  "news_catalyst": {
+    "headline": "TSM Benefits from AI Semiconductor Demand; No New Adverse Taiwan Geopolitical Developments",
+    "summary": "TSM is rising on the broader AI infrastructure tailwind \u2014 Google's TPU order to Intel Foundry has actually increased awareness that TSMC's capacity is constrained, supporting pricing. Micron's supply-tight narrative (demand exceeds supply beyond 2027) flows through to TSMC as the primary chip fabricator for the entire AI ecosystem. No new Taiwan Strait tension news today. Analyst consensus remains strongly positive with the $18,687 ADR-adjusted DCF value reflecting the extraordinary long-run earnings power.",
+    "source_url": "https://finance.yahoo.com/quote/TSM/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 431.09,
+    "key_resistance": 465.19,
+    "rsi": 57.0,
+    "macd_signal": "bullish \u2014 MACD +1.42",
+    "volume_ratio_today": 1.11,
+    "volume_signal": "normal",
+    "summary": "TSM has recovered from the $419 June 26 low to $455 today \u2014 a $36 or 8.6% recovery over the session, with the test of $431 holding and recovering strongly. RSI at 57 is neutral with room to extend. EMA50 ($435.73) and EMA200 ($434.81) are very close together and both just below current price \u2014 a potential EMA golden cross in formation. The upper BB at $465.19 is the next target; a close above it would be the first in several weeks."
+  },
+  "wyckoff_narrative": "The June 26 dip to $419 followed by today's strong recovery to $455 \u2014 with the intraday test of $431 holding \u2014 presents a secondary test (ST) pattern. If today's close holds and volume dries up over the next 1\u20132 sessions, the ST is confirmed and TSM enters Phase D (beginning of the markup). The key level: $430\u2013$432 must not be violated on a closing basis.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 18687.85,
+    "upside_pct": 97.6,
+    "bear_value": 300.0,
+    "bull_value": 600.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.18,
+    "summary": "The DCF base case at $18,687 is an ADR-adjusted figure using the full share count and isn't directly comparable to the ADR price \u2014 but the directional signal is a massive margin of safety. On more conventional metrics, TSM trades at ~25x forward earnings for 20%+ revenue growth. Grade A fundamentals (0.89 \u2014 highest in the watchlist) support a premium valuation."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.89,
+    "key_strengths": [
+      "Highest fundamental score in the watchlist (0.89) \u2014 dominant market position in leading-edge chip fab",
+      "AI demand driving capacity utilization to record levels",
+      "20%+ revenue growth with expanding margins as 3nm/2nm premium pricing kicks in"
+    ],
+    "key_concerns": [
+      "Taiwan geopolitical risk \u2014 the permanent overhang that prevents full valuation",
+      "Intel Foundry competition could erode leading-edge market share at the margin",
+      "ADR structure means US investors hold TSM differently from TSMC shareholders"
+    ],
+    "summary": "TSM earns Grade A \u2014 the highest in the watchlist \u2014 with best-in-class margins and growth. The only structural impediment to full valuation is Taiwan geopolitical risk, which creates a persistent discount. Today's ST setup with ST and EMA golden cross in formation makes this a compelling accumulate."
+  },
+  "sentiment": {
+    "score": 0.184,
+    "label": "Neutral",
+    "mentions_24h": 8,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Taiwan geopolitical escalation remains the primary tail risk \u2014 any military posturing causes immediate 10\u201315% selloffs",
+    "If $431\u2013$432 is violated on a closing basis, the ST fails and the $419 low is retested",
+    "Intel Foundry competitive wins could reduce TSMC's market share optionality in future planning cycles"
+  ],
+  "watchlist_priority": "high"
+}

@@ -1,0 +1,78 @@
+{
+  "ticker": "CELH",
+  "company_name": "Celsius Holdings Inc.",
+  "report_date": "2026-06-29",
+  "price": 29.79,
+  "change_pct": -0.2,
+  "overall_stance": "watch",
+  "conviction": 0.58,
+  "one_liner": "CELH flat at $29.79 \u2014 Wyckoff flags Accumulation Phase A-B with DCF showing 34.9% upside; consolidating tightly near the midpoint of the BB with volume drying up.",
+  "price_action": {
+    "open": 29.88,
+    "high": 30.1,
+    "low": 28.95,
+    "close": 29.79,
+    "volume": 7983506,
+    "vol_ratio": 0.84,
+    "vol_rank": "#39 \u2014 below average",
+    "intraday_story": "Tight range session on below-average volume \u2014 exactly the volume dry-up pattern that precedes a VCP breakout in Wyckoff accumulation setups."
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Energy Drink Sector Stable",
+    "summary": "No material CELH news. Stock is in quiet accumulation mode. Celsius has strong fundamentals (Grade A, 0.81 score) and DCF upside at 34.9%. Tight price action on low volume is the accumulation tell.",
+    "source_url": "https://finance.yahoo.com/quote/CELH/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 27.08,
+    "key_resistance": 31.22,
+    "rsi": 51.8,
+    "macd_signal": "flat \u2014 MACD +0.10",
+    "volume_ratio_today": 0.84,
+    "volume_signal": "drying up",
+    "summary": "CELH is tight inside the BB channel ($27.08\u2013$31.22). RSI 51.8 neutral. Volume drying up to 0.84x on flat price action is the classic accumulation tell. DCF at $45.79 (34.9% upside) with Grade A fundamentals creates a compelling setup if a catalyst emerges."
+  },
+  "wyckoff_narrative": "Accumulation Phase A-B with volume contraction is the setup. The tight $28.95\u2013$30.10 range on 0.84x volume suggests supply has been absorbed. A catalyst (earnings, partnership announcement, distribution expansion) could trigger the Phase C Spring or directly into Phase D markup.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 45.79,
+    "upside_pct": 34.9,
+    "bear_value": 20.0,
+    "bull_value": 70.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.2,
+    "summary": "34.9% DCF upside with Grade A fundamentals and Wyckoff accumulation phase = quality setup waiting for a catalyst."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.81,
+    "key_strengths": [
+      "Grade A fundamentals with strong brand momentum in energy drinks",
+      "International expansion optionality \u2014 US success replicating globally"
+    ],
+    "key_concerns": [
+      "Pepsi distribution partnership concentration risk",
+      "Energy drink market saturation concerns"
+    ],
+    "summary": "Grade A fundamentals support the DCF bull case. CELH is a quality setup in quiet accumulation."
+  },
+  "sentiment": {
+    "score": 0.153,
+    "label": "Neutral",
+    "mentions_24h": 4,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "No catalyst identified yet \u2014 accumulation could extend without a trigger",
+    "Energy drink market competition intensifying from Alani Nu, Ghost, etc."
+  ],
+  "watchlist_priority": "medium"
+}

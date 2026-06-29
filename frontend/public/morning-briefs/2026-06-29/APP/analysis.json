@@ -1,0 +1,81 @@
+{
+  "ticker": "APP",
+  "company_name": "AppLovin Corporation",
+  "report_date": "2026-06-29",
+  "price": 498.76,
+  "change_pct": 4.54,
+  "overall_stance": "watch",
+  "conviction": 0.65,
+  "one_liner": "APP +4.5% to $499 on AXON AI global launch \u2014 28/28 analysts Buy, $650 avg target, and VCP pattern detected; watching for a clean pivot above $506 on volume for the accumulate signal.",
+  "price_action": {
+    "open": 490.34,
+    "high": 506.49,
+    "low": 483.0,
+    "close": 498.76,
+    "volume": 5217500,
+    "vol_ratio": 1.01,
+    "vol_rank": "#33 \u2014 average",
+    "intraday_story": "APP opened at $490.34, surged to $506.49, then pulled back to close at $498.76 \u2014 a rejection at the $506 level that will become key resistance. The three-session recovery from $418.46 (June 25 low) to $506.49 high today is a $88 or +21% move. The Wyckoff algorithm flags Accumulation Phase B and the VCP algorithm detects a pattern forming."
+  },
+  "news_catalyst": {
+    "headline": "AppLovin Opens AXON AI Engine Globally; Q1 Revenue +59% YoY to $1.84B",
+    "summary": "AppLovin opened its proprietary AXON AI ad-targeting engine to all advertisers worldwide in late June, transitioning from a closed to an open self-serve model. This expands the TAM significantly \u2014 AXON previously served primarily mobile game advertisers. Q1 2026 results showed revenue of $1.84B (+59% YoY), net income of $1.2B, and adjusted EPS of $3.56. All 28 covering analysts rate it Buy with a consensus price target of ~$650. Citi maintains $710. CEO Arash Foroughi sold shares in June via Form 4 filings but still holds millions via direct and indirect stakes.",
+    "source_url": "https://stockstotrade.com/news/applovin-corporation-app-news-2026_06_26/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 483.0,
+    "key_resistance": 506.49,
+    "rsi": 42.2,
+    "macd_signal": "barely bullish \u2014 MACD +0.17",
+    "volume_ratio_today": 1.01,
+    "volume_signal": "normal",
+    "summary": "APP has a VCP (Volatility Contraction Pattern) detected \u2014 this is the most constructive technical signal in the analysis. The VCP flag suggests the stock is in a tightening base after a larger correction (from the $611 area BB upper). RSI at 42.2 is below 50 \u2014 room to run. MACD barely positive at +0.17. The rejection from $506.49 sets up a classic VCP pivot level: if APP consolidates near $490\u2013$500 with declining volume over the next 2\u20133 sessions, then breaks $506 on 1.5x+ average volume, that's the VCP breakout entry. DCF at $1,249.55 (60.1% upside) supports the bull case."
+  },
+  "wyckoff_narrative": "Phase B accumulation with VCP detected is the strongest combo in the dataset. The $418 June 25 low appears to be the Spring (the final shakeout that completes Phase C), and the rapid recovery to $498\u2013$506 is a potential SOS. The VCP pattern inside the base suggests institutional hands are quietly accumulating. The $506.49 level is the pivot \u2014 a VCP breakout above it with volume would be the Phase D markup beginning.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1249.55,
+    "upside_pct": 60.1,
+    "bear_value": 400.0,
+    "bull_value": 1800.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.35,
+    "summary": "DCF at $1,249.55 \u2014 60.1% upside \u2014 assumes continued 35%+ growth driven by AXON AI expansion. Grade A fundamentals (0.80 score) with 28/28 analysts Buy at $650 average target. Current price of $499 offers a margin of safety vs. even conservative estimates."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.8,
+    "key_strengths": [
+      "59% YoY revenue growth with 65%+ net margins \u2014 exceptional unit economics",
+      "28/28 analyst Buy ratings \u2014 widest consensus in the watchlist",
+      "AXON AI global launch opens non-gaming advertiser TAM"
+    ],
+    "key_concerns": [
+      "CEO insider selling in June via Form 4 \u2014 monitor for trend",
+      "AXON global launch introduces dilution risk if it draws regulatory scrutiny",
+      "Stock is -18% from BB upper at $611 \u2014 intermediate downtrend not yet reversed"
+    ],
+    "summary": "Grade A fundamentals with VCP pattern and 60% DCF upside make this the highest-quality technical + fundamental setup in the watchlist today. The VCP pivot at $506 is the actionable level to watch."
+  },
+  "sentiment": {
+    "score": 0.125,
+    "label": "Neutral",
+    "mentions_24h": 8,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "VCP pivot rejection at $506: if APP can't clear $506 on volume in next 2\u20133 sessions, the base fails and $450 is the next support",
+    "CEO selling signals: Foroughi's June Form 4 filings are not alarming alone but worth tracking for acceleration",
+    "AXON global launch regulatory risk \u2014 EU scrutiny of AI-powered advertising targeting is increasing"
+  ],
+  "watchlist_priority": "high"
+}

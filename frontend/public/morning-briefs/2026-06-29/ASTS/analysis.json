@@ -1,0 +1,82 @@
+{
+  "ticker": "ASTS",
+  "company_name": "AST SpaceMobile Inc.",
+  "report_date": "2026-06-29",
+  "price": 86.77,
+  "change_pct": 21.44,
+  "overall_stance": "watch",
+  "conviction": 0.62,
+  "one_liner": "ASTS gaps +21% to $86.77 on BlueBird 8/9/10 satellite launch confirmation \u2014 the thesis is real but momentum chasers dominate and the stock has no DCF floor at current prices.",
+  "price_action": {
+    "open": 76.13,
+    "high": 86.93,
+    "low": 75.98,
+    "close": 86.77,
+    "volume": 32117391,
+    "vol_ratio": 1.2,
+    "vol_rank": "Top-10 in 90-day dataset \u2014 1.20x average",
+    "intraday_story": "ASTS opened at $76.13 on a hard gap from Friday's $71.45 close, never looked back, and closed at $86.77 \u2014 just $0.16 below the intraday high of $86.93. A close in the top 0.2% of the day's range on a gap-and-hold pattern is exceptionally bullish price structure: buyers absorbed every intraday pullback. The prior two sessions (June 25\u201326) showed back-to-back closes at $65.62 and $71.45 as the stock was already building momentum. Today's move extends a three-session advance of $21.15 (+32%) from $65.62."
+  },
+  "news_catalyst": {
+    "headline": "AST SpaceMobile Confirms Successful Launch of BlueBird 8, 9 & 10 Satellites on Falcon 9",
+    "summary": "AST SpaceMobile launched its BlueBird 8, 9, and 10 satellites on a SpaceX Falcon 9 from Cape Canaveral, advancing its low-Earth-orbit constellation designed for direct-to-device 4G/5G connectivity to standard smartphones. The company has nearly 60 mobile operator agreements and over $1.2B in contracted revenue, with $3.5B in cash supporting a target of 45\u201360 satellites by year-end. The next planned launch window (BlueBird 11\u201313) in early August gives traders a concrete near-term volatility event to position around. The Rakuten joint venture for Japan's late 2026 service launch adds a tangible commercial milestone. This is not a speculative catalyst \u2014 AST is delivering hardware into orbit on schedule, which materially de-risks the execution narrative.",
+    "source_url": "https://stockstotrade.com/news/ast-spacemobile-inc-asts-news-2026_06_29-2/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 75.98,
+    "key_resistance": 86.93,
+    "rsi": 48.9,
+    "macd_signal": "bearish \u2014 histogram -0.61, below zero",
+    "volume_ratio_today": 1.2,
+    "volume_signal": "elevated",
+    "summary": "ASTS's gap-and-hold close in the top percentile of the range is a textbook momentum continuation candle. The close at $86.77 vs a $75.98 low gives the candle an extremely small lower wick, meaning sellers had no real window of opportunity throughout the session. Volume at 32.1M shares is 1.20x the 30-day average \u2014 elevated but not climactic, which is actually constructive: the move absorbed demand without exhaustion. The RSI at 48.9 is surprisingly moderate given the 21% single-session gain, suggesting there's no immediate overbought condition from a momentum indicator perspective, though RSI often lags on gapping stocks.\n\nThe prior structure shows ASTS was already recovering off its June 25 low of $63.72, making a higher low pattern from the late-June selloff. The three-session base at $63\u2013$72 now acts as the primary support zone. Today's gap above $75.98 creates a fresh level to defend.\n\nKey risk: ASTS has a long history of violent reversals after satellite-related gaps. Macro-driven selloffs and profit-taking can drop the stock 20\u201330% in a single session. Without a formal Wyckoff accumulation structure or VCP, the setup lacks the tightening price/volume confirmation that would justify a high-conviction entry."
+  },
+  "wyckoff_narrative": "ASTS doesn't present a clean Wyckoff setup \u2014 the algorithm tags it as 'Consolidation / No Clear Phase' with zero discrete events. The June 25 low at $63.72 could be interpreted as a Selling Climax (SC) given the prior multi-week decline, but the volume on that day (22.4M, 0.84x avg) was below average \u2014 not the climactic volume profile Wyckoff requires for a true SC event.\n\nWhat we have instead is a momentum structure: a base in the $63\u2013$72 range for three sessions, followed by a news-driven breakout. This is more characteristic of a catalyst-driven markup than a classic Wyckoff accumulation pattern. For a Wyckoff trader, the appropriate stance is to wait for a pullback after this markup, look for a Secondary Test (ST) of the breakout level ($75\u2013$78), and assess whether volume dries up on the retest. If it does, that would be the lower-risk entry.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF is not feasible for ASTS \u2014 the company has no meaningful revenue base against which to discount future cash flows. The $1.2B in contracted revenue provides visibility but the business is pre-profitability and valued entirely on optionality. With $3.5B in cash and a burn rate that funds operations through the constellation build-out, the near-term liquidity risk is manageable, but there is no intrinsic value floor."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.48,
+    "key_strengths": [
+      "$3.5B cash runway funds constellation build-out without near-term dilution risk",
+      "60 mobile operator agreements with $1.2B contracted revenue \u2014 real commercial traction",
+      "Direct-to-device technology moat \u2014 unique approach with no pure-play comps"
+    ],
+    "key_concerns": [
+      "Pre-revenue stage \u2014 DCF-based valuation not feasible",
+      "Execution risk: scaling from 10 to 45\u201360 satellites by year-end is an aggressive target",
+      "Highly dilutive funding model historically; stock is event-driven, not fundamental-driven"
+    ],
+    "summary": "Grade D reflects pre-revenue fundamentals, not business quality \u2014 AST has real technology and commercial agreements. The D is a DCF/profitability artifact. The stock trades on satellite deployment milestones, not earnings, which means fundamental analysis provides limited edge."
+  },
+  "sentiment": {
+    "score": 0.117,
+    "label": "Neutral",
+    "mentions_24h": 10,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Post-launch profit-taking: ASTS has dropped 20\u201330% after prior satellite launch gaps once momentum fades \u2014 watch for high-volume reversal candle in next 2\u20133 sessions",
+    "No DCF floor: without revenue profitability, any macro risk-off event could trigger 40%+ drawdown from current levels",
+    "BlueBird 11\u201313 launch delay would remove the next near-term catalyst and likely accelerate selling",
+    "Concentrated volatility: double-digit daily swings are the norm for ASTS \u2014 position sizing must account for 15\u201320% intraday moves"
+  ],
+  "watchlist_priority": "high"
+}
