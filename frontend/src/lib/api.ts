@@ -36,7 +36,13 @@ export const api = {
     list: () => fetchApi("/api/watchlist"),
     add: (ticker: string) =>
       fetch(`${API_BASE}/api/watchlist/${ticker}`, { method: "POST" })
-        .then(r => { if (!r.ok) throw new Error(`Failed to add ${ticker}`); return r.json(); }),
+        .then(async r => {
+          if (!r.ok) {
+            const body = await r.json().catch(() => ({}));
+            throw new Error(body.detail || `Failed to add ${ticker}`);
+          }
+          return r.json();
+        }),
     remove: (ticker: string) =>
       fetch(`${API_BASE}/api/watchlist/${ticker}`, { method: "DELETE" })
         .then(r => { if (!r.ok) throw new Error(`Failed to remove ${ticker}`); return r.json(); }),

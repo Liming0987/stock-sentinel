@@ -139,17 +139,12 @@ export default function WatchlistPage() {
     if (!ticker) return;
     setAddError(null);
     try {
-      const res = await api.watchlist.add(ticker);
-      if (!res.ok) {
-        const body = await res.json();
-        setAddError(body.detail || "Failed to add ticker");
-        return;
-      }
+      await api.watchlist.add(ticker);
       setTickerInput("");
       setAdding(false);
       refetch();
-    } catch {
-      setAddError("Network error — is the backend running?");
+    } catch (e) {
+      setAddError(e instanceof Error ? e.message : "Failed to add ticker");
     }
   };
 
