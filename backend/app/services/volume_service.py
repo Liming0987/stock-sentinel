@@ -700,20 +700,25 @@ class VolumeService:
         price_change_pct = df["Close"].pct_change() * 100
 
         # Interpretation — vectorised via np.select
-        cond_reversal = (vol_ratio >= 2.5) & (df["Close"] > df["Open"])
-        cond_distribution = (vol_ratio >= 2.5) & (df["Close"] <= df["Open"])
-        cond_acc = (vol_ratio >= 1.5) & (price_change_pct > 0)
+        # Use bar midpoint (not open) to classify climactic bars:
+        #   Selling Climax = climactic volume + close near session LOW (sellers won the bar)
+        #   Buying Climax  = climactic volume + close near session HIGH (buyers won the bar
+        #                    but exhaustion/distribution is possible at highs)
+        bar_mid = (df["High"] + df["Low"]) / 2
+        cond_sc  = (vol_ratio >= 2.5) & (df["Close"] <= bar_mid)
+        cond_bc  = (vol_ratio >= 2.5) & (df["Close"] >  bar_mid)
+        cond_acc  = (vol_ratio >= 1.5) & (price_change_pct > 0)
         cond_dist = (vol_ratio >= 1.5) & (price_change_pct <= 0)
-        cond_low = vol_ratio < 0.8
+        cond_low  = vol_ratio < 0.8
 
         interpretation = np.select(
-            [cond_reversal, cond_distribution, cond_acc, cond_dist, cond_low],
+            [cond_sc, cond_bc, cond_acc, cond_dist, cond_low],
             [
-                "Selling climax — possible reversal",
-                "Selling climax — heavy distribution",
+                "Selling climax — climactic volume, close near session low",
+                "Buying climax — climactic volume, close near session high",
                 "High-volume up day — accumulation",
                 "High-volume down day — distribution",
-                "Low-volume drift — buyers exhausted",
+                "Low-volume drift — no conviction",
             ],
             default="Normal trading activity",
         )
