@@ -181,12 +181,13 @@ function ConsensusTab({ data }: { data: ReportData }) {
 }
 
 function VideosTab({ data }: { data: ReportData }) {
+  const videos = data.analyses.filter((a) => a.published_at.slice(0, 10) === data.date);
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2">
-        <span className="text-xs text-muted-foreground">{data.analyses.length} video{data.analyses.length !== 1 ? "s" : ""}</span>
+        <span className="text-xs text-muted-foreground">{videos.length} video{videos.length !== 1 ? "s" : ""}</span>
       </div>
-      {data.analyses.map((a) => (
+      {videos.map((a) => (
         <Card key={a.video_id}>
           <CardContent className="p-5 space-y-3">
             <div>
