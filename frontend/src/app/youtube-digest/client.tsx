@@ -191,27 +191,29 @@ function VideosTab({ data }: { data: ReportData }) {
     <div className="space-y-3">
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-xs text-muted-foreground">{visible.length} video{visible.length !== 1 ? "s" : ""}</span>
-        <div className="flex flex-wrap gap-1.5 ml-auto">
-          <button
-            onClick={() => setDateFilter("all")}
-            className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium transition-colors ${
-              dateFilter === "all" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent"
-            }`}
-          >
-            All dates
-          </button>
-          {dates.map((d) => (
+        {dates.length > 1 && (
+          <div className="flex flex-wrap gap-1.5 ml-auto">
             <button
-              key={d}
-              onClick={() => setDateFilter(d)}
+              onClick={() => setDateFilter("all")}
               className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium transition-colors ${
-                dateFilter === d ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent"
+                dateFilter === "all" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent"
               }`}
             >
-              {d}
+              All dates
             </button>
-          ))}
-        </div>
+            {dates.map((d) => (
+              <button
+                key={d}
+                onClick={() => setDateFilter(d)}
+                className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium transition-colors ${
+                  dateFilter === d ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent"
+                }`}
+              >
+                {d}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
       {visible.map((a) => (
         <Card key={a.video_id}>
