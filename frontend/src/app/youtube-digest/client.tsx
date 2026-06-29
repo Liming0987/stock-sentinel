@@ -181,41 +181,12 @@ function ConsensusTab({ data }: { data: ReportData }) {
 }
 
 function VideosTab({ data }: { data: ReportData }) {
-  const dates = Array.from(new Set(data.analyses.map((a) => a.published_at.slice(0, 10)))).sort().reverse();
-  const [dateFilter, setDateFilter] = useState<string>("all");
-  const visible = dateFilter === "all"
-    ? data.analyses
-    : data.analyses.filter((a) => a.published_at.slice(0, 10) === dateFilter);
-
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="text-xs text-muted-foreground">{visible.length} video{visible.length !== 1 ? "s" : ""}</span>
-        {dates.length > 1 && (
-          <div className="flex flex-wrap gap-1.5 ml-auto">
-            <button
-              onClick={() => setDateFilter("all")}
-              className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium transition-colors ${
-                dateFilter === "all" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent"
-              }`}
-            >
-              All dates
-            </button>
-            {dates.map((d) => (
-              <button
-                key={d}
-                onClick={() => setDateFilter(d)}
-                className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium transition-colors ${
-                  dateFilter === d ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent"
-                }`}
-              >
-                {d}
-              </button>
-            ))}
-          </div>
-        )}
+      <div className="flex items-center gap-2">
+        <span className="text-xs text-muted-foreground">{data.analyses.length} video{data.analyses.length !== 1 ? "s" : ""}</span>
       </div>
-      {visible.map((a) => (
+      {data.analyses.map((a) => (
         <Card key={a.video_id}>
           <CardContent className="p-5 space-y-3">
             <div>
