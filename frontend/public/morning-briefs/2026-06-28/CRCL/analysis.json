@@ -1,0 +1,79 @@
+{
+  "ticker": "CRCL",
+  "company_name": "Circle Internet Group",
+  "report_date": "2026-06-28",
+  "price": 73.57,
+  "change_pct": 6.92,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "CRCL up 6.9% with VCP forming (pivot $111.20, 2 contractions) and Wyckoff Accumulation B (3/5 signals) \u2014 the Fed's new stablecoin rules could make Circle the biggest winner, but RSI 34 and bearish MACD say the base isn't complete yet.",
+  "price_action": {
+    "open": 67.92,
+    "high": 74.45,
+    "low": 67.36,
+    "close": 73.57,
+    "volume": 14400000,
+    "vol_ratio": 1.09,
+    "vol_rank": "#42 of 90 \u2014 below-average volume for a 6.9% move",
+    "intraday_story": "CRCL opened at $67.92 (below Friday's close), touched $67.36 low near open, then rallied steadily to close at $73.57 near the session high of $74.45. A 6.9% move on only 1.09x volume is significant \u2014 it means the move happened on thin-air demand rather than heavy institutional buying. This is typical of a news-driven momentum trade in a lightly-held name, not a structural accumulation event. The 34 RSI and bearish MACD confirm the underlying trend is still downward despite today's pop."
+  },
+  "news_catalyst": {
+    "headline": "Federal Reserve Issues New Stablecoin Rules \u2014 Circle Could Be the Biggest Winner",
+    "summary": "The Fed today issued a regulatory framework for stablecoins that requires issuers to hold 1:1 reserves in US Treasuries or Fed accounts, with regular attestation \u2014 a framework Circle's USDC already complies with. This is massively positive for Circle: it legitimizes USDC's existing model as the gold standard while creating compliance barriers that disadvantage Tether (USDT), which uses a more opaque reserve structure. Circle's regulatory-first positioning, which had been a market-cap discount factor, is now a competitive advantage. The stablecoin regulation catalyst is precisely what Circle went public to benefit from. The VCP structure (pivot $111.20) starts to make sense as the longer-term price target if the regulatory narrative accelerates.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 3,
+    "vcp_detected": true,
+    "vcp_pivot": 111.2,
+    "vcp_stage": "Stage 2 \u2014 2 contractions forming",
+    "key_support": 74.47,
+    "key_resistance": 130.82,
+    "rsi": 34.02,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.09,
+    "volume_signal": "normal",
+    "summary": "CRCL has a VCP pattern forming \u2014 2 contractions detected with the pivot at $111.20 (51% above current price). The Wyckoff Accumulation Phase B (3/5 signals, bullish) supports the VCP base-building interpretation. The regulatory catalyst today is exactly what a VCP setup needs to break out \u2014 a specific, datable event that changes the fundamental thesis.\n\nHowever, the current RSI at 34 and bearish MACD crossover say the base is not yet complete. The VCP methodology (Minervini) requires volume to dry up significantly at each contraction before the pivot breakout \u2014 we're in the dry-up phase. Today's low volume (1.09x on a 6.9% move) is actually consistent with VCP base-building: volume is low relative to the price move, which is healthy.\n\nKey levels: $74.47 is now support (today's close = new demand zone). The stock needs to form a third contraction \u2014 a low-volume pullback that doesn't violate $67 \u2014 before setting up the final VCP breakout above $111.20 on heavy volume (ideally >3x average)."
+  },
+  "wyckoff_narrative": "CRCL's Wyckoff structure of Accumulation Phase B (3/5 signals) aligns with the VCP base-building. The stock IPO'd at $31 in early 2026, ran to a high near $120 on initial enthusiasm, then corrected down to the current $60-75 range as the stablecoin regulatory overhang depressed sentiment. The correction established the accumulation base.\n\nToday's regulatory catalyst is the kind of news event that in Wyckoff terms 'removes the cause of the selling' \u2014 if regulation was the bear thesis (uncertainty around USDC's legality/compliance burden), and the Fed just issued rules that USDC already complies with, the bear thesis is structurally weaker. Watch for the Spring/Shakeout to occur around $65-67 (today's low) \u2014 if the stock tests that level on drying volume and reverses, Phase C is complete and Phase D markup toward $111+ becomes the objective.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.38,
+    "key_strengths": [
+      "USDC is #2 stablecoin globally with $50B+ in circulation",
+      "Fed's new rules legitimize Circle's existing reserve model as the industry standard"
+    ],
+    "key_concerns": [
+      "Negative FCF \u2014 business model not yet profitable at current scale",
+      "Revenue highly sensitive to interest rates (earns spread on USDC reserves)"
+    ],
+    "summary": "Grade D reflects pre-profitability stage. The business model (interest income on USDC reserves) is simple and improving, but FCF is negative. The regulatory catalyst today is potentially transformative for the long-term business case \u2014 compliance as a moat, not a burden."
+  },
+  "sentiment": {
+    "score": 0.061,
+    "label": "Neutral",
+    "mentions_24h": 3,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "VCP pivot at $111.20 is 51% above current price \u2014 the setup requires significant base-building before breakout; don't chase today's move",
+    "Today's 6.9% move on 1.09x volume is thin \u2014 lacks the institutional buying confirmation that a VCP breakout requires",
+    "Interest rate sensitivity: if rates fall significantly, Circle's reserve income (the business model) compresses materially"
+  ],
+  "watchlist_priority": "medium"
+}

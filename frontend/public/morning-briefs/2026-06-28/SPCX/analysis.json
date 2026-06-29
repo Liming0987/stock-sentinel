@@ -1,0 +1,79 @@
+{
+  "ticker": "SPCX",
+  "company_name": "Space Exploration Technologies Corp.",
+  "report_date": "2026-06-28",
+  "price": 153.23,
+  "change_pct": 0.15,
+  "overall_stance": "watch",
+  "conviction": 0.45,
+  "one_liner": "SPCX flat on 0.62x volume in neutral consolidation \u2014 Wall Street now sees SpaceX surpassing Nvidia in long-term valuation; no technical signals, no DCF, but the Starlink recurring revenue story is building index fund exposure.",
+  "price_action": {
+    "open": 150.62,
+    "high": 158.4,
+    "low": 148.51,
+    "close": 153.23,
+    "volume": 126800000,
+    "vol_ratio": 0.62,
+    "vol_rank": "#8 of 10 \u2014 only 10 sessions in dataset, stock recently listed",
+    "intraday_story": "SPCX had a wide intraday range ($9.89) on below-average volume (0.62x) \u2014 high spread, low conviction. The close at $153.23 is mid-range. With only 10 sessions of history and no RSI/MACD data, technical analysis is severely limited."
+  },
+  "news_catalyst": {
+    "headline": "Wall Street Sees SpaceX Surpassing Nvidia in Long-Term Valuation; Starlink Lands in Millions of 401(k)s via Index Funds",
+    "summary": "Two significant pieces: Wall Street analysts are publishing long-term valuation models putting SpaceX above Nvidia's current market cap when Starlink satellite internet reaches full global coverage. Separately, SPCX's inclusion in index funds means millions of 401(k) accounts now have passive exposure \u2014 creating structural buying regardless of active investor sentiment. The 'Starfall' direct-to-device satellite service is identified as a potential new revenue stream beyond rockets and existing Starlink.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 147.74,
+    "key_resistance": 220.31,
+    "rsi": null,
+    "macd_signal": "flat",
+    "volume_ratio_today": 0.62,
+    "volume_signal": "drying up",
+    "summary": "Only 10 sessions of data available \u2014 insufficient for meaningful Wyckoff or momentum analysis. Support at $147.74, resistance at $220.31 (44% upside). No RSI or MACD data. Watch for volume to expand above 200M shares as the first confirmation of institutional participation."
+  },
+  "wyckoff_narrative": "Too few sessions to assess Wyckoff structure. The stock needs 30+ sessions before accumulation/distribution patterns become identifiable.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.39,
+    "key_strengths": [
+      "Starlink: largest satellite internet constellation globally, approaching 10M subscribers",
+      "Passive index fund inclusion creates structural buying"
+    ],
+    "key_concerns": [
+      "Limited public financial disclosure makes fundamental assessment speculative",
+      "Valuation entirely dependent on Starlink growth trajectory"
+    ],
+    "summary": "Grade D reflects limited public financial data. The long-term story (Starlink + launches) is compelling, but without financial statements, it's vision-based investing."
+  },
+  "sentiment": {
+    "score": 0.059,
+    "label": "Neutral",
+    "mentions_24h": 2,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Only 10 sessions of data \u2014 no technical floor established",
+    "Limited financial disclosure \u2014 true fundamentals unknown",
+    "Elon Musk key-man risk across SpaceX, Tesla, Starlink simultaneously"
+  ],
+  "watchlist_priority": "low"
+}

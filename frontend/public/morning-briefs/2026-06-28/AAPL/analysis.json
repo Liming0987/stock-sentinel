@@ -1,0 +1,79 @@
+{
+  "ticker": "AAPL",
+  "company_name": "Apple Inc.",
+  "report_date": "2026-06-28",
+  "price": 283.78,
+  "change_pct": 3.14,
+  "overall_stance": "avoid",
+  "conviction": 0.72,
+  "one_liner": "AAPL's 261.7M-share session is the #1 volume day in the 90-day dataset at 4.42x avg \u2014 but a 3.1% gain on record selling-climax volume after a 6% down-day is a dead-cat bounce, not a reversal; stock is 31% above DCF fair value.",
+  "price_action": {
+    "open": 275.0,
+    "high": 285.95,
+    "low": 274.21,
+    "close": 283.78,
+    "volume": 261700000,
+    "vol_ratio": 4.42,
+    "vol_rank": "#1 highest volume day in the 90-day dataset \u2014 261.7M shares, 3x the next-biggest session",
+    "intraday_story": "AAPL opened at $275.00 \u2014 down from the prior close \u2014 then recovered strongly to close at $283.78, near the session high of $285.95. On the surface a positive day. But context matters: this is a partial recovery from Wednesday's 6% selloff on forced price hikes. The close at $283.78 is still below Wednesday's open of ~$285. The volume (261.7M) dwarfs anything in the 90-day dataset \u2014 this is a day where both sellers and buyers showed up in record numbers, with buyers narrowly winning the day. That's not the same as institutional accumulation."
+  },
+  "news_catalyst": {
+    "headline": "Apple WWDC 2026 Shows 'Material Positive Reset' of AI Strategy \u2014 But Memory Cost Inflation Persists",
+    "summary": "The headline driving today's bounce is an analyst note calling Apple's WWDC 2026 AI announcements a 'material positive reset' of the criticized AI strategy \u2014 on-device inference improvements and deeper Siri integration are being reframed as a competitive advantage rather than a lag. This is partially restoring confidence after Wednesday's forced product price hikes of 15-25% (MacBook Air to $1,299, MacBook Pro to $1,999). However, the fundamental problem hasn't changed: memory and storage component costs are structurally elevated as hyperscalers outbid Apple for TSMC and Micron supply, and the price hikes will reduce device unit volumes which reduces service attach rates \u2014 the highest-margin business. Today's bounce is a narrative trade, not a fundamental change.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 255.7,
+    "key_resistance": 315.18,
+    "rsi": 35.84,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 4.42,
+    "volume_signal": "climactic",
+    "summary": "The numbers: 261.7M shares traded \u2014 the highest single session in the 90-day dataset, 4.42x average volume and approximately 3x the next-biggest spike. The Wyckoff engine flags this as a 'Selling Climax \u2014 possible reversal.' That's the technically correct label for the pattern: climactic volume with a bounce. But the key word is 'possible.' A true Wyckoff Selling Climax (SC) should be followed by an Automatic Rally (AR) to the upside, then a Secondary Test (ST) of the SC low on lower volume before you can call it an accumulation base. We're missing the prior context \u2014 there's no established downtrend low to call this an SC.\n\nMore likely interpretation: this is a two-day volatility event (Wednesday's 6% down + Thursday's 3% up) around the price hike announcement, not a structural Wyckoff SC. Record volume on a bounce after a single-catalyst selloff is often institutional rebalancing rather than new accumulation. MACD remains in a bearish crossover. RSI at 35.8 is approaching oversold but hasn't touched the 30 level that would trigger a mechanical mean-reversion buy signal.\n\nFor the next 2-3 sessions: if AAPL closes back below $275 on any elevated volume, the bounce is over and distribution is resuming. If it holds $275-280 on drying volume (below 100M), then a genuine secondary test is forming. Neither scenario changes the overvaluation picture \u2014 stock is still $88 above DCF fair value of $196."
+  },
+  "wyckoff_narrative": "No Wyckoff events are tagged in AAPL's 90-day dataset, which means there's no established SC/AR/ST sequence to anchor today's volume spike. Without a prior selling climax tagged, today's session can't formally be called Phase A accumulation \u2014 it's a standalone climactic volume event within a longer downtrend.\n\nIf this IS the selling climax, the subsequent Wyckoff sequence would call for: AR rally above $295-300 area (Wyckoff AR typically retraces 40-60% of the prior down move), then an ST retesting $270-275 on below-average volume (below 80M shares). Until both of those occur and hold, the Wyckoff framework doesn't support a bullish read.\n\nThe Wyckoff engine's 'Consolidation / No Clear Phase' label is the honest assessment. This is a stock in narrative flux, not one in a clean structural accumulation.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 195.89,
+    "upside_pct": -31.0,
+    "bear_value": 105.52,
+    "bull_value": 333.2,
+    "discount_rate": 0.1047,
+    "growth_rate": 0.1356,
+    "summary": "DCF base case of $196 implies 31% downside from current price. Bull case of $333 is near current price only in an optimistic scenario requiring sustained 15%+ growth \u2014 difficult given the price hike headwinds on unit volume. Current price of $283.78 offers no margin of safety; it's pricing in best-case outcomes that are now under active threat."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.73,
+    "key_strengths": [
+      "Services revenue 25%+ of total and growing at higher margins",
+      "Ecosystem lock-in creates durable recurring revenue"
+    ],
+    "key_concerns": [
+      "Forced 15-25% price hikes on Mac/iPad will reduce device units and service attach rates \u2014 a compounding earnings headwind",
+      "Supplier leverage eroded as hyperscalers displace Apple at Micron (+60-80% memory price hikes) and TSMC"
+    ],
+    "summary": "Grade B reflects historically excellent business quality that is under structural pressure for the first time in a decade. The component cost inflation is not temporary \u2014 it's driven by AI infrastructure demand that will persist for years. Apple's asset-light model, historically a strength, is now a liability in an environment where supply allocation favors the biggest spenders (hyperscalers), not the highest-volume assemblers."
+  },
+  "sentiment": {
+    "score": 0.037,
+    "label": "Neutral",
+    "mentions_24h": 45,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If AAPL closes below $274 (today's low) on volume >150M in the next session, the bounce is a dead cat and distribution resumes toward $255 support",
+    "Each $200 price hike on MacBook Air reduces the addressable buyer pool by an estimated 8-12% \u2014 compounding negative for services attach rates over 2-4 quarters",
+    "WWDC AI narrative needs product delivery by fall to hold \u2014 if Apple Intelligence features disappoint at product launch, the 'positive reset' thesis collapses"
+  ],
+  "watchlist_priority": "low"
+}

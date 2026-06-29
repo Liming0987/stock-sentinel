@@ -1,0 +1,79 @@
+{
+  "ticker": "CMG",
+  "company_name": "Chipotle Mexican Grill, Inc.",
+  "report_date": "2026-06-28",
+  "price": 33.34,
+  "change_pct": 3.28,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "CMG up 3.3% on 2.96x volume (Selling Climax signal) \u2014 the 50-for-1 stock split two years ago means this $33 price = $1,667 pre-split; RSI 60.8 approaching overbought near $33.96 resistance, DCF shows 56% downside at $14.59.",
+  "price_action": {
+    "open": 32.3,
+    "high": 33.59,
+    "low": 32.26,
+    "close": 33.34,
+    "volume": 63100000,
+    "vol_ratio": 2.96,
+    "vol_rank": "#1 in 90-day dataset at 2.96x average",
+    "intraday_story": "CMG opened at $32.30, dipped to $32.26, then rallied to $33.59 \u2014 just above the BB upper at $33.96 \u2014 before closing at $33.34. The #1 volume day in the dataset (2.96x) with a close near the session high is bullish price action. However, the resistance is $33.96 (the BB upper), only $0.62 above the close \u2014 very limited remaining upside before hitting the band."
+  },
+  "news_catalyst": {
+    "headline": "Two Years After Chipotle's 50-for-1 Stock Split \u2014 CAVA Up 37% in 6 Months Puts CMG's QSR Premium Under Scrutiny",
+    "summary": "The Chipotle split anniversary piece highlights that post-split CMG has underperformed its QSR peers. CAVA (the fast-casual challenger) is up 37% in 6 months while CMG has been flat-to-down. The implication: Chipotle's premium QSR multiple is under competition from newer, faster-growing concepts. CMG's DCF shows $14.59 intrinsic value \u2014 the stock needs to grow into its current multiple over many years of premium execution.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 28.94,
+    "key_resistance": 35.78,
+    "rsi": 60.78,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 2.96,
+    "volume_signal": "climactic",
+    "summary": "CMG at RSI 60.8 with the #1 volume day in its dataset is approaching the BB upper ($33.96) and the 90-day resistance ($35.78). Volume at 2.96x is climactic \u2014 the Selling Climax interpretation applies. MACD bullish crossover is constructive but the risk/reward is poor: $2.44 to resistance vs $4.40 to support."
+  },
+  "wyckoff_narrative": "The Selling Climax tag on the #1 volume day could mark a short-term floor if followed by an Automatic Rally. But without a prior downtrend, this is likely a standalone climactic volume event rather than a structural SC/AR/ST sequence.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 14.59,
+    "upside_pct": -56.2,
+    "bear_value": 6.36,
+    "bull_value": 27.45,
+    "discount_rate": 0.0988,
+    "growth_rate": 0.0828,
+    "summary": "56% DCF downside. Even the bull case at $27.45 is 18% below current price. CMG is the third most overvalued name in the watchlist (behind CSCO and DE)."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.59,
+    "key_strengths": [
+      "Best-in-class QSR execution with digital ordering moat",
+      "Throughput improvement initiatives driving same-store sales"
+    ],
+    "key_concerns": [
+      "56% DCF overvaluation",
+      "CAVA and other fast-casual competitors eroding the premium"
+    ],
+    "summary": "Grade C fundamentals \u2014 excellent business at a terrible price. CAVA's 37% rally while CMG flatlines is the market telling you which growth runway is more valuable."
+  },
+  "sentiment": {
+    "score": 0.236,
+    "label": "Bullish",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "56% downside to DCF base case \u2014 only 7% upside to 90-day resistance",
+    "RSI 60.8 approaching overbought near resistance \u2014 asymmetric risk/reward to the downside",
+    "CAVA's 37% gain in 6 months = relative underperformance narrative building"
+  ],
+  "watchlist_priority": "low"
+}

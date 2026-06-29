@@ -1,0 +1,88 @@
+{
+  "ticker": "DFTX",
+  "company_name": "Definium Therapeutics, Inc.",
+  "report_date": "2026-06-28",
+  "price": 44.95,
+  "change_pct": 0.36,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "DFTX tagged Automatic Rally (AR) by Wyckoff engine today \u2014 RSI at 90.77 is the most extreme overbought in the watchlist, 3.33x volume Selling Climax \u2014 $700M dilutive offering at $34 creates supply overhang; Jones Trading raised target to $74 but timing is everything.",
+  "price_action": {
+    "open": 44.7,
+    "high": 45.75,
+    "low": 42.84,
+    "close": 44.95,
+    "volume": 12200000,
+    "vol_ratio": 3.33,
+    "vol_rank": "#3 in 90-day dataset",
+    "intraday_story": "DFTX opened at $44.70, spiked to $45.75, sold off to $42.84, then recovered to close at $44.95 \u2014 a volatile intraday session with a net gain of only $0.25. The Wyckoff engine tagged this as an Automatic Rally (AR) \u2014 the bounce following the prior session's Selling Climax. In the accumulation framework, AR follows SC and sets the upper boundary of the trading range."
+  },
+  "news_catalyst": {
+    "headline": "Jones Trading Maintains Buy on Definium Therapeutics, Raises Price Target to $74 \u2014 $700M Offering Priced at $34",
+    "summary": "Jones Trading is bullish with a $74 target (65% upside), citing the psychedelics biotech pipeline. But the $700M upsized public offering at $34 per share created massive dilution \u2014 20.5M new shares at $34 vs current price of $44.95 means the offering buyers are already up 32% and have supply to sell. The AR tag today (wyckoff_events: ['AR']) is the formal Wyckoff confirmation that the offering-driven frenzy has peaked and the stock is entering a basing phase.",
+    "source_url": "https://www.benzinga.com",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 19.94,
+    "key_resistance": 39.43,
+    "rsi": 90.77,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 3.33,
+    "volume_signal": "climactic",
+    "summary": "RSI at 90.77 is the single most extreme overbought reading in the entire watchlist \u2014 a reading this high historically produces mean-reversion down to RSI 60-65 before the next sustainable leg begins. The AR tag confirms we are in the early Wyckoff basing phase post-SC. The stock needs to pull back and establish a base between $34 (offering price) and $40 before the next entry."
+  },
+  "wyckoff_narrative": "The Wyckoff sequence on DFTX: the $700M offering at $34 was the Selling Climax (SC) \u2014 climactic volume, wide spread, close above midpoint. Today's session with the AR tag confirms the AR phase \u2014 the bounce from SC. The next expected event is a Secondary Test (ST) of the SC lows ($34-36 zone) on below-average volume. That ST, if it holds, would be the accumulation base entry point. Until the ST occurs and holds, don't add new positions.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.52,
+    "key_strengths": [
+      "Jones Trading Buy with $74 target \u2014 institutional coverage",
+      "Psychedelics pipeline with potential FDA approval path"
+    ],
+    "key_concerns": [
+      "Negative FCF",
+      "$700M dilutive offering creates 20.5M shares of supply at $34 \u2014 32% below current price"
+    ],
+    "summary": "Grade C pre-revenue biotech. The offering buyers at $34 are 32% in profit and can sell at any time \u2014 that's the primary overhang to manage."
+  },
+  "sentiment": {
+    "score": 0.211,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "Momentum",
+      "action": "buy",
+      "confidence": 0.4,
+      "entry_low": 43.19,
+      "entry_high": 46.01,
+      "stop_loss": 37.89,
+      "target": 55.54
+    }
+  ],
+  "risks": [
+    "RSI 90.77 \u2014 mean reversion to RSI 60-65 implies a 15-25% pullback from current levels before the next entry",
+    "20.5M shares of offering buyers at $34 are 32% in profit \u2014 massive supply overhang at the $40-45 level",
+    "Wyckoff AR phase = basing, not buying; wait for Secondary Test of $34-36 on low volume"
+  ],
+  "watchlist_priority": "medium"
+}

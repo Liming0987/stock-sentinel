@@ -1,0 +1,79 @@
+{
+  "ticker": "RKLB",
+  "company_name": "Rocket Lab Corporation",
+  "report_date": "2026-06-28",
+  "price": 84.54,
+  "change_pct": 4.77,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "RKLB up 4.8% from RSI 26.8 oversold on news it's becoming NASA's go-to small launcher \u2014 Wyckoff Accumulation B (3/5 signals) confirmed but MACD bearish crossover says wait for the crossover before adding; support at $66 is strong.",
+  "price_action": {
+    "open": 81.11,
+    "high": 86.28,
+    "low": 80.73,
+    "close": 84.54,
+    "volume": 34300000,
+    "vol_ratio": 1.18,
+    "vol_rank": "#10 of 90 \u2014 slightly above average",
+    "intraday_story": "RKLB opened at $81.11, dipped to $80.73, then rallied to $86.28 before closing at $84.54. A solid reversal from the open with a close near the middle of the range. RSI at 26.78 is deeply oversold territory \u2014 this bounce is consistent with a mechanical mean-reversion buy signal. 1.18x volume is sufficient for institutional participation without being climactic."
+  },
+  "news_catalyst": {
+    "headline": "Does Rocket Lab Becoming NASA's Go-To Small Launcher Reframe Its Risk-Reward Profile?",
+    "summary": "Benzinga poses the key question of the week for RKLB: the company has quietly become NASA's default partner for small satellite launches, providing recurring government contract revenue that reduces the binary risk of commercial launch failures. The Neutron medium-lift rocket development continues. NASA's institutional demand for RKLB's reliability track record (88%+ mission success rate) creates a demand floor that pure-play commercial launch companies lack. This is genuinely positive for the risk-reward profile \u2014 government recurring revenue is the kind of predictable cash flow that enables path to profitability.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 3,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 66.29,
+    "key_resistance": 144.1,
+    "rsi": 26.78,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.18,
+    "volume_signal": "normal",
+    "summary": "RSI at 26.78 is the most extreme oversold reading in the entire watchlist \u2014 only a handful of sessions historically have seen RSI this low before a meaningful bounce. 3/5 Wyckoff accumulation signals confirm the bullish structural bias. However, MACD remains in a bearish crossover and the stock is in a downtrend. Wait for MACD to cross bullish (the histogram is compressing \u2014 this could happen within 3-5 sessions) before adding conviction."
+  },
+  "wyckoff_narrative": "Wyckoff Accumulation Phase B with bullish bias. The NASA go-to launcher narrative is exactly the kind of 'positive re-rating catalyst' that Wyckoff methodology associates with smart money finishing their accumulation before the news becomes widely known. 3/5 signals suggest SC, AR, and ST have all been tagged \u2014 the base is forming. The 70% gap to resistance at $144 is the long-term target if Phase D markup begins.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.53,
+    "key_strengths": [
+      "NASA go-to small launcher status provides recurring government contract revenue",
+      "88%+ mission success rate creates institutional demand floor"
+    ],
+    "key_concerns": [
+      "Negative FCF",
+      "High Leverage (D/E>3)"
+    ],
+    "summary": "Grade C reflects a company in growth mode burning cash to build competitive advantage. The NASA relationship significantly de-risks the business \u2014 government contracts have lower margins but higher predictability."
+  },
+  "sentiment": {
+    "score": 0.11,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "MACD still in bearish crossover \u2014 no confirmed trend reversal despite oversold RSI",
+    "Negative FCF and high leverage \u2014 cash burn risk if Neutron development delays",
+    "If RSI bounces to 40 without MACD crossing bullish, the technical signal fails"
+  ],
+  "watchlist_priority": "low"
+}

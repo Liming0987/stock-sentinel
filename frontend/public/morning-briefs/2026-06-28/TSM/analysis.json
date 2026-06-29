@@ -1,0 +1,78 @@
+{
+  "ticker": "TSM",
+  "company_name": "Taiwan Semiconductor Manufacturing Company",
+  "report_date": "2026-06-28",
+  "price": 432.35,
+  "change_pct": -0.61,
+  "overall_stance": "accumulate",
+  "conviction": 0.78,
+  "one_liner": "TSM flat on 1.34x volume with MACD bullish crossover and Grade A fundamentals (0.89 score, highest in watchlist) \u2014 monthly sales rising per today's data, consolidating between $338 support and $449 resistance; best risk/reward in the watchlist for a long-term hold.",
+  "price_action": {
+    "open": 425.0,
+    "high": 436.13,
+    "low": 419.19,
+    "close": 432.35,
+    "volume": 18000000,
+    "vol_ratio": 1.34,
+    "vol_rank": "#15 of 90 \u2014 modestly above average",
+    "intraday_story": "TSM opened at $425, pushed to $436.13, then pulled back to $419.19 before closing at $432.35 \u2014 a recovery from the intraday low with a close above the open. The wide intraday range ($16.94) on only 1.34x volume reflects sector uncertainty, but the close above the open is modestly constructive."
+  },
+  "news_catalyst": {
+    "headline": "TSMC Monthly Sales Rise \u2014 AI Chip Demand Drives Record Revenue for Foundry Leader",
+    "summary": "TSMC's monthly revenue data continues to show AI-driven demand growth, with multiple AI chip designers (Nvidia, Broadcom, AMD) demanding maximum capacity at the leading edge (3nm, 2nm). The 'Emerging Markets AI chip trade' chart from Bloomberg highlights TSMC as the central node in the global AI infrastructure buildout. No fundamental change \u2014 TSMC remains the irreplaceable manufacturing partner for every leading AI chip company.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 338.9,
+    "key_resistance": 449.3,
+    "rsi": 49.96,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 1.34,
+    "volume_signal": "normal",
+    "summary": "TSM at RSI 50 is perfectly mid-range with MACD in a fresh bullish crossover. Neutral Wyckoff phase means no structural signal yet. Best accumulation strategy: build position in the $400-435 range on any pullback toward support, targeting the $449 resistance breakout."
+  },
+  "wyckoff_narrative": "No formal Wyckoff events tagged. The consolidation between $338 support and $449 resistance represents a period of neutral distribution/accumulation. Given the fundamentals (Grade A, 0.89 score) and the AI demand tailwind, the bias is to interpret this as a reaccumulation phase before the next markup. Watch for volume to expand on any test of $449 resistance \u2014 that would be the Sign of Strength entry signal.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 18687.85,
+    "upside_pct": 4222.4,
+    "bear_value": 10154.98,
+    "bull_value": 30632.66,
+    "discount_rate": 0.1138,
+    "growth_rate": 0.3735,
+    "summary": "DCF is distorted by ADR share count differences vs TWD-denominated Taiwan shares \u2014 treat as not comparable to share price. The 37% growth rate in the model is legitimate and reflects AI-driven semiconductor demand."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.89,
+    "key_strengths": [
+      "~55% global foundry market share at leading edge \u2014 irreplaceable",
+      "37% growth rate from AI chip demand (Nvidia, Broadcom, Apple, AMD all dependent on TSMC)",
+      "Monthly revenue data confirming demand acceleration"
+    ],
+    "key_concerns": [
+      "Taiwan geopolitical risk \u2014 permanent tail risk for all TSM holders"
+    ],
+    "summary": "Highest fundamental score in the entire watchlist at 0.89. TSMC is the single most critical infrastructure node in AI. Geopolitical risk is real but priced in \u2014 the stock would need a Taiwan invasion to gap below $200, which is less than a 50% probability scenario."
+  },
+  "sentiment": {
+    "score": 0.165,
+    "label": "Neutral",
+    "mentions_24h": 2,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Taiwan Strait geopolitical risk \u2014 the unhedgeable tail risk for TSM holders",
+    "Customer concentration: Nvidia alone is ~25% of revenue; if Nvidia's orders slow, TSM feels it immediately"
+  ],
+  "watchlist_priority": "high"
+}

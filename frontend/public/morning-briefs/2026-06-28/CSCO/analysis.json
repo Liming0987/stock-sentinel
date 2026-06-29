@@ -1,0 +1,79 @@
+{
+  "ticker": "CSCO",
+  "company_name": "Cisco Systems, Inc.",
+  "report_date": "2026-06-28",
+  "price": 113.77,
+  "change_pct": -4.37,
+  "overall_stance": "avoid",
+  "conviction": 0.72,
+  "one_liner": "CSCO down 4.4% on California layoffs \u2014 1.82x distribution volume, DCF base case $60.18 (47% downside), MACD bearish crossover; the 'AI stock that will make you rich' headlines cannot offset a stock trading at 2x its intrinsic value.",
+  "price_action": {
+    "open": 117.18,
+    "high": 117.18,
+    "low": 112.86,
+    "close": 113.77,
+    "volume": 51600000,
+    "vol_ratio": 1.82,
+    "vol_rank": "#4 of 90 \u2014 elevated distribution volume",
+    "intraday_story": "CSCO opened at $117.18 (the day's high) and sold off throughout the session to a low of $112.86 before recovering slightly to close at $113.77. The bearish open-at-high pattern (same as FNMA today) signals institutional distribution \u2014 institutions used the opening strength to sell. 1.82x volume on the down day confirms the distribution interpretation."
+  },
+  "news_catalyst": {
+    "headline": "Cisco Lays Off 400+ California Workers \u2014 Stock Selling Off Despite 'Best AI Stocks' Headlines",
+    "summary": "The layoff news conflicts directly with the bull narrative (Cisco listed among '15 best AI stocks'). The layoffs signal management is managing for profitability in a revenue-challenged environment, not growing into an AI opportunity. The simultaneous JPMorgan removal of Arista Networks from its equity focus list also pressures the networking sector broadly \u2014 Cisco and Arista are correlated. The key tell: CSCO opened at its high and sold off all day, meaning sellers were waiting for the opening to exit.",
+    "source_url": "",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 79.4,
+    "key_resistance": 128.25,
+    "rsi": 36.29,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.82,
+    "volume_signal": "elevated",
+    "summary": "Open-at-high distribution pattern on 1.82x volume. RSI at 36 approaching oversold. MACD bearish crossover. DCF intrinsic value of $60 is $53 below current price. The only technical positive is approaching oversold RSI \u2014 but in a distribution structure, oversold can persist for longer than expected."
+  },
+  "wyckoff_narrative": "No formal Wyckoff events. But the open-at-high/intraday-fade pattern on elevated volume is a classic distribution day \u2014 not the Buying Climax event but consistent with sign of weakness behavior. Without Wyckoff structural signals, the narrative is: stock is declining from overvalued levels, layoffs confirm business headwinds, AI narrative insufficient to support the premium.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 60.18,
+    "upside_pct": -47.1,
+    "bear_value": 30.32,
+    "bull_value": 106.25,
+    "discount_rate": 0.1002,
+    "growth_rate": 0.1198,
+    "summary": "47% downside to DCF base case. Even the bull case of $106 is below current price. The stock has been bid up on AI networking narrative without the revenue growth to justify it. Layoffs confirm management sees the same headwinds."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.73,
+    "key_strengths": [
+      "Stable recurring networking infrastructure revenue",
+      "Dividend yield ~3%"
+    ],
+    "key_concerns": [
+      "Layoffs signal revenue growth challenges",
+      "AI narrative insufficient to close 47% valuation gap"
+    ],
+    "summary": "Grade B business at a Grade D valuation. The AI networking story is real but priced in \u2014 and then some. Layoffs are the leading indicator of forward revenue disappointment."
+  },
+  "sentiment": {
+    "score": 0.004,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "47% DCF downside \u2014 the most overvalued name in the watchlist on fundamentals",
+    "Open-at-high distribution pattern on elevated volume \u2014 institutional exit in progress",
+    "Layoffs are the leading indicator of revenue disappointment, which means EPS cuts are coming"
+  ],
+  "watchlist_priority": "low"
+}

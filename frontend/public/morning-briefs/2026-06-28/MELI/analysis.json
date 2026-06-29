@@ -1,0 +1,79 @@
+{
+  "ticker": "MELI",
+  "company_name": "MercadoLibre, Inc.",
+  "report_date": "2026-06-28",
+  "price": 1675.1,
+  "change_pct": 3.45,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "MELI up 3.5% with bullish MACD crossover and 0.91x drying volume \u2014 'down 38% from ATH and three analysts call it a buy on the dip'; neutral Wyckoff but growing MercadoPago fintech story justifies a watch.",
+  "price_action": {
+    "open": 1619.98,
+    "high": 1693.94,
+    "low": 1600.06,
+    "close": 1675.1,
+    "volume": 500000,
+    "vol_ratio": 0.91,
+    "vol_rank": "#43 of 90 \u2014 below average",
+    "intraday_story": "MELI opened at $1,619.98, dipped to $1,600.06 (testing the 90-day support neighborhood), then rallied to $1,693.94 before closing at $1,675.10. A solid recovery with a close in the upper two-thirds of the range on below-average volume \u2014 consistent with a healthy accumulation-phase advance without climactic exhaustion."
+  },
+  "news_catalyst": {
+    "headline": "Down 38% From All-Time High, Is MercadoLibre a Buy? Three Analysts Say Yes on the Dip",
+    "summary": "Multiple analyst pieces today flag MELI as a '3 surefire stocks to buy on the dip' candidate alongside other long-term compounders. The core thesis: MercadoPago fintech growing 40%+ annually is becoming as large as the e-commerce marketplace, creating a financial services moat that is highly profitable at scale. Down 38% from ATH creates a mathematical valuation reset that brings the long-term growth story back into reasonable risk/reward territory despite negative FCF in the core business.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 1538.04,
+    "key_resistance": 1887.22,
+    "rsi": 53.93,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 0.91,
+    "volume_signal": "normal",
+    "summary": "MACD bullish crossover on drying volume with RSI neutral at 54. The stock bounced off the $1,600 level (8% above support at $1,538). Neutral Wyckoff but the consolidation is orderly. Watch for a test of $1,887 resistance on expanded volume for the breakout signal."
+  },
+  "wyckoff_narrative": "No formal Wyckoff events. The 38% pullback from ATH followed by a consolidation range is consistent with a reaccumulation phase. The 'buy on the dip' institutional coverage today could represent Phase B or C of the accumulation sequence. Need more sessions to confirm.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.55,
+    "key_strengths": [
+      "Dominant LatAm e-commerce (60%+ market share in key markets)",
+      "MercadoPago 40%+ growth \u2014 becoming a major fintech, not just a payment processor"
+    ],
+    "key_concerns": [
+      "Negative FCF from heavy reinvestment",
+      "Currency risk: BRL, ARS, MXN exposure to devaluation"
+    ],
+    "summary": "Grade C masks a strong underlying business. The negative FCF reflects deliberate reinvestment (Amazon circa 2015 analogy). MercadoPago's path to profitability is clearer than the e-commerce core."
+  },
+  "sentiment": {
+    "score": 0.32,
+    "label": "Bullish",
+    "mentions_24h": 3,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "LatAm currency devaluation risk \u2014 particularly Argentine peso",
+    "Negative FCF requires growth-investor framework that may lose patience in risk-off markets",
+    "38% below ATH means prior buyers are underwater \u2014 potential overhead supply on any significant rally"
+  ],
+  "watchlist_priority": "medium"
+}

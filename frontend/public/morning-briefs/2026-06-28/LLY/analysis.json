@@ -1,0 +1,80 @@
+{
+  "ticker": "LLY",
+  "company_name": "Eli Lilly and Company",
+  "report_date": "2026-06-28",
+  "price": 1208.12,
+  "change_pct": 7.13,
+  "overall_stance": "accumulate",
+  "conviction": 0.88,
+  "one_liner": "LLY tagged a Sign of Strength (SOS) by the Wyckoff engine \u2014 7.13% on 2.35x volume blasting through 90-day resistance at $1,170 \u2014 Phase C-D accumulation is now confirmed with 4/5 signals and DCF intrinsic value of $1,980.",
+  "price_action": {
+    "open": 1128.8,
+    "high": 1215.76,
+    "low": 1128.0,
+    "close": 1208.12,
+    "volume": 7700000,
+    "vol_ratio": 2.35,
+    "vol_rank": "#2 highest volume in 90-day dataset",
+    "intraday_story": "LLY gapped up to open at $1,128.80 \u2014 exactly at Thursday's resistance level \u2014 then broke out hard through the day, touching $1,215.76 intraday before closing at $1,208.12, right near the session high. The close in the upper 95% of the day's range on 2.35x average volume is a textbook accumulation candle: strong effort matched by strong result. This is the exact intraday structure you want to see after a 6-week basing period."
+  },
+  "news_catalyst": {
+    "headline": "Eli Lilly and BioArctic AB Enter Research and Collaboration Agreement; EMA Backing Secured for Jaypirca in CLL",
+    "summary": "Two simultaneous catalysts converged on LLY: the EMA's Committee for Medicinal Products for Human Use (CHMP) recommended approval of Jaypirca (pirtobrutinib) for chronic lymphocytic leukemia in Europe, materially expanding the oncology revenue base beyond GLP-1; and a new research collaboration agreement with BioArctic AB for a next-generation Alzheimer's treatment. The BioArctic deal signals Lilly is extending its moat into neurodegeneration \u2014 a $100B+ untapped market \u2014 while the Jaypirca approval adds a near-term, de-risked revenue stream in CLL, where BTK inhibitors command premium pricing. The timing matters: the market is rotating into healthcare names (per IBD's 'market at tipping point' coverage), and LLY was already the cleanest setup in the watchlist heading into these announcements. The 7.1% single-day move is proportionate to the combined signal strength.",
+    "source_url": "https://www.insidermonkey.com",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase C-D",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 4,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 1170.34,
+    "key_resistance": 1215.76,
+    "rsi": 72.74,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 2.35,
+    "volume_signal": "climactic",
+    "summary": "The Wyckoff engine formally tagged this session as a Sign of Strength (SOS) \u2014 the highest-conviction accumulation signal in the framework. At 2.35x average volume and the second-highest volume day in the 90-day dataset, the effort and result are in harmony on the bullish side: massive institutional buying drove price through the $1,170 resistance and closed near the session high. This is not absorption (which is high effort, muted result) \u2014 this is markup.\n\nZooming out: LLY had been consolidating between roughly $1,058 (BB lower) and $1,185 (BB upper) for several weeks after a prior markup phase. The breakout today clears the Bollinger Band upper at $1,185 and closes above it at $1,208 \u2014 a BB squeeze breakout on institutional volume. RSI at 72.7 is elevated but not yet signaling reversal; in a confirmed markup phase, RSI can sustain 70+ for multiple sessions.\n\nFor confirmation over the next 2-3 sessions: what Wyckoff calls the 'Back-Up to the Edge of the Creek' (BUEC) would look like the stock pulling back to $1,170-1,185 on below-average volume (drying volume = healthy test), then resuming higher. A close below $1,128 on elevated volume would be the invalidation signal \u2014 it would suggest today was an upthrust rather than a genuine SOS."
+  },
+  "wyckoff_narrative": "The Wyckoff structure on LLY is the clearest in the entire watchlist. The dataset shows 4 of 5 accumulation signals confirmed (SC, AR, ST, and now SOS), placing the stock firmly in Phase C-D \u2014 the transition from accumulation to markup. The SOS tag today is algorithmically assigned by the backend (wyckoff_events: ['SOS']), confirming this isn't a subjective read.\n\nThe sequence: a selling climax established the base, an automatic rally followed, a secondary test retested the SC lows on lower volume (confirming smart money absorbed the supply), and today's SOS represents the first major show of demand in the markup direction \u2014 price breaking out of the trading range with authority on above-average volume. The fifth and final expected signal would be a Last Point of Support (LPS) \u2014 a low-volume pullback above the prior resistance at $1,170, ideally holding for 1-3 sessions before the next leg up.\n\nThe only note of caution: with RSI at 72.7, a short-term overbought condition exists. But in Wyckoff Phase C-D, you buy pullbacks, not tops \u2014 the structural signal overrides the oscillator signal. Position sizing should reflect the 64% DCF upside and a stop below $1,128 (today's open = the invalidation level).",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1980.36,
+    "upside_pct": 63.9,
+    "bear_value": 941.23,
+    "bull_value": 3343.18,
+    "discount_rate": 0.0877,
+    "growth_rate": 0.362,
+    "summary": "DCF base case of $1,980 implies 64% upside from current price, driven by a 36% projected FCF growth rate reflecting GLP-1 market leadership and oncology pipeline expansion. The bear case at $941 is 22% below current price \u2014 asymmetric risk/reward of roughly 3:1. Current price of $1,208 represents a genuine margin of safety against the base case, even adjusting for the 7% single-day move."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.74,
+    "key_strengths": [
+      "36% analyst-estimated FCF growth rate \u2014 top-tier for any S&P 500 company",
+      "GLP-1 market leadership (tirzepatide/Mounjaro) with multi-year revenue visibility",
+      "EMA approval of Jaypirca adds de-risked oncology revenue stream"
+    ],
+    "key_concerns": [
+      "RSI at 72.7 \u2014 short-term overbought, pullback likely before next leg",
+      "Pipeline binary risk remains (clinical failures can gap stock 20%+)"
+    ],
+    "summary": "Grade B reflects strong growth and business quality offset by premium valuation risk. The 36% growth rate is genuine \u2014 it reflects analyst consensus on the GLP-1 cycle, not speculation. Today's BioArctic deal broadens the pipeline beyond metabolic disease, reducing single-indication concentration risk. Fundamentals clearly support the technical accumulate stance."
+  },
+  "sentiment": {
+    "score": 0.24,
+    "label": "Bullish",
+    "mentions_24h": 20,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI at 72.7 and close near session high \u2014 expect a 2-5% pullback before continuation; if the pullback holds above $1,170 on low volume it's a buy; if it closes below $1,128 on elevated volume the SOS is invalidated",
+    "Pipeline binary risk: a Phase 3 failure on any major asset (donanemab, retatrutide) could gap the stock 15-25% regardless of GLP-1 performance",
+    "GLP-1 competitive pressure from Novo Nordisk's semaglutide pipeline and emerging oral GLP-1 competitors could compress long-term growth rate below the 36% assumption"
+  ],
+  "watchlist_priority": "high"
+}

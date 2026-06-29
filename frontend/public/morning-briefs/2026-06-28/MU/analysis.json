@@ -1,0 +1,80 @@
+{
+  "ticker": "MU",
+  "company_name": "Micron Technology, Inc.",
+  "report_date": "2026-06-28",
+  "price": 1132.33,
+  "change_pct": -6.69,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "MU's 86.1M-share session is the #1 volume day in its 90-day dataset at 1.52x avg \u2014 flagged as 'High-volume down day \u2014 distribution' \u2014 this is classic sell-the-news after blowout earnings; at $1,132 the stock is testing 90-day resistance at $1,151 from below.",
+  "price_action": {
+    "open": 1139.08,
+    "high": 1198.71,
+    "low": 1121.36,
+    "close": 1132.33,
+    "volume": 86100000,
+    "vol_ratio": 1.52,
+    "vol_rank": "#1 highest volume in 90-day dataset at 86.1M shares",
+    "intraday_story": "MU opened strong at $1,139, ripped to an intraday high of $1,198.71 \u2014 briefly surpassing the 90-day resistance at $1,151 \u2014 then reversed hard all the way down to close at $1,132.33. The stock gave back the entire earnings-pop gain within a single session, printing a bearish shooting-star pattern: upper wick of $59.38 above the body, lower wick of only $10.97. This is a textbook distribution candle \u2014 buyers tried to push through resistance, got rejected by institutional sellers at the top, and closed near the session low."
+  },
+  "news_catalyst": {
+    "headline": "Micron Briefly Surpasses Meta and Tesla Market Cap After Blowout Q3 Earnings \u2014 Now Pulling Back as Institutional Selling Meets the Earnings Pop",
+    "summary": "Micron reported Q3 earnings with $41.5B revenue (25% above guidance), 84.6% gross margins, and Q4 guidance of $50B revenue at 86% margins. The results were unambiguously exceptional, but the market reaction is equally textbook: after rallying 13% in after-hours on the announcement, institutional holders who bought below the current price are using the earnings pop as a distribution window. Reuters noted Micron's valuation briefly exceeded Meta and Tesla, drawing the attention of momentum sellers. The high-volume down day (1.52x average, #1 in the dataset) with a close near the session low after touching resistance is the clearest distribution signal the Wyckoff analysis can produce.",
+    "source_url": "https://www.insidermonkey.com",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 370.28,
+    "key_resistance": 1151.89,
+    "rsi": 56.67,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 1.52,
+    "volume_signal": "elevated",
+    "summary": "The numbers: 86.1M shares \u2014 the highest single session in the 90-day dataset at 1.52x average volume. Open at $1,139, high at $1,198.71 (piercing the 90-day resistance at $1,151), then a full reversal to close at $1,132.33 \u2014 in the bottom 16% of the day's range. That's a shooting-star candlestick on record volume at a resistance level. In Wyckoff terms, this is a candidate Buying Climax (BC) / Upthrust: climactic volume at the top of a range with a bearish close. The backend engine doesn't formally tag it as BC because the close needs to be in the lower half of the bar (it is \u2014 close $1,132 vs bar midpoint $1,160), but the high needs to be a period high (it is \u2014 $1,198 is near the 90-day high).\n\nThe MACD remaining in a bullish crossover is the only bullish technical signal \u2014 everything else (volume, candle structure, close position) is bearish for the near term. RSI at 56.7 is neither overbought nor oversold, leaving room for the stock to fall toward 45 before it would be considered a mean-reversion buy.\n\nFor the next 2-3 sessions: the key question is whether MU can reclaim the $1,151 resistance on a low-volume day (below 40M shares, suggesting sellers are exhausted). If yes, the earnings pop becomes the base for a new leg. If MU fails to hold $1,100 and closes below it on elevated volume, a more significant correction toward $900-1,000 becomes the base case."
+  },
+  "wyckoff_narrative": "MU has no Wyckoff events tagged in the 90-day dataset prior to today \u2014 the stock has been in a consolidation range without a clear accumulation/distribution structure. Today's session is the first candidate Buying Climax (BC) in the distribution framework: climactic volume at the period high with a bearish reversal bar.\n\nIf today IS the BC, the Wyckoff distribution sequence would call for: an Automatic Reaction (AR) pullback of 5-10% from today's high (target $1,079-1,139 zone), then an Upthrust (UT) that re-tests today's high on lower volume and fails to hold it. Two of five distribution signals would then be tagged. Until we see the AR and UT, it's too early to call this a distribution structure \u2014 it could also simply be a healthy cooling of an over-extended earnings pop.\n\nContrarian read: the MACD remains bullish, RSI is neutral at 56.7, and the long-term fundamental case (memory super-cycle, multi-year customer agreements) is intact. MU in 2025 was essentially pricing in a cyclical trough; today's price is pricing in a cyclical peak. The question for 2027 is where margins land when new supply comes online \u2014 management guided to normalizing margins in 2H 2027.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1192.24,
+    "upside_pct": 5.3,
+    "bear_value": 690.46,
+    "bull_value": 1845.66,
+    "discount_rate": 0.15,
+    "growth_rate": 0.5,
+    "summary": "DCF base case of $1,192 implies only 5.3% upside \u2014 the stock is essentially fairly valued at peak-cycle margins. The 50% growth assumption and 15% discount rate are both at the extreme end, suggesting the DCF is generous. Bear case of $690 reflects normalized margins post-2027, which is the more realistic long-term scenario. Current price has very little margin of safety."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.84,
+    "key_strengths": [
+      "$41.5B Q3 revenue \u2014 25% above guidance, 4x year-over-year",
+      "84.6% gross margins \u2014 exceeds Nvidia's historical peak of ~75%",
+      "Multi-year customer agreements extending cycle visibility into 2027"
+    ],
+    "key_concerns": [
+      "High Leverage (D/E>3)",
+      "Current margins are price-driven \u2014 memory prices up 60-80% YoY, unsustainable past 2H 2027 as new supply comes online"
+    ],
+    "summary": "Grade A fundamentals reflecting a business at peak cycle performance. The margins are spectacular but explicitly temporary \u2014 the company and analysts both model normalization in 2H 2027. DCF fair value of $1,192 is only 5% above current price, meaning the stock is already pricing in the exceptional earnings. Grade A business, mediocre risk/reward at current price."
+  },
+  "sentiment": {
+    "score": 0.085,
+    "label": "Neutral",
+    "mentions_24h": 3,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Shooting-star candle on #1 volume day at 90-day resistance \u2014 if next session opens below today's close ($1,132) and stays there, institutional distribution is confirmed; target $1,050-1,080",
+    "DCF upside is only 5.3% \u2014 no margin of safety at current price given peak-cycle margins",
+    "Memory price normalization in 2H 2027 could compress gross margins from 84% back toward 40-50%, triggering a major P/E re-rating"
+  ],
+  "watchlist_priority": "medium"
+}

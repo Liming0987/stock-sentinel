@@ -1,0 +1,79 @@
+{
+  "ticker": "LULU",
+  "company_name": "lululemon athletica inc.",
+  "report_date": "2026-06-28",
+  "price": 117.57,
+  "change_pct": 4.92,
+  "overall_stance": "accumulate",
+  "conviction": 0.75,
+  "one_liner": "LULU up 4.9% on proxy fight resolution \u2014 Chip Wilson's challenge settled with new board appointments, removing the overhang that depressed shares 8 years from highs; Wyckoff Accumulation Phase B (3/5 signals) + MACD bullish crossover + DCF $126 fair value.",
+  "price_action": {
+    "open": 112.0,
+    "high": 117.65,
+    "low": 111.36,
+    "close": 117.57,
+    "volume": 5400000,
+    "vol_ratio": 1.26,
+    "vol_rank": "#9 of 90 \u2014 above average but not climactic",
+    "intraday_story": "LULU opened at $112, immediately pushed higher all session, touching $117.65 and closing at $117.57 \u2014 essentially at the high of day. The intraday pattern is a steady grind up with no significant pullback, suggesting buyers were in control throughout. Volume at 1.26x average is healthy for an accumulation-phase advance: sufficient to confirm institutional participation without being a climactic spike that would signal exhaustion."
+  },
+  "news_catalyst": {
+    "headline": "Lululemon Resolves Chip Wilson Proxy Fight With New Board Appointments",
+    "summary": "The key catalyst today is the settlement of the highly-publicized Chip Wilson proxy fight \u2014 the company's founder had been publicly feuding with management and attempting to install new board members to shift strategy. The resolution (new board appointments agreed upon) removes a major governance overhang that had been suppressing institutional interest. Multiple outlets confirm the 'proxy truce reshapes board' \u2014 this is not just symbolic, it directly opens the door to institutional buyers who had been sidelined by governance uncertainty. Separately, a Barron's-style comparison piece notes LULU at an '8-year low' vs Nike at a '12-year low' for deep value investors \u2014 positioning the stock as a contrarian opportunity in premium apparel.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 3,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 110.13,
+    "key_resistance": 167.96,
+    "rsi": 47.07,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 1.26,
+    "volume_signal": "normal",
+    "summary": "LULU is in confirmed Wyckoff Accumulation Phase B with 3 of 5 signals \u2014 the bullish structural bias has been in place for multiple sessions. Today's 4.9% move on 1.26x volume with a close at the day's high is consistent with Phase B price action: controlled advances on moderate volume, testing resistance without climactic exhaustion. RSI at 47 is exactly mid-range with room to run to 65+ before hitting overbought.\n\nThe MACD bullish crossover is a fresh signal supporting the technical momentum. The stock is at $117.57 against the BB middle (implied around $118) and well below the BB upper at $132.68 \u2014 meaning there's room to move to resistance without the indicator signaling overbought.\n\nFor Phase B to complete and Phase C to begin: the next expected Wyckoff event is a Spring or Shakeout \u2014 a brief dip below the $110.13 support on low volume that shakes out weak hands before the markup begins. If LULU holds above $111 on any pullback and volume dries up below 3M shares, that's the entry signal. The 43% gap to resistance at $167.96 is the long-term target zone."
+  },
+  "wyckoff_narrative": "LULU's Wyckoff structure is clean: Accumulation Phase B with 3/5 signals, bullish bias confirmed. The proxy fight resolution is exactly the type of event that Wyckoff methodology associates with smart money finishing their accumulation \u2014 governance clarity removes the 'institutional avoidance' factor that keeps a stock depressed during accumulation. Expect increased institutional buying as ESG/governance-screened funds re-enter.\n\nThe 3 detected signals suggest selling climax, automatic rally, and secondary test have all occurred \u2014 the stock has found its floor and is building a base. Phase C (Spring/Shakeout) would be the next event, potentially triggered by any broad market weakness that briefly dips LULU below $110 before reversing. Phase D markup would then target the $130-145 zone initially.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 126.39,
+    "upside_pct": 7.5,
+    "bear_value": 97.51,
+    "bull_value": 148.28,
+    "discount_rate": 0.0924,
+    "growth_rate": -0.0655,
+    "summary": "DCF base case of $126 implies 7.5% upside \u2014 modest, but the negative growth rate (-6.6%) in the model reflects current revenue deceleration. If LULU can stabilize revenue at flat and return to modest positive growth, the bull case of $148 (26% upside) is more appropriate. The proxy resolution could catalyze exactly that business stabilization."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.72,
+    "key_strengths": [
+      "Premium brand pricing power with >60% gross margins",
+      "International expansion still early-stage (< 30% of revenue)"
+    ],
+    "key_concerns": [
+      "DCF growth rate is -6.6% \u2014 revenue deceleration needs to stabilize",
+      "Consumer discretionary headwinds in 2026"
+    ],
+    "summary": "Grade B with the proxy resolution as the key fundamental catalyst. Governance clarity allows management to focus on product and international expansion rather than defending against activist pressure. The stock's 30%+ decline from highs is overdone relative to the brand's durable moat \u2014 the business hasn't deteriorated, it's decelerated."
+  },
+  "sentiment": {
+    "score": 0.128,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "DCF growth rate of -6.6% \u2014 if revenue decline accelerates beyond current estimates, bear case of $97.51 becomes base case (17% downside)",
+    "Consumer discretionary spending compression from tariff-driven inflation could delay brand recovery",
+    "If proxy resolution doesn't stick and a second activist campaign emerges, the governance overhang returns"
+  ],
+  "watchlist_priority": "medium"
+}

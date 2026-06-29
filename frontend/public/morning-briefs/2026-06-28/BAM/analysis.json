@@ -1,0 +1,79 @@
+{
+  "ticker": "BAM",
+  "company_name": "Brookfield Asset Management Ltd.",
+  "report_date": "2026-06-28",
+  "price": 44.62,
+  "change_pct": -0.09,
+  "overall_stance": "accumulate",
+  "conviction": 0.68,
+  "one_liner": "BAM essentially flat at $44.62, RSI 33.1 approaching oversold with 1.85x distribution volume \u2014 approaching the BB lower ($44.24) which is 0.9% below; DCF base case $50.04 (+12%) and Brookfield building a 'Private Credit Powerhouse' per Barron's.",
+  "price_action": {
+    "open": 44.5,
+    "high": 45.26,
+    "low": 44.35,
+    "close": 44.62,
+    "volume": 5800000,
+    "vol_ratio": 1.85,
+    "vol_rank": "#3 of 90 \u2014 elevated volume for a flat day",
+    "intraday_story": "BAM opened at $44.50, touched $45.26, then faded to $44.35 and recovered to close at $44.62. The 1.85x volume on a -0.09% day is flagged as 'High-volume down day \u2014 distribution' which is the most interesting signal: someone sold 1.85x normal volume without moving the price. That's either smart money distributing into buyers, or buyers absorbing seller supply at this level. Given the RSI at 33 (approaching oversold), the absorption interpretation is more likely."
+  },
+  "news_catalyst": {
+    "headline": "Brookfield Is Quietly Building a Private Credit Powerhouse \u2014 Should Investors Take Notice?",
+    "summary": "A Barron's-style analysis highlights Brookfield's rapid expansion into private credit \u2014 a $10T+ market growing as banks retreat from certain lending categories under regulatory pressure. BAM is positioned as a beneficiary of the 'alternative asset management' secular growth story, with private credit joining real estate, infrastructure, and PE as fee-generating AUM. The 1.85x volume despite a flat price suggests institutional rebalancing rather than directional conviction \u2014 the stock is being held steady while sector rotation occurs.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 43.44,
+    "key_resistance": 49.34,
+    "rsi": 33.09,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.85,
+    "volume_signal": "elevated",
+    "summary": "BAM is 0.9% above BB lower ($44.24) and 2.7% above 90-day support ($43.44). RSI at 33 is 3 points from the traditional oversold threshold. MACD bearish crossover. The high volume on a flat price near oversold levels is the most interesting technical read \u2014 it suggests a supply/demand equilibrium at this price point, which often precedes a directional move. Watch the $43.44 support: if it holds on drying volume, the stock is ready to bounce."
+  },
+  "wyckoff_narrative": "No formal Wyckoff events tagged. The flat-price/high-volume pattern near oversold RSI and BB lower is worth monitoring as a potential Selling Climax candidate if volume remains elevated while price stays flat over the next 1-2 sessions.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 50.04,
+    "upside_pct": 12.1,
+    "bear_value": 27.22,
+    "bull_value": 83.94,
+    "discount_rate": 0.1136,
+    "growth_rate": 0.1504,
+    "summary": "12% upside to DCF base case. The private credit expansion is additive to this \u2014 if AUM grows faster than the 15% growth rate, the bull case of $83.94 becomes more realistic. Bear case of $27.22 requires an AUM implosion \u2014 extreme scenario given the diversification across 5 asset classes."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.74,
+    "key_strengths": [
+      "$900B+ AUM diversified across real estate, infrastructure, PE, credit",
+      "Private credit expansion into a $10T market is a secular growth tailwind"
+    ],
+    "key_concerns": [
+      "Rate sensitivity \u2014 higher rates compress private market valuations and fee income",
+      "Carried interest revenue is lumpy and difficult to forecast"
+    ],
+    "summary": "Grade B alternative asset manager. The private credit expansion is not yet reflected in the DCF base case \u2014 it represents upside optionality."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If $43.44 support fails on elevated volume, the distribution interpretation is confirmed and $40 becomes the next target",
+    "Rate sensitivity: rate increases compress private market valuations and reduce deal flow",
+    "1.85x volume on flat price could also be institutional distribution into a low-volume market"
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,79 @@
+{
+  "ticker": "INTC",
+  "company_name": "Intel Corporation",
+  "report_date": "2026-06-28",
+  "price": 128.32,
+  "change_pct": -3.42,
+  "overall_stance": "avoid",
+  "conviction": 0.68,
+  "one_liner": "INTC down 3.4% on 0.76x drying volume in Wyckoff Accumulation Phase B \u2014 but negative FCF, Grade D fundamentals, and an approaching $136 resistance ceiling with no DCF possible make this a value trap; wait for positive FCF before considering.",
+  "price_action": {
+    "open": 128.71,
+    "high": 131.23,
+    "low": 125.5,
+    "close": 128.32,
+    "volume": 99200000,
+    "vol_ratio": 0.76,
+    "vol_rank": "#52 of 90 \u2014 below average, buyers exhausted",
+    "intraday_story": "INTC opened at $128.71, briefly spiked to $131.23, then sold off to $125.50 and recovered to close at $128.32. A wide range (open-to-low spread of $3.21) on below-average volume \u2014 the Wyckoff interpretation of 'Low-volume drift, buyers exhausted' is accurate. Sellers aren't panicking, but buyers aren't showing up either."
+  },
+  "news_catalyst": {
+    "headline": "Intel CEO's AI Bet Reaches $10B Valuation \u2014 But Core Business Still Burning Cash",
+    "summary": "The headline today is that Intel CEO Pat Gelsinger's side AI investment has reached a $10B valuation \u2014 which is generating interest but also raising governance questions about a CEO whose primary company is still burning cash. The stock's -3.4% move is disconnected from this news; it's broader tech sector rotation out of AI-adjacent semiconductor names. No change to the fundamental picture: INTC is in turnaround mode with negative FCF and needs engineering wins to compete with TSMC and Samsung.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 3,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 51.15,
+    "key_resistance": 136.18,
+    "rsi": 54.69,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 0.76,
+    "volume_signal": "drying up",
+    "summary": "Wyckoff shows Accumulation Phase B (3/5 signals, bullish), which sounds positive. But the resistance at $136.18 is only 6% above current price \u2014 even if the bullish Wyckoff read is correct, upside is limited. The MACD bullish crossover and RSI at 54.7 are mild positives. However, the 'Low-volume drift, buyers exhausted' interpretation on the price action tells the real story: there's no institutional conviction here."
+  },
+  "wyckoff_narrative": "The 3/5 accumulation signals on INTC could reflect genuine institutional accumulation of a beaten-down tech name. But without positive FCF, the fundamental floor is unclear \u2014 the Wyckoff accumulation thesis requires that smart money sees value others don't. INTC's turnaround timeline (foundry competitiveness vs TSMC, positive FCF) is measured in years, not quarters.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.38,
+    "key_strengths": [
+      "CHIPS Act subsidies provide funding floor",
+      "x86 architecture has structural moat in server market"
+    ],
+    "key_concerns": [
+      "Negative FCF \u2014 burning cash",
+      "Below analyst targets by >10%"
+    ],
+    "summary": "Grade D reflects a company in a painful multi-year transition. Until positive FCF is demonstrated, valuation is speculative."
+  },
+  "sentiment": {
+    "score": 0.137,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Resistance at $136.18 is only 6% away \u2014 even a bullish scenario has limited near-term upside",
+    "Negative FCF with no DCF possible \u2014 valuation is speculative",
+    "Engineering revival required to compete vs TSMC N2 node \u2014 timeline is 2-3 years minimum"
+  ],
+  "watchlist_priority": "low"
+}

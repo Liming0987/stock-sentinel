@@ -1,0 +1,89 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVIDIA Corporation",
+  "report_date": "2026-06-28",
+  "price": 192.53,
+  "change_pct": -1.64,
+  "overall_stance": "watch",
+  "conviction": 0.65,
+  "one_liner": "NVDA at $192.53 is touching the Bollinger Band lower ($191.23) and sitting exactly at the 90-day support zone \u2014 RSI 34.5 approaching oversold with a HOLD signal active; the structure says watch for a bounce, not a breakdown.",
+  "price_action": {
+    "open": 193.12,
+    "high": 195.55,
+    "low": 191.22,
+    "close": 192.53,
+    "volume": 178900000,
+    "vol_ratio": 1.05,
+    "vol_rank": "#33 of 90 sessions \u2014 unremarkable volume, normal activity",
+    "intraday_story": "NVDA opened at $193.12, briefly touched $195.55, then sold off to a low of $191.22 \u2014 precisely at the Bollinger Band lower ($191.23) \u2014 before recovering to close at $192.53. The stock found buyers at the BB lower and the close is above the intraday low, suggesting short-term support held. Volume was exactly average (1.05x), which means this is low-conviction selling, not institutional distribution."
+  },
+  "news_catalyst": {
+    "headline": "No NVDA-Specific Catalyst \u2014 Broad Tech Weakness Pressuring AI Names",
+    "summary": "No Nvidia-specific news today. The 1.64% decline is part of a broader AI-adjacent stock rotation cited in multiple outlets (SpaceX, Tesla, Alphabet all declining in a 'broad tech rout'). The narrative context: Oracle had its worst week since the dot-com bust and Alphabet is down on AI talent-drain worries, which is creating sector-wide pressure. NVDA is simply moving with the group. The HOLD signal (entry $189-$195, stop $179, target $212) remains active and in-the-money on the entry range \u2014 current price is within the signal's entry zone.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 175.5,
+    "key_resistance": 229.81,
+    "rsi": 34.47,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.05,
+    "volume_signal": "normal",
+    "summary": "NVDA is touching the Bollinger Band lower at $191.23 \u2014 today's intraday low of $191.22 is to-the-penny at that level. This is a natural mean-reversion support zone. RSI at 34.5 is one tick above the traditional 30 oversold threshold. MACD is in a bearish crossover but the histogram has been compressing (losing bearish momentum). Volume at 1.05x is entirely unremarkable \u2014 there's no institutional selling pressure visible. This is a cooling, not a breakdown.\n\nThe 90-day Wyckoff support level is at $175.50 \u2014 still 8.8% below current price, providing substantial buffer. The stock is in neutral consolidation between $175 support and $229 resistance. No structural signals in either direction. The HOLD signal entry zone ($189-$195) brackets current price precisely.\n\nFor confirmation: a close back above $195 on any session would suggest the BB lower bounce is holding and the short-term correction is over. A close below $191 on volume above 250M would signal accelerating institutional selling toward the $175 support."
+  },
+  "wyckoff_narrative": "NVDA shows no Wyckoff events in the 90-day dataset \u2014 it's in a neutral consolidation phase with no confirmed accumulation or distribution structure. The 0/5 readings on both accumulation and distribution signals mean the Wyckoff framework is explicitly saying 'no dominant structural bias' \u2014 neither bulls nor bears have established control.\n\nThe stock's price history in the dataset: a strong uptrend from below $175 to above $229 (resistance), followed by a pullback and now consolidation. This is potentially a 'Reaccumulation' phase \u2014 a mid-markup rest before the next leg up. The key signal to watch: if NVDA can hold the $175-195 range on light volume and then push through $229 resistance on elevated volume (above 300M), that would be a Sign of Strength confirming the reaccumulation thesis. The HOLD signal's $212 target aligns with a test of $210-215 overhead resistance before tackling $229.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 333.93,
+    "upside_pct": 73.4,
+    "bear_value": 192.02,
+    "bull_value": 518.73,
+    "discount_rate": 0.15,
+    "growth_rate": 0.5,
+    "summary": "DCF base case of $334 implies 73% upside \u2014 compelling. Crucially, the bear case at $192 is essentially the current price, meaning you're buying the bear case for free when you add the base and bull scenarios. The 15% discount rate and 50% growth assumption are conservative for NVDA given AI accelerator demand; at 12% discount rate the intrinsic value would be substantially higher."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.82,
+    "key_strengths": [
+      "Dominant AI accelerator market share \u2014 estimated 80%+ in training workloads",
+      "50% projected FCF growth rate with 75%+ gross margins"
+    ],
+    "key_concerns": [
+      "High Leverage (D/E>3)",
+      "Single-product concentration risk on H100/H200/B200 series"
+    ],
+    "summary": "Grade A fundamentals with a structural competitive moat in AI compute. High leverage is the only flag, offset by exceptional cash generation. The bear case DCF at $192 is today's price \u2014 the stock is priced for the worst case, not the most likely case. Fundamentals strongly support a hold/accumulate stance on any pullback to BB lower."
+  },
+  "sentiment": {
+    "score": 0.03,
+    "label": "Neutral",
+    "mentions_24h": 3,
+    "trend": "flat"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "RSI Mean Reversion",
+      "action": "buy",
+      "confidence": 0.43,
+      "entry_low": 189.16,
+      "entry_high": 194.55,
+      "stop_loss": 179.07,
+      "target": 212.72
+    }
+  ],
+  "risks": [
+    "Intraday low of $191.22 precisely touched BB lower ($191.23) \u2014 if next session opens below $191 and stays there, BB support has failed and $175 becomes the next target",
+    "MACD bearish crossover persists \u2014 no technical confirmation of trend reversal yet",
+    "Broader AI sector pressure (Oracle worst week since dot-com, Alphabet down) could extend before rotating back"
+  ],
+  "watchlist_priority": "medium"
+}

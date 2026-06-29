@@ -1,0 +1,77 @@
+{
+  "ticker": "FNMA",
+  "company_name": "Federal National Mortgage Association",
+  "report_date": "2026-06-28",
+  "price": 6.88,
+  "change_pct": -5.49,
+  "overall_stance": "avoid",
+  "conviction": 0.68,
+  "one_liner": "FNMA down 5.5% as analysts cut fair value and flag rate/conservatorship risks \u2014 no grade, no DCF, pure binary regulatory bet; Wyckoff Accumulation A-B provides technical floor but the -5.49% move on no specific catalyst is a warning sign.",
+  "price_action": {
+    "open": 7.24,
+    "high": 7.24,
+    "low": 6.56,
+    "close": 6.88,
+    "volume": 4000000,
+    "vol_ratio": 0.89,
+    "vol_rank": "#60 of 90 \u2014 below average",
+    "intraday_story": "FNMA opened at $7.24 (the day's high) and sold off immediately to a low of $6.56 before recovering to close at $6.88. A top-to-bottom fade with partial recovery \u2014 the pattern of opening at the high and selling throughout the session is a bearish structure called a 'bearish engulfing setup.' The partial recovery to $6.88 still leaves the stock down 5.49%."
+  },
+  "news_catalyst": {
+    "headline": "Fannie Mae Stock Sees Fair Value Cut as Rate and Conservatorship Risks Weigh",
+    "summary": "Analysts are cutting fair value estimates on FNMA citing two structural risks: elevated interest rates compressing mortgage volume (FNMA's core business) and ongoing conservatorship uncertainty. The conservatorship exit thesis, which drove significant retail interest in 2024-2025, is losing momentum as the regulatory timeline remains opaque. The -5.49% decline on below-average volume suggests this is a gradual thesis exhaustion, not a panic event.",
+    "source_url": "",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 6.04,
+    "key_resistance": 8.55,
+    "rsi": 51.39,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 0.89,
+    "volume_signal": "drying up",
+    "summary": "Wyckoff Accumulation A-B (2/5 signals) and MACD bullish crossover provide some technical support. But the -5.49% on an opening-high/intraday-fade pattern is bearish price action. RSI at 51 is neutral. Support at $6.04 is $0.84 below \u2014 a 12% cushion is getting thinner."
+  },
+  "wyckoff_narrative": "The Wyckoff accumulation signals may reflect genuine activist accumulation around the conservatorship exit thesis. But without a clear regulatory catalyst, the thesis could take years to resolve. The opening-at-the-high pattern today suggests institutional holders used the opening gap to distribute \u2014 bearish near-term.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Conservatorship exit optionality \u2014 massive value unlock if it occurs"
+    ],
+    "key_concerns": [
+      "Binary regulatory risk with no clear timeline",
+      "Rate sensitivity \u2014 mortgage volume compressed by elevated rates"
+    ],
+    "summary": "No conventional fundamental assessment possible. Pure regulatory arbitrage play."
+  },
+  "sentiment": {
+    "score": -0.077,
+    "label": "Neutral",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Fair value cuts from analysts signal institutional thesis exhaustion \u2014 not a technical selloff but a fundamental repricing",
+    "Opening at the high and selling throughout is a bearish intraday structure",
+    "If $6.04 support fails, next level is the $4-5 range"
+  ],
+  "watchlist_priority": "low"
+}

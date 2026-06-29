@@ -1,0 +1,91 @@
+{
+  "ticker": "AMZN",
+  "company_name": "Amazon.com, Inc.",
+  "report_date": "2026-06-28",
+  "price": 232.69,
+  "change_pct": 2.5,
+  "overall_stance": "watch",
+  "conviction": 0.62,
+  "one_liner": "AMZN's 248.3M-share session is the highest absolute volume in the 90-day dataset at 4.69x avg \u2014 the intraday reversal from $226.13 low to $232.69 close on record buying is a candidate Sign of Strength off six-week range support, but Wyckoff needs confirmation before calling it.",
+  "price_action": {
+    "open": 227.21,
+    "high": 233.9,
+    "low": 226.13,
+    "close": 232.69,
+    "volume": 248300000,
+    "vol_ratio": 4.69,
+    "vol_rank": "#1 highest volume ratio in 90-day dataset at 4.69x avg; 248.3M shares is also the highest absolute volume in the dataset \u2014 3x the next-biggest spike (77.9M on 6/25)",
+    "intraday_story": "AMZN opened flat at $227.21, dipped immediately to the session low of $226.13 \u2014 which also marks the second test of the six-week range floor \u2014 then reversed hard, rallying to $233.90 and closing at $232.69, in the upper 84% of the day's range. This is the intraday structure of a reversal day, not a drift: sellers tried to push through $226 support at the open and failed, then buyers took control decisively. The close near the high on record volume suggests the day's sellers were absorbed by committed buyers."
+  },
+  "news_catalyst": {
+    "headline": "AWS Raises AI GPU Block Pricing Again; Prime Day Demand Drives Investor Rotation Into AMZN",
+    "summary": "The catalyst for today's move is multi-layered. AWS raised its AI GPU block pricing \u2014 a margin-expansion event for the cloud business that directly offsets Amazon's massive capex cycle, since higher GPU rental prices feed back into AWS revenue with minimal additional cost. Simultaneously, strong Prime Day demand data running through June 23-26 is being cited by analysts as evidence that Amazon's consumer business is holding up despite broader consumer stress. The broader AI infrastructure re-rating is also providing a tailwind, with AMZN cited in IBD as one of the 'S&P 500 stocks to watch' alongside Micron and Nike for this week. The stock is bouncing off the floor of a six-week corrective range after running from ~$198 (February SC low) to an ATH of $278.56 on May 6.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 209.56,
+    "key_resistance": 276.13,
+    "rsi": 35.25,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 4.69,
+    "volume_signal": "climactic",
+    "summary": "The numbers: 248.3M shares \u2014 highest absolute volume in the 90-day dataset, 4.69x average volume, 3x the next-biggest spike. Open flat at $227.21, dip to $226.13 (six-week range floor), hard reversal to close at $232.69 near the session high of $233.90. Strong intraday structure: failure at the lows, close in the upper 84% of the range.\n\nZooming out: AMZN ran from the February SC low (~$198) to ATH $278.56 on May 6, then corrected into the $225-248 range. Yesterday's low of $226.13 hit the range floor for the second time. Record volume bouncing off that exact level is Wyckoff's candidate SOS or JAC (Jump Across the Creek) if the stock clears range highs above $248-250.\n\nThis is NOT absorption. Absorption = high volume, muted result. This session has high volume AND a proportionate bullish result with a strong close. That's markup, not absorption. But one session doesn't confirm. The test: if the next 2-3 sessions hold above $226 on below-average volume (below 100M shares), the SOS is confirmed and $257 target (existing HOLD signal) becomes the next objective. If AMZN closes below $226 on elevated volume, today was an upthrust into distribution."
+  },
+  "wyckoff_narrative": "AMZN's Wyckoff history in the 90-day dataset: the February session near $198 was flagged as a selling climax (SC) \u2014 climactic volume with a strong close above the bar midpoint. That event appears to have established the base. The subsequent rally to $278.56 ATH was the Automatic Rally (AR). The six-week correction from ATH back to $225-226 is the secondary test phase.\n\nToday's session \u2014 if it holds \u2014 is a candidate Sign of Strength (SOS): a wide-spread up day on the highest volume in the dataset, bouncing off the SC lows for the second time. The Wyckoff engine hasn't formally tagged it as SOS (wyckoff_events is empty for this session), which means it doesn't yet meet the algorithmic threshold. The backend requires the close to be above resistance and a specific price-change threshold to tag SOS. Watch the next session: if AMZN opens above $230 and holds on lower volume, the backend will likely tag the prior session retroactively as the SOS candidate.\n\nAlternate read: if this is a Last Point of Supply (LPSY) in a distribution structure, today would be a final push before another leg down. The counter-evidence against distribution: 0/5 distribution signals tagged, and the stock is bouncing from a six-week support floor rather than from a range high. The SOS interpretation is more consistent with the evidence.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 56.27,
+    "upside_pct": -75.8,
+    "bear_value": 28.16,
+    "bull_value": 97.02,
+    "discount_rate": 0.1244,
+    "growth_rate": 0.1745,
+    "summary": "The $56 DCF figure is heavily distorted by Amazon's AI infrastructure capex cycle suppressing near-term free cash flow. This is the same dynamic the backend notes for 'capex-cycle FCF distortion in Amazon-type companies.' AWS's growing revenue and improving margins are not captured in an FCF-based DCF when FCF is being deliberately depressed by $80B+ annual capex. Treat the valuation as 'not meaningful on FCF basis' \u2014 the real question is whether AWS pricing power (evidenced by today's GPU price hike) justifies a sum-of-parts premium."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.79,
+    "key_strengths": [
+      "AWS #1 cloud provider; GPU pricing power demonstrated by today's price increase",
+      "Advertising revenue growing 20%+ annually at near-100% margin",
+      "Prime ecosystem creates structural recurring revenue floor"
+    ],
+    "key_concerns": [
+      "FCF depressed by $80B+ annual capex \u2014 DCF not meaningful in current phase",
+      "Retail margins under pressure from logistics investment"
+    ],
+    "summary": "Grade B fundamentals with a strong business obscured by capex-cycle accounting. AWS's ability to raise GPU block pricing while maintaining demand is the key fundamental tell \u2014 it signals that AI compute demand is inelastic at current prices, which is the most important thing to know about Amazon's next 3 years. Fundamentals support a watch/accumulate stance on confirmed Wyckoff SOS."
+  },
+  "sentiment": {
+    "score": 0.058,
+    "label": "Neutral",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "Volume Absorption",
+      "action": "buy",
+      "confidence": 0.45,
+      "entry_low": 228.56,
+      "entry_high": 235.16,
+      "stop_loss": 216.19,
+      "target": 257.44
+    }
+  ],
+  "risks": [
+    "Wyckoff SOS not yet formally confirmed by the backend engine \u2014 if next session closes below $226.13 on volume >150M, today's reversal was an upthrust into supply, not SOS",
+    "MACD remains in bearish crossover \u2014 trend not confirmed bullish; patience required for confirmation",
+    "Bearish sentiment article: 'Big Short' Steve Eisman warns middle class is cracking \u2014 macro consumer stress could hit Prime/retail business even as AWS is strong",
+    "Record volume means record potential for distribution \u2014 institutions who bought at $270+ have an exit opportunity today; if they take it, the bounce fails"
+  ],
+  "watchlist_priority": "high"
+}

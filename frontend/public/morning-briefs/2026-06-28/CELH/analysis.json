@@ -1,0 +1,79 @@
+{
+  "ticker": "CELH",
+  "company_name": "Celsius Holdings, Inc.",
+  "report_date": "2026-06-28",
+  "price": 29.85,
+  "change_pct": 5.78,
+  "overall_stance": "accumulate",
+  "conviction": 0.75,
+  "one_liner": "CELH up 5.8% in Wyckoff Accumulation A-B (2/5) with MACD bullish crossover \u2014 three analysts maintain Buy with targets averaging $50 (67% upside), DCF base case $45.79, trading at 8-year lows; the setup is forming, wait for BB upper breakout at $32.",
+  "price_action": {
+    "open": 28.1,
+    "high": 30.48,
+    "low": 27.97,
+    "close": 29.85,
+    "volume": 10000000,
+    "vol_ratio": 1.05,
+    "vol_rank": "#20 of 90 \u2014 average volume",
+    "intraday_story": "CELH opened at $28.10, found support at $27.97 (just above the 90-day support at $27.74), then rallied steadily to close near the session high at $29.85. Average volume with a close at the upper end of the range \u2014 healthy accumulation-phase price action without exhaustion."
+  },
+  "news_catalyst": {
+    "headline": "Roth, B of A, Morgan Stanley All Maintain Buy on Celsius \u2014 Targets $45-57 Despite Lowered Estimates",
+    "summary": "Three major institutional analysts simultaneously maintained Buy/Overweight ratings today while lowering price targets (Roth to $57, B of A to $45, Morgan Stanley to $48). All three lowered targets reflect near-term revenue estimate cuts, but none changed the fundamental bull thesis: CELH is a market share story in the energy drink category with PepsiCo distribution expanding globally. The fact that three separate houses maintained Buy at current prices (while the stock trades at 8-year lows per the media framing) is a strong institutional signal.",
+    "source_url": "https://www.benzinga.com",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 27.74,
+    "key_resistance": 36.24,
+    "rsi": 50.46,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 1.05,
+    "volume_signal": "normal",
+    "summary": "RSI at 50 is neutral with significant upside room. MACD in fresh bullish crossover. Wyckoff Phase A-B with 2/5 signals \u2014 earlier than LULU's Phase B. The $27.74 support held today and the close at $29.85 is above the BB middle. Breakout target: $32 (BB upper) then $36.24 (90-day resistance)."
+  },
+  "wyckoff_narrative": "CELH is in the earlier stages of Wyckoff accumulation (Phase A-B vs LULU's Phase B). 2/5 signals detected means the SC and AR have likely been tagged. The stock needs more base-building before Phase C and the Spring/Shakeout that precedes markup. Today's bounce on institutional analyst backing is constructive but not yet a structural signal.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 45.79,
+    "upside_pct": 53.4,
+    "bear_value": 22.95,
+    "bull_value": 80.52,
+    "discount_rate": 0.0947,
+    "growth_rate": 0.2286,
+    "summary": "53% DCF upside to base case of $45.79 \u2014 among the strongest risk/reward in the watchlist. Bear case at $22.95 is 23% downside. Risk/reward of roughly 2.3:1 favors longs. Three institutional analysts with targets averaging $50 are aligned with the DCF base case."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.81,
+    "key_strengths": [
+      "23% growth rate with PepsiCo distribution moat",
+      "Grade A \u2014 top-tier for consumer products"
+    ],
+    "key_concerns": [
+      "Consumer discretionary headwinds \u2014 energy drinks are semi-discretionary",
+      "Multiple analysts lowering targets signals near-term revenue disappointments ahead"
+    ],
+    "summary": "Grade A fundamentals with a 23% growth rate that institutional analysts believe is sustainable through the PepsiCo distribution expansion. The 8-year low price creates an attractive entry for the fundamental case."
+  },
+  "sentiment": {
+    "score": 0.114,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Near-term revenue disappointments expected \u2014 all three analysts lowered targets while maintaining Buy",
+    "Consumer spending compression from tariff/inflation headwinds disproportionately hits discretionary drink categories",
+    "Energy drink competition intensifying (Monster, Prime, Alani Nu)"
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,77 @@
+{
+  "ticker": "WEN",
+  "company_name": "The Wendy's Company",
+  "report_date": "2026-06-28",
+  "price": 7.8,
+  "change_pct": 6.41,
+  "overall_stance": "avoid",
+  "conviction": 0.78,
+  "one_liner": "WEN's 3.71x-volume session simultaneously tagged a Selling Climax (SC) and Buying Climax (BC) \u2014 the rarest and most contradictory Wyckoff signal combination \u2014 while Wyckoff Distribution Phase A-B persists; the meme surge is a distribution window, not an accumulation opportunity.",
+  "price_action": {
+    "open": 7.26,
+    "high": 8.25,
+    "low": 7.22,
+    "close": 7.8,
+    "volume": 80300000,
+    "vol_ratio": 3.71,
+    "vol_rank": "Top-3 spike in dataset at 3.71x average",
+    "intraday_story": "WEN opened at $7.26, dipped to $7.22, then shot to $8.25 \u2014 precisely touching the 90-day resistance level at $8.25 \u2014 before closing at $7.80, right in the middle of the day's range. The close in the middle of the range on massive volume (3.71x avg) is neither a bullish nor bearish day \u2014 it's a battle. Both the SC (buying climax in accumulation framework) and BC (buying climax in distribution framework) were tagged by the Wyckoff engine because the stock hit resistance with climactic volume and closed neither in the upper nor lower half definitively."
+  },
+  "news_catalyst": {
+    "headline": "Wall Street Bets Investors Bullish on Wendy's Amid 'Save Wendy's' Meme Surge \u2014 But Investors Know About the Hidden Risks",
+    "summary": "The 'Save Wendy's' meme campaign on social media has driven retail investors into WEN, attracted by the 10%+ dividend yield and low P/E ratio. Wall Street Bets investors are self-described as bullish. However, the fundamental context is deteriorating: the meme is a response to Wendy's closing hundreds of locations, not a sign of business recovery. Benzinga's analysis warns of 'hidden risks.' The 80.3M share session (top-3 in the dataset) is almost entirely retail-driven \u2014 Wendy's average daily volume is 21.6M, meaning roughly 60M of today's volume came from new meme participants. This is the classic setup for smart money distribution into retail buying."
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Distribution Phase A-B",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 6.39,
+    "key_resistance": 8.25,
+    "rsi": 60.18,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 3.71,
+    "volume_signal": "climactic",
+    "summary": "The Wyckoff engine simultaneously tagged SC (Selling Climax from the accumulation framework) and BC (Buying Climax from the distribution framework) in the same session \u2014 an extremely rare contradictory signal that reflects the ambiguity of the price action. The engine also tagged AR2 (Automatic Reaction, distribution), meaning the prior session's Buying Climax has already been confirmed with an AR sequence.\n\nThe stock hit resistance at $8.25 precisely (the 90-day resistance level) and closed at $7.80 \u2014 in the middle of the range. This is a classic Upthrust pattern in formation: a push to resistance on heavy volume that fails to hold, trapping late buyers. RSI at 60 and MACD bullish crossover are the only positive technical reads, but both are trailing indicators. The Wyckoff distribution structure (BC tagged + AR tagged = Phase A-B confirmed) overrides the momentum indicators.\n\nFor the next 2-3 sessions: if WEN opens below $7.50 and the meme momentum fades, the distribution sequence is confirmed and the stock returns toward $6.39 support. If the meme picks up and WEN closes above $8.25 on heavy volume, the distribution thesis is invalidated and it enters Phase C territory."
+  },
+  "wyckoff_narrative": "WEN is the clearest distribution case in the watchlist alongside TTD. The Buying Climax was tagged on the prior session (6/25) and the Automatic Reaction (AR2) was tagged today \u2014 the Wyckoff engine has formally placed the stock in Distribution Phase A-B.\n\nThe SC tag in today's session (from the accumulation framework) is the contradictory signal \u2014 it reflects the intraday pattern (open near low, rally, close above midpoint in the accumulation sense). But the distribution framework dominates: BC + AR is already a two-event confirmed sequence. The next expected distribution event is an Upthrust (UT) \u2014 a push above the BC high at $8.25 that fails. Today's high of $8.25 is exactly the resistance level; whether it holds tomorrow determines whether today was the Upthrust or just preparation for one.\n\nThe meme retail surge is providing the ideal cover for institutional distribution \u2014 heavy volume, price at resistance, retail FOMO buying. This is textbook Wyckoff: composite operators distribute into enthusiasm. The 10%+ dividend yield and low P/E are legitimate fundamental attractions, but they don't override the Wyckoff distribution signal when the business model (fast food, store closures) is structurally deteriorating.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "10%+ dividend yield \u2014 genuine income appeal",
+      "Low P/E relative to fast food peers"
+    ],
+    "key_concerns": [
+      "Store closures indicate structural demand deterioration",
+      "Meme-driven volume 4x normal \u2014 100% retail, institutional distribution window"
+    ],
+    "summary": "The fundamental value case is real (yield, low P/E) but timing matters. Buying a 10% yield in a distribution structure means catching falling knives while institutions exit."
+  },
+  "sentiment": {
+    "score": 0.111,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "BC + AR2 already tagged \u2014 Distribution Phase A-B confirmed; next events are Upthrust (UT) and Sign of Weakness (SOW) before full markdown",
+    "80.3M shares = 3.71x normal volume, of which ~60M appears to be meme retail; when retail exhausts, the stock has no fundamental buyer base at $7.80",
+    "Store closures are accelerating \u2014 the fundamental business is deteriorating, the meme is a temporary mask"
+  ],
+  "watchlist_priority": "low"
+}

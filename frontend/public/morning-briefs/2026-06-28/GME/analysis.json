@@ -1,0 +1,79 @@
+{
+  "ticker": "GME",
+  "company_name": "GameStop Corp.",
+  "report_date": "2026-06-28",
+  "price": 21.76,
+  "change_pct": 3.57,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "GME up 3.6% as Ryan Cohen blocks a payday and reportedly pursues a strategic acquisition \u2014 eBay rejected GameStop's takeover bid as 'not credible,' which is oddly bullish (it means GME is deploying its $1B+ cash hoard); Wyckoff Accumulation A-B (2/5 signals).",
+  "price_action": {
+    "open": 20.94,
+    "high": 21.85,
+    "low": 20.94,
+    "close": 21.76,
+    "volume": 5600000,
+    "vol_ratio": 0.97,
+    "vol_rank": "#48 of 90 \u2014 average volume",
+    "intraday_story": "GME opened at $20.94, never dipped below that level, and rallied steadily to close at $21.76 near the day's high of $21.85. A clean uptrend day with volume exactly at average. The stock is bouncing off the Bollinger Band lower floor ($20.71) on the news that Ryan Cohen is pursuing acquisitions."
+  },
+  "news_catalyst": {
+    "headline": "eBay Rejects GameStop's Takeover Proposal as 'Not Credible' \u2014 Ryan Cohen Blocks Personal Payday to Keep Pursuing Acquisition",
+    "summary": "Two major developments: eBay formally rejected GameStop's acquisition approach as 'neither credible nor attractive,' which confirms GME was actually making real acquisition overtures with its $1B+ cash balance. More interestingly, Ryan Cohen passed on a personal $100M+ payday (his CEO compensation package) to keep the acquisition strategy credible \u2014 a sign of long-term conviction over short-term personal gain. The market is taking this as the beginning of a Berkshire Hathaway-style capital allocation story: a cash-rich company with a disciplined CEO deploying that cash into productive assets. 17 Reddit mentions today (second highest in watchlist after AAPL's 45) suggests retail interest is building.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 20.93,
+    "key_resistance": 25.75,
+    "rsi": 52.25,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 0.97,
+    "volume_signal": "normal",
+    "summary": "GME is bouncing off the BB lower ($20.71) with RSI neutral at 52. Wyckoff Phase A-B (2/5 signals, bullish). The $20.93 support held and the close at $21.76 represents a 4% cushion above it. MACD is in a slight bearish crossover but the histogram is very close to zero \u2014 a bullish crossover could occur within 1-2 sessions if momentum continues."
+  },
+  "wyckoff_narrative": "GME's Wyckoff Phase A-B reflects a stock that has found a floor. The acquisition-focused capital allocation story is the kind of fundamental catalyst that precedes institutional re-evaluation. Watch for the MACD crossover and a close above $22 on volume >8M as confirmation signals.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.73,
+    "key_strengths": [
+      "$1B+ cash balance with zero debt \u2014 fortress balance sheet",
+      "Ryan Cohen passing on personal compensation signals long-term alignment"
+    ],
+    "key_concerns": [
+      "Negative FCF from declining core retail gaming business",
+      "eBay rejection shows acquisition strategy faces credibility hurdles"
+    ],
+    "summary": "Grade B reflects the cash balance, not the operating business. The Berkshire analogy is compelling if Cohen can execute a real acquisition \u2014 but eBay's rejection shows the market won't hand him an easy deal."
+  },
+  "sentiment": {
+    "score": 0.109,
+    "label": "Neutral",
+    "mentions_24h": 17,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Meme stock dynamics \u2014 17 Reddit mentions suggests retail attention that can reverse violently",
+    "Acquisition strategy unproven \u2014 eBay rejected the bid; next target unclear",
+    "Negative FCF from core business continues to erode the cash hoard"
+  ],
+  "watchlist_priority": "low"
+}

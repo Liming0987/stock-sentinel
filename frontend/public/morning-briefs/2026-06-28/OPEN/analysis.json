@@ -1,0 +1,79 @@
+{
+  "ticker": "OPEN",
+  "company_name": "Opendoor Technologies Inc.",
+  "report_date": "2026-06-28",
+  "price": 4.37,
+  "change_pct": 1.63,
+  "overall_stance": "avoid",
+  "conviction": 0.7,
+  "one_liner": "OPEN's 171.4M-share session is the #1 vol rank in its 90-day dataset at 4.01x average \u2014 CEO takes $1 salary like Tesla's Musk while betting on a housing turnaround; Grade D fundamentals and negative revenue growth make this speculative, not investable.",
+  "price_action": {
+    "open": 4.22,
+    "high": 4.51,
+    "low": 4.2,
+    "close": 4.37,
+    "volume": 171400000,
+    "vol_ratio": 4.01,
+    "vol_rank": "#1 in 90-day dataset at 4.01x average",
+    "intraday_story": "OPEN opened at $4.22, dipped to $4.20, then rallied to $4.51 before closing at $4.37. A 'Selling Climax \u2014 possible reversal' per the Wyckoff engine. The reversal from the lows on record volume suggests buyers absorbed the supply at the $4.20 support level. However, 171M shares at a $4.37 stock price means $747M in dollar volume transacted in a single day on a company with ~$1.5B market cap \u2014 this is retail-speculative activity, not institutional."
+  },
+  "news_catalyst": {
+    "headline": "OPEN CEO Takes $1 Salary as $741M Tesla-Style Pay Package Bets on Housing Turnaround \u2014 Rocket Companies Jumps 13%",
+    "summary": "Opendoor's CEO is taking a $1 base salary while tying all compensation to a $741M performance-based package contingent on housing market turnaround milestones \u2014 explicitly modeling Elon Musk's Tesla pay structure. This aligns management with shareholders but also signals the CEO believes a housing recovery is the core value driver. The positive spillover from Rocket Companies' 13% gain (refinancing-driven housing rebound thesis) is providing a tailwind. But OPEN's business model (iBuying) is structurally challenged by elevated mortgage rates \u2014 the same environment that causes refinancing surges (falling rates) would need to happen for OPEN to recover meaningfully.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 4.17,
+    "key_resistance": 5.66,
+    "rsi": 43.12,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 4.01,
+    "volume_signal": "climactic",
+    "summary": "#1 volume day in the 90-day dataset on a $4.37 stock. This is $747M in dollar volume on a ~$1.5B market cap company \u2014 a massive turnover. The Selling Climax interpretation is technically correct but the context is retail speculation, not institutional accumulation. MACD bearish crossover, no Wyckoff structural signals. $4.17 support is only $0.20 below."
+  },
+  "wyckoff_narrative": "Record volume at a price near the 90-day lows with a bullish close qualifies for a Selling Climax designation, but without a prior downtrend of sufficient duration and magnitude, the SC is speculative. The iBuying model requires a housing market recovery that is not yet visible in the data.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 231.06,
+    "upside_pct": 5187.4,
+    "bear_value": 132.22,
+    "bull_value": 359.76,
+    "discount_rate": 0.15,
+    "growth_rate": 0.5,
+    "summary": "DCF at maximum parameters produces a $231 intrinsic value \u2014 entirely distorted and not meaningful at current stage. Treat valuation as 'not applicable for current business conditions.'"
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.42,
+    "key_strengths": [
+      "CEO compensation aligned with long-term housing recovery",
+      "AI-driven home buying technology could reduce transaction costs"
+    ],
+    "key_concerns": [
+      "Negative revenue growth",
+      "iBuying fundamentally challenged by elevated mortgage rates"
+    ],
+    "summary": "Grade D. The business model requires low rates and high transaction volumes \u2014 both conditions are currently absent."
+  },
+  "sentiment": {
+    "score": -0.022,
+    "label": "Neutral",
+    "mentions_24h": 8,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Record retail volume on a $4 stock is a speculation signal, not an institutional accumulation signal",
+    "$4.17 support is only $0.20 below \u2014 a minimal cushion before breakdown",
+    "Housing recovery required: if rates stay elevated through 2026-2027, the CEO pay package is worthless and the business continues to deteriorate"
+  ],
+  "watchlist_priority": "low"
+}

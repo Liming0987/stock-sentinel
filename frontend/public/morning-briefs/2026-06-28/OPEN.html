@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPEN — Morning Brief 2026-06-28</title>
+<style>
+/* ── Reset & variables ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #fafafa;
+  --surface:  #ffffff;
+  --border:   #e5e7eb;
+  --text:     #111827;
+  --muted:    #6b7280;
+  --faint:    #9ca3af;
+  --accent:   #2563eb;
+  --bullish:  #16a34a;
+  --bearish:  #dc2626;
+  --neutral:  #6b7280;
+  --mixed:    #d97706;
+  --radius:   8px;
+  --shadow:   0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #0f1117;
+    --surface: #1a1d27;
+    --border:  #2d3142;
+    --text:    #f0f2f5;
+    --muted:   #9ca3af;
+    --faint:   #6b7280;
+    --accent:  #60a5fa;
+    --bullish: #4ade80;
+    --bearish: #f87171;
+    --neutral: #9ca3af;
+    --mixed:   #fbbf24;
+    --shadow:  0 1px 3px rgba(0,0,0,.4);
+  }
+}
+/* ── Base ────────────────────────────────────────────────────────── */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 2rem 1.5rem;
+}
+.wrap { max-width: 760px; margin: 0 auto; }
+h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+h3 { font-size: 1rem; font-weight: 600; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin-bottom: 0.75rem; }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.3rem; }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+/* ── Card ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Nav breadcrumb ──────────────────────────────────────────────── */
+.nav {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nav a { color: var(--accent); }
+.nav-sep { color: var(--faint); }
+
+/* ── Stock header ────────────────────────────────────────────────── */
+.stock-header { margin-bottom: 1.5rem; }
+.kicker {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
+}
+.ticker-row {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+.ticker {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;
+}
+.company-name { color: var(--muted); font-size: 1rem; margin-bottom: 0.75rem; }
+.price-row {
+  display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem;
+}
+.price {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 1.6rem; font-weight: 600;
+}
+.change {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 1rem; font-weight: 600;
+}
+.change-up   { color: var(--bullish); }
+.change-down { color: var(--bearish); }
+
+/* ── Pills ───────────────────────────────────────────────────────── */
+.pill {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.25em 0.7em; border-radius: 99px;
+}
+.pill-accumulate { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-watch      { background: color-mix(in srgb, var(--mixed)   15%, transparent); color: var(--mixed);   }
+.pill-hold       { background: color-mix(in srgb, var(--accent)  15%, transparent); color: var(--accent);  }
+.pill-avoid      { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-bullish    { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-bearish    { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-neutral    { background: color-mix(in srgb, var(--neutral) 15%, transparent); color: var(--neutral); }
+.pill-high       { background: color-mix(in srgb, var(--bearish) 12%, transparent); color: var(--bearish); }
+.pill-medium     { background: color-mix(in srgb, var(--mixed)   12%, transparent); color: var(--mixed);   }
+.pill-low        { background: color-mix(in srgb, var(--neutral) 12%, transparent); color: var(--neutral); }
+
+/* ── Conviction bar ──────────────────────────────────────────────── */
+.conv-row { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted); }
+.conv-bar { flex: 1; max-width: 160px; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.conv-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+
+/* ── One-liner ───────────────────────────────────────────────────── */
+.one-liner {
+  font-style: italic; color: var(--muted);
+  font-size: 0.92rem; margin-top: 0.6rem;
+  border-left: 3px solid var(--border); padding-left: 0.75rem;
+}
+
+/* ── Section title ───────────────────────────────────────────────── */
+.section-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 0.75rem;
+}
+
+/* ── Metric rows ─────────────────────────────────────────────────── */
+.metric-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.metric-table td { padding: 0.45rem 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+.metric-table tr:last-child td { border-bottom: none; }
+.metric-table td:first-child { color: var(--muted); width: 50%; }
+.metric-table td:last-child { font-family: "SF Mono", "Fira Code", ui-monospace, monospace; font-weight: 500; text-align: right; }
+.up   { color: var(--bullish); }
+.down { color: var(--bearish); }
+
+/* ── Wyckoff score bar ───────────────────────────────────────────── */
+.wy-bar-wrap { margin: 0.5rem 0; }
+.wy-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.wy-fill { height: 100%; border-radius: 3px; }
+.wy-fill-bullish { background: var(--bullish); }
+.wy-fill-bearish { background: var(--bearish); }
+.wy-fill-neutral { background: var(--neutral); }
+
+/* ── VCP badge ───────────────────────────────────────────────────── */
+.vcp-box {
+  background: color-mix(in srgb, var(--bullish) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bullish) 30%, transparent);
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--bullish);
+  margin: 0.5rem 0;
+}
+.vcp-box small { display: block; font-weight: 400; color: var(--muted); margin-top: 2px; font-size: 0.78rem; }
+
+/* ── News card ───────────────────────────────────────────────────── */
+.news-card { padding-left: 1rem; border-left: 3px solid var(--accent); }
+.news-headline { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.35rem; }
+.news-summary { color: var(--muted); font-size: 0.85rem; line-height: 1.5; margin: 0; }
+
+/* ── Signal cards ────────────────────────────────────────────────── */
+.signal-card {
+  background: color-mix(in srgb, var(--accent) 5%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.88rem;
+}
+.signal-header {
+  display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+.signal-name { font-weight: 600; }
+.signal-conf { margin-left: auto; color: var(--muted); font-size: 0.78rem; }
+.signal-levels {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.78rem; color: var(--muted);
+}
+
+/* ── Two-col grid ────────────────────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.col-label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.col-label-up   { color: var(--bullish); }
+.col-label-down { color: var(--bearish); }
+.two-col li { font-size: 0.85rem; margin-bottom: 0.3rem; }
+
+/* ── Meta footer ─────────────────────────────────────────────────── */
+.report-meta { color: var(--faint); font-size: 0.75rem; margin-top: 2rem; text-align: center; }
+
+@media (max-width: 600px) {
+  .two-col { grid-template-columns: 1fr; }
+  .ticker { font-size: 1.5rem; }
+  .price { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="nav">
+    <a href="../index.html">Morning Brief</a>
+    <span class="nav-sep">/</span>
+    <span>2026-06-28</span>
+    <span class="nav-sep">/</span>
+    <span>OPEN</span>
+  </div>
+
+  <!-- ── Stock header ── -->
+  <div class="stock-header">
+    <div class="kicker">Morning Brief · 2026-06-28</div>
+    <div class="ticker-row">
+      <span class="ticker">OPEN</span>
+      <span class="pill pill-avoid">AVOID</span>
+      <span class="pill pill-low">Priority: LOW</span>
+      <span class="pill pill-neutral">Grade D</span>
+    </div>
+    <div class="company-name">Opendoor Technologies Inc.</div>
+    <div class="price-row">
+      <span class="price">$4.37</span>
+      <span class="change change-up">+1.6%</span>
+    </div>
+    <div class="conv-row">
+      <span>Conviction</span>
+      <div class="conv-bar"><div class="conv-fill" style="width:70%"></div></div>
+      <span>70%</span>
+    </div>
+    <div class="one-liner">OPEN's 171.4M-share session is the #1 vol rank in its 90-day dataset at 4.01x average — CEO takes $1 salary like Tesla's Musk while betting on a housing turnaround; Grade D fundamentals and negative revenue growth make this speculative, not investable.</div>
+  </div>
+
+  <!-- ── News & Catalyst ── -->
+  <div class="card">
+    <div class="section-title">News &amp; Catalyst</div>
+    <div class="news-card">
+      <div class="news-headline">
+        <span class="pill pill-neutral" style="margin-right:0.4rem;font-size:0.65rem">NEUTRAL</span>
+        OPEN CEO Takes $1 Salary as $741M Tesla-Style Pay Package Bets on Housing Turnaround — Rocket Companies Jumps 13%
+      </div>
+      <p class="news-summary">Opendoor's CEO is taking a $1 base salary while tying all compensation to a $741M performance-based package contingent on housing market turnaround milestones — explicitly modeling Elon Musk's Tesla pay structure. This aligns management with shareholders but also signals the CEO believes a housing recovery is the core value driver. The positive spillover from Rocket Companies' 13% gain (refinancing-driven housing rebound thesis) is providing a tailwind. But OPEN's business model (iBuying) is structurally challenged by elevated mortgage rates — the same environment that causes refinancing surges (falling rates) would need to happen for OPEN to recover meaningfully.</p>
+    </div>
+  </div>
+
+  <!-- ── Strategy Signals ── -->
+  <div class="card">
+    <div class="section-title">Strategy Signals</div>
+    <p style="color:var(--muted);font-size:0.85rem">No active strategy signals</p>
+  </div>
+
+  <!-- ── Technical Analysis ── -->
+  <div class="card">
+    <div class="section-title">Technical Analysis</div>
+    <table class="metric-table">
+      <tr><td>Trend</td><td>Sideways</td></tr>
+      <tr><td>Wyckoff Phase</td><td>Consolidation / No Clear Phase</td></tr>
+      <tr><td>Wyckoff Bias</td><td>Neutral</td></tr>
+      <tr>
+        <td>Wyckoff Signals</td>
+        <td>
+          <div>0/5</div>
+          <div class="wy-bar-wrap"><div class="wy-bar"><div class="wy-fill wy-fill-neutral" style="width:0%"></div></div></div>
+        </td>
+      </tr>
+      <tr><td>Key Support</td><td class="up">$4.17</td></tr>
+      <tr><td>Key Resistance</td><td class="down">$5.66</td></tr>
+      <tr><td>RSI (14)</td><td>43.1</td></tr>
+      <tr><td>MACD</td><td>bearish crossover</td></tr>
+      <tr><td>Volume Ratio</td><td>4.01×</td></tr>
+      <tr><td>Volume Signal</td><td>Climactic</td></tr>
+    </table>
+    <p style="color:var(--muted);font-size:0.85rem;margin:0.5rem 0">No VCP setup detected</p>
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:0.75rem;margin-bottom:0">#1 volume day in the 90-day dataset on a $4.37 stock. This is $747M in dollar volume on a ~$1.5B market cap company — a massive turnover. The Selling Climax interpretation is technically correct but the context is retail speculation, not institutional accumulation. MACD bearish crossover, no Wyckoff structural signals. $4.17 support is only $0.20 below.</p>
+  </div>
+
+  <!-- ── DCF Valuation ── -->
+  <div class="card">
+    <div class="section-title">DCF Valuation</div>
+    <table class="metric-table">
+  <tr><td>Intrinsic Value (base)</td><td>$231.06</td></tr>
+  <tr><td>Upside / Downside</td><td class="up">+5187.4%</td></tr>
+  <tr><td>Bear / Bull Range</td><td>$132.22 – $359.76</td></tr>
+  <tr><td>Discount Rate</td><td>15.0%</td></tr>
+</table>
+<p style="color:var(--muted);font-size:0.85rem;margin-top:0.75rem;margin-bottom:0">DCF at maximum parameters produces a $231 intrinsic value — entirely distorted and not meaningful at current stage. Treat valuation as 'not applicable for current business conditions.'</p>
+  </div>
+
+  <!-- ── Fundamentals ── -->
+  <div class="card">
+    <div class="section-title">Fundamentals</div>
+    <div class="two-col">
+      <div>
+        <div class="col-label col-label-up">Strengths</div>
+        <ul><li>CEO compensation aligned with long-term housing recovery</li><li>AI-driven home buying technology could reduce transaction costs</li></ul>
+      </div>
+      <div>
+        <div class="col-label col-label-down">Concerns</div>
+        <ul><li>Negative revenue growth</li><li>iBuying fundamentally challenged by elevated mortgage rates</li></ul>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:0.75rem;margin-bottom:0">Grade D. The business model requires low rates and high transaction volumes — both conditions are currently absent.</p>
+  </div>
+
+  <!-- ── Sentiment ── -->
+  <div class="card">
+    <div class="section-title">Social Sentiment</div>
+    <table class="metric-table">
+      <tr>
+        <td>Score</td>
+        <td><span class="pill pill-neutral">Neutral</span> <span style="font-family:monospace">-0.02</span></td>
+      </tr>
+      <tr><td>Mentions (24h)</td><td>8</td></tr>
+      <tr><td>Trend</td><td>Flat</td></tr>
+    </table>
+  </div>
+
+  <!-- ── Risks ── -->
+  <div class="card">
+    <div class="section-title">Risks to Watch</div>
+    <ul style="font-size:0.88rem;color:var(--muted)"><li>Record retail volume on a $4 stock is a speculation signal, not an institutional accumulation signal</li><li>$4.17 support is only $0.20 below — a minimal cushion before breakdown</li><li>Housing recovery required: if rates stay elevated through 2026-2027, the CEO pay package is worthless and the business continues to deteriorate</li></ul>
+  </div>
+
+  <p class="report-meta">Generated 2026-06-29 12:38 UTC · Stock Sentinel Morning Brief</p>
+
+</div>
+</body>
+</html>

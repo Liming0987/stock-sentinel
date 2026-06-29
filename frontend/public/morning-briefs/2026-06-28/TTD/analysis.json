@@ -1,0 +1,79 @@
+{
+  "ticker": "TTD",
+  "company_name": "The Trade Desk, Inc.",
+  "report_date": "2026-06-28",
+  "price": 18.37,
+  "change_pct": 6.0,
+  "overall_stance": "avoid",
+  "conviction": 0.72,
+  "one_liner": "TTD up 6% but is in Wyckoff Distribution Phase C-D with 4/5 distribution signals \u2014 the highest bearish structural reading in the watchlist; today's bounce is the most likely candidate for a Last Point of Supply (LPSY) before the next leg down.",
+  "price_action": {
+    "open": 17.4,
+    "high": 18.47,
+    "low": 17.37,
+    "close": 18.37,
+    "volume": 27300000,
+    "vol_ratio": 1.26,
+    "vol_rank": "#14 of 90 \u2014 above average, consistent with a LPSY bounce",
+    "intraday_story": "TTD opened at $17.40, barely below Friday's close, touched $17.37 low, then rallied to $18.47 before closing at $18.37. A clean 6% bounce from the lows on 1.26x volume. In isolation this looks constructive. In the context of a 4/5 distribution structure, this is the classic Last Point of Supply setup: a moderate-volume bounce that gives institutional sellers one more chance to distribute at elevated prices before the next leg down."
+  },
+  "news_catalyst": {
+    "headline": "The Trade Desk Falls to 52-Week Low \u2014 Bounce Today on No Specific News",
+    "summary": "TTD has no positive news catalyst today \u2014 the 6% bounce is purely technical relief buying after reaching a 52-week low. Headlines are uniformly bearish: 'The Trade Desk Stock Plummets To 52-Week Low' and 'TTD Falls More Steeply Than Broader Market.' The programmatic advertising market is under pressure as AI-driven ad buying shifts toward walled gardens (Google, Meta) that don't need third-party DSPs. No analyst upgrades, no earnings surprise, no M&A catalyst. This is a short-covering bounce into a structurally weakening trend.",
+    "source_url": "",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Distribution Phase C-D",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 4,
+    "vcp_detected": true,
+    "vcp_pivot": 24.32,
+    "vcp_stage": "Forming \u2014 2 contractions (caution: in distribution context this is a false VCP)",
+    "key_support": 17.64,
+    "key_resistance": 24.73,
+    "rsi": 38.67,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.26,
+    "volume_signal": "normal",
+    "summary": "TTD carries the highest bearish structural signal in the entire watchlist: 4 of 5 Wyckoff distribution signals detected, Phase C-D. The distribution sequence means Buying Climax, Automatic Reaction, Upthrust, and Sign of Weakness have all been detected in the dataset \u2014 only the Last Point of Supply (LPSY) remains, which is exactly what today's bounce could be setting up.\n\nThe contradictory VCP signal (pivot $24.32, 2 contractions) should be treated skeptically \u2014 in a confirmed distribution structure, what looks like VCP contractions are actually lower highs in a downtrend, not the accumulation contractions the Minervini model requires. A VCP breakout requires price to be above the 150 and 200-day EMAs in a Stage 2 uptrend; TTD appears to be in Stage 4 decline.\n\nMACDremains in bearish crossover. RSI at 38.7 has room to fall to 25-30 before reaching extreme oversold. The $17.64 support is less than 2% below the close \u2014 it's a thin cushion. If TTD closes below $17.64 on volume >40M shares, the distribution is confirmed and the next support zone doesn't appear until the $12-14 range based on the 90-day dataset low."
+  },
+  "wyckoff_narrative": "TTD is the textbook Wyckoff distribution case in the watchlist. With 4/5 distribution signals confirmed (Buying Climax, Automatic Reaction, Upthrust, Sign of Weakness), the only remaining signal is the LPSY \u2014 and today's 6% bounce on moderate volume (1.26x) in the absence of any positive catalyst fits the LPSY profile precisely: a final relief rally that gives remaining longs an exit and allows late-stage distribution by institutions.\n\nThe distribution sequence says: the campaign is nearly complete. Smart money has been selling into strength for multiple sessions. When the LPSY fails to hold and volume picks up on the downside again, the markup phase of the prior distribution completes and the stock enters markdown. Target from the distribution structure: if the BC was near $25 and the AR was at $22, a measured target puts the markdown objective around $11-14.\n\nThe only scenario that invalidates the distribution thesis: a close above $24.73 (90-day resistance) on volume >60M shares. Until then, any bounce is distribution.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 34.16,
+    "upside_pct": 86.0,
+    "bear_value": 19.56,
+    "bull_value": 56.73,
+    "discount_rate": 0.101,
+    "growth_rate": 0.1034,
+    "summary": "DCF base case of $34 implies 86% upside \u2014 but the technical structure is actively warning against this. The bear case at $19.56 is only 6% above current price. When 4/5 distribution signals are confirmed, the technical analysis overrides a DCF upside that requires conditions (10% FCF growth) that may not materialize if the ad market continues shifting toward walled gardens."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.69,
+    "key_strengths": [
+      "Leader in programmatic advertising DSP",
+      "10% projected FCF growth \u2014 positive and growing"
+    ],
+    "key_concerns": [
+      "AI-driven ad buying shifting to Google/Meta walled gardens \u2014 structural headwind to open web DSP model",
+      "52-week low suggests fundamental repricing, not temporary weakness"
+    ],
+    "summary": "Grade B fundamentals but the market is re-rating the growth assumption. If AI ad buying consolidates further into walled gardens, TTD's 10% growth rate becomes 0% or negative \u2014 completely changing the DCF math. The technical structure is leading the fundamental repricing."
+  },
+  "sentiment": {
+    "score": 0.004,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "4/5 Wyckoff distribution signals \u2014 if today's bounce fails and TTD closes below $17.64 on volume >40M, markdown begins toward $12-14",
+    "No positive news catalyst for today's bounce \u2014 short-covering rallies in distribution structures are selling opportunities, not buying opportunities",
+    "AI-driven ad market consolidation into walled gardens (Google, Meta) is a structural threat to the open web DSP model, not a cyclical one"
+  ],
+  "watchlist_priority": "low"
+}

@@ -1,0 +1,79 @@
+{
+  "ticker": "DE",
+  "company_name": "Deere & Company",
+  "report_date": "2026-06-28",
+  "price": 613.24,
+  "change_pct": -2.78,
+  "overall_stance": "avoid",
+  "conviction": 0.68,
+  "one_liner": "DE down 2.8% on 1.55x distribution volume at 90-day resistance ($618.96) \u2014 RBC says 2026 marks the cycle bottom, RSI 67 near overbought, DCF base case $199 (68% downside); priced for peak not trough.",
+  "price_action": {
+    "open": 622.77,
+    "high": 630.05,
+    "low": 612.16,
+    "close": 613.24,
+    "volume": 2300000,
+    "vol_ratio": 1.55,
+    "vol_rank": "#6 of 90 \u2014 elevated volume",
+    "intraday_story": "DE opened at $622.77, touched $630.05 (above 90-day resistance at $618.96), then sold off to close at $613.24. A classic rejection at resistance: the stock tested above $618.96 and failed to hold it, closing below resistance. The 1.55x volume on the rejection is a bearish distribution signal."
+  },
+  "news_catalyst": {
+    "headline": "RBC Capital Says 2026 Marks the Bottom of Agriculture Cycle \u2014 Raises Price Target on Deere After Strong Q2",
+    "summary": "RBC upgraded their view on DE, saying Q2 earnings suggest the agricultural downcycle is bottoming in 2026. This is a cycle bottom call \u2014 which theoretically supports buying now ahead of the recovery. However, the DCF shows $199 intrinsic value against $613 price, meaning the stock is pricing in an exceptional cycle recovery that hasn't happened yet. The rejection at resistance today (high of $630.05 vs resistance at $618.96) on elevated volume is the market's verdict on the RBC upgrade.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 523.74,
+    "key_resistance": 618.96,
+    "rsi": 67.18,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 1.55,
+    "volume_signal": "elevated",
+    "summary": "RSI at 67.18 is approaching overbought. The rejection at resistance ($618.96) on elevated distribution volume (1.55x) is the key technical signal. MACD bullish crossover is the only positive \u2014 but it's a lagging indicator. Resistance rejection at elevated RSI is typically a bearish setup."
+  },
+  "wyckoff_narrative": "No formal Wyckoff events. The resistance rejection pattern is consistent with an Upthrust (UT) in a distribution framework \u2014 but without prior BC/AR tags, it's more likely just a technical resistance test that failed. The 68% DCF downside is the most important context: even if RBC is right about a cycle bottom, the stock is priced for an extraordinary recovery that justifies current levels only in the most optimistic scenario.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 198.86,
+    "upside_pct": -67.6,
+    "bear_value": 35.13,
+    "bull_value": 454.43,
+    "discount_rate": 0.096,
+    "growth_rate": 0.1209,
+    "summary": "68% downside to DCF base case. Even the bull case of $454 is 26% below current price. The stock is pricing in normalized agricultural earnings that require both a cycle recovery AND sustained growth \u2014 the conjunction of both is priced in at $613."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.49,
+    "key_strengths": [
+      "Global agricultural equipment market leader",
+      "Precision agriculture technology provides long-term moat"
+    ],
+    "key_concerns": [
+      "High Leverage (D/E>3)",
+      "Negative revenue growth \u2014 cycle trough confirmed"
+    ],
+    "summary": "Grade D reflects peak-cycle pricing on a cyclical trough earnings base. RBC's cycle bottom call may be right but the stock needs to reprice to reflect normalized rather than peak earnings."
+  },
+  "sentiment": {
+    "score": 0.146,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Rejection at $618.96 resistance on 1.55x volume \u2014 distribution day at the top of the range",
+    "RSI 67 near overbought \u2014 limited upside before a technical correction",
+    "68% downside to DCF base case \u2014 most overvalued name in watchlist on an absolute basis"
+  ],
+  "watchlist_priority": "low"
+}

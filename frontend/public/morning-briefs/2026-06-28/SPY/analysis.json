@@ -1,0 +1,77 @@
+{
+  "ticker": "SPY",
+  "company_name": "SPDR S&P 500 ETF Trust",
+  "report_date": "2026-06-28",
+  "price": 728.99,
+  "change_pct": -0.72,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "SPY flat-to-down with RSI 39.1 approaching oversold and MACD bearish \u2014 broad market at IBD's 'tipping point'; the 256-mention sentiment score is the highest in the watchlist, reflecting investor anxiety about the AI infrastructure rally's durability.",
+  "price_action": {
+    "open": 728.95,
+    "high": 736.53,
+    "low": 716.58,
+    "close": 728.99,
+    "volume": 70900000,
+    "vol_ratio": 1.24,
+    "vol_rank": "#35 of 90 \u2014 slightly above average",
+    "intraday_story": "SPY opened flat, rallied to $736.53 intraday, then sold off hard to $716.58 before closing back near the open at $728.99. A wide intraday swing ($19.95 range) that ended essentially flat \u2014 indecision and volatility without directional resolution. This is the market regime at IBD's 'tipping point': buyers and sellers fighting for control with neither winning decisively."
+  },
+  "news_catalyst": {
+    "headline": "Market at Tipping Point \u2014 AI Infrastructure Rally Faces New Slate of Worries",
+    "summary": "The macro backdrop: Oracle worst week since dot-com, Alphabet down on AI talent drain, broad tech pressure. Simultaneously, LLY and select healthcare/non-AI names are outperforming (market rotation). IBD's 'tipping point' framing captures the binary nature of the current market: either AI infrastructure capex continues and tech recovers, or demand signals disappoint and the sector re-rates lower. SPY's RSI at 39 approaching oversold provides a mechanical floor near-term.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "",
+    "key_support": 653.71,
+    "key_resistance": 756.39,
+    "rsi": 39.12,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 1.24,
+    "volume_signal": "normal",
+    "summary": "SPY is the market regime indicator. RSI 39.1 approaching oversold \u2014 if it touches 30, that's a mechanical mean-reversion signal that has historically produced 3-8% bounces. MACD bearish crossover persists. The $653 support (10.3% below) and $756 resistance (3.8% above) define the current range. The asymmetry is unfavorable for longs here."
+  },
+  "wyckoff_narrative": "No Wyckoff events for the broad market ETF. SPY's neutral consolidation phase reflects a market without clear institutional direction \u2014 neither accumulation nor distribution dominates. The sector rotation (into healthcare, out of AI) is the key narrative to watch.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": ""
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.53,
+    "key_strengths": [
+      "Long-run positive expected return of S&P 500 (~10% annually)",
+      "Diversification across 500 largest US companies"
+    ],
+    "key_concerns": [
+      "Concentration risk in top 10 holdings (Mag 7 ~35% of index)",
+      "RSI 39 and bearish MACD = weak technical regime currently"
+    ],
+    "summary": "SPY is a market regime signal, not a trading vehicle. Current regime: cautious."
+  },
+  "sentiment": {
+    "score": 0.02,
+    "label": "Neutral",
+    "mentions_24h": 256,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If RSI breaks below 30 without finding support, next support is $653 \u2014 10.3% downside",
+    "Sector rotation out of Mag 7 (highest SPY concentration) could drag the index even if the rest of the market holds"
+  ],
+  "watchlist_priority": "medium"
+}
