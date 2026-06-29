@@ -1,7 +1,7 @@
 {
   "date": "2026-06-29",
-  "generated_at": "2026-06-29 13:43 UTC",
-  "video_count": 41,
+  "generated_at": "2026-06-29 17:04 UTC",
+  "video_count": 42,
   "stock_count": 55,
   "consensus": [
     {
@@ -2480,6 +2480,69 @@
       ]
     },
     {
+      "video_id": "Vp1gwqgqxRo",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Should Investors Buy Broadcom Stock Instead of Marvell Stock? | AVGO Stock | MRVL Stock",
+      "video_url": "https://www.youtube.com/watch?v=Vp1gwqgqxRo",
+      "published_at": "2026-06-29T16:18:08Z",
+      "duration_minutes": 9,
+      "summary": "Parkev runs a head-to-head comparison of Broadcom and Marvell Technology across revenue, profitability, and valuation, concluding that Broadcom is the clear winner on every dimension and is his preferred holding. Both companies are beneficiaries of AI-driven semiconductor demand — Broadcom through its custom ASIC work with hyperscalers (notably Alphabet's TPU program) and networking equipment, Marvell through its own custom chip designs — but Parkev finds the risk-reward tilted heavily in Broadcom's favor.\n\nOn revenue scale, Broadcom dominates: $64B in fiscal 2025 revenue versus Marvell's $8.2B, with analysts projecting Broadcom reaching $228B by 2028 while Marvell reaches $22.9B by fiscal 2029. Marvell carries a higher percentage growth rate, but Broadcom adds more absolute revenue. Profitability metrics also favor Broadcom across the board: 44.5% cash flow from operations margin versus Marvell's 23.6%, and 20.3% ROIC versus Marvell's 12.79%. Broadcom's management has also guided toward further margin expansion as VMware acquisition digestion completes, with CFO-to-sales expected to return above 50%.\n\nThe valuation comparison is where Parkev's conviction becomes most pronounced. Marvell trades at a forward P/E of 66 — near the highest in its recent history — while Broadcom trades at 31.5x, near the lower end of its recent range. His DCF models put Broadcom's fair value at ~$499 versus a market price of ~$367 (36% upside), and Marvell's fair value at ~$174 versus a market price of ~$267 (35% downside). Parkev attributes much of Marvell's premium to Jensen Huang's comment that Marvell could become a trillion-dollar company, which he views as enthusiasm rather than fundamentals.\n\nHe explicitly owns Broadcom in his personal portfolio and does not own Marvell, calling this one of the easier head-to-head calls he's made — Broadcom wins on both performance and valuation simultaneously. He also briefly touches on the broader semiconductor cyclicality debate, noting that multi-year strategic agreements (referencing Micron's recent announcements) may structurally dampen cycles going forward, though the thesis remains unproven.",
+      "macro_topics": [
+        "AI semiconductor demand",
+        "custom ASIC vs GPU alternatives",
+        "semiconductor cyclicality",
+        "hyperscaler capex"
+      ],
+      "stocks": [
+        {
+          "symbol": "AVGO",
+          "company_name": "Broadcom Inc.",
+          "sentiment": "bullish",
+          "conviction": 0.92,
+          "thesis": "Broadcom outperforms Marvell on every metric — revenue scale, profitability, and valuation — with a DCF fair value of ~$499 versus a ~$367 market price, making it the clear pick of the two; creator owns it personally.",
+          "price_target": "$499 (DCF fair value)",
+          "key_points": [
+            "Generated $64B in revenue in fiscal 2025, projected to reach $228B by 2028 — superior absolute growth to Marvell",
+            "44.5% cash flow from operations margin and 20.3% ROIC — both meaningfully above Marvell's metrics",
+            "Forward P/E of 31.5x sits near the lower end of its recent historical range — relatively inexpensive for a high-quality compounder",
+            "Management guiding margins above 50% once VMware integration is fully absorbed",
+            "Key hyperscaler relationship: builds Alphabet's TPU tensor processing units and networking equipment",
+            "DCF fair value ~$499 vs. ~$367 market price — roughly 36% upside; creator actively looking to buy more"
+          ],
+          "time_spent_estimate_minutes": 7
+        },
+        {
+          "symbol": "MRVL",
+          "company_name": "Marvell Technology",
+          "sentiment": "bearish",
+          "conviction": 0.82,
+          "thesis": "Marvell trades at a forward P/E of 66 (near historical highs) while its DCF fair value of ~$174 sits 35% below the market price of ~$267 — enthusiasm around Jensen Huang's trillion-dollar comment has pushed valuation well past fundamentals.",
+          "price_target": "$174 (DCF fair value)",
+          "key_points": [
+            "Forward P/E of 66 is near the highest valuation level in Marvell's recent history — significantly overvalued versus Broadcom's 31.5x",
+            "DCF fair value of ~$174 implies roughly 35% downside from the ~$267 market price",
+            "23.6% CFO-to-sales margin and 12.79% ROIC both trail Broadcom by a wide margin",
+            "Revenue forecasted to grow from $8.2B to $22.9B by fiscal 2029 — strong percentage growth but Broadcom adds more absolute revenue",
+            "Jensen Huang's 'next trillion-dollar company' comment has inflated sentiment and valuation beyond what fundamentals support",
+            "Creator does not own Marvell and would not buy at current prices"
+          ],
+          "time_spent_estimate_minutes": 6
+        }
+      ],
+      "key_theses": [
+        "Broadcom wins on every axis simultaneously — better margins, better ROIC, bigger revenue, and cheaper valuation — making the choice straightforward",
+        "Marvell's forward P/E of 66 embeds significant growth optimism that its fundamentals don't yet justify; the Jensen Huang halo effect has driven sentiment beyond fair value",
+        "Broadcom's ~$499 DCF fair value vs. ~$367 market price represents a compelling 36% margin of safety in a high-quality AI infrastructure play",
+        "Multi-year strategic supply agreements across the semiconductor industry may structurally reduce cyclicality, though the thesis is unproven",
+        "Both companies benefit from hyperscalers building alternatives to Nvidia GPUs, but Broadcom's scale, profitability, and valuation make it the better vehicle for that trade"
+      ],
+      "warnings_or_risks": [
+        "Semiconductor industry remains historically cyclical — multi-year contract thesis may only delay rather than eliminate the downcycle",
+        "Broadcom's margin expansion thesis depends on VMware integration completing smoothly — any integration friction could delay the 50%+ target",
+        "Marvell could close the gap if Jensen Huang's trillion-dollar prediction attracts continued institutional momentum buying, regardless of fundamentals"
+      ]
+    },
+    {
       "video_id": "Y1V7lXBHV5I",
       "channel_name": "Stocks with Josh",
       "video_title": "SPACE RACE 🚀 Why Traders Are Watching This Sector",
@@ -3801,6 +3864,23 @@
             "Owning AVGO alongside NVDA reduces risk: if Nvidia loses share, Broadcom captures it"
           ],
           "price_target": "$496 (DCF fair value)"
+        },
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Should Investors Buy Broadcom Stock Instead of Marvell Stock? | AVGO Stock | MRVL Stock",
+          "video_url": "https://www.youtube.com/watch?v=Vp1gwqgqxRo",
+          "sentiment": "bullish",
+          "conviction": 0.92,
+          "thesis": "Broadcom outperforms Marvell on every metric — revenue scale, profitability, and valuation — with a DCF fair value of ~$499 versus a ~$367 market price, making it the clear pick of the two; creator owns it personally.",
+          "key_points": [
+            "Generated $64B in revenue in fiscal 2025, projected to reach $228B by 2028 — superior absolute growth to Marvell",
+            "44.5% cash flow from operations margin and 20.3% ROIC — both meaningfully above Marvell's metrics",
+            "Forward P/E of 31.5x sits near the lower end of its recent historical range — relatively inexpensive for a high-quality compounder",
+            "Management guiding margins above 50% once VMware integration is fully absorbed",
+            "Key hyperscaler relationship: builds Alphabet's TPU tensor processing units and networking equipment",
+            "DCF fair value ~$499 vs. ~$367 market price — roughly 36% upside; creator actively looking to buy more"
+          ],
+          "price_target": "$499 (DCF fair value)"
         }
       ]
     },
@@ -4411,6 +4491,23 @@
             "Adobe's CFO announced departure to join Marvell"
           ],
           "price_target": null
+        },
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Should Investors Buy Broadcom Stock Instead of Marvell Stock? | AVGO Stock | MRVL Stock",
+          "video_url": "https://www.youtube.com/watch?v=Vp1gwqgqxRo",
+          "sentiment": "bearish",
+          "conviction": 0.82,
+          "thesis": "Marvell trades at a forward P/E of 66 (near historical highs) while its DCF fair value of ~$174 sits 35% below the market price of ~$267 — enthusiasm around Jensen Huang's trillion-dollar comment has pushed valuation well past fundamentals.",
+          "key_points": [
+            "Forward P/E of 66 is near the highest valuation level in Marvell's recent history — significantly overvalued versus Broadcom's 31.5x",
+            "DCF fair value of ~$174 implies roughly 35% downside from the ~$267 market price",
+            "23.6% CFO-to-sales margin and 12.79% ROIC both trail Broadcom by a wide margin",
+            "Revenue forecasted to grow from $8.2B to $22.9B by fiscal 2029 — strong percentage growth but Broadcom adds more absolute revenue",
+            "Jensen Huang's 'next trillion-dollar company' comment has inflated sentiment and valuation beyond what fundamentals support",
+            "Creator does not own Marvell and would not buy at current prices"
+          ],
+          "price_target": "$174 (DCF fair value)"
         },
         {
           "channel": "Parkev Tatevosian, CFA",
@@ -5791,6 +5888,22 @@
       "description": ""
     },
     {
+      "title": "AI semiconductor demand",
+      "description": ""
+    },
+    {
+      "title": "custom ASIC vs GPU alternatives",
+      "description": ""
+    },
+    {
+      "title": "semiconductor cyclicality",
+      "description": ""
+    },
+    {
+      "title": "hyperscaler capex",
+      "description": ""
+    },
+    {
       "title": "Space sector IPO dynamics",
       "description": ""
     },
@@ -6195,6 +6308,11 @@
       "channel": "Stocks with Josh",
       "title": "Ripe Underdog Stocks to BUY on the DIP ⚡️ Lighting Round Analysis",
       "url": "https://www.youtube.com/watch?v=Tc1ay3rC2oo"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Should Investors Buy Broadcom Stock Instead of Marvell Stock? | AVGO Stock | MRVL Stock",
+      "url": "https://www.youtube.com/watch?v=Vp1gwqgqxRo"
     },
     {
       "channel": "Stocks with Josh",
