@@ -129,8 +129,11 @@ function TickerDisplay({ symbol, company_name }: { symbol: string | null; compan
 
 // ── Tab components ─────────────────────────────────────────────────────────
 
-function ConsensusTab({ data }: { data: ReportData }) {
-  if (data.consensus.length === 0) {
+function ConsensusTab({ data, filteredUrls }: { data: ReportData; filteredUrls: Set<string> }) {
+  const consensus = data.consensus.filter((item) =>
+    item.mentions.some((m) => filteredUrls.has(m.video_url))
+  );
+  if (consensus.length === 0) {
     return (
       <div className="rounded-xl border bg-muted/30 py-12 text-center text-sm text-muted-foreground">
         No stocks mentioned by 2+ creators today.
@@ -140,7 +143,7 @@ function ConsensusTab({ data }: { data: ReportData }) {
   return (
     <div className="space-y-3">
       <p className="text-xs text-muted-foreground">
-        {data.consensus.length} stock{data.consensus.length !== 1 ? "s" : ""} mentioned by 2 or more creators
+        {consensus.length} stock{consensus.length !== 1 ? "s" : ""} mentioned by 2 or more creators
       </p>
       <Card className="overflow-hidden p-0">
         <table className="w-full text-sm">
@@ -154,7 +157,7 @@ function ConsensusTab({ data }: { data: ReportData }) {
             </tr>
           </thead>
           <tbody>
-            {data.consensus.map((item) => (
+            {consensus.map((item) => (
               <tr key={item.display} className="border-b last:border-0 hover:bg-accent/30">
                 <td className="px-4 py-3">
                   <TickerDisplay symbol={item.symbol} company_name={item.company_name} />
@@ -243,11 +246,14 @@ function VideosTab({ data }: { data: ReportData }) {
   );
 }
 
-function StocksTab({ data }: { data: ReportData }) {
+function StocksTab({ data, filteredUrls }: { data: ReportData; filteredUrls: Set<string> }) {
+  const stocks = data.all_stocks
+    .map((s) => ({ ...s, mentions: s.mentions.filter((m) => filteredUrls.has(m.video_url)) }))
+    .filter((s) => s.mentions.length > 0);
   return (
     <div className="space-y-3">
-      <p className="text-xs text-muted-foreground">{data.stock_count} stock{data.stock_count !== 1 ? "s" : ""} mentioned</p>
-      {data.all_stocks.map((stock) => (
+      <p className="text-xs text-muted-foreground">{stocks.length} stock{stocks.length !== 1 ? "s" : ""} mentioned</p>
+      {stocks.map((stock) => (
         <Card key={stock.display}>
           <CardContent className="p-5 space-y-3">
             <div className="flex items-center justify-between">
@@ -297,8 +303,19 @@ function StocksTab({ data }: { data: ReportData }) {
   );
 }
 
-function MacroTab({ data }: { data: ReportData }) {
-  if (data.macro_topics.length === 0) {
+function MacroTab({ data, filteredUrls }: { data: ReportData; filteredUrls: Set<string> }) {
+  // macro_topics have no per-video attribution in the JSON, so derive them from
+  // filtered analyses' macro_topics arrays
+  const filteredAnalyses = data.analyses.filter((a) => filteredUrls.has(a.video_url));
+  const seen = new Set<string>();
+  const topics = filteredAnalyses.flatMap((a) =>
+    (a.macro_topics ?? []).map((t) => ({ title: t, description: "" }))
+  ).filter((t) => {
+    if (seen.has(t.title)) return false;
+    seen.add(t.title);
+    return true;
+  });
+  if (topics.length === 0) {
     return (
       <div className="rounded-xl border bg-muted/30 py-12 text-center text-sm text-muted-foreground">
         No macro topics recorded.
@@ -308,10 +325,10 @@ function MacroTab({ data }: { data: ReportData }) {
   return (
     <div className="space-y-3">
       <p className="text-xs text-muted-foreground">
-        {data.macro_topics.length} themes discussed across today&apos;s videos
+        {topics.length} themes discussed across today&apos;s videos
       </p>
       <div className="grid gap-3 sm:grid-cols-2">
-        {data.macro_topics.map((topic, i) => (
+        {topics.map((topic, i) => (
           <Card key={i}>
             <CardContent className="p-4 space-y-1.5">
               <p className="text-sm font-semibold">{topic.title}</p>
@@ -330,10 +347,11 @@ function MacroTab({ data }: { data: ReportData }) {
   );
 }
 
-function SourcesTab({ data }: { data: ReportData }) {
+function SourcesTab({ data, filteredUrls }: { data: ReportData; filteredUrls: Set<string> }) {
+  const sources = data.sources.filter((s) => filteredUrls.has(s.url));
   return (
     <Card className="overflow-hidden p-0">
-      {data.sources.map((s, i) => (
+      {sources.map((s, i) => (
         <div key={i} className="flex items-start gap-3 border-b last:border-0 px-5 py-3 hover:bg-accent/30">
           <div className="min-w-0">
             <p className="text-[10px] text-muted-foreground">{s.channel}</p>
@@ -456,13 +474,22 @@ export function YouTubeDigestClient({ dates }: { dates: string[] }) {
           {error}
         </div>
       ) : data ? (
-        <>
-          {activeTab === "Consensus" && <ConsensusTab data={data} />}
-          {activeTab === "Videos" && <VideosTab data={data} />}
-          {activeTab === "Stocks" && <StocksTab data={data} />}
-          {activeTab === "Macro" && <MacroTab data={data} />}
-          {activeTab === "Sources" && <SourcesTab data={data} />}
-        </>
+        (() => {
+          const filteredUrls = new Set(
+            data.analyses
+              .filter((a) => a.published_at.slice(0, 10) === data.date)
+              .map((a) => a.video_url)
+          );
+          return (
+            <>
+              {activeTab === "Consensus" && <ConsensusTab data={data} filteredUrls={filteredUrls} />}
+              {activeTab === "Videos" && <VideosTab data={data} />}
+              {activeTab === "Stocks" && <StocksTab data={data} filteredUrls={filteredUrls} />}
+              {activeTab === "Macro" && <MacroTab data={data} filteredUrls={filteredUrls} />}
+              {activeTab === "Sources" && <SourcesTab data={data} filteredUrls={filteredUrls} />}
+            </>
+          );
+        })()
       ) : null}
     </div>
   );
