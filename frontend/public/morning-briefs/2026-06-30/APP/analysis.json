@@ -1,0 +1,82 @@
+{
+  "ticker": "APP",
+  "company_name": "AppLovin Corporation",
+  "report_date": "2026-06-30",
+  "price": 515.23,
+  "change_pct": 3.3,
+  "overall_stance": "accumulate",
+  "conviction": 0.72,
+  "one_liner": "APP +3.3% to $515 \u2014 VCP pivot at $506.49 confirmed broken; three-day advance ($477\u2192$498\u2192$515) on rising volume; 28/28 analysts Buy with $650 avg target and 58.8% DCF upside.",
+  "price_action": {
+    "open": 493.75,
+    "high": 519.46,
+    "low": 492.84,
+    "close": 515.23,
+    "volume": 5600000,
+    "vol_ratio": 1.08,
+    "vol_rank": "#26 \u2014 slightly above average",
+    "intraday_story": "APP opened at $493.75, cleared the $506.49 VCP pivot I identified yesterday within the first hour, surged to $519.46, and closed at $515.23. The VCP breakout was clean: the stock cleared $506 on slightly above-average volume (1.08x) and held above it all session. Three-session sequence: $477.08 \u2192 $498.76 \u2192 $515.23 on volume 3.4M \u2192 5.3M \u2192 5.6M \u2014 gently rising volume on rising price is the most constructive possible pattern for a VCP breakout."
+  },
+  "news_catalyst": {
+    "headline": "AXON AI Global Launch Drives Continued Momentum \u2014 28/28 Analysts Buy",
+    "summary": "AppLovin's transition of its AXON AI ad-targeting engine to a public self-serve model globally is the structural catalyst behind the three-day advance. The Q1 2026 results (+59% YoY revenue, $1.84B, net income $1.2B) established the growth rate; the AXON global launch expands the TAM from mobile games to all digital advertising. All 28 covering analysts rate the stock Buy with a consensus price target of ~$650 (Citi $710). The VCP breakout at $506.49 is a technical confirmation of the fundamental bullish consensus \u2014 the stock has absorbed the selling from the June 25 dip to $418 and is now in clean markup territory.",
+    "source_url": "https://stockstotrade.com/news/applovin-corporation-app-news-2026_06_26/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": 506.49,
+    "vcp_stage": "Breakout \u2014 pivot cleared on rising volume",
+    "key_support": 492.84,
+    "key_resistance": 519.46,
+    "rsi": 48.0,
+    "macd_signal": "bullish \u2014 MACD +0.17",
+    "volume_ratio_today": 1.08,
+    "volume_signal": "elevated",
+    "summary": "The VCP breakout at $506.49 is confirmed. RSI at 48 is not overbought \u2014 there is significant room to extend before hitting the 70 level. The breakout occurred on three consecutive sessions of rising volume (3.4M \u2192 5.3M \u2192 5.6M) \u2014 this is the 'rising volume on rising price' pattern that confirms institutional accumulation, not retail momentum chasing.\n\nThe DCF at $1,249 (58.8% upside from current) is the most compelling valuation in the watchlist for a Grade A business. The 28/28 analyst Buy consensus is extraordinary \u2014 it means there are literally no bears left on Wall Street for this stock, which ironically is itself a risk (no more upgrades left to drive buying).\n\nKey levels: $492.84 is the new support (today's intraday low, which is also the base of the breakout candle). $519.46 is the intraday high and immediate resistance. The BB upper at $611.76 is the longer-term target from the DCF and analyst consensus perspective."
+  },
+  "wyckoff_narrative": "The June 25 dip to $418 was the Spring \u2014 the final shakeout that cleared weak hands before the markup. The three-day advance from $477 to $515 is Phase D markup beginning. The VCP breakout at $506.49 is the SOS event confirming Phase D. Volume rising gently on each day (3.4M \u2192 5.3M \u2192 5.6M) while price advances shows Effort in proportion to Result \u2014 the healthiest possible breakout signature.\n\nFor entries: the textbook Wyckoff/VCP entry is a pullback to the pivot ($506) on declining volume, which would be the LPS. If APP consolidates near $508\u2013$515 over the next 1\u20132 sessions with volume dropping below 4M, that's the re-entry zone before the next leg to $550\u2013$600.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1249.55,
+    "upside_pct": 58.8,
+    "bear_value": 400.0,
+    "bull_value": 1800.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.35,
+    "summary": "DCF at $1,249 \u2014 58.8% upside. Grade A fundamentals (0.80 score) with 59% revenue growth and 65%+ net margins. Even at the Citi $710 target, there's 38% upside from current. The valuation case is unusually strong for a stock already at $515."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.8,
+    "key_strengths": [
+      "28/28 analyst Buy ratings \u2014 widest consensus in watchlist",
+      "59% YoY revenue growth, 65%+ net margin, $1.2B net income",
+      "AXON global launch opens non-gaming advertiser TAM",
+      "DCF 58.8% upside \u2014 compelling margin of safety"
+    ],
+    "key_concerns": [
+      "28/28 Buy means no more analyst upgrades \u2014 buying pressure from upgrades is exhausted",
+      "CEO insider selling in June (Form 4 filings) \u2014 monitor for acceleration",
+      "Breakout needs to hold $506 on next pullback to confirm VCP validity"
+    ],
+    "summary": "Grade A fundamentals with confirmed VCP breakout and the highest analyst consensus quality in the watchlist. This is the second-highest conviction buy signal after TSM today."
+  },
+  "sentiment": {
+    "score": 0.087,
+    "label": "Neutral",
+    "mentions_24h": 8,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "28/28 analysts already Buy \u2014 no upgrade catalyst left; any miss triggers a cascade from a crowded long",
+    "CEO insider sales via Form 4 are a yellow flag \u2014 watch for acceleration above $515",
+    "VCP pivot at $506 must hold on first pullback \u2014 a close below $492.84 breaks the breakout pattern"
+  ],
+  "watchlist_priority": "high"
+}

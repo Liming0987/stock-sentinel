@@ -1,0 +1,76 @@
+{
+  "ticker": "AMZN",
+  "company_name": "Amazon.com Inc.",
+  "report_date": "2026-06-30",
+  "price": 238.34,
+  "change_pct": -0.75,
+  "overall_stance": "watch",
+  "conviction": 0.52,
+  "one_liner": "AMZN -0.75% to $238 \u2014 underperforming on a positive tape; AWS GPU pricing power thesis intact but stock dipping below EMA50 cluster again.",
+  "price_action": {
+    "open": 237.43,
+    "high": 241.54,
+    "low": 237.17,
+    "close": 238.34,
+    "volume": 65198589,
+    "vol_ratio": 1.178743565337813,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material AMZN-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/AMZN/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 226.43,
+    "key_resistance": 249.61,
+    "rsi": 43.99,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 1.178743565337813,
+    "volume_signal": "normal",
+    "summary": "RSI: 44.0. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 249.61, EMA200: 257.59. DCF upside: -323.6%. Grade: B."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 56.27,
+    "upside_pct": -323.6,
+    "bear_value": 28.16,
+    "bull_value": 97.02,
+    "discount_rate": 0.1244,
+    "growth_rate": 0.1745,
+    "summary": "DCF feasible. Base: $56.27, -323.6% upside."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7863,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "See fundamentals API"
+    ],
+    "summary": "Grade B, score 0.79."
+  },
+  "sentiment": {
+    "score": 0.079,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

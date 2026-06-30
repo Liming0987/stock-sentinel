@@ -1,0 +1,76 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVIDIA Corporation",
+  "report_date": "2026-06-30",
+  "price": 200.09,
+  "change_pct": 2.63,
+  "overall_stance": "watch",
+  "conviction": 0.58,
+  "one_liner": "NVDA +2.6% to $200 \u2014 recovering from RSI 33 oversold; Cantor chip sector upgrade lifts semis broadly, 40.1% DCF upside, Grade A; still below EMA50 ($213) \u2014 watch not accumulate.",
+  "price_action": {
+    "open": 197.2,
+    "high": 200.63,
+    "low": 195.11,
+    "close": 200.09,
+    "volume": 163092701,
+    "vol_ratio": 0.9682499787475648,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material NVDA-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/NVDA/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 190.14,
+    "key_resistance": 213.23,
+    "rsi": 40.74,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.9682499787475648,
+    "volume_signal": "normal",
+    "summary": "RSI: 40.7. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 213.23, EMA200: 220.70. DCF upside: 40.1%. Grade: A."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 333.93,
+    "upside_pct": 40.1,
+    "bear_value": 192.02,
+    "bull_value": 518.73,
+    "discount_rate": 0.15,
+    "growth_rate": 0.5,
+    "summary": "DCF feasible. Base: $333.93, 40.1% upside."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.8192,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "High Leverage (D/E>3)"
+    ],
+    "summary": "Grade A, score 0.82."
+  },
+  "sentiment": {
+    "score": 0.032,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

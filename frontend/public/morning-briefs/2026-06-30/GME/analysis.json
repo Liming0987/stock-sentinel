@@ -1,0 +1,76 @@
+{
+  "ticker": "GME",
+  "company_name": "GameStop Corp.",
+  "report_date": "2026-06-30",
+  "price": 22.08,
+  "change_pct": 0.23,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "GME flat at $22 \u2014 WEN meme momentum fading, near-zero catalyst; sentiment vehicle not investment.",
+  "price_action": {
+    "open": 21.85,
+    "high": 22.18,
+    "low": 21.7,
+    "close": 22.08,
+    "volume": 4337132,
+    "vol_ratio": 0.7591018920016933,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material GME-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/GME/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 20.81,
+    "key_resistance": 21.55,
+    "rsi": 57.96,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.7591018920016933,
+    "volume_signal": "drying up",
+    "summary": "RSI: 58.0. Wyckoff: Accumulation Phase A-B. VCP: False. EMA50: 21.55, EMA200: 21.43. DCF upside: N/A%. Grade: B."
+  },
+  "wyckoff_narrative": "Accumulation Phase A-B",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Pre-revenue or insufficient FCF for DCF."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7313,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "Negative FCF"
+    ],
+    "summary": "Grade B, score 0.73."
+  },
+  "sentiment": {
+    "score": 0.072,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "low"
+}

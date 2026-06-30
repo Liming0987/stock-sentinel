@@ -1,0 +1,77 @@
+{
+  "ticker": "RKLB",
+  "company_name": "Rocket Lab Corporation",
+  "report_date": "2026-06-30",
+  "price": 101.65,
+  "change_pct": 3.71,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "RKLB +3.7% to $101 \u2014 Iridium acquisition digestion; holding above $100 psychological level; EMA50 at $111 is next resistance to clear.",
+  "price_action": {
+    "open": 97.42,
+    "high": 104.16,
+    "low": 95.64,
+    "close": 101.65,
+    "volume": 32656408,
+    "vol_ratio": 1.0867191827547895,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material RKLB-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/RKLB/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 81.57,
+    "key_resistance": 111.32,
+    "rsi": 46.83,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 1.0867191827547895,
+    "volume_signal": "normal",
+    "summary": "RSI: 46.8. Wyckoff: Accumulation Phase B. VCP: False. EMA50: 111.32, EMA200: 119.02. DCF upside: N/A%. Grade: D."
+  },
+  "wyckoff_narrative": "Accumulation Phase B",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Pre-revenue or insufficient FCF for DCF."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.4946,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "Negative FCF",
+      "High Leverage (D/E>3)"
+    ],
+    "summary": "Grade D, score 0.49."
+  },
+  "sentiment": {
+    "score": 0.153,
+    "label": "Bullish",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

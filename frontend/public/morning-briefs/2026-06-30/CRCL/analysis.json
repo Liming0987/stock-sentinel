@@ -1,0 +1,91 @@
+{
+  "ticker": "CRCL",
+  "company_name": "Circle Internet Group Inc.",
+  "report_date": "2026-06-30",
+  "price": 62.63,
+  "change_pct": -17.55,
+  "overall_stance": "watch",
+  "conviction": 0.62,
+  "one_liner": "CRCL -17.6% selling climax at $62.63 \u2014 37.5M shares (2.81x avg, #5 in 90 days) closed near session low; RSI 26 oversold with VCP detected and strategy HOLD entry zone $60\u2013$65.",
+  "price_action": {
+    "open": 72.25,
+    "high": 73.2,
+    "low": 62.52,
+    "close": 62.63,
+    "volume": 37500000,
+    "vol_ratio": 2.81,
+    "vol_rank": "Top-5 in 90-day dataset \u2014 2.81x average",
+    "intraday_story": "CRCL gapped down from Friday's $75.96 close to open at $72.25, made a brief recovery attempt to $73.20 within the first hour, then sold down relentlessly to close at $62.63 \u2014 just $0.11 above the session low of $62.52. The close in the bottom 0.1% of the day's range on 2.81x average volume is a textbook selling climax candle: climactic supply, price closed near the session low, all intraday buyers were underwater by close. The prior two sessions showed drying volume (14.4M \u2192 9.2M on June 26\u201329), making this climactic spike stand out even more starkly."
+  },
+  "news_catalyst": {
+    "headline": "Circle Stock Crashes on New Rival Stablecoin + Insider Sale Filings",
+    "summary": "The selloff in CRCL is driven by two converging pressures. First, a new competing stablecoin platform emerged \u2014 Visa, Mastercard, and Stripe have been developing competing stablecoin products that directly challenge USDC's market position. This intensifies the existential risk around CRCL's core business model. Second, a stream of insider-sale Form 144 disclosures filed June 25\u201326 signal that insiders are distributing shares into the recent strength. CRCL had already declined from $105+ in early June to $76 before today, meaning insiders were selling into a stock already down 28% from its highs. The combination of fundamental competitive threat plus supply overhang produced today's -17.5% selling climax. The Nomura FX settlement partnership announced last week is real but clearly insufficient to offset these pressures in the near term.",
+    "source_url": "https://www.quiverquant.com/news/Circle+Internet+Group+Falls+as+Insider+Sale+Filings+and+Valuation+Pressure+Weigh+on+Shares",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 62.52,
+    "key_resistance": 73.2,
+    "rsi": 26.0,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 2.81,
+    "volume_signal": "climactic",
+    "summary": "The selling climax interpretation from the updated volume algorithm is accurate here \u2014 37.5M shares (2.81x avg), close of $62.63 vs bar midpoint of ($73.20+$62.52)/2 = $67.86, confirming close below midpoint = selling climax by definition. RSI at 26 is deep oversold territory. CRCL has now fallen from $105+ (early June) to $62.63 \u2014 a 40% peak-to-current drawdown.\n\nThe VCP detection is technically constructive: the algorithm sees a base forming in the $67\u2013$76 range over recent sessions. Today's climactic flush below that base ($62.52 low) is either the Spring event that completes Phase B and begins the markup, or a breakdown below the base that invalidates the VCP. The strategy signal has a HOLD entry of $60.20\u2013$65.11, stop $50.99 \u2014 placing the current price squarely inside the entry zone.\n\nThe critical question for tomorrow: does CRCL hold $62.52 with declining volume (confirming absorption)? Or does it continue lower with expanding volume (confirming distribution breakdown)? If tomorrow's volume drops below 15M (half of today's) while price holds $62, that's the drying-up-after-SC pattern that precedes the Automatic Rally."
+  },
+  "wyckoff_narrative": "Wyckoff Phase B accumulation with VCP detected. Today's climactic volume bar (2.81x, close below midpoint) is the candidate Selling Climax (SC) that typically ends Phase A and begins Phase B base-building. However, the SC is occurring below what was the previous base ($67\u2013$76), which means this is either a shakeout Spring \u2014 the final flush that ends Phase B and launches Phase C/D markup \u2014 or it's a genuine breakdown below accumulation support.\n\nThe distinction will be made in the next 1\u20133 sessions. A Spring reversal would show: (1) tomorrow's open gaps back above $67, (2) volume contracts sharply (below 15M), (3) price holds above today's $62.52 low on subsequent tests. If instead CRCL opens below $62 on elevated volume, the Spring interpretation fails and the next support is the $50\u2013$55 zone.\n\nThe strategy signal entering at $60.20\u2013$65.11 with a $50.99 stop suggests the system is treating today as a potential Spring/SC event and positioning for the reversal. The 30% downside to stop vs. 30% upside to prior resistance ($75\u2013$76) gives a roughly 1:1 risk/reward \u2014 acceptable only if the SC thesis is correct.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible for CRCL \u2014 value is driven by USDC in circulation (interest income on reserves) and stablecoin ecosystem optionality. Bull case analysts see $340; at $62, CRCL is at 18% of that target. The competitive threat from Visa/Mastercard/Stripe stablecoins is the primary bear case."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.38,
+    "key_strengths": [
+      "Nomura FX partnership is real \u2014 USDC for Japanese corporate FX settlement",
+      "USDC is the #2 stablecoin with regulatory clarity advantage over USDT"
+    ],
+    "key_concerns": [
+      "Insider Form 144 filings June 25\u201326 \u2014 insider distribution into strength",
+      "Visa/Mastercard/Stripe entering stablecoin space directly threatens USDC market share",
+      "Down 40% from June highs \u2014 distribution phase clearly ongoing"
+    ],
+    "summary": "Grade D reflects pre-profitability economics under increasing competitive pressure. The Nomura partnership is a genuine strategic win but not enough to offset the Visa/Mastercard entry into stablecoin territory."
+  },
+  "sentiment": {
+    "score": 0.033,
+    "label": "Neutral",
+    "mentions_24h": 8,
+    "trend": "falling"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "Multi-Strategy Hold",
+      "action": "hold",
+      "confidence": 0.46,
+      "entry_low": 60.2,
+      "entry_high": 65.11,
+      "stop_loss": 50.99,
+      "target": 81.69
+    }
+  ],
+  "risks": [
+    "Spring vs breakdown \u2014 if CRCL opens below $62 tomorrow on expanding volume, the SC thesis is invalidated and $50 is the next support",
+    "Insider selling overhang: Form 144 filings signal continued supply \u2014 the SC may not hold if insiders continue selling into bounces",
+    "Visa/Mastercard/Stripe stablecoin competition is structural, not transient \u2014 it removes CRCL's moat narrative",
+    "Strategy HOLD stop at $50.99 implies 19% further downside if the Spring fails \u2014 significant binary risk"
+  ],
+  "watchlist_priority": "high"
+}

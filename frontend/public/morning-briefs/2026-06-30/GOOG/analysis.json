@@ -1,0 +1,91 @@
+{
+  "ticker": "GOOG",
+  "company_name": "Alphabet Inc.",
+  "report_date": "2026-06-30",
+  "price": 353.33,
+  "change_pct": 0.58,
+  "overall_stance": "watch",
+  "conviction": 0.65,
+  "one_liner": "GOOG +0.58% to $353 \u2014 volume drying up to 0.82x after the June 26 selling climax (82.5M) and June 29 AR (25.6M); the SC-AR-ST pattern is executing textbook Wyckoff; accumulate signal pending if Secondary Test holds.",
+  "price_action": {
+    "open": 351.36,
+    "high": 355.39,
+    "low": 348.11,
+    "close": 353.33,
+    "volume": 21000000,
+    "vol_ratio": 0.82,
+    "vol_rank": "#33 \u2014 below average",
+    "intraday_story": "GOOG opened flat, ranged narrowly between $348.11 and $355.39 on declining volume (21M, 0.82x avg). Three-session sequence after the June 26 SC: SC (82.5M, 3.22x, close $334.69) \u2192 AR (25.6M, 1.00x, close $351.28, +5.0%) \u2192 today's quiet drift (21.0M, 0.82x, close $353.33, +0.58%). The volume dry-up on the second day of the AR is exactly what Wyckoff methodology predicts \u2014 the AR exhausts itself, and price begins to drift back for the Secondary Test."
+  },
+  "news_catalyst": {
+    "headline": "GOOG Consolidating Post-Dow Jones Inclusion \u2014 Earnings July 23 is Next Catalyst",
+    "summary": "No new material news today. GOOG is consolidating the +5% Dow Jones inclusion bounce from June 29. The mechanical index-fund buying from the DJIA addition has been absorbed. The next major catalyst is Q2 earnings on July 23, where the market will scrutinize Gemini growth vs. Claude/GPT-4o competitive positioning, capex trajectory (currently $146.4B investment spend), and Search ad revenue amid AI disruption concerns. AI talent departures (John Jumper, Noam Shazeer) remain a background headwind. The stock is up 5.4% from the June 26 selling climax at $334.69 \u2014 well within the typical 5\u20138% Automatic Rally range after a SC event.",
+    "source_url": "https://www.cnbc.com/2026/06/23/alphabet-verizon-dow-djia.html",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 334.69,
+    "key_resistance": 358.64,
+    "rsi": 46.0,
+    "macd_signal": "slightly bearish",
+    "volume_ratio_today": 0.82,
+    "volume_signal": "drying up",
+    "summary": "The Wyckoff SC-AR pattern is executing with textbook precision. Volume sequence: SC (82.5M) \u2192 AR (25.6M) \u2192 today (21.0M). Each day's volume is lower than the previous while price holds near the AR high ($351\u2013$355) \u2014 this is the 'volume dry-up at AR highs' that precedes the Secondary Test in Wyckoff accumulation Phase A-B.\n\nRSI at 46 is below neutral but recovering from the June 26 extreme of 27.95. MACD is still slightly bearish but improving. EMA50 at $369.34 and EMA200 at $379.82 are both overhead \u2014 the full trend reversal requires significant work.\n\nThe next expected event: a pullback from the $351\u2013$355 AR zone toward the $334\u2013$342 range (the SC low and immediate post-SC consolidation). If that pullback occurs on below-average volume (below 20M) and holds above $333.69, that's the Secondary Test (ST) confirmation. Once the ST is confirmed, the accumulate signal fires."
+  },
+  "wyckoff_narrative": "The June 26 session printed a Selling Climax by the updated algorithm definition: 82.5M shares (3.22x avg), close of $334.69 below bar midpoint ($338.90). June 29's +5% AR on exactly 1.00x average volume ($25.6M) was the Automatic Rally. Today's quiet drift ($21M, 0.82x) on negligible price change (+0.58%) is what Wyckoff calls the 'backing up' \u2014 price consolidating near the AR highs, supply and demand temporarily balanced.\n\nThe next stage is the Secondary Test (ST): a pullback toward the SC zone ($334\u2013$342) that should occur on volume materially below the SC's 82.5M \u2014 ideally below 25M. If GOOG dips to $338\u2013$345 on 15\u201320M shares and then holds, the SC-AR-ST sequence is complete and Phase B accumulation begins. That's when the accumulate signal is appropriate.\n\nThe July 23 earnings creates a timeline pressure: the SC-AR-ST sequence typically plays out over 1\u20133 weeks. If the Secondary Test completes before July 23, we'd enter with earnings as a binary catalyst. If not, waiting for post-earnings clarity may be the better risk management approach.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 411.13,
+    "upside_pct": 14.1,
+    "bear_value": 228.4,
+    "bull_value": 681.61,
+    "discount_rate": 0.113,
+    "growth_rate": 0.1695,
+    "summary": "DCF base case at $411 \u2014 14.1% upside from current $353.33. Grade A fundamentals (0.82 score) with 82% earnings growth YoY. The margin of safety is present but modest at the current price; it was more compelling at the $334.69 SC low (18.6% upside). A Secondary Test pullback to $338\u2013$345 would restore the margin of safety to ~20%."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.82,
+    "key_strengths": [
+      "82% YoY earnings growth, 37.9% net margins",
+      "Analyst consensus Strong Buy, $426 mean target",
+      "Dow Jones inclusion provides structural passive buying floor"
+    ],
+    "key_concerns": [
+      "OBV deeply negative \u2014 sustained distribution since mid-June",
+      "AI talent departures \u2014 Gemini competitive risk",
+      "Earnings July 23 is binary: capex trajectory + Gemini growth scrutiny"
+    ],
+    "summary": "Grade A fundamentals support the SC-AR-ST thesis. The stock is not overvalued; it is testing support after a sentiment-driven selloff. Wait for the Secondary Test to complete before upgrading to accumulate."
+  },
+  "sentiment": {
+    "score": 0.08,
+    "label": "Neutral",
+    "mentions_24h": 10,
+    "trend": "rising"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "RSI MeanReversion / Hold",
+      "action": "hold",
+      "confidence": 0.46,
+      "entry_low": 328.53,
+      "entry_high": 341.19,
+      "stop_loss": 310.05,
+      "target": 371.65
+    }
+  ],
+  "risks": [
+    "Secondary Test pullback to $334\u2013$342 is expected \u2014 if it fails to hold (close below $333.69 on expanding volume), the accumulation thesis is invalidated",
+    "July 23 earnings binary: any capex guidance acceleration or Gemini revenue miss breaks the recovery",
+    "Volume dry-up is positive but OBV at -246M means the cumulative selling pressure hasn't reversed yet"
+  ],
+  "watchlist_priority": "high"
+}

@@ -1,0 +1,76 @@
+{
+  "ticker": "OPEN",
+  "company_name": "Opendoor Technologies",
+  "report_date": "2026-06-30",
+  "price": 4.62,
+  "change_pct": 0.43,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "OPEN +0.4% to $4.62 \u2014 Russell inclusion momentum fading; Grade D fundamentals, muted follow-through after 3.90x volume spike.",
+  "price_action": {
+    "open": 4.58,
+    "high": 4.76,
+    "low": 4.55,
+    "close": 4.62,
+    "volume": 80301845,
+    "vol_ratio": 1.7519019562197542,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material OPEN-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/OPEN/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 3.96,
+    "key_resistance": 4.87,
+    "rsi": 47.95,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 1.7519019562197542,
+    "volume_signal": "elevated",
+    "summary": "RSI: 48.0. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 4.87, EMA200: 5.17. DCF upside: 98.0%. Grade: D."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 231.06,
+    "upside_pct": 98.0,
+    "bear_value": 132.22,
+    "bull_value": 359.76,
+    "discount_rate": 0.15,
+    "growth_rate": 0.5,
+    "summary": "DCF feasible. Base: $231.06, 98.0% upside."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.4029,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "Negative Revenue Growth"
+    ],
+    "summary": "Grade D, score 0.40."
+  },
+  "sentiment": {
+    "score": -0.003,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "low"
+}

@@ -1,0 +1,76 @@
+{
+  "ticker": "BAM",
+  "company_name": "Brookfield Asset Management",
+  "report_date": "2026-06-30",
+  "price": 44.85,
+  "change_pct": 1.91,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "BAM +1.9% to $44.85 \u2014 data API issues persist; 10.4% DCF upside, Grade B steady compounder; no actionable technical signal today.",
+  "price_action": {
+    "open": 44.0,
+    "high": 45.14,
+    "low": 43.82,
+    "close": 44.85,
+    "volume": 2090377,
+    "vol_ratio": 0.6774190736334831,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material BAM-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/BAM/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 43.71,
+    "key_resistance": 47.1,
+    "rsi": 38.12,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.6774190736334831,
+    "volume_signal": "drying up",
+    "summary": "RSI: 38.1. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 47.10, EMA200: 47.82. DCF upside: 10.4%. Grade: B."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 50.04,
+    "upside_pct": 10.4,
+    "bear_value": 27.22,
+    "bull_value": 83.94,
+    "discount_rate": 0.1136,
+    "growth_rate": 0.1504,
+    "summary": "DCF feasible. Base: $50.04, 10.4% upside."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7369,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "See fundamentals API"
+    ],
+    "summary": "Grade B, score 0.74."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,71 @@
+{
+  "ticker": "FNMA",
+  "company_name": "Fannie Mae",
+  "report_date": "2026-06-30",
+  "price": 6.55,
+  "change_pct": -4.66,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "FNMA -4.7% to $6.55 \u2014 volume 0.19x (lowest in dataset), pure GSE conservatorship speculation; no fundamental or technical setup.",
+  "price_action": {
+    "open": 0,
+    "high": 0,
+    "low": 0,
+    "close": 6.55,
+    "volume": 0,
+    "vol_ratio": 0,
+    "vol_rank": "N/A",
+    "intraday_story": "Data unavailable."
+  },
+  "news_catalyst": {
+    "headline": "No significant news.",
+    "summary": "No material news.",
+    "source_url": "https://finance.yahoo.com/quote/FNMA/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 0,
+    "key_resistance": 0,
+    "rsi": 0,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0,
+    "volume_signal": "normal",
+    "summary": "FNMA -4.7% to $6.55 \u2014 volume 0.19x (lowest in dataset), pure GSE conservatorship speculation; no fundamental or technical setup."
+  },
+  "wyckoff_narrative": "No Wyckoff events detected.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.0,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": "Grade D, score 0.00."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 2,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor key levels."
+  ],
+  "watchlist_priority": "low"
+}

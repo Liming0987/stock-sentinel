@@ -1,0 +1,77 @@
+{
+  "ticker": "DE",
+  "company_name": "Deere & Company",
+  "report_date": "2026-06-30",
+  "price": 634.33,
+  "change_pct": 1.23,
+  "overall_stance": "avoid",
+  "conviction": 0.62,
+  "one_liner": "DE +1.2% to $634 \u2014 RSI 72 overbought, -219% DCF overvalued; distribution risk at these levels.",
+  "price_action": {
+    "open": 626.17,
+    "high": 636.24,
+    "low": 617.58,
+    "close": 634.33,
+    "volume": 1074403,
+    "vol_ratio": 0.7126688496105992,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material DE-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/DE/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 550.74,
+    "key_resistance": 571.62,
+    "rsi": 72.05,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.7126688496105992,
+    "volume_signal": "drying up",
+    "summary": "RSI: 72.0. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 571.62, EMA200: 551.53. DCF upside: -219.0%. Grade: D."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 198.86,
+    "upside_pct": -219.0,
+    "bear_value": 35.13,
+    "bull_value": 454.43,
+    "discount_rate": 0.096,
+    "growth_rate": 0.1209,
+    "summary": "DCF feasible. Base: $198.86, -219.0% upside."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.4945,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "High Leverage (D/E>3)",
+      "Negative Revenue Growth"
+    ],
+    "summary": "Grade D, score 0.49."
+  },
+  "sentiment": {
+    "score": 0.182,
+    "label": "Bullish",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "low"
+}

@@ -1,0 +1,76 @@
+{
+  "ticker": "LULU",
+  "company_name": "Lululemon Athletica",
+  "report_date": "2026-06-30",
+  "price": 114.18,
+  "change_pct": -0.1,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "LULU flat at $114 \u2014 Wyckoff Phase B accumulation, volume 0.87x drying up, DCF upside 9.7%; waiting for a catalyst to break either way.",
+  "price_action": {
+    "open": 113.42,
+    "high": 114.2,
+    "low": 111.25,
+    "close": 114.18,
+    "volume": 3787086,
+    "vol_ratio": 0.8710117274109377,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material LULU-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/LULU/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 105.31,
+    "key_resistance": 123.07,
+    "rsi": 42.19,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.8710117274109377,
+    "volume_signal": "normal",
+    "summary": "RSI: 42.2. Wyckoff: Accumulation Phase B. VCP: False. EMA50: 123.07, EMA200: 129.23. DCF upside: 9.7%. Grade: B."
+  },
+  "wyckoff_narrative": "Accumulation Phase B",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 126.39,
+    "upside_pct": 9.7,
+    "bear_value": 97.51,
+    "bull_value": 148.28,
+    "discount_rate": 0.0924,
+    "growth_rate": -0.0655,
+    "summary": "DCF feasible. Base: $126.39, 9.7% upside."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7209,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "See fundamentals API"
+    ],
+    "summary": "Grade B, score 0.72."
+  },
+  "sentiment": {
+    "score": 0.673,
+    "label": "Bullish",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

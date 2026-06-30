@@ -1,0 +1,76 @@
+{
+  "ticker": "TTD",
+  "company_name": "The Trade Desk",
+  "report_date": "2026-06-30",
+  "price": 18.08,
+  "change_pct": -3.06,
+  "overall_stance": "watch",
+  "conviction": 0.58,
+  "one_liner": "TTD -3.1% to $18.08 \u2014 Wyckoff Distribution Phase C-D persists; VCP detected but distribution bias winning; watch $17.47 support.",
+  "price_action": {
+    "open": 17.99,
+    "high": 18.38,
+    "low": 17.47,
+    "close": 18.08,
+    "volume": 26171816,
+    "vol_ratio": 1.187684667159061,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material TTD-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/TTD/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Distribution Phase C-D",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 16.87,
+    "key_resistance": 20.79,
+    "rsi": 33.88,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 1.187684667159061,
+    "volume_signal": "normal",
+    "summary": "RSI: 33.9. Wyckoff: Distribution Phase C-D. VCP: True. EMA50: 20.79, EMA200: 22.45. DCF upside: 47.1%. Grade: B."
+  },
+  "wyckoff_narrative": "Distribution Phase C-D",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 34.16,
+    "upside_pct": 47.1,
+    "bear_value": 19.56,
+    "bull_value": 56.73,
+    "discount_rate": 0.101,
+    "growth_rate": 0.1034,
+    "summary": "DCF feasible. Base: $34.16, 47.1% upside."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.6905,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "See fundamentals API"
+    ],
+    "summary": "Grade B, score 0.69."
+  },
+  "sentiment": {
+    "score": -0.002,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

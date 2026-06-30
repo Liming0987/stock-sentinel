@@ -1,0 +1,76 @@
+{
+  "ticker": "DFTX",
+  "company_name": "Definium Therapeutics",
+  "report_date": "2026-06-30",
+  "price": 47.04,
+  "change_pct": 1.05,
+  "overall_stance": "avoid",
+  "conviction": 0.68,
+  "one_liner": "DFTX +1.1% to $47 \u2014 RSI 92 (highest in watchlist), second consecutive day above upper BB; extreme overbought, avoid chasing.",
+  "price_action": {
+    "open": 46.5,
+    "high": 49.2,
+    "low": 46.05,
+    "close": 47.04,
+    "volume": 4317938,
+    "vol_ratio": 1.1132882164098357,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material DFTX-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/DFTX/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 11.27,
+    "key_resistance": 28.61,
+    "rsi": 91.8,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 1.1132882164098357,
+    "volume_signal": "normal",
+    "summary": "RSI: 91.8. Wyckoff: Accumulation Phase A-B. VCP: False. EMA50: 28.61, EMA200: 25.29. DCF upside: N/A%. Grade: C."
+  },
+  "wyckoff_narrative": "Accumulation Phase A-B",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Pre-revenue or insufficient FCF for DCF."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.506,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "Negative FCF"
+    ],
+    "summary": "Grade C, score 0.51."
+  },
+  "sentiment": {
+    "score": 0.199,
+    "label": "Bullish",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "low"
+}

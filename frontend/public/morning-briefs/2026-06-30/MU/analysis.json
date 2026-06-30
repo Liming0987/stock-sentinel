@@ -1,0 +1,76 @@
+{
+  "ticker": "MU",
+  "company_name": "Micron Technology",
+  "report_date": "2026-06-30",
+  "price": 1154.29,
+  "change_pct": 0.79,
+  "overall_stance": "hold",
+  "conviction": 0.6,
+  "one_liner": "MU +0.8% to $1,154 \u2014 post-earnings consolidation, Grade A, RSI 57 neutral; hold if positioned, new entry needs pullback to $1,050\u2013$1,100.",
+  "price_action": {
+    "open": 1144.73,
+    "high": 1168.68,
+    "low": 1124.66,
+    "close": 1154.29,
+    "volume": 40238445,
+    "vol_ratio": 0.7053906671180633,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material MU-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/MU/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 853.63,
+    "key_resistance": 1051.77,
+    "rsi": 56.52,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.7053906671180633,
+    "volume_signal": "drying up",
+    "summary": "RSI: 56.5. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 1051.77, EMA200: 1038.81. DCF upside: 3.2%. Grade: A."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1192.24,
+    "upside_pct": 3.2,
+    "bear_value": 690.46,
+    "bull_value": 1845.66,
+    "discount_rate": 0.15,
+    "growth_rate": 0.5,
+    "summary": "DCF feasible. Base: $1192.24, 3.2% upside."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.8421,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "High Leverage (D/E>3)"
+    ],
+    "summary": "Grade A, score 0.84."
+  },
+  "sentiment": {
+    "score": 0.087,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,76 @@
+{
+  "ticker": "ASTS",
+  "company_name": "AST SpaceMobile",
+  "report_date": "2026-06-30",
+  "price": 88.86,
+  "change_pct": 2.41,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "ASTS +2.4% to $88.86 \u2014 post-BlueBird-launch consolidation; volume drying up (24M, 0.89x) while holding near highs is constructive; watch for ST of $76\u2013$81 support.",
+  "price_action": {
+    "open": 81.92,
+    "high": 89.87,
+    "low": 81.92,
+    "close": 88.86,
+    "volume": 24033882,
+    "vol_ratio": 0.8934846581070774,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material ASTS-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/ASTS/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 59.59,
+    "key_resistance": 94.08,
+    "rsi": 50.57,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.8934846581070774,
+    "volume_signal": "normal",
+    "summary": "RSI: 50.6. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 94.08, EMA200: 102.14. DCF upside: N/A%. Grade: D."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Pre-revenue or insufficient FCF for DCF."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.4827,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "Negative FCF"
+    ],
+    "summary": "Grade D, score 0.48."
+  },
+  "sentiment": {
+    "score": 0.115,
+    "label": "Bullish",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,76 @@
+{
+  "ticker": "SPCX",
+  "company_name": "SpaceX",
+  "report_date": "2026-06-30",
+  "price": 170.86,
+  "change_pct": 4.06,
+  "overall_stance": "watch",
+  "conviction": 0.48,
+  "one_liner": "SPCX +4.1% to $171 \u2014 SpaceX IPO continuation, only 12 trading sessions of history, low conviction from technical side; riding space sector wave.",
+  "price_action": {
+    "open": 163.14,
+    "high": 172.4,
+    "low": 161.64,
+    "close": 170.86,
+    "volume": 79553644,
+    "vol_ratio": 0.4347223862134445,
+    "vol_rank": "#12 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material SPCX-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/SPCX/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 0,
+    "key_resistance": 0,
+    "rsi": 0,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.4347223862134445,
+    "volume_signal": "drying up",
+    "summary": "RSI: 0.0. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 0.00, EMA200: 0.00. DCF upside: N/A%. Grade: D."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Pre-revenue or insufficient FCF for DCF."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.3675,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "See fundamentals API"
+    ],
+    "summary": "Grade D, score 0.37."
+  },
+  "sentiment": {
+    "score": 0.102,
+    "label": "Bullish",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

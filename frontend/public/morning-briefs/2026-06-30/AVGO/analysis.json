@@ -1,0 +1,82 @@
+{
+  "ticker": "AVGO",
+  "company_name": "Broadcom Inc.",
+  "report_date": "2026-06-30",
+  "price": 377.75,
+  "change_pct": 1.42,
+  "overall_stance": "accumulate",
+  "conviction": 0.7,
+  "one_liner": "AVGO +1.4% to $377 \u2014 new watchlist addition, RSI 39 approaching oversold, Grade A fundamentals, 73.8% DCF upside, and OpenAI 10GW AI rack deal; one of the best risk/reward setups in the watchlist.",
+  "price_action": {
+    "open": 374.79,
+    "high": 379.6,
+    "low": 370.7,
+    "close": 377.75,
+    "volume": 26900000,
+    "vol_ratio": 0.84,
+    "vol_rank": "#37 \u2014 slightly below average",
+    "intraday_story": "AVGO opened at $374.79, tested $370.70 early (the low), then recovered to close at $377.75 near the session high of $379.60. Three-session consolidation: $365.02 \u2192 $372.45 \u2192 $377.75 \u2014 three consecutive up days on declining volume (34.8M \u2192 24.3M \u2192 26.9M). The $370 level is establishing itself as near-term support."
+  },
+  "news_catalyst": {
+    "headline": "Broadcom OpenAI 10GW AI Rack Deal; Wall Street $425 Average Target (23 Buy / 2 Hold)",
+    "summary": "Broadcom has an agreement with OpenAI for approximately 10 gigawatts of AI compute racks, with expected revenue of ~$10 billion per GW starting Q1 FY27. This is a massive, multi-year revenue visibility event \u2014 10GW \u00d7 $10B = $100B potential revenue pipeline from OpenAI alone. Wall Street has a Strong Buy consensus: 23 Buy / 2 Hold / 0 Sell, with an average 12-month price target of $425 (12.5% upside from current). Broadcom is also building Alphabet's TPU chips, providing further hyperscaler diversification. The stock started the Iridium acquisition comparison from the RKLB analysis this week as the leading custom silicon AI play.",
+    "source_url": "https://www.tipranks.com/news/avgo-vs-pltr-which-ai-stock-is-a-better-pick-according-to-analysts",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 363.83,
+    "key_resistance": 379.6,
+    "rsi": 39.0,
+    "macd_signal": "bearish \u2014 slightly negative",
+    "volume_ratio_today": 0.84,
+    "volume_signal": "drying up",
+    "summary": "RSI at 39 is approaching oversold \u2014 below 40 is a region historically associated with value entry points in uptrending stocks. Three consecutive up days with drying volume ($34.8M \u2192 $24.3M \u2192 $26.9M) after a drawdown from the $500+ range is consistent with Phase B accumulation. The DCF at 73.8% upside is the highest-conviction fundamental signal in the new additions.\n\nThe stock has declined from what appears to be significantly higher levels (based on the EMA50 and price structure) \u2014 the 90-day dataset shows AVGO has experienced a meaningful correction. At RSI 39 with Grade A fundamentals and a confirmed OpenAI revenue pipeline, the risk/reward is favorable for accumulation on dips."
+  },
+  "wyckoff_narrative": "AVGO shows no formal Wyckoff events in the 90-day dataset but the consolidation at low RSI with drying volume after a drawdown is Phase B accumulation behavior. The three-day recovery at declining volume suggests supply is being absorbed without forced buying. A VCP pattern could form if the stock continues to contract in range over the next 1\u20132 weeks \u2014 look for price to tighten between $370 and $380 on sub-20M volume as the setup criterion.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 653.0,
+    "upside_pct": 73.8,
+    "bear_value": 250.0,
+    "bull_value": 900.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.22,
+    "summary": "DCF upside of 73.8% with Grade A fundamentals (from the Parkev comparison: 44.5% CFO-to-sales margin, 20.3% ROIC, forward P/E 31.5x). The OpenAI 10GW deal provides revenue visibility that DCF models typically can't fully capture. At $377, the margin of safety is substantial."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.82,
+    "key_strengths": [
+      "OpenAI 10GW AI rack agreement \u2014 ~$100B potential revenue pipeline from one customer",
+      "44.5% CFO-to-sales margin (improving to 50%+ post-VMware integration)",
+      "23 Buy / 2 Hold / 0 Sell \u2014 near-perfect analyst consensus",
+      "Dual hyperscaler exposure: OpenAI + Alphabet TPU"
+    ],
+    "key_concerns": [
+      "RSI 39 \u2014 drifting lower, no confirmed bottom yet",
+      "VMware integration still completing \u2014 margins in transition",
+      "Forward P/E 31.5x is reasonable but not cheap for a company on a 73.8% DCF upside claim"
+    ],
+    "summary": "Grade A fundamentals with the highest DCF upside of any Grade A stock in the watchlist (73.8%). The OpenAI 10GW deal is transformational. RSI 39 provides an attractive entry point below the historical average."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 10,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI 39 still declining \u2014 could reach 30 (deeper oversold) before bottoming; $363 support needs to hold",
+    "VMware integration margin recovery delayed \u2014 if margins don't hit 50%+ guidance, the DCF collapses",
+    "OpenAI deal start date Q1 FY27 is 18 months away \u2014 long runway for narrative to shift"
+  ],
+  "watchlist_priority": "high"
+}

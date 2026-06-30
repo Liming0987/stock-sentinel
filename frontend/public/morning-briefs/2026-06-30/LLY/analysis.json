@@ -1,0 +1,76 @@
+{
+  "ticker": "LLY",
+  "company_name": "Eli Lilly and Company",
+  "report_date": "2026-06-30",
+  "price": 1199.43,
+  "change_pct": -2.48,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "LLY -2.5% to $1,199 \u2014 healthy RSI pullback from 78 overbought; low-volume (0.73x) decline confirms profit-taking not distribution; watch for LPS at $1,150\u2013$1,180.",
+  "price_action": {
+    "open": 1228.88,
+    "high": 1230.05,
+    "low": 1190.22,
+    "close": 1199.43,
+    "volume": 2427808,
+    "vol_ratio": 0.7281275441242798,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material LLY-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/LLY/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase C-D",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1051.78,
+    "key_resistance": 1113.54,
+    "rsi": 67.26,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.7281275441242798,
+    "volume_signal": "drying up",
+    "summary": "RSI: 67.3. Wyckoff: Accumulation Phase C-D. VCP: False. EMA50: 1113.54, EMA200: 1091.80. DCF upside: 39.4%. Grade: B."
+  },
+  "wyckoff_narrative": "Accumulation Phase C-D",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1980.36,
+    "upside_pct": 39.4,
+    "bear_value": 941.23,
+    "bull_value": 3343.18,
+    "discount_rate": 0.0877,
+    "growth_rate": 0.362,
+    "summary": "DCF feasible. Base: $1980.36, 39.4% upside."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7387,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "See fundamentals API"
+    ],
+    "summary": "Grade B, score 0.74."
+  },
+  "sentiment": {
+    "score": 0.235,
+    "label": "Bullish",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,76 @@
+{
+  "ticker": "CELH",
+  "company_name": "Celsius Holdings",
+  "report_date": "2026-06-30",
+  "price": 29.28,
+  "change_pct": -1.71,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "CELH -1.7% to $29 \u2014 RSI 48 neutral, 35.4% DCF upside, Phase A-B accumulation; quiet session on 0.62x volume, still no catalyst to trigger breakout.",
+  "price_action": {
+    "open": 29.42,
+    "high": 29.78,
+    "low": 28.98,
+    "close": 29.28,
+    "volume": 5900686,
+    "vol_ratio": 0.6240130679794902,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material CELH-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/CELH/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 27.17,
+    "key_resistance": 29.9,
+    "rsi": 48.06,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.6240130679794902,
+    "volume_signal": "drying up",
+    "summary": "RSI: 48.1. Wyckoff: Accumulation Phase A-B. VCP: False. EMA50: 29.90, EMA200: 30.55. DCF upside: 35.4%. Grade: A."
+  },
+  "wyckoff_narrative": "Accumulation Phase A-B",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 45.35,
+    "upside_pct": 35.4,
+    "bear_value": 22.74,
+    "bull_value": 79.76,
+    "discount_rate": 0.0947,
+    "growth_rate": 0.2273,
+    "summary": "DCF feasible. Base: $45.35, 35.4% upside."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.8065,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "See fundamentals API"
+    ],
+    "summary": "Grade A, score 0.81."
+  },
+  "sentiment": {
+    "score": 0.157,
+    "label": "Bullish",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "INTC",
+  "company_name": "Intel Corporation",
+  "report_date": "2026-06-30",
+  "price": 139.63,
+  "change_pct": 6.01,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "INTC +6% to $139.63 on Cantor $150 target \u2014 three consecutive up days (+$11.31, +8.9%), RSI 65 approaching overbought on a stock up 280% YTD; impressive momentum but entry here is chasing.",
+  "price_action": {
+    "open": 132.18,
+    "high": 142.34,
+    "low": 131.52,
+    "close": 139.63,
+    "volume": 114800000,
+    "vol_ratio": 0.88,
+    "vol_rank": "#44 \u2014 slightly below average",
+    "intraday_story": "INTC opened at $132.18, surged to a high of $142.34 (a new 2026 high), then pulled back to close at $139.63. The $2.71 close-below-high is minor, but the $142.34 high reached and pulled back from on below-average volume suggests some resistance around the $140\u2013$142 zone. Three-session advance: $128.32 \u2192 $131.72 \u2192 $139.63, a total gain of $11.31 (+8.9%) with volume running 99.5M \u2192 106.8M \u2192 114.8M \u2014 steadily increasing, which is constructive for the uptrend."
+  },
+  "news_catalyst": {
+    "headline": "Cantor Fitzgerald Raises Intel Target to $150; Chip Sector-Wide Risk-On Rally",
+    "summary": "Cantor Fitzgerald raised its price target on Intel to $150, citing the generational AI infrastructure buildout and Intel's competitive positioning in compute and accelerators. The upgrade is part of a broader chip sector rally \u2014 AMD rose alongside INTC by similar magnitudes. Intel is now up approximately 280% year-to-date from a $36.90 start-of-year price, making it one of the best-performing large-cap stocks of 2026. The primary catalyst for the year has been the Google TPU foundry order (3M+ chips for 2028 delivery) plus the AI inference market opportunity with Xeon 6+. Today's rally extends the move from the $128 consolidation zone to $139, approaching the $142 intraday high as the next resistance level to clear.",
+    "source_url": "https://www.fxleaders.com/news/2026/06/30/intel-stock-intc-prints-new-high-above-140-marching-toward-150-as-analysts-upgrade-chip-companies/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 131.52,
+    "key_resistance": 142.34,
+    "rsi": 65.0,
+    "macd_signal": "bullish \u2014 MACD +1.05",
+    "volume_ratio_today": 0.88,
+    "volume_signal": "normal",
+    "summary": "INTC is in a strong uptrend with EMA50 ($116.57) and EMA200 ($111.41) both well below current price. RSI at 65 is approaching the 70 overbought threshold after three consecutive up days. The $142.34 intraday high is the key resistance to watch \u2014 on below-average volume, it wasn't cleared convincingly. A close above $142 on expanding volume (>130M) would be the next SOS bar.\n\nThe $131.52 session low is now the first technical support level; a pullback to $131\u2013$133 with drying volume would be a healthy consolidation and potential re-entry zone. The +280% YTD gain means INTC is one of the most crowded long positions in the semiconductor space \u2014 any negative foundry news or Google TPU delivery concern could trigger rapid profit-taking.\n\nThe Cantor $150 target gives 7.4% upside from current levels \u2014 modest for a stock this volatile. The next meaningful catalyst is Intel's Q2 earnings, where the foundry ramp timeline and margins will be scrutinized."
+  },
+  "wyckoff_narrative": "Phase B accumulation tag from the algorithm, but INTC is clearly in an active markup phase given the +280% YTD performance. Three consecutive SOS-style sessions (strong closes, increasing volume) are characteristic of Phase D markup. The risk from a Wyckoff perspective is that extended markup phases eventually attract distribution \u2014 insiders and early buyers selling into retail enthusiasm at new highs. The below-average volume on today's new high is a mild warning sign: rising prices on declining participation can signal the markup is losing momentum.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible given INTC's negative FCF profile. The stock is valued on 2028 foundry revenue potential. Grade D fundamentals contrast sharply with the +280% stock performance \u2014 the market is pricing in a foundry transformation that is not yet in the income statement."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.38,
+    "key_strengths": [
+      "Google 3M+ TPU foundry order validates 18A process node",
+      "AI inference market entry with Xeon 6+ and SambaNova partnership",
+      "Cantor $150 target \u2014 analyst confidence in AI infrastructure positioning"
+    ],
+    "key_concerns": [
+      "+280% YTD creates extreme crowded long \u2014 any negative news triggers violent profit-taking",
+      "Below-average volume at new high ($142.34) \u2014 not strong institutional conviction",
+      "Grade D fundamentals: negative FCF, 2028 revenue is speculative"
+    ],
+    "summary": "Grade D fundamentals in one of the best-performing stocks of 2026 \u2014 the market is buying the story, not the earnings. Entry at current levels means paying full price for a transformation that may not materialize for 18+ months."
+  },
+  "sentiment": {
+    "score": 0.1,
+    "label": "Neutral",
+    "mentions_24h": 15,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "$142.34 is the intraday high reached on below-average volume \u2014 a failed breakout above this level would trigger profit-taking to $131 support",
+    "+280% YTD means enormous unrealized gains from early buyers \u2014 any negative catalyst risks a cascade of profit-taking",
+    "RSI 65 approaching overbought \u2014 historically precedes 5\u201310% pullbacks in extended uptrends",
+    "Grade D fundamentals: if Q2 earnings disappoint on foundry margins, the narrative collapses"
+  ],
+  "watchlist_priority": "medium"
+}

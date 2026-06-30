@@ -1,0 +1,76 @@
+{
+  "ticker": "MELI",
+  "company_name": "MercadoLibre Inc.",
+  "report_date": "2026-06-30",
+  "price": 1697.39,
+  "change_pct": 0.85,
+  "overall_stance": "watch",
+  "conviction": 0.52,
+  "one_liner": "MELI +0.85% to $1,697 \u2014 EMA50 at $1,678 now below price, RSI 56 neutral, MACD bullish; quiet session holding gains.",
+  "price_action": {
+    "open": 1670.01,
+    "high": 1702.48,
+    "low": 1657.01,
+    "close": 1697.39,
+    "volume": 427401,
+    "vol_ratio": 0.8306574999574048,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material MELI-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/MELI/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1565.43,
+    "key_resistance": 1679.33,
+    "rsi": 55.79,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.8306574999574048,
+    "volume_signal": "normal",
+    "summary": "RSI: 55.8. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 1679.33, EMA200: 1713.60. DCF upside: N/A%. Grade: C."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Pre-revenue or insufficient FCF for DCF."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5468,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "Negative FCF"
+    ],
+    "summary": "Grade C, score 0.55."
+  },
+  "sentiment": {
+    "score": 0.338,
+    "label": "Bullish",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

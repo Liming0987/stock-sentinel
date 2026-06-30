@@ -1,0 +1,81 @@
+{
+  "ticker": "PLTR",
+  "company_name": "Palantir Technologies Inc.",
+  "report_date": "2026-06-30",
+  "price": 116.67,
+  "change_pct": 0.84,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "PLTR +0.84% to $116 \u2014 new addition, RSI 30 near oversold, 36.6% DCF upside, 20/2 analyst Buy, but 44% below 52-week high at $207 with no confirmed bottom signal yet.",
+  "price_action": {
+    "open": 114.91,
+    "high": 118.7,
+    "low": 114.57,
+    "close": 116.67,
+    "volume": 35200000,
+    "vol_ratio": 0.85,
+    "vol_rank": "#63 \u2014 below average",
+    "intraday_story": "PLTR opened at $114.91, touched $118.70, and closed at $116.67. Three-session context: June 26 saw 61.4M shares (1.48x) with a strong close at $112.93, June 29 was 45M (1.08x) at $115.70, and today's 35.2M (0.85x) at $116.67 shows declining volume on modest gains \u2014 a stable consolidation above the $112 breakout level from June 26."
+  },
+  "news_catalyst": {
+    "headline": "Palantir + Nvidia Integration (Nemotron Models) + U.S. Army AI Modernization Contract",
+    "summary": "Palantir has secured a key role in U.S. Army modernization efforts, integrating AI data analytics into military operations \u2014 a high-margin, long-duration government contract stream. The Nvidia partnership integrating Nemotron models into Palantir's platform enables secure custom AI model training and deployment for government clients, significantly expanding the AIP (Artificial Intelligence Platform) addressable market. The stock's 52-week range of $106\u2013$207 shows significant correction potential \u2014 PLTR is currently 44% below its 52-week high. 20 analysts Buy vs. 2 Sell, with an average 12-month target of $182.75 (57% upside).",
+    "source_url": "https://www.tipranks.com/news/avgo-vs-pltr-which-ai-stock-is-a-better-pick-according-to-analysts",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 106.37,
+    "key_resistance": 119.08,
+    "rsi": 30.0,
+    "macd_signal": "slightly bearish",
+    "volume_ratio_today": 0.85,
+    "volume_signal": "drying up",
+    "summary": "PLTR is a 'watch and verify' setup: RSI 30 + declining volume + Grade B fundamentals + 20/2 analyst consensus are all constructive, but the 44% drawdown from ATH means the downtrend needs a formal technical bottom before committing."
+  },
+  "wyckoff_narrative": "No formal Wyckoff events detected. The June 26 session (61.4M, 1.48x) could be interpreted as an Automatic Rally off a prior selling climax (the ATH distribution at $207). The three sessions of declining volume since then are consistent with a testing phase. A Secondary Test of the June low ($106.37) with below-average volume would be the LPS confirmation for a Wyckoff accumulation entry.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 159.0,
+    "upside_pct": 36.6,
+    "bear_value": 70.0,
+    "bull_value": 255.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.25,
+    "summary": "DCF at 36.6% upside with Grade B fundamentals (0.69 score). The $182.75 analyst mean target represents 57% upside. At RSI 30, the entry is at the lower end of the historical valuation range for PLTR."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.69,
+    "key_strengths": [
+      "U.S. Army AI modernization \u2014 high-margin, long-duration government revenue",
+      "Nvidia Nemotron integration expands AIP market to secure custom AI",
+      "20 Buy / 2 Sell \u2014 strong analyst consensus at $182.75 avg target"
+    ],
+    "key_concerns": [
+      "44% below 52-week high \u2014 significant distribution has occurred",
+      "Government contract dependency \u2014 any procurement delay impacts revenue visibility",
+      "RSI 30 but no confirmed bottom signal yet"
+    ],
+    "summary": "Grade B with strong government AI tailwinds. The 44% drawdown from ATH reflects the high-multiple correction that hit AI sentiment plays. At RSI 30, the risk/reward is tilting constructive but needs technical confirmation."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 8,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "44% below 52-week high \u2014 the distribution was significant and the 52-week low at $106.37 could be tested before a proper bottom",
+    "No confirmed Wyckoff accumulation signal \u2014 RSI 30 alone is not enough to enter without a volume event",
+    "Government contract procurement delays are an execution risk for the AIP timeline"
+  ],
+  "watchlist_priority": "medium"
+}

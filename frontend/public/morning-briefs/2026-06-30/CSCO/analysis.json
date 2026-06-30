@@ -1,0 +1,76 @@
+{
+  "ticker": "CSCO",
+  "company_name": "Cisco Systems",
+  "report_date": "2026-06-30",
+  "price": 117.46,
+  "change_pct": -0.2,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "CSCO flat \u2014 no catalyst, -95% DCF overvalued; avoid.",
+  "price_action": {
+    "open": 116.7,
+    "high": 119.1,
+    "low": 116.2,
+    "close": 117.46,
+    "volume": 26538869,
+    "vol_ratio": 1.0094644187863178,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material CSCO-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/CSCO/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 113.33,
+    "key_resistance": 120.77,
+    "rsi": 44.12,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 1.0094644187863178,
+    "volume_signal": "normal",
+    "summary": "RSI: 44.1. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 120.77, EMA200: 121.23. DCF upside: -95.2%. Grade: B."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 60.18,
+    "upside_pct": -95.2,
+    "bear_value": 30.32,
+    "bull_value": 106.25,
+    "discount_rate": 0.1002,
+    "growth_rate": 0.1198,
+    "summary": "DCF feasible. Base: $60.18, -95.2% upside."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7148,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "See fundamentals API"
+    ],
+    "summary": "Grade B, score 0.71."
+  },
+  "sentiment": {
+    "score": 0.004,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "low"
+}

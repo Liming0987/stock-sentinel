@@ -1,0 +1,76 @@
+{
+  "ticker": "TSLA",
+  "company_name": "Tesla Inc.",
+  "report_date": "2026-06-30",
+  "price": 420.6,
+  "change_pct": 2.13,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "TSLA +2.1% to $420 \u2014 closed above the 200-day EMA ($412.97) for the first time; RSI 58 heading toward Q2 delivery report binary.",
+  "price_action": {
+    "open": 406.0,
+    "high": 424.54,
+    "low": 406.0,
+    "close": 420.6,
+    "volume": 41757573,
+    "vol_ratio": 0.8937759061543197,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material TSLA-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/TSLA/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 369.04,
+    "key_resistance": 406.77,
+    "rsi": 58.31,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.8937759061543197,
+    "volume_signal": "normal",
+    "summary": "RSI: 58.3. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 406.77, EMA200: 413.05. DCF upside: -690.3%. Grade: D."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 53.22,
+    "upside_pct": -690.3,
+    "bear_value": 34.24,
+    "bull_value": 79.75,
+    "discount_rate": 0.1439,
+    "growth_rate": 0.2278,
+    "summary": "DCF feasible. Base: $53.22, -690.3% upside."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.4822,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "High PE (>80)"
+    ],
+    "summary": "Grade D, score 0.48."
+  },
+  "sentiment": {
+    "score": 0.073,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "medium"
+}

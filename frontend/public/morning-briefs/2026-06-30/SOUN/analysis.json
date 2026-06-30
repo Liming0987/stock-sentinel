@@ -1,0 +1,76 @@
+{
+  "ticker": "SOUN",
+  "company_name": "SoundHound AI",
+  "report_date": "2026-06-30",
+  "price": 6.47,
+  "change_pct": 1.09,
+  "overall_stance": "avoid",
+  "conviction": 0.62,
+  "one_liner": "SOUN +1.1% to $6.47 \u2014 RSI 29 oversold, EMA50 at $8.03 is 24% overhead; speculative AI voice play in deep downtrend.",
+  "price_action": {
+    "open": 6.36,
+    "high": 6.55,
+    "low": 6.3,
+    "close": 6.47,
+    "volume": 19042494,
+    "vol_ratio": 0.7320179038892423,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material SOUN-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/SOUN/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 5.72,
+    "key_resistance": 7.97,
+    "rsi": 28.99,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.7320179038892423,
+    "volume_signal": "drying up",
+    "summary": "RSI: 29.0. Wyckoff: Accumulation Phase B. VCP: False. EMA50: 7.97, EMA200: 8.85. DCF upside: N/A%. Grade: C."
+  },
+  "wyckoff_narrative": "Accumulation Phase B",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Pre-revenue or insufficient FCF for DCF."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5446,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "Negative FCF"
+    ],
+    "summary": "Grade C, score 0.54."
+  },
+  "sentiment": {
+    "score": 0.077,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "low"
+}

@@ -1,0 +1,76 @@
+{
+  "ticker": "CMG",
+  "company_name": "Chipotle Mexican Grill",
+  "report_date": "2026-06-30",
+  "price": 34.0,
+  "change_pct": 3.12,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "CMG +3.1% to $34 \u2014 approaching upper BB ($34.12), RSI 67, -133% DCF overvalued; avoid.",
+  "price_action": {
+    "open": 33.0,
+    "high": 34.02,
+    "low": 32.72,
+    "close": 34.0,
+    "volume": 16434961,
+    "vol_ratio": 0.7597084112475442,
+    "vol_rank": "#90 in 90-day dataset",
+    "intraday_story": "Normal trading activity"
+  },
+  "news_catalyst": {
+    "headline": "No Significant News \u2014 Broad Market Participation",
+    "summary": "No material CMG-specific news today. Stock is participating in the broad AI/tech rally. Refer to sector context in the morning brief summary.",
+    "source_url": "https://finance.yahoo.com/quote/CMG/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 27.85,
+    "key_resistance": 31.08,
+    "rsi": 66.69,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.7597084112475442,
+    "volume_signal": "drying up",
+    "summary": "RSI: 66.7. Wyckoff: Consolidation / No Clear Phase. VCP: False. EMA50: 31.08, EMA200: 30.68. DCF upside: -133.0%. Grade: C."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 14.59,
+    "upside_pct": -133.0,
+    "bear_value": 6.36,
+    "bull_value": 27.45,
+    "discount_rate": 0.0988,
+    "growth_rate": 0.0828,
+    "summary": "DCF feasible. Base: $14.59, -133.0% upside."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5804,
+    "key_strengths": [
+      "See fundamentals API"
+    ],
+    "key_concerns": [
+      "See fundamentals API"
+    ],
+    "summary": "Grade C, score 0.58."
+  },
+  "sentiment": {
+    "score": 0.164,
+    "label": "Bullish",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Monitor EMA50 and RSI levels for trend confirmation.",
+    "Broader market risk from SPY 50-day EMA test."
+  ],
+  "watchlist_priority": "low"
+}

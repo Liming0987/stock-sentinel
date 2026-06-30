@@ -1,0 +1,83 @@
+{
+  "ticker": "TSM",
+  "company_name": "Taiwan Semiconductor Manufacturing Co.",
+  "report_date": "2026-06-30",
+  "price": 477.57,
+  "change_pct": 4.94,
+  "overall_stance": "accumulate",
+  "conviction": 0.75,
+  "one_liner": "TSM +4.9% to $477 \u2014 three-day SOS sequence ($432\u2192$455\u2192$477) with volume drying up on each leg; Barclays raised to $625 and Q2 earnings July 16; this is the cleanest accumulate setup in the watchlist.",
+  "price_action": {
+    "open": 455.61,
+    "high": 479.0,
+    "low": 453.08,
+    "close": 477.57,
+    "volume": 12900000,
+    "vol_ratio": 0.97,
+    "vol_rank": "#48 \u2014 near average",
+    "intraday_story": "TSM opened at $455.61 (gap up from $455.10 close), reached $479.00 intraday, and closed at $477.57 \u2014 a strong close in the upper third of the range. The three-session recovery from the June 26 low of $419.19: Day 1 ($432.35, 18M vol) \u2192 Day 2 ($455.10, 14.9M vol) \u2192 Day 3 ($477.57, 12.9M vol). Volume declining on each successive up day \u2014 exactly the Wyckoff pattern of 'effort reducing, result maintained' indicating absorption rather than forced buying."
+  },
+  "news_catalyst": {
+    "headline": "Barclays Raises TSM to $625; UBS Lifts Taiwan-Listed to T$3,400; Q2 Earnings July 16",
+    "summary": "Two major analyst upgrades hit TSMC simultaneously on June 30. Barclays raised to $625 from $470 (Overweight) \u2014 a 33% upside from current levels \u2014 citing improved revenue and pricing outlook. UBS separately lifted its Taiwan-listed target to T$3,400 from T$3,000 (Buy), projecting TSMC could raise advanced process prices 5\u201310% as early as Q1 2027, reflecting continued supply tightness. Morgan Stanley projects 40% YoY revenue growth in 2026. Q2 earnings are scheduled for July 16, with consensus at $3.80 EPS on ~$40B revenue (+33% YoY). With 17 analysts Buy and 0 Sell, TSMC has the cleanest analyst consensus in the semiconductor space.",
+    "source_url": "https://www.gurufocus.com/news/8937218/us-markets-rise-as-tech-stocks-lead-tsmc-tsm-surges-524",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 453.08,
+    "key_resistance": 479.0,
+    "rsi": 63.0,
+    "macd_signal": "bullish \u2014 MACD +1.42",
+    "volume_ratio_today": 0.97,
+    "volume_signal": "drying up",
+    "summary": "TSM's three-day recovery pattern \u2014 $432 \u2192 $455 \u2192 $477 \u2014 with volume contracting on each leg (18M \u2192 14.9M \u2192 12.9M) is one of the cleanest Wyckoff Sign of Strength (SOS) sequences in the watchlist. Grade A fundamentals (0.89, highest in the watchlist), dual analyst upgrades with a $625 Barclays target, and 17/0 analyst consensus form an unusually strong convergence of technical and fundamental buy signals."
+  },
+  "wyckoff_narrative": "The June 26 session (low $419.19, 18M volume, 1.35x) marked a potential Selling Climax or Spring. The secondary test on June 29 (low $431.09, 14.9M volume, 1.12x) held above the SC low with lower volume \u2014 textbook ST behavior. Today's push to $477 on 12.9M volume (0.97x) \u2014 the lowest volume of the three-day sequence \u2014 is a Last Point of Support breaking into markup. This is Phase C completing and Phase D beginning in Wyckoff terms.\n\nThe declining volume on advancing prices is the critical confirmation: it means supply is being absorbed, not replaced. Each day the stock requires fewer shares to move higher, indicating sellers are running out of stock to sell at these prices. The $453 low today becomes the LPS \u2014 if TSMC pulls back and holds above $453 with below-average volume in the next 2 sessions, that's the re-entry point before the July 16 earnings catalyst.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 18687.85,
+    "upside_pct": 97.5,
+    "bear_value": 300.0,
+    "bull_value": 625.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.18,
+    "summary": "The DCF base case reflects an enormous ADR-adjusted margin of safety. On conventional metrics, Barclays' $625 target implies 31% upside. Grade A fundamentals (0.89 score) with 40% projected YoY revenue growth support the premium. The only persistent discount factor is Taiwan geopolitical risk, which is structural and won't change."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.89,
+    "key_strengths": [
+      "Highest fundamental score in the watchlist (0.89)",
+      "Barclays $625 target \u2014 31% upside from current price",
+      "17 Buy / 0 Sell analyst consensus \u2014 cleanest in semiconductor space",
+      "Potential 5\u201310% advanced process price increases in Q1 2027 (UBS)"
+    ],
+    "key_concerns": [
+      "Taiwan geopolitical risk \u2014 permanent structural discount",
+      "Q2 earnings July 16 \u2014 consensus at $3.80 EPS on $40B revenue; any miss would break the technical pattern",
+      "Intel Foundry winning Google TPU orders nibbles at market share optionality"
+    ],
+    "summary": "Grade A fundamentals, three-day SOS sequence, dual analyst upgrades, 0 Sell ratings \u2014 TSM is the highest-conviction setup in today's watchlist. The only risk is binary: Taiwan geopolitics or a July 16 earnings miss."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 8,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "July 16 Q2 earnings: consensus $3.80 EPS / $40B revenue \u2014 the bar is high after two upgrades; a miss breaks the technical recovery",
+    "Taiwan geopolitical escalation \u2014 any military posturing causes immediate 10\u201315% ADR selloffs",
+    "$479 intraday resistance \u2014 failed to close above $479, needs to clear this level convincingly",
+    "Volume declining on advance is constructive but means any bad news sees a rapid reversal with no buyers below $453"
+  ],
+  "watchlist_priority": "high"
+}
