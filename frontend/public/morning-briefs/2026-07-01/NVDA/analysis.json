@@ -1,0 +1,80 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVIDIA Corporation",
+  "report_date": "2026-07-01",
+  "price": 197.58,
+  "change_pct": -1.25,
+  "overall_stance": "watch",
+  "conviction": 0.65,
+  "one_liner": "NVDA -1.25% to $197.58 on the Meta cloud selloff \u2014 relatively resilient vs peers (MU -10%, INTC -9%), with low-volume decline suggesting institutional holders are not capitulating.",
+  "price_action": {
+    "open": 196.17,
+    "high": 199.85,
+    "low": 193.45,
+    "close": 197.58,
+    "volume": 134672012,
+    "vol_ratio": 0.8,
+    "vol_rank": "Below average (0.80x) \u2014 sellers not urgent",
+    "intraday_story": "NVDA dipped to $193.45 early, recovered to $199.85 mid-day, then settled at $197.58. The 0.80x below-average volume on a day when MU lost 10% and INTC lost 9% signals that NVIDIA holders view Meta's cloud plans as a second-order threat rather than a direct competitor. NVIDIA supplies both Meta's AI infrastructure AND any future excess-compute monetization business."
+  },
+  "news_catalyst": {
+    "headline": "Meta cloud announcement hits AI chip sector; NVDA declines just 1.25% vs MU -10.57% and INTC -9.03%",
+    "summary": "NVIDIA's comparative resilience today is the story. Meta's cloud plan is actually double-edged for NVDA: if Meta sells compute time, it still needs NVDA's GPUs to run it. The incremental concern is whether Meta's announcement signals the hyperscaler AI buildout is near peak \u2014 which would slow incremental H200/B200 orders. But NVIDIA's backlog remains years long and competitors (AMD, Intel) are still nowhere close to matching H100/B200 performance. The market is differentiating: memory (commodity) gets sold hard; GPU leaders (duopolies) get a pass.",
+    "source_url": "https://sherwood.news/markets/meta-surges-report-entering-into-cloud-business-excess-compute/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 189.8,
+    "key_resistance": 200.63,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0.8,
+    "volume_signal": "drying up",
+    "summary": "NVDA has been consolidating between $189-201 for the past week. The 0.80x volume on today's mild decline is the most constructive data point \u2014 if institutions were concerned about Meta's cloud plans undermining the AI chip thesis, this would have been a 1.5x+ volume distribution day. Instead, it's a low-volume drift lower. DCF shows $333.93 base intrinsic value vs $197.58 (40.8% MoS) \u2014 the largest-MoS feasible DCF in the chip names. The bear DCF at $192.02 is just below current levels, providing a natural support floor."
+  },
+  "wyckoff_narrative": "NVDA is in consolidation without a clear Wyckoff phase. The stock needs to break above $200 on volume 1.5x+ to initiate a new markup phase, or test the $189.80 June 29 low to potentially establish a Spring setup. Today's action is inconclusive \u2014 neither distribution nor accumulation signal. The 40.8% DCF margin of safety at current levels provides fundamental support for a patient holder.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 333.93,
+    "upside_pct": 40.8,
+    "bear_value": 192.02,
+    "bull_value": 518.73,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF shows $333.93 base (40.8% MoS), $192.02 bear (just below current price), $518.73 bull. The bear DCF near current levels is important \u2014 it means NVDA is already near its fundamental bear-case value, limiting downside on a pure DCF basis."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Q1 FY2027 revenue +85% YoY",
+      "AI GPU monopoly position with H200/B200",
+      "$91B revenue guidance for Q2"
+    ],
+    "key_concerns": [
+      "Meta cloud plans introduce second-order hyperscaler capex risk",
+      "Stock has had massive multiple expansion \u2014 any growth miss is severely punished"
+    ],
+    "summary": "NVIDIA's fundamentals are the strongest in the semiconductor sector. 85% YoY revenue growth with a $91B Q2 guide. Meta's cloud announcement is a minor headwind at most."
+  },
+  "sentiment": {
+    "score": -0.007,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Break below $189.80 (June 29 low) on volume >1.3x invites test of $180 support",
+    "Meta cloud announcement creates a narrative overhang that could weigh on multiple expansion",
+    "Q2 FY2027 earnings reaction (guidance vs expectations) is the key binary event"
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,90 @@
+{
+  "ticker": "CRCL",
+  "company_name": "Circle Internet Group",
+  "report_date": "2026-07-01",
+  "price": 61.95,
+  "change_pct": -1.09,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "CRCL -1.09% to $61.95 following yesterday's 2.86x Selling Climax \u2014 the Open USD consortium (Visa/Mastercard/Stripe/BlackRock + 140 fintechs) threatens Circle's USDC moat, but the post-climax structure is watch-worthy.",
+  "price_action": {
+    "open": 63.71,
+    "high": 66.25,
+    "low": 61.8,
+    "close": 61.95,
+    "volume": 24428741,
+    "vol_ratio": 1.78,
+    "vol_rank": "Significantly elevated \u2014 second highest in recent weeks",
+    "intraday_story": "CRCL opened above yesterday's close at $63.71, pushed to $66.25 intraday (suggesting initial buying interest), then reversed hard to close at $61.95 \u2014 forming a wide-range bearish candle on 1.78x volume. The high-to-low range of $4.45 on elevated volume with a close near the low of day is distribution behavior, not absorption."
+  },
+  "news_catalyst": {
+    "headline": "Open USD consortium (140 fintechs including Visa, Mastercard, Stripe, BlackRock) launches rival stablecoin, threatening Circle's USDC dominance",
+    "summary": "Yesterday (June 30) saw a 2.86x Selling Climax volume when Bloomberg reported that a 140-company coalition \u2014 including every major payments infrastructure player (Visa, Mastercard, Stripe, BlackRock, Coinbase, Ripple, Standard Chartered) \u2014 has launched 'Open Standard' and issued Open USD (OUSD), a direct rival to Circle's USDC. This is existentially significant for Circle's business model: USDC's revenue comes from investing stablecoin reserves in short-term government bonds, so market share erosion directly compresses Circle's revenue.\n\nMeanwhile, USDC's market cap has already been sliding from a YTD high of $80 billion to $73.7 billion \u2014 a trend that predates Open USD. The two-year yield compression to ~4.09% from 4.235% YTD further squeezed reserve income. Circle does have counterbalance: a Nomura MOU signed June 26 to pursue Japanese digital finance opportunities. But the competitive moat just narrowed materially. The active signal still showing in the system may reflect a pre-competition-announcement signal that needs to be re-evaluated.",
+    "source_url": "https://www.benzinga.com/trading-ideas/movers/26/07/60214536/circle-internet-group-faces-new-stablecoin-rivalry-from-open-usd-what-investors-need-to-know",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": null,
+    "vcp_stage": "Stage 2 \u2014 2 contractions (38.3% \u2192 19.2%), both with drying volume",
+    "key_support": 61.8,
+    "key_resistance": 76.15,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 1.78,
+    "volume_signal": "elevated",
+    "summary": "CRCL's VCP had been building nicely: two contractions from the March high of $136.65 (38.3% depth \u2192 19.2% depth, both with volume drying) suggested a classic base forming. The June 29 high of $76.15 was approaching the VCP pivot area. Then the Open USD news hit, and June 30 saw a 2.86x Selling Climax that blew up the VCP structure \u2014 the stock dropped from $73.57 to $62.63 in a single session.\n\nToday's follow-through lower to $61.95 on 1.78x volume shows the Selling Climax did NOT flush out all the sellers. The Wyckoff engine still labels this Accumulation Phase B, but the competitive moat degradation from Open USD is a fundamental change that the technicals can't override. The VCP pivot concept requires the underlying business to remain intact \u2014 if USDC market share continues to erode, the VCP breaks and this becomes a longer-term base-building exercise at much lower levels."
+  },
+  "wyckoff_narrative": "CRCL had been building what looked like a legitimate Accumulation Phase B with two VCP contractions \u2014 a setup that appeared attractive for an entry around $62-65. Yesterday's Selling Climax (2.86x volume) is ambiguous: it could be the Type 1 SC that ends the distribution and initiates accumulation, or it could be the beginning of a Phase C Shakeout before a sharper decline.\n\nThe key Wyckoff discriminator is whether today's follow-through selling (1.78x) is a Secondary Test of the SC low, or whether sellers have fresh fundamental reasons (Open USD) to push lower. With a genuine competitive threat announced, the Wyckoff framework needs to yield to fundamental analysis here: watch $61.80 as the intraday low support. A high-volume bounce back through $66+ would suggest the SC held. A close below $61 on elevated volume would invalidate the accumulation thesis entirely.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF not feasible for CRCL. Analyst consensus showed 200% upside potential (per backend news) before the Open USD announcement significantly altered the competitive landscape. That target needs to be revisited with the new competitive reality priced in."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "USDC is currently the #2 stablecoin with $73.7B market cap",
+      "Nomura partnership opens Japanese digital finance market",
+      "Stablecoin legislation (GENIUS Act) would legitimize the business"
+    ],
+    "key_concerns": [
+      "Open USD coalition (Visa, Mastercard, Stripe, BlackRock, Coinbase, Ripple + 140 fintechs) is the most serious competitive threat Circle has ever faced",
+      "USDC market cap already shrinking from $80B YTD high",
+      "Reserve yield compression (2yr at 4.09% vs 4.235% YTD) squeezes revenue"
+    ],
+    "summary": "The Open USD announcement is the single most important fundamental development for Circle in its history. If even 20% of USDC's market cap migrates to OUSD (backed by every major payments network), Circle's revenue compresses proportionally. This changes the investment thesis from 'regulatory legitimacy unlocks growth' to 'defend the moat against the establishment.'"
+  },
+  "sentiment": {
+    "score": 0.051,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "falling"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "Active Signal",
+      "action": "active",
+      "confidence": null,
+      "entry_low": null,
+      "entry_high": null,
+      "stop_loss": null,
+      "target": null
+    }
+  ],
+  "risks": [
+    "The active strategy signal was generated before the Open USD announcement \u2014 reassess whether it remains valid given the competitive shift",
+    "If CRCL breaks below $61.80 (today's low) on volume >2x, the Selling Climax has NOT held and the stock has further downside \u2014 possibly to the $50-55 range",
+    "Open USD OUSD minting with zero fees and no volume limits is a direct assault on USDC's institutional adoption narrative"
+  ],
+  "watchlist_priority": "high"
+}

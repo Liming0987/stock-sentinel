@@ -1,0 +1,78 @@
+{
+  "ticker": "CMG",
+  "company_name": "Chipotle Mexican Grill, Inc.",
+  "report_date": "2026-07-01",
+  "price": 35.0,
+  "change_pct": 2.94,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "CMG +2.94% but DCF shows 139.9% overvaluation ($14.59 base vs $35) \u2014 Chipotle's premium valuation requires perfect execution of throughput improvements and menu innovation.",
+  "price_action": {
+    "open": 33.96,
+    "high": 35.08,
+    "low": 33.96,
+    "close": 35.0,
+    "volume": 13106394,
+    "vol_ratio": 0.61,
+    "vol_rank": "Below average \u2014 0.61x",
+    "intraday_story": "CMG rallied from $33.96 open to close at $35 on below-average volume. Low conviction move."
+  },
+  "news_catalyst": {
+    "headline": "CMG vs EAT (Chili's) value comparison driving fast-casual sector debate",
+    "summary": "Barron's coverage comparing CMG and EAT (Brinker/Chili's) highlights the valuation divergence in fast casual. CMG trades at a significant growth premium. The stock moved +2.94% but on low volume without a specific catalyst.",
+    "source_url": "https://finance.yahoo.com/quote/CMG/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 33.96,
+    "key_resistance": 35.08,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0.61,
+    "volume_signal": "drying up",
+    "summary": "Low-volume move. DCF overvaluation is the concern."
+  },
+  "wyckoff_narrative": "No strong signal. Premium fast-casual restaurant trading at 2.4x DCF base.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 14.59,
+    "upside_pct": -139.9,
+    "bear_value": 6.36,
+    "bull_value": 27.45,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "Even the DCF bull case of $27.45 is 22% below current $35. CMG trades entirely on brand premium and unit expansion optionality."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Brand pricing power",
+      "Unit expansion runway in international markets"
+    ],
+    "key_concerns": [
+      "139.9% above DCF base",
+      "Consumer wallet pressure reducing visit frequency"
+    ],
+    "summary": "Premium quality restaurant but extreme valuation. No entry at current levels."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "SSS (same-store-sales) deceleration would compress the multiple sharply",
+    "Trading above even the bull DCF scenario"
+  ],
+  "watchlist_priority": "low"
+}

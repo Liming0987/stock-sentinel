@@ -1,0 +1,79 @@
+{
+  "ticker": "SPY",
+  "company_name": "SPDR S&P 500 ETF Trust",
+  "report_date": "2026-07-01",
+  "price": 745.76,
+  "change_pct": -0.14,
+  "overall_stance": "hold",
+  "conviction": 0.7,
+  "one_liner": "SPY -0.14% to $745 \u2014 market broadly flat despite the Meta-driven chip selloff and the start of Q3 2026; sentiment score 0.879 is highest in the watchlist, reflecting broad bull market participation.",
+  "price_action": {
+    "open": 745.0,
+    "high": 749.43,
+    "low": 742.38,
+    "close": 745.76,
+    "volume": 39119066,
+    "vol_ratio": 0.68,
+    "vol_rank": "Below average \u2014 quiet quarter-start session",
+    "intraday_story": "SPY opened flat, tested $749.43 high, then pulled back to $742.38 before closing near unchanged at $745.76. Quarter-start portfolio rebalancing often creates intraday volatility. The -0.14% close masks significant cross-sector divergence: chip names fell 7-10% while AI software names like APP, PLTR rose 8-10%."
+  },
+  "news_catalyst": {
+    "headline": "S&P 500 broadly flat to start Q3 2026 as Meta cloud announcement creates sector rotation from hardware to software AI",
+    "summary": "The dominant theme on Q3 opening day is sector rotation: money is leaving AI hardware/infrastructure (memory chips, foundries, GPU-adjacent) and flowing into AI software (enterprise analytics, ad tech, defense AI). This rotation is a maturation signal \u2014 the market is moving from 'build the infrastructure' to 'who profits from using the infrastructure.' SPY's -0.14% masks this internal churning.",
+    "source_url": "https://tradersunion.com/news/financial-news/show/2549230-meta-cloud-plan-2026-us-market/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 742.38,
+    "key_resistance": 749.43,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0.68,
+    "volume_signal": "drying up",
+    "summary": "SPY is consolidating at all-time high levels. Below-average volume is typical for quarter-start sessions. The broad market resilience (only -0.14% despite significant chip sector selloff) demonstrates the strength of the underlying bid."
+  },
+  "wyckoff_narrative": "SPY is in a macro uptrend with consolidation characteristics. No urgent action needed.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not applicable to an index ETF."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Q3 GDP tracking positive",
+      "Jobs market remains firm (jobs report due today)",
+      "AI productivity gains providing fundamental earnings support"
+    ],
+    "key_concerns": [
+      "Sector rotation could cause elevated intraday volatility",
+      "Geopolitical risks remain"
+    ],
+    "summary": "Macro backdrop supportive. Q3 earnings season starting in 2-3 weeks will be the next major catalyst."
+  },
+  "sentiment": {
+    "score": 0.879,
+    "label": "Very Bullish",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Jobs report released today \u2014 any significant miss creates volatility",
+    "Chip sector selloff (-8-10% in key names) could spread to broader market if narrative escalates"
+  ],
+  "watchlist_priority": "low"
+}

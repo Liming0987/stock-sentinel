@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TTD — Morning Brief 2026-07-01</title>
+<style>
+/* ── Reset & variables ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #fafafa;
+  --surface:  #ffffff;
+  --border:   #e5e7eb;
+  --text:     #111827;
+  --muted:    #6b7280;
+  --faint:    #9ca3af;
+  --accent:   #2563eb;
+  --bullish:  #16a34a;
+  --bearish:  #dc2626;
+  --neutral:  #6b7280;
+  --mixed:    #d97706;
+  --radius:   8px;
+  --shadow:   0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #0f1117;
+    --surface: #1a1d27;
+    --border:  #2d3142;
+    --text:    #f0f2f5;
+    --muted:   #9ca3af;
+    --faint:   #6b7280;
+    --accent:  #60a5fa;
+    --bullish: #4ade80;
+    --bearish: #f87171;
+    --neutral: #9ca3af;
+    --mixed:   #fbbf24;
+    --shadow:  0 1px 3px rgba(0,0,0,.4);
+  }
+}
+/* ── Base ────────────────────────────────────────────────────────── */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 2rem 1.5rem;
+}
+.wrap { max-width: 760px; margin: 0 auto; }
+h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+h3 { font-size: 1rem; font-weight: 600; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin-bottom: 0.75rem; }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.3rem; }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+/* ── Card ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Nav breadcrumb ──────────────────────────────────────────────── */
+.nav {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nav a { color: var(--accent); }
+.nav-sep { color: var(--faint); }
+
+/* ── Stock header ────────────────────────────────────────────────── */
+.stock-header { margin-bottom: 1.5rem; }
+.kicker {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
+}
+.ticker-row {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+.ticker {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;
+}
+.company-name { color: var(--muted); font-size: 1rem; margin-bottom: 0.75rem; }
+.price-row {
+  display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem;
+}
+.price {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 1.6rem; font-weight: 600;
+}
+.change {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 1rem; font-weight: 600;
+}
+.change-up   { color: var(--bullish); }
+.change-down { color: var(--bearish); }
+
+/* ── Pills ───────────────────────────────────────────────────────── */
+.pill {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.25em 0.7em; border-radius: 99px;
+}
+.pill-accumulate { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-watch      { background: color-mix(in srgb, var(--mixed)   15%, transparent); color: var(--mixed);   }
+.pill-hold       { background: color-mix(in srgb, var(--accent)  15%, transparent); color: var(--accent);  }
+.pill-avoid      { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-bullish    { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-bearish    { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-neutral    { background: color-mix(in srgb, var(--neutral) 15%, transparent); color: var(--neutral); }
+.pill-high       { background: color-mix(in srgb, var(--bearish) 12%, transparent); color: var(--bearish); }
+.pill-medium     { background: color-mix(in srgb, var(--mixed)   12%, transparent); color: var(--mixed);   }
+.pill-low        { background: color-mix(in srgb, var(--neutral) 12%, transparent); color: var(--neutral); }
+
+/* ── Conviction bar ──────────────────────────────────────────────── */
+.conv-row { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted); }
+.conv-bar { flex: 1; max-width: 160px; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.conv-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+
+/* ── One-liner ───────────────────────────────────────────────────── */
+.one-liner {
+  font-style: italic; color: var(--muted);
+  font-size: 0.92rem; margin-top: 0.6rem;
+  border-left: 3px solid var(--border); padding-left: 0.75rem;
+}
+
+/* ── Section title ───────────────────────────────────────────────── */
+.section-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 0.75rem;
+}
+
+/* ── Metric rows ─────────────────────────────────────────────────── */
+.metric-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.metric-table td { padding: 0.45rem 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+.metric-table tr:last-child td { border-bottom: none; }
+.metric-table td:first-child { color: var(--muted); width: 50%; }
+.metric-table td:last-child { font-family: "SF Mono", "Fira Code", ui-monospace, monospace; font-weight: 500; text-align: right; }
+.up   { color: var(--bullish); }
+.down { color: var(--bearish); }
+
+/* ── Wyckoff score bar ───────────────────────────────────────────── */
+.wy-bar-wrap { margin: 0.5rem 0; }
+.wy-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.wy-fill { height: 100%; border-radius: 3px; }
+.wy-fill-bullish { background: var(--bullish); }
+.wy-fill-bearish { background: var(--bearish); }
+.wy-fill-neutral { background: var(--neutral); }
+
+/* ── VCP badge ───────────────────────────────────────────────────── */
+.vcp-box {
+  background: color-mix(in srgb, var(--bullish) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bullish) 30%, transparent);
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--bullish);
+  margin: 0.5rem 0;
+}
+.vcp-box small { display: block; font-weight: 400; color: var(--muted); margin-top: 2px; font-size: 0.78rem; }
+
+/* ── News card ───────────────────────────────────────────────────── */
+.news-card { padding-left: 1rem; border-left: 3px solid var(--accent); }
+.news-headline { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.35rem; }
+.news-summary { color: var(--muted); font-size: 0.85rem; line-height: 1.5; margin: 0; }
+
+/* ── Signal cards ────────────────────────────────────────────────── */
+.signal-card {
+  background: color-mix(in srgb, var(--accent) 5%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.88rem;
+}
+.signal-header {
+  display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+.signal-name { font-weight: 600; }
+.signal-conf { margin-left: auto; color: var(--muted); font-size: 0.78rem; }
+.signal-levels {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.78rem; color: var(--muted);
+}
+
+/* ── Two-col grid ────────────────────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.col-label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.col-label-up   { color: var(--bullish); }
+.col-label-down { color: var(--bearish); }
+.two-col li { font-size: 0.85rem; margin-bottom: 0.3rem; }
+
+/* ── Meta footer ─────────────────────────────────────────────────── */
+.report-meta { color: var(--faint); font-size: 0.75rem; margin-top: 2rem; text-align: center; }
+
+@media (max-width: 600px) {
+  .two-col { grid-template-columns: 1fr; }
+  .ticker { font-size: 1.5rem; }
+  .price { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="nav">
+    <a href="../index.html">Morning Brief</a>
+    <span class="nav-sep">/</span>
+    <span>2026-07-01</span>
+    <span class="nav-sep">/</span>
+    <span>TTD</span>
+  </div>
+
+  <!-- ── Stock header ── -->
+  <div class="stock-header">
+    <div class="kicker">Morning Brief · 2026-07-01</div>
+    <div class="ticker-row">
+      <span class="ticker">TTD</span>
+      <span class="pill pill-accumulate">ACCUMULATE</span>
+      <span class="pill pill-high">Priority: HIGH</span>
+      <span class="pill pill-neutral">Grade N/A</span>
+    </div>
+    <div class="company-name">The Trade Desk, Inc.</div>
+    <div class="price-row">
+      <span class="price">$19.15</span>
+      <span class="change change-up">+5.9%</span>
+    </div>
+    <div class="conv-row">
+      <span>Conviction</span>
+      <div class="conv-bar"><div class="conv-fill" style="width:72%"></div></div>
+      <span>72%</span>
+    </div>
+    <div class="one-liner">TTD +5.92% to $19.15 as Guggenheim's enterprise SaaS upgrade de-risked the 'SaaSpocalypse' narrative — DCF shows 43.8% upside and the VCP structure has both contractions with volume drying.</div>
+  </div>
+
+  <!-- ── News & Catalyst ── -->
+  <div class="card">
+    <div class="section-title">News &amp; Catalyst</div>
+    <div class="news-card">
+      <div class="news-headline">
+        <span class="pill pill-bullish" style="margin-right:0.4rem;font-size:0.65rem">BULLISH</span>
+        <a href="https://markets.financialcontent.com/stocks/article/stockstory-2026-7-1-the-trade-desk-ttd-shares-skyrocket-what-you-need-to-know" target="_blank" rel="noopener">Guggenheim upgrades Salesforce and ServiceNow to Buy on valuation, re-rating the entire enterprise SaaS complex</a>
+      </div>
+      <p class="news-summary">The Trade Desk's rally is not about a TTD-specific catalyst but about a valuation reset across the enterprise SaaS sector. Guggenheim analyst John DiFucci — notably a long-term skeptic — upgraded Salesforce and ServiceNow to Buy, arguing explicitly that 'SaaSpocalypse' fears had pushed valuations below reasonable levels. The irony is that DiFucci's note explicitly said this was NOT an AI bull case — he's not saying AI is being monetized, he's saying the AI disruption fear overshoot the repricing.
+
+For TTD, which is down 78.7% from its 52-week high of $89.76 (August 2025) and trading at $19.15, this sector re-rating provides exactly the valuation floor signal that buyers were waiting for. Trade Desk's connected TV (CTV) advertising technology is not being disrupted by AI — if anything, AI-driven programmatic buying is a tailwind for TTD's platform. The stock's collapse from $89 to $19 reflects the general SaaS de-rating, not TTD-specific problems.</p>
+    </div>
+  </div>
+
+  <!-- ── Strategy Signals ── -->
+  <div class="card">
+    <div class="section-title">Strategy Signals</div>
+    <p style="color:var(--muted);font-size:0.85rem">No active strategy signals</p>
+  </div>
+
+  <!-- ── Technical Analysis ── -->
+  <div class="card">
+    <div class="section-title">Technical Analysis</div>
+    <table class="metric-table">
+      <tr><td>Trend</td><td>Sideways</td></tr>
+      <tr><td>Wyckoff Phase</td><td>Distribution Phase C-D</td></tr>
+      <tr><td>Wyckoff Bias</td><td>Neutral</td></tr>
+      <tr>
+        <td>Wyckoff Signals</td>
+        <td>
+          <div>0/5</div>
+          <div class="wy-bar-wrap"><div class="wy-bar"><div class="wy-fill wy-fill-neutral" style="width:0%"></div></div></div>
+        </td>
+      </tr>
+      <tr><td>Key Support</td><td class="up">$17.47</td></tr>
+      <tr><td>Key Resistance</td><td class="down">$24.32</td></tr>
+      <tr><td>RSI (14)</td><td>—</td></tr>
+      <tr><td>MACD</td><td>neutral</td></tr>
+      <tr><td>Volume Ratio</td><td>0.82×</td></tr>
+      <tr><td>Volume Signal</td><td>Normal</td></tr>
+    </table>
+    <div class="vcp-box">
+  ✓ VCP Detected — Pivot: $24.32
+  <small>Stage 2 — 2 contractions (36.1% → 9%), both with drying volume</small>
+</div>
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:0.75rem;margin-bottom:0">TTD has one of the best VCP patterns in the watchlist despite the Wyckoff engine labeling it 'Distribution Phase C-D' (which may reflect the prior markdown from $90 to $17). The VCP contractions are textbook: first from $32.90 (March 5, 2.68x volume max) down 36.1% to $21.03, then up to $24.32 and down only 9% to $22.13 — with both contractions showing volume drying (marked vol_dry: true).
+
+A 36% → 9% contraction sequence with drying volume on both legs is exactly the setup VCP traders look for: diminishing supply, range tightening, buyers absorbing. The second contraction's low of $22.13 was the pivot to watch. Today's close at $19.15 is below that level, which means we're trading at the lower end of the base — but this is also where the Wyckoff Spring (final shakeout below support before markup) typically occurs.
+
+The DCF base intrinsic value of $34.07 vs $19.15 represents 43.8% upside — a compelling value anchor that supports why buyers were stepping in on the Guggenheim catalyst.</p>
+  </div>
+
+  <!-- ── DCF Valuation ── -->
+  <div class="card">
+    <div class="section-title">DCF Valuation</div>
+    <table class="metric-table">
+  <tr><td>Intrinsic Value (base)</td><td>$34.07</td></tr>
+  <tr><td>Upside / Downside</td><td class="up">+43.8%</td></tr>
+  <tr><td>Bear / Bull Range</td><td>— – —</td></tr>
+  <tr><td>Discount Rate</td><td>0.0%</td></tr>
+</table>
+<p style="color:var(--muted);font-size:0.85rem;margin-top:0.75rem;margin-bottom:0">DCF shows $34.07 base intrinsic value vs $19.15 current — 43.8% margin of safety. This is the second-largest DCF upside in the watchlist after APP. Given that TTD's CTV advertising tech fundamentals have not changed (the stock decline was valuation-multiple compression, not revenue collapse), the DCF supports a meaningful rebound thesis.</p>
+  </div>
+
+  <!-- ── Fundamentals ── -->
+  <div class="card">
+    <div class="section-title">Fundamentals</div>
+    <div class="two-col">
+      <div>
+        <div class="col-label col-label-up">Strengths</div>
+        <ul><li>Market leader in programmatic CTV advertising — structural growth market</li><li>43.8% DCF margin of safety reflects market overshooting on downside</li><li>Guggenheim re-rating confirms the valuation floor</li></ul>
+      </div>
+      <div>
+        <div class="col-label col-label-down">Concerns</div>
+        <ul><li>Down 78.7% from 52-week high — bears had valid concerns about revenue growth decelerating</li><li>AI disruption to traditional ad agencies could reduce demand for external DSPs like TTD</li><li>Low volume on today's rally (0.82x) — conviction buyers haven't fully committed yet</li></ul>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:0.75rem;margin-bottom:0">TTD's fundamentals around CTV advertising leadership remain intact. The collapse from $89 was multiple compression, not a fundamental business deterioration. The DCF supports 43.8% upside and the VCP structure provides a tactical entry thesis.</p>
+  </div>
+
+  <!-- ── Sentiment ── -->
+  <div class="card">
+    <div class="section-title">Social Sentiment</div>
+    <table class="metric-table">
+      <tr>
+        <td>Score</td>
+        <td><span class="pill pill-neutral">Neutral</span> <span style="font-family:monospace">+0.00</span></td>
+      </tr>
+      <tr><td>Mentions (24h)</td><td>None</td></tr>
+      <tr><td>Trend</td><td>Flat</td></tr>
+    </table>
+  </div>
+
+  <!-- ── Risks ── -->
+  <div class="card">
+    <div class="section-title">Risks to Watch</div>
+    <ul style="font-size:0.88rem;color:var(--muted)"><li>Low volume on today's rally (0.82x) means institutions are not fully committed yet — this could be a one-day bounce rather than a confirmed base breakout</li><li>VCP pivot at $22.13 needs to be reclaimed on high volume to confirm the setup; the stock is currently trading 13% below that level</li><li>If Q2 revenue guidance disappoints expectations, the valuation re-rating thesis evaporates</li></ul>
+  </div>
+
+  <p class="report-meta">Generated 2026-07-02 01:23 UTC · Stock Sentinel Morning Brief</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+{
+  "ticker": "TSM",
+  "company_name": "Taiwan Semiconductor Manufacturing Company Limited",
+  "report_date": "2026-07-01",
+  "price": 444.23,
+  "change_pct": -6.98,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "TSM -6.98% to $444 on above-average volume as the Meta cloud announcement raised doubts about near-term hyperscaler chip orders \u2014 a macro headwind for the world's leading chip foundry.",
+  "price_action": {
+    "open": 467.67,
+    "high": 468.51,
+    "low": 443.47,
+    "close": 444.23,
+    "volume": 18465871,
+    "vol_ratio": 1.36,
+    "vol_rank": "Above average \u2014 top-3 volume session in recent weeks",
+    "intraday_story": "TSM opened at $467.67, barely bounced to $468.51, and sold off to close at $444.23 near the low of day \u2014 a clean range-low close on 1.36x volume. This is more concerning than INTC or NVDA's declines today because the volume was genuinely elevated (1.36x), suggesting institutional sellers actively participated rather than just stepping aside."
+  },
+  "news_catalyst": {
+    "headline": "Meta AI cloud push raises compute oversupply fears, dragging chip foundry stocks; TSM drops from $477 to $444",
+    "summary": "TSMC is the world's dominant contract chip manufacturer, and any slowdown in hyperscaler AI chip orders flows directly to TSM's top line. Meta's announcement that it will sell excess AI compute capacity \u2014 implying its buildout may be near capacity \u2014 triggered a reassessment of whether the AI chip demand cycle is peaking. TSMC had rallied strongly to $477 yesterday (June 30), and today's gap down from $468 (the open) to $444 represents a sharp pullback after the stock had been building momentum.\n\nThe 1.36x volume \u2014 above average \u2014 is the key distinction from INTC's below-average selloff. TSM is seeing genuine institutional exit pressure, not just momentum unwind. Geopolitical risk (Taiwan Strait tensions, US tariff uncertainty on ADRs) remains a persistent overhang that amplifies selling when macro narratives turn.",
+    "source_url": "https://seekingalpha.com/news/4609003-ai-infrastructure-chip-stocks-fall-after-report-meta-building-cloud-business-for-excess-ai-compute",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 432.0,
+    "key_resistance": 479.0,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 1.36,
+    "volume_signal": "elevated",
+    "summary": "TSM's 90-day dataset shows a consolidation pattern with a series of tests in the $432-479 range. The June 25-26 weak sessions brought TSM from $452 to $432, which then bounced cleanly to $479 on June 30 (prior week's high). Today's reversal from $468 to $444 on elevated 1.36x volume is concerning \u2014 it reverses 70% of the June 26-30 recovery in a single session.\n\nThe $432 level from June 26 is now the critical support to watch. If TSM closes below $432 on elevated volume, it would constitute a lower low and suggest the consolidation range has broken to the downside. The DCF analysis is distorted (shows $19,357 intrinsic value, almost certainly reflecting TWD vs USD conversion issues in the underlying data), so fundamental support here is assessed qualitatively \u2014 TSMC remains the irreplaceable foundry for the most advanced AI chips."
+  },
+  "wyckoff_narrative": "TSM is in 'Consolidation / No Clear Phase' \u2014 the stock has been trading in a wide range without a clear accumulation or distribution sequence in the 90-day window. The elevated volume on today's down day (1.36x) is the most important Wyckoff data point: high-volume declines on range-low closes suggest supply is present and winning the short-term battle.\n\nThe key Wyckoff question is whether $432 acts as a Spring (bullish shakeout below range support) or a genuine breakdown. Given TSMC's structural importance to AI chip production \u2014 Nvidia, AMD, Apple, and Broadcom all rely on TSMC's advanced nodes \u2014 a fundamental case for recovery exists. But the technical setup requires seeing volume dry up and a high-volume up day before the next entry becomes clear.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF model shows a distorted intrinsic value (~$19,357) likely due to TWD vs USD conversion in the underlying financial data \u2014 this figure is not usable. TSMC's valuation is best assessed as a quality franchise at a P/E multiple; at current levels the ADR has historically traded at a reasonable multiple relative to growth."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Only foundry capable of manufacturing Nvidia H100/B200 and Apple A-series at scale",
+      "Dominant 3nm and 2nm capacity",
+      "TSMC Arizona expansion reduces geopolitical tariff risk"
+    ],
+    "key_concerns": [
+      "ADR carries Taiwan Strait geopolitical risk premium",
+      "If AI capex cycle decelerates, TSMC faces volume headwinds in 2027",
+      "US tariff policy on Taiwanese chips adds uncertainty"
+    ],
+    "summary": "TSMC is the irreplaceable node in the AI hardware supply chain. Today's drop is macro-driven rather than fundamental. The company's strategic moat is arguably stronger than any other semiconductor firm. Long-term thesis intact; short-term technicals are cautious."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If the $432 June 26 low breaks on elevated volume, next support is $410-415 (prior accumulation base)",
+    "Any escalation in US-Taiwan trade relations or Strait tensions would amplify selling beyond the Meta catalyst",
+    "TSMC reports earnings in mid-July \u2014 if order guidance is cut, today's selloff looks prescient"
+  ],
+  "watchlist_priority": "high"
+}

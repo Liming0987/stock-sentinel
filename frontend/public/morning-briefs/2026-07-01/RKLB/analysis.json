@@ -1,0 +1,79 @@
+{
+  "ticker": "RKLB",
+  "company_name": "Rocket Lab Corporation",
+  "report_date": "2026-07-01",
+  "price": 100.07,
+  "change_pct": -1.55,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "RKLB -1.55% to $100.07 holding the psychologically important $100 level \u2014 Accumulation Phase B confirmed, but negative sentiment (-0.268) and no DCF feasibility cap the conviction.",
+  "price_action": {
+    "open": 101.19,
+    "high": 107.6,
+    "low": 97.62,
+    "close": 100.07,
+    "volume": 21309760,
+    "vol_ratio": 0.72,
+    "vol_rank": "Below average \u2014 0.72x",
+    "intraday_story": "RKLB touched $97.62 intraday (below $100) but recovered to close at $100.07 \u2014 exactly on the psychological round number. The 0.72x low volume on a test of $100 is constructive; if big sellers were exiting, volume would be higher. The $100 level is the line in the sand."
+  },
+  "news_catalyst": {
+    "headline": "Rocket Lab announced $8 billion bet to rival SpaceX with Neutron rocket program \u2014 buy or avoid?",
+    "summary": "Motley Fool coverage this week asked whether Rocket Lab's $8B Neutron rocket development program positions it as a viable SpaceX rival. RKLB is no longer just a small-satellite launcher \u2014 Neutron represents a medium-lift rocket that would directly compete in the commercial launch market. The news has negative sentiment attached (the -0.268 score suggests the market is skeptical about the capital requirements and timeline), but the long-term thesis is real.",
+    "source_url": "https://www.fool.com/investing/2026/07/01/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 97.62,
+    "key_resistance": 107.6,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0.72,
+    "volume_signal": "drying up",
+    "summary": "Accumulation Phase B + $100 hold = watch. The intraday dip to $97.62 on low volume is exactly what a healthy secondary test looks like. If RKLB holds above $97 for the next few sessions, it sets up for a Phase C advance toward $107-110."
+  },
+  "wyckoff_narrative": "Accumulation Phase B with low-volume test of $100 support. Classic setup but needs volume confirmation on the upside.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible \u2014 Rocket Lab is pre-profitability. Valued on revenue multiple and mission manifest pipeline."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "First private company to reach Mars/Moon orbit commercially",
+      "Neutron rocket program opens large TAM"
+    ],
+    "key_concerns": [
+      "Pre-profitability",
+      "Negative sentiment -0.268",
+      "$8B Neutron capex creates dilution risk"
+    ],
+    "summary": "High-risk/high-reward space play. Hold the $100 level or it becomes a technical failure."
+  },
+  "sentiment": {
+    "score": -0.268,
+    "label": "Bearish",
+    "mentions_24h": null,
+    "trend": "falling"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Break below $97.62 (today's low) invites test of $90",
+    "Neutron program capital requirements create dilution overhang"
+  ],
+  "watchlist_priority": "low"
+}

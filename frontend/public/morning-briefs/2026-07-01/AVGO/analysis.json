@@ -1,0 +1,79 @@
+{
+  "ticker": "AVGO",
+  "company_name": "Broadcom Inc.",
+  "report_date": "2026-07-01",
+  "price": 369.34,
+  "change_pct": -2.23,
+  "overall_stance": "watch",
+  "conviction": 0.65,
+  "one_liner": "AVGO -2.23% on the Meta cloud selloff, but 0.73x below-average volume signals no institutional exodus \u2014 DCF shows 74.4% margin of safety and the pullback looks like an opportunity setup.",
+  "price_action": {
+    "open": 371.79,
+    "high": 373.75,
+    "low": 368.03,
+    "close": 369.34,
+    "volume": 23621758,
+    "vol_ratio": 0.73,
+    "vol_rank": "Below average \u2014 lowest volume session in recent weeks",
+    "intraday_story": "AVGO declined modestly from $377 (prior close) to $369.34 on just 0.73x average volume \u2014 the lowest-volume session in recent trading. This is a classic low-conviction pullback: sellers are present but not urgent, and buyers are stepping away rather than actively distributing. In consolidation context, this is constructive."
+  },
+  "news_catalyst": {
+    "headline": "Broadcom caught in Meta cloud-driven AI chip selloff \u2014 custom ASIC and networking chip exposure affected",
+    "summary": "Broadcom's custom AI ASIC business (building chips for Google, Meta, and other hyperscalers) is theoretically affected by Meta's compute-leasing plans. If Meta builds out its own cloud business and monetizes excess capacity, the immediate growth trajectory for new ASIC orders slows. However, Broadcom's hyperscaler ASIC contracts are typically multi-year programs \u2014 existing contracts don't get canceled, and Meta's cloud plans don't eliminate the need for new silicon, just potentially slow incremental orders.",
+    "source_url": "https://seekingalpha.com/news/4609003-ai-infrastructure-chip-stocks-fall-after-report-meta-building-cloud-business-for-excess-ai-compute",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 363.83,
+    "key_resistance": 379.62,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0.73,
+    "volume_signal": "drying up",
+    "summary": "AVGO's 90-day chart shows a consolidation range roughly $360-380. The low-volume decline today (0.73x) on a macro-headwind day suggests institutions are comfortable holding. The DCF is the standout: $1,442 base intrinsic value vs $369 current \u2014 74.4% margin of safety. This appears distorted (possibly reflecting Broadcom's software + hardware blended model), but even discounting by 50%, there is meaningful fundamental support. The June 4 Buying Climax (3.40x, 80M shares) established strong support around $350-360."
+  },
+  "wyckoff_narrative": "AVGO is in consolidation without a directional Wyckoff read. The June 4 climactic volume day (3.40x) likely represents a demand peak or SC from higher levels. The stock has since traded in a $360-380 range. Low-volume pullbacks like today keep the consolidation intact. Watch for volume expansion on the upside as the signal that markup begins.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1442.05,
+    "upside_pct": 74.4,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF shows $1,442 base intrinsic value \u2014 likely capturing the combined value of Broadcom's semiconductor + VMware software segments. Even applying a 70% haircut to this estimate gives $432, still above current $369. The fundamental case for AVGO is strong."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Custom AI ASIC leader with Google/Meta/Apple as customers",
+      "VMware acquisition diversifies into high-margin software",
+      "74.4% DCF margin of safety"
+    ],
+    "key_concerns": [
+      "Meta cloud plans could slow incremental ASIC order velocity",
+      "VMware integration complexity"
+    ],
+    "summary": "Broadcom is fundamentally one of the strongest franchises in the watchlist. The DCF upside and custom AI chip moat make today's pullback a watch-and-wait opportunity."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If Meta cloud plans materially slow hyperscaler ASIC orders in 2027, Broadcom's custom silicon revenue guide gets cut",
+    "Break below $360 (June 26 low) on volume >1.3x would be technically negative"
+  ],
+  "watchlist_priority": "medium"
+}

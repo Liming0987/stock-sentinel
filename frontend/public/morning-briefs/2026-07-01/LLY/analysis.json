@@ -1,0 +1,81 @@
+{
+  "ticker": "LLY",
+  "company_name": "Eli Lilly and Company",
+  "report_date": "2026-07-01",
+  "price": 1191.74,
+  "change_pct": -0.64,
+  "overall_stance": "accumulate",
+  "conviction": 0.75,
+  "one_liner": "LLY -0.64% to $1,191 on declining volume \u2014 a Wyckoff LPS (Last Point of Support) event tagged today as the stock pulls back from last Thursday's high-volume Sign of Strength, with Phase E (Complete) and DCF showing 39.8% upside.",
+  "price_action": {
+    "open": 1217.51,
+    "high": 1215.8,
+    "low": 1173.93,
+    "close": 1191.74,
+    "volume": 2630478,
+    "vol_ratio": 0.77,
+    "vol_rank": "Below average \u2014 volume drying on pullback is bullish",
+    "intraday_story": "LLY opened at $1,217 (slightly above Thursday's close), briefly touched $1,215.80 (high slightly below open \u2014 an inside-bar start), then sold off to $1,173.93 low before recovering to close at $1,191.74. The 0.77x below-average volume on a -41-point intraday drop is the key positive signal: when a stock pulls back -3.6% from high to low on 23% below-average volume, sellers are not present \u2014 this is a supply-absence pullback, the ideal setup before a continuation."
+  },
+  "news_catalyst": {
+    "headline": "No major news today \u2014 LLY digesting last Thursday's 2.35x high-volume surge from $1,128 to $1,208",
+    "summary": "Last Thursday (June 26), LLY surged from $1,128 to $1,208 on 2.35x volume \u2014 the second-highest volume day in the 90-day dataset. That explosive move was almost certainly a Sign of Strength (SOS) driven by positive GLP-1/weight-loss drug data or an analyst upgrade (the 2.35x volume is strong institutional buying evidence). Today's low-volume pullback ($1,173-$1,215 range, 0.77x volume) is exactly the 'Last Point of Support' (LPS) behavior that Wyckoff Phase E describes: a minor retracement on drying volume that creates the final low-risk entry before the next advance.\n\nLLY's fundamentals around Zepbound and Mounjaro (GLP-1 drugs) remain the strongest growth narrative in large-cap pharma. The Wyckoff LPS tag today is algorithmically generated from the pattern \u2014 it reinforces rather than replaces the fundamental bullish thesis.",
+    "source_url": "https://finance.yahoo.com/quote/LLY/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase E (Complete)",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 1,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1173.93,
+    "key_resistance": 1238.0,
+    "rsi": null,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.77,
+    "volume_signal": "drying up",
+    "summary": "LLY is tagged as 'Accumulation Phase E (Complete)' \u2014 in Wyckoff methodology, Phase E is the final phase of accumulation where the stock breaks out of the accumulation range and enters a markup phase. 'Complete' suggests the engine has identified the transition from consolidation to uptrend.\n\nThe LPS event tagged today means the algorithm has detected a low-volume pullback to support after a high-volume breakout \u2014 precisely the pattern described above. The June 29 high of $1,238 is the nearest resistance; the June 26 SOS day established $1,128-$1,208 as the new base. Today's low of $1,173 held well above the June 26 open of $1,128 \u2014 structural integrity intact.\n\nDCF shows $1,980 intrinsic value vs $1,191 price \u2014 39.8% margin of safety. For a quality pharma franchise with the GLP-1 market opportunity ahead, this is an unusually attractive valuation."
+  },
+  "wyckoff_narrative": "LLY's Wyckoff Phase E (Complete) designation means the algorithm has identified a completed accumulation cycle. Today's LPS (Last Point of Support) tag is the final piece: after the SOS on June 26 (2.35x volume, strong up day), the stock is experiencing a brief consolidation/pullback on drying volume before the next leg higher.\n\nIn Phase E, LPS events are high-conviction entry signals \u2014 they represent the last opportunity to enter before the markup extends. The blueprint: the June 26 SOS cleared the range, June 29-30 consolidated (1.10x volume), and today's LPS (0.77x volume on a pullback) sets the stage. The playbook says the next 5-10 sessions should see LLY advance toward the $1,238+ zone and beyond. A break back below $1,173 on elevated volume would invalidate the Phase E reading.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1980.36,
+    "upside_pct": 39.8,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF base case of $1,980 implies 39.8% upside from $1,191 current \u2014 a substantial margin of safety for a mega-cap pharma name. The GLP-1 market (Zepbound/Mounjaro) represents a multi-decade growth runway that may make even the $1,980 DCF base conservative. The bull case is very wide given obesity drug adoption uncertainty."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Market leader in GLP-1 obesity/diabetes drugs \u2014 Zepbound and Mounjaro",
+      "DCF shows 39.8% upside at current levels",
+      "Massive R&D pipeline with multiple blockbuster candidates"
+    ],
+    "key_concerns": [
+      "$1,191 price creates liquidity constraints for position sizing",
+      "GLP-1 competition from Novo Nordisk's Wegovy remains fierce",
+      "Government drug pricing negotiations (Medicare) represent regulatory risk"
+    ],
+    "summary": "LLY is fundamentally one of the strongest companies in the watchlist. The GLP-1 franchise is the biggest pharmaceutical growth story of the decade. DCF supports 39.8% upside. The Wyckoff LPS + Phase E Complete alignment makes this the clearest accumulate setup in the pre-market scan today."
+  },
+  "sentiment": {
+    "score": 0.38,
+    "label": "Bullish",
+    "mentions_24h": null,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If LLY breaks below the June 26 SOS day open of $1,128 on elevated volume, the Phase E reading is wrong and the stock needs to rebuild its base",
+    "Drug pricing executive orders from the Trump administration have historically caused sharp single-day LLY selloffs",
+    "Position sizing: at $1,191/share, a 1% position in a portfolio requires ~$12/100k \u2014 plan lot sizes carefully"
+  ],
+  "watchlist_priority": "high"
+}

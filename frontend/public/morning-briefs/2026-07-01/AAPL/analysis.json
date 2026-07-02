@@ -1,0 +1,81 @@
+{
+  "ticker": "AAPL",
+  "company_name": "Apple Inc.",
+  "report_date": "2026-07-01",
+  "price": 294.38,
+  "change_pct": 1.73,
+  "overall_stance": "watch",
+  "conviction": 0.45,
+  "one_liner": "AAPL +1.73% to $294 despite a Bloomberg report that Apple is negotiating to buy memory chips from Pentagon-blacklisted Chinese manufacturers \u2014 the stock is resilient but faces geopolitical headline risk.",
+  "price_action": {
+    "open": 293.33,
+    "high": 296.59,
+    "low": 289.2,
+    "close": 294.38,
+    "volume": 50046592,
+    "vol_ratio": 0.82,
+    "vol_rank": "Below average \u2014 quiet session",
+    "intraday_story": "AAPL opened at $293, touched $289.20 early (likely the CXMT/YMTC news reaction), then recovered to close +1.73% at $294.38. The low-volume recovery (0.82x) suggests institutional buyers absorbed the morning dip on the Chinese chip news without panic. The June 26 Buying Climax (4.42x volume, 261M shares \u2014 the largest in the 90-day dataset) was the key event; today's quiet session 5 days later is normal consolidation."
+  },
+  "news_catalyst": {
+    "headline": "Apple in talks to buy memory chips from Pentagon-blacklisted CXMT and YMTC; CEO Tim Cook lobbying Trump administration for regulatory clearance",
+    "summary": "Bloomberg reported that Apple is negotiating to buy DRAM from ChangXin Memory Technologies (CXMT) and NAND from Yangtze Memory Technologies (YMTC) \u2014 both on the Pentagon's Section 1260H military-linked list. The motivation is straightforward: DRAM contract prices surged 55-60% in early 2026, forcing Apple to raise MacBook/iPad/Vision Pro prices by up to 20%. By sourcing from CXMT and YMTC (which already offer high-quality chips at competitive prices), Apple could reduce component costs significantly.\n\nThe regulatory risk is nuanced: the 1260H designation doesn't legally bar private transactions, but Apple fears the suppliers could be escalated to the Commerce Department Entity List (a trade ban) after signing multi-billion contracts. Tim Cook has personally lobbied Treasury Secretary Scott Bessent. This creates a complex risk/reward: success = margin recovery for Apple products; failure (Entity List escalation) = supply chain disruption and political backlash.",
+    "source_url": "https://www.bloomberg.com/news/articles/2026-07-01/apple-seeks-to-buy-chinese-made-memory-chips-with-lobbying-push",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 275.15,
+    "key_resistance": 296.59,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0.82,
+    "volume_signal": "drying up",
+    "summary": "The June 26 Buying Climax (4.42x volume, highest in 90-day dataset) was a significant event \u2014 261M shares traded as AAPL dropped from $288 to $274 and bounced hard. That climactic reversal established $273-274 as the floor. Since then, AAPL has recovered to $294 on declining volume (1.10x \u2192 1.07x \u2192 0.82x), which is the classic post-SC absorption pattern. DCF shows $195.89 base ($333.20 bull) vs $294.38 \u2014 the base case suggests overvaluation at current price."
+  },
+  "wyckoff_narrative": "The June 26 Buying Climax (4.42x, 261M shares) is the most significant structural event in AAPL's recent history on this dataset. This is a Preliminary Support (PS) or Automatic Rally (AR) type event that may mark the end of the prior downtrend. The current consolidation at $275-296 on declining volume is Phase A/B behavior. Watch $275 as the SC low floor; a violation on volume would be seriously negative. Current position: hold or buy small above $273-275 support.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 195.89,
+    "upside_pct": -50.3,
+    "bear_value": 105.52,
+    "bull_value": 333.2,
+    "discount_rate": 0.1047,
+    "growth_rate": 0.1356,
+    "summary": "AAPL is trading 50% above its DCF base case of $195.89 \u2014 technically overvalued by intrinsic value standards. However, AAPL trades at a structural premium due to its ecosystem moat and Services growth. Bull case DCF of $333 is above current levels, suggesting the bull scenario is needed to justify current prices."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Services segment growing faster than hardware",
+      "Ecosystem lock-in drives pricing power",
+      "Chinese memory chip sourcing could recover margins materially"
+    ],
+    "key_concerns": [
+      "Trading 50% above DCF base case",
+      "Chinese chipmaker negotiations create geopolitical headline risk",
+      "Memory cost surge (55-60%) has already forced consumer price hikes"
+    ],
+    "summary": "AAPL's fundamentals are strong but the stock requires a bull-case DCF scenario to justify current valuation. The Chinese chip story could cut both ways: margin recovery (positive) vs regulatory escalation (negative)."
+  },
+  "sentiment": {
+    "score": 0.338,
+    "label": "Bullish",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Chinese chip deal escalation to Commerce Entity List would force supply chain disruption and drive sharp selloff",
+    "If $275 June 26 SC low breaks, next support is $260-265",
+    "DCF overvaluation means limited upside without fundamental improvement in revenue growth"
+  ],
+  "watchlist_priority": "medium"
+}

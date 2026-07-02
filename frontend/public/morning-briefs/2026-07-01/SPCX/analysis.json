@@ -1,0 +1,80 @@
+{
+  "ticker": "SPCX",
+  "company_name": "Space Exploration Technologies Corp. Class A",
+  "report_date": "2026-07-01",
+  "price": 157.54,
+  "change_pct": -7.8,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "SPCX -7.8% on very low volume (0.58x) \u2014 the sector selloff hits the SpaceX-linked vehicle alongside the Meta cloud narrative, with no fundamental data available and negative sentiment.",
+  "price_action": {
+    "open": 171.57,
+    "high": 171.74,
+    "low": 156.16,
+    "close": 157.54,
+    "volume": 102733579,
+    "vol_ratio": 0.58,
+    "vol_rank": "Very low \u2014 0.58x, well below 177M share 30-day average",
+    "intraday_story": "SPCX gapped down from $170.86 (prior close) to open at $171.57, briefly tested $171.74, then collapsed to $156.16 before closing at $157.54. Despite the -7.8% move, volume was only 0.58x average \u2014 this is a news-driven gap down with low conviction sellers. The low volume on the decline is mildly constructive but the news catalyst (SpaceX competing in AI compute with Meta) is uncertain."
+  },
+  "news_catalyst": {
+    "headline": "TechCrunch: 'Meta, like SpaceX, looks to turn excess AI compute into cash' \u2014 SpaceX compute-leasing plans weigh on SPCX",
+    "summary": "TechCrunch reported that both Meta and SpaceX are turning excess AI compute capacity into a revenue business \u2014 directly competing with AWS, Azure, and Google Cloud. For SPCX (the public vehicle tracking SpaceX), this narrative introduces competitive uncertainty: SpaceX's compute business is not the core business (rockets/Starlink) that SPCX tracks, but it creates noise around capital allocation. The core concern for SPCX holders is whether SpaceX's AI compute buildout diverts capital from rocket development and Starlink expansion.",
+    "source_url": "https://techcrunch.com/2026/07/01/meta-like-spacex-looks-to-turn-excess-ai-compute-into-cash/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 150.0,
+    "key_resistance": 172.4,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.58,
+    "volume_signal": "drying up",
+    "summary": "SPCX has been in a downtrend since June 25 (from ~$160 high) with a recent bounce to $172 on June 30 fully reversed today. The 0.58x volume on the gap down is the only constructive element \u2014 panic sellers are absent. DCF is not feasible (SpaceX is pre-public with limited financial data). Negative sentiment score (-0.164) is the most negative in the chip/space sector."
+  },
+  "wyckoff_narrative": "SPCX lacks a clear Wyckoff pattern. The stock has been trending lower from $172 to $156 in the past week with consistently below-average volume, suggesting a controlled markdown rather than panic distribution. No clear SC or AR has formed to initiate a proper accumulation base.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible \u2014 SpaceX's financial structure is private and not accessible for standard DCF modeling. Valuation is narrative-driven."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Starlink subscriber growth remains strong",
+      "Satellite internet TAM is enormous"
+    ],
+    "key_concerns": [
+      "-0.164 sentiment score, most negative in watchlist AI/space names",
+      "AI compute capital allocation uncertainty",
+      "Not a pure-play stock \u2014 tracks a private company"
+    ],
+    "summary": "Insufficient fundamental data. SPCX tracks SpaceX but the underlying company is private with limited transparency."
+  },
+  "sentiment": {
+    "score": -0.164,
+    "label": "Bearish",
+    "mentions_24h": null,
+    "trend": "falling"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Further below $150 and SPCX has limited technical support",
+    "Negative sentiment (-0.164) and sector selloff momentum could sustain pressure",
+    "No DCF floor to anchor fundamental buyers"
+  ],
+  "watchlist_priority": "low"
+}

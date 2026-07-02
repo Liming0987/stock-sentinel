@@ -1,0 +1,80 @@
+{
+  "ticker": "TSLA",
+  "company_name": "Tesla, Inc.",
+  "report_date": "2026-07-01",
+  "price": 425.3,
+  "change_pct": 1.12,
+  "overall_stance": "avoid",
+  "conviction": 0.55,
+  "one_liner": "TSLA +1.12% but the DCF screams avoid: $53.22 intrinsic value vs $425 price = -699% margin of safety, making this the most overvalued stock on the watchlist by any fundamental measure.",
+  "price_action": {
+    "open": 421.57,
+    "high": 432.86,
+    "low": 418.09,
+    "close": 425.3,
+    "volume": 39819238,
+    "vol_ratio": 0.86,
+    "vol_rank": "Below average \u2014 quiet session",
+    "intraday_story": "TSLA gently rallied from $421 to close at $425.30 on below-average volume. No specific catalyst; the stock is trading on momentum and narrative."
+  },
+  "news_catalyst": {
+    "headline": "Tesla Q2 deliveries expected tomorrow (July 2) \u2014 the near-term binary catalyst",
+    "summary": "Tesla's Q2 2026 delivery report is due tomorrow (July 2). This is the near-term binary that will either confirm or deny the demand recovery narrative. Analyst expectations vary widely. Elon Musk's political activities and the DOGE controversy have weighed on Tesla brand perception, particularly in Europe. The jobs report (July 1) showing economic conditions will also influence the consumer discretionary narrative.",
+    "source_url": "https://finance.yahoo.com/quote/TSLA/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 418.09,
+    "key_resistance": 432.86,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0.86,
+    "volume_signal": "normal",
+    "summary": "TSLA is consolidating in a tight range $418-432. No breakout signals. The Q2 delivery report tomorrow is the near-term catalyst that will drive the next directional move."
+  },
+  "wyckoff_narrative": "No clear Wyckoff pattern. Await Q2 delivery data before forming a view.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 53.22,
+    "upside_pct": -699.1,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF base $53.22 vs $425 price = -699% margin of safety. This is purely a narrative/optionality premium on FSD, Robotaxi, Optimus robot, and energy storage. Zero fundamental support at current price from a DCF perspective."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Energy storage business growing rapidly",
+      "FSD/Robotaxi optionality is real"
+    ],
+    "key_concerns": [
+      "Trading at 8x DCF base value \u2014 extreme valuation risk",
+      "Brand perception damaged by Musk political activities",
+      "China competition from BYD intensifying"
+    ],
+    "summary": "TSLA is one of the most extreme valuation outliers in the market. The stock requires believing in multiple future business lines (FSD, Robotaxi, Optimus) all succeeding simultaneously to justify $425."
+  },
+  "sentiment": {
+    "score": 0.109,
+    "label": "Neutral-Bullish",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Q2 deliveries tomorrow: miss = significant selloff",
+    "DCF at $53 means 87% theoretical downside on fundamentals alone",
+    "FSD progress delays would eliminate the primary bull thesis"
+  ],
+  "watchlist_priority": "low"
+}

@@ -1,0 +1,80 @@
+{
+  "ticker": "CELH",
+  "company_name": "Celsius Holdings, Inc.",
+  "report_date": "2026-07-01",
+  "price": 31.87,
+  "change_pct": 8.85,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "CELH +8.85% to $31.87 on a technical catch-up bounce above key short-term moving averages \u2014 no fundamental catalyst, but the Accumulation A-B structure and DCF MoS support continued watching.",
+  "price_action": {
+    "open": 29.69,
+    "high": 32.24,
+    "low": 29.56,
+    "close": 31.87,
+    "volume": 10619265,
+    "vol_ratio": 1.14,
+    "vol_rank": "Slightly above average \u2014 well below peak sessions",
+    "intraday_story": "CELH gapped up from $29.28 (prior close) to $29.69 open, dipped briefly to $29.56, then drove to a high of $32.24 before settling at $31.87 close. The 1.14x volume is mild for an 8.85% move \u2014 this tells you the rally is more short-covering and technical buy signals triggering than institutional accumulation. The intraday high of $32.24 is notable resistance; the close slightly below it suggests sellers emerged there."
+  },
+  "news_catalyst": {
+    "headline": "CELH trading above 20-day ($29.13) and 50-day ($30.65) moving averages \u2014 technical catch-up with no major fundamental catalyst",
+    "summary": "Celsius moved today on pure technicals, diverging from the broadly weak Nasdaq. Multiple analysts continue to rate the stock positively (UBS, BofA, Morgan Stanley, JPMorgan, Bernstein, Roth Capital) despite trimming price targets from ~$61 to ~$58 recently. The stock's volume has been declining (0.65x \u2192 0.64x on June 25 and June 30) before today's bounce \u2014 consistent with supply absorption in Wyckoff Accumulation Phase A-B.\n\nThe sector context is constructive: Consumer Staples was underperforming the broader market today, which makes CELH's outperformance more stock-specific. Celsius has been gaining market share in the energy drink segment at the expense of Monster and Red Bull, and the Pepsi distribution partnership continues to expand shelf presence. However, with 18 analysts at consensus Buy but price targets around $58-62 vs current $31, there is a significant analyst-vs-market divergence that either represents a major opportunity or reflects fundamental concerns the sell-side is slow to price in.",
+    "source_url": "https://www.benzinga.com/trading-ideas/movers/26/07/60227881/celsius-stock-trades-above-key-short-term-moving-averages-whats-next",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 27.89,
+    "key_resistance": 32.24,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 1.14,
+    "volume_signal": "elevated",
+    "summary": "CELH's Accumulation Phase A-B reading is consistent with a stock that had a significant decline (probably from $80+ highs earlier in 2025) and is building a base. The June 25 low of $27.89 on low volume (0.65x) looks like a potential Spring \u2014 a shakeout below the range low that failed to attract sellers and reversed quickly.\n\nToday's 8.85% bounce on 1.14x volume is encouraging but not conclusive. For a confirmed Sign of Strength (SOS) out of Accumulation Phase B, we'd want to see the stock push through $32-33 on 2x+ volume with follow-through the next session. The $32.24 intraday high today is the immediate resistance; a close above it tomorrow on good volume would strengthen the case."
+  },
+  "wyckoff_narrative": "Celsius appears to be in Accumulation Phase A-B: Phase A is characterized by the Preliminary Support (PS), Selling Climax (SC), and Automatic Rally (AR) that end the prior downtrend, while Phase B involves secondary tests that establish the trading range. The May 7 spike to 24.5M volume (3.29x) was likely the Selling Climax, followed by low-volume sideways action that has characterized Phase B.\n\nToday's bounce from the June 25 low could represent the beginning of a Spring bounce \u2014 the bullish interpretation of Phase B. However, volume confirmation is needed. A genuine SOS would see CELH clear $33-34 on volume 2x+ average. Until then, this remains an observation rather than an entry signal.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 45.35,
+    "upside_pct": 29.7,
+    "bear_value": 22.74,
+    "bull_value": 79.76,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF shows $45.35 base intrinsic value vs $31.87 current price \u2014 29.7% upside, with a wide range from $22.74 bear to $79.76 bull. The bull case at $79 is close to the 18-analyst consensus mean target of $62, suggesting the sell-side bull case has a DCF foundation. The bear case at $22.74 is below current levels, indicating real downside risk if energy drink growth decelerates."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Pepsi distribution partnership expanding shelf presence nationally",
+      "Market share gains vs Monster/Red Bull",
+      "18 Buy ratings with mean target near $62"
+    ],
+    "key_concerns": [
+      "Stock has declined significantly from prior highs \u2014 growth slowdown was real",
+      "Fair value estimates being trimmed (from $61 to $58) suggests fundamental headwinds"
+    ],
+    "summary": "Celsius has a strong long-term growth story in premium energy drinks but has faced execution challenges that brought the stock from >$80 to $27 at the lows. The DCF 30% upside and analyst buy consensus suggest the worst may be priced in, but confirmation requires improving revenue trends."
+  },
+  "sentiment": {
+    "score": 0.109,
+    "label": "Slightly Bullish",
+    "mentions_24h": null,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Today's 1.14x volume is insufficient to confirm a Phase B SOS \u2014 if tomorrow opens weak, the bounce fails and $27.89 becomes the next test",
+    "18 analyst Buy ratings with a $62 mean target vs $31 price creates a risk of continued target trimming if revenue growth disappoints",
+    "No fundamental catalyst today means the move is entirely technical \u2014 which means it can reverse just as technically"
+  ],
+  "watchlist_priority": "medium"
+}

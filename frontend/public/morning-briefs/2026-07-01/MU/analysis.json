@@ -1,0 +1,79 @@
+{
+  "ticker": "MU",
+  "company_name": "Micron Technology, Inc.",
+  "report_date": "2026-07-01",
+  "price": 1032.28,
+  "change_pct": -10.57,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "MU collapsed -10.57% to $1,032 \u2014 the worst day of the month \u2014 as Meta's plan to sell excess AI compute spooked the market on potential memory chip demand softening.",
+  "price_action": {
+    "open": 1082.08,
+    "high": 1097.0,
+    "low": 1032.2,
+    "close": 1032.28,
+    "volume": 50305786,
+    "vol_ratio": 0.89,
+    "vol_rank": "Below average \u2014 not a climactic selloff",
+    "intraday_story": "MU gapped down from $1,154 close to open at $1,082, briefly bounced to $1,097, then fell continuously to close near the low at $1,032. This is a grinding distribution day rather than a panic flush: the below-average volume (0.89x) on a -10.57% drop means institutional sellers were in control at the open but retail panic buying was limited \u2014 distribution rather than capitulation."
+  },
+  "news_catalyst": {
+    "headline": "Meta's plan to launch a cloud business selling excess AI compute triggers memory chip demand concerns",
+    "summary": "The catalyst for today's selloff was a Bloomberg report that Meta Platforms is building a cloud infrastructure business to sell access to its excess AI compute capacity \u2014 transitioning from a pure buyer of computing power to a market participant competing with AWS, Azure, and Google Cloud. The logic hitting memory stocks like MU is that if Meta is building out excess capacity and now plans to monetize it rather than buy more, the implied signal is a slowdown in hyperscaler AI capex \u2014 which would reduce demand for HBM (High Bandwidth Memory) and DRAM that Micron produces for AI data centers.\n\nThis is a second blow in less than a week: MU was already under pressure after a massive high-volume down day on June 26 (1.52x volume, tagged as 'high-volume down day \u2014 distribution') that took the stock from $1,255 to $1,132. The stock then bounced to $1,154 on June 30 before today's gap down. The two-week structure looks like a stair-step distribution with lower highs and lower lows.",
+    "source_url": "https://seekingalpha.com/news/4609003-ai-infrastructure-chip-stocks-fall-after-report-meta-building-cloud-business-for-excess-ai-compute",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1000.0,
+    "key_resistance": 1097.0,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.89,
+    "volume_signal": "normal",
+    "summary": "MU's recent structure tells a concerning story. On June 25-26, the stock dropped from $1,255 to $1,132 on massive volume (1.48x then 1.52x) \u2014 a two-day distribution event where institutional selling was evident. The June 30 bounce to $1,154 was on below-average volume (0.74x), characteristic of a weak dead-cat bounce rather than genuine buying.\n\nToday's -10.57% drop on 0.89x volume adds a third leg down. The close at $1,032 is testing the 90-day low area. The $1,000 psychological level is the next key support \u2014 if MU breaks below $1,000 on elevated volume, the next technical support is the April low zone near $900-950.\n\nThe DCF shows base intrinsic value of $1,192 vs current $1,032 \u2014 a 13.4% margin of safety \u2014 but this assumes unchanged growth projections. If the Meta cloud narrative leads to actual hyperscaler capex cuts, Micron's HBM growth estimates would need to be revised downward, compressing the DCF significantly. Watch for earnings guide updates from MU's July 10 setup (reports suggest potential reaction then)."
+  },
+  "wyckoff_narrative": "MU does not fit a clean Wyckoff phase label in the 90-day dataset. However, the price action reads as a mini-distribution top forming at the $1,200-1,255 range (June 25 high), followed by a rapid markdown phase. The June 26 high-volume distribution day was a potential LPSY (Last Point of Supply Yielded) \u2014 the last chance for late buyers before a sustained markdown.\n\nThe absence of a Selling Climax (SC) or Automatic Rally (AR) pattern means the stock has not yet reached the Wyckoff accumulation phase. Until MU either (1) forms a panic flush SC day with volume 3x+ average and a sharp intraday reversal, or (2) builds a proper 4-6 week accumulation range with shrinking volume, the risk remains to the downside. The $1,000 round number is an important psychological level to watch for potential SC behavior.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1192.24,
+    "upside_pct": 13.4,
+    "bear_value": 690.46,
+    "bull_value": 1845.66,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "The DCF shows $1,192 base case (13.4% MoS) with a wide scenario range of $690 bear to $1,845 bull. The bear case at $690 is a serious downside risk if AI capex cycle turns \u2014 MU would need to drop another 33% from here to hit it. The valuation offers some fundamental floor but is highly cycle-dependent."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "HBM3E market leader with significant AI data center exposure",
+      "DCF shows positive margin of safety at current levels"
+    ],
+    "key_concerns": [
+      "Highly cyclical \u2014 memory pricing crashes during oversupply cycles",
+      "Meta cloud news implies potential AI capex pullback"
+    ],
+    "summary": "Micron is fundamentally levered to the AI memory demand cycle. The Meta cloud announcement introduces genuine risk that the HBM demand narrative is peaking \u2014 if hyperscalers slow new AI cluster buildouts, MU's next earnings guide could disappoint sharply."
+  },
+  "sentiment": {
+    "score": 0.059,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "falling"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If the $1,000 level breaks on elevated volume (>1.5x), this becomes a momentum short candidate toward the $900-950 zone \u2014 avoid buying the dip prematurely",
+    "MU earnings report context around July 10 \u2014 if guidance is cut citing demand uncertainty, the 13.4% DCF MoS evaporates",
+    "The Meta cloud narrative could reverse if Meta's cloud plans fail to materialize \u2014 but that confirmation would take months, not days"
+  ],
+  "watchlist_priority": "high"
+}

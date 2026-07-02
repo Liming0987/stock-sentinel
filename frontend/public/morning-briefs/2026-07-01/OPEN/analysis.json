@@ -1,0 +1,81 @@
+{
+  "ticker": "OPEN",
+  "company_name": "Opendoor Technologies Inc.",
+  "report_date": "2026-07-01",
+  "price": 4.94,
+  "change_pct": 6.93,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "OPEN +6.93% to $4.94 on 2.05x volume \u2014 three consecutive high-volume up days signal a housing-rebound accumulation surge, but the business remains deeply unprofitable.",
+  "price_action": {
+    "open": 4.61,
+    "high": 5.13,
+    "low": 4.57,
+    "close": 4.94,
+    "volume": 99029365,
+    "vol_ratio": 2.05,
+    "vol_rank": "Second highest in 90-day dataset",
+    "intraday_story": "OPEN gapped up from $4.62 close to $4.61 open, touched $4.57 low, then drove to $5.13 high and settled at $4.94. This is the third consecutive high-volume up day (June 29: 1.78x, June 30: 1.76x, July 1: 2.05x) after the June 26 Buying Climax (4.01x). Volume is building on the upside \u2014 this pattern suggests institutional accumulation, not just retail momentum."
+  },
+  "news_catalyst": {
+    "headline": "iBuyer sector rallying on housing market rebound \u2014 Opendoor homes purchased Q1 +45% QoQ, Q1 revenue $720M",
+    "summary": "Opendoor's Q1 2026 results showed the business is recovering: revenue of $720M, homes purchased +45% QoQ to 2,474, and gross margin expanded to 10%. Lower mortgage rates are boosting refinancing volume and home transaction velocity \u2014 directly benefiting Opendoor's iBuying model. The housing rebound narrative is gaining momentum and iBuyer stocks are rallying in sympathy with mortgage lenders like Rocket Companies (+13% earlier this month).",
+    "source_url": "https://247wallst.com/investing/2026/06/24/rocket-companies-jumps-13-opendoor-climbs-5-on-refinancing-driven-housing-rebound/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 4.57,
+    "key_resistance": 5.13,
+    "rsi": null,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 2.05,
+    "volume_signal": "elevated",
+    "summary": "The June 26 Buying Climax (4.01x, 171M shares \u2014 highest in 90-day dataset) was the starting gun for the current run. Three subsequent sessions (June 29: 1.78x, June 30: 1.76x, today: 2.05x) have all been high-volume up days, building a volume-on-upside pattern that technical traders view as accumulation. The $5.13 intraday high is the nearest resistance; a close above $5 on volume 1.5x+ would be bullish. DCF base $231 vs $4.94 is wildly distorted by pre-profitability assumptions."
+  },
+  "wyckoff_narrative": "OPEN's volume pattern is bullish: high-volume Buying Climax followed by sustained high-volume up days suggests institutional accumulation. The absence of high-volume down days since June 26 is constructive. Watch $4.57 as support; if it holds, $5.50-6.00 is the near-term target.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 231.06,
+    "upside_pct": 97.9,
+    "bear_value": 132.22,
+    "bull_value": 359.76,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF model is severely distorted for OPEN \u2014 the $231 base case reflects the deep pre-profitability capital structure, not realistic near-term business value. Ignore the DCF; value OPEN on revenue trajectory and housing market conditions."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Q1 homes purchased +45% QoQ",
+      "Gross margin expansion to 10%",
+      "Housing market tailwind from lower mortgage rates"
+    ],
+    "key_concerns": [
+      "Operating margin deeply negative (-30%+)",
+      "Business model only works in a liquid, appreciating housing market",
+      "Below $5 stock with high dilution risk"
+    ],
+    "summary": "OPEN is a high-risk speculation on housing market recovery. The Q1 data is genuinely improving but the company remains far from profitability. Treat as a momentum trade, not a value investment."
+  },
+  "sentiment": {
+    "score": 0.114,
+    "label": "Slightly Bullish",
+    "mentions_24h": null,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If mortgage rates reverse or housing data disappoints, OPEN can give back 30-40% quickly",
+    "Operating losses mean dilutive capital raises are always a risk",
+    "Break below $4.57 (today's low) on elevated volume would reverse the accumulation thesis"
+  ],
+  "watchlist_priority": "medium"
+}

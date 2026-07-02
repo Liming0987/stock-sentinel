@@ -1,0 +1,78 @@
+{
+  "ticker": "MELI",
+  "company_name": "MercadoLibre, Inc.",
+  "report_date": "2026-07-01",
+  "price": 1742.19,
+  "change_pct": 2.64,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "MELI +2.64% to $1,742 \u2014 Latin American e-commerce and fintech leader gaining in a quiet session; DCF not feasible suggests the market is pricing in significant growth optionality.",
+  "price_action": {
+    "open": null,
+    "high": null,
+    "low": null,
+    "close": 1742.19,
+    "volume": null,
+    "vol_ratio": null,
+    "vol_rank": "N/A",
+    "intraday_story": "MELI +2.64% with no specific catalyst. Latin American internet stocks benefiting from dollar weakness and regional growth recovery."
+  },
+  "news_catalyst": {
+    "headline": "No specific MELI news; LatAm e-commerce and fintech driving continued growth expectations",
+    "summary": "MercadoLibre's dual flywheel of e-commerce (Mercado Libre) and fintech (Mercado Pago) continues to benefit from rising middle-class consumption and financial inclusion in Brazil, Mexico, and Argentina. No specific news today, but the stock's +2.64% reflects broad EM growth optimism.",
+    "source_url": "https://finance.yahoo.com/quote/MELI/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1700.0,
+    "key_resistance": 1800.0,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": null,
+    "volume_signal": "normal",
+    "summary": "Consolidation near all-time highs. No strong signal."
+  },
+  "wyckoff_narrative": "No clear phase. Long-term uptrend intact.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible \u2014 MELI trades at a significant growth premium that standard DCF models cannot capture."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Dominant LatAm e-commerce + fintech platform",
+      "Growing Revenue 49% YoY"
+    ],
+    "key_concerns": [
+      "LatAm macro volatility (Argentina, Brazil currency risk)",
+      "High valuation multiple"
+    ],
+    "summary": "Exceptional growth franchise. Premium valuation justified by TAM."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "LatAm currency devaluation risk",
+    "US tariff impact on LatAm trade"
+  ],
+  "watchlist_priority": "low"
+}

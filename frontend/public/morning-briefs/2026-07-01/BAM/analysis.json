@@ -1,0 +1,76 @@
+{
+  "ticker": "BAM",
+  "company_name": "Brookfield Asset Management Ltd.",
+  "report_date": "2026-07-01",
+  "price": 45.4,
+  "change_pct": 1.23,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "BAM +1.23% to $45.40 \u2014 quiet positive session in consolidation phase; alternative asset manager with limited watchlist volatility today.",
+  "price_action": {
+    "open": null,
+    "high": null,
+    "low": null,
+    "close": 45.4,
+    "volume": null,
+    "vol_ratio": null,
+    "vol_rank": "N/A",
+    "intraday_story": "BAM +1.23% on no specific news. Alternative asset managers tend to be defensive plays in volatile tech sessions."
+  },
+  "news_catalyst": {
+    "headline": "No specific BAM news today",
+    "summary": "No significant catalyst. BAM benefits from rising alternative asset allocations as institutions diversify away from public equities. The alternative asset management sector is structurally growing.",
+    "source_url": "https://finance.yahoo.com/quote/BAM/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 44.0,
+    "key_resistance": 46.0,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": null,
+    "volume_signal": "normal",
+    "summary": "Consolidation. No strong technical signal."
+  },
+  "wyckoff_narrative": "No clear phase. Low priority for active trading.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF data unavailable from API."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Alternative asset management secular growth",
+      "Global franchise with infrastructure, real estate, private equity"
+    ],
+    "key_concerns": [
+      "Fee revenue sensitive to AUM performance"
+    ],
+    "summary": "Quality business, no urgent catalyst."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "No urgent risk; low priority watchlist name"
+  ],
+  "watchlist_priority": "low"
+}

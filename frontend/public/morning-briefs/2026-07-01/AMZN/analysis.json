@@ -1,0 +1,78 @@
+{
+  "ticker": "AMZN",
+  "company_name": "Amazon.com, Inc.",
+  "report_date": "2026-07-01",
+  "price": 241.7,
+  "change_pct": 1.41,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "AMZN +1.41% \u2014 Meta's cloud push is double-edged for Amazon (AWS competes with Meta) but AMZN's diversified revenue base provides resilience, and the stock trades in quiet consolidation.",
+  "price_action": {
+    "open": null,
+    "high": null,
+    "low": null,
+    "close": 241.7,
+    "volume": null,
+    "vol_ratio": null,
+    "vol_rank": "N/A \u2014 price API returned null candle data",
+    "intraday_story": "AMZN closed at $241.70 (+1.41%). AWS competes directly with Meta's new cloud computing ambitions, but Amazon benefits from being the incumbent hyperscaler that enterprises trust for mission-critical workloads \u2014 Meta's entry targets excess capacity, not Amazon's core enterprise clients."
+  },
+  "news_catalyst": {
+    "headline": "Meta cloud push challenges AWS; Amazon's incumbent advantages in enterprise cloud remain strong",
+    "summary": "Meta's plan to sell excess AI compute is a direct challenge to AWS as the market leader in cloud infrastructure. However, enterprise cloud adoption inertia favors incumbents \u2014 customers have years of AWS integration, security certifications, compliance tooling, and support contracts. Meta's compute marketplace is a challenger, not a replacement.",
+    "source_url": "https://247wallst.com/investing/2026/07/01/meta-platforms-jumps-9-on-potential-plans-to-sell-ai-compute-challenging-amazon-microsoft-google/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 230.0,
+    "key_resistance": 250.0,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": null,
+    "volume_signal": "normal",
+    "summary": "AMZN is trading in a consolidation range. The Meta cloud news is a medium-term headwind for AWS but not an immediate threat. Watch for volume expansion to confirm the next directional move."
+  },
+  "wyckoff_narrative": "Consolidation without a clear Wyckoff phase. AWS competition from Meta is a narrative headwind but the stock held well today.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF data not available from API. Amazon trades at a significant premium for AWS growth and e-commerce network effects."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "AWS #1 cloud provider with >30% market share",
+      "Prime membership flywheel drives retail and logistics efficiency"
+    ],
+    "key_concerns": [
+      "Meta cloud entry creates incremental AWS competition",
+      "Retail margins under pressure from labor costs"
+    ],
+    "summary": "Amazon remains a fortress franchise. Meta's cloud entry is a concern but not an existential threat to AWS."
+  },
+  "sentiment": {
+    "score": 0.092,
+    "label": "Slightly Bullish",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If Meta successfully onboards major AWS customers to its compute marketplace, AWS growth deceleration becomes a real risk",
+    "Antitrust scrutiny of AWS practices"
+  ],
+  "watchlist_priority": "medium"
+}

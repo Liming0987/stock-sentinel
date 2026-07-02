@@ -1,0 +1,78 @@
+{
+  "ticker": "LULU",
+  "company_name": "lululemon athletica inc.",
+  "report_date": "2026-07-01",
+  "price": 116.4,
+  "change_pct": 1.94,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "LULU +1.94% in Accumulation Phase B with DCF showing 7.9% upside \u2014 modest setup but low volume (0.60x) suggests the move lacks institutional conviction.",
+  "price_action": {
+    "open": 115.31,
+    "high": 116.92,
+    "low": 114.03,
+    "close": 116.4,
+    "volume": 2612878,
+    "vol_ratio": 0.6,
+    "vol_rank": "Very low \u2014 0.60x",
+    "intraday_story": "Quiet +1.94% session on very low volume. LULU is consolidating but lacks the volume energy for a breakout."
+  },
+  "news_catalyst": {
+    "headline": "No specific LULU news today \u2014 general consumer sector movement",
+    "summary": "No significant LULU-specific catalyst. The stock is in Phase B accumulation with modest positive price action. DCF base of $126.39 vs $116.40 shows only 7.9% margin of safety \u2014 not compelling enough to be aggressive.",
+    "source_url": "https://finance.yahoo.com/quote/LULU/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 114.03,
+    "key_resistance": 116.92,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0.6,
+    "volume_signal": "drying up",
+    "summary": "Accumulation Phase B on very low volume. The 0.60x volume today is consistent with supply drying up, but no SOS event yet."
+  },
+  "wyckoff_narrative": "Accumulation Phase B, drying volume. Watch for SOS above $117 on volume 1.5x+.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 126.39,
+    "upside_pct": 7.9,
+    "bear_value": 97.51,
+    "bull_value": 148.28,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "7.9% DCF MoS is marginal. Bear case at $97.51 represents real downside risk if athletic wear demand slows."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Premium positioning in athletic wear",
+      "International expansion ongoing"
+    ],
+    "key_concerns": [
+      "Nike and Alo Yoga competition intensifying",
+      "Consumer spend on discretionary items under pressure"
+    ],
+    "summary": "Modest setup. Not compelling enough to be aggressive at current levels."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "7.9% DCF MoS offers limited fundamental buffer",
+    "Consumer discretionary headwinds"
+  ],
+  "watchlist_priority": "low"
+}

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LLY — Morning Brief 2026-07-01</title>
+<style>
+/* ── Reset & variables ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #fafafa;
+  --surface:  #ffffff;
+  --border:   #e5e7eb;
+  --text:     #111827;
+  --muted:    #6b7280;
+  --faint:    #9ca3af;
+  --accent:   #2563eb;
+  --bullish:  #16a34a;
+  --bearish:  #dc2626;
+  --neutral:  #6b7280;
+  --mixed:    #d97706;
+  --radius:   8px;
+  --shadow:   0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #0f1117;
+    --surface: #1a1d27;
+    --border:  #2d3142;
+    --text:    #f0f2f5;
+    --muted:   #9ca3af;
+    --faint:   #6b7280;
+    --accent:  #60a5fa;
+    --bullish: #4ade80;
+    --bearish: #f87171;
+    --neutral: #9ca3af;
+    --mixed:   #fbbf24;
+    --shadow:  0 1px 3px rgba(0,0,0,.4);
+  }
+}
+/* ── Base ────────────────────────────────────────────────────────── */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 2rem 1.5rem;
+}
+.wrap { max-width: 760px; margin: 0 auto; }
+h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+h3 { font-size: 1rem; font-weight: 600; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin-bottom: 0.75rem; }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.3rem; }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+/* ── Card ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Nav breadcrumb ──────────────────────────────────────────────── */
+.nav {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.nav a { color: var(--accent); }
+.nav-sep { color: var(--faint); }
+
+/* ── Stock header ────────────────────────────────────────────────── */
+.stock-header { margin-bottom: 1.5rem; }
+.kicker {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
+}
+.ticker-row {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+.ticker {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;
+}
+.company-name { color: var(--muted); font-size: 1rem; margin-bottom: 0.75rem; }
+.price-row {
+  display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem;
+}
+.price {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 1.6rem; font-weight: 600;
+}
+.change {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 1rem; font-weight: 600;
+}
+.change-up   { color: var(--bullish); }
+.change-down { color: var(--bearish); }
+
+/* ── Pills ───────────────────────────────────────────────────────── */
+.pill {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.25em 0.7em; border-radius: 99px;
+}
+.pill-accumulate { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-watch      { background: color-mix(in srgb, var(--mixed)   15%, transparent); color: var(--mixed);   }
+.pill-hold       { background: color-mix(in srgb, var(--accent)  15%, transparent); color: var(--accent);  }
+.pill-avoid      { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-bullish    { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-bearish    { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-neutral    { background: color-mix(in srgb, var(--neutral) 15%, transparent); color: var(--neutral); }
+.pill-high       { background: color-mix(in srgb, var(--bearish) 12%, transparent); color: var(--bearish); }
+.pill-medium     { background: color-mix(in srgb, var(--mixed)   12%, transparent); color: var(--mixed);   }
+.pill-low        { background: color-mix(in srgb, var(--neutral) 12%, transparent); color: var(--neutral); }
+
+/* ── Conviction bar ──────────────────────────────────────────────── */
+.conv-row { display: flex; align-items: center; gap: 0.6rem; margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted); }
+.conv-bar { flex: 1; max-width: 160px; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.conv-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+
+/* ── One-liner ───────────────────────────────────────────────────── */
+.one-liner {
+  font-style: italic; color: var(--muted);
+  font-size: 0.92rem; margin-top: 0.6rem;
+  border-left: 3px solid var(--border); padding-left: 0.75rem;
+}
+
+/* ── Section title ───────────────────────────────────────────────── */
+.section-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 0.75rem;
+}
+
+/* ── Metric rows ─────────────────────────────────────────────────── */
+.metric-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.metric-table td { padding: 0.45rem 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+.metric-table tr:last-child td { border-bottom: none; }
+.metric-table td:first-child { color: var(--muted); width: 50%; }
+.metric-table td:last-child { font-family: "SF Mono", "Fira Code", ui-monospace, monospace; font-weight: 500; text-align: right; }
+.up   { color: var(--bullish); }
+.down { color: var(--bearish); }
+
+/* ── Wyckoff score bar ───────────────────────────────────────────── */
+.wy-bar-wrap { margin: 0.5rem 0; }
+.wy-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.wy-fill { height: 100%; border-radius: 3px; }
+.wy-fill-bullish { background: var(--bullish); }
+.wy-fill-bearish { background: var(--bearish); }
+.wy-fill-neutral { background: var(--neutral); }
+
+/* ── VCP badge ───────────────────────────────────────────────────── */
+.vcp-box {
+  background: color-mix(in srgb, var(--bullish) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bullish) 30%, transparent);
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--bullish);
+  margin: 0.5rem 0;
+}
+.vcp-box small { display: block; font-weight: 400; color: var(--muted); margin-top: 2px; font-size: 0.78rem; }
+
+/* ── News card ───────────────────────────────────────────────────── */
+.news-card { padding-left: 1rem; border-left: 3px solid var(--accent); }
+.news-headline { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.35rem; }
+.news-summary { color: var(--muted); font-size: 0.85rem; line-height: 1.5; margin: 0; }
+
+/* ── Signal cards ────────────────────────────────────────────────── */
+.signal-card {
+  background: color-mix(in srgb, var(--accent) 5%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.88rem;
+}
+.signal-header {
+  display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+.signal-name { font-weight: 600; }
+.signal-conf { margin-left: auto; color: var(--muted); font-size: 0.78rem; }
+.signal-levels {
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.78rem; color: var(--muted);
+}
+
+/* ── Two-col grid ────────────────────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.col-label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.col-label-up   { color: var(--bullish); }
+.col-label-down { color: var(--bearish); }
+.two-col li { font-size: 0.85rem; margin-bottom: 0.3rem; }
+
+/* ── Meta footer ─────────────────────────────────────────────────── */
+.report-meta { color: var(--faint); font-size: 0.75rem; margin-top: 2rem; text-align: center; }
+
+@media (max-width: 600px) {
+  .two-col { grid-template-columns: 1fr; }
+  .ticker { font-size: 1.5rem; }
+  .price { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="nav">
+    <a href="../index.html">Morning Brief</a>
+    <span class="nav-sep">/</span>
+    <span>2026-07-01</span>
+    <span class="nav-sep">/</span>
+    <span>LLY</span>
+  </div>
+
+  <!-- ── Stock header ── -->
+  <div class="stock-header">
+    <div class="kicker">Morning Brief · 2026-07-01</div>
+    <div class="ticker-row">
+      <span class="ticker">LLY</span>
+      <span class="pill pill-accumulate">ACCUMULATE</span>
+      <span class="pill pill-high">Priority: HIGH</span>
+      <span class="pill pill-neutral">Grade N/A</span>
+    </div>
+    <div class="company-name">Eli Lilly and Company</div>
+    <div class="price-row">
+      <span class="price">$1,191.74</span>
+      <span class="change change-down">-0.6%</span>
+    </div>
+    <div class="conv-row">
+      <span>Conviction</span>
+      <div class="conv-bar"><div class="conv-fill" style="width:75%"></div></div>
+      <span>75%</span>
+    </div>
+    <div class="one-liner">LLY -0.64% to $1,191 on declining volume — a Wyckoff LPS (Last Point of Support) event tagged today as the stock pulls back from last Thursday's high-volume Sign of Strength, with Phase E (Complete) and DCF showing 39.8% upside.</div>
+  </div>
+
+  <!-- ── News & Catalyst ── -->
+  <div class="card">
+    <div class="section-title">News &amp; Catalyst</div>
+    <div class="news-card">
+      <div class="news-headline">
+        <span class="pill pill-bullish" style="margin-right:0.4rem;font-size:0.65rem">BULLISH</span>
+        <a href="https://finance.yahoo.com/quote/LLY/" target="_blank" rel="noopener">No major news today — LLY digesting last Thursday's 2.35x high-volume surge from $1,128 to $1,208</a>
+      </div>
+      <p class="news-summary">Last Thursday (June 26), LLY surged from $1,128 to $1,208 on 2.35x volume — the second-highest volume day in the 90-day dataset. That explosive move was almost certainly a Sign of Strength (SOS) driven by positive GLP-1/weight-loss drug data or an analyst upgrade (the 2.35x volume is strong institutional buying evidence). Today's low-volume pullback ($1,173-$1,215 range, 0.77x volume) is exactly the 'Last Point of Support' (LPS) behavior that Wyckoff Phase E describes: a minor retracement on drying volume that creates the final low-risk entry before the next advance.
+
+LLY's fundamentals around Zepbound and Mounjaro (GLP-1 drugs) remain the strongest growth narrative in large-cap pharma. The Wyckoff LPS tag today is algorithmically generated from the pattern — it reinforces rather than replaces the fundamental bullish thesis.</p>
+    </div>
+  </div>
+
+  <!-- ── Strategy Signals ── -->
+  <div class="card">
+    <div class="section-title">Strategy Signals</div>
+    <p style="color:var(--muted);font-size:0.85rem">No active strategy signals</p>
+  </div>
+
+  <!-- ── Technical Analysis ── -->
+  <div class="card">
+    <div class="section-title">Technical Analysis</div>
+    <table class="metric-table">
+      <tr><td>Trend</td><td>Uptrend</td></tr>
+      <tr><td>Wyckoff Phase</td><td>Accumulation Phase E (Complete)</td></tr>
+      <tr><td>Wyckoff Bias</td><td>Bullish</td></tr>
+      <tr>
+        <td>Wyckoff Signals</td>
+        <td>
+          <div>1/5</div>
+          <div class="wy-bar-wrap"><div class="wy-bar"><div class="wy-fill wy-fill-bullish" style="width:20%"></div></div></div>
+        </td>
+      </tr>
+      <tr><td>Key Support</td><td class="up">$1,173.93</td></tr>
+      <tr><td>Key Resistance</td><td class="down">$1,238.00</td></tr>
+      <tr><td>RSI (14)</td><td>—</td></tr>
+      <tr><td>MACD</td><td>bullish</td></tr>
+      <tr><td>Volume Ratio</td><td>0.77×</td></tr>
+      <tr><td>Volume Signal</td><td>Drying up</td></tr>
+    </table>
+    <p style="color:var(--muted);font-size:0.85rem;margin:0.5rem 0">No VCP setup detected</p>
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:0.75rem;margin-bottom:0">LLY is tagged as 'Accumulation Phase E (Complete)' — in Wyckoff methodology, Phase E is the final phase of accumulation where the stock breaks out of the accumulation range and enters a markup phase. 'Complete' suggests the engine has identified the transition from consolidation to uptrend.
+
+The LPS event tagged today means the algorithm has detected a low-volume pullback to support after a high-volume breakout — precisely the pattern described above. The June 29 high of $1,238 is the nearest resistance; the June 26 SOS day established $1,128-$1,208 as the new base. Today's low of $1,173 held well above the June 26 open of $1,128 — structural integrity intact.
+
+DCF shows $1,980 intrinsic value vs $1,191 price — 39.8% margin of safety. For a quality pharma franchise with the GLP-1 market opportunity ahead, this is an unusually attractive valuation.</p>
+  </div>
+
+  <!-- ── DCF Valuation ── -->
+  <div class="card">
+    <div class="section-title">DCF Valuation</div>
+    <table class="metric-table">
+  <tr><td>Intrinsic Value (base)</td><td>$1,980.36</td></tr>
+  <tr><td>Upside / Downside</td><td class="up">+39.8%</td></tr>
+  <tr><td>Bear / Bull Range</td><td>— – —</td></tr>
+  <tr><td>Discount Rate</td><td>0.0%</td></tr>
+</table>
+<p style="color:var(--muted);font-size:0.85rem;margin-top:0.75rem;margin-bottom:0">DCF base case of $1,980 implies 39.8% upside from $1,191 current — a substantial margin of safety for a mega-cap pharma name. The GLP-1 market (Zepbound/Mounjaro) represents a multi-decade growth runway that may make even the $1,980 DCF base conservative. The bull case is very wide given obesity drug adoption uncertainty.</p>
+  </div>
+
+  <!-- ── Fundamentals ── -->
+  <div class="card">
+    <div class="section-title">Fundamentals</div>
+    <div class="two-col">
+      <div>
+        <div class="col-label col-label-up">Strengths</div>
+        <ul><li>Market leader in GLP-1 obesity/diabetes drugs — Zepbound and Mounjaro</li><li>DCF shows 39.8% upside at current levels</li><li>Massive R&D pipeline with multiple blockbuster candidates</li></ul>
+      </div>
+      <div>
+        <div class="col-label col-label-down">Concerns</div>
+        <ul><li>$1,191 price creates liquidity constraints for position sizing</li><li>GLP-1 competition from Novo Nordisk's Wegovy remains fierce</li><li>Government drug pricing negotiations (Medicare) represent regulatory risk</li></ul>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:0.75rem;margin-bottom:0">LLY is fundamentally one of the strongest companies in the watchlist. The GLP-1 franchise is the biggest pharmaceutical growth story of the decade. DCF supports 39.8% upside. The Wyckoff LPS + Phase E Complete alignment makes this the clearest accumulate setup in the pre-market scan today.</p>
+  </div>
+
+  <!-- ── Sentiment ── -->
+  <div class="card">
+    <div class="section-title">Social Sentiment</div>
+    <table class="metric-table">
+      <tr>
+        <td>Score</td>
+        <td><span class="pill pill-bullish">Bullish</span> <span style="font-family:monospace">+0.38</span></td>
+      </tr>
+      <tr><td>Mentions (24h)</td><td>None</td></tr>
+      <tr><td>Trend</td><td>Rising</td></tr>
+    </table>
+  </div>
+
+  <!-- ── Risks ── -->
+  <div class="card">
+    <div class="section-title">Risks to Watch</div>
+    <ul style="font-size:0.88rem;color:var(--muted)"><li>If LLY breaks below the June 26 SOS day open of $1,128 on elevated volume, the Phase E reading is wrong and the stock needs to rebuild its base</li><li>Drug pricing executive orders from the Trump administration have historically caused sharp single-day LLY selloffs</li><li>Position sizing: at $1,191/share, a 1% position in a portfolio requires ~$12/100k — plan lot sizes carefully</li></ul>
+  </div>
+
+  <p class="report-meta">Generated 2026-07-02 01:23 UTC · Stock Sentinel Morning Brief</p>
+
+</div>
+</body>
+</html>

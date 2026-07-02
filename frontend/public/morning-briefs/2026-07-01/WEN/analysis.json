@@ -1,0 +1,81 @@
+{
+  "ticker": "WEN",
+  "company_name": "The Wendy's Company",
+  "report_date": "2026-07-01",
+  "price": 8.94,
+  "change_pct": 7.84,
+  "overall_stance": "watch",
+  "conviction": 0.4,
+  "one_liner": "WEN +7.84% continuing the 'Wendependence Day' meme squeeze recovery \u2014 the June 24 Selling Climax (11.54x volume) set the floor and the stock is grinding up from post-climax lows.",
+  "price_action": {
+    "open": 8.3,
+    "high": 8.98,
+    "low": 8.2,
+    "close": 8.94,
+    "volume": 29659766,
+    "vol_ratio": 1.25,
+    "vol_rank": "Above average but well below climax levels",
+    "intraday_story": "WEN opened at $8.30, touched $8.20 briefly, then rallied to $8.98 near the close \u2014 almost a clean inside day relative to last week's swings, with the stock grinding toward the $9 psychological level. The 1.25x volume is solidly above average but a fraction of the 11.54x Selling Climax on June 24 and 5.21x the next day. Volume is normalizing, which is what you'd expect after a climactic event."
+  },
+  "news_catalyst": {
+    "headline": "Wendy's 'Wendependence Day' meme campaign, new CFO Steve Cirulis, and Russell 2000 Value index inclusion driving short squeeze continuation",
+    "summary": "Wendy's has been caught in a perfect storm of catalysts since June 24. The original Selling Climax (11.54x volume on June 24) coincided with a viral 'Save Wendy's' campaign on r/WallStreetBets and the announcement that Steve Cirulis was appointed CFO \u2014 the same executive who helped CEO Bob Wright engineer a successful turnaround at Potbelly. This executive reunion is seen as the strongest long-term fundamental signal in the recent rally.\n\nThe 26.4% short interest created enormous short squeeze pressure: at its peak (June 24), trading was halted multiple times as the stock surged 40% from the previous close. The Russell 2000 Value-Defensive Index addition (effective June 29) added passive fund buying on top of the squeeze dynamics. By today (July 1), the 'Wendependence Day' narrative has settled into more normal grinding price action with declining but above-average volume \u2014 the acute squeeze phase has passed but the new CFO/turnaround narrative provides a fundamental floor.",
+    "source_url": "https://www.abcmoney.co.uk/2026/07/wendys-stock-halted-multiple-times-as-wendependence-day-buzz-takes-over-wall-street",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 2,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 7.22,
+    "key_resistance": 9.07,
+    "rsi": null,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 1.25,
+    "volume_signal": "elevated",
+    "summary": "The Wyckoff picture here is textbook Selling Climax (SC) \u2192 Automatic Rally (AR) \u2192 Secondary Test (ST) sequence. The June 24 session (11.54x volume, tagged as 'Selling climax') established the panic low. June 25 (5.21x, Selling Climax) was a second flush. June 26 (3.72x, Buying Climax interpretation) confirmed the AR as buyers stepped in aggressively.\n\nSince the SC/AR, volume has been declining in orderly steps: 3.72x \u2192 1.64x \u2192 1.30x \u2192 1.25x \u2014 classic volume compression in the post-climax accumulation range. The near-term support is $7.22 (June 25 intraday low) and resistance is $9.07 (June 25 intraday high). Today's close near $8.94 is approaching that resistance level \u2014 a clean break above $9.07 on volume 1.5x+ would signal Phase C initiation and a potential markup leg."
+  },
+  "wyckoff_narrative": "WEN's recent price action is one of the cleaner Wyckoff patterns in the watchlist despite the meme overlay. The June 24 Selling Climax (11.54x volume) represents the type of panic low that exhausts sellers \u2014 when 10x+ normal volume hits a stock at multi-year lows and the price reverses, the supply is definitively cleared. The subsequent Buying Climax on June 26 (3.72x) and declining volume over June 29-July 1 confirms absorption.\n\nThe meme catalyst noise doesn't change the Wyckoff interpretation \u2014 the SC/BC pattern exists regardless of what caused it. The new CFO announcement is the fundamental anchor that distinguishes this from a pure meme play. Next expected event: a Secondary Test (ST) of the June 24-25 low zone ($7.22-7.33) on low volume, which would confirm the SC as the price floor. If that test holds, the stock enters Phase C with a potential markup to the $10+ area.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF data not available. Wendy's trades at a low P/E with a high dividend yield \u2014 the fundamental case for value has been noted (low P/E + huge yield attracted WSB 'save Wendy's' narrative). However, the restaurant sector faces margin pressure from labor costs and weak consumer spending. The new CFO is the real value catalyst \u2014 track execution."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "New CFO Steve Cirulis: prior turnaround success at Potbelly alongside current CEO",
+      "Russell 2000 Value index addition creates passive buying floor",
+      "Low P/E and high dividend yield provide value screen support"
+    ],
+    "key_concerns": [
+      "26.4% short interest \u2014 squeeze dynamics can reverse rapidly",
+      "Restaurant fundamentals: labor costs, consumer wallet pressure",
+      "Prior price was $6.26 before the squeeze \u2014 beware pricing in the turnaround too early"
+    ],
+    "summary": "The Cirulis CFO appointment is the only fundamental change here. The squeeze dynamics created a higher price platform, but the real question is whether Cirulis can actually execute the turnaround. Track Q2 results carefully."
+  },
+  "sentiment": {
+    "score": 0.046,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Short squeeze has significantly compressed \u2014 26.4% short interest was the fuel; as the squeeze resolves, that tailwind disappears",
+    "Meme stocks fade: if WSB attention moves to another ticker, WEN could give back half the gains within a week",
+    "A pullback to test the $7.22-7.33 SC low is part of the normal Wyckoff sequence \u2014 don't chase; wait for the test"
+  ],
+  "watchlist_priority": "medium"
+}

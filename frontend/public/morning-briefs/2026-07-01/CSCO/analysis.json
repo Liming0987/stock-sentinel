@@ -1,0 +1,78 @@
+{
+  "ticker": "CSCO",
+  "company_name": "Cisco Systems, Inc.",
+  "report_date": "2026-07-01",
+  "price": 117.01,
+  "change_pct": -0.38,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "CSCO -0.38% but DCF shows significant overvaluation ($60.18 base vs $117) \u2014 the Strong Buy upgrade from Zacks is hard to reconcile with fundamentals.",
+  "price_action": {
+    "open": 116.54,
+    "high": 117.43,
+    "low": 114.99,
+    "close": 117.01,
+    "volume": 29431194,
+    "vol_ratio": 1.1,
+    "vol_rank": "Slightly above average",
+    "intraday_story": "CSCO flat on the day with 1.10x slightly elevated volume. No major price action."
+  },
+  "news_catalyst": {
+    "headline": "Cisco upgraded to Strong Buy by Zacks; AI networking thesis gaining traction",
+    "summary": "Zacks upgraded CSCO to Strong Buy citing AI-driven networking upgrade cycle. Cisco's AI networking infrastructure (data center interconnects, AI campus networking) is benefiting from the same AI buildout that is helping Nvidia. However, the DCF shows $60.18 base intrinsic value vs $117 current price \u2014 94.4% overvaluation on DCF basis.",
+    "source_url": "https://finance.yahoo.com/quote/CSCO/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 114.99,
+    "key_resistance": 117.43,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 1.1,
+    "volume_signal": "elevated",
+    "summary": "Quiet session. The DCF overvaluation at 94.4% above base case is the primary concern."
+  },
+  "wyckoff_narrative": "No strong technical signal. DCF overvaluation makes this a pass.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 60.18,
+    "upside_pct": -94.4,
+    "bear_value": 30.32,
+    "bull_value": 106.25,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF base $60.18, bull case $106.25 \u2014 both well below current $117. CSCO is fundamentally overvalued unless the AI networking upgrade cycle dramatically accelerates FCF."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "AI networking upgrade cycle underway",
+      "Dominant enterprise networking franchise"
+    ],
+    "key_concerns": [
+      "94.4% above DCF base case",
+      "Bull DCF of $106 still below current price"
+    ],
+    "summary": "Quality franchise but pricing in significant growth premium that the DCF doesn't support."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Trading above even the bull-case DCF",
+    "Any AI capex slowdown would remove the networking upgrade thesis"
+  ],
+  "watchlist_priority": "low"
+}

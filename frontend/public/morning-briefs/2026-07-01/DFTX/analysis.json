@@ -1,0 +1,81 @@
+{
+  "ticker": "DFTX",
+  "company_name": "Definium Therapeutics, Inc.",
+  "report_date": "2026-07-01",
+  "price": 43.4,
+  "change_pct": -7.74,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "DFTX -7.74% to $43.40 \u2014 Canaccord cut PT from $60 to $58 after dilutive share offering, and a Wyckoff Secondary Test (ST) event was tagged today, suggesting the recent spike was distribution.",
+  "price_action": {
+    "open": 46.83,
+    "high": 47.2,
+    "low": 43.32,
+    "close": 43.4,
+    "volume": 3111644,
+    "vol_ratio": 0.79,
+    "vol_rank": "Below average \u2014 0.79x",
+    "intraday_story": "DFTX opened at $46.83 (near prior close of $47.04), briefly touched $47.20, then declined continuously to $43.32 and closed at $43.40. The 0.79x below-average volume on a -7.74% day is ambiguous \u2014 could be lack of buyers rather than aggressive sellers. Wyckoff ST (Secondary Test) was tagged today."
+  },
+  "news_catalyst": {
+    "headline": "Canaccord cuts DFTX price target from $60 to $58 (maintains Buy) after dilutive share offering; EMERGE MDD study positive but dilution weighs",
+    "summary": "Canaccord reduced its discounted cash flow model price target from $60 to $58 to account for a higher share count following a recent offering. Importantly, this is NOT a rating downgrade \u2014 Canaccord maintains Buy. Needham separately raised its target from $38 to $50. The EMERGE major depressive disorder study showed significant improvement over existing treatments, which is the fundamental bull case. However, the equity offering to fund trials creates dilution pressure and the technical damage from the recent spike-and-reversal is concerning.",
+    "source_url": "https://www.investing.com/news/analyst-ratings/canaccord-cuts-definium-therapeutics-stock-price-target-on-share-count-93CH-4767600",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 1,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 43.32,
+    "key_resistance": 49.2,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.79,
+    "volume_signal": "normal",
+    "summary": "DFTX had a climactic spike on June 22 (7.80x volume \u2014 highest in dataset) followed by another spike on June 24 (4.07x). Both are tagged as Buying Climaxes. The June 25 and 26 sessions (2.50x and 3.33x) continued with climactic volume. This spike-and-fade pattern at high volume followed by today's Secondary Test on 0.79x volume is the Wyckoff read: the climactic spikes were distribution events by early holders exiting at elevated prices. The Accumulation Phase B label may be premature \u2014 more likely Phase A or early Phase B after a distribution top."
+  },
+  "wyckoff_narrative": "The Wyckoff Secondary Test (ST) event tagged today means the algorithm detected a test of the recent high-volume zone at lower volume \u2014 consistent with distribution exhausting. The June 22 peak (7.80x volume, Buying Climax) was almost certainly distribution by major shareholders. The stock has declined from the climactic high area ($49.20 on June 30) to today's $43.40 \u2014 a 12% rollover from the peak. Avoid until the distribution phase is complete and volume dries up at a lower base.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible \u2014 Definium is a pre-revenue clinical-stage biotech. Valued on pipeline probability-weighted NPV. Analyst targets of $50-58 reflect probability-adjusted EMERGE trial success."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "EMERGE MDD study showed significant improvement over existing antidepressants",
+      "Needham raised PT from $38 to $50",
+      "Multiple analyst Buy ratings maintained"
+    ],
+    "key_concerns": [
+      "Share dilution from equity offering reduced DCF-based targets",
+      "Pre-revenue clinical-stage risk",
+      "Recent 7.80x volume spike looks like distribution, not accumulation"
+    ],
+    "summary": "DFTX has genuine pipeline value but the recent volume spikes look like distribution. Avoid until technical clarity returns."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If $43.32 (today's low) breaks, next support around $40-41",
+    "Further equity offerings to fund clinical trials create dilution overhang",
+    "Biotech binary: trial failure = catastrophic decline"
+  ],
+  "watchlist_priority": "low"
+}

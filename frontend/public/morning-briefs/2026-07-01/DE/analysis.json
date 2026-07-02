@@ -1,0 +1,78 @@
+{
+  "ticker": "DE",
+  "company_name": "Deere & Company",
+  "report_date": "2026-07-01",
+  "price": 627.63,
+  "change_pct": -1.06,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "DE -1.06% and DCF shows 215.6% overvaluation ($198.86 base vs $627) \u2014 avoid on fundamentals, though the precision agriculture AI thesis supports a long-term premium.",
+  "price_action": {
+    "open": 629.32,
+    "high": 633.77,
+    "low": 619.3,
+    "close": 627.63,
+    "volume": 765202,
+    "vol_ratio": 0.5,
+    "vol_rank": "Low volume \u2014 half average",
+    "intraday_story": "Quiet, low-volume session. DE declined modestly with the broad market."
+  },
+  "news_catalyst": {
+    "headline": "No specific DE catalyst; stock outperforming broader market but fundamentally overvalued",
+    "summary": "No significant Deere news. The company's precision agriculture technology (AI-powered tractors, autonomous farm equipment) commands a premium, but the DCF base of $198.86 vs $627 price reflects extreme multiple expansion beyond what the fundamental cash flows justify.",
+    "source_url": "https://finance.yahoo.com/quote/DE/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 619.3,
+    "key_resistance": 633.77,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0.5,
+    "volume_signal": "drying up",
+    "summary": "Low-volume consolidation. DCF overvaluation is the primary concern."
+  },
+  "wyckoff_narrative": "No clear signal. Low priority.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 198.86,
+    "upside_pct": -215.6,
+    "bear_value": 35.13,
+    "bull_value": 454.43,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DE trades at 3x its DCF base case. Even the bull DCF of $454 is 28% below current price. Extreme overvaluation on any fundamental measure."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Precision agriculture AI moat",
+      "Duopoly with CNH in large farm equipment"
+    ],
+    "key_concerns": [
+      "215.6% above DCF base",
+      "Farm commodity prices under pressure reducing capital budgets"
+    ],
+    "summary": "Outstanding business, extreme valuation. Wait for a significant correction before considering entry."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Any farm capex slowdown or crop price decline materially hurts near-term earnings",
+    "3x overvalued on DCF \u2014 multiple compression risk is severe"
+  ],
+  "watchlist_priority": "low"
+}

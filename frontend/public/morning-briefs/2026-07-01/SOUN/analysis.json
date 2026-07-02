@@ -1,0 +1,77 @@
+{
+  "ticker": "SOUN",
+  "company_name": "SoundHound AI, Inc.",
+  "report_date": "2026-07-01",
+  "price": 6.68,
+  "change_pct": 3.25,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "SOUN +3.25% to $6.68 in Accumulation Phase B with slightly above-average volume (1.04x) \u2014 voice AI plays recovering as enterprise software gets re-rated.",
+  "price_action": {
+    "open": 6.51,
+    "high": 7.01,
+    "low": 6.5,
+    "close": 6.68,
+    "volume": 27342234,
+    "vol_ratio": 1.04,
+    "vol_rank": "Slightly above average",
+    "intraday_story": "SOUN touched $7.01 intraday before closing at $6.68. The $7 level acted as resistance. The 1.04x volume is mild but positive."
+  },
+  "news_catalyst": {
+    "headline": "SoundHound trading up alongside broader AI software recovery from enterprise SaaS re-rating",
+    "summary": "SOUN benefits from the same Guggenheim-driven enterprise software re-rating that lifted TTD today. Voice AI platform plays are gaining as the market distinguishes between AI infrastructure (hurt by Meta cloud) and AI application software (benefiting from it).",
+    "source_url": "https://stockstotrade.com/news/bentley-systems-qualys-soundhound-ai/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 6.5,
+    "key_resistance": 7.01,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 1.04,
+    "volume_signal": "elevated",
+    "summary": "Accumulation Phase B. Watch the $7 resistance \u2014 a clean close above $7 on volume 1.5x+ would be bullish."
+  },
+  "wyckoff_narrative": "Phase B accumulation with $7 resistance. Enterprise AI software re-rating is the catalyst.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible \u2014 pre-profitability voice AI company."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Voice AI platform with automotive and restaurant partnerships"
+    ],
+    "key_concerns": [
+      "Pre-profitability",
+      "Competing with Big Tech voice AI (Amazon Alexa, Google Assistant, Apple Siri)"
+    ],
+    "summary": "Speculative AI software play. Phase B accumulation setup is real but fundamental support is limited."
+  },
+  "sentiment": {
+    "score": 0.072,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "$7 resistance is a near-term ceiling \u2014 break below $6.50 reinvites sellers",
+    "Pre-profitability means any revenue miss causes disproportionate selloff"
+  ],
+  "watchlist_priority": "low"
+}

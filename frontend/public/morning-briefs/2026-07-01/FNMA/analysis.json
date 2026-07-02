@@ -1,0 +1,77 @@
+{
+  "ticker": "FNMA",
+  "company_name": "Federal National Mortgage Association",
+  "report_date": "2026-07-01",
+  "price": 6.27,
+  "change_pct": -3.69,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "FNMA -3.69% to $6.27 \u2014 Fannie Mae continues to be a speculative play on privatization, with very low volume (0.30x) and no clear catalyst for today's decline.",
+  "price_action": {
+    "open": 6.53,
+    "high": 6.79,
+    "low": 6.18,
+    "close": 6.27,
+    "volume": 1248881,
+    "vol_ratio": 0.3,
+    "vol_rank": "Very low \u2014 0.30x, lowest in recent dataset",
+    "intraday_story": "FNMA declined quietly on very low volume. The 0.30x volume is the lowest in the dataset \u2014 this is a low-interest day."
+  },
+  "news_catalyst": {
+    "headline": "Judge ruling marks latest setback for Pulte's FNMA privatization campaign",
+    "summary": "Recent court rulings have continued to be negative for the privatization thesis that drove FNMA's earlier speculation. Bill Pulte's efforts to force Fannie Mae out of conservatorship continue to face legal hurdles.",
+    "source_url": "https://finance.yahoo.com/quote/FNMA/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 6.18,
+    "key_resistance": 6.79,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.3,
+    "volume_signal": "drying up",
+    "summary": "Very low volume decline. Privatization thesis stalled on legal challenges. Avoid until a concrete catalysts emerges."
+  },
+  "wyckoff_narrative": "Accumulation Phase A-B labeling is theoretical \u2014 FNMA's moves are almost entirely driven by legal/political developments, not technical patterns.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Speculative play on government privatization timeline."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Privatization optionality if Pulte succeeds"
+    ],
+    "key_concerns": [
+      "Legal setbacks for privatization",
+      "Under government conservatorship \u2014 uncertain timeline"
+    ],
+    "summary": "Pure political/legal speculation. Avoid without a specific legal catalyst."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Legal rulings against privatization could push FNMA to $4 levels",
+    "No fundamental business value at current structure"
+  ],
+  "watchlist_priority": "low"
+}

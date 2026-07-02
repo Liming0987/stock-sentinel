@@ -1,0 +1,79 @@
+{
+  "ticker": "ASTS",
+  "company_name": "AST SpaceMobile, Inc.",
+  "report_date": "2026-07-01",
+  "price": 86.1,
+  "change_pct": -3.11,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "ASTS -3.11% with sentiment score -0.871 \u2014 the most negative sentiment in the entire watchlist; space-based cellular network faces execution risk and the negative consensus is overwhelming.",
+  "price_action": {
+    "open": 86.9,
+    "high": 91.81,
+    "low": 83.4,
+    "close": 86.1,
+    "volume": 17600921,
+    "vol_ratio": 0.66,
+    "vol_rank": "Below average \u2014 0.66x",
+    "intraday_story": "ASTS touched $91.81 high before reversing to close at $86.10. The high-to-low range of $8.41 on below-average volume shows choppy, uncertain trading."
+  },
+  "news_catalyst": {
+    "headline": "AST SpaceMobile vs Boeing: satellite cellular comparison article highlights execution risk",
+    "summary": "ASTS faces skepticism about its direct-to-cellular satellite network timeline and capital requirements. The -0.871 sentiment score (most negative in watchlist) reflects widespread concern about SpaceMobile's execution on its BlueBird satellite constellation.",
+    "source_url": "https://finance.yahoo.com/quote/ASTS/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 83.4,
+    "key_resistance": 91.81,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.66,
+    "volume_signal": "normal",
+    "summary": "Choppy consolidation with negative sentiment. No clear technical setup."
+  },
+  "wyckoff_narrative": "No clear phase. Avoid.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible \u2014 pre-revenue satellite company with massive capital requirements."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "First-mover in direct-to-cellular satellite broadband"
+    ],
+    "key_concerns": [
+      "-0.871 sentiment \u2014 most negative in watchlist",
+      "Capital requirements for BlueBird constellation are enormous",
+      "Competition from SpaceX Starlink direct-to-cell"
+    ],
+    "summary": "Speculative early-stage satellite company with significant execution and capital risk. Avoid."
+  },
+  "sentiment": {
+    "score": -0.871,
+    "label": "Very Bearish",
+    "mentions_24h": null,
+    "trend": "falling"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Most negative sentiment in the entire watchlist (-0.871)",
+    "Capital raise dilution risk is extreme",
+    "SpaceX Starlink direct-to-cell competitive threat"
+  ],
+  "watchlist_priority": "low"
+}
