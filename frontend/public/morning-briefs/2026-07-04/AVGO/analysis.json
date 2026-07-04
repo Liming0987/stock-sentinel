@@ -1,0 +1,73 @@
+{
+  "ticker": "AVGO",
+  "company_name": "AVGO",
+  "report_date": "2026-07-04",
+  "price": 360.45,
+  "change_pct": -2.41,
+  "overall_stance": "watch",
+  "conviction": 0.62,
+  "one_liner": "AVGO -2.41% on 0.83x volume \u2014 own AI guidance miss overhang (guided $16B vs $17.3B est, stock fell 14% June 3); DCF 74.4% MoS remains but patience required until guidance is raised not just reiterated.",
+  "price_action": {
+    "open": 365.73,
+    "high": 374.0,
+    "low": 356.43,
+    "close": 360.45,
+    "volume": 26788900,
+    "vol_ratio": 0.83,
+    "vol_rank": "Below average \u2014 0.83x",
+    "intraday_story": "AVGO has been consolidating in a $356-380 range following the June 3 SC event (3.40x volume, 80M shares \u2014 the 90-day max). Low-volume declines like today (0.83x) within the range maintain a consolidation character. The June 4 SC low around $350-356 is critical support. DCF at $1,406 vs $360 = 74.4% MoS is the largest in the watchlist but must be applied with awareness that it captures the combined"
+  },
+  "news_catalyst": {
+    "headline": "Residual pressure from own Q3 AI revenue guidance miss ($16B vs $17.3B estimate, stock -14% on June 3)",
+    "summary": "Broadcom's fiscal Q2 results (June 3) guided Q3 AI revenue at $16B \u2014 below the $17.3B consensus \u2014 and reiterated its $100B+ FY2027 AI target without raising it. The stock fell 14% on the earnings. Today's -2.41% is residual digestion of that miss, compounded by the weak jobs report adding rate hike pressure. The supply-constraint argument (not enough memory/GPUs to deliver more AI revenue) is the bull narrative, but requires patience as the market waits for Q3 guidance to improve.",
+    "source_url": "https://www.cnbc.com/2026/06/03/broadcom-avgo-earnings-report-q2-2026.html",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 356.43,
+    "key_resistance": 374.0,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.83,
+    "volume_signal": "drying up",
+    "summary": "AVGO has been consolidating in a $356-380 range following the June 3 SC event (3.40x volume, 80M shares \u2014 the 90-day max). Low-volume declines like today (0.83x) within the range maintain a consolidation character. The June 4 SC low around $350-356 is critical support. DCF at $1,406 vs $360 = 74.4% MoS is the largest in the watchlist but must be applied with awareness that it captures the combined semiconductor + VMware segments. Even at a 70% haircut, implied value ($422) is above current price."
+  },
+  "wyckoff_narrative": "AVGO is in a post-SC consolidation without directional Wyckoff clarity. June 3 Buying Climax (3.40x, 80M shares) established the demand peak. Trading in the $356-380 range with mostly below-average volume shows neither strong accumulation nor distribution. Low-volume declines are constructive within a range. Watch for SOS (high-volume bounce from $350-356 zone) as the re-entry signal.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1406.1,
+    "upside_pct": 74.4,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF $1,406 vs $360 = 74.4% MoS \u2014 largest in the watchlist. Captures semiconductor + VMware software combined. Even deeply discounted, intrinsic value is above current price. Patience required until AI guidance improves."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Own guidance miss created the sector reset \u2014 further disappointment could drive another leg lower",
+    "$356.43 intraday low near the June 3 SC floor; close below $350 is technically negative",
+    "Market re-rating requires raised guidance, not just reiteration \u2014 next earnings is the catalyst"
+  ],
+  "watchlist_priority": "medium"
+}

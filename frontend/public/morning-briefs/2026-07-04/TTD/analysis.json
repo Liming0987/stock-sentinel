@@ -1,0 +1,73 @@
+{
+  "ticker": "TTD",
+  "company_name": "TTD",
+  "report_date": "2026-07-04",
+  "price": 19.1,
+  "change_pct": -0.26,
+  "overall_stance": "accumulate",
+  "conviction": 0.68,
+  "one_liner": "TTD -0.26% on 0.50x volume \u2014 lowest volume session in months signals supply exhaustion at the VCP base; DCF $33.50 (43% MoS) and dual VCP contractions make this the cleanest base setup in the watchlist.",
+  "price_action": {
+    "open": 19.08,
+    "high": 19.36,
+    "low": 19.0,
+    "close": 19.1,
+    "volume": 10958000,
+    "vol_ratio": 0.5,
+    "vol_rank": "Very low \u2014 0.50x, supply exhaustion signal",
+    "intraday_story": "TTD's two-contraction VCP is the cleanest base pattern in the watchlist: first contraction from $32.90 (March 5, 2.68x volume peak) fell 36.1% to $21.03 with volume drying; second contraction from $24.32 pulled back only 9.0% to $22.13 with volume also drying. This contracting-range, drying-volume sequence is exactly the VCP setup. Today's 0.50x volume session \u2014 essentially no trading \u2014 is the coi"
+  },
+  "news_catalyst": {
+    "headline": "No specific news; enterprise SaaS re-rating from July 1 Guggenheim upgrades provides valuation floor",
+    "summary": "No new TTD-specific news. The July 1 Guggenheim upgrade of Salesforce and ServiceNow (on valuation \u2014 NOT AI bullishness) established a sector floor for the entire beaten-down enterprise SaaS complex. TTD at $19.10 is down 78.7% from its $89.76 August 2025 high \u2014 a collapse that the Guggenheim 'SaaSpocalypse overshot' thesis directly addresses. Today's 0.50x volume with a $0.36 price range is the quietest session in months.",
+    "source_url": "https://markets.financialcontent.com/stocks/article/stockstory-2026-7-1-the-trade-desk-ttd-shares-skyrocket-what-you-need-to-know",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Distribution Phase C-D",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 17.47,
+    "key_resistance": 22.13,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.5,
+    "volume_signal": "drying up",
+    "summary": "TTD's two-contraction VCP is the cleanest base pattern in the watchlist: first contraction from $32.90 (March 5, 2.68x volume peak) fell 36.1% to $21.03 with volume drying; second contraction from $24.32 pulled back only 9.0% to $22.13 with volume also drying. This contracting-range, drying-volume sequence is exactly the VCP setup. Today's 0.50x volume session \u2014 essentially no trading \u2014 is the coiled-spring moment before the potential expansion. The VCP pivot is $22.13 (second contraction high); a close above it on 1.5x+ volume is the actionable SOS signal. DCF $33.50 vs $19.10 = 43% MoS is the fundamental anchor."
+  },
+  "wyckoff_narrative": "The VCP within the broader distribution framework creates an unusual setup. The Wyckoff engine labels it Distribution Phase C-D (reflecting the $89 to $17 prior markdown), but at the micro level the two contractions with drying volume show genuine accumulation characteristics at the lows. Today's near-zero volume session is supply exhaustion. The pivot at $22.13 is the actionable level: break on volume = buy signal, violation of $17.47 prior low = stop.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 33.5,
+    "upside_pct": 43.0,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF $33.50 vs $19.10 = 43% MoS \u2014 second-largest in the watchlist after NFLX. CTV advertising leadership is intact. Stock collapse was multiple compression, not revenue collapse."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "VCP pivot $22.13 must be cleared on volume \u2014 currently 16% away, needs a catalyst",
+    "0.50x volume = no institutional conviction yet; setup is building, not confirmed",
+    "AI disruption to traditional programmatic advertising DSPs is a real long-term risk"
+  ],
+  "watchlist_priority": "high"
+}

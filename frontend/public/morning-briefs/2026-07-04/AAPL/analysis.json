@@ -1,0 +1,73 @@
+{
+  "ticker": "AAPL",
+  "company_name": "AAPL",
+  "report_date": "2026-07-04",
+  "price": 308.63,
+  "change_pct": 4.84,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "AAPL +4.84% to $308 on foldable iPhone production reports (10M units late 2026\u2013mid 2027) adding $182B market cap \u2014 new product category catalyst, but DCF still 59% overvalued at base case.",
+  "price_action": {
+    "open": 294.12,
+    "high": 309.42,
+    "low": 293.68,
+    "close": 308.63,
+    "volume": 75352800,
+    "vol_ratio": 1.21,
+    "vol_rank": "Above average \u2014 1.21x",
+    "intraday_story": "AAPL's post-June 26 Buying Climax (4.42x, 261M shares) structure shows the $273-274 floor holding. Today's news-driven gap from $289 to $308 on 1.21x volume is not climactic \u2014 it reads as a genuine Sign of Strength (SOS) impulse from the base. Close near the high of day at $308.63 vs $309.42 high is the ideal candle. Support: today's open at $294. Resistance: $309-315. DCF base $194.2 requires bul"
+  },
+  "news_catalyst": {
+    "headline": "Apple preparing ~10M foldable iPhone production starting late 2026, adding $182B market cap",
+    "summary": "Reports that Apple is ramping foldable iPhone production to ~10M units between late 2026 and mid-2027. This enters a premium device category where Samsung leads. Foldable iPhones command $1,800+ price points vs standard iPhone pricing, which would meaningfully lift Apple ASP and gross margins. The move also offsets the Chinese chipmaker CXMT/YMTC headline risk earlier this week. The 1.21x volume on the gap-up and hold-near-highs is institutional rather than retail-panic buying.",
+    "source_url": "https://www.cnbc.com/2026/07/04/apple-aapl-foldable-iphone.html",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 293.68,
+    "key_resistance": 309.42,
+    "rsi": null,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 1.21,
+    "volume_signal": "elevated",
+    "summary": "AAPL's post-June 26 Buying Climax (4.42x, 261M shares) structure shows the $273-274 floor holding. Today's news-driven gap from $289 to $308 on 1.21x volume is not climactic \u2014 it reads as a genuine Sign of Strength (SOS) impulse from the base. Close near the high of day at $308.63 vs $309.42 high is the ideal candle. Support: today's open at $294. Resistance: $309-315. DCF base $194.2 requires bull case ($333+) to justify current price \u2014 foldable iPhone premium ASP is what the market is pricing in."
+  },
+  "wyckoff_narrative": "AAPL is in post-SC absorption transitioning toward a potential Sign of Strength. The June 26 SC (4.42x volume) was the structural low; today's 1.21x advance to $308.63 on a clear catalyst is consistent with early Phase D markup. Confirmation: hold $294 open level on any near-term consolidation, then advance through $315+ on similar volume.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 194.2,
+    "upside_pct": -59.0,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF base $194.2 vs $308.63 = 59% overvalued. Bull DCF ~$333 is within reach if foldable iPhone drives meaningful ASP expansion. Not a value play; a growth narrative play."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "59% above DCF base \u2014 foldable iPhone must succeed to justify valuation",
+    "CXMT/YMTC geopolitical escalation remains an unresolved supply chain overhang",
+    "Today's close at $308 approaches prior $287-288 distribution zone \u2014 overhead supply exists"
+  ],
+  "watchlist_priority": "medium"
+}

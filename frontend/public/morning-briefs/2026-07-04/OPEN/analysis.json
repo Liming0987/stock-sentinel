@@ -1,0 +1,73 @@
+{
+  "ticker": "OPEN",
+  "company_name": "OPEN",
+  "report_date": "2026-07-04",
+  "price": 4.9,
+  "change_pct": -0.81,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "OPEN -0.81% on 1.78x elevated volume \u2014 first red day after 3 consecutive high-volume up sessions; housing rebound thesis intact but volume on decline warrants caution.",
+  "price_action": {
+    "open": 4.99,
+    "high": 5.17,
+    "low": 4.75,
+    "close": 4.9,
+    "volume": 90049900,
+    "vol_ratio": 1.78,
+    "vol_rank": "Elevated 1.78x \u2014 watch for distribution",
+    "intraday_story": "OPEN's first down day after 3 consecutive high-volume advances. Opened $4.99, touched $5.17 early, then sold back to $4.75 low before closing at $4.90. The 1.78x elevated volume on a down day is the key concern \u2014 if buyers don't step in tomorrow, this could mark the distribution top of the housing rebound move."
+  },
+  "news_catalyst": {
+    "headline": "No significant news",
+    "summary": "No major catalyst today.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 0,
+    "key_resistance": 0,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0,
+    "volume_signal": "normal",
+    "summary": ""
+  },
+  "wyckoff_narrative": "",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF distorted for pre-profitability company. Valued on housing volume trajectory. Q1 homes purchased +45% QoQ is the key fundamental metric."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "1.78x volume on a down day after 3 up days \u2014 early distribution signal",
+    "$5.13 prior intraday high rejected \u2014 overhead supply",
+    "Operating margins deeply negative (-30%+) \u2014 business model requires housing market liquidity"
+  ],
+  "watchlist_priority": "medium"
+}

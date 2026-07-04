@@ -1,0 +1,74 @@
+{
+  "ticker": "MU",
+  "company_name": "MU",
+  "report_date": "2026-07-04",
+  "price": 975.56,
+  "change_pct": -5.49,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "MU -5.49% to $975 \u2014 Broadcom AI guidance miss ($16B vs $17.3B est) and weak 172K jobs print collapsed the AI chip thesis globally; SK Hynix -10%, Samsung -6.4% in sympathy.",
+  "price_action": {
+    "open": 1041.5,
+    "high": 1064.64,
+    "low": 950.28,
+    "close": 975.56,
+    "volume": 61316900,
+    "vol_ratio": 1.08,
+    "vol_rank": "Slightly above avg \u2014 1.08x",
+    "intraday_story": "MU has lost $280 from its $1,255 June 25 peak \u2014 over 22% in 10 days. The stair-step distribution pattern (Jun 26 -7%, Jul 1 -10.57%, today -5.49%) shows consistent overhead supply with no high-volume bounce. The $950.28 intraday low is the new critical support. The 1.08x volume on today's down day is not a capitulation flush \u2014 a genuine SC would show 2x+ volume with an intraday reversal. Until tha"
+  },
+  "news_catalyst": {
+    "headline": "Broadcom Q3 AI guidance miss + weak 172K jobs report drives global semiconductor selloff",
+    "summary": "Two simultaneous catalysts drove today's selloff. First, Broadcom guided Q3 AI revenue at $16B \u2014 below the $17.3B consensus \u2014 and reiterated rather than raised its FY2027 $100B+ AI target. The market expected a raise; the reiterate was treated as a miss. Second, the US July 4 jobs report (172K payrolls, below expectations) eliminated near-term rate cut hopes and introduced rate hike risk, per CME FedWatch. Higher rates compress chip multiples aggressively. The global ripple: South Korea's Kospi fell 5.5%, SK Hynix -10%, Samsung -6.4%. ASML -3.8% in Europe.",
+    "source_url": "https://finance.yahoo.com/markets/stocks/articles/intel-micron-shares-plummet-know-232014978.html",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 950.28,
+    "key_resistance": 1064.64,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 1.08,
+    "volume_signal": "elevated",
+    "summary": "MU has lost $280 from its $1,255 June 25 peak \u2014 over 22% in 10 days. The stair-step distribution pattern (Jun 26 -7%, Jul 1 -10.57%, today -5.49%) shows consistent overhead supply with no high-volume bounce. The $950.28 intraday low is the new critical support. The 1.08x volume on today's down day is not a capitulation flush \u2014 a genuine SC would show 2x+ volume with an intraday reversal. Until that pattern appears, distribution is assumed to be ongoing."
+  },
+  "wyckoff_narrative": "MU continues in an extended distribution phase post the June 25 peak. High-volume down days have not been met with equal-volume bounces. The absence of a true SC (2x+ volume + sharp reversal) means the selling has not exhausted. The $950 floor is the next key test; if it holds, watch for a potential SC setup in coming sessions.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1192.2,
+    "upside_pct": 18.2,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF $1,192 vs $975 = 18.2% MoS. Bear DCF at $690 represents -30% additional downside if AI capex moderates. Insufficient buffer to step in front of the technical downtrend."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close below $950 opens test of $900-910",
+    "Global semiconductor peer selloff (SK Hynix -10%) signals macro problem not idiosyncratic",
+    "Rate hike risk re-entering market reduces chip multiple expansion potential",
+    "Bear DCF $690 is -30% from here if AI spending moderates"
+  ],
+  "watchlist_priority": "high"
+}

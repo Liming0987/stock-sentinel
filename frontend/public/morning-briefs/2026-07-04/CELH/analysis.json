@@ -1,0 +1,73 @@
+{
+  "ticker": "CELH",
+  "company_name": "CELH",
+  "report_date": "2026-07-04",
+  "price": 33.16,
+  "change_pct": 4.05,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "CELH +4.05% to $33.16 continuing the technical bounce from Phase A-B accumulation; DCF $44.40 (25.3% MoS) supports the setup but no specific catalyst today.",
+  "price_action": {
+    "open": 32.32,
+    "high": 33.8,
+    "low": 32.21,
+    "close": 33.16,
+    "volume": 9342800,
+    "vol_ratio": 0.99,
+    "vol_rank": "Near average 0.99x",
+    "intraday_story": "CELH gap open and grind higher all session on near-average volume. Phase A-B accumulation with the May 7 SC (3.29x) as the structural low. Today's close at $33.16 is the highest since the July 1 bounce."
+  },
+  "news_catalyst": {
+    "headline": "No significant news",
+    "summary": "No major catalyst today.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 0,
+    "key_resistance": 0,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0,
+    "volume_signal": "normal",
+    "summary": ""
+  },
+  "wyckoff_narrative": "",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 44.4,
+    "upside_pct": 25.3,
+    "bear_value": 22.74,
+    "bull_value": 79.76,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF $44.40 vs $33.16 = 25.3% MoS. Bear case $22.74 below current. Accumulation thesis supported by multiple analyst Buy ratings with $58-62 mean target."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "$34 intraday high is near-term resistance",
+    "No catalyst today \u2014 technical bounce vulnerable to reversal",
+    "18 Buy ratings vs $31 stock price suggests ongoing execution concern"
+  ],
+  "watchlist_priority": "medium"
+}

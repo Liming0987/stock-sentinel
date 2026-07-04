@@ -1,0 +1,73 @@
+{
+  "ticker": "GOOG",
+  "company_name": "GOOG",
+  "report_date": "2026-07-04",
+  "price": 356.18,
+  "change_pct": -0.48,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "GOOG -0.48% on low 0.61x volume \u2014 flat as Meta cloud competes with Google Cloud while Search dominance is intact; DCF $408 shows 12.7% upside and Argus maintains Buy.",
+  "price_action": {
+    "open": 356.15,
+    "high": 360.99,
+    "low": 350.32,
+    "close": 356.18,
+    "volume": 15553200,
+    "vol_ratio": 0.61,
+    "vol_rank": "Below avg 0.61x",
+    "intraday_story": "GOOG quiet -0.48% session on very low volume. Meta cloud entry is a long-term competitive threat for Google Cloud but Search/YouTube unaffected. Consolidating near $355-360."
+  },
+  "news_catalyst": {
+    "headline": "No significant news",
+    "summary": "No major catalyst today.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 0,
+    "key_resistance": 0,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0,
+    "volume_signal": "normal",
+    "summary": ""
+  },
+  "wyckoff_narrative": "",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 408.0,
+    "upside_pct": 12.7,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF $408 vs $356 = 12.7% MoS. Modest for a mega-cap but Search dominance and Google Cloud growth provide multiple expansion potential."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "DOJ antitrust remedies (Chrome/Android divestiture) are tail risks",
+    "Meta cloud entry creates incremental Google Cloud competition",
+    "12.7% DCF MoS is thin \u2014 limited upside without multiple expansion"
+  ],
+  "watchlist_priority": "medium"
+}

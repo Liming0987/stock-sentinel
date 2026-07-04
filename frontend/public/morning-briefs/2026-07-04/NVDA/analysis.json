@@ -1,0 +1,73 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVDA",
+  "report_date": "2026-07-04",
+  "price": 194.83,
+  "change_pct": -1.39,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "NVDA -1.39% on 0.84x volume \u2014 Broadcom guidance miss creates sector headwinds but NVDA holds better than peers; DCF $333.9 (41.7% MoS) and AI GPU monopoly support a hold.",
+  "price_action": {
+    "open": 196.17,
+    "high": 200.06,
+    "low": 192.35,
+    "close": 194.83,
+    "volume": 142385500,
+    "vol_ratio": 0.84,
+    "vol_rank": "Below avg 0.84x \u2014 institutional sellers not urgent",
+    "intraday_story": "NVDA declined modestly on 0.84x below-average volume while MU and INTC fell 5%+. The relative resilience reflects NVDA's differentiated GPU monopoly position vs commodity memory suppliers. Consolidating $189-201."
+  },
+  "news_catalyst": {
+    "headline": "No significant news",
+    "summary": "No major catalyst today.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 0,
+    "key_resistance": 0,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0,
+    "volume_signal": "normal",
+    "summary": ""
+  },
+  "wyckoff_narrative": "",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 333.9,
+    "upside_pct": 41.7,
+    "bear_value": 192.02,
+    "bull_value": 518.73,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF base $333.9 vs $194.83 = 41.7% MoS. Bear DCF $192 is just below current price, limiting further downside. Best-positioned chip name fundamentally."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Break below $189.80 on volume >1.3x opens $180 test",
+    "Broadcom guidance miss creates AI capex narrative overhang",
+    "Q2 FY2027 earnings is the next binary event"
+  ],
+  "watchlist_priority": "medium"
+}

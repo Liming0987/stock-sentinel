@@ -1,0 +1,73 @@
+{
+  "ticker": "PLTR",
+  "company_name": "PLTR",
+  "report_date": "2026-07-04",
+  "price": 129.3,
+  "change_pct": 2.84,
+  "overall_stance": "watch",
+  "conviction": 0.62,
+  "one_liner": "PLTR +2.84% to $129 on 1.40x volume \u2014 Nvidia AI partnership, Army NGC2 contract, DA Davidson upgrade, and Trump stake continue to compound; $132.88 resistance needs to clear on volume.",
+  "price_action": {
+    "open": 128.99,
+    "high": 132.88,
+    "low": 127.95,
+    "close": 129.3,
+    "volume": 60789400,
+    "vol_ratio": 1.4,
+    "vol_rank": "Elevated \u2014 1.40x",
+    "intraday_story": "PLTR has been building a short-term base at $119-132 after surging from the June 26 lows at $107. Three sessions of elevated volume with higher highs shows accumulation is active. The $132.88 intraday high is the immediate resistance \u2014 two consecutive sessions have tagged this level and pulled back. Volume at 1.40x today is the highest in the recent run, which is constructive (expanding volume on "
+  },
+  "news_catalyst": {
+    "headline": "Nvidia partnership + Army NGC2 contract + DA Davidson Buy upgrade + Trump personal stake continuing to drive momentum",
+    "summary": "PLTR's catalyst stack from July 1 continues compounding: Nvidia Nemotron AI partnership embedding open-source models into AIP/Foundry/Ontology/Apollo; US Army NGC2 contract moving from prototype to full rollout; DA Davidson upgrade to Buy; Trump personal stake disclosure. Three consecutive elevated-volume sessions (0.91x \u2192 1.35x \u2192 1.40x) with progressively higher highs shows institutional follow-through. No new news today \u2014 momentum carries over.",
+    "source_url": "https://247wallst.com/investing/2026/07/03/palantirs-nvidia-ai-collab-could-be-a-game-changer-that-marks-a-turn-in-the-stock/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 119.35,
+    "key_resistance": 132.88,
+    "rsi": null,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 1.4,
+    "volume_signal": "elevated",
+    "summary": "PLTR has been building a short-term base at $119-132 after surging from the June 26 lows at $107. Three sessions of elevated volume with higher highs shows accumulation is active. The $132.88 intraday high is the immediate resistance \u2014 two consecutive sessions have tagged this level and pulled back. Volume at 1.40x today is the highest in the recent run, which is constructive (expanding volume on the advance is bullish). Clearing $132.88 on 1.5x+ would open a test of the $140 prior consolidation peak. DCF at $177 vs $129 = 27% MoS."
+  },
+  "wyckoff_narrative": "PLTR's recent price action shows characteristics of a Sign of Strength (SOS) recovery from the June 25-26 distribution low at $107. Three sessions of elevated-volume buying back through $119-129 with higher highs is the SOS sequence. The $132.88 resistance is the key \u2014 breaking it on volume would confirm Phase C completion and begin the markup toward $140+.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 177.1,
+    "upside_pct": 27.0,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF $177 vs $129 = 27% MoS. Q1 2026 US revenue +104% YoY with FY2026 guidance at 71% growth. The DCF may prove conservative given the Army/Nvidia contract expansions."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "$132.88 rejection in two consecutive sessions \u2014 overhead supply present",
+    "DOGE government spending cuts remain a tail risk for defense AI contracts",
+    "Government contract revenue recognition can be lumpy \u2014 quarterly visibility limited"
+  ],
+  "watchlist_priority": "medium"
+}

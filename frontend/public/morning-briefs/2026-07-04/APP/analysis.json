@@ -1,0 +1,73 @@
+{
+  "ticker": "APP",
+  "company_name": "APP",
+  "report_date": "2026-07-04",
+  "price": 527.06,
+  "change_pct": -6.65,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "APP -6.65% to $527 retreating from the July 1 Raymond James surge \u2014 VCP structure intact above $490 floor, DCF $1,184 (55.5% MoS) unchanged; this is the pullback to watch for a re-entry.",
+  "price_action": {
+    "open": 550.23,
+    "high": 576.46,
+    "low": 524.82,
+    "close": 527.06,
+    "volume": 6002600,
+    "vol_ratio": 1.13,
+    "vol_rank": "Slightly above avg \u2014 1.13x",
+    "intraday_story": "APP's two-contraction VCP (29.5%\u219212.5%, both with volume drying) was the setup that triggered the July 1 breakout attempt. Today's pullback to $524.82 is now testing whether the breakout level ($510-520 zone) holds as support. The 1.13x volume on the decline is modest \u2014 not institutional distribution. The $490 floor (prior VCP base) remains the ultimate support. Close above $540 tomorrow would con"
+  },
+  "news_catalyst": {
+    "headline": "Pullback from July 1 +10.56% Raymond James surge; Broadcom guidance miss creates sector headwinds",
+    "summary": "AppLovin's pullback is macro, not stock-specific. No negative news on APP itself \u2014 the Broadcom Q3 AI guidance miss and weak jobs print weighed on all elevated-multiple AI/tech names. After a 10.56% surge on July 1 driven by Raymond James's Strong Buy initiation at $640, a 6.65% two-day pullback is normal consolidation. The $524.82 intraday low is near the VCP base that launched the July 1 move; the test is whether prior resistance becomes support.",
+    "source_url": "https://stockstotrade.com/news/applovin-corporation-app-news-2026_07_01-2/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 490.0,
+    "key_resistance": 576.46,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 1.13,
+    "volume_signal": "elevated",
+    "summary": "APP's two-contraction VCP (29.5%\u219212.5%, both with volume drying) was the setup that triggered the July 1 breakout attempt. Today's pullback to $524.82 is now testing whether the breakout level ($510-520 zone) holds as support. The 1.13x volume on the decline is modest \u2014 not institutional distribution. The $490 floor (prior VCP base) remains the ultimate support. Close above $540 tomorrow would confirm healthy consolidation within the VCP structure. DCF at $1,184 vs $527 = 55.5% MoS remains the strongest fundamental anchor for growth tech in the watchlist."
+  },
+  "wyckoff_narrative": "In Wyckoff terms, after an SOS on July 1 a low-volume pullback to the breakout zone is the ideal LPS (Last Point of Support) pattern before the next advance. Today's 1.13x decline to $524 fits this description. The $490 floor is the Wyckoff stop; a close below it would invalidate the SOS and suggest the July 1 move was a false breakout.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1184.5,
+    "upside_pct": 55.5,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF base $1,184 vs $527 = 55.5% MoS. Raymond James $640 target is well below DCF base case. E-commerce advertising platform represents a significantly larger TAM than mobile gaming alone."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close below $490 invalidates VCP and signals failed breakout",
+    "Broadcom guidance miss creates sector pressure on high-multiple AI names",
+    "August 5 earnings: e-commerce platform must show real adoption traction or thesis challenged"
+  ],
+  "watchlist_priority": "high"
+}

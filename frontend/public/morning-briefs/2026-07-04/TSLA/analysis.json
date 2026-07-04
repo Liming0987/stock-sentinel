@@ -1,0 +1,81 @@
+{
+  "ticker": "TSLA",
+  "company_name": "Tesla, Inc.",
+  "report_date": "2026-07-04",
+  "price": 393.45,
+  "change_pct": -7.49,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "TSLA -7.49% to $393 on 1.56x volume \u2014 biggest single-day drop in nearly a year despite Q2 deliveries beating by 74K units; textbook sell-the-news at 421x P/E with inventory drawdown concerns.",
+  "price_action": {
+    "open": 428.01,
+    "high": 432.35,
+    "low": 389.3,
+    "close": 393.45,
+    "volume": 73915800,
+    "vol_ratio": 1.56,
+    "vol_rank": "Elevated \u2014 1.56x, top-5 session in recent weeks",
+    "intraday_story": "TSLA tagged $432.35 at the open then collapsed continuously to $389.30, closing at $393.45 near the lows. The $42 high-to-low range on 1.56x volume is a definitive distribution event. Sellers who bought the delivery beat news unloaded into early retail buyers. Close in bottom 10% of range on above-average volume is the most bearish possible candle structure."
+  },
+  "news_catalyst": {
+    "headline": "Q2 deliveries 480K beat estimates by 74K \u2014 stock fell 7.5% anyway on sell-the-news, inventory drawdown, and valuation concerns",
+    "summary": "Tesla delivered 480,126 vehicles in Q2 2026, +25% YoY, beating the 406K consensus by 74K \u2014 one of the largest beats in company history. Yet the stock had its worst day in nearly a year. The stock had already rallied 12% in prior weeks pricing in the beat. More damaging: production came in at 451,758 units \u2014 28K below deliveries \u2014 meaning Tesla drew down inventory rather than building buffer. EV tax credit expiration has Cox Automotive projecting a 20% US sales drop. At 421x P/E there is no valuation support.",
+    "source_url": "https://www.cnbc.com/2026/07/02/tesla-tsla-q2-2026-vehicle-delivery-production.html",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 369.0,
+    "key_resistance": 425.0,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 1.56,
+    "volume_signal": "elevated",
+    "summary": "Today is a textbook Upthrust After Distribution (UTAD): TSLA briefly cleared $432 \u2014 new recent highs \u2014 only to reverse savagely and close near the day lows on 1.56x volume. This is not a shakeout; it is genuine supply. The $389.30 intraday low is now critical support. Stocks with Josh documented that after a 10%+ flush on good news (not bad news), Tesla is historically higher 30 days later 85% of the time \u2014 but only if $369 holds. Below $369 opens $338. DCF at $56.70 base vs $393 price means zero fundamental floor. Volume on a genuine capitulation flush would be 2x+ with a sharp intraday reversal \u2014 today closed near the lows, suggesting sellers remain in control going into next week."
+  },
+  "wyckoff_narrative": "The failed breakout to $432 followed by a close near the day low on 1.56x volume reads as an Upthrust (UT) \u2014 a Wyckoff signal that precedes a larger markdown. The prior July 1 down move and today sequence constitutes overhead supply announcement. For accumulation thesis to reassert: TSLA must hold $369 on low volume then stage a high-volume bounce back above $393-400. Until that sequence, path of least resistance is lower.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 56.7,
+    "upside_pct": -593.9,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF base $56.70 vs $393 = -594% margin of safety. Trading at 7x fundamental value. Entire premium reflects FSD/Robotaxi/Optimus optionality. No fundamental floor."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Q2 deliveries beat by 74K units \u2014 demand real enough to achieve",
+      "Energy storage business growing rapidly"
+    ],
+    "key_concerns": [
+      "421x P/E \u2014 extreme valuation risk",
+      "Production below deliveries: drew down inventory to hit headline",
+      "EV tax credit expiration; Cox projects -20% US sales H2 2026"
+    ],
+    "summary": "Tesla delivery beat quality undermined by inventory drawdown. Valuation at 421x provides no buffer against disappointment."
+  },
+  "sentiment": {
+    "score": -0.136,
+    "label": "Slightly Bearish",
+    "mentions_24h": null,
+    "trend": "falling"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close near the low on 1.56x volume \u2014 distribution signal; pressure may continue into next week",
+    "$369 prior pivot low is critical; violation opens $338",
+    "EV tax credit expiration is unquantified demand headwind in H2",
+    "Production below deliveries raises Q3 inventory build questions"
+  ],
+  "watchlist_priority": "high"
+}

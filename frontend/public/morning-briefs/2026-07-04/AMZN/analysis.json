@@ -1,0 +1,73 @@
+{
+  "ticker": "AMZN",
+  "company_name": "AMZN",
+  "report_date": "2026-07-04",
+  "price": 242.67,
+  "change_pct": 0.4,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "AMZN +0.40% flat and resilient while chip sector falls \u2014 AWS 28% growth, Trainium chip at $20B+ ARR growing triple-digits; DCF distorted but Parkev's $297 fair value estimate more useful.",
+  "price_action": {
+    "open": 241.61,
+    "high": 246.72,
+    "low": 241.08,
+    "close": 242.67,
+    "volume": 48298100,
+    "vol_ratio": 0.86,
+    "vol_rank": "Below avg 0.86x",
+    "intraday_story": "AMZN held firm while chip peers fell sharply. Opened $241, touched $246 high, settled at $242.67. The 0.86x volume on a flat day is consistent with quiet institutional holding."
+  },
+  "news_catalyst": {
+    "headline": "No significant news",
+    "summary": "No major catalyst today.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 0,
+    "key_resistance": 0,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0,
+    "volume_signal": "normal",
+    "summary": ""
+  },
+  "wyckoff_narrative": "",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 297.0,
+    "upside_pct": 22.4,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "Standard DCF distorted by Amazon's complex structure. Parkev's more nuanced analysis puts fair value at $297 vs $242 current \u2014 22.4% upside. Trainium chip ramp ($20B+ ARR, triple-digits growth) is the hidden value catalyst."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Meta cloud entry competes with AWS for enterprise AI workloads",
+    "Expected negative FCF in 2026 from $200B capex plan",
+    "Earnings next few weeks: Trainium ramp progress must be confirmed"
+  ],
+  "watchlist_priority": "medium"
+}

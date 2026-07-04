@@ -1,0 +1,73 @@
+{
+  "ticker": "TSM",
+  "company_name": "TSM",
+  "report_date": "2026-07-04",
+  "price": 434.16,
+  "change_pct": -2.27,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "TSM -2.27% to $434 on 1.34x elevated volume \u2014 Broadcom guidance miss and global chip selloff (SK Hynix -10%) hit the world's premier chip foundry; $429 intraday low approaches the June 26 range floor.",
+  "price_action": {
+    "open": 450.54,
+    "high": 461.47,
+    "low": 429.5,
+    "close": 434.16,
+    "volume": 18375000,
+    "vol_ratio": 1.34,
+    "vol_rank": "Above average \u2014 1.34x",
+    "intraday_story": "TSM has given back all of the June 29-30 recovery (from $432 to $477). The $429.50 intraday low approaches the June 26 range bottom ($432). A close below $432 would establish a lower low confirming distribution. Two consecutive elevated-volume down days (Jul 1 -6.98%, today -2.27%) in four days suggest supply is not exhausted. DCF distorted by TWD/USD conversion; qualitative bull case (irreplaceab"
+  },
+  "news_catalyst": {
+    "headline": "Global semiconductor selloff: SK Hynix -10%, Samsung -6.4%, ASML -3.8%; Broadcom guidance miss and weak jobs print driving",
+    "summary": "TSM is collateral damage in a global semiconductor selloff triggered by Broadcom's Q3 AI guidance miss and the weak 172K US jobs print. South Korea's Kospi fell 5.5% with SK Hynix -10% and Samsung -6.4%. ASML lost 3.8% in Europe. TSM as the world's dominant advanced chip foundry is selling off on the fear that hyperscaler AI capex guidance will be reduced following Broadcom's miss. Today's 1.34x above-average volume on a -2.27% day shows genuine institutional selling.",
+    "source_url": "https://finance.yahoo.com/markets/stocks/articles/intel-micron-shares-plummet-know-232014978.html",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 429.5,
+    "key_resistance": 461.47,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 1.34,
+    "volume_signal": "elevated",
+    "summary": "TSM has given back all of the June 29-30 recovery (from $432 to $477). The $429.50 intraday low approaches the June 26 range bottom ($432). A close below $432 would establish a lower low confirming distribution. Two consecutive elevated-volume down days (Jul 1 -6.98%, today -2.27%) in four days suggest supply is not exhausted. DCF distorted by TWD/USD conversion; qualitative bull case (irreplaceable foundry) remains intact long-term."
+  },
+  "wyckoff_narrative": "TSM is in a consolidation range $430-480. Two elevated-volume down days in the range's lower half suggest supply is winning short-term. Watch $429-432 as critical support; breakdown on volume opens $400-410.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF model shows $20,185 (TWD/USD conversion distortion, not usable). Qualitatively TSMC commands a structural premium as the sole manufacturer of leading-node AI chips at scale."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close below $429-432 (range bottom) on elevated volume opens $400-410 test",
+    "TSMC earnings mid-July \u2014 AI order pace commentary will drive sharp move",
+    "Taiwan Strait geopolitical risk is a permanent tail risk for the ADR premium"
+  ],
+  "watchlist_priority": "medium"
+}

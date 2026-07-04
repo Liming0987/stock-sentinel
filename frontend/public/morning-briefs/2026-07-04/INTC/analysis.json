@@ -1,0 +1,73 @@
+{
+  "ticker": "INTC",
+  "company_name": "INTC",
+  "report_date": "2026-07-04",
+  "price": 120.35,
+  "change_pct": -5.25,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "INTC -5.25% to $120 \u2014 intraday low of $117.63 briefly pierced the April SC floor ($118.50); the turnaround thesis holds but only if that level is defended on a closing basis.",
+  "price_action": {
+    "open": 128.92,
+    "high": 130.74,
+    "low": 117.63,
+    "close": 120.35,
+    "volume": 124577600,
+    "vol_ratio": 0.97,
+    "vol_rank": "Near average \u2014 0.97x",
+    "intraday_story": "The April 24 SC (2.55x, 281M shares \u2014 the dataset maximum) established $118.50 as the accumulation floor. Today's $117.63 low pierced it intraday before recovering to $120.35 close. This intraday violation that recovered is a critical data point: either (a) it's a Spring (shakeout below SC to flush final sellers before markup) or (b) the SC floor has cracked and distribution continues. Volume near"
+  },
+  "news_catalyst": {
+    "headline": "Broadcom guidance miss + weak jobs report; INTC now -15% from $142 record three sessions ago",
+    "summary": "Intel is being hit by the same dual macro catalysts as Micron \u2014 Broadcom's Q3 AI guidance miss and the weak 172K jobs print. INTC's vulnerability is its transitional status: burning cash on 18A, not yet a clear AI chip winner, and acutely sensitive to enterprise AI spending sentiment. The stock hit a record $142 on June 30 on turnaround optimism; three sessions later it is at $120, -15% from the high. The intraday low of $117.63 briefly violated the April 24 SC floor at $118.50 \u2014 the most critical Wyckoff event in the dataset.",
+    "source_url": "https://finance.yahoo.com/markets/stocks/articles/intel-micron-shares-plummet-know-232014978.html",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bearish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 117.63,
+    "key_resistance": 130.74,
+    "rsi": null,
+    "macd_signal": "bearish",
+    "volume_ratio_today": 0.97,
+    "volume_signal": "normal",
+    "summary": "The April 24 SC (2.55x, 281M shares \u2014 the dataset maximum) established $118.50 as the accumulation floor. Today's $117.63 low pierced it intraday before recovering to $120.35 close. This intraday violation that recovered is a critical data point: either (a) it's a Spring (shakeout below SC to flush final sellers before markup) or (b) the SC floor has cracked and distribution continues. Volume near-average (0.97x) on a -5.25% day slightly favors the Spring interpretation \u2014 a true breakdown would see more urgency from sellers."
+  },
+  "wyckoff_narrative": "Today's intraday test of $117.63 is either a Wyckoff Secondary Test (ST) of the April SC low \u2014 which is constructive if it holds on a closing basis \u2014 or the beginning of a Phase C breakdown. The distinguishing factor will be volume on the next few sessions: drying volume with higher lows = Spring setup. Expanding volume with lower lows = distribution breakdown. The $118.50 level on a closing basis is the line.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible \u2014 Intel is burning cash during the 18A foundry transition. Cantor Fitzgerald maintains a $150 price target based on the turnaround narrative. No fundamental floor from DCF."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Intraday low $117.63 pierced the April SC floor \u2014 must not close below $117-118 on a subsequent session",
+    "Sentiment score -0.467 (most bearish of non-ASTS names in watchlist)",
+    "Broadcom guidance miss directly weakens the AI data center demand narrative Intel is betting on"
+  ],
+  "watchlist_priority": "high"
+}

@@ -1,0 +1,74 @@
+{
+  "ticker": "CRCL",
+  "company_name": "CRCL",
+  "report_date": "2026-07-04",
+  "price": 64.62,
+  "change_pct": 4.31,
+  "overall_stance": "watch",
+  "conviction": 0.45,
+  "one_liner": "CRCL +4.31% to $64.62 but intraday high of $69.25 rejected back to $64.62 close \u2014 post-SC Automatic Rally with an upper wick showing sellers remain; Open USD threat is structural, not headline.",
+  "price_action": {
+    "open": 63.81,
+    "high": 69.25,
+    "low": 63.66,
+    "close": 64.62,
+    "volume": 17752200,
+    "vol_ratio": 1.27,
+    "vol_rank": "Above average \u2014 1.27x",
+    "intraday_story": "The upper wick (close $4.63 below the intraday high) on 1.27x volume is a bearish signal within the post-SC bounce. A successful AR would close near the high on tapering volume. The $61.80 SC low remains critical support. The $69.25 intraday resistance is the AR ceiling to watch. The VCP structure (two contractions: 38.3%\u219219.2%) was broken by the June 30 SC; whether it reasserts depends on whether"
+  },
+  "news_catalyst": {
+    "headline": "Post-SC Automatic Rally (AR); no new positive news; Open USD consortium (Visa/Mastercard/Stripe/BlackRock) threat unchanged",
+    "summary": "Circle's +4.31% is a post-SC Automatic Rally bounce from the July 1 SC lows at $61.80. The June 30 SC (2.86x volume on the Open USD announcement) was a genuine capitulation; the AR is expected Wyckoff behavior after a SC. However, the intraday rejection from $69.25 back to $64.62 close on 1.27x volume is a warning: sellers returned on the bounce. The Open USD consortium \u2014 Visa, Mastercard, Stripe, BlackRock, Coinbase, Ripple + 140 fintechs launching a rival USDC-killer \u2014 is a structural, not temporary, competitive threat.",
+    "source_url": "https://www.coindesk.com/business/2026/06/30/circle-slides-8-as-stripe-coinbase-and-blackrock-back-rival-stablecoin-network",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 61.8,
+    "key_resistance": 69.25,
+    "rsi": null,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 1.27,
+    "volume_signal": "elevated",
+    "summary": "The upper wick (close $4.63 below the intraday high) on 1.27x volume is a bearish signal within the post-SC bounce. A successful AR would close near the high on tapering volume. The $61.80 SC low remains critical support. The $69.25 intraday resistance is the AR ceiling to watch. The VCP structure (two contractions: 38.3%\u219219.2%) was broken by the June 30 SC; whether it reasserts depends on whether the Open USD threat is priced in at $61.80 or requires a deeper flush."
+  },
+  "wyckoff_narrative": "CRCL is at an ambiguous Wyckoff juncture. The June 30 SC (2.86x) was a genuine capitulation. The AR today (+4.31%) is normal post-SC behavior. The upper wick rejection (69.25\u219264.62) is the ambiguous signal: it could be a normal AR giveback, or it could signal that the SC did not clear all supply and another test of $61.80 is coming. The Open USD fundamental change makes this Wyckoff read harder than usual.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Pre-announcement targets of 200% upside assumed USDC dominance; the Open USD consortium changes the TAM calculation. Avoid relying on pre-announcement analyst estimates."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Upper wick today ($69.25 rejected to $64.62) shows sellers above $67 \u2014 AR may be stalling",
+    "$61.80 SC low must hold or distribution continues to $50",
+    "Open USD consortium is structurally permanent \u2014 business risk not headline risk",
+    "USDC market cap already declining from $80B YTD high before today's announcement"
+  ],
+  "watchlist_priority": "medium"
+}

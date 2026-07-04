@@ -1,0 +1,73 @@
+{
+  "ticker": "NFLX",
+  "company_name": "NFLX",
+  "report_date": "2026-07-04",
+  "price": 77.65,
+  "change_pct": 4.66,
+  "overall_stance": "accumulate",
+  "conviction": 0.72,
+  "one_liner": "NFLX +4.66% to $77.65 \u2014 new watchlist addition rallying on $25B buyback expansion and pre-Q2-earnings momentum (July 16); DCF shows 71.5% upside and the ad revenue ramp is real.",
+  "price_action": {
+    "open": 75.09,
+    "high": 78.44,
+    "low": 74.91,
+    "close": 77.65,
+    "volume": 55541700,
+    "vol_ratio": 1.28,
+    "vol_rank": "Above average \u2014 1.28x",
+    "intraday_story": "NFLX is the new addition to the watchlist today. The 90-day max-volume day was Feb 27 (2.1x) \u2014 a potential prior SC. Today's 1.28x volume move to $77.65 approaches the top of the recent $65-78 range (max $78.44). The close near the high on above-average volume is constructive. The $74.91 intraday dip was quickly absorbed. Key risk: Q2 earnings July 16 could create a buy-the-rumor-sell-the-news dyn"
+  },
+  "news_catalyst": {
+    "headline": "Netflix $25B buyback expansion + Q2 earnings July 16 + ad revenue above $1.5B targeting $3B",
+    "summary": "Netflix expanded its share repurchase authorization to $25B (adding to an existing $15B program) while the stock trades 30-35% below recent highs. Management's buyback signal at these levels is a strong insider buy indicator. Q2 earnings due July 16 are expected to show continued subscriber strength from live sports (NFL, WWE, F1), ad-tier growth, and gaming. Ad revenue already surpassing $1.5B with a $3B 2026 target represents a new high-margin revenue stream the market has not fully incorporated into DCF models.",
+    "source_url": "https://finance.yahoo.com/quote/NFLX/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 74.91,
+    "key_resistance": 78.44,
+    "rsi": null,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 1.28,
+    "volume_signal": "elevated",
+    "summary": "NFLX is the new addition to the watchlist today. The 90-day max-volume day was Feb 27 (2.1x) \u2014 a potential prior SC. Today's 1.28x volume move to $77.65 approaches the top of the recent $65-78 range (max $78.44). The close near the high on above-average volume is constructive. The $74.91 intraday dip was quickly absorbed. Key risk: Q2 earnings July 16 could create a buy-the-rumor-sell-the-news dynamic like TSLA today. DCF at $272.5 vs $77.65 = 71.5% MoS is the most compelling fundamental setup in the watchlist."
+  },
+  "wyckoff_narrative": "Insufficient history for full Wyckoff read as a new watchlist addition. Consolidation in $65-78 range with today's 1.28x volume move toward the top has SOS characteristics. Watch for break above $78.44 on volume to confirm the start of markup. $74.91 is now near-term support.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 272.5,
+    "upside_pct": 71.5,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF $272.5 vs $77.65 = 71.5% MoS \u2014 highest in the watchlist. Netflix's transition to profitability (ad tier, password crackdown, live sports) may make the DCF model conservative. A stock at 28% of estimated fair value with an active buyback is a compelling setup."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Q2 earnings July 16: buy-the-rumor-sell-the-news risk after +4.66% pre-earnings move",
+    "$78.44 is top of recent range \u2014 overhead supply at the resistance level",
+    "New addition \u2014 limited Wyckoff history to establish phase clarity"
+  ],
+  "watchlist_priority": "high"
+}

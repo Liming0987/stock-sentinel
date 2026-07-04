@@ -1,0 +1,79 @@
+{
+  "ticker": "LULU",
+  "company_name": "lululemon athletica inc.",
+  "report_date": "2026-07-04",
+  "price": 118.43,
+  "change_pct": 1.74,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "LULU +1.74% on 0.61x volume in Accumulation Phase B; DCF shows 5.1% MoS at .7 \u2014 modest value with the base forming, but limited catalyst.",
+  "price_action": {
+    "open": 116.4,
+    "high": 119.83,
+    "low": 116.4,
+    "close": 118.43,
+    "volume": 2634500,
+    "vol_ratio": 0.61,
+    "vol_rank": "Below avg 0.61x",
+    "intraday_story": "LULU gap up to open and continued higher to .83 intraday before closing at .43. Very low volume (0.61x) on a positive day shows limited institutional conviction."
+  },
+  "news_catalyst": {
+    "headline": "No specific LULU news; athletic wear sector positive",
+    "summary": "No material catalyst. LULU in Phase B accumulation with 5.1% DCF MoS. Nike competition and consumer discretionary pressures remain the key headwinds.",
+    "source_url": "https://finance.yahoo.com/quote/LULU/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 114.03,
+    "key_resistance": 119.83,
+    "rsi": null,
+    "macd_signal": "neutral",
+    "volume_ratio_today": 0.61,
+    "volume_signal": "drying up",
+    "summary": "Phase B accumulation on very low volume. 5.1% DCF MoS. No SOS signal yet."
+  },
+  "wyckoff_narrative": "Phase B accumulation with drying volume. Watch for SOS above  on volume 1.5x+.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 124.7,
+    "upside_pct": 5.1,
+    "bear_value": 97.51,
+    "bull_value": 148.28,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF base .7 vs .43 = 5.1% MoS. Marginal value. Bear case .51 represents real downside."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Premium athletic wear positioning",
+      "International expansion ongoing"
+    ],
+    "key_concerns": [
+      "Nike and Alo Yoga competition",
+      "Consumer discretionary spending under pressure"
+    ],
+    "summary": "Modest setup. Not compelling at current DCF MoS."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "5.1% DCF MoS offers minimal buffer",
+    "Consumer discretionary headwinds from potential rate hike risk",
+    "No SOS signal \u2014 Phase B accumulation without volume confirmation"
+  ],
+  "watchlist_priority": "low"
+}

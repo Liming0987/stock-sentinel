@@ -1,0 +1,73 @@
+{
+  "ticker": "LLY",
+  "company_name": "LLY",
+  "report_date": "2026-07-04",
+  "price": 1213.91,
+  "change_pct": 1.86,
+  "overall_stance": "accumulate",
+  "conviction": 0.78,
+  "one_liner": "LLY +1.86% to $1,213 on near-average volume \u2014 Wyckoff Phase E (Complete) markup underway with $1,180 LPS low holding; DCF $2,022 (40% MoS) and GLP-1 dominance make this the clearest accumulate setup.",
+  "price_action": {
+    "open": 1193.01,
+    "high": 1232.0,
+    "low": 1180.3,
+    "close": 1213.91,
+    "volume": 3296100,
+    "vol_ratio": 0.97,
+    "vol_rank": "Near average \u2014 0.97x; drying-volume recovery is constructive",
+    "intraday_story": "LLY is in the most advanced Wyckoff phase in the watchlist: Phase E (Complete). Today's 0.97x near-average volume on a +1.86% session is textbook markup \u2014 price rising as supply is absent. The $1,180.30 LPS held, confirming it as the support floor. The $1,232 intraday high is next resistance; clearing it opens a test of $1,238 (June 29 high) and then new ATH territory. DCF $2,022 vs $1,213 = 40% M"
+  },
+  "news_catalyst": {
+    "headline": "No specific LLY news \u2014 Wyckoff Phase E markup continues post-LPS",
+    "summary": "LLY has no breaking news today \u2014 which is characteristic of Wyckoff Phase E markup: orderly advance on moderate volume driven by the absence of sellers. The June 26 SOS (2.35x volume, $128 range) established the new base; the July 1 LPS ($1,173 low, 0.77x) was the final shakeout; today's recovery to $1,213 on 0.97x volume is the early markup phase. The $1,180 LPS low held for the second consecutive session. GLP-1 fundamentals (Zepbound, Mounjaro) remain structurally intact.",
+    "source_url": "https://finance.yahoo.com/quote/LLY/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase E (Complete)",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1180.3,
+    "key_resistance": 1232.0,
+    "rsi": null,
+    "macd_signal": "bullish",
+    "volume_ratio_today": 0.97,
+    "volume_signal": "drying up",
+    "summary": "LLY is in the most advanced Wyckoff phase in the watchlist: Phase E (Complete). Today's 0.97x near-average volume on a +1.86% session is textbook markup \u2014 price rising as supply is absent. The $1,180.30 LPS held, confirming it as the support floor. The $1,232 intraday high is next resistance; clearing it opens a test of $1,238 (June 29 high) and then new ATH territory. DCF $2,022 vs $1,213 = 40% MoS makes this the strongest fundamentals/technicals combination in the watchlist."
+  },
+  "wyckoff_narrative": "Phase E is Wyckoff's endgame \u2014 accumulation complete, markup underway. The SOS on June 26 (2.35x) was the breakout event. The LPS on July 1 ($1,173, 0.77x) was the final shakeout. Today's recovery to $1,213 on drying volume is the early markup. Expected next event: continued advance past $1,238 prior high. Any pullback to $1,173-1,180 on drying volume is a buyable LPS retest. Close below $1,128 (SOS open) on volume would invalidate.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 2022.5,
+    "upside_pct": 40.0,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF $2,022 vs $1,213 = 40% MoS. GLP-1 obesity/diabetes market represents a decades-long growth runway. Bull case DCF significantly higher given TAM uncertainty. Margin of safety is real and substantial."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [],
+    "key_concerns": [],
+    "summary": ""
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": null,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Trump drug pricing executive orders \u2014 binary risk, can cause 5-10% single-day selloffs",
+    "Position sizing: $1,213/share = $121K per 100 shares; plan lot sizes carefully",
+    "$1,232 near-term resistance \u2014 needs volume to clear"
+  ],
+  "watchlist_priority": "high"
+}
