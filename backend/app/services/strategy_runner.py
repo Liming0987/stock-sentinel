@@ -1020,6 +1020,22 @@ class StrategyRunner:
                         continue
 
                     if not open_trade:
+                        # Block re-entry if a trade for this ticker+strategy was already
+                        # closed today (e.g. stopped out on a prior VWAP cross attempt).
+                        today_start = datetime.now(timezone.utc).replace(
+                            hour=0, minute=0, second=0, microsecond=0
+                        )
+                        already_traded = session.execute(
+                            select(Trade).where(and_(
+                                Trade.strategy_id == strat_row.id,
+                                Trade.stock_id == stock.id,
+                                Trade.status == "closed",
+                                Trade.closed_at >= today_start,
+                            ))
+                        ).scalars().first()
+                        if already_traded:
+                            continue
+
                         sig = strat.apply_fundamental_modifier(strat.evaluate(ticker, ctx), ctx)
                         if sig.action == "buy":
                             buy_candidates.append((sig.confidence, ticker, stock, sig))
