@@ -1,0 +1,87 @@
+{
+  "ticker": "OKLO",
+  "company_name": "Oklo Inc.",
+  "report_date": "2026-07-07",
+  "price": 47.9,
+  "change_pct": -7.6,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "OKLO dropped 7.6% today to $47.90, kissing the lower Bollinger Band with RSI at 30.24 \u2014 oversold territory \u2014 but the downtrend is intact and the July Groves criticality test is the real binary that matters.",
+  "price_action": {
+    "open": 50.85,
+    "high": 51.38,
+    "low": 46.95,
+    "close": 47.9,
+    "volume": 11205053,
+    "vol_ratio": 0.88,
+    "vol_rank": "Slightly below 30-day average (avg 12.8M) \u2014 not a climactic flush",
+    "intraday_story": "OKLO opened at $50.85 and immediately sold off, tagging a low of $46.95 before closing at $47.90 \u2014 right at the lower Bollinger Band ($47.65). The candle closed in the lower quarter of its range, a bearish close with no meaningful intraday recovery. Notably, volume at 11.2M was below the 30-day average of 12.8M, suggesting this was not panic selling but continued steady distribution pressure."
+  },
+  "news_catalyst": {
+    "headline": "Oklo DOE Safety Approval for Groves Isotope Test Reactor Hailed as Major Milestone; July Criticality Test in View",
+    "summary": "The July 7 decline appears to be technical in nature rather than news-driven \u2014 the most recent company-specific catalyst was the July 1 DOE approval of the Documented Safety Analysis for Oklo's Groves Isotope Test Reactor under the DOE Reactor Pilot Program, which was widely viewed as bullish. That approval was supposed to bring the stock forward, yet OKLO has continued drifting lower, closing July 1 at $52.45 and now at $47.90 today. The broader context is June's brutal 22% decline, which was triggered not by Oklo's own news but by the DOE's $17.5 billion loan program for traditional large-scale nuclear reactors \u2014 interpreted by SMR investors as a signal that the government was pivoting away from small modular reactor bets. The irony is that Oklo itself had a month of wins in June (fuel supply partnership with Centrus Energy, acquisitions, regulatory approvals), yet the macro SMR sentiment shift overwhelmed the positives. The market is currently pricing in the risk that the criticality milestone could be delayed or that funding environment for SMRs could sour further.",
+    "source_url": "https://finance.yahoo.com/energy/articles/oklo-advances-groves-isotope-test-123300704.html",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected \u2014 only 1 valid contraction, need \u22652 with decreasing depth",
+    "key_support": 46.95,
+    "key_resistance": 53.08,
+    "rsi": 30.24,
+    "macd_signal": "Bearish \u2014 MACD at -2.14 below signal -1.50, histogram expanding negatively at -0.64",
+    "volume_ratio_today": 0.88,
+    "volume_signal": "normal",
+    "summary": "OKLO's technical picture today is a study in slow-motion distribution against a pre-revenue story. The stock closed at $47.90 \u2014 just above the lower Bollinger Band at $47.65 \u2014 after touching an intraday low of $46.95 that briefly undercut it. This is not a panic washout: volume at 11.2M was below the 30-day average of 12.8M (ratio 0.88), meaning sellers are not capitulating but rather the bid is simply absent. RSI at 30.24 is right at the conventional oversold threshold, but in a trend-following context, oversold RSI in a downtrend can remain oversold for extended periods.\n\nZooming out to the 90-day structure, OKLO has been in a sustained decline from the $65-70 range in late February down to the current $47.90. The stock closed 2026 with a 52-week high of $193.84, meaning it has lost over 75% from peak. The most meaningful recent volume event was June 26, when 22.9M shares traded (1.69x the 30-day average at the time) as price collapsed from the $55 zone to close at $50.00 \u2014 a possible Sign of Weakness (SOW) candidate, though the Wyckoff engine has not formally tagged it due to the absence of a prior Buying Climax anchor. The Wyckoff trading range support sits at $49.51, and today's close of $47.90 is now below that level.\n\nBoth the 50-EMA ($56.51) and 200-EMA ($58.23) sit well overhead and are pointing down \u2014 there is no EMA support nearby, and a golden cross is not in view. MACD is -2.14 with the signal at -1.50 and an expanding negative histogram at -0.64, confirming momentum is bearish. For the near-term technical setup to improve, OKLO would need to see a low-volume consolidation in the $47-50 zone followed by a volume-expanding bounce back through the $53 recent resistance \u2014 that would be the minimum required to argue that absorption is occurring. As of today's close, that case cannot be made."
+  },
+  "wyckoff_narrative": "The Wyckoff algorithm classifies OKLO in 'Consolidation / No Clear Phase' with a neutral bias, reflecting the absence of the classic event sequence needed to define an accumulation or distribution campaign. The 90-day dataset shows no tagged Selling Climax, Automatic Rally, or Secondary Test \u2014 the building blocks of a Phase A / Phase B accumulation base. Without those anchors, subsequent signals like a Sign of Strength or Last Point of Support cannot be formally identified.\n\nThat said, a discretionary read of the tape offers a tentative interpretation. The June 26 session (22.9M volume, ~1.69x avg, close at $50.00 \u2014 down from $55+) bears the hallmarks of a Selling Climax candidate in an emerging downtrend: high relative volume, wide spread, close near the low. If that reading is correct, the subsequent two weeks of lower-volume price action (July 1-7 in the $47-53 range) could represent a Phase A / Phase B transition \u2014 the market testing whether supply has been absorbed. Today's close at $47.90, below the Wyckoff-calculated support of $49.51 on declining but not climactic volume, is an ambiguous signal: it could be a Secondary Test undercutting the SC low (a normal accumulation feature), or it could simply be continued markdown with no absorption yet.\n\nThe next session is critical. A close back above $49.51-50.00 on expanding volume would begin to build the case for a Secondary Test and potential Phase B stabilization. Continued closes below $47.65 (lower BB) on average-or-higher volume would argue for further markdown toward the next structural support zone in the $40-44 area. Until the tape shows higher-volume bounces that absorb overhead supply, the Wyckoff bias should be treated as bearish by default.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF is not applicable \u2014 Oklo is pre-revenue with negative free cash flow (-$100M trailing). The backend correctly flags this as infeasible. Wall Street consensus of 19 analysts carries a mean price target of $88.63, implying 85% upside from current price, reflecting the long-dated optionality thesis on commercial reactor deployment rather than near-term cash flow. At $47.90 and a price-to-book of 3.16, valuation is entirely a function of when (and whether) the Aurora powerhouse reaches commercial operation."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5569,
+    "key_strengths": [
+      "Current ratio of 59.9 \u2014 fortress balance sheet with minimal liquidity risk",
+      "Debt to equity of only 0.099 \u2014 essentially no debt",
+      "19 analyst coverage with mean recommendation 2.0 (buy) and $88.63 target",
+      "DOE Reactor Pilot Program approval for Groves Isotope Test Reactor (July 1)"
+    ],
+    "key_concerns": [
+      "Zero revenue \u2014 no commercial reactors in operation",
+      "Negative FCF of -$100M and negative operating margin",
+      "ROA of -7.2%, ROE of -8.9% \u2014 capital consumption with no return yet",
+      "Q1 2026 net loss of -$9.81M; only profitable quarter was Q4 2025 ($25.74M, likely gains)",
+      "Next earnings August 10 \u2014 potential catalyst or risk event"
+    ],
+    "summary": "The C grade reflects a stark split: near-perfect balance sheet health (59.9 current ratio, negligible debt) and strong analyst conviction (mean buy, $88.63 target) drag the score up, but profitability is non-existent across every metric, and there is no revenue to anchor any growth rate. Fundamentals do not support or contradict the technical stance \u2014 they are orthogonal to it, as OKLO is a binary option on nuclear reactor deployment timelines rather than a traditional earnings-driven stock."
+  },
+  "sentiment": {
+    "score": 0.131,
+    "label": "Neutral",
+    "mentions_24h": 39,
+    "trend": "falling"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Criticality test delay: if the Groves Isotope Test Reactor misses its July timeline, the stock's primary near-term catalyst disappears and could trigger another leg lower",
+    "SMR funding environment: the DOE's $17.5B loan program pivot toward traditional large-scale reactors (June catalyst for the 22% decline) could be repeated \u2014 any further policy signals favoring conventional nuclear would pressure OKLO",
+    "RSI at 30.24 is oversold but can stay oversold in a trend \u2014 the downtrend from $70+ has not shown any technical reversal signals yet",
+    "Close below Wyckoff support at $49.51 today raises risk of markdown extension toward $40-44 structural support",
+    "Earnings on August 10 \u2014 with no revenue and analyst expectations shaped by optionality, any negative operational update could hit hard",
+    "Volume at 0.88x average on today's decline suggests no selling climax \u2014 no exhaustion signal yet to buy against"
+  ],
+  "watchlist_priority": "medium"
+}
