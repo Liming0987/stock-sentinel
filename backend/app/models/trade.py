@@ -22,13 +22,13 @@ class Strategy(Base):
     avg_return_pct = Column(Numeric(8, 4), default=0)
 
     # Advanced performance analytics (recomputed by _compute_advanced_metrics)
-    sharpe_ratio = Column(Numeric(8, 4), nullable=True)
-    max_drawdown = Column(Numeric(8, 4), nullable=True)
+    sharpe_ratio = Column(Numeric(14, 4), nullable=True)
+    max_drawdown = Column(Numeric(14, 4), nullable=True)
     avg_hold_days = Column(Numeric(8, 2), nullable=True)
     consecutive_wins = Column(Integer, default=0)
     consecutive_losses = Column(Integer, default=0)
-    best_trade_pct = Column(Numeric(8, 4), nullable=True)
-    worst_trade_pct = Column(Numeric(8, 4), nullable=True)
+    best_trade_pct = Column(Numeric(14, 4), nullable=True)
+    worst_trade_pct = Column(Numeric(14, 4), nullable=True)
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     last_run_at = Column(DateTime(timezone=True))
