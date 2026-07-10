@@ -1,0 +1,80 @@
+{
+  "ticker": "TSLA",
+  "company_name": "Tesla Inc",
+  "report_date": "2026-07-10",
+  "price": 406.55,
+  "change_pct": 3.17,
+  "overall_stance": "avoid",
+  "conviction": 0.75,
+  "one_liner": "TSLA at $406.55 is 85% above DCF fair value ($59), trading at 192x forward PE with earnings July 22 \u2014 Parkev holds puts; avoid unless you're in for the SpaceX acquisition optionality or robotaxi regulatory catalyst.",
+  "price_action": {
+    "open": 393.99,
+    "high": 407.86,
+    "low": 390.86,
+    "close": 406.55,
+    "volume": 37724300,
+    "vol_ratio": 0.81,
+    "vol_rank": "Below average \u2014 moderate volume on +3.17% day",
+    "intraday_story": "TSLA gapped up from $394 and ran to $407.86 before closing at $406.55 near the session high on below-average volume. Stock is above EMA50 ($391.93) and EMA200 ($384.88). The close is near the upper Bollinger Band at $429.50."
+  },
+  "news_catalyst": {
+    "headline": "Tesla Q2 Deliveries Beat; Earnings July 22 \u2014 Forward PE at 192x vs $59 DCF Fair Value",
+    "summary": "Tesla's 3.17% gain continues the recovery from earlier weakness. Parkev Tatevosian published an updated 2026 price target today (July 10) raising the upside scenario slightly to $350-450 but maintaining the sell rating with put options held. The robotaxi remains in limited testing. Earnings July 22 will be watched for: Q3 delivery guidance, energy storage commentary, and any SpaceX acquisition update.",
+    "source_url": "https://finance.yahoo.com/quote/TSLA/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 391.93,
+    "key_resistance": 429.5,
+    "rsi": 53.8,
+    "macd_signal": "Bullish \u2014 MACD histogram +0.206",
+    "volume_ratio_today": 0.81,
+    "volume_signal": "normal",
+    "summary": "TSLA is above both EMAs in a technical uptrend. RSI 53.8 is neutral. The stock is approaching the upper BB at $429.50 \u2014 the next resistance target. Technical picture is mildly bullish but the fundamental picture is extremely bearish. For a momentum-only trader, the setup could work to $429; for any fundamental investor, the 85% DCF overvaluation and 192x PE is unattractive.",
+    "wyckoff_narrative": "Neutral Wyckoff with stock above both EMAs. No accumulation or distribution signals. Earnings July 22 is the decisive event."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 59.27,
+    "upside_pct": -85.4,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF fair value $59 vs $406 market price \u2014 85% overvalued. The entire bull case rests on robotaxi commercialization and SpaceX acquisition optionality, not current operations. Avoid for fundamental investors."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.4822,
+    "key_strengths": [
+      "EV market share leader in US",
+      "Energy storage business growing rapidly",
+      "Elon Musk's unique ability to sustain premium valuation"
+    ],
+    "key_concerns": [
+      "Grade D (0.48) \u2014 reflects extreme valuation vs fundamentals",
+      "Robotaxi still in limited testing \u2014 primary bull catalyst not materializing",
+      "192x forward PE vs $2.55 2027 EPS estimate"
+    ],
+    "summary": "D grade reflecting the enormous gap between price and fundamental value. The Musk premium is real but quantifying it is speculative."
+  },
+  "sentiment": {
+    "score": 0.084,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Earnings July 22 \u2014 any setback to robotaxi timeline or delivery guidance cut would gap down significantly",
+    "Elon political re-engagement (elections) is the #1 downside risk per Parkev's analysis",
+    "Robotaxi commercial launch delay means the 192x PE multiple has no fundamental anchor"
+  ],
+  "watchlist_priority": "low"
+}

@@ -1,0 +1,79 @@
+{
+  "ticker": "TSM",
+  "company_name": "Taiwan Semiconductor Manufacturing Co (ADR)",
+  "report_date": "2026-07-10",
+  "price": 436.96,
+  "change_pct": 0.0,
+  "overall_stance": "watch",
+  "conviction": 0.65,
+  "one_liner": "TSM at $437 reports earnings July 16 with guidance for $39-40B Q2 revenue and 65.5-67.5% gross margin \u2014 one of the strongest earnings setups on the watchlist with Grade A fundamentals and AI chip demand described as 'extremely robust.'",
+  "price_action": {
+    "open": 446.73,
+    "high": 447.69,
+    "low": 436.39,
+    "close": 436.96,
+    "volume": 11423800,
+    "vol_ratio": 0.8,
+    "vol_rank": "Below average \u2014 moderate volume pre-earnings",
+    "intraday_story": "TSM opened at $446.73, immediately hit a high of $447.69 then sold off steadily throughout the session to close at $436.96 near the low of $436.39. This is a bearish intraday pattern \u2014 gap-up then fade \u2014 but in the context of pre-earnings positioning and the broader semiconductor sector noise, the pullback may represent normal profit-taking ahead of the July 16 catalyst."
+  },
+  "news_catalyst": {
+    "headline": "TSM Q2 Earnings July 16: Guided $39-40B Revenue, 65.5-67.5% Gross Margin; AI Demand 'Extremely Robust'",
+    "summary": "Taiwan Semiconductor reports Q2 earnings on July 16 \u2014 the same day as Netflix. Management guided Q2 revenues of $39-40.2B (10% sequential growth) with gross margins of 65.5-67.5%. The company described agentic AI demand as 'extremely robust' and is ramping 2-nanometer production. TSM stock surged 39.9% in the April-June quarter. The July 16 report will be the first major semiconductor earnings of the season and will set the tone for the sector. The ADR DCF model is distorted (showing 4519% upside due to share count differences between ADR and underlying shares) \u2014 this should be disregarded.",
+    "source_url": "https://finance.yahoo.com/markets/stocks/articles/tsmc-q2-earnings-preview-why-190000466.html",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 426.03,
+    "key_resistance": 465.38,
+    "rsi": 51.2,
+    "macd_signal": "Slightly bearish \u2014 MACD histogram -2.072, negative but narrowing",
+    "volume_ratio_today": 0.8,
+    "volume_signal": "normal",
+    "summary": "TSM is in an uptrend above both EMAs (EMA50 $426.03, EMA200 $413.65) but today's session showed intraday weakness \u2014 opened near the high and closed near the low. RSI at 51.2 is neutral. MACD histogram at -2.072 is slightly negative, suggesting the recent run has decelerated.\n\nThe Wyckoff trading range support at $364.29 and resistance at $465.38 frames a stock in the upper half of its range but not yet at the ceiling. The EMA50 at $426.03 is the first key support on any further pullback.\n\nThe July 16 earnings report is the dominant factor overriding all technical signals. The management's pre-guidance of $39-40B revenue and 65-67% gross margins sets a high bar \u2014 any beat on these figures would likely send the stock toward $465 resistance. A miss or soft guidance on 2027 AI demand would break the $426 EMA50 support."
+  },
+  "wyckoff_narrative": "TSM's neutral Wyckoff classification reflects the post-rally consolidation. After a 39.9% Q2 run, the stock is digesting gains above its EMAs without clear accumulation or distribution signals. The current pattern \u2014 holding above EMA50 with declining MACD but stable RSI \u2014 is consistent with Phase B consolidation before the next move.\n\nThe earnings event on July 16 will be the decisive Wyckoff event: either a Sign of Strength (SOS) thrust on positive results, or a Sign of Weakness (SOW) break if AI demand commentary disappoints. Given management's pre-guided numbers are already strong, the market will be focused on 2027 AI demand outlook and 2nm production ramp commentary.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 20184.95,
+    "upside_pct": 4519.0,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF value of $20,184 is a model artifact \u2014 TSM ADRs represent a fractional share count of the underlying Taiwan-listed shares, creating a per-share distortion. This DCF figure should be disregarded. TSM is fundamentally valued by the market at a premium to historical multiples given its AI chip monopoly on leading-edge manufacturing."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.8912,
+    "key_strengths": [
+      "Highest fundamental grade on watchlist at 0.89 \u2014 near-monopoly on advanced node manufacturing",
+      "Guided 65.5-67.5% gross margins for Q2 \u2014 exceptional for a capital-intensive manufacturer",
+      "AI chip demand described by management as 'extremely robust' \u2014 backs up the narrative"
+    ],
+    "key_concerns": [
+      "Geopolitical risk: Taiwan Strait tensions could cause significant premium compression",
+      "Concentration risk: high dependency on Apple and Nvidia as top customers"
+    ],
+    "summary": "TSM has the highest fundamental grade (A, 0.89) on the watchlist. Its monopoly on leading-edge chip manufacturing for Apple, Nvidia, AMD, and others creates a durable competitive moat. Fundamentals strongly support the watch-into-accumulate stance pending the July 16 earnings confirmation."
+  },
+  "sentiment": {
+    "score": 0.168,
+    "label": "Bullish",
+    "mentions_24h": 17,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Earnings July 16 \u2014 miss on revenue or margin guidance, or soft 2027 AI demand commentary, would break $426 EMA50",
+    "Geopolitical risk: Taiwan Strait tensions are a permanent tail risk for this stock",
+    "MACD histogram negative today (-2.072) \u2014 momentum slightly bearish heading into earnings"
+  ],
+  "watchlist_priority": "high"
+}

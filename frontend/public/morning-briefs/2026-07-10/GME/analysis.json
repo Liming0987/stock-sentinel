@@ -1,0 +1,76 @@
+{
+  "ticker": "GME",
+  "company_name": "GameStop Corp",
+  "report_date": "2026-07-10",
+  "price": 21.95,
+  "change_pct": 1.15,
+  "overall_stance": "watch",
+  "conviction": 0.45,
+  "one_liner": "GME at $21.95 is in Wyckoff Phase A-B accumulation with Grade B fundamentals \u2014 the 'GameStop hurdle nobody was watching' headline suggests an unreported positive catalyst; too speculative for a conviction stance.",
+  "price_action": {
+    "open": 21.7,
+    "high": 21.99,
+    "low": 21.53,
+    "close": 21.95,
+    "volume": 2619500,
+    "vol_ratio": 0.54,
+    "vol_rank": "Well below average \u2014 very low volume",
+    "intraday_story": "GME moved quietly higher on very low volume. Near the high of $21.99. Wyckoff range at $20.93-$25.75."
+  },
+  "news_catalyst": {
+    "headline": "GameStop Just Cleared a Hurdle Nobody Was Watching",
+    "summary": "An unspecified positive milestone or regulatory/business development was flagged \u2014 the headline is intriguing but the stock's response (only +1.15% on very low volume) suggests the catalyst is not market-moving. GME recently disclosed it holds Bitcoin on its balance sheet, which provides crypto correlation optionality.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 20.93,
+    "key_resistance": 25.75,
+    "rsi": 48.3,
+    "macd_signal": "Flat positive \u2014 MACD histogram +0.054",
+    "volume_ratio_today": 0.54,
+    "volume_signal": "drying up",
+    "summary": "GME is in Phase A-B accumulation above the $20.93 support. Grade B (0.73) is surprisingly strong for a retail stock. RSI 48.3 and MACD flat. Low conviction either direction.",
+    "wyckoff_narrative": "Wyckoff Phase A-B with bullish bias. The $20.93 support is the invalidation level. Low-volume consolidation above support is constructive but lacks momentum."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "No DCF \u2014 GME's value is a combination of retail stores, Bitcoin holdings, and meme sentiment. Not amenable to traditional valuation."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7313,
+    "key_strengths": [
+      "Strong cash position from equity raise",
+      "Bitcoin treasury strategy adding crypto optionality"
+    ],
+    "key_concerns": [
+      "Core retail gaming business structurally declining",
+      "Meme stock volatility makes position sizing difficult"
+    ],
+    "summary": "Grade B surprisingly strong \u2014 reflects the cash-rich balance sheet after equity raises. Bitcoin holdings add speculative upside."
+  },
+  "sentiment": {
+    "score": 0.136,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Meme stock \u2014 can move 20-30% on a tweet; impossible to risk-manage conventionally",
+    "Core business declining; value depends on Bitcoin and balance sheet optionality"
+  ],
+  "watchlist_priority": "low"
+}

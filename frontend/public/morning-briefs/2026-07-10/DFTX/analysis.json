@@ -1,0 +1,80 @@
+{
+  "ticker": "DFTX",
+  "company_name": "Definium Therapeutics Inc",
+  "report_date": "2026-07-10",
+  "price": 48.45,
+  "change_pct": 6.91,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "DFTX at $48.45 with RSI 84 is the most overbought name on the watchlist \u2014 riding Phase 3 MDD trial euphoria from June that already priced in Canaccord's $58 target; avoid chasing at current levels.",
+  "price_action": {
+    "open": 45.07,
+    "high": 48.47,
+    "low": 44.53,
+    "close": 48.45,
+    "volume": 3015700,
+    "vol_ratio": 0.74,
+    "vol_rank": "Below average \u2014 +6.91% move on below-average volume is a warning flag",
+    "intraday_story": "DFTX opened at $45.07, staged a clean rally all day to close at $48.45 essentially at the session high of $48.47 \u2014 very strong close. However, volume at 3.0M was below the 20-day average of 4.85M at 0.74x. A strong price move on declining volume is often a sign of diminishing participation, and with RSI already at 84, this is a stock extended beyond sustainable levels."
+  },
+  "news_catalyst": {
+    "headline": "Definium Therapeutics Riding Phase 3 Emerge Trial Success for DT120 (MDD); Canaccord $58 Target, Needham $50",
+    "summary": "DFTX has been in a momentum run since announcing successful Phase 3 Emerge trial results for DT120 (major depressive disorder) in late June, where the drug hit its primary and all key secondary endpoints. The stock ran from the mid-$20s to $44+ on the Phase 3 announcement, and has continued climbing toward analyst targets. Canaccord rates Buy with a $58 target; Needham has a $50 target \u2014 the current $48.45 is approaching the lower of those targets. The catalyst is now largely priced in.",
+    "source_url": "https://www.gurufocus.com/news/8925315/definium-therapeutics-dftx-poised-for-significant-growth-following-positive-trial-results",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 31.83,
+    "key_resistance": 47.2,
+    "rsi": 84.0,
+    "macd_signal": "Bullish \u2014 MACD histogram +0.619, positive",
+    "volume_ratio_today": 0.74,
+    "volume_signal": "drying up",
+    "summary": "RSI at 84 is the most overbought reading on the 33-stock watchlist. The Wyckoff resistance at $47.20 has already been broken to the upside \u2014 the stock is now trading above its own computed range resistance at $48.45. EMA50 at $31.83 and EMA200 at $25.80 are far below, reflecting the enormous post-catalyst move.\n\nThe +6.91% move on below-average volume (0.74x) is a technical warning: rallies that persist on declining participation often end abruptly when the last momentum buyers are exhausted. With the stock approaching Canaccord's $58 target and already through Needham's $50 target, the catalyst from the Phase 3 announcement is now fully discounted.\n\nFor risk management: RSI 84 historically mean-reverts. A pullback to the EMA50 ($31.83) would represent a -34% reversion \u2014 extreme but possible for a clinical-stage biotech after a catalyst run."
+  },
+  "wyckoff_narrative": "DFTX's Phase B classification by the Wyckoff engine is based on the base that formed before the Phase 3 announcement. The stock has since broken out of that base and is now well into markup \u2014 but the markup has been extremely rapid (from $25 to $48 in weeks). This type of move often leads to a Buying Climax (BC) followed by distribution, where sophisticated holders from the base sell into momentum buyers.\n\nAt RSI 84 and closing above the Wyckoff range resistance, the Wyckoff interpretation is Upthrust risk \u2014 a false breakout above resistance that traps late buyers. A close back below $47.20 (range resistance turned support) on high volume would confirm an Upthrust After Distribution (UTAD) and signal a significant pullback incoming.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF not applicable \u2014 pre-revenue clinical stage biotech. Valuation entirely dependent on Phase 3 MDD drug approval probability, market size, pricing, and commercialization timeline. Next earnings July 30 will provide pipeline update."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.506,
+    "key_strengths": [
+      "Phase 3 Emerge trial hit primary and all key secondary endpoints \u2014 regulatory catalyst pathway clear",
+      "DT120 shows rapid and sustained effectiveness in MDD vs existing therapies"
+    ],
+    "key_concerns": [
+      "Pre-revenue, pre-approval \u2014 all value is option value on FDA approval and commercialization",
+      "Grade C (0.506) reflects speculative-stage fundamentals",
+      "Catalyst (Phase 3 data) already fully priced in; next FDA milestones are months away"
+    ],
+    "summary": "C grade reflects the speculative nature of a clinical-stage biotech. The Phase 3 data is real and positive, but with the stock already near analyst targets, the risk/reward of chasing here is unfavorable. Wait for a pullback to the $38-40 zone before reassessing."
+  },
+  "sentiment": {
+    "score": 0.144,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI 84 \u2014 most overbought reading on watchlist; mean reversion to RSI 50-60 would imply $35-38 price",
+    "Rising on below-average volume (0.74x) \u2014 weak participation signal for a stock at resistance",
+    "Phase 3 catalyst already in the price; next milestone (FDA interaction/NDA filing) is months away",
+    "Close below $47.20 (Wyckoff resistance) would signal Upthrust failure and trigger fast selloff"
+  ],
+  "watchlist_priority": "low"
+}

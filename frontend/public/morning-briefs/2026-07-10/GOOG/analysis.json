@@ -1,0 +1,78 @@
+{
+  "ticker": "GOOG",
+  "company_name": "Alphabet Inc",
+  "report_date": "2026-07-10",
+  "price": 356.24,
+  "change_pct": -0.69,
+  "overall_stance": "accumulate",
+  "conviction": 0.7,
+  "one_liner": "GOOG at $356 sits between both EMAs with 15% DCF upside, Grade A fundamentals, and earnings July 22 \u2014 the setup is clean pre-earnings with RSI neutral at 51 and volume drying.",
+  "price_action": {
+    "open": 351.08,
+    "high": 356.73,
+    "low": 348.66,
+    "close": 356.24,
+    "volume": 17189300,
+    "vol_ratio": 0.67,
+    "vol_rank": "Below average \u2014 low-volume pre-earnings consolidation",
+    "intraday_story": "GOOG recovered from an early low of $348.66 to close near the session high at $356.24, finishing above both EMAs (EMA50 $354.60, EMA200 $353.75). The stock sandwiched perfectly between EMAs on low volume. Constructive pre-earnings base."
+  },
+  "news_catalyst": {
+    "headline": "Earnings July 22 \u2014 AI Monetization and Search Dominance Under the Microscope",
+    "summary": "No Alphabet-specific news today. The July 22 earnings will be a critical test \u2014 Alphabet recently raised $85B in equity suggesting massive AI capex pressure. The market will focus on Google Search revenue trends, Gemini AI adoption, YouTube advertising, and Google Cloud growth. The 15% DCF upside at $408 is modest but supported by Grade A fundamentals.",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 353.75,
+    "key_resistance": 374.23,
+    "rsi": 51.0,
+    "macd_signal": "Bullish \u2014 MACD histogram +0.833",
+    "volume_ratio_today": 0.67,
+    "volume_signal": "drying up",
+    "summary": "GOOG's close above both EMAs ($354.60 and $353.75) on declining volume is a consolidation pattern consistent with pre-earnings positioning. RSI at 51 is perfectly neutral. The upper BB at $374.23 is the near-term resistance target. Wyckoff support at $331.35 is the risk level. Consolidation above dual-EMA support ahead of July 22 earnings \u2014 no distribution pressure visible."
+  },
+  "wyckoff_narrative": "Consolidation above dual-EMA support ahead of July 22 earnings. Volume drying is the key constructive signal \u2014 no distribution pressure visible. A pre-earnings accumulate with a stop below $348 (today's low) is a reasonable setup. The $331-337 Wyckoff support zone is the invalidation level.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 407.99,
+    "upside_pct": 14.5,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF fair value $408 vs $356 market price \u2014 14.5% upside. Grade A fundamentals support the modest margin of safety. Reasonable but not deeply discounted \u2014 the accumulate case rests on earnings execution."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.8209,
+    "key_strengths": [
+      "Search monopoly with AI integration preserving dominance",
+      "YouTube and Cloud growing in double digits",
+      "Grade A (0.82) \u2014 top-tier on watchlist"
+    ],
+    "key_concerns": [
+      "Raised $85B in equity \u2014 massive AI capex pressure on FCF",
+      "July 22 earnings: any AI threat to Search revenue would be a severe negative"
+    ],
+    "summary": "Grade A fundamentals with the AI capex overhang as the key risk. July 22 earnings will define the next leg."
+  },
+  "sentiment": {
+    "score": 0.16,
+    "label": "Bullish",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close below both EMAs (EMA200 $353.75) on volume would abort pre-earnings setup",
+    "July 22 earnings: Search revenue deceleration from AI competition would be severely negative"
+  ],
+  "watchlist_priority": "high"
+}

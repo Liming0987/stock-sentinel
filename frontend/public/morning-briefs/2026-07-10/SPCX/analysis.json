@@ -1,0 +1,75 @@
+{
+  "ticker": "SPCX",
+  "company_name": "SpaceX ETF / SpaceX-linked Fund",
+  "report_date": "2026-07-10",
+  "price": 152.16,
+  "change_pct": 2.6,
+  "overall_stance": "watch",
+  "conviction": 0.45,
+  "one_liner": "SPCX at $152.16 benefits from Elon Musk's Starlink 10 Gbps announcement today \u2014 no price data in indicators (ETF tracking issue) but the SpaceX post-IPO narrative remains a watchlist theme.",
+  "price_action": {
+    "open": 150.45,
+    "high": 153.5,
+    "low": 147.59,
+    "close": 152.16,
+    "volume": 46302200,
+    "vol_ratio": 0.3,
+    "vol_rank": "Well below average \u2014 thin ETF-type volume",
+    "intraday_story": "SPCX recovered from $147.59 intraday low to close at $152.16 near the session high on thin volume. Wyckoff trading range support $146.82, resistance $215.58."
+  },
+  "news_catalyst": {
+    "headline": "Elon Musk Confirms Starlink Can Deliver 10 Gbps Upload and Download Speeds",
+    "summary": "Elon Musk confirmed Starlink's 10 Gbps capability \u2014 a technically impressive milestone for the satellite internet constellation. SPCX tracks SpaceX-adjacent companies. The SpaceX ~$2T IPO valuation narrative continues to support related ETF interest.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 146.82,
+    "key_resistance": 215.58,
+    "rsi": 0.0,
+    "macd_signal": "No indicator data",
+    "volume_ratio_today": 0.3,
+    "volume_signal": "drying up",
+    "summary": "Indicator data unavailable for this ETF. Wyckoff range support $146.82, resistance $215.58. The SpaceX IPO narrative is the primary driver. Watch.",
+    "wyckoff_narrative": "No reliable Wyckoff signals without indicator data. Monitor for SpaceX-specific catalysts."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "ETF/fund \u2014 no DCF. Value tied to SpaceX valuation and holdings."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.4315,
+    "key_strengths": [
+      "SpaceX ~$2T post-IPO valuation provides NAV anchor"
+    ],
+    "key_concerns": [
+      "D grade (0.432)",
+      "ETF tracking and fee drag"
+    ],
+    "summary": "SpaceX post-IPO play. Watch for better entry at Wyckoff support $146.82."
+  },
+  "sentiment": {
+    "score": -0.099,
+    "label": "Bearish",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "No reliable indicator data for this ETF",
+    "SpaceX valuation compression risk \u2014 Howard Marks called it 6x overvalued at IPO price"
+  ],
+  "watchlist_priority": "low"
+}

@@ -1,0 +1,78 @@
+{
+  "ticker": "TTD",
+  "company_name": "The Trade Desk Inc",
+  "report_date": "2026-07-10",
+  "price": 19.75,
+  "change_pct": 3.57,
+  "overall_stance": "accumulate",
+  "conviction": 0.65,
+  "one_liner": "TTD at $19.75 has a confirmed VCP (pivot $24.32), 70% DCF upside, and is building above EMA50 on volume drying \u2014 programmatic advertising recovery thesis intact ahead of August 6 earnings.",
+  "price_action": {
+    "open": 18.6,
+    "high": 19.8,
+    "low": 18.5,
+    "close": 19.75,
+    "volume": 9098600,
+    "vol_ratio": 0.43,
+    "vol_rank": "Well below average \u2014 very low volume on a +3.57% day",
+    "intraday_story": "TTD opened at $18.60, ran strongly to $19.80, closing at $19.75 \u2014 a solid day. But volume at 0.43x average is very low, meaning the move lacked participation. A low-volume rally after a base is constructive but needs volume confirmation to signal the breakout."
+  },
+  "news_catalyst": {
+    "headline": "No TTD-Specific News \u2014 Recovering with Ad Market Sentiment",
+    "summary": "No Trade Desk-specific news. The stock is recovering with broader ad market sentiment as digital advertising demand remains solid heading into H2. The VCP pivot at $24.32 is the technical target; earnings August 6 will be the fundamental catalyst.",
+    "source_url": "https://finance.yahoo.com/quote/TTD/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": 24.32,
+    "vcp_stage": "VCP forming \u2014 pivot at $24.32",
+    "key_support": 18.98,
+    "key_resistance": 24.73,
+    "rsi": 60.9,
+    "macd_signal": "Bullish \u2014 MACD histogram +0.165",
+    "volume_ratio_today": 0.43,
+    "volume_signal": "drying up",
+    "summary": "TTD has a confirmed VCP with pivot at $24.32. Price is above EMA50 ($18.98) and EMA200 ($19.18) \u2014 healthy structure. RSI 60.9 is in bullish territory. Volume at 0.43x average is drying \u2014 the key accumulation signal. Wyckoff support $17.46, resistance $24.73. The VCP thesis requires a volume-expanding break above $24.32 to confirm.",
+    "wyckoff_narrative": "VCP pivot at $24.32 is the watchlist target. Low-volume consolidation above both EMAs is the setup. Break above $19.80 (session high) on 1.5x+ volume is the first sign of strength."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 33.51,
+    "upside_pct": 69.7,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF $33.51 vs $19.75 \u2014 70% upside. Grade B (0.68) fundamentals are the weakest link in the accumulate thesis but DCF margin of safety is large."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.6761,
+    "key_strengths": [
+      "Market-leading DSP with CTV advertising exposure",
+      "Kokai AI platform driving advertiser ROI improvements"
+    ],
+    "key_concerns": [
+      "Grade B (0.676) \u2014 weakest B on watchlist",
+      "CTV competition from Google and Amazon intensifying"
+    ],
+    "summary": "B grade with lower end score. DCF upside is the primary bull case, supported by programmatic ad market recovery."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Volume at 0.43x average \u2014 needs confirmation; low-volume rallies can reverse quickly",
+    "VCP pivot at $24.32 is 23% away \u2014 significant work needed to get there",
+    "August 6 earnings risk \u2014 miss on CTV advertising growth would break the base"
+  ],
+  "watchlist_priority": "medium"
+}

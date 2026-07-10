@@ -1,0 +1,77 @@
+{
+  "ticker": "AMZN",
+  "company_name": "Amazon.com Inc",
+  "report_date": "2026-07-10",
+  "price": 247.04,
+  "change_pct": 1.4,
+  "overall_stance": "watch",
+  "conviction": 0.6,
+  "one_liner": "AMZN at $247 is below the upper Bollinger Band ($250.83) after a strong run from $232 support, with earnings July 30 as the next catalyst \u2014 the DCF model shows overvaluation but Parkev's $299 target remains the contrarian bull case.",
+  "price_action": {
+    "open": 239.82,
+    "high": 247.5,
+    "low": 238.25,
+    "close": 247.04,
+    "volume": 38030100,
+    "vol_ratio": 0.67,
+    "vol_rank": "Below average \u2014 volume declining as price reaches upper Bollinger Band",
+    "intraday_story": "AMZN gapped up from prior close, ran to $247.50 (near the upper BB at $250.83), and closed at $247.04. Volume declining as price approaches resistance is a cautionary flag for near-term continuation."
+  },
+  "news_catalyst": {
+    "headline": "Amazon Pushing New Shipping Initiative \u2014 Threat to UPS and FedEx",
+    "summary": "Amazon announced a new shipping push expanding its own logistics network, pressuring UPS and FedEx but beneficial for Amazon's cost structure. Combined with the $25B bond raise announced July 9 (for AI data centers), Amazon is in aggressive investment mode. The $25B raise is bullish (lowers WACC per Parkev's analysis) but also flags that FCF will be negative in 2026 (-$10B estimated). July 30 earnings will be the key data point.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 239.2,
+    "key_resistance": 250.83,
+    "rsi": 59.7,
+    "macd_signal": "Bullish \u2014 MACD histogram +1.075",
+    "volume_ratio_today": 0.67,
+    "volume_signal": "drying up",
+    "summary": "AMZN is above EMA50 ($239.20) and EMA200 ($238.34) \u2014 healthy structure. RSI 59.7 approaching overbought zone. Upper BB at $250.83 is the near-term resistance. Wyckoff support at $232.23, resistance at $276.13. The backend DCF shows overvaluation at $55 but Parkev's model gives $299 \u2014 significant model divergence. Watch at current levels, accumulate on pullback to $239 EMA50.",
+    "wyckoff_narrative": "Above both EMAs with neutral Wyckoff bias. Price approaching upper BB on declining volume \u2014 watch for rejection or break. July 30 earnings is the next major signal."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 55.71,
+    "upside_pct": -77.4,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "Backend DCF shows $55 (significantly undervalued assumptions likely overstating growth or discount rate). Parkev's independent model shows $299. The truth is likely between the two \u2014 watch rather than accumulate at $247 near upper BB."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7738,
+    "key_strengths": [
+      "AWS generating 30%+ operating margins",
+      "Logistics network expansion improving delivery economics"
+    ],
+    "key_concerns": [
+      "FCF turning negative in 2026 (-$10B estimated) due to AI capex",
+      "Earnings July 30 \u2014 capex guidance update will be closely watched"
+    ],
+    "summary": "Grade B (0.77). Strong business quality but capex-driven FCF pressure and approaching upper BB argue for caution at current levels."
+  },
+  "sentiment": {
+    "score": 0.221,
+    "label": "Bullish",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Upper BB at $250.83 is near-term resistance \u2014 watch for rejection on declining volume",
+    "FCF negative in 2026 \u2014 earnings guidance on capex spend will be the key variable July 30"
+  ],
+  "watchlist_priority": "medium"
+}

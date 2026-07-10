@@ -1,0 +1,77 @@
+{
+  "ticker": "CRCL",
+  "company_name": "Circle Internet Financial Ltd",
+  "report_date": "2026-07-10",
+  "price": 63.01,
+  "change_pct": -1.65,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "CRCL at $63 has a VCP detected (pivot $111) but RSI 35.6 approaching oversold and 129 social mentions today \u2014 the stablecoin/fintech story is under distribution pressure with both EMAs overhead.",
+  "price_action": {
+    "open": 62.95,
+    "high": 64.8,
+    "low": 61.67,
+    "close": 63.01,
+    "volume": 9322500,
+    "vol_ratio": 0.67,
+    "vol_rank": "Below average",
+    "intraday_story": "CRCL opened near the low, bounced to $64.80, then gave back most gains to close at $63.01. Below EMA50 ($74.80) and EMA200 ($77.77) \u2014 deeply in a downtrend."
+  },
+  "news_catalyst": {
+    "headline": "US-Iran Tensions Adding Crypto/Stablecoin Uncertainty",
+    "summary": "CRCL (Circle, the USDC stablecoin issuer) is sensitive to crypto market conditions and regulatory environment. US-Iran tensions create macro uncertainty. The stock has been in a significant downtrend from $130+ to $63. 129 social mentions today suggest elevated speculative interest.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": 111.2,
+    "vcp_stage": "VCP pivot at $111.20 \u2014 still far overhead",
+    "key_support": 57.98,
+    "key_resistance": 77.77,
+    "rsi": 35.6,
+    "macd_signal": "Bearish \u2014 MACD histogram -1.024",
+    "volume_ratio_today": 0.67,
+    "volume_signal": "drying up",
+    "summary": "CRCL has a VCP detected but the pivot at $111.20 is 77% above the current price \u2014 extremely far away. RSI 35.6 approaching oversold. Both EMAs are overhead resistance. Wyckoff support at $62.49 is being tested right now. Below $57.98 (lower BB) is the next risk level.",
+    "wyckoff_narrative": "VCP pivot at $111 is too far away to be a near-term catalyst. Watch for a Selling Climax at $57-58 Wyckoff support for a potential reversal opportunity. Earnings August 11."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "Pre-profitability stablecoin business \u2014 DCF not feasible. Value tied to USDC volume, stablecoin regulation, and crypto market health."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.3989,
+    "key_strengths": [
+      "USDC is the 2nd largest stablecoin \u2014 significant market position",
+      "Stablecoin regulation potentially favorable in US"
+    ],
+    "key_concerns": [
+      "D grade (0.399) reflects pre-profitability and regulatory uncertainty",
+      "Stock in significant downtrend from $130+ to $63"
+    ],
+    "summary": "D grade. Speculative new issue in a regulatory gray zone. Watch for a reversal at $57-58 support before considering accumulation."
+  },
+  "sentiment": {
+    "score": 0.198,
+    "label": "Bullish",
+    "mentions_24h": 129,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Wyckoff support at $62.49 being tested \u2014 break below targets $57.98 lower BB",
+    "Regulatory risk: any adverse US stablecoin legislation would be a severe negative"
+  ],
+  "watchlist_priority": "medium"
+}

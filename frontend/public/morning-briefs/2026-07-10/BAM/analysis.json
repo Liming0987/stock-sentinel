@@ -1,0 +1,76 @@
+{
+  "ticker": "BAM",
+  "company_name": "Brookfield Asset Management Ltd",
+  "report_date": "2026-07-10",
+  "price": 46.17,
+  "change_pct": 1.47,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "BAM at $46.17 sits in its Wyckoff range with 6% DCF upside, Grade B fundamentals, and neutral RSI \u2014 a quiet hold but not a high-conviction add given the thin margin of safety.",
+  "price_action": {
+    "open": 45.42,
+    "high": 46.79,
+    "low": 45.3,
+    "close": 46.17,
+    "volume": 2395400,
+    "vol_ratio": 0.8,
+    "vol_rank": "Below average \u2014 typical low-volume session for this name",
+    "intraday_story": "BAM moved quietly higher with low volume. Closed in the upper half of a moderate range. No notable intraday action."
+  },
+  "news_catalyst": {
+    "headline": "No BAM-Specific News Today",
+    "summary": "No news. BAM continues to trade in its tight $43.66-48.89 Bollinger Band range. Earnings August 5 will be the next catalyst.",
+    "source_url": "https://finance.yahoo.com/quote/BAM/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 45.95,
+    "key_resistance": 49.34,
+    "rsi": 51.4,
+    "macd_signal": "Flat \u2014 MACD histogram +0.010",
+    "volume_ratio_today": 0.8,
+    "volume_signal": "drying up",
+    "summary": "BAM is range-bound between $43.66 and $48.89 BB. RSI 51.4 and MACD essentially flat (+0.010). Neutral in every dimension.",
+    "wyckoff_narrative": "Consolidation with no directional bias. Wait for a break above $48.89 or a test of EMA50 ($45.95) support for a clearer entry signal."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 49.04,
+    "upside_pct": 6.2,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF $49.04 vs $46.17 \u2014 only 6% upside. Thin margin of safety for a non-urgent add. Grade B (0.74) supports watching rather than accumulating."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7369,
+    "key_strengths": [
+      "Alternative asset management with fee-related earnings visibility",
+      "Infrastructure and real estate allocations defensive in volatility"
+    ],
+    "key_concerns": [
+      "Only 6% DCF upside \u2014 limited margin of safety",
+      "Carney-Brookfield political controversy in Canada (minor)"
+    ],
+    "summary": "Solid B grade but thin DCF margin. Dependable hold, not a high-conviction add."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Break below EMA50 at $45.95 would signal downward range test",
+    "Earnings August 5 \u2014 any AUM slowdown commentary would compress the multiple"
+  ],
+  "watchlist_priority": "low"
+}

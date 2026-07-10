@@ -1,0 +1,76 @@
+{
+  "ticker": "CSCO",
+  "company_name": "Cisco Systems Inc",
+  "report_date": "2026-07-10",
+  "price": 118.31,
+  "change_pct": 3.94,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "CSCO at $118.31 has a DCF fair value of $60 \u2014 nearly 50% overvalued \u2014 with Grade B fundamentals and MACD turning slightly bearish; the +3.94% today on SK Hynix day feels like sector rotation, not a fundamental catalyst.",
+  "price_action": {
+    "open": 115.28,
+    "high": 119.48,
+    "low": 115.28,
+    "close": 118.31,
+    "volume": 21285500,
+    "vol_ratio": 0.82,
+    "vol_rank": "Below average",
+    "intraday_story": "CSCO opened at its low, ran all day to $119.48, and closed at $118.31 \u2014 a strong day's action but on below-average volume. The Wyckoff resistance is at $127.77 \u2014 still 8% away."
+  },
+  "news_catalyst": {
+    "headline": "Cisco Gaining in AI Networking as Hyperscaler Data Centers Scale Up",
+    "summary": "Cisco benefits from AI data center networking infrastructure buildout \u2014 Ethernet switching and networking for hyperscaler campuses. The +3.94% today may reflect sector rotation into networking names from memory/chip names (which sold off on SK Hynix debut). No specific news.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 117.6,
+    "key_resistance": 127.77,
+    "rsi": 53.0,
+    "macd_signal": "Slightly bearish \u2014 MACD histogram -0.246",
+    "volume_ratio_today": 0.82,
+    "volume_signal": "normal",
+    "summary": "CSCO is above EMA50 ($117.60) and EMA200 ($118.17) but MACD is slightly negative (-0.246). DCF at $60 vs $118.31 means the stock is trading at 2x intrinsic value. Avoid new entries \u2014 the DCF gap is too large.",
+    "wyckoff_narrative": "Neutral Wyckoff above both EMAs. MACD slightly negative. Avoid due to 49% DCF overvaluation."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 59.98,
+    "upside_pct": -49.3,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF $60 vs $118 \u2014 49% overvalued. The AI networking narrative is priced in and then some. Earnings August 12 will test whether the AI infrastructure tailwind is translating to revenue."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7148,
+    "key_strengths": [
+      "AI networking infrastructure demand growing",
+      "Recurring subscription software revenue building"
+    ],
+    "key_concerns": [
+      "DCF 49% overvalued",
+      "Traditional networking cycle slowing as software-defined networking gains"
+    ],
+    "summary": "B grade fundamentals but DCF overvaluation argues against accumulation at current levels."
+  },
+  "sentiment": {
+    "score": 0.301,
+    "label": "Bullish",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "49% DCF overvaluation is the primary risk at $118",
+    "Earnings August 12 \u2014 any slowdown in AI networking order growth would disappoint"
+  ],
+  "watchlist_priority": "low"
+}

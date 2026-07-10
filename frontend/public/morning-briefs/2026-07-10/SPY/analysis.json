@@ -1,0 +1,76 @@
+{
+  "ticker": "SPY",
+  "company_name": "SPDR S&P 500 ETF Trust",
+  "report_date": "2026-07-10",
+  "price": 751.71,
+  "change_pct": 0.85,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "SPY at $751.71 is pressing the Wyckoff resistance at $756.39 with RSI 62.8 \u2014 Josh flagged that bulls need a close above $752 this week or the local lower-highs downtrend reasserts; CPI next week is the key macro catalyst.",
+  "price_action": {
+    "open": 747.35,
+    "high": 751.97,
+    "low": 745.59,
+    "close": 751.71,
+    "volume": 41375900,
+    "vol_ratio": 0.71,
+    "vol_rank": "Below average \u2014 moderate volume at key resistance level",
+    "intraday_story": "SPY opened at $747.35, pressed steadily higher throughout the session to close at $751.71 near the daily high. Volume was below average. The close is essentially at Josh's identified key level of $752 \u2014 today's session is the make-or-break close the bulls needed."
+  },
+  "news_catalyst": {
+    "headline": "SPY Presses $752 Resistance \u2014 CPI Next Week and Big Tech Earnings Are the Catalysts",
+    "summary": "US equity futures were mixed pre-bell amid renewed US-Iran tensions and SK Hynix's market debut. The S&P 500 pressed key resistance at $752 (Josh's level) with a close essentially at that number. CPI next week is the primary market mover. Delta Airlines earnings today serve as a consumer health check \u2014 any weakness would signal the market needs to cool before earnings season.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 734.03,
+    "key_resistance": 756.39,
+    "rsi": 62.8,
+    "macd_signal": "Bullish \u2014 MACD histogram +0.658",
+    "volume_ratio_today": 0.71,
+    "volume_signal": "drying up",
+    "summary": "SPY is approaching the Wyckoff resistance at $756.39 with RSI at 62.8 \u2014 strong enough to push higher but not overbought. The close at $751.71 is essentially at Josh's $752 threshold. Above-EMA50 ($734.03) and EMA200 ($726.90) confirms the technical uptrend. The Gareth Soloway 9th-inning macro warning provides the longer-term bearish overlay \u2014 local technical setup is bullish, macro cycle is bearish.",
+    "wyckoff_narrative": "Neutral Wyckoff but pressing against range resistance at $756.39. A sustained close above $756 would be a Sign of Strength for the next leg. Failure here would form the lower high that Josh identified as the local downtrend pattern."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "ETF \u2014 no DCF applicable."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5312,
+    "key_strengths": [
+      "Diversified exposure to 500 US companies"
+    ],
+    "key_concerns": [
+      "Gareth Soloway's cycle analysis warns of 9th-inning bull market with 75% downside risk over 1-2 years"
+    ],
+    "summary": "C grade as a macro instrument. Technically pressuring resistance with CPI and earnings as the next binary events."
+  },
+  "sentiment": {
+    "score": -0.032,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Failure to close above $752 by end of week creates a lower high in the local downtrend (Josh's framework)",
+    "CPI next week \u2014 hot print would reverse the current rally and pressure $734 EMA50 support",
+    "Gareth Soloway's macro cycle analysis: 9th inning of a bull market with risk of 75% drawdown over 1-2 years"
+  ],
+  "watchlist_priority": "medium"
+}

@@ -1,0 +1,76 @@
+{
+  "ticker": "ASTS",
+  "company_name": "AST SpaceMobile Inc",
+  "report_date": "2026-07-10",
+  "price": 73.88,
+  "change_pct": -1.43,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "ASTS at $73.88 is below both EMAs with RSI 41.9 approaching oversold \u2014 the space-based broadband thesis is intact but the stock is in a downtrend; watch for Wyckoff support at $64.89 for a potential reversal setup.",
+  "price_action": {
+    "open": 75.34,
+    "high": 75.53,
+    "low": 71.77,
+    "close": 73.88,
+    "volume": 10655500,
+    "vol_ratio": 0.45,
+    "vol_rank": "Well below average",
+    "intraday_story": "ASTS sold off from $75.34 to a low of $71.77 before closing at $73.88. Below both EMAs on low volume \u2014 downtrend with no buyer urgency."
+  },
+  "news_catalyst": {
+    "headline": "3 Space Economy Stocks to Buy in July \u2014 ASTS Among Them",
+    "summary": "ASTS featured in a space economy buy list \u2014 the commercial satellite broadband thesis remains bullish but stock is technically in a downtrend below both EMAs. SpaceMobile Block 2 satellites are the key commercial milestone to watch.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 63.93,
+    "key_resistance": 83.07,
+    "rsi": 41.9,
+    "macd_signal": "Bearish \u2014 MACD histogram -0.277",
+    "volume_ratio_today": 0.45,
+    "volume_signal": "drying up",
+    "summary": "ASTS below both EMAs (EMA50 $83.07, EMA200 $86.01) in a clear downtrend. RSI 41.9 approaching oversold. Wyckoff support at $63.93 is the next meaningful floor \u2014 14% below current price. No DCF (pre-revenue). Wait for the support test.",
+    "wyckoff_narrative": "Neutral Wyckoff with no signals. Monitoring $63.93 Wyckoff support for a potential Selling Climax/Spring setup."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "Pre-revenue satellite broadband \u2014 no DCF. Value depends on Block 2 satellite deployment and commercial service launch timeline."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5202,
+    "key_strengths": [
+      "Unique direct-to-device satellite broadband technology",
+      "Partnerships with major telecom carriers globally"
+    ],
+    "key_concerns": [
+      "C grade (0.52)",
+      "Pre-revenue; massive capex needed for full constellation"
+    ],
+    "summary": "C grade speculative. Thesis is compelling long-term but current technical downtrend argues for patience."
+  },
+  "sentiment": {
+    "score": 0.171,
+    "label": "Bullish",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Break below EMA50 ($83) already happened \u2014 next support is Wyckoff $63.93",
+    "Commercial service launch delays would extend the pre-revenue period and pressure the stock"
+  ],
+  "watchlist_priority": "low"
+}

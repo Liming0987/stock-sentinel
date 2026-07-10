@@ -1,0 +1,81 @@
+{
+  "ticker": "MU",
+  "company_name": "Micron Technology Inc",
+  "report_date": "2026-07-10",
+  "price": 991.64,
+  "change_pct": 4.52,
+  "overall_stance": "watch",
+  "conviction": 0.65,
+  "one_liner": "MU at $991.64 is approaching the critical $996 level (Josh's target) with RSI 48.6 and Grade A fundamentals \u2014 but the enormous negative MACD histogram (-22.2) signals the recent run is decelerating; watch for a close above $996 to confirm the morning star setup.",
+  "price_action": {
+    "open": 1016.51,
+    "high": 1035.5,
+    "low": 987.13,
+    "close": 991.64,
+    "volume": 40762300,
+    "vol_ratio": 0.73,
+    "vol_rank": "Below average \u2014 volume contracting on a volatile session",
+    "intraday_story": "MU opened at $1,016 (above prior close), surged to $1,035.50 early \u2014 then gave back most of the gains to close at $991.64, below the open. This is a bearish intraday reversal pattern: gap-up open, failed to hold gains, closed below the open. The stock touched and rejected $1,035 \u2014 a significant overhead test \u2014 and closed below the opening price."
+  },
+  "news_catalyst": {
+    "headline": "SK Hynix $26.5B ADR Debut Creates Supply Headwind; Micron and SanDisk Slide on New Share Competition",
+    "summary": "The biggest near-term headwind for MU is the SK Hynix ADR debut \u2014 the company raised $26.5B (raised from earlier $29B estimate) in its US market listing. As flagged by Gareth Soloway last week, the new SK Hynix ADR supply absorbs investor liquidity that would otherwise support Micron. With two essentially identical memory companies now competing for the same institutional capital, Micron faces a 1-2 week overhang from the SK Hynix supply being digested. Bank of America's recent note named Nvidia (not Micron) as its favorite AI chip stock, also a slight sentiment negative.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 976.82,
+    "key_resistance": 1035.5,
+    "rsi": 48.6,
+    "macd_signal": "Bearish divergence \u2014 MACD histogram -22.246, deeply negative",
+    "volume_ratio_today": 0.73,
+    "volume_signal": "drying up",
+    "summary": "MU's most important technical fact today is the MACD histogram at -22.246 \u2014 by far the largest negative reading on the 33-stock watchlist. This level of MACD divergence means the stock's recent price recovery is occurring without momentum confirmation. RSI at 48.6 is neutral-to-bearish.\n\nThe intraday session was a textbook failed breakout: the stock gapped up, tested $1,035.50 (near-term resistance), then reversed to close at $991.64 \u2014 below the open. This is a negative outside reversal that signals distribution at the resistance level.\n\nEMA50 at $976.82 is the immediate support below. The Wyckoff trading range runs from $441 (very wide base) to $1,170 resistance. Josh (Stocks with Josh) is watching for a close above $996 by end of week as the morning star confirmation signal for a run to $1,250. That close did not happen today \u2014 instead, price closed below $996. The SK Hynix ADR headwind will persist for 1-2 more weeks per Gareth Soloway's analysis."
+  },
+  "wyckoff_narrative": "MU's Wyckoff neutral classification reflects the wide, volatile trading range without clear accumulation or distribution signals. The $441-$1,170 range is extremely wide (164% total range) suggesting major institutional repositioning over the 90-day period. The current consolidation near $991 \u2014 above the EMA50 but with deeply negative MACD and a bearish intraday reversal today \u2014 is ambiguous.\n\nThe test of $1,035 today that failed could be a Last Point of Supply (LPSY) in an emerging distribution pattern, or it could simply be a temporary resistance that will be overcome on the next attempt. The deciding factor will be the next 2-3 sessions: if MU closes above $996 on volume above 1.3x average, the morning star bull thesis from Josh is confirmed. If it fails and closes below EMA50 at $976, the next support is $900-920.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1192.24,
+    "upside_pct": 20.2,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF base intrinsic value of $1,192 implies 20% upside from $992. Parkev Tatevosian's more aggressive estimate (from yesterday's YouTube analysis) set a DCF fair value at $1,500+. The 20% upside is meaningful and consistent with Grade A fundamentals, but the near-term SK Hynix headwind and bearish MACD divergence argue for patience before accumulating."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.853,
+    "key_strengths": [
+      "Grade A (0.853) \u2014 second highest score on watchlist after TSM",
+      "HBM (High Bandwidth Memory) demand for AI accelerators growing rapidly",
+      "Recently signed longer-term customer agreements reducing cyclicality (per Parkev's July 9 analysis)"
+    ],
+    "key_concerns": [
+      "SK Hynix $26.5B ADR creates direct competitive stock supply for 1-2 weeks",
+      "MACD histogram -22 signals the strongest negative momentum divergence on watchlist",
+      "Intraday reversal today from $1,035 is bearish near-term"
+    ],
+    "summary": "Grade A fundamentals validate MU's long-term bull case, but the near-term technical headwinds (MACD divergence, SK Hynix supply, intraday reversal) argue for watching rather than accumulating. Next earnings September 23 \u2014 plenty of time for the technical setup to resolve."
+  },
+  "sentiment": {
+    "score": 0.032,
+    "label": "Neutral",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "SK Hynix ADR supply headwind persists for 1-2 weeks per Soloway's analysis",
+    "MACD histogram at -22.2 is the most negative divergence reading on the watchlist \u2014 momentum warning",
+    "Close today below $996 means Josh's morning star setup is not confirmed; stop at $950",
+    "Failed test of $1,035 resistance today \u2014 needs to decisively break this level to resume uptrend"
+  ],
+  "watchlist_priority": "medium"
+}

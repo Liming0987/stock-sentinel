@@ -1,0 +1,76 @@
+{
+  "ticker": "RKLB",
+  "company_name": "Rocket Lab USA Inc",
+  "report_date": "2026-07-10",
+  "price": 82.55,
+  "change_pct": -0.96,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "RKLB at $82.55 with RSI 35.6 near oversold and Phase B Wyckoff accumulation \u2014 no DCF (pre-revenue) and Grade D fundamentals keep this a speculative watch with earnings August 6.",
+  "price_action": {
+    "open": 86.29,
+    "high": 86.3,
+    "low": 82.41,
+    "close": 82.55,
+    "volume": 17786200,
+    "vol_ratio": 0.63,
+    "vol_rank": "Below average",
+    "intraday_story": "RKLB gapped down and sold off all day from $86.29 to close near the low at $82.55. Bearish intraday close below both EMAs (EMA50 $99.72, EMA200 $103.52)."
+  },
+  "news_catalyst": {
+    "headline": "Starlink 10 Gbps Announcement Benefits Space Sector Sentiment",
+    "summary": "Elon Musk confirmed Starlink can deliver 10 Gbps speeds \u2014 a SpaceX/Starlink news item that lifts space economy sentiment broadly. RKLB is a small launch vehicle / spacecraft manufacturer that competes in adjacent markets. No direct RKLB impact.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 76.14,
+    "key_resistance": 99.72,
+    "rsi": 35.6,
+    "macd_signal": "Bearish \u2014 MACD histogram -1.389",
+    "volume_ratio_today": 0.63,
+    "volume_signal": "drying up",
+    "summary": "RKLB is well below both EMAs (EMA50 $99.72, EMA200 $103.52) \u2014 deeply in a downtrend. RSI 35.6 is approaching oversold. Wyckoff Phase B bullish bias is a positive signal, and the Wyckoff support at $76.14 is the key floor. No DCF (pre-revenue). Watch for a reversal candle at $76-78 support.",
+    "wyckoff_narrative": "Phase B accumulation at the lower range boundary. RSI approaching oversold \u2014 watching for a Selling Climax (SC) at $76.14 support for a potential Spring setup."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "Pre-revenue \u2014 DCF not applicable. Speculative launch vehicle play."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.4342,
+    "key_strengths": [
+      "Neutron rocket development positions for medium-lift market",
+      "Electron manifest growing with government contracts"
+    ],
+    "key_concerns": [
+      "Pre-revenue / early revenue stage",
+      "Sentiment score 0.157 \u2014 mild positive but limited coverage"
+    ],
+    "summary": "D grade reflects pre-profitability stage. Watch for catalysts from Neutron rocket development milestones."
+  },
+  "sentiment": {
+    "score": 0.157,
+    "label": "Bullish",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Break below Wyckoff support $76.14 would accelerate downtrend toward $60s",
+    "Earnings August 6 \u2014 any launch failure or timeline delay would be a severe negative"
+  ],
+  "watchlist_priority": "low"
+}

@@ -1,0 +1,76 @@
+{
+  "ticker": "MELI",
+  "company_name": "MercadoLibre Inc",
+  "report_date": "2026-07-10",
+  "price": 1807.83,
+  "change_pct": -0.09,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "MELI at $1,807 has RSI 74.7 (overbought) and MACD histogram +16.9 (elevated) \u2014 the LatAm e-commerce/fintech giant is extended near its all-time highs; watch for a pullback to the $1,650 EMA50 before adding.",
+  "price_action": {
+    "open": 1777.19,
+    "high": 1809.38,
+    "low": 1760.9,
+    "close": 1807.83,
+    "volume": 385600,
+    "vol_ratio": 0.8,
+    "vol_rank": "Below average (thin float ETF-like liquidity)",
+    "intraday_story": "MELI pressed to $1,809.38 near its Wyckoff resistance at $1,887.22. Volume at 385K is very low. RSI at 74.7 signals the stock is overbought at these levels. Holding near all-time highs but overextended."
+  },
+  "news_catalyst": {
+    "headline": "Is a Stock Split Still on the Table for MELI in 2026?",
+    "summary": "MELI is trading below $2,000 and analyst discussion around a potential stock split for accessibility. No fundamental catalyst today. The LatAm e-commerce and fintech story remains intact \u2014 Mercado Pago is growing rapidly as a payments business.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 1648.57,
+    "key_resistance": 1887.22,
+    "rsi": 74.7,
+    "macd_signal": "Strongly bullish \u2014 MACD histogram +16.948, but elevated",
+    "volume_ratio_today": 0.8,
+    "volume_signal": "normal",
+    "summary": "RSI 74.7 is overbought and MACD at +16.9 is at an extreme. Stock is above EMA50 ($1,648) but approaching Wyckoff resistance at $1,887. Watch for a pullback to $1,650 EMA50 for a better entry. No DCF (model not feasible for this name).",
+    "wyckoff_narrative": "Extended uptrend with RSI overbought. Watching for a reversion to EMA50 at $1,648 as a buying opportunity."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF model not feasible. MELI trades at a premium multiple justified by its LatAm e-commerce and Mercado Pago fintech dominance."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5468,
+    "key_strengths": [
+      "Dominant LatAm e-commerce platform with 100M+ active buyers",
+      "Mercado Pago fintech generating high-growth payments revenue"
+    ],
+    "key_concerns": [
+      "C grade (0.55) reflects high valuation vs. revenue base",
+      "Currency risk across Brazil, Argentina, Mexico"
+    ],
+    "summary": "C grade but business quality is better than the score suggests \u2014 the model likely penalizes the high P/E. Watch for a better entry on a pullback."
+  },
+  "sentiment": {
+    "score": 0.233,
+    "label": "Bullish",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI 74.7 and approaching Wyckoff resistance $1,887 \u2014 extended near-term",
+    "LatAm currency devaluation risk, especially Argentine peso"
+  ],
+  "watchlist_priority": "low"
+}

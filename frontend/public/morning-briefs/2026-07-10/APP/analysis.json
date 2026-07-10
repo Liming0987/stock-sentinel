@@ -1,0 +1,80 @@
+{
+  "ticker": "APP",
+  "company_name": "AppLovin Corp",
+  "report_date": "2026-07-10",
+  "price": 520.43,
+  "change_pct": -0.34,
+  "overall_stance": "accumulate",
+  "conviction": 0.78,
+  "one_liner": "APP closed at $520.43 inside a confirmed VCP base with volume drying to 0.86x average and a strongly bullish MACD \u2014 the best setup on the watchlist today ahead of August 5 earnings.",
+  "price_action": {
+    "open": 504.95,
+    "high": 529.88,
+    "low": 500.5,
+    "close": 520.43,
+    "volume": 4689100,
+    "vol_ratio": 0.86,
+    "vol_rank": "Below average \u2014 volume drying up within base, constructive for VCP setup",
+    "intraday_story": "APP opened at $504.95, ran to a high of $529.88 \u2014 testing resistance \u2014 before fading to close at $520.43, holding above the open. The stock respected the VCP pivot zone at $491.99 and closed in the upper half of its range, a sign of ongoing demand absorption despite the intraday pullback from the session high."
+  },
+  "news_catalyst": {
+    "headline": "AppLovin's AI Ad Tools Are Working \u2014 Analyst Coverage Bullish",
+    "summary": "AppLovin's core thesis is the continued outperformance of its AXON AI advertising engine, which has been driving materially higher returns for app developers and advertisers. Recent analyst commentary confirms the platform is gaining wallet share at the expense of competitors. The lack of negative news keeps the technical base intact \u2014 this move is organic and thesis-driven rather than news-driven, which is the more durable setup.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": 491.99,
+    "vcp_stage": "VCP pivot at $491.99 \u2014 base forming above this level",
+    "key_support": 491.99,
+    "key_resistance": 529.88,
+    "rsi": 54.9,
+    "macd_signal": "Bullish \u2014 MACD histogram +4.319, expanding positively",
+    "volume_ratio_today": 0.86,
+    "volume_signal": "drying up",
+    "summary": "APP is the cleanest setup on the watchlist. The VCP pivot is confirmed at $491.99, price is consolidating above it at $520.43 with volume contracting to 0.86x average \u2014 the textbook pre-breakout drying-up signature. The Wyckoff engine places this in Accumulation Phase B with a bullish bias, and the MACD histogram at +4.319 is the strongest positive reading among the 33 names on the watchlist.\n\nThe 90-day Wyckoff trading range runs from support at $431.36 to resistance at $606.90. Price is in the upper third of that range, consolidating well above the midpoint \u2014 a sign of accumulation rather than distribution. The EMA50 ($498.79) and EMA200 ($494.39) are nearly aligned and both pointing up, with price above both \u2014 the cleanest EMA structure in the portfolio.\n\nVolume drying below the 20-day average while price holds gains is the absorption signature Wyckoff identifies as the Last Point of Support (LPS) formation preceding a Sign of Strength move. A break above $529.88 (session high / resistance) on volume above 1.5x average would be the trigger. The August 5 earnings date is 26 days out \u2014 enough runway to see a pre-earnings setup play out."
+  },
+  "wyckoff_narrative": "APP is in Accumulation Phase B per the Wyckoff engine, reflecting the current consolidation after the stock's substantial run from lower levels. The trading range support at $431.36 and resistance at $606.90 define the structure. Price has been working through this range with decreasing volatility \u2014 a hallmark of Phase B absorption where supply overhead is being digested.\n\nThe VCP confirmation at $491.99 is particularly notable: price successfully retested this level and bounced, establishing it as the critical intraday low point. In Wyckoff terms, this bounce on low volume is consistent with a Secondary Test (ST) of the support zone, with the declining volume confirming that supply at lower levels has been largely absorbed.\n\nThe next expected event in the Wyckoff sequence is a Sign of Strength (SOS) \u2014 a high-volume thrust above resistance ($529.88) that confirms the accumulation campaign is complete and markup is beginning. A failed break of $491.99 on expanding volume would invalidate the accumulation thesis and suggest the stock needs more time in its base.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1184.49,
+    "upside_pct": 127.6,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF yields a base intrinsic value of $1,184 vs $520 current price \u2014 128% upside. The model likely uses aggressive growth assumptions given AppLovin's AI-driven ad platform expansion, but even with meaningful haircuts the stock appears undervalued. The current price represents a significant margin of safety against a reasonable DCF range."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.8032,
+    "key_strengths": [
+      "Grade A fundamentals \u2014 one of only 5 A-rated stocks on the watchlist",
+      "AXON AI advertising engine gaining measurable wallet share vs. competitors",
+      "Revenue growth accelerating; operating leverage improving"
+    ],
+    "key_concerns": [
+      "Significant exposure to app economy health \u2014 macro slowdown could compress ad spend",
+      "Next earnings August 5 \u2014 gap risk if Q2 disappoints the elevated expectations"
+    ],
+    "summary": "Grade A with a 0.80 score reflects strong revenue growth, healthy margins, and the AI ad platform differentiation. Fundamentals strongly support the technical accumulation thesis \u2014 this is not a speculative setup but a high-quality business forming a proper base."
+  },
+  "sentiment": {
+    "score": 0.073,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Break below VCP pivot $491.99 on volume >1.5x average would abort the accumulation setup",
+    "Earnings on August 5 \u2014 any Q2 miss on revenue or margin guidance would gap down through support",
+    "Session high at $529.88 is near-term resistance; failure to break it within 2-3 sessions weakens the setup"
+  ],
+  "watchlist_priority": "high"
+}

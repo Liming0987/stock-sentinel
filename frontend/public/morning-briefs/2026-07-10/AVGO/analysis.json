@@ -1,0 +1,79 @@
+{
+  "ticker": "AVGO",
+  "company_name": "Broadcom Inc",
+  "report_date": "2026-07-10",
+  "price": 401.11,
+  "change_pct": 3.2,
+  "overall_stance": "accumulate",
+  "conviction": 0.7,
+  "one_liner": "AVGO at $401 closed just below the upper Bollinger Band on above-average volume (0.92x) with RSI 60.9 in bullish territory \u2014 Grade A fundamentals and a near-all-time-high setup suggest continuation.",
+  "price_action": {
+    "open": 402.19,
+    "high": 407.52,
+    "low": 387.93,
+    "close": 401.11,
+    "volume": 28030800,
+    "vol_ratio": 0.92,
+    "vol_rank": "Near average \u2014 solid volume on a +3.2% day",
+    "intraday_story": "AVGO opened at $402.19, reached a high of $407.52 (above the upper Bollinger Band at $406.02) before closing at $401.11. The session tested and slightly undercut the BB upper, then closed just below it \u2014 a pause rather than a failure. The $387.93 intraday low was a brief dip that found buyers quickly."
+  },
+  "news_catalyst": {
+    "headline": "SK Hynix ADR Debut Lifts Semiconductor Sentiment; Broadcom Benefits from AI Custom Silicon Demand",
+    "summary": "No Broadcom-specific news today, but the semiconductor sector saw mixed action with SK Hynix's $29B ADR debut creating supply pressure for memory names. Broadcom benefits from a different part of the AI supply chain \u2014 custom ASICs and networking chips (Tomahawk, Trident series) for hyperscaler data centers. As AI infrastructure spending remains elevated, Broadcom's custom silicon business for Google, Meta, and others continues to be a structural tailwind.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 376.55,
+    "key_resistance": 449.05,
+    "rsi": 60.9,
+    "macd_signal": "Bullish \u2014 MACD histogram +1.180, expanding positively",
+    "volume_ratio_today": 0.92,
+    "volume_signal": "normal",
+    "summary": "AVGO is in a strong uptrend with both EMAs (EMA50 $376.55, EMA200 $373.24) pointing up and price well above both at $401. RSI at 60.9 is in the bullish zone \u2014 strong enough to indicate momentum, not yet overbought. MACD histogram at +1.180 is positive and expanding.\n\nThe upper Bollinger Band at $406 was briefly touched intraday before close pulled back to $401 \u2014 this 'BB walk' behavior, where price repeatedly tests and slightly undercuts the upper band, is characteristic of strong uptrends rather than exhaustion. Volume at 0.92x average is solid for a +3.2% move.\n\nThe Wyckoff trading range resistance at $449.05 is the larger target. Support at $363.74 (Wyckoff) and EMA50 at $376.55 define the risk level. The current position \u2014 between EMAs and upper resistance \u2014 has ample room for continuation."
+  },
+  "wyckoff_narrative": "AVGO is classified as Consolidation with neutral bias, but the price action tells a bullish story: the stock is above both EMAs, making higher highs, with positive MACD and sub-overbought RSI. The lack of a formal Wyckoff accumulation signal reflects the stock's sustained uptrend rather than base-building behavior \u2014 it is already in markup phase.\n\nThe relevant Wyckoff observation here is the absence of a Buying Climax (BC) signal despite the recent run \u2014 meaning the algorithm has not detected exhaustive volume spikes that would signal distribution. This is consistent with an orderly, demand-driven advance. A close above $407 (session high / upper BB) on volume 1.3x+ average would be a Sign of Strength confirming the next leg toward $430-449.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1406.12,
+    "upside_pct": 250.5,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF intrinsic value of $1,406 is almost certainly inflated by model assumptions that over-extrapolate Broadcom's custom ASIC revenue growth. Even at half the DCF value ($703), the stock has significant upside. The model distortion likely comes from hyper-growth assumptions on AI chip revenue. Fundamentally, Broadcom's diversified business (networking, storage, broadband, wireless) plus custom silicon creates a durable premium to intrinsic value."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.8336,
+    "key_strengths": [
+      "Grade A with 0.83 score \u2014 highest fundamental grade on the watchlist",
+      "Custom ASIC business for Google and Meta provides multi-year revenue visibility",
+      "Diversified across networking, storage, broadband \u2014 less AI-cycle dependent than pure plays"
+    ],
+    "key_concerns": [
+      "Next earnings September 3 \u2014 long wait for catalyst",
+      "Valuation elevated at these levels; requires continued AI data center demand"
+    ],
+    "summary": "AVGO's Grade A (0.83) is the highest on the watchlist. The combination of custom silicon for hyperscalers and recurring software/infrastructure revenue creates a business quality that supports premium valuation. Fundamentals validate the technical accumulate stance."
+  },
+  "sentiment": {
+    "score": 0.118,
+    "label": "Neutral",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close below EMA50 at $376.55 would signal trend reversal and abort the accumulate thesis",
+    "Hyperscaler capex slowdown would directly impact custom ASIC order pipeline",
+    "September 3 earnings \u2014 long time with no fundamental catalyst to sustain momentum"
+  ],
+  "watchlist_priority": "high"
+}

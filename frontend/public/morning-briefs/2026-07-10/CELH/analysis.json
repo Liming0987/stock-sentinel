@@ -1,0 +1,77 @@
+{
+  "ticker": "CELH",
+  "company_name": "Celsius Holdings Inc",
+  "report_date": "2026-07-10",
+  "price": 30.52,
+  "change_pct": -0.26,
+  "overall_stance": "accumulate",
+  "conviction": 0.65,
+  "one_liner": "CELH at $30.52 in Wyckoff Phase A-B with RSI 53.6, 39% DCF upside, and volume drying \u2014 Needham maintained a Buy with a $55 target, offering a clean base-building setup near EMA50 support.",
+  "price_action": {
+    "open": 30.15,
+    "high": 30.85,
+    "low": 29.88,
+    "close": 30.52,
+    "volume": 7664100,
+    "vol_ratio": 0.82,
+    "vol_rank": "Below average \u2014 low-volume consolidation within base",
+    "intraday_story": "CELH opened slightly above its low, ranged tightly between $29.88 and $30.85, and closed at $30.52 in the upper half of the range. Low-volume, tight-range candle \u2014 textbook base-building behavior."
+  },
+  "news_catalyst": {
+    "headline": "Needham Maintains Buy on CELH, Lowers Price Target to $55",
+    "summary": "Needham maintained its Buy rating on Celsius but lowered the price target from a higher level to $55 \u2014 still implying 80%+ upside from $30.52. The PT reduction reflects near-term headwinds from distribution rationalization, but long-term conviction in the energy drink brand's market share gains remains intact.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 27.74,
+    "key_resistance": 33.05,
+    "rsi": 53.6,
+    "macd_signal": "Bullish \u2014 MACD histogram +0.116",
+    "volume_ratio_today": 0.82,
+    "volume_signal": "drying up",
+    "summary": "CELH is in early Wyckoff accumulation (Phase A-B) with the engine detecting a bullish bias. EMA50 at $29.38 and EMA200 at $28.67 are both below current price \u2014 the stock is above both EMAs, a positive structure. Wyckoff support at $27.74 provides a defined risk level. Volume drying on the consolidation is constructive. DCF suggests 39% upside at $42.46.",
+    "wyckoff_narrative": "Phase A-B accumulation with bullish bias. Watching for a high-volume break above $33.05 (upper BB) as Sign of Strength. Wyckoff support $27.74 is the invalidation level."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 42.46,
+    "upside_pct": 39.1,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF $42 vs $30 \u2014 39% upside. Needham's $55 target is more bullish. Grade B fundamentals support accumulation in the base."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7961,
+    "key_strengths": [
+      "Energy drink brand with expanding retail distribution",
+      "Strong youth demographic loyalty and brand momentum"
+    ],
+    "key_concerns": [
+      "Distribution rationalization creating near-term headwinds",
+      "Competition from Monster and Red Bull intensifying"
+    ],
+    "summary": "Grade B (0.796) \u2014 solid fundamentals for a consumer discretionary growth name. Needham's Buy with $55 target validates the accumulate stance."
+  },
+  "sentiment": {
+    "score": 0.117,
+    "label": "Bullish",
+    "mentions_24h": 6,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close below EMA50 ($29.38) would break the accumulation pattern",
+    "Distribution rationalization \u2014 any further customer loss would hit revenue growth"
+  ],
+  "watchlist_priority": "medium"
+}

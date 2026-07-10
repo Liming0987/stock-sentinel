@@ -1,0 +1,76 @@
+{
+  "ticker": "SOUN",
+  "company_name": "SoundHound AI Inc",
+  "report_date": "2026-07-10",
+  "price": 6.68,
+  "change_pct": -1.76,
+  "overall_stance": "watch",
+  "conviction": 0.45,
+  "one_liner": "SOUN at $6.68 in Phase B with volume 1.15x elevated and RSI 49.5 near neutral \u2014 voice AI play holding above $6.22 support, but Grade C fundamentals and no DCF keep this a speculative watch.",
+  "price_action": {
+    "open": 6.68,
+    "high": 6.7,
+    "low": 6.37,
+    "close": 6.68,
+    "volume": 30928500,
+    "vol_ratio": 1.15,
+    "vol_rank": "Slightly above average \u2014 modest volume elevation",
+    "intraday_story": "SOUN dipped to $6.37 intraday (below Wyckoff support at $6.22 briefly) before recovering to close at $6.68 \u2014 the open price. Recovery from intraday dip is constructive. Volume 1.15x average suggests buyers stepped in at the support test."
+  },
+  "news_catalyst": {
+    "headline": "SOUN Among 'Most-Shorted Names Primed for Squeeze'",
+    "summary": "SoundHound appeared in a short squeeze candidates list \u2014 purely momentum/sentiment driven, not fundamental. The stock has high short interest relative to float. Wyckoff support at $6.22 was tested intraday and held.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 6.22,
+    "key_resistance": 7.32,
+    "rsi": 49.5,
+    "macd_signal": "Flat positive \u2014 MACD histogram +0.016",
+    "volume_ratio_today": 1.15,
+    "volume_signal": "elevated",
+    "summary": "SOUN tested $6.22 support on elevated volume (1.15x) and closed back at $6.68 \u2014 a bullish test of support. Phase B with bullish bias. The $9.59 Wyckoff resistance is the bull target. No DCF \u2014 pre-revenue AI voice company.",
+    "wyckoff_narrative": "Support test at $6.22 held with slightly elevated volume \u2014 constructive. Next sign of strength needed: close above $6.70 (today's high) with volume 1.5x+."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "Pre-revenue AI voice company \u2014 no DCF applicable."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5196,
+    "key_strengths": [
+      "Voice AI platform with restaurant/drive-through enterprise contracts",
+      "High short interest = squeeze potential"
+    ],
+    "key_concerns": [
+      "C grade (0.52)",
+      "Burning cash; pre-profitability"
+    ],
+    "summary": "C grade speculative name. Squeeze potential adds volatility risk in both directions."
+  },
+  "sentiment": {
+    "score": 0.066,
+    "label": "Neutral",
+    "mentions_24h": 20,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Support at $6.22 \u2014 break below with volume would signal Phase B failure and target $5.50",
+    "Short squeeze can reverse as fast as it develops \u2014 risk in both directions"
+  ],
+  "watchlist_priority": "low"
+}

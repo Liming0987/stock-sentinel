@@ -1,0 +1,76 @@
+{
+  "ticker": "WEN",
+  "company_name": "Wendy's Company",
+  "report_date": "2026-07-10",
+  "price": 7.59,
+  "change_pct": 1.88,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "WEN at $7.59 \u2014 Jim Cramer said no, Wyckoff Phase B bullish, but volume is 0.31x average (very thin) and the QSR consumer story is under pressure; no DCF upside calculated.",
+  "price_action": {
+    "open": 7.39,
+    "high": 7.62,
+    "low": 7.34,
+    "close": 7.59,
+    "volume": 10038500,
+    "vol_ratio": 0.31,
+    "vol_rank": "Very thin \u2014 0.31x average; one of lowest volume ratios on watchlist",
+    "intraday_story": "WEN drifted higher on very thin volume from $7.39 to $7.59. The lowest volume ratio among all 33 stocks today \u2014 no conviction."
+  },
+  "news_catalyst": {
+    "headline": "Jim Cramer on Wendy's: 'I'm Going to Say No to Owning That Stock'",
+    "summary": "Jim Cramer explicitly passed on Wendy's. QSR sector facing consumer spending headwinds. WEN carries significant debt from its franchise model. Earnings August 7.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 6.51,
+    "key_resistance": 8.89,
+    "rsi": 52.9,
+    "macd_signal": "Flat negative \u2014 MACD histogram -0.008",
+    "volume_ratio_today": 0.31,
+    "volume_signal": "drying up",
+    "summary": "Wyckoff Phase B bullish but the 0.31x volume ratio is extremely thin \u2014 almost no participation. RSI neutral at 52.9. DCF not computed. Avoid.",
+    "wyckoff_narrative": "Phase B with thin volume. No conviction signal. Earnings August 7."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF returned null \u2014 model likely failed on high debt/low FCF combination. Wendy's carries significant leverage from its franchise model."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5651,
+    "key_strengths": [
+      "Franchise model provides recurring royalty income"
+    ],
+    "key_concerns": [
+      "C grade (0.565)",
+      "High leverage from franchise model refranchising",
+      "Consumer spending headwinds in QSR"
+    ],
+    "summary": "C grade. High debt, consumer headwinds, and Jim Cramer's pass \u2014 avoid."
+  },
+  "sentiment": {
+    "score": 0.129,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "0.31x volume today \u2014 thinnest on watchlist; any sell interest will move this fast",
+    "Consumer spending slowdown in QSR hitting Wendy's same-store sales"
+  ],
+  "watchlist_priority": "low"
+}

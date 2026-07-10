@@ -1,0 +1,79 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVIDIA Corp",
+  "report_date": "2026-07-10",
+  "price": 202.78,
+  "change_pct": 0.0,
+  "overall_stance": "accumulate",
+  "conviction": 0.75,
+  "one_liner": "NVDA at $202.78 is consolidating right on top of a perfectly flat dual-EMA confluence ($200.62/200.57) with Grade A fundamentals and 65% DCF upside \u2014 a textbook rest-before-continuation setup ahead of August 26 earnings.",
+  "price_action": {
+    "open": 204.46,
+    "high": 204.59,
+    "low": 198.96,
+    "close": 202.78,
+    "volume": 131649500,
+    "vol_ratio": 0.82,
+    "vol_rank": "Below average (131M vs 147M avg) \u2014 constructive low-volume consolidation",
+    "intraday_story": "NVDA opened slightly above the prior close, tagged $204.59 early, then dipped to $198.96 before recovering to close at $202.78. The low tested below both EMAs ($200.62/$200.57) briefly but the close was well above \u2014 a textbook spring/test of the EMA confluence. Volume at 131M was below the 20-day average of 147M, confirming low supply on the dip."
+  },
+  "news_catalyst": {
+    "headline": "Bank of America Named NVDA Its Favorite AI Chip Stock; DeepSeek Chip Threat Dismissed",
+    "summary": "Bank of America reiterated NVDA as its top AI chip pick, a constructive datapoint amid the day's semiconductor sector noise around DeepSeek's chip development announcement. As noted in today's YouTube digest analysis, the DeepSeek threat is largely irrelevant to Nvidia's revenue since China is already export-restricted from buying Nvidia chips \u2014 the incremental demand risk is minimal. The broader semiconductor sell-off yesterday (Intel -10%, AMD -7%) actually benefited Nvidia on a relative basis, as investors rotated toward the more undervalued name.",
+    "source_url": "https://finance.yahoo.com/markets/stocks/articles/bank-of-america-just-picked-its-favorite-ai-chip-stock/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 200.57,
+    "key_resistance": 212.83,
+    "rsi": 53.7,
+    "macd_signal": "Bullish \u2014 MACD histogram +0.177, turning up from flat",
+    "volume_ratio_today": 0.82,
+    "volume_signal": "drying up",
+    "summary": "NVDA's most striking technical feature today is the near-perfect alignment of its EMA50 ($200.62) and EMA200 ($200.57) \u2014 they're essentially at the same price, forming a flat, dense support shelf that the stock is sitting on top of. This dual-EMA convergence at $200-201 is a significant support zone; the intraday low of $198.96 briefly undercut it but closed back above, which is a bullish sign that the level is holding.\n\nThe Wyckoff trading range has support at $191.22 and resistance at $230.07. At $202.78, price is in the lower third of the range \u2014 still in base territory but building above the EMA confluence. The RSI at 53.7 is neutral-to-bullish. MACD histogram at +0.177 is barely positive but turning up from recent lows \u2014 early momentum recovery signal.\n\nVolume at 0.82x average on a dip that briefly undercut the EMAs is the key observation. In Wyckoff terms, this is a Spring or Test of Support \u2014 high-quality supply absorption. If the next session sees a recovery move on higher volume, the Spring reading is confirmed. Resistance is the upper Bollinger Band at $212.83 and the Wyckoff trading range resistance at $230.07."
+  },
+  "wyckoff_narrative": "NVDA is in a Consolidation / No Clear Phase per the Wyckoff engine, which is expected given the stock's range-bound action between $191 and $230. The stock has been working through supply from higher prices earlier in the year, and the current consolidation near the EMA confluence looks more like Phase B absorption (supply being digested at lower prices) than active distribution.\n\nThe intraday dip to $198.96 below both EMAs, followed by recovery on below-average volume, is a classic Wyckoff Spring pattern: a brief undercut of support designed to shake out weak holders before the next move higher. The Wyckoff playbook says: if the next session sees a volume-expanding move above $204 (the day's open/high), the Spring is confirmed and a Sign of Strength (SOS) thrust toward $212-215 becomes the target.\n\nThe dual-EMA confluence at $200-201 is the critical invalidation level. A close below $200.57 on volume above 1.5x average would signal the Spring failed and risk extends to the Wyckoff support at $191.22.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 333.93,
+    "upside_pct": 64.7,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF base intrinsic value of $334 implies 65% upside from $203. As noted by Parkev Tatevosian (July 9 analysis), Nvidia is one of the most undervalued names in the semiconductor complex \u2014 trading at roughly 1/3 of Nvidia's forward PE versus AMD's 70x, while generating superior software moats and dominant GPU market share. The margin of safety is genuine."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.8192,
+    "key_strengths": [
+      "Grade A with 0.82 score \u2014 top-tier fundamentals on the watchlist",
+      "Operating margins above 60%, gross margins above 75% \u2014 best-in-class profitability",
+      "CUDA software ecosystem creates deep switching costs competitors cannot replicate"
+    ],
+    "key_concerns": [
+      "Export restrictions limit China revenue \u2014 a significant addressable market excluded",
+      "Next earnings August 26 \u2014 any demand deceleration signal would hit sentiment"
+    ],
+    "summary": "Grade A fundamentals strongly support the accumulation thesis. NVDA is generating exceptional margins while trading at a significant discount to intrinsic value \u2014 an unusual combination that makes this the highest-quality risk/reward setup on the watchlist today."
+  },
+  "sentiment": {
+    "score": 0.069,
+    "label": "Neutral",
+    "mentions_24h": 59,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close below $200.57 (EMA200) on volume >1.5x average would abort the Spring setup and target $191 support",
+    "Hyperscaler capex revision downward (key risk flagged in AMD analysis) would hurt Nvidia demand 2027+",
+    "DeepSeek chip competition \u2014 long-term risk, not near-term, but worth monitoring"
+  ],
+  "watchlist_priority": "high"
+}

@@ -1,0 +1,75 @@
+{
+  "ticker": "FNMA",
+  "company_name": "Federal National Mortgage Association (Fannie Mae)",
+  "report_date": "2026-07-10",
+  "price": 6.1,
+  "change_pct": 4.1,
+  "overall_stance": "avoid",
+  "conviction": 0.65,
+  "one_liner": "FNMA at $6.10 is a pure policy speculation play \u2014 no DCF, no grade, RSI 44.4 below EMAs \u2014 avoid unless you have high conviction on a specific government privatization timeline.",
+  "price_action": {
+    "open": 5.94,
+    "high": 6.24,
+    "low": 5.92,
+    "close": 6.1,
+    "volume": 4090800,
+    "vol_ratio": 0.93,
+    "vol_rank": "Near average",
+    "intraday_story": "FNMA moved +4.1% on near-average volume with no specific news. The stock remains in its Wyckoff Phase A-B range ($6.00-$8.55). RSI at 44.4 is below 50 \u2014 not technically strong."
+  },
+  "news_catalyst": {
+    "headline": "No FNMA-Specific News \u2014 Trading on General Housing Market Sentiment",
+    "summary": "No specific Fannie Mae news. FNMA is a political/policy speculation stock whose value depends on the US government's privatization stance. The stock trades erratically on any housing or GSE policy commentary.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 6.0,
+    "key_resistance": 6.22,
+    "rsi": 44.4,
+    "macd_signal": "Slightly bearish \u2014 MACD histogram -0.084",
+    "volume_ratio_today": 0.93,
+    "volume_signal": "normal",
+    "summary": "Below both EMAs with negative MACD. Policy speculation stock \u2014 not suitable for technical analysis frameworks. Avoid.",
+    "wyckoff_narrative": "Phase A-B but below both EMAs. Policy-driven stock \u2014 Wyckoff signals less meaningful here."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "No DCF applicable \u2014 FNMA is a government-sponsored enterprise in conservatorship. Value is entirely dependent on policy decisions."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": null,
+    "key_strengths": [
+      "Massive mortgage market infrastructure"
+    ],
+    "key_concerns": [
+      "Government conservatorship since 2008",
+      "Zero fundamental analysis possible \u2014 policy speculation only"
+    ],
+    "summary": "No meaningful fundamental grade. Pure policy speculation on GSE privatization."
+  },
+  "sentiment": {
+    "score": 0.132,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Government policy changes can move this 20-30% in a single day",
+    "No earnings catalyst \u2014 purely speculative"
+  ],
+  "watchlist_priority": "low"
+}

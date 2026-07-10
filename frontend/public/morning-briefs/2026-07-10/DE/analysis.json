@@ -1,0 +1,76 @@
+{
+  "ticker": "DE",
+  "company_name": "Deere & Company",
+  "report_date": "2026-07-10",
+  "price": 592.9,
+  "change_pct": -0.64,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "DE at $592.90 has DCF fair value of $206 \u2014 65% overvalued \u2014 with MACD bearish (-2.516) and Grade C fundamentals; Jim Cramer is bullish which historically is a contrary indicator.",
+  "price_action": {
+    "open": 602.85,
+    "high": 606.0,
+    "low": 591.37,
+    "close": 592.9,
+    "volume": 840800,
+    "vol_ratio": 0.65,
+    "vol_rank": "Well below average \u2014 very thin volume",
+    "intraday_story": "DE opened above $600, sold off all day to close near the low at $592.90 \u2014 a bearish intraday pattern on thin volume. Below the Bollinger Band midpoint."
+  },
+  "news_catalyst": {
+    "headline": "Jim Cramer: 'Deere Is Incredible and Not Done Going Higher' \u2014 Contrarian Warning Flag",
+    "summary": "Jim Cramer's bullish endorsement on Deere is widely treated as a contrarian indicator by seasoned traders. Deere is facing agricultural equipment demand headwinds as farm incomes have normalized and order books have been declining. The DCF shows 65% overvaluation.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 566.26,
+    "key_resistance": 635.01,
+    "rsi": 49.1,
+    "macd_signal": "Bearish \u2014 MACD histogram -2.516",
+    "volume_ratio_today": 0.65,
+    "volume_signal": "drying up",
+    "summary": "DE is in a neutral range with bearish MACD. DCF at $206 (65% overvalued) makes this an avoid. MACD -2.516 confirms downward momentum. Earnings August 20.",
+    "wyckoff_narrative": "Neutral Wyckoff below midrange. MACD bearish. Avoid at 65% above DCF value."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 206.54,
+    "upside_pct": -65.2,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF $206 vs $592 \u2014 65% overvalued. Agricultural equipment cycle is past peak. Avoid."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5062,
+    "key_strengths": [
+      "Precision agriculture technology adoption growing",
+      "Global infrastructure equipment demand"
+    ],
+    "key_concerns": [
+      "Ag cycle downturn \u2014 order books declining",
+      "C grade (0.506) \u2014 below watchlist average"
+    ],
+    "summary": "C grade with cyclical headwinds and 65% DCF overvaluation. Avoid."
+  },
+  "sentiment": {
+    "score": 0.519,
+    "label": "Bullish",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "65% DCF overvaluation is the primary risk",
+    "Ag cycle downturn could accelerate if commodity prices fall further"
+  ],
+  "watchlist_priority": "low"
+}

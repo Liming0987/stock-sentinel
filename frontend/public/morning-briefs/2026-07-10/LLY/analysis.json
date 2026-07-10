@@ -1,0 +1,80 @@
+{
+  "ticker": "LLY",
+  "company_name": "Eli Lilly and Company",
+  "report_date": "2026-07-10",
+  "price": 1216.95,
+  "change_pct": 0.09,
+  "overall_stance": "accumulate",
+  "conviction": 0.72,
+  "one_liner": "LLY at $1,216 is in Wyckoff Phase E (complete markup) with RSI 62.9, MACD strongly positive, and DCF suggesting 71% upside \u2014 the GLP-1 thesis remains intact with a healthy pullback from the $1,232 resistance.",
+  "price_action": {
+    "open": 1211.64,
+    "high": 1230.0,
+    "low": 1200.37,
+    "close": 1216.95,
+    "volume": 2087500,
+    "vol_ratio": 0.63,
+    "vol_rank": "Below average \u2014 constructive low-volume consolidation near all-time highs",
+    "intraday_story": "LLY tested $1,230 (Wyckoff resistance at $1,232) and backed off to close at $1,216.95, holding above the open on low volume. This is a high-level consolidation candle \u2014 the failure to push through $1,232 is not alarming given the declining volume, which is consistent with profit-taking rather than distribution."
+  },
+  "news_catalyst": {
+    "headline": "No major Lilly-specific news in last 48 hours \u2014 stock consolidating near resistance",
+    "summary": "LLY has been consolidating near the $1,232 Wyckoff resistance level with no significant company-specific catalyst in the past 48 hours. The broader GLP-1 market remains the dominant driver \u2014 Eli Lilly's Zepbound and Mounjaro continue to see strong demand with supply constraints easing. The August 5 earnings report will be the next major catalyst.",
+    "source_url": "https://finance.yahoo.com/quote/LLY/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase E (Complete)",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1155.68,
+    "key_resistance": 1232.3,
+    "rsi": 62.9,
+    "macd_signal": "Bullish \u2014 MACD histogram +7.511, strongly positive",
+    "volume_ratio_today": 0.63,
+    "volume_signal": "drying up",
+    "summary": "LLY is in the most advanced Wyckoff phase on the watchlist \u2014 Phase E (Complete), indicating a completed accumulation campaign with markup well underway. The Wyckoff trading range support is at $870.05 and resistance at $1,232.30; the current price of $1,216.95 is pressing against that upper bound. Phase E describes a stock that has fully broken out of its base and is in sustained uptrend.\n\nRSI at 62.9 is healthy \u2014 bullish territory but not overbought. MACD histogram at +7.511 is strongly positive and expanding. Volume dried to 0.63x average on the consolidation day, consistent with low-supply rest at the resistance level rather than distribution selling.\n\nThe key test is whether LLY can close above $1,232 on above-average volume, which would confirm continuation of the markup phase. EMA50 at $1,155.68 is the first significant pullback support level. Given the Phase E classification, any pullback to the $1,155-1,170 zone would represent a high-conviction accumulation opportunity."
+  },
+  "wyckoff_narrative": "LLY's Phase E designation is significant \u2014 it means the Wyckoff algorithm has identified a completed accumulation base that transitioned into markup. This is the rarest and most bullish classification, as most stocks on the watchlist are still in Phase B consolidation. The trading range ran from $870 support to $1,232 resistance; the stock has worked through this entire range and is now testing the upper bound.\n\nIn Phase E, Wyckoff theory expects continued higher prices following brief consolidations. The current pattern \u2014 pressing $1,232 resistance on declining volume \u2014 is a Last Point of Support (LPS) setup before the next leg higher. A break above $1,232 on volume 1.5x+ average would be a Sign of Strength (SOS) triggering the next markup leg.\n\nDownside risk: if LLY reverses below EMA50 at $1,155 on high volume, that would be an Upthrust After Distribution (UTAD) false breakout signal \u2014 Phase E can occasionally resolve downward if the stock was in a late-stage distribution rather than accumulation. Given the fundamental GLP-1 strength, this remains the lower-probability scenario.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 2086.24,
+    "upside_pct": 71.4,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF base intrinsic value of $2,086 implies 71% upside from $1,217. This likely reflects multi-year GLP-1 revenue projections as Zepbound/Mounjaro penetrate obesity and diabetes markets at scale. Even discounting the model significantly, the stock appears to have meaningful upside if GLP-1 adoption continues on its current trajectory."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7383,
+    "key_strengths": [
+      "Zepbound and Mounjaro generating blockbuster GLP-1 revenue with expanding market",
+      "Strong pipeline beyond GLP-1 reducing single-drug dependency risk",
+      "Next earnings August 5 \u2014 catalyst for next leg higher if GLP-1 guidance raised"
+    ],
+    "key_concerns": [
+      "Valuation is elevated \u2014 requires continued GLP-1 outperformance to justify",
+      "Competition from Novo Nordisk intensifying; generic/biosimilar risk on horizon"
+    ],
+    "summary": "B grade reflects Lilly's strong growth but premium valuation. The GLP-1 franchise is genuinely transformative and fundamentals support the Phase E technical thesis. The DCF upside is high but requires sustained execution on the GLP-1 commercialization roadmap."
+  },
+  "sentiment": {
+    "score": 0.185,
+    "label": "Bullish",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close below $1,155 (EMA50) on expanding volume would signal a Phase E failure / distribution top",
+    "GLP-1 competitive dynamics with Novo Nordisk; any clinical data favoring competitors would be negative",
+    "Earnings August 5 \u2014 guidance miss or GLP-1 demand deceleration signal would trigger significant selling"
+  ],
+  "watchlist_priority": "high"
+}

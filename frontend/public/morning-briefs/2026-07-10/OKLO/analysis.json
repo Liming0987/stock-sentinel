@@ -1,0 +1,79 @@
+{
+  "ticker": "OKLO",
+  "company_name": "Oklo Inc",
+  "report_date": "2026-07-10",
+  "price": 49.27,
+  "change_pct": 4.21,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "OKLO at $49.27 bounced +4.21% from Monday's $47.90 low \u2014 RSI 38.8 remains near oversold and price is below Wyckoff support ($49.45); the Groves criticality test narrative supports watching for a reversal.",
+  "price_action": {
+    "open": 47.85,
+    "high": 50.23,
+    "low": 47.29,
+    "close": 49.27,
+    "volume": 7250400,
+    "vol_ratio": 0.59,
+    "vol_rank": "Below average \u2014 low-volume bounce",
+    "intraday_story": "OKLO bounced from a low of $47.29 (below Monday's low of $46.95) to close at $49.27. The intraday low briefly undercut Monday's support but recovered \u2014 a potential Spring pattern. Volume at 0.59x average confirms this is not yet a high-conviction reversal."
+  },
+  "news_catalyst": {
+    "headline": "Why OKLO Is Betting Big on the Future of Nuclear Isotopes \u2014 July Criticality Test in View",
+    "summary": "OKLO's DOE safety approval for the Groves Isotope Test Reactor (July 1) remains the key catalyst. The article highlights OKLO's isotope production strategy as a differentiated revenue stream beyond power generation. The July criticality test timeline is the binary event investors are watching \u2014 any confirmation of this milestone would be a significant positive catalyst.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 47.29,
+    "key_resistance": 53.71,
+    "rsi": 38.8,
+    "macd_signal": "Bearish \u2014 MACD histogram -0.785",
+    "volume_ratio_today": 0.59,
+    "volume_signal": "drying up",
+    "summary": "OKLO briefly undercut Monday's $46.95 low to $47.29 before recovering \u2014 a textbook Spring setup. RSI at 38.8 is near oversold. EMA50 ($53.71) and EMA200 ($54.02) are overhead resistance. Wyckoff support is at $49.45 \u2014 the stock is just below this level at $49.27. A close above $49.45 on expanding volume would confirm the Spring and target the $53-54 EMA cluster.",
+    "wyckoff_narrative": "The intraday undercut of the $47.90 Monday low to $47.29 followed by recovery is a classic Wyckoff Spring. The Spring hypothesis requires confirmation: a subsequent session with a volume-expanding close above the Wyckoff support at $49.45 would confirm absorption and set up a move toward $53-54 (EMAs). Until that confirmation arrives, this is a watch rather than accumulate."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "Pre-revenue nuclear reactor company \u2014 DCF not applicable. Wall Street consensus: 19 analysts, mean target $88.63 (80%+ upside). Next earnings August 10."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5569,
+    "key_strengths": [
+      "DOE Reactor Pilot Program approval secured July 1",
+      "Current ratio 59.9 \u2014 fortress balance sheet",
+      "19 analyst coverage with mean target $88.63"
+    ],
+    "key_concerns": [
+      "Zero revenue \u2014 all value is optionality on reactor deployment timeline",
+      "C grade (0.557) reflects pre-revenue speculative stage",
+      "Criticality test delay risk is the key binary event"
+    ],
+    "summary": "C grade with strong analyst coverage but no revenue. Watch for the Groves criticality test milestone. Earnings August 10."
+  },
+  "sentiment": {
+    "score": 0.059,
+    "label": "Neutral",
+    "mentions_24h": 4,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Spring confirmation unverified \u2014 needs close above $49.45 on volume >1.3x average",
+    "Criticality test delay would remove the primary near-term catalyst",
+    "Earnings August 10 \u2014 continued cash burn disclosure without revenue milestone would pressure stock"
+  ],
+  "watchlist_priority": "medium"
+}

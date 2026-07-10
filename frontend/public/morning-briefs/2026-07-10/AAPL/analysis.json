@@ -1,0 +1,77 @@
+{
+  "ticker": "AAPL",
+  "company_name": "Apple Inc",
+  "report_date": "2026-07-10",
+  "price": 316.22,
+  "change_pct": 0.9,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "AAPL at $316 is pressing the upper Bollinger Band ($318.69) with RSI 68.6 \u2014 extended after a strong run but DCF shows 39% overvaluation; earnings July 30 are the next catalyst in both directions.",
+  "price_action": {
+    "open": 310.51,
+    "high": 316.53,
+    "low": 308.16,
+    "close": 316.22,
+    "volume": 48084300,
+    "vol_ratio": 0.77,
+    "vol_rank": "Below average \u2014 below-average volume at all-time high territory",
+    "intraday_story": "AAPL pressed to $316.53 (just below the $318.69 upper BB) on below-average volume and closed at $316.22. The Wyckoff resistance at $315.53 was also breached. Technically extended \u2014 RSI 68.6 is approaching overbought."
+  },
+  "news_catalyst": {
+    "headline": "No AAPL-Specific News \u2014 Continued AI Feature Integration Narrative",
+    "summary": "No major Apple news today. Stock approaching all-time high territory above Wyckoff resistance ($315.53). Earnings July 30 will cover iPhone demand trends, Apple Intelligence monetization, and Services growth.",
+    "source_url": "https://finance.yahoo.com/quote/AAPL/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 295.24,
+    "key_resistance": 318.69,
+    "rsi": 68.6,
+    "macd_signal": "Strongly bullish \u2014 MACD histogram +2.901, highest on watchlist",
+    "volume_ratio_today": 0.77,
+    "volume_signal": "normal",
+    "summary": "AAPL has the strongest MACD histogram on the watchlist (+2.901) and is above both EMAs. But RSI at 68.6 and price pressing against the upper BB at $318.69 with the DCF showing 39% overvaluation makes this an avoid for new entries. Existing holders can ride the momentum into earnings July 30.",
+    "wyckoff_narrative": "Breaking above Wyckoff resistance at $315.53 is technically positive but on below-average volume \u2014 classic upthrust risk territory. Avoid new entries at upper BB."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 194.15,
+    "upside_pct": -38.6,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF $194 vs $316 market price \u2014 39% overvalued. The market prices AAPL at a significant premium to intrinsic value reflecting the Services ecosystem and AI optionality."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7083,
+    "key_strengths": [
+      "Services revenue growing double digits with high margins",
+      "1B+ active devices creating recurring monetization platform"
+    ],
+    "key_concerns": [
+      "39% DCF overvaluation",
+      "iPhone upgrade cycle slowing; China competition from Huawei"
+    ],
+    "summary": "B grade (0.71). Solid fundamentals but premium valuation and RSI 68.6 near upper BB argue for avoid until a pullback."
+  },
+  "sentiment": {
+    "score": 0.044,
+    "label": "Neutral",
+    "mentions_24h": 22,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI 68.6 and upper BB at $318.69 \u2014 overbought; reject here and target EMA50 at $295 on any negative catalyst",
+    "Earnings July 30 \u2014 China iPhone demand and AI monetization commentary are the key variables"
+  ],
+  "watchlist_priority": "low"
+}

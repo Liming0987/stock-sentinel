@@ -1,0 +1,76 @@
+{
+  "ticker": "CMG",
+  "company_name": "Chipotle Mexican Grill Inc",
+  "report_date": "2026-07-10",
+  "price": 34.6,
+  "change_pct": 3.5,
+  "overall_stance": "avoid",
+  "conviction": 0.6,
+  "one_liner": "CMG at $34.60 approaching Wyckoff resistance ($35.78) with RSI 62.2 and MACD positive \u2014 but DCF shows 57% overvaluation at $14.74 fair value; earnings July 29 with near-term consumer caution.",
+  "price_action": {
+    "open": 33.43,
+    "high": 34.62,
+    "low": 33.0,
+    "close": 34.6,
+    "volume": 15641500,
+    "vol_ratio": 0.79,
+    "vol_rank": "Below average",
+    "intraday_story": "CMG opened at $33.43 and ran all day to $34.62 \u2014 essentially at Wyckoff resistance of $35.78 at the close. RSI 62.2 and approaching resistance makes this a natural pause point."
+  },
+  "news_catalyst": {
+    "headline": "Chipotle Launches PGA Tour 2K25 Rewards \u2014 Consumer Engagement Initiative",
+    "summary": "CMG launched a gaming/rewards partnership \u2014 a minor consumer engagement item, not a fundamental catalyst. The +3.5% gain appears to be sector rotation or technical momentum. DCF remains deeply negative vs current price. Earnings July 29.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 31.87,
+    "key_resistance": 35.78,
+    "rsi": 62.2,
+    "macd_signal": "Bullish \u2014 MACD histogram +0.131",
+    "volume_ratio_today": 0.79,
+    "volume_signal": "normal",
+    "summary": "CMG pressing Wyckoff resistance at $35.78 with RSI 62.2. DCF at $14.74 (57% overvalued) makes this an avoid for fundamental investors. Earnings July 29.",
+    "wyckoff_narrative": "Approaching Wyckoff resistance at $35.78. RSI 62.2 \u2014 room to press but DCF gap too large to justify adding."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 14.74,
+    "upside_pct": -57.4,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF $14.74 vs $34.60 \u2014 57% overvalued. Chipotle premium reflects brand and unit growth optionality but the current price requires exceptional execution for years."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.5719,
+    "key_strengths": [
+      "Digital ordering penetration above 35%",
+      "Unit growth pipeline strong \u2014 2,000+ locations planned"
+    ],
+    "key_concerns": [
+      "57% DCF overvaluation",
+      "Consumer spending caution in QSR category"
+    ],
+    "summary": "C grade. Premium brand but significantly overvalued at current levels. Avoid."
+  },
+  "sentiment": {
+    "score": 0.1,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "DCF 57% overvalued",
+    "Consumer spending slowdown in QSR would hit same-store sales growth"
+  ],
+  "watchlist_priority": "low"
+}

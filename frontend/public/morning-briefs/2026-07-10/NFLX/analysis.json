@@ -1,0 +1,80 @@
+{
+  "ticker": "NFLX",
+  "company_name": "Netflix Inc",
+  "report_date": "2026-07-10",
+  "price": 75.47,
+  "change_pct": -0.16,
+  "overall_stance": "watch",
+  "conviction": 0.65,
+  "one_liner": "NFLX at $75.47 is 6 days from Q2 earnings (July 16) with RSI 44.8 below both EMAs and 261% DCF upside \u2014 the risk/reward is compelling but the stock is in a downtrend and earnings are the binary catalyst.",
+  "price_action": {
+    "open": 74.3,
+    "high": 75.55,
+    "low": 74.02,
+    "close": 75.47,
+    "volume": 36136500,
+    "vol_ratio": 0.8,
+    "vol_rank": "Below average \u2014 low-volume drift, no conviction in either direction",
+    "intraday_story": "NFLX gapped slightly higher to open at $74.30 then drifted to the session high of $75.55 before closing near the top at $75.47. The candle is a small-bodied bullish close on declining volume \u2014 constructive but not strong. The stock is below both its EMA50 ($78.52) and EMA200 ($80.90), confirming the downtrend context."
+  },
+  "news_catalyst": {
+    "headline": "Q2 Earnings on July 16: Analysts Expect $12.6B Revenue, 32.6% Operating Margin; Ad Tier at 250M MAU",
+    "summary": "Netflix reports Q2 2026 earnings on July 16 \u2014 six trading days away. The setup: stock is down ~19% from recent highs, trading at RSI 44.8 below both EMAs, with analysts expecting $12.6B revenue and EPS of $0.79. The ad-supported tier has reached 250M monthly active users, up sharply from 190M in late 2025. Netflix's ad revenue is on track to double to $3B in 2026. Goldman Sachs is constructively positioned. The Motley Fool has published multiple bullish pre-earnings pieces arguing the stock will 'soar after July 16.' The DCF model's 261% upside at $272 intrinsic value suggests the market is significantly undervaluing Netflix's monetization potential from advertising.",
+    "source_url": "https://www.fool.com/investing/2026/07/05/prediction-netflix-stock-going-soar-july-16/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 71.62,
+    "key_resistance": 80.9,
+    "rsi": 44.8,
+    "macd_signal": "Recovering \u2014 MACD histogram +0.364, turning up",
+    "volume_ratio_today": 0.8,
+    "volume_signal": "drying up",
+    "summary": "NFLX is in a downtrend, trading below both EMAs (EMA50 $78.52, EMA200 $80.90) that are both pointing lower. The Wyckoff trading range support is at $71.62 and resistance at $99.13 \u2014 price at $75.47 is in the lower quarter of that range, technically still in possible accumulation territory but with no confirmed Wyckoff signals yet.\n\nThe RSI at 44.8 is depressed but not oversold, and the MACD histogram at +0.364 is turning positive \u2014 a nascent bullish momentum shift. Volume declining to 0.80x average alongside the small bullish candle is constructive low-volume rest.\n\nThe critical binary is July 16 earnings. Pre-earnings, the technicals alone don't justify a new long position \u2014 the stock is below both EMAs in a downtrend. However, the risk/reward for earnings-driven traders is asymmetric: the stock is already down ~19%, analyst estimates look achievable given the ad tier data point, and the DCF suggests massive undervaluation if Netflix's ad monetization continues ramping."
+  },
+  "wyckoff_narrative": "NFLX is in the early stages of potential accumulation, but the Wyckoff engine cannot yet confirm a Selling Climax (SC) that would anchor the sequence. The Wyckoff trading range support at $71.62 represents the floor that needs to hold. The current consolidation in the $74-76 zone could be a Phase B absorption \u2014 holding above support while supply overhead is reduced \u2014 but requires more sessions of evidence.\n\nFor Wyckoff accumulation to be confirmed, the next observation points are: (1) a volume expansion on a strong recovery day above $80 (EMA200) \u2014 Sign of Strength; (2) a low-volume pullback to test the $75 zone \u2014 Last Point of Support. July 16 earnings will accelerate whichever scenario is in play. A strong earnings beat would likely trigger an SOS thrust; a miss would risk breaking the $71.62 support.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 272.65,
+    "upside_pct": 261.3,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF base intrinsic value of $272.65 vs $75.47 implies 261% upside \u2014 the largest DCF upside among viable A-grade names on the watchlist. This likely models Netflix's ad-supported tier revenue reaching $3B+ and continued subscriber growth. The 261% figure may incorporate optimistic assumptions, but even a conservative haircut leaves substantial margin of safety. Earnings July 16 will either validate or reset these assumptions."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.804,
+    "key_strengths": [
+      "Ad-supported tier at 250M MAU \u2014 advertising flywheel accelerating toward $3B revenue in 2026",
+      "32.6% projected Q2 operating margin \u2014 best-in-class streaming profitability",
+      "Grade A score (0.804) reflects dominant streaming position and monetization track record"
+    ],
+    "key_concerns": [
+      "Stock is down ~19% from highs \u2014 market is skeptical about next growth engine post Reed Hastings departure",
+      "Content amortization rate was highest in Q2 \u2014 margin headwind that may suppress near-term results",
+      "Trading below both EMAs \u2014 no technical confirmation of trend reversal yet"
+    ],
+    "summary": "Grade A fundamentals are in direct tension with a bearish technical trend, creating the high-risk/high-reward pre-earnings setup. The ad tier acceleration is the most compelling fundamental driver and the July 16 earnings will be the defining moment for whether the stock's downtrend reverses."
+  },
+  "sentiment": {
+    "score": 0.111,
+    "label": "Neutral",
+    "mentions_24h": 122,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Earnings miss July 16 \u2014 any guidance for slowing subscriber growth or ad revenue would break $71.62 support",
+    "Below EMA200 ($80.90) \u2014 stock remains in technical downtrend until that level is reclaimed on volume",
+    "Reed Hastings departure has created uncertainty about long-term strategic direction"
+  ],
+  "watchlist_priority": "high"
+}

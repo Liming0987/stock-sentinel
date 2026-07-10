@@ -1,0 +1,77 @@
+{
+  "ticker": "INTC",
+  "company_name": "Intel Corp",
+  "report_date": "2026-07-10",
+  "price": 112.54,
+  "change_pct": 2.09,
+  "overall_stance": "avoid",
+  "conviction": 0.7,
+  "one_liner": "INTC at $112.54 \u2014 Parkev's DCF fair value is $51 even after yesterday's 10% sell-off; Grade D fundamentals, negative MACD, and earnings July 23 create a high-risk binary; avoid.",
+  "price_action": {
+    "open": 114.87,
+    "high": 116.77,
+    "low": 111.51,
+    "close": 112.54,
+    "volume": 99048500,
+    "vol_ratio": 0.78,
+    "vol_rank": "Below average \u2014 modest volume on day after a 10%+ sell-off",
+    "intraday_story": "INTC bounced from yesterday's 10%+ sell-off, opening at $114.87, fading to $111.51, then recovering to close at $112.54 below the open \u2014 a weak recovery candle. Volume below average is not encouraging for a bounce."
+  },
+  "news_catalyst": {
+    "headline": "DeepSeek Chip Threat and Samsung AI Spending Concerns Sent INTC Down 10%+ Yesterday; Bouncing Today",
+    "summary": "INTC was the worst performer in yesterday's semiconductor sell-off on DeepSeek and Samsung concerns. Today's 2% bounce is a dead-cat pattern \u2014 weak volume recovery after a large decline. Parkev Tatevosian's DCF shows $51 fair value vs $112.54 current price. Earnings July 23 are the next binary \u2014 any further demand weakness would be devastating.",
+    "source_url": "https://finance.yahoo.com/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "key_support": 104.69,
+    "key_resistance": 116.39,
+    "rsi": 43.6,
+    "macd_signal": "Bearish \u2014 MACD histogram -2.932",
+    "volume_ratio_today": 0.78,
+    "volume_signal": "normal",
+    "summary": "RSI 43.6 approaching oversold. MACD -2.932 is negative and expanding bearishly. Below EMA50 ($116.39) and barely above EMA200 ($110.18). Parkev's DCF at $51 (vs $112) means the stock remains overvalued at current prices even after the sell-off. Phase B Wyckoff classification may reflect the base structure but fundamentals don't support accumulation.",
+    "wyckoff_narrative": "Wyckoff Phase B with bullish bias conflicts with the fundamental overvaluation. Avoid \u2014 any technical bounce is a selling opportunity until DCF gap closes."
+  },
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF not feasible per backend model. Parkev's independent calculation: fair value $51 vs $112.54 current price \u2014 55% overvalued. INTC has been losing CPU market share to AMD and ARM; the AI data center opportunity is real but unproven."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.3821,
+    "key_strengths": [
+      "18A process node could restore manufacturing competitiveness in 2027"
+    ],
+    "key_concerns": [
+      "Grade D (0.382) \u2014 worst quartile on watchlist",
+      "Losing CPU market share to AMD and ARM",
+      "Earnings July 23 \u2014 consensus expect continued losses"
+    ],
+    "summary": "Grade D reflects Intel's ongoing transition struggles. The $51 DCF fair value vs $112 current price means even after the DeepSeek-driven sell-off, the stock remains significantly overvalued."
+  },
+  "sentiment": {
+    "score": 0.076,
+    "label": "Neutral",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Earnings July 23 \u2014 any miss on gross margin recovery or data center win commentary would target EMA200 ($110) and below",
+    "Parkev's $51 DCF fair value means 55% downside from current price even at today's levels",
+    "Dead-cat bounce pattern today \u2014 below-average volume recovery after 10%+ decline is bearish"
+  ],
+  "watchlist_priority": "low"
+}

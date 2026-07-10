@@ -1,0 +1,77 @@
+{
+  "ticker": "LULU",
+  "company_name": "Lululemon Athletica Inc",
+  "report_date": "2026-07-10",
+  "price": 116.51,
+  "change_pct": 2.54,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "LULU at $116.51 is in Wyckoff Phase B with volume drying (0.48x) and a 7% DCF upside \u2014 technically constructive but below EMA200 ($118.18) and the DCF margin of safety is thin.",
+  "price_action": {
+    "open": 113.0,
+    "high": 116.69,
+    "low": 111.31,
+    "close": 116.51,
+    "volume": 2061200,
+    "vol_ratio": 0.48,
+    "vol_rank": "Well below average \u2014 lowest volume session in recent history",
+    "intraday_story": "LULU staged a strong +2.54% recovery from a $111.31 low to close at $116.51 near the session high. Volume at 0.48x average is very low \u2014 the move was on thin air. Constructive directional close but needs volume to validate."
+  },
+  "news_catalyst": {
+    "headline": "No LULU-Specific News Today \u2014 Recovering on Consumer Discretionary Sentiment",
+    "summary": "No news. LULU is recovering from sector headwinds. The August 27 earnings will be the next major fundamental catalyst. Wyckoff support at $110.13 held today.",
+    "source_url": "https://finance.yahoo.com/quote/LULU/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 110.13,
+    "key_resistance": 118.18,
+    "rsi": 51.6,
+    "macd_signal": "Bullish \u2014 MACD histogram +0.376",
+    "volume_ratio_today": 0.48,
+    "volume_signal": "drying up",
+    "summary": "LULU is in Phase B accumulation with bullish bias per Wyckoff. The stock is below EMA200 ($118.18) at $116.51 \u2014 not yet technically in uptrend. EMA50 ($116.63) is essentially at the current price \u2014 a critical pivot level. Close above $118.18 (EMA200) on volume would be the first Sign of Strength. Until then, it's a watch.",
+    "wyckoff_narrative": "Phase B accumulation. The close today at $116.51 is pressing EMA50 ($116.63) and below EMA200 ($118.18). Need a close above EMA200 to confirm accumulation is turning to markup."
+  },
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 124.73,
+    "upside_pct": 7.0,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "summary": "DCF $124.73 vs $116.51 \u2014 only 7% upside. Thin margin of safety. Grade B (0.72) fundamentals are solid but the valuation gap is too small to justify accumulate vs watch."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7202,
+    "key_strengths": [
+      "Premium athletic brand with loyal customer base",
+      "International expansion underway"
+    ],
+    "key_concerns": [
+      "North America growth decelerating",
+      "Below EMA200 \u2014 technical downtrend not yet resolved"
+    ],
+    "summary": "B grade fundamentals but thin DCF margin and price below EMA200 keep this a watch rather than accumulate."
+  },
+  "sentiment": {
+    "score": -0.001,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close below Wyckoff support at $110.13 would abort the Phase B accumulation",
+    "EMA200 at $118.18 is near-term overhead resistance \u2014 needs to be reclaimed"
+  ],
+  "watchlist_priority": "medium"
+}
