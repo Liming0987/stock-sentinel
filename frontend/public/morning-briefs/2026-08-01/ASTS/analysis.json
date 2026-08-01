@@ -1,0 +1,84 @@
+{
+  "ticker": "ASTS",
+  "company_name": "AST SpaceMobile, Inc.",
+  "report_date": "2026-08-01",
+  "price": 58.98,
+  "change_pct": 0.92,
+  "overall_stance": "watch",
+  "conviction": 0.52,
+  "one_liner": "ASTS +0.92% on 0.54x volume \u2014 satellite-to-phone broadband pioneer; revenue growth 1952%, RSI 37.3 approaching oversold, analyst target $80.48 (36% upside).",
+  "price_action": {
+    "open": 60.65,
+    "high": 61.2,
+    "low": 56.24,
+    "close": 58.98,
+    "volume": 9711800,
+    "vol_ratio": 0.54,
+    "vol_rank": "0.54x 30-day average",
+    "intraday_story": "O=60.65 H=61.2 L=56.24 C=58.98."
+  },
+  "news_catalyst": {
+    "headline": "AST SpaceMobile expanding direct-to-cell satellite coverage",
+    "summary": "AST SpaceMobile expanding direct-to-cell satellite coverage",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 52.0,
+    "key_resistance": 70.0,
+    "rsi": 37.27,
+    "macd_signal": "bullish \u2014 histogram 0.1146",
+    "volume_ratio_today": 0.54,
+    "volume_signal": "drying up",
+    "summary": "RSI 37.27, MACD 0.1146. Consolidation / No Clear Phase (neutral). Support 52.0, resistance 70.0. drying up volume."
+  },
+  "wyckoff_narrative": "Consolidation / No Clear Phase with neutral bias. Support 52.0, resistance 70.0. VCP: False, pivot None.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": 19.522,
+    "summary": "DCF not feasible. Analyst target $80.48. Forward PE -226.67."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.6,
+    "key_strengths": [
+      "Revenue growth 1952% YoY (from tiny base)",
+      "Analyst target $80.48 (36% upside)",
+      "Analyst rec 2.69 = buy",
+      "MACD +0.11 positive",
+      "RSI 37.3 near oversold"
+    ],
+    "key_concerns": [
+      "Margin 0% \u2014 pre-profitable",
+      "fwdPE -226x",
+      "High capex required for satellite constellation",
+      "Analyst rec only 2.69 \u2014 moderate conviction"
+    ],
+    "summary": "Grade C. Rev growth 1952.2%, margin N/A%."
+  },
+  "sentiment": {
+    "score": 0.175,
+    "label": "Neutral",
+    "mentions_24h": 161,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Satellite constellation deployment risk and cost",
+    "$52 support \u2014 below that targets $45",
+    "Regulatory risk across multiple international jurisdictions"
+  ],
+  "watchlist_priority": "low"
+}

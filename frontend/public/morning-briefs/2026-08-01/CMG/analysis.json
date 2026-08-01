@@ -1,0 +1,83 @@
+{
+  "ticker": "CMG",
+  "company_name": "Chipotle Mexican Grill, Inc.",
+  "report_date": "2026-08-01",
+  "price": 37.22,
+  "change_pct": -3.37,
+  "overall_stance": "avoid",
+  "conviction": 0.7,
+  "one_liner": "CMG -3.37% on 0.74x volume \u2014 DCF $15.80 vs $37.22 (57% overvalued); cyclospora outbreak overhang; Grade C; despite Q2 earnings beat, risk/reward is unfavorable.",
+  "price_action": {
+    "open": 37.97,
+    "high": 38.45,
+    "low": 37.18,
+    "close": 37.22,
+    "volume": 14346000,
+    "vol_ratio": 0.74,
+    "vol_rank": "0.74x 30-day average",
+    "intraday_story": "O=37.97 H=38.45 L=37.18 C=37.22 \u2014 below average volume session."
+  },
+  "news_catalyst": {
+    "headline": "Chipotle Q2 beats but cyclospora scare weighs; stock down 3.37%",
+    "summary": "Chipotle beat Q2 estimates with 9.3% revenue growth and raised same-store sales guidance, but a late-July cyclospora outbreak is causing traffic headwinds. More importantly, the DCF of $15.80 vs $37.22 makes CMG one of the most overvalued names on the watchlist on an intrinsic value basis.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 34.0,
+    "key_resistance": 42.0,
+    "rsi": 61.95,
+    "macd_signal": "bullish \u2014 histogram +0.44",
+    "volume_ratio_today": 0.74,
+    "volume_signal": "below average",
+    "summary": "RSI 61.95, MACD histogram 0.435. Wyckoff: Consolidation / No Clear Phase (neutral). Support 34.0, resistance 42.0."
+  },
+  "wyckoff_narrative": "Wyckoff phase: Consolidation / No Clear Phase. Bias: neutral. Watch for volume-confirmed breakout above 42.0 or test of 34.0.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 15.8,
+    "upside_pct": -57.5,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": 0.074,
+    "summary": "DCF $15.8 (-57.5% upside). Analyst target $44.05. Forward PE 27.24."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.65,
+    "key_strengths": [
+      "Q2 earnings beat estimates",
+      "Revenue growth 7.4% with 12% margins",
+      "Analyst target $44.05 (18% upside)",
+      "MACD +0.44 positive"
+    ],
+    "key_concerns": [
+      "DCF $15.80 vs $37.22 \u2014 57% overvalued",
+      "Cyclospora outbreak customer traffic headwind",
+      "RSI 61.95 approaching overbought",
+      "Grade C"
+    ],
+    "summary": "Grade C. Revenue growth 7.4%, margin 12.0%. Forward PE 27.24."
+  },
+  "sentiment": {
+    "score": 0.128,
+    "label": "Neutral",
+    "mentions_24h": 168,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Cyclospora outbreak creates overhang on customer traffic recovery",
+    "DCF suggests stock is fundamentally overvalued at any reasonable discount rate",
+    "Analyst rec 1.69 = buy, but DCF overvaluation is the primary concern"
+  ],
+  "watchlist_priority": "low"
+}

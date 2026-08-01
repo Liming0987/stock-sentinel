@@ -1,0 +1,81 @@
+{
+  "ticker": "LULU",
+  "company_name": "lululemon athletica inc.",
+  "report_date": "2026-08-01",
+  "price": 118.87,
+  "change_pct": -0.51,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "LULU -0.51% on 0.78x volume in Wyckoff Accumulation Phase B \u2014 DCF $124.73 vs $118.87 offers modest 5% upside; MACD positive at +0.37 and RSI 55 are constructive but sentiment is cautious.",
+  "price_action": {
+    "open": 120.4,
+    "high": 121.0,
+    "low": 117.87,
+    "close": 118.87,
+    "volume": 2400000,
+    "vol_ratio": 0.78,
+    "vol_rank": "0.78x 30-day average",
+    "intraday_story": "Opened higher at $120.40, tested $117.87 low, closed at $118.87. Low volume on a modest pullback is consistent with Wyckoff absorption \u2014 sellers lack conviction at these levels."
+  },
+  "news_catalyst": {
+    "headline": "No significant LULU-specific news today",
+    "summary": "LULU is trading quietly, consistent with post-earnings consolidation. Athleisure demand remains under pressure from discretionary spending headwinds and increased competition from Nike and other brands. The Wyckoff system's Accumulation Phase B reading suggests institutional accumulation is underway at these levels, but the DCF provides only 5% upside to base case.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Phase B",
+    "key_support": 115.0,
+    "key_resistance": 130.0,
+    "rsi": 55.04,
+    "macd_signal": "bullish \u2014 histogram +0.37",
+    "volume_ratio_today": 0.78,
+    "volume_signal": "drying up",
+    "summary": "RSI 55 and MACD +0.37 are constructive. Recent events show a selling climax followed by buying climax and high-volume up day \u2014 Wyckoff Phase B absorption pattern. Volume drying up on today's pullback is healthy. Watch for breakout above $125-130 on expanding volume."
+  },
+  "wyckoff_narrative": "Wyckoff Phase B with recent selling climax and buying climax events indicates smart money absorption. Today's low-volume decline is a secondary test of prior lows \u2014 if price holds $115-117, next expected event is a Sign of Strength (SOS) toward $130.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 124.73,
+    "upside_pct": 4.9,
+    "bear_value": 80.0,
+    "bull_value": 180.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.08,
+    "summary": "DCF of $124.73 implies only 4.9% upside \u2014 modest. Forward PE 10.5x is cheap for a brand business but reflects concerns about revenue growth of 4.3% \u2014 very slow. Analyst target $127.73 (7.5% upside) also uninspiring. Thesis depends on Wyckoff technical recovery rather than fundamental re-rating."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.71,
+    "key_strengths": [
+      "Forward PE 10.5x \u2014 cheapest in years",
+      "Profit margin 13%",
+      "Analyst target $127.73"
+    ],
+    "key_concerns": [
+      "Revenue growth 4.3% \u2014 near stagnation",
+      "Consumer discretionary headwinds",
+      "Analyst rec 3.15 = hold"
+    ],
+    "summary": "Grade B but with decelerating growth that limits upside. The stock is cheap on PE but for reasons \u2014 the growth premium is gone. Watch stance reflects the Wyckoff setup without full fundamental conviction."
+  },
+  "sentiment": {
+    "score": 0.145,
+    "label": "Neutral",
+    "mentions_24h": 34,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Revenue growth 4.3% is near stagnation \u2014 limited fundamental catalyst",
+    "Analyst consensus near hold (3.15) \u2014 not a strong buy",
+    "Consumer discretionary spending headwinds from tariffs and inflation"
+  ],
+  "watchlist_priority": "low"
+}

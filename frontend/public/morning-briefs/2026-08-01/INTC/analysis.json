@@ -1,0 +1,82 @@
+{
+  "ticker": "INTC",
+  "company_name": "Intel Corporation",
+  "report_date": "2026-08-01",
+  "price": 90.2,
+  "change_pct": -1.02,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "INTC -1.02% continuing a 30%+ correction from its June peak despite a massive Q2 earnings beat \u2014 RSI 35.2 approaching oversold on normal volume; a technical setup is forming but capex overhang limits conviction.",
+  "price_action": {
+    "open": 96.72,
+    "high": 97.9,
+    "low": 90.13,
+    "close": 90.2,
+    "volume": 108700000,
+    "vol_ratio": 0.9,
+    "vol_rank": "0.90x 30-day average \u2014 below average despite large range day",
+    "intraday_story": "INTC opened at $96.72, ran briefly to $97.90 early in session, then sold off sharply to close near $90.13 \u2014 giving up almost the entire day's range to close near lows. The wide-range day with a weak close on below-average volume is concerning: not enough volume to signal a climactic selloff, but consistent with continued distribution."
+  },
+  "news_catalyst": {
+    "headline": "Intel up 124% YTD but down 30%+ from June peak \u2014 correction underway despite Q2 earnings beat (42c vs 21c expected)",
+    "summary": "Intel reported its fastest revenue growth since 2011 in Q2 2026 ($16.1B vs $14.42B expected, EPS 42c vs 21c), yet the stock has corrected 30%+ from its late-June peak. The selloff is driven by: (1) capex guidance of $20B+ in 2026, up from $18B, raising concerns about foundry profitability; (2) foundry unit still losing money despite progress; (3) Intel is up 124% YTD and profit-taking at these levels is rational. The near-term question is whether the correction has run its course at RSI 35 or if further downside to $80 is needed to flush the remaining sellers.",
+    "source_url": "https://247wallst.com/investing/2026/07/29/intel-stock-is-up-124-this-year-and-amd-is-up-100-is-the-nasdaq-correction-a-take-profit-signal/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "N/A",
+    "key_support": 85.0,
+    "key_resistance": 100.0,
+    "rsi": 35.17,
+    "macd_signal": "bearish \u2014 histogram at -0.72",
+    "volume_ratio_today": 0.9,
+    "volume_signal": "below average \u2014 not a capitulation",
+    "summary": "RSI at 35.17 is approaching oversold territory but has not yet triggered the classic sub-30 oversold signal. The events log shows three consecutive high-volume accumulation days in recent weeks \u2014 suggesting buy-side interest \u2014 but today's weak close (open $96.72, close $90.20) undercuts that reading.\n\nThe pattern is: stock rallies on buy interest, then gets sold back down \u2014 a classic back-and-fill distribution. Until volume dries up meaningfully (below 0.6x average on down days), this correction may have further to go. Key support is $85 (prior consolidation zone). If $85 holds with a volume dry-up, it would set up a potential accumulation entry."
+  },
+  "wyckoff_narrative": "INTC's recent accumulation events (3 consecutive high-volume up days) followed by a reversal lower is ambiguous Wyckoff behavior. It's either automatic rally (AR) activity within a Selling Climax structure, or distribution into strength. The absence of a clear Selling Climax (SC) event in the log is the primary unresolved question.\n\nFor a clean Wyckoff accumulation setup, we would need to see: SC (climactic volume on a down day, close near low), followed by AR (bounce), then a Secondary Test (ST) on low volume. None of these events have been logged cleanly. The stock is likely in early Phase A of accumulation at best, meaning it could take weeks to months before a clean entry forms.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 163.44,
+    "upside_pct": 81.2,
+    "bear_value": 60.0,
+    "bull_value": 240.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.15,
+    "summary": "DCF of $163.44 implies 81% upside from $90.20, but this assumes Intel's foundry business returns to profitability and CPU data center market share holds. Current profit margin is -19.8% (losing money). The DCF upside is real in a bull scenario but requires successful execution over 3-5 years. Analyst consensus target of $115.27 (28% upside) is a more grounded near-term guide."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.6,
+    "key_strengths": [
+      "Revenue growth 25.4% \u2014 fastest since 2011",
+      "Analyst target $115.27 vs current $90.20 (28% upside)",
+      "Q2 EPS beat by 100% (42c vs 21c expected)"
+    ],
+    "key_concerns": [
+      "Profit margin -19.8% \u2014 losing money",
+      "Forward PE 44.3x on negative earnings is misleading",
+      "Foundry business still unprofitable despite progress",
+      "Capex $20B+ in 2026 weighs on free cash flow"
+    ],
+    "summary": "Grade C reflects the tension between strong revenue recovery and structural profitability issues. Intel is in a transitional phase where revenue is growing but the cost structure has not yet normalized. The -19.8% profit margin is the clearest concern \u2014 until margins turn positive, the valuation case remains speculative."
+  },
+  "sentiment": {
+    "score": 0.002,
+    "label": "Neutral",
+    "mentions_24h": 782,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "$85 support break on volume would open $75-80 as next target",
+    "Foundry profitability timeline remains uncertain \u2014 a key overhang",
+    "If NASDAQ correction continues, high-beta semiconductor names like INTC face more pressure"
+  ],
+  "watchlist_priority": "medium"
+}

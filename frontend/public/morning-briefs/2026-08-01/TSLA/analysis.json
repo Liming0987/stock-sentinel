@@ -1,0 +1,81 @@
+{
+  "ticker": "TSLA",
+  "company_name": "Tesla, Inc.",
+  "report_date": "2026-08-01",
+  "price": 311.21,
+  "change_pct": 0.76,
+  "overall_stance": "avoid",
+  "conviction": 0.8,
+  "one_liner": "TSLA +0.76% dead-cat bounce on below-average volume \u2014 RSI 24.87 is deeply oversold but a Wyckoff Selling Climax is still unconfirmed; DCF at $32.10 vs $311.21 makes this the watchlist's most overvalued name.",
+  "price_action": {
+    "open": 309.69,
+    "high": 315.5,
+    "low": 301.97,
+    "close": 311.21,
+    "volume": 36527800,
+    "vol_ratio": 0.83,
+    "vol_rank": "0.83x 30-day average \u2014 below average on a potential bounce day",
+    "intraday_story": "TSLA opened at $309.69, dipped to $301.97 intraday (testing the $300 round-number support), then recovered to close at $311.21. The recovery from $300 on below-average volume is not a convincing reversal signal \u2014 true capitulation would require spike volume, ideally 2-3x average. This looks like a low-conviction oversold bounce."
+  },
+  "news_catalyst": {
+    "headline": "Elon Musk announces $100M Republican midterm push despite earlier political fallout; TSLA down 29% YTD",
+    "summary": "Tesla is in a multi-week downtrend following Q3 earnings that sent the stock down 14.5% in a single session. The stock is now down ~29% YTD while the S&P 500 is up ~10% \u2014 a ~40 percentage point underperformance. Today's modest bounce is occurring against a backdrop of Musk's continued political involvement, which multiple analysts cite as a demand headwind in Europe and blue-state markets. The robotaxi business, which underpins the valuation premium at 140x forward PE, continues to miss Musk's stated timelines. Parkev Tatevosian reiterated a SELL with put options up 93% on the earnings reaction.",
+    "source_url": "",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "N/A",
+    "key_support": 295.0,
+    "key_resistance": 340.0,
+    "rsi": 24.87,
+    "macd_signal": "bearish \u2014 histogram at -6.28",
+    "volume_ratio_today": 0.83,
+    "volume_signal": "below average \u2014 not a capitulation",
+    "summary": "RSI at 24.87 is deeply oversold \u2014 the second-lowest reading on the watchlist after APP. However, oversold RSI in a downtrend is not a buy signal; it's a warning that the trend is strong. The MACD histogram at -6.28 is deeply negative, showing sustained downside momentum.\n\nThe event log shows a Selling Climax event followed by more down days \u2014 a pattern consistent with Wyckoff Phase A initiation but not yet complete. For a genuine reversal setup, we would need a volume spike 2x or higher on a down day (the classic Selling Climax confirmation), followed by an Automatic Rally. Neither has occurred with full conviction.\n\nFrom a pure technical standpoint, the $295-300 zone is the key support. A close below $295 on expanding volume would open the door to $260-270."
+  },
+  "wyckoff_narrative": "TSLA's Selling Climax event was logged in recent sessions but without the volume spike confirmation that would make it a high-confidence SC. The current pattern \u2014 multiple down days with a recent SC flag but not classic volume \u2014 suggests the stock may still be in Phase A of distribution/distribution continuation rather than beginning accumulation.\n\nAvoid initiating new positions based on the RSI oversold reading alone. The Wyckoff framework requires multiple confirming events (SC \u2192 AR \u2192 ST sequence) before accumulation is signaled. Until then, any bounce is a potential Last Point of Supply (LPSY) short entry rather than a long accumulation opportunity.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 32.1,
+    "upside_pct": -89.7,
+    "bear_value": 15.0,
+    "bull_value": 150.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.15,
+    "summary": "At $311.21 vs DCF of $32.10, Tesla trades at nearly 10x estimated intrinsic value. Even the bull-case DCF at $150 implies 52% downside. The forward PE of 139.9x prices in a fully operational, massively profitable robotaxi business \u2014 which by Parkev's analysis remains years away and will cost significantly more per mile than Tesla projects. The most overvalued name on the watchlist."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.38,
+    "key_strengths": [
+      "Revenue growth 25.5%",
+      "Brand recognition and charging infrastructure"
+    ],
+    "key_concerns": [
+      "Profit margin 3.7% \u2014 essentially breakeven",
+      "Forward PE 139.9x \u2014 pricing in robotaxi that doesn't exist at scale",
+      "DCF at $32.10 implies 90% downside",
+      "Grade D reflects poor valuation and profitability scores"
+    ],
+    "summary": "Grade D. The business generates some profit but the margin at 3.7% is inadequate to justify a 140x forward PE multiple. The market is paying a robotaxi/AI premium for a car company, and every quarter that robotaxi remains below projections, that premium erodes."
+  },
+  "sentiment": {
+    "score": 0.084,
+    "label": "Neutral",
+    "mentions_24h": 504,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "$295 support break would target $260-270 zone",
+    "RSI oversold can persist for weeks in a strong downtrend",
+    "Musk's political activities continue to create demand headwinds in key EV markets"
+  ],
+  "watchlist_priority": "high"
+}

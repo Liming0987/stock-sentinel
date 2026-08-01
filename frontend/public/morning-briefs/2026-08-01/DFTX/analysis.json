@@ -1,0 +1,81 @@
+{
+  "ticker": "DFTX",
+  "company_name": "Definium Therapeutics, Inc.",
+  "report_date": "2026-08-01",
+  "price": 43.52,
+  "change_pct": -2.18,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "DFTX -2.18% in Wyckoff Accumulation Phase B \u2014 analyst target $60.00 (38% upside); biotech pre-revenue; high speculation.",
+  "price_action": {
+    "open": 44.98,
+    "high": 45.0,
+    "low": 42.84,
+    "close": 43.52,
+    "volume": 1965900,
+    "vol_ratio": 0.52,
+    "vol_rank": "0.52x 30-day average",
+    "intraday_story": "O=44.98 H=45.0 L=42.84 C=43.52."
+  },
+  "news_catalyst": {
+    "headline": "Wall Street sees 34.86% upside in Definium Therapeutics",
+    "summary": "Wall Street sees 34.86% upside in Definium Therapeutics",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 40.0,
+    "key_resistance": 50.0,
+    "rsi": 48.87,
+    "macd_signal": "bearish \u2014 histogram -0.1343",
+    "volume_ratio_today": 0.52,
+    "volume_signal": "drying up",
+    "summary": "RSI 48.87, MACD -0.1343. Accumulation Phase B (bullish). Support 40.0, resistance 50.0. drying up volume."
+  },
+  "wyckoff_narrative": "Accumulation Phase B with bullish bias. Support 40.0, resistance 50.0. VCP: False, pivot None.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Analyst target $60.0. Forward PE -28.9."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.6,
+    "key_strengths": [
+      "Wyckoff Accumulation Phase B",
+      "Analyst target $60 (38% upside)",
+      "Analyst rec 1.25 = strong buy"
+    ],
+    "key_concerns": [
+      "Pre-revenue biotech",
+      "Margin 0%",
+      "Very low mentions (7)"
+    ],
+    "summary": "Grade C. Rev growth N/A%, margin N/A%."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 7,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Binary FDA/clinical trial risk",
+    "$40 support \u2014 break targets $35",
+    "Very speculative, thin trading"
+  ],
+  "watchlist_priority": "low"
+}

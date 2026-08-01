@@ -1,0 +1,82 @@
+{
+  "ticker": "MELI",
+  "company_name": "MercadoLibre, Inc.",
+  "report_date": "2026-08-01",
+  "price": 1877.95,
+  "change_pct": -0.41,
+  "overall_stance": "watch",
+  "conviction": 0.58,
+  "one_liner": "MELI -0.41% on quiet volume \u2014 49% revenue growth, analyst target $2,214 (18% upside); Grade C margin of 6% limits conviction despite impressive LatAm e-commerce and fintech momentum.",
+  "price_action": {
+    "open": 1874.0,
+    "high": 1889.22,
+    "low": 1851.79,
+    "close": 1877.95,
+    "volume": 400000,
+    "vol_ratio": 0.94,
+    "vol_rank": "0.94x 30-day average",
+    "intraday_story": "O=1874.0 H=1889.22 L=1851.79 C=1877.95 \u2014 normal volume session."
+  },
+  "news_catalyst": {
+    "headline": "MercadoLibre LatAm dominance intact heading into earnings",
+    "summary": "MercadoLibre's dual e-commerce and fintech model continues to grow rapidly in Latin America. RSI 66.98 and MACD +3.44 show strong momentum. Watch for pullback to $1,850 support for better risk/reward.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 1800.0,
+    "key_resistance": 1950.0,
+    "rsi": 66.98,
+    "macd_signal": "bullish \u2014 histogram +3.44",
+    "volume_ratio_today": 0.94,
+    "volume_signal": "normal",
+    "summary": "RSI 66.98, MACD histogram 3.4407. Wyckoff: Consolidation / No Clear Phase (neutral). Support 1800.0, resistance 1950.0."
+  },
+  "wyckoff_narrative": "Wyckoff phase: Consolidation / No Clear Phase. Bias: neutral. Watch for volume-confirmed breakout above 1950.0 or test of 1800.0.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": 0.49,
+    "summary": "DCF not feasible. Analyst target $2214.88. Forward PE 32.22."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.65,
+    "key_strengths": [
+      "Revenue growth 49% YoY",
+      "Analyst target $2,214 (18% upside)",
+      "RSI 66.98 bullish momentum",
+      "MACD +3.44 strong"
+    ],
+    "key_concerns": [
+      "Profit margin 6% \u2014 thin for a $60B+ company",
+      "Grade C \u2014 valuation and profitability concerns",
+      "Forward PE 32.2x"
+    ],
+    "summary": "Grade C. Revenue growth 49.0%, margin 6.0%. Forward PE 32.22."
+  },
+  "sentiment": {
+    "score": 0.129,
+    "label": "Neutral",
+    "mentions_24h": 18,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Margin pressure from fintech investment cycle",
+    "$1,800 support key level",
+    "Grade C limits conviction for new entry"
+  ],
+  "watchlist_priority": "low"
+}

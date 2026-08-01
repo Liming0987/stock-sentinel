@@ -1,0 +1,81 @@
+{
+  "ticker": "FNMA",
+  "company_name": "Federal National Mortgage Association",
+  "report_date": "2026-08-01",
+  "price": 5.79,
+  "change_pct": -3.5,
+  "overall_stance": "watch",
+  "conviction": 0.45,
+  "one_liner": "FNMA -3.50% on 0.51x volume in Wyckoff Accumulation Phase B \u2014 highly speculative GSE; watch only for risk-tolerant investors; no standard fundamental metrics available.",
+  "price_action": {
+    "open": 6.0,
+    "high": 6.02,
+    "low": 5.79,
+    "close": 5.79,
+    "volume": 1970700,
+    "vol_ratio": 0.51,
+    "vol_rank": "0.51x 30-day average",
+    "intraday_story": "O=6.0 H=6.02 L=5.79 C=5.79 \u2014 drying up volume session."
+  },
+  "news_catalyst": {
+    "headline": "FNMA: Is Fannie Mae Undervalued Following Strong Second Quarter?",
+    "summary": "Fannie Mae is in government conservatorship and trades on speculation about privatization. Wyckoff bullish signal noted but fundamentals are not analyzable in standard framework. Watch only \u2014 do not initiate unless comfortable with regulatory binary risk.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 5.2,
+    "key_resistance": 6.5,
+    "rsi": 39.07,
+    "macd_signal": "bearish \u2014 histogram -0.02",
+    "volume_ratio_today": 0.51,
+    "volume_signal": "drying up",
+    "summary": "RSI 39.07, MACD histogram -0.0244. Wyckoff: Accumulation Phase B (bullish). Support 5.2, resistance 6.5."
+  },
+  "wyckoff_narrative": "Wyckoff phase: Accumulation Phase B. Bias: bullish. Watch for volume-confirmed breakout above 6.5 or test of 5.2.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Analyst target $None. Forward PE None."
+  },
+  "fundamentals": {
+    "grade": "N/A",
+    "score": 0.65,
+    "key_strengths": [
+      "Wyckoff Accumulation Phase B \u2014 bullish structure",
+      "Strong Q2 results per news headline",
+      "RSI 39.07 approaching oversold"
+    ],
+    "key_concerns": [
+      "Highly speculative GSE in government conservatorship",
+      "No standard financial metrics",
+      "Regulatory/political risk extreme"
+    ],
+    "summary": "Grade N/A. Revenue growth N/A%, margin N/A%. Forward PE None."
+  },
+  "sentiment": {
+    "score": 0.088,
+    "label": "Neutral",
+    "mentions_24h": 75,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Government conservatorship resolution uncertain \u2014 binary political outcome",
+    "$5.20 support key",
+    "Highly illiquid, highly speculative"
+  ],
+  "watchlist_priority": "low"
+}

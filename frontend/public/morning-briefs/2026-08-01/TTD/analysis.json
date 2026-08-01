@@ -1,0 +1,82 @@
+{
+  "ticker": "TTD",
+  "company_name": "The Trade Desk, Inc.",
+  "report_date": "2026-08-01",
+  "price": 18.04,
+  "change_pct": -1.31,
+  "overall_stance": "accumulate",
+  "conviction": 0.72,
+  "one_liner": "TTD -1.31% on average volume \u2014 79% below its all-time high, DCF at $33.48 vs $18.04 (86% upside), fwdPE 8.4x for a programmatic advertising leader; contrarian setup with Grade B fundamentals.",
+  "price_action": {
+    "open": 18.08,
+    "high": 18.29,
+    "low": 17.71,
+    "close": 18.04,
+    "volume": 16429000,
+    "vol_ratio": 0.99,
+    "vol_rank": "0.99x 30-day average \u2014 near-average volume, no climax",
+    "intraday_story": "Tight range day \u2014 opened at $18.08, traded $17.71-18.29, closed at $18.04. The 58-cent range with near-average volume is a volume dry-up signal, consistent with supply exhaustion rather than active selling. This is the type of tight, low-amplitude day that precedes a Wyckoff spring or setup."
+  },
+  "news_catalyst": {
+    "headline": "Trade Desk down 79% from all-time high \u2014 analysts see significant undervaluation despite fair Q1 earnings",
+    "summary": "TTD has experienced a dramatic drawdown from its all-time high, with the stock now trading at a fraction of its former value. Headlines describe it as 'undervalued despite fair earnings and a 79% fall' \u2014 the sentiment has shifted from growth premium to value recovery territory. Programmatic advertising is structurally growing as digital ad spend increases, and TTD's CTV (connected TV) advertising platform is gaining traction. The 8.4x forward PE for an ad-tech platform with 11.8% revenue growth and 14.6% margins is a compelling value proposition; most comparable platforms trade at 15-25x.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 16.5,
+    "key_resistance": 20.5,
+    "rsi": 44.0,
+    "macd_signal": "flat \u2014 histogram at -0.01",
+    "volume_ratio_today": 0.99,
+    "volume_signal": "drying up",
+    "summary": "TTD is in a tight consolidation range near multi-year lows. RSI at 44.0 is approaching the 50 neutral line from below, suggesting momentum is bottoming rather than deteriorating further. MACD histogram at essentially flat (-0.01) is consistent with a stock at an inflection point.\n\nThe prior event log shows two consecutive 'high-volume up day \u2014 accumulation' events, suggesting institutional buyers have been active at these levels. Today's near-average volume quiet day is a classic volume dry-up after an accumulation event \u2014 consistent with Wyckoff Phase B behavior where smart money is quietly building a position.\n\nThe $16.50 level is the key support (prior swing low). If TTD can hold $17.50-18 over the next week and volume continues to dry up, a spring or SOS toward $20 becomes a high-probability setup."
+  },
+  "wyckoff_narrative": "Two consecutive high-volume accumulation events followed by today's quiet consolidation is a textbook Wyckoff Phase B absorption sequence. Smart money appears to be accumulating TTD at the $17-18 level. The absence of a VCP (due to insufficient contractions) means the setup isn't yet generating a formal breakout trigger, but the building blocks are there.\n\nFor a full Wyckoff confirmation: watch for a Spring below $16.50 (if it occurs) on shrinking volume, followed by a Test (volume dry-up at or above the spring level), then a Sign of Strength (SOS) through $20.50 on expanding volume. That sequence would confirm a Mark-Up phase targeting the prior resistance zone of $24-25.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 33.48,
+    "upside_pct": 85.6,
+    "bear_value": 12.0,
+    "bull_value": 55.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.18,
+    "summary": "DCF base case of $33.48 implies 85.6% upside from $18.04. Forward PE of 8.4x is historically cheap for TTD \u2014 the company traded at 60-80x PE at its peak. At current levels, investors are paying a deep-value price for a programmatic advertising leader. Analyst target of $24.32 (35% upside) represents a more conservative near-term estimate."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7,
+    "key_strengths": [
+      "Forward PE 8.4x \u2014 cheapest valuation in years",
+      "Programmatic advertising market structurally growing",
+      "DCF fair value $33.48 = 86% upside",
+      "Revenue growth 11.8% with 14.6% margins"
+    ],
+    "key_concerns": [
+      "Revenue growth decelerating from prior 20%+ levels",
+      "Analyst consensus 2.53 = neutral (not strong buy)",
+      "79% below all-time high signals structural concerns"
+    ],
+    "summary": "Grade B with value-driven thesis. The cheapest forward PE of any meaningful revenue-generating company on the watchlist. Revenue growth has decelerated but remains positive; margins are improving. The B grade reflects solid fundamentals that haven't been destroyed by the price decline."
+  },
+  "sentiment": {
+    "score": -0.006,
+    "label": "Neutral",
+    "mentions_24h": 126,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Digital advertising market softness if macro deteriorates further",
+    "79% drawdown raises questions about structural competitive threats from Google and Amazon ad networks",
+    "Volume dry-up hasn't yet confirmed a formal Wyckoff spring \u2014 patience required"
+  ],
+  "watchlist_priority": "medium"
+}

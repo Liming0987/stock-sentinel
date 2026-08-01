@@ -1,0 +1,82 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVIDIA Corporation",
+  "report_date": "2026-08-01",
+  "price": 200.75,
+  "change_pct": 2.93,
+  "overall_stance": "accumulate",
+  "conviction": 0.78,
+  "one_liner": "NVDA +2.93% on normal volume ($140M vs 139M avg) \u2014 consolidating near $200 with DCF fair value of $334 and 85% revenue growth; still the AI infrastructure pick.",
+  "price_action": {
+    "open": 198.44,
+    "high": 202.0,
+    "low": 194.95,
+    "close": 200.75,
+    "volume": 139659700,
+    "vol_ratio": 1.01,
+    "vol_rank": "Average \u2014 1.01x 30-day mean",
+    "intraday_story": "Opened just above $198, pushed to $202 intraday then settled at $200.75. The tight $7 range on average volume signals orderly consolidation rather than any climactic action. Price is trading just below VWAP (~$202.7), which is a mild near-term headwind but not alarming given the broader uptrend."
+  },
+  "news_catalyst": {
+    "headline": "No major NVDA-specific catalyst today; broader AI capex optimism from AMZN/MSFT earnings lifts the sector",
+    "summary": "NVDA's move today is symptomatic rather than stock-specific \u2014 Amazon's confirmation of $220B AI data center capex and Microsoft's $678B remaining performance obligations both underscore that AI infrastructure demand is accelerating. NVDA as the dominant GPU supplier benefits from every dollar hyperscalers commit to data centers. No earnings-related news today; next catalyst is the Q3 report expected in late August.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected \u2014 only 1 contraction logged",
+    "key_support": 190.0,
+    "key_resistance": 210.0,
+    "rsi": 49.53,
+    "macd_signal": "bearish \u2014 histogram at -1.41",
+    "volume_ratio_today": 1.01,
+    "volume_signal": "normal",
+    "summary": "NVDA is in a clean consolidation structure between roughly $190 (recent swing low July 29) and $202 (recent high). Today's close at $200.75 on exactly average volume is healthy \u2014 the stock is absorbing the prior down-leg with quiet buying rather than showing panic selling or forced distribution.\n\nThe MACD histogram at -1.41 is slightly negative, meaning the stock has not yet generated a bullish momentum crossover. RSI at 49.5 is neutral, sitting right on the fence. The key near-term tell is whether NVDA can sustain closes above $200 and build toward $210, which would represent the last clear resistance level before attempting new highs.\n\nThe one warning flag is a high-volume distribution day logged on May 29, but that event is now nearly 60 days old and the stock has largely digested it. For an accumulate stance, the entry zone of $194-201 offers reasonable risk with a hard stop below the July 29 low at $190."
+  },
+  "wyckoff_narrative": "NVDA has not generated a formal Wyckoff event cluster in the current 90-day window \u2014 no Sign of Strength (SOS), no Spring, no formal Test. The system classifies it as consolidation with neutral bias, which is accurate: the stock has been range-bound between $190 and $202 for the last two weeks following a pullback from the $210+ range.\n\nFrom a Wyckoff perspective, what we're watching for is a Low Volume Test of support near $194-196. If the stock dips into that zone on shrinking volume over the next 1-2 sessions, that would be the classic setup for an SOS breakout attempt. Conversely, if volume spikes on a down-day below $190, that changes the interpretation to potential Distribution.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 333.93,
+    "upside_pct": 66.3,
+    "bear_value": 180.0,
+    "bull_value": 500.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.4,
+    "summary": "At $200.75 vs DCF base case of $333.93, NVDA trades at a 40% discount to estimated intrinsic value. Revenue growth of 85% YoY, 63% profit margins, and ROIC of 112% justify a premium multiple; the forward PE of 15.6x is unusually cheap for a business of this quality. The main caveat: DCF models for high-growth AI infrastructure plays are sensitive to long-run growth assumptions."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.82,
+    "key_strengths": [
+      "Revenue growth 85% YoY",
+      "Operating margin 65.6%",
+      "ROIC 112%",
+      "Analyst consensus 1.30 (strong buy)",
+      "PEG ratio 0.52 \u2014 cheapest growth-adjusted valuation"
+    ],
+    "key_concerns": [
+      "High leverage (D/E 6.55x)",
+      "Price/book 24.9x \u2014 elevated"
+    ],
+    "summary": "Grade A with a 0.82 score driven by perfect growth and profitability pillar scores. The only weakness is the balance sheet leverage flag, which is common for semiconductor companies with heavy R&D and is manageable given $46B in free cash flow. Fundamentals strongly support the accumulate stance."
+  },
+  "sentiment": {
+    "score": 0.021,
+    "label": "Neutral",
+    "mentions_24h": 1883,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "MACD still bearish \u2014 no momentum confirmation until histogram turns positive",
+    "Supply chain concentration at TSMC remains a geopolitical tail risk",
+    "If hyperscaler capex peaks in H2 2026, next-gen GPU orders could disappoint"
+  ],
+  "watchlist_priority": "high"
+}

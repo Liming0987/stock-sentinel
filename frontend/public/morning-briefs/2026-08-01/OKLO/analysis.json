@@ -1,0 +1,83 @@
+{
+  "ticker": "OKLO",
+  "company_name": "Oklo Inc.",
+  "report_date": "2026-08-01",
+  "price": 38.83,
+  "change_pct": -5.5,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "OKLO -5.50% extending its 46% YTD decline as nuclear energy AI hype fades \u2014 RSI 35.4 approaching oversold; analyst target $84.20 implies 117% upside and $2B+ cash runway provides safety net for speculative watch.",
+  "price_action": {
+    "open": 42.04,
+    "high": 42.48,
+    "low": 38.83,
+    "close": 38.83,
+    "volume": 8787800,
+    "vol_ratio": 0.93,
+    "vol_rank": "0.93x 30-day average \u2014 near average",
+    "intraday_story": "Opened at $42.04, minimal upside, then sold off to close exactly at the session low of $38.83. A close at the low of day on near-average volume signals continued distribution. No intraday recovery attempt."
+  },
+  "news_catalyst": {
+    "headline": "Oklo down 46% in 2026 as AI data center nuclear energy hype fades; stock now at $38.83 vs $84.20 analyst target",
+    "summary": "Nuclear energy stocks were major beneficiaries of AI data center power demand narratives in 2025, with Oklo riding that wave to much higher prices. In 2026, the hype has faded as practical timelines for new nuclear capacity became clear \u2014 Oklo's reactors are years from commercial operation. The company has $2B+ in cash (many years of runway) and is backed by Sam Altman (OpenAI CEO), which adds credibility. Today's -5.5% close at the session low is a technically weak signal but RSI approaching 30 suggests a potential technical bounce is not far away.",
+    "source_url": "https://www.fool.com/investing/2026/07/15/oklo-stock-is-sliding-what-investors-need-to-under/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "N/A",
+    "key_support": 35.0,
+    "key_resistance": 50.0,
+    "rsi": 35.37,
+    "macd_signal": "bearish \u2014 histogram -0.33",
+    "volume_ratio_today": 0.93,
+    "volume_signal": "normal",
+    "summary": "RSI at 35.37 is approaching oversold territory. MACD histogram at -0.33 is moderately negative. The close exactly at session low with no intraday recovery is technically weak. No Wyckoff events have been formally logged in the recent window (prior event: accumulation, then distribution). Key support is $35. If OKLO reaches $35 on declining volume, a speculative watch entry with tight stop could be considered."
+  },
+  "wyckoff_narrative": "Insufficient Wyckoff event data for a definitive phase classification. The stock is in a clear downtrend without the climactic volume that would signal accumulation is beginning. Wait for either a volume spike selloff (potential SC) or a series of low-volume test days above $35 before considering any entry.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible \u2014 pre-revenue. Analyst consensus target of $84.20 vs current $38.83 implies 117% upside if the nuclear thesis plays out. The company has $2B+ cash and no revenue requirements in the near term. This is a purely speculative binary on nuclear regulatory approval timelines."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.45,
+    "key_strengths": [
+      "$2B+ cash \u2014 years of runway",
+      "Sam Altman backing adds credibility",
+      "Analyst target $84.20 = 117% upside",
+      "Analyst rec 2.04 = buy"
+    ],
+    "key_concerns": [
+      "Zero revenue, zero margins",
+      "Forward PE -46x (pre-revenue losses)",
+      "Nuclear regulatory approval timeline highly uncertain",
+      "Down 46% YTD"
+    ],
+    "summary": "Grade C reflects the speculative nature. The cash position provides safety, but commercial revenue is years away. This is a venture-stage company in a public market wrapper \u2014 appropriate only for speculative allocation."
+  },
+  "sentiment": {
+    "score": 0.073,
+    "label": "Neutral",
+    "mentions_24h": 38,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Zero revenue \u2014 entirely dependent on regulatory approval and eventual reactor deployment",
+    "$35 support break would open $25-28 zone",
+    "AI data center nuclear demand narrative may fade further without near-term supply catalysts"
+  ],
+  "watchlist_priority": "low"
+}

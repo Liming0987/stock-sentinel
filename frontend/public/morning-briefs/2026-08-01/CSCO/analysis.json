@@ -1,0 +1,83 @@
+{
+  "ticker": "CSCO",
+  "company_name": "Cisco Systems, Inc.",
+  "report_date": "2026-08-01",
+  "price": 115.99,
+  "change_pct": 2.14,
+  "overall_stance": "watch",
+  "conviction": 0.52,
+  "one_liner": "CSCO +2.14% on 0.78x volume \u2014 Grade B with 12% revenue growth and 19.7% margins; positive session but DCF $60.79 vs $115.99 (overvalued) limits conviction despite analyst buy consensus.",
+  "price_action": {
+    "open": 115.33,
+    "high": 117.25,
+    "low": 113.89,
+    "close": 115.99,
+    "volume": 18801400,
+    "vol_ratio": 0.78,
+    "vol_rank": "0.78x 30-day average",
+    "intraday_story": "O=115.33 H=117.25 L=113.89 C=115.99 \u2014 below average volume session."
+  },
+  "news_catalyst": {
+    "headline": "Cisco AI networking spend benefiting from data center build-out",
+    "summary": "Cisco is benefiting from AI data center networking demand \u2014 each $220B Amazon capex cycle includes significant networking infrastructure spend that Cisco supplies. However, the stock appears overvalued on a DCF basis. The positive session today may be sector sympathy from Amazon/Google earnings.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 110.0,
+    "key_resistance": 122.0,
+    "rsi": 53.87,
+    "macd_signal": "bullish \u2014 histogram +0.26",
+    "volume_ratio_today": 0.78,
+    "volume_signal": "below average",
+    "summary": "RSI 53.87, MACD histogram 0.2642. Wyckoff: Consolidation / No Clear Phase (neutral). Support 110.0, resistance 122.0."
+  },
+  "wyckoff_narrative": "Wyckoff phase: Consolidation / No Clear Phase. Bias: neutral. Watch for volume-confirmed breakout above 122.0 or test of 110.0.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 60.79,
+    "upside_pct": -47.6,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": 0.12,
+    "summary": "DCF $60.79 (-47.6% upside). Analyst target $130.23. Forward PE 24.2."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.65,
+    "key_strengths": [
+      "Revenue growth 12% YoY",
+      "Profit margin 19.7%",
+      "Analyst target $130.23 (12% upside)",
+      "RSI 53.9 neutral-positive",
+      "MACD +0.26 constructive"
+    ],
+    "key_concerns": [
+      "DCF $60.79 vs $115.99 \u2014 significantly overvalued",
+      "Sentiment score -0.235 (slightly negative)",
+      "Revenue growth modest at 12%"
+    ],
+    "summary": "Grade B. Revenue growth 12.0%, margin 19.7%. Forward PE 24.2."
+  },
+  "sentiment": {
+    "score": -0.235,
+    "label": "Neutral",
+    "mentions_24h": 4,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "DCF suggests stock is significantly overvalued at current price",
+    "Negative sentiment despite positive price action",
+    "If NASDAQ corrects, expensive networking stocks face multiple compression"
+  ],
+  "watchlist_priority": "low"
+}

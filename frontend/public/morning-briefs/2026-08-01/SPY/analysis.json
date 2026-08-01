@@ -1,0 +1,81 @@
+{
+  "ticker": "SPY",
+  "company_name": "State Street SPDR S&P 500 ETF Trust",
+  "report_date": "2026-08-01",
+  "price": 747.03,
+  "change_pct": 0.72,
+  "overall_stance": "hold",
+  "conviction": 0.55,
+  "one_liner": "SPY +0.72% on 1.20x volume \u2014 market benchmark in neutral Wyckoff consolidation; RSI 52.6 and MACD -0.51 show mixed signals; Amazon and Google earnings driving mega-cap rotation.",
+  "price_action": {
+    "open": 744.68,
+    "high": 748.9,
+    "low": 737.68,
+    "close": 747.03,
+    "volume": 62339900,
+    "vol_ratio": 1.2,
+    "vol_rank": "1.2x 30-day average",
+    "intraday_story": "O=744.68 H=748.9 L=737.68 C=747.03 \u2014 slightly elevated volume session."
+  },
+  "news_catalyst": {
+    "headline": "Market up on Amazon/Google earnings; Apple's 7% drop creates headwind",
+    "summary": "SPY up 0.72% as Amazon's 15% surge and Google's 7% gain more than offset Apple's 7% decline. Mixed signals from the earnings season \u2014 hyperscalers with AI backlog (Amazon, Microsoft, Google) rewarded; those without (Meta, Apple) punished. RSI 52.6 is neutral. MACD slightly negative suggests the market needs follow-through to confirm the recovery.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 730.0,
+    "key_resistance": 760.0,
+    "rsi": 52.63,
+    "macd_signal": "bearish \u2014 histogram -0.51",
+    "volume_ratio_today": 1.2,
+    "volume_signal": "slightly elevated",
+    "summary": "RSI 52.63, MACD histogram -0.5087. Wyckoff: Consolidation / No Clear Phase (neutral). Support 730.0, resistance 760.0."
+  },
+  "wyckoff_narrative": "Wyckoff phase: Consolidation / No Clear Phase. Bias: neutral. Watch for volume-confirmed breakout above 760.0 or test of 730.0.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Analyst target $None. Forward PE None."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.65,
+    "key_strengths": [
+      "Broad market exposure \u2014 diversified",
+      "Up 0.72% on the day",
+      "1.20x volume suggests institutional activity"
+    ],
+    "key_concerns": [
+      "MACD -0.51 \u2014 slight negative momentum",
+      "Grade C for ETF (not meaningful metric)",
+      "Mixed macro: AAPL down 7%, AMZN up 15% offsetting"
+    ],
+    "summary": "Grade C. Revenue growth N/A%, margin N/A%. Forward PE None."
+  },
+  "sentiment": {
+    "score": -0.006,
+    "label": "Neutral",
+    "mentions_24h": 2850,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If QQQ fails to close above key resistance (per Stocks with Josh), next market leg down likely",
+    "MACD negative signals consolidation at best",
+    "Fed rate hike risk per ADM chief economist commentary"
+  ],
+  "watchlist_priority": "low"
+}

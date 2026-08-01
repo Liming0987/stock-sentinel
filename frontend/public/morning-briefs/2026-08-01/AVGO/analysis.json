@@ -1,0 +1,82 @@
+{
+  "ticker": "AVGO",
+  "company_name": "Broadcom Inc.",
+  "report_date": "2026-08-01",
+  "price": 389.28,
+  "change_pct": 0.37,
+  "overall_stance": "accumulate",
+  "conviction": 0.73,
+  "one_liner": "AVGO +0.37% on 0.86x volume \u2014 Grade A fundamentals with 47.9% revenue growth, 38.8% margins, fwdPE 19.97x, and analyst target $527.88 (35.6% upside); quiet day strengthens the base.",
+  "price_action": {
+    "open": 394.83,
+    "high": 399.92,
+    "low": 379.71,
+    "close": 389.28,
+    "volume": 20362700,
+    "vol_ratio": 0.86,
+    "vol_rank": "0.86x 30-day average \u2014 below average",
+    "intraday_story": "AVGO opened at $394.83, touched $399.92 early, then pulled back to $379.71 before recovering to $389.28. The wide intraday range ($20.21) on below-average volume is actually constructive \u2014 it shows the stock tested lower levels and found buyers without needing high volume to do so. The recovery from the $380 area suggests support there."
+  },
+  "news_catalyst": {
+    "headline": "Broadcom positioned as key AI ASIC supplier as hyperscalers build custom silicon; AI chip demand structurally elevated",
+    "summary": "Broadcom has no specific news today. The stock is benefiting from broader AI infrastructure enthusiasm following Amazon and Google earnings. As the leading custom ASIC designer for hyperscalers (Google's TPUs, Meta's MTIA), AVGO benefits directly from the AI capex boom. Revenue growth at 47.9% with 38.8% profit margins reflects this positioning. The quiet day allows the base to tighten before the next leg.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 375.0,
+    "key_resistance": 420.0,
+    "rsi": 55.01,
+    "macd_signal": "flat/bearish \u2014 histogram at -0.47",
+    "volume_ratio_today": 0.86,
+    "volume_signal": "below average \u2014 base tightening",
+    "summary": "AVGO's RSI at 55.01 is neutral-to-healthy \u2014 not overbought, with room to run. MACD histogram at -0.47 is slightly negative, reflecting a recent consolidation after prior strength. The most recent events alternate between distribution and accumulation, suggesting the stock is in a supply-demand equilibrium zone.\n\nThe intraday low of $379.71 tested and held above the $375 support level on below-average volume, which is a constructive signal. If AVGO builds a few more sessions like today (tight range, low volume) and then breaks above $400 on expanding volume, that would be a clean breakout entry.\n\nAnalyst consensus target of $527.88 at a 1.31 recommendation score (strong buy) reflects very high conviction from sell-side coverage."
+  },
+  "wyckoff_narrative": "AVGO alternates between high-volume distribution and accumulation events \u2014 the characteristic behavior of a contested price zone. The $375-400 range is where institutional players are both selling into strength and buying dips. As these opposing forces exhaust themselves (volume continues to decline), the stock will eventually resolve directionally.\n\nGiven the Grade A fundamentals and bullish analyst consensus, the bias is toward resolution to the upside. The accumulate stance is premised on this: build a position in the $375-395 range, stop below $370, target $420-430 in the near term and $528 over the next 12 months.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1406.12,
+    "upside_pct": 261.3,
+    "bear_value": 200.0,
+    "bull_value": 600.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.25,
+    "summary": "System DCF of $1,406 appears to use a different share count basis (post-split). Using analyst consensus target of $527.88 vs current $389.28 implies 35.6% upside \u2014 a compelling near-term return for a quality AI infrastructure name. At 19.97x forward PE with 47.9% revenue growth, AVGO is attractively valued relative to the growth rate."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.85,
+    "key_strengths": [
+      "Revenue growth 47.9% YoY",
+      "Profit margin 38.8%",
+      "Forward PE 19.97x for near-50% growth",
+      "Analyst consensus 1.31 = strong buy, target $527.88",
+      "Key supplier for Google TPUs and Meta AI chips"
+    ],
+    "key_concerns": [
+      "MACD slightly negative \u2014 momentum not yet confirmed",
+      "Custom ASIC market faces competition from internal hyperscaler teams"
+    ],
+    "summary": "Grade A with strong scores across growth, profitability, and analyst dimensions. AVGO's positioning as the premier custom ASIC designer for AI workloads is unique and defensible \u2014 it's difficult for hyperscalers to replicate this capability in-house at scale. The fundamental case is among the strongest on the watchlist."
+  },
+  "sentiment": {
+    "score": 0.158,
+    "label": "Neutral",
+    "mentions_24h": 12,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "If hyperscalers accelerate in-house chip design, AVGO's custom ASIC revenue could face share loss",
+    "Consolidation could extend before the next breakout \u2014 patience required",
+    "MACD needs to turn positive to confirm accumulate stance technically"
+  ],
+  "watchlist_priority": "medium"
+}

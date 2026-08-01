@@ -1,0 +1,82 @@
+{
+  "ticker": "CRCL",
+  "company_name": "Circle Internet Group",
+  "report_date": "2026-08-01",
+  "price": 62.61,
+  "change_pct": -2.54,
+  "overall_stance": "watch",
+  "conviction": 0.58,
+  "one_liner": "CRCL -2.54% \u2014 ARK Invest buying, analyst target $118.48 (89% upside), Wyckoff Accumulation Phase B; Grade D limits conviction.",
+  "price_action": {
+    "open": 62.72,
+    "high": 63.51,
+    "low": 58.66,
+    "close": 62.61,
+    "volume": 13677200,
+    "vol_ratio": 1.02,
+    "vol_rank": "1.02x 30-day average",
+    "intraday_story": "O=62.72 H=63.51 L=58.66 C=62.61."
+  },
+  "news_catalyst": {
+    "headline": "ARK Invest buys $6.7M of CRCL; Circle Internet going fintech",
+    "summary": "ARK Invest buys $6.7M of CRCL; Circle Internet going fintech",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 55.0,
+    "key_resistance": 75.0,
+    "rsi": 48.23,
+    "macd_signal": "bearish \u2014 histogram -0.2615",
+    "volume_ratio_today": 1.02,
+    "volume_signal": "normal",
+    "summary": "RSI 48.23, MACD -0.2615. Accumulation Phase B (bullish). Support 55.0, resistance 75.0. normal volume."
+  },
+  "wyckoff_narrative": "Accumulation Phase B with bullish bias. Support 55.0, resistance 75.0. VCP: False, pivot None.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": 0.2,
+    "summary": "DCF not feasible. Analyst target $118.48. Forward PE 31.98."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.6,
+    "key_strengths": [
+      "ARK Invest buying CRCL",
+      "Analyst target $118.48 (89% upside)",
+      "Revenue growth 20%",
+      "Wyckoff Accumulation Phase B"
+    ],
+    "key_concerns": [
+      "Grade D \u2014 margin -2.8% (unprofitable)",
+      "Analyst rec 2.26 = hold (not strong buy)",
+      "Very low sentiment mentions (3)"
+    ],
+    "summary": "Grade D. Rev growth 20.0%, margin -2.8%."
+  },
+  "sentiment": {
+    "score": 0.33,
+    "label": "Neutral",
+    "mentions_24h": 3,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Grade D and unprofitable limits fundamental conviction",
+    "$55 support \u2014 break would concern",
+    "Crypto/stablecoin regulation risk"
+  ],
+  "watchlist_priority": "low"
+}

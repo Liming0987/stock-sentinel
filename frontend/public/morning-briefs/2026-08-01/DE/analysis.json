@@ -1,0 +1,81 @@
+{
+  "ticker": "DE",
+  "company_name": "Deere & Company",
+  "report_date": "2026-08-01",
+  "price": 592.67,
+  "change_pct": -1.13,
+  "overall_stance": "hold",
+  "conviction": 0.6,
+  "one_liner": "DE -1.13% \u2014 Parkev downgraded to Hold yesterday; DCF $199.74 vs $592.67 suggests significant overvaluation; ROIC below WACC at 5.25%; wait for 10%+ pullback before re-engaging.",
+  "price_action": {
+    "open": 592.0,
+    "high": 598.0,
+    "low": 587.0,
+    "close": 592.67,
+    "volume": 8000000,
+    "vol_ratio": 0.85,
+    "vol_rank": "0.85x 30-day average",
+    "intraday_story": "O=592.0 H=598.0 L=587.0 C=592.67 \u2014 normal volume session."
+  },
+  "news_catalyst": {
+    "headline": "Deere downgraded to Hold \u2014 accumulation phase is over per CFA analyst",
+    "summary": "Parkev Tatevosian formally downgraded Deere from Buy to Hold on July 27, 2026, citing ROIC below WACC, stretched forward PE of 27.5x, and a DCF fair value of $635 vs then-current ~$625 (now $592). Hold the position if already owned; no new entry at this valuation.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 560.0,
+    "key_resistance": 630.0,
+    "rsi": 45.0,
+    "macd_signal": "bearish \u2014 histogram est. negative",
+    "volume_ratio_today": 0.85,
+    "volume_signal": "normal",
+    "summary": "RSI 45.0, MACD histogram -2.0. Wyckoff: Consolidation / No Clear Phase (neutral). Support 560.0, resistance 630.0."
+  },
+  "wyckoff_narrative": "Wyckoff phase: Consolidation / No Clear Phase. Bias: neutral. Watch for volume-confirmed breakout above 630.0 or test of 560.0.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 199.74,
+    "upside_pct": -66.3,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": null,
+    "summary": "DCF $199.74 (-66.3% upside). Analyst target $680.0. Forward PE 27.5."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.65,
+    "key_strengths": [
+      "Up 34% YTD \u2014 strong prior trend",
+      "Analyst coverage generally positive"
+    ],
+    "key_concerns": [
+      "DCF $199.74 vs $592.67 \u2014 massively overvalued on fundamental basis",
+      "ROIC 5.25% below WACC",
+      "Revenue growth unclear \u2014 missing data",
+      "Parkev formal HOLD downgrade July 27"
+    ],
+    "summary": "Grade C. Revenue growth N/A%, margin -4.5%. Forward PE 27.5."
+  },
+  "sentiment": {
+    "score": 0.019,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "ROIC below WACC is capital value destruction signal",
+    "At $592 vs DCF $199, risk/reward unattractive",
+    "Tariff exposure from non-US manufacturing footprint"
+  ],
+  "watchlist_priority": "low"
+}

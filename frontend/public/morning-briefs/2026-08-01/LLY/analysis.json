@@ -1,0 +1,82 @@
+{
+  "ticker": "LLY",
+  "company_name": "Eli Lilly and Company",
+  "report_date": "2026-08-01",
+  "price": 1148.84,
+  "change_pct": -0.53,
+  "overall_stance": "accumulate",
+  "conviction": 0.78,
+  "one_liner": "LLY -0.53% on average volume in Wyckoff Accumulation Phase E (Complete) \u2014 the most bullish Wyckoff reading on the watchlist; GLP-1 tailwinds intact, analyst target $1,277 implies 11% upside.",
+  "price_action": {
+    "open": 1148.51,
+    "high": 1150.63,
+    "low": 1119.0,
+    "close": 1148.84,
+    "volume": 2881200,
+    "vol_ratio": 1.02,
+    "vol_rank": "1.02x 30-day average \u2014 normal volume",
+    "intraday_story": "LLY tested down to $1,119 intraday (a $31 range) before recovering to close near unchanged at $1,148.84. The $30 low test was absorbed and reversed by close \u2014 constructive price action consistent with healthy accumulation behavior. Volume at 1.02x average is unremarkable, which is appropriate for a consolidating large-cap."
+  },
+  "news_catalyst": {
+    "headline": "Eli Lilly earnings approaching; GLP-1 demand remains structurally elevated heading into Q2 report",
+    "summary": "LLY appears in market scans as having an upcoming earnings report. The company's GLP-1 drugs (Zepbound/Mounjaro) continue to drive exceptional revenue growth at 55.5% YoY. The primary concern for earnings is whether manufacturing capacity can keep pace with demand \u2014 supply constraints have been the main headwind for LLY, not demand. The stock is down 0.53% today with no specific catalyst, making this a normal consolidation day ahead of what is expected to be a strong report.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Accumulation Phase E (Complete)",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Phase E Complete \u2014 Mark-Up expected",
+    "key_support": 1100.0,
+    "key_resistance": 1200.0,
+    "rsi": 40.66,
+    "macd_signal": "bearish \u2014 histogram at -1.44",
+    "volume_ratio_today": 1.02,
+    "volume_signal": "normal",
+    "summary": "The Wyckoff 'Accumulation Phase E (Complete)' classification is the single most bullish technical reading in today's entire watchlist. Phase E represents the conclusion of the accumulation cycle, where smart money has finished absorbing supply and the stock is positioned for a Mark-Up (trending advance) phase. This reading, combined with the prior events showing multiple 'buying climax' and 'high-volume up day' accumulation signals, paints a picture of a stock ready to trend higher.\n\nThe MACD histogram at -1.44 is a lagging concern \u2014 it reflects some near-term momentum weakness but does not override the Wyckoff phase reading. RSI at 40.66 is in neutral-to-oversold territory, which historically has been a favorable entry zone for LLY.\n\nThe intraday support test to $1,119 that was fully recovered by close reinforces the Wyckoff interpretation: supply is being absorbed below $1,150, and buyers are stepping in. The $1,100 level is the key hard stop \u2014 below there, the Phase E thesis would need to be re-evaluated."
+  },
+  "wyckoff_narrative": "Phase E Complete is the culmination of the Wyckoff accumulation cycle. The prior events logged for LLY include 'buying climax \u2014 climactic volume, close near session high' followed by 'high-volume up day \u2014 accumulation.' These are Phase D-level events (SOS sequences) that precede Phase E. The system's current Phase E classification means the stock has completed the full accumulation sequence and is entering the Mark-Up phase.\n\nThe next expected Wyckoff behavior is a series of higher lows and higher highs, with pullbacks showing declining volume and price holding well above key support. For LLY, the $1,100-1,120 zone should now act as a floor. A break of $1,100 on volume would invalidate the Phase E reading.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not calculated by system. Using analyst consensus: target price $1,276.96 vs current $1,148.84 = 11.1% upside. Forward PE of 25.5x for 55.5% revenue growth is actually reasonable \u2014 well below the PEG ratio of 1.0 threshold. LLY is one of the few large-cap stocks where the fundamental growth rate arguably justifies the multiple."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.71,
+    "key_strengths": [
+      "Revenue growth 55.5% YoY \u2014 GLP-1 demand structural",
+      "Profit margin 35.0%",
+      "Forward PE 25.5x reasonable for growth rate",
+      "Analyst consensus 1.71 = buy, target $1,276.96"
+    ],
+    "key_concerns": [
+      "Manufacturing capacity constraints limiting supply",
+      "RSI 40.66 below the 50 level",
+      "MACD negative \u2014 momentum lagging the Wyckoff setup"
+    ],
+    "summary": "Grade B with strong growth and profitability pillars. The B rather than A reflects valuation and health pillar constraints. The fundamental story \u2014 dominant GLP-1 market position with structural demand \u2014 is one of the clearest secular growth narratives in the market. The Wyckoff Phase E signals accumulation is complete and Mark-Up is beginning."
+  },
+  "sentiment": {
+    "score": 0.138,
+    "label": "Neutral",
+    "mentions_24h": 89,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Supply chain / manufacturing constraints on Zepbound/Mounjaro output",
+    "Competitor GLP-1 pipeline from Novo Nordisk, Roche accelerating",
+    "MACD negative \u2014 near-term momentum could push price to $1,100 before Mark-Up begins"
+  ],
+  "watchlist_priority": "high"
+}

@@ -1,0 +1,82 @@
+{
+  "ticker": "TSM",
+  "company_name": "Taiwan Semiconductor Manufacturing Company",
+  "report_date": "2026-08-01",
+  "price": 404.25,
+  "change_pct": 0.23,
+  "overall_stance": "accumulate",
+  "conviction": 0.75,
+  "one_liner": "TSM +0.23% quiet session \u2014 Grade A with 36% revenue growth, 49.9% margins, fwdPE 18.7x, and analyst target $540.20 (34% upside); essential AI semiconductor infrastructure with no viable substitute.",
+  "price_action": {
+    "open": 419.5,
+    "high": 420.35,
+    "low": 398.8,
+    "close": 404.25,
+    "volume": 11900000,
+    "vol_ratio": 0.76,
+    "vol_rank": "0.76x 30-day average \u2014 below average, consolidating",
+    "intraday_story": "Wide intraday range ($21.55) but closed at $404.25 \u2014 well off the $420 high. The pullback from opening strength on lower volume is not alarming but bears watching. $398.80 low held \u2014 key level for near-term support."
+  },
+  "news_catalyst": {
+    "headline": "TSMC borrowing from Intel's playbook on integrated design-manufacturing \u2014 structural AI chip demand intact",
+    "summary": "TSMC continues to be the foundational beneficiary of every GPU, ASIC, and AI chip produced globally. As NVDA, AMD, Apple, AVGO, and hyperscalers all compete for TSMC capacity, the company exercises pricing power that flows directly to margins. The 0.23% move today reflects the stock's role as a high-conviction, low-volatility position in the AI supply chain.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 395.0,
+    "key_resistance": 430.0,
+    "rsi": 43.68,
+    "macd_signal": "bearish \u2014 histogram -1.20",
+    "volume_ratio_today": 0.76,
+    "volume_signal": "below average",
+    "summary": "RSI 43.68 and MACD -1.20 suggest near-term momentum is bearish \u2014 the stock has been pulling back from recent highs. However, the pullback is on declining volume, which is constructive for accumulation. Recent events show accumulation followed by distribution \u2014 contested price zone. Key support at $395-400. Accumulate on continued pullback toward $395."
+  },
+  "wyckoff_narrative": "Recent alternating accumulation/distribution events suggest price discovery at the $395-430 range. No formal Wyckoff events logged in the current cycle. The stock is likely in Phase B consolidation after prior run-up. A volume dry-up and tight range day near $395-405 would set up an ideal Wyckoff entry.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 28199.06,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.09,
+    "growth_rate": 0.25,
+    "summary": "DCF appears calculated on TWD (NT dollar) basis \u2014 not comparable. Analyst consensus target of $540.20 (34% upside) is the relevant guide. At 18.7x forward PE with 36% revenue growth and 49.9% margins, TSM is attractively valued. Strong buy consensus (1.42) with 34% upside is one of the cleaner risk/reward propositions today."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.92,
+    "key_strengths": [
+      "Revenue growth 36% YoY",
+      "Profit margin 49.9%",
+      "Analyst consensus 1.42 = strong buy, target $540.20",
+      "Monopoly position in leading-edge AI chip manufacturing",
+      "Forward PE 18.7x reasonable for growth rate"
+    ],
+    "key_concerns": [
+      "Geopolitical risk: Taiwan Strait tensions",
+      "RSI 43.68 and MACD negative \u2014 momentum not yet supportive"
+    ],
+    "summary": "Grade A with the highest fundamentals score on the watchlist (0.92). TSM is the single most critical chokepoint in global AI supply chains \u2014 every leading-edge chip runs through TSMC fabs. The geopolitical risk is real but priced in at 18.7x forward PE."
+  },
+  "sentiment": {
+    "score": 0.433,
+    "label": "Bullish",
+    "mentions_24h": 1,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Taiwan Strait geopolitical risk \u2014 any escalation would immediately affect price",
+    "RSI and MACD both suggest near-term downside risk before support holds",
+    "If key support $395 breaks on volume, next level is $375"
+  ],
+  "watchlist_priority": "medium"
+}

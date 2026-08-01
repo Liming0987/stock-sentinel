@@ -1,0 +1,82 @@
+{
+  "ticker": "SOUN",
+  "company_name": "SoundHound AI, Inc.",
+  "report_date": "2026-08-01",
+  "price": 6.13,
+  "change_pct": -0.16,
+  "overall_stance": "watch",
+  "conviction": 0.5,
+  "one_liner": "SOUN -0.16% on 1.11x volume in Wyckoff Accumulation Phase B \u2014 analyst target $13.14 (114% upside); high-growth voice AI but margin -91.8% is extreme.",
+  "price_action": {
+    "open": 6.16,
+    "high": 6.34,
+    "low": 6.01,
+    "close": 6.13,
+    "volume": 35402900,
+    "vol_ratio": 1.11,
+    "vol_rank": "1.11x 30-day average",
+    "intraday_story": "O=6.16 H=6.34 L=6.01 C=6.13."
+  },
+  "news_catalyst": {
+    "headline": "SoundHound voice AI deployment expanding into automotive and QSR",
+    "summary": "SoundHound voice AI deployment expanding into automotive and QSR",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 5.5,
+    "key_resistance": 7.5,
+    "rsi": 43.53,
+    "macd_signal": "bearish \u2014 histogram -0.0367",
+    "volume_ratio_today": 1.11,
+    "volume_signal": "normal",
+    "summary": "RSI 43.53, MACD -0.0367. Accumulation Phase B (bullish). Support 5.5, resistance 7.5. normal volume."
+  },
+  "wyckoff_narrative": "Accumulation Phase B with bullish bias. Support 5.5, resistance 7.5. VCP: False, pivot None.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": 0.517,
+    "summary": "DCF not feasible. Analyst target $13.14. Forward PE -51.08."
+  },
+  "fundamentals": {
+    "grade": "C",
+    "score": 0.6,
+    "key_strengths": [
+      "Revenue growth 51.7%",
+      "Analyst target $13.14 (114% upside)",
+      "Analyst rec 1.29 = strong buy",
+      "Wyckoff Accumulation Phase B"
+    ],
+    "key_concerns": [
+      "Margin -91.8% \u2014 massive cash burn",
+      "fwdPE -51x (pre-profitable)",
+      "MACD slightly negative"
+    ],
+    "summary": "Grade C. Rev growth 51.7%, margin -91.8%."
+  },
+  "sentiment": {
+    "score": 0.189,
+    "label": "Neutral",
+    "mentions_24h": 133,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Cash burn rate at -91.8% margins \u2014 financing risk",
+    "$5.50 support \u2014 break targets $4.50",
+    "Voice AI market still early and competitive"
+  ],
+  "watchlist_priority": "low"
+}

@@ -1,0 +1,83 @@
+{
+  "ticker": "GOOG",
+  "company_name": "Alphabet Inc.",
+  "report_date": "2026-08-01",
+  "price": 356.65,
+  "change_pct": 6.88,
+  "overall_stance": "accumulate",
+  "conviction": 0.8,
+  "one_liner": "GOOG +6.88% on 1.3x volume after Cloud grew 82% and Q2 revenue beat \u2014 VCP detected with pivot at $370.89 and Grade A fundamentals make this the highest-quality setup on today's watchlist.",
+  "price_action": {
+    "open": 340.07,
+    "high": 358.88,
+    "low": 339.16,
+    "close": 356.65,
+    "volume": 30451400,
+    "vol_ratio": 1.3,
+    "vol_rank": "1.30x 30-day average \u2014 constructive earnings follow-through",
+    "intraday_story": "GOOG opened at $340.07, close to prior close, then accelerated higher throughout the session to a $358.88 high before closing at $356.65. The close within $2.23 of the intraday high is a sign of strength \u2014 buyers were in control all day and there was no late-day selling pressure. Volume at 1.3x average is elevated but not climactic, which is ideal for a sustainable breakout."
+  },
+  "news_catalyst": {
+    "headline": "Alphabet Q2 2026: Revenue +24% YoY, Google Cloud +82%, capex raised to $195-205B for year",
+    "summary": "Alphabet reported Q2 revenue of $119.8B (+24% YoY), easily beating estimates. The headline was Google Cloud at 82% growth \u2014 a meaningful acceleration from 48% in Q4 2025. Net income of $112.1B surged 298% YoY but was inflated by ~$99B in unrealized gains on equity securities (primarily Anthropic and other AI investments). The company raised full-year capex guidance to $195-205B, which initially caused after-hours weakness, but the market today has clearly decided that Cloud reacceleration justifies the spend. Gemini hitting 950M MAU with DAUs tripling supports the AI product thesis.",
+    "source_url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-q2-2026-earnings-revenue-203058727.html",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": true,
+    "vcp_pivot": 370.89,
+    "vcp_stage": "VCP detected \u2014 pivot breakout level at $370.89",
+    "key_support": 338.0,
+    "key_resistance": 370.89,
+    "rsi": 56.33,
+    "macd_signal": "bullish \u2014 histogram at +0.28, turning positive",
+    "volume_ratio_today": 1.3,
+    "volume_signal": "elevated \u2014 constructive",
+    "summary": "The VCP (Volatility Contraction Pattern) detection is the standout technical signal today. The system has identified a pattern of tightening price contractions building toward a pivot at $370.89. Today's 6.88% earnings-driven surge brings GOOG to $356.65 \u2014 within 4% of that pivot level.\n\nRSI at 56.33 is healthy \u2014 not overbought, leaving room for further upside. MACD histogram at +0.28 just turned positive, confirming the momentum shift. The combination of VCP structure, earnings catalyst, and improving momentum is a high-quality setup.\n\nThe trade setup: watch for a brief consolidation near $355-360 over the next 2-5 sessions on declining volume (the Wyckoff Test of the new base), followed by a volume breakout above $370.89. The prior high before the selloff should come into focus as the next resistance level."
+  },
+  "wyckoff_narrative": "GOOG's recent event log shows a Selling Climax (SC) followed by a high-volume down day before today's strong up move \u2014 this matches Wyckoff Accumulation Phase A-B structure, where supply is being absorbed after a climactic selling event.\n\nToday's +6.88% surge on 1.3x volume looks like a Sign of Strength (SOS) \u2014 price advancing on above-average volume with a close near the high. The next expected Wyckoff event is a Low Volume Test (LVT) of the breakout level around $340-345, where price should hold on minimal volume before the next SOS push through $370.89.\n\nThe VCP pivot at $370.89 is the confirmation level. A weekly close above $370.89 on expanding volume would signal the start of a Mark-Up phase.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1090.26,
+    "upside_pct": 205.0,
+    "bear_value": 280.0,
+    "bull_value": 520.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.2,
+    "summary": "The base DCF of $1,090 appears to use per-TWD or pre-split share count \u2014 not directly comparable. Using analyst consensus of $421.79 vs current $356.65, there is 18.3% upside to the mean target. At 24.2x forward PE with 24% revenue growth and 54.8% margins, GOOG is reasonably valued. The forward PE is only slightly above the market, making it one of the better value propositions among mega-cap tech."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.89,
+    "key_strengths": [
+      "Revenue growth 24.2% YoY",
+      "Profit margin 54.8%",
+      "Google Cloud growing 82% YoY",
+      "Forward PE 24.2x reasonable for growth rate",
+      "Analyst consensus 1.40 = strong buy, target $421.79"
+    ],
+    "key_concerns": [
+      "Capex raised to $195-205B for 2026 \u2014 massive AI spend",
+      "AI overview monetization still unproven",
+      "Net income inflated by ~$99B in unrealized equity gains"
+    ],
+    "summary": "Grade A with the highest fundamentals score among today's active movers. Cloud reacceleration to 82% growth is the defining metric \u2014 it validates the AI infrastructure investment thesis and puts Google Cloud on a trajectory to meaningfully challenge AWS. The capex increase is a concern but manageable given the $73B in annual free cash flow pre-AI-spend."
+  },
+  "sentiment": {
+    "score": 0.159,
+    "label": "Bullish",
+    "mentions_24h": 15,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Capex at $195-205B raises concerns about FCF compression in H2 2026",
+    "VCP pivot at $370.89 is the confirmation \u2014 a failure to break would reset the setup",
+    "AI overview monetization remains unproven; if click-through revenue erodes, search growth decelerates"
+  ],
+  "watchlist_priority": "high"
+}

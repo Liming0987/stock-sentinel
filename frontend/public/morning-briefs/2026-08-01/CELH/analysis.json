@@ -1,0 +1,82 @@
+{
+  "ticker": "CELH",
+  "company_name": "Celsius Holdings, Inc.",
+  "report_date": "2026-08-01",
+  "price": 29.21,
+  "change_pct": -0.48,
+  "overall_stance": "watch",
+  "conviction": 0.58,
+  "one_liner": "CELH -0.48% on 0.69x volume in Wyckoff Accumulation Phase A-B \u2014 DCF $40.38 (38% upside) and analyst target $54.57 (87% upside) are compelling; three recent distribution events and thin 5.9% margins are the watch flags.",
+  "price_action": {
+    "open": 29.44,
+    "high": 29.54,
+    "low": 28.54,
+    "close": 29.21,
+    "volume": 5400000,
+    "vol_ratio": 0.69,
+    "vol_rank": "0.69x 30-day average \u2014 volume drying up",
+    "intraday_story": "Tight range ($1 intraday), low volume pullback \u2014 a secondary test behavior consistent with Wyckoff Phase B. The $28.54 low held above $28 support on diminishing volume."
+  },
+  "news_catalyst": {
+    "headline": "Analysts estimate Celsius Holdings to report a decline in earnings \u2014 near-term headwind",
+    "summary": "Celsius is facing a deceleration in near-term earnings, primarily due to Pepsi distribution agreement normalization and competition from Monster/Red Bull in key channels. The long-term thesis \u2014 functional energy drinks are a secular growth category \u2014 remains intact. The analyst target of $54.57 vs current $29.21 implies massive upside if the growth thesis re-accelerates, but the earnings decline warning keeps this at watch rather than accumulate.",
+    "source_url": "",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase A-B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Phase A-B",
+    "key_support": 27.0,
+    "key_resistance": 35.0,
+    "rsi": 45.16,
+    "macd_signal": "bullish \u2014 histogram +0.08",
+    "volume_ratio_today": 0.69,
+    "volume_signal": "drying up",
+    "summary": "Wyckoff Acc Phase A-B with volume drying up is constructive. However, three consecutive 'high-volume down day \u2014 distribution' events in the recent history (before today's quiet day) indicate sellers were active recently. Watch for a volume dry-up at $28-29 to confirm sellers are exhausted."
+  },
+  "wyckoff_narrative": "Phase A-B is early accumulation \u2014 Selling Climax has occurred but full absorption is incomplete. The three distribution events need to be followed by a clear Automatic Rally and Secondary Test before the setup matures. Patience \u2014 this is a setup to monitor, not to rush into.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 40.38,
+    "upside_pct": 38.2,
+    "bear_value": 18.0,
+    "bull_value": 75.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.25,
+    "summary": "DCF of $40.38 implies 38% upside. Analyst target of $54.57 implies 87% upside. Forward PE 14.78x is cheap if growth re-accelerates. The near-term earnings decline warning is the key risk to the DCF assumption."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.82,
+    "key_strengths": [
+      "Revenue growth 137.7% \u2014 exceptional",
+      "Forward PE 14.78x cheap for growth",
+      "Analyst target $54.57 (87% upside)",
+      "DCF $40.38 (38% upside)"
+    ],
+    "key_concerns": [
+      "Profit margin 5.9% \u2014 dangerously thin for a consumer growth company",
+      "Earnings decline expected near term",
+      "Three recent distribution events in volume data"
+    ],
+    "summary": "Grade A driven primarily by revenue growth score. The thin margin is a meaningful structural concern \u2014 CELH needs to prove it can grow profit margins as it scales. The watch stance reflects the bullish long-term thesis offset by near-term earnings headwinds."
+  },
+  "sentiment": {
+    "score": 0.093,
+    "label": "Neutral",
+    "mentions_24h": 68,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Near-term earnings decline projected \u2014 potential downside catalyst on report date",
+    "Profit margin 5.9% \u2014 vulnerable to distribution costs and competition",
+    "Three prior high-volume distribution events suggest sellers not yet exhausted"
+  ],
+  "watchlist_priority": "low"
+}

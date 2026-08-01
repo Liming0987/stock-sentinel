@@ -1,0 +1,81 @@
+{
+  "ticker": "BAM",
+  "company_name": "Brookfield Asset Management Ltd.",
+  "report_date": "2026-08-01",
+  "price": 48.4,
+  "change_pct": 0.92,
+  "overall_stance": "hold",
+  "conviction": 0.55,
+  "one_liner": "BAM +0.92% \u2014 DCF $48.09 essentially at fair value; Grade B asset manager with 23.8% revenue growth and 49.7% margins; no catalyst to upgrade beyond hold.",
+  "price_action": {
+    "open": 47.85,
+    "high": 48.75,
+    "low": 47.76,
+    "close": 48.4,
+    "volume": 2700000,
+    "vol_ratio": 1.1,
+    "vol_rank": "1.1x 30-day average",
+    "intraday_story": "O=47.85 H=48.75 L=47.76 C=48.4 \u2014 normal volume session."
+  },
+  "news_catalyst": {
+    "headline": "Brookfield Infrastructure Q2 highlights; BAM steady",
+    "summary": "Brookfield Asset Management is a quality alternatives manager. At fair value (DCF $48.09 vs $48.40), no margin of safety exists for new buying. Hold existing positions.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 45.0,
+    "key_resistance": 52.0,
+    "rsi": 60.14,
+    "macd_signal": "bullish \u2014 histogram +0.05",
+    "volume_ratio_today": 1.1,
+    "volume_signal": "normal",
+    "summary": "RSI 60.14, MACD histogram 0.0542. Wyckoff: Consolidation / No Clear Phase (neutral). Support 45.0, resistance 52.0."
+  },
+  "wyckoff_narrative": "Wyckoff phase: Consolidation / No Clear Phase. Bias: neutral. Watch for volume-confirmed breakout above 52.0 or test of 45.0.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 48.09,
+    "upside_pct": 0.0,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": 0.238,
+    "summary": "DCF $48.09 (0.0% upside). Analyst target $56.3. Forward PE 22.35."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.65,
+    "key_strengths": [
+      "Revenue growth 23.8%",
+      "Profit margin 49.7%",
+      "Analyst target $56.30 (16% upside)",
+      "RSI 60.14 constructive"
+    ],
+    "key_concerns": [
+      "DCF $48.09 vs current $48.40 \u2014 essentially at fair value",
+      "Analyst rec 2.28 = neutral"
+    ],
+    "summary": "Grade B. Revenue growth 23.8%, margin 49.7%. Forward PE 22.35."
+  },
+  "sentiment": {
+    "score": 0.0,
+    "label": "Neutral",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Fairly valued \u2014 limited near-term upside",
+    "Interest rate sensitivity for asset manager",
+    "No sentiment mentions \u2014 low retail interest"
+  ],
+  "watchlist_priority": "low"
+}

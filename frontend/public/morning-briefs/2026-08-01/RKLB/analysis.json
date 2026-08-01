@@ -1,0 +1,82 @@
+{
+  "ticker": "RKLB",
+  "company_name": "Rocket Lab Corporation",
+  "report_date": "2026-08-01",
+  "price": 64.95,
+  "change_pct": 0.42,
+  "overall_stance": "watch",
+  "conviction": 0.55,
+  "one_liner": "RKLB +0.42% on 0.57x volume in Wyckoff Accumulation Phase B \u2014 RSI 32.7 near oversold; analyst target $114.47 (76% upside) but pre-profitable with 1249x fwdPE.",
+  "price_action": {
+    "open": 66.13,
+    "high": 67.84,
+    "low": 62.66,
+    "close": 64.95,
+    "volume": 13500000,
+    "vol_ratio": 0.57,
+    "vol_rank": "0.57x 30-day average",
+    "intraday_story": "O=66.13 H=67.84 L=62.66 C=64.95 \u2014 drying up volume session."
+  },
+  "news_catalyst": {
+    "headline": "No major catalyst \u2014 Rocket Lab building satellite launch cadence",
+    "summary": "Rocket Lab is the most credible alternative launch provider to SpaceX for small-to-medium payloads. Revenue growing 63.5% but still pre-profitable. Analyst target $114 implies 76% upside if/when profitability arrives.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Not detected",
+    "key_support": 58.0,
+    "key_resistance": 75.0,
+    "rsi": 32.73,
+    "macd_signal": "bearish \u2014 histogram -0.09",
+    "volume_ratio_today": 0.57,
+    "volume_signal": "drying up",
+    "summary": "RSI 32.73, MACD histogram -0.0927. Wyckoff: Accumulation Phase B (bullish). Support 58.0, resistance 75.0."
+  },
+  "wyckoff_narrative": "Wyckoff phase: Accumulation Phase B. Bias: bullish. Watch for volume-confirmed breakout above 75.0 or test of 58.0.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": 0.1,
+    "growth_rate": 0.635,
+    "summary": "DCF not feasible. Analyst target $114.47. Forward PE 1249.04."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.65,
+    "key_strengths": [
+      "Revenue growth 63.5%",
+      "Analyst target $114.47 (76% upside)",
+      "Wyckoff Accumulation Phase B",
+      "RSI 32.7 near oversold"
+    ],
+    "key_concerns": [
+      "Pre-profitable \u2014 margin -26.9%",
+      "fwdPE 1249x",
+      "Analyst rec 1.53 (buy) but high uncertainty"
+    ],
+    "summary": "Grade D. Revenue growth 63.5%, margin -26.9%. Forward PE 1249.04."
+  },
+  "sentiment": {
+    "score": 0.043,
+    "label": "Neutral",
+    "mentions_24h": 283,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Timeline to profitability unclear",
+    "$58 support key \u2014 break targets $50",
+    "Speculative space launch market"
+  ],
+  "watchlist_priority": "low"
+}

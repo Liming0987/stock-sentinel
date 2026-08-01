@@ -1,0 +1,83 @@
+{
+  "ticker": "MU",
+  "company_name": "Micron Technology, Inc.",
+  "report_date": "2026-08-01",
+  "price": 823.03,
+  "change_pct": -5.9,
+  "overall_stance": "watch",
+  "conviction": 0.62,
+  "one_liner": "MU down 5.9% on average volume after Chinese memory maker ChangXin's Shanghai IPO reignites pricing fears \u2014 at 5.35x forward PE with $1,507 analyst target, the fundamental thesis intact but near-term pressure real.",
+  "price_action": {
+    "open": 919.65,
+    "high": 930.88,
+    "low": 818.0,
+    "close": 823.03,
+    "volume": 54300000,
+    "vol_ratio": 1.04,
+    "vol_rank": "1.04x 30-day average \u2014 near-average despite big move",
+    "intraday_story": "MU gapped down sharply from the prior close of ~$874 to open at $919.65 (note: yesterday's close was higher), then sold off aggressively through the session to hit $818.00 at the low before recovering modestly to $823.03. The close near the day's low on average volume is a bearish distribution signal \u2014 sellers pressed the stock all day without a meaningful intraday reversal."
+  },
+  "news_catalyst": {
+    "headline": "ChangXin Memory Technologies completes Shanghai IPO, renewing fears of Chinese competition undercutting memory prices",
+    "summary": "The primary catalyst for MU's selloff today is the ChangXin Memory Technologies IPO on the Shanghai exchange, which renewed investor fears that Chinese chipmakers will gain market share and compress DRAM/NAND pricing. Micron's bull thesis has been built on a memory supply-demand imbalance driving 200-300% price increases for HBM and advanced DRAM \u2014 any credible new supply source erodes that pricing power. That said, ChangXin is years behind Micron and SK Hynix in HBM technology, and Micron's HBM3E supply remains sold out through 2026. The selloff appears to be sentiment-driven rather than fundamental.",
+    "source_url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262068092-micron-plunges-30-from-june-highs-ai-memory-tradingkey",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "N/A",
+    "key_support": 800.0,
+    "key_resistance": 920.0,
+    "rsi": 41.03,
+    "macd_signal": "bearish \u2014 histogram at -9.06",
+    "volume_ratio_today": 1.04,
+    "volume_signal": "normal",
+    "summary": "MU is now down roughly 30% from its June peak, with RSI at 41.03 drifting toward oversold territory but not there yet. The MACD histogram at -9.06 is deeply negative, reflecting sustained selling pressure over multiple weeks. Today's close near the session low of $818 is technically weak.\n\nThe key technical support to watch is $800 \u2014 a psychologically significant round number that also aligns with the prior consolidation zone from May-June. If $800 holds on declining volume over the next 2-3 sessions, it could form a Wyckoff Spring setup (false breakdown that traps bears). If $800 breaks on expanding volume, the next support is in the $740-760 range.\n\nThe MACD at -9.06 suggests the downside momentum has not yet exhausted. Watch for a MACD histogram inflection (turning less negative) as an early signal that selling pressure is waning before committing capital."
+  },
+  "wyckoff_narrative": "MU's recent event log alternates between distribution and accumulation events, which is characteristic of a stock undergoing a battle between buyers and sellers at a contested price zone. The most recent events are high-volume down \u2192 high-volume up \u2192 high-volume down, suggesting neither side has decisively won.\n\nFrom a Wyckoff standpoint, a 30% drawdown from the high is sufficient to attract accumulation interest, but the absence of a clear Selling Climax (SC) with spike volume means the distribution may not yet be complete. The ideal accumulation scenario would be a volume spike on a down day to $800 or below, followed by a quiet Automatic Rally (AR), then a Secondary Test (ST) on low volume above $800. That three-event sequence would set up a Mark-Up phase.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible due to cyclical earnings profile. Best proxy is the analyst consensus target of $1,507.38 vs current $823, implying 83% upside. Forward PE of 5.35x on revenue growth of 345.7% is historically cheap for Micron at a cycle peak. The risk is that this is peak earnings and the cycle turns; the reward is that HBM demand remains structurally elevated through at least 2027."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.87,
+    "key_strengths": [
+      "Revenue growth 345.7% YoY \u2014 memory supercycle",
+      "Operating margin 65.75% (exceeding 80% in most recent quarter)",
+      "Forward PE 5.35x \u2014 deeply discounted for growth rate",
+      "Analyst consensus 1.42 = strong buy, target $1,507.38",
+      "HBM supply sold out through 2026"
+    ],
+    "key_concerns": [
+      "Memory pricing is cyclical and currently at a peak",
+      "ChangXin Memory Technologies adds future supply risk",
+      "MACD deeply negative at -9.06 \u2014 momentum against current buyers"
+    ],
+    "summary": "Grade A with the highest revenue growth on the watchlist. The fundamental case remains intact \u2014 HBM demand from AI infrastructure is structural and Micron's supply is constrained through at least year-end. However, the market is pricing in future supply competition before it materializes, creating a valuation gap between fundamentals (cheap) and momentum (bearish)."
+  },
+  "sentiment": {
+    "score": 0.027,
+    "label": "Neutral",
+    "mentions_24h": 3052,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "ChangXin Memory IPO is a leading indicator of future Chinese supply \u2014 even if quality is inferior today, it pressures pricing in 2-3 years",
+    "$800 support is the key line \u2014 a volume break below would target $740-760",
+    "Memory supercycle pricing peak risk: if HBM prices soften, margin compression would be sharp"
+  ],
+  "watchlist_priority": "high"
+}

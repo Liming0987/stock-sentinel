@@ -1,0 +1,83 @@
+{
+  "ticker": "AMZN",
+  "company_name": "Amazon.com, Inc.",
+  "report_date": "2026-08-01",
+  "price": 271.58,
+  "change_pct": 15.32,
+  "overall_stance": "hold",
+  "conviction": 0.6,
+  "one_liner": "AMZN +15.32% on 2.2x volume after AWS grew 36.7% (fastest in 18 quarters) and $496B backlog confirmed the $220B capex is demand-driven \u2014 RSI 71.6 and Wyckoff buying climax flag signal near-term digestion likely.",
+  "price_action": {
+    "open": 265.0,
+    "high": 273.23,
+    "low": 262.01,
+    "close": 271.58,
+    "volume": 128900000,
+    "vol_ratio": 2.2,
+    "vol_rank": "2.20x 30-day average \u2014 significant earnings-day volume",
+    "intraday_story": "Gapped up from ~$235 prior close to $265 open, pushed to $273.23 intraday high then consolidated to close at $271.58. The 2.5% intraday range from high to close suggests some profit-taking into the gap, which is normal for a 15%+ earnings gap. The Wyckoff system flagged this as a 'buying climax' \u2014 high volume, strong close near the high. While bullish in isolation, buying climaxes often precede a short pause or pullback to absorb supply before the next leg."
+  },
+  "news_catalyst": {
+    "headline": "Amazon Q2 2026: AWS grew 36.7% YoY (fastest in 18 quarters); $220B capex guided; $496B revenue backlog",
+    "summary": "CEO Andy Jassy delivered the key insight investors needed: Amazon's negative free cash flow is intentional and backed by $496B in contracted customer commitments \u2014 the capex is demand-driven, not speculative. AWS at $169B annualized run rate and both the AI and chips businesses crossing $25B annual run rates validated the AI infrastructure thesis. The Anthropic investment gain of $53.4B inflated reported EPS to $5.75 vs $1.82 consensus \u2014 operational earnings are much more modest. The market rewarded the contrast with Meta: Amazon has backlog, Meta does not. Stock up 15.32% on the day.",
+    "source_url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-q2-2026-earnings-revenue-203058727.html",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "N/A \u2014 post-gap consolidation expected",
+    "key_support": 255.0,
+    "key_resistance": 285.0,
+    "rsi": 71.56,
+    "macd_signal": "bullish \u2014 histogram at +0.85",
+    "volume_ratio_today": 2.2,
+    "volume_signal": "climactic",
+    "summary": "RSI at 71.56 is technically overbought \u2014 the first time it's entered overbought territory in over a month. MACD histogram at +0.85 just turned decisively positive, confirming the momentum shift. However, the combination of overbought RSI and a Wyckoff buying climax flag is a signal to wait rather than chase.\n\nThe gap from ~$235 to $265 creates a gap fill zone that will likely act as support on any pullback. The ideal accumulate entry would be a volume dry-up pullback to the $255-262 zone over the next 5-10 sessions, where the gap low and prior resistance (now support) converge.\n\nAnalyst consensus target of $313 implies 15% additional upside even from today's elevated price, supporting the longer-term bull case while the technical picture argues for patience near-term."
+  },
+  "wyckoff_narrative": "The buying climax event flagged today is consistent with Phase B of a new Accumulation structure, or alternatively the beginning of a Distribution Phase if the stock cannot hold above the gap. In the context of a 15% single-day move on fundamental catalysts, the Wyckoff buying climax is less a distribution warning and more a signal that supply is momentarily overwhelming demand at this price level.\n\nFor the accumulation thesis to remain intact, AMZN needs to see a subsequent Test of the buying climax level \u2014 ideally a 2-5 session pullback on declining volume that holds above the $255-262 gap fill zone. If instead volume remains elevated and price struggles to hold $265, watch for a potential UTAD setup.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF is not meaningful for AMZN currently \u2014 the company is deliberately negative free cash flow ($111.63B TTM negative FCF) while investing in $220B of AI infrastructure. Preferred metric is price/operating cash flow: at 18x vs 5-year median of 20.75x, AMZN still trades below historical fair value on operating cash flow basis even after the 15% pop. Analyst target of $313 implies 15% further upside."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.76,
+    "key_strengths": [
+      "Revenue growth 19.6% at $800B+ annualized scale",
+      "Operating margin hit all-time high of 12% this quarter",
+      "AWS at $169B annualized run rate, growing 36.7%",
+      "Advertising business $80B+ run rate growing 26%",
+      "Analyst consensus 1.34 = strong buy"
+    ],
+    "key_concerns": [
+      "TTM free cash flow deeply negative (-$111.63B)",
+      "Raised $82B in debt over past year",
+      "Reported EPS of $5.75 massively overstated by $53.4B Anthropic gain"
+    ],
+    "summary": "Grade B reflects solid but not exceptional scoring \u2014 the negative FCF and elevated leverage weigh on the balance sheet pillar despite excellent operational performance. AWS reacceleration and all-time high margins are the fundamental highlights. The B grade does not capture the full operational strength."
+  },
+  "sentiment": {
+    "score": 0.16,
+    "label": "Bullish",
+    "mentions_24h": 1853,
+    "trend": "rising"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RSI 71.6 overbought \u2014 likely to pause or pull back before next leg",
+    "Gap fill to $262 is plausible and would be healthy; deeper fill to $245 would be concerning",
+    "Anthropic investment gains distort reported earnings \u2014 real operational EPS much lower"
+  ],
+  "watchlist_priority": "high"
+}

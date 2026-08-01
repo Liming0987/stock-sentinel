@@ -1,0 +1,82 @@
+{
+  "ticker": "SPCX",
+  "company_name": "Space Exploration Technologies Corp.",
+  "report_date": "2026-08-01",
+  "price": 108.37,
+  "change_pct": -3.41,
+  "overall_stance": "avoid",
+  "conviction": 0.75,
+  "one_liner": "SPCX -3.41% extending post-IPO slide to ~45% below June peak \u2014 RSI 20.6 is deeply oversold but high short interest (29%), lockup expiration risk, and Q2 loss guidance make this a falling knife.",
+  "price_action": {
+    "open": 113.1,
+    "high": 113.64,
+    "low": 107.57,
+    "close": 108.37,
+    "volume": 58400000,
+    "vol_ratio": 0.67,
+    "vol_rank": "0.67x 30-day average \u2014 below average on continued decline",
+    "intraday_story": "Opened at $113.10, touched $113.64 high early, then declined steadily to close at $108.37, near the day's low of $107.57. The pattern of opening near the high and closing near the low is consistent with continued distribution. Volume at 0.67x average is not climactic \u2014 sellers are grinding this down rather than dumping it."
+  },
+  "news_catalyst": {
+    "headline": "SPCX nears 52-week low at $107.57; Q2 earnings Aug 4 with $0.26 EPS loss expected; short interest at 29% of float",
+    "summary": "SpaceX stock has declined roughly 45% from its June IPO peak, hitting near-all-time lows. Key overhangs are: (1) analyst consensus target of $235 is sharply above current price, but valuation skeptics argue the post-IPO price was stretched; (2) 29% short interest means nearly a third of the public float is sold short, creating squeeze potential but also sustained selling pressure; (3) lockup expirations are approaching, which could bring additional insider supply to market; (4) Q2 earnings on Aug 4 are expected to show a $0.26 per share loss. RSI at 20.59 is the lowest on the entire watchlist \u2014 a signal of extreme selling but not an actionable buy in a stock with this many structural headwinds.",
+    "source_url": "",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "N/A",
+    "key_support": 100.0,
+    "key_resistance": 125.0,
+    "rsi": 20.59,
+    "macd_signal": "bearish \u2014 histogram at -1.26",
+    "volume_ratio_today": 0.67,
+    "volume_signal": "below average",
+    "summary": "RSI at 20.59 is extreme oversold \u2014 but this is a post-IPO stock in a clear downtrend with structural overhangs. RSI oversold signals are much less reliable for newly public companies where the price discovery process is still ongoing. Until lockup expirations are resolved and a base forms with low-volume behavior, this is a catch-a-falling-knife situation.\n\nThe $100 round number is the next key psychological support. If SPCX can hold $107-110 through the Aug 4 earnings on declining volume, it might form a base. If earnings disappoint and $100 breaks, the next reference point is much lower."
+  },
+  "wyckoff_narrative": "Insufficient Wyckoff event history for a newly public company. The system returned 'Insufficient data' for VCP analysis. The stock has been in a unidirectional decline since IPO \u2014 not the back-and-forth absorption pattern that characterizes healthy Wyckoff accumulation. Avoid until a proper base forms over multiple weeks.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not feasible. Pre-profit company with -44.9% operating margins. Analyst consensus target of $235.71 implies 117% upside, but those targets were set near IPO at higher prices and may not reflect the current risk-adjusted environment. Revenue growth of 15.4% is positive but insufficient to justify the current valuation multiple without a clear path to profitability."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.44,
+    "key_strengths": [
+      "Analyst consensus 1.65 = buy",
+      "Analyst target $235.71 = 117% upside"
+    ],
+    "key_concerns": [
+      "Operating margin -45%",
+      "Forward PE 120x on negative earnings",
+      "29% short interest",
+      "Lockup expiration overhang",
+      "Q2 EPS expected to be a loss of $0.26"
+    ],
+    "summary": "Grade D. Pre-profitability with negative operating margins, a very expensive multiple on negative earnings, and substantial short interest. The company's growth story may be real long-term, but the current technical and fundamental setup does not support entry."
+  },
+  "sentiment": {
+    "score": 0.06,
+    "label": "Neutral",
+    "mentions_24h": 1313,
+    "trend": "falling"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Lockup expiration bringing insider supply to market",
+    "Aug 4 Q2 earnings: expected $0.26 EPS loss could accelerate selling",
+    "29% short interest = high squeeze potential but also sustained downward pressure"
+  ],
+  "watchlist_priority": "medium"
+}

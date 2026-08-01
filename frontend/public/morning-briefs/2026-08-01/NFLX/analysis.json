@@ -1,0 +1,82 @@
+{
+  "ticker": "NFLX",
+  "company_name": "Netflix, Inc.",
+  "report_date": "2026-08-01",
+  "price": 71.71,
+  "change_pct": -2.0,
+  "overall_stance": "accumulate",
+  "conviction": 0.75,
+  "one_liner": "NFLX -2.00% on 0.69x volume (drying up) in Wyckoff Accumulation Phase B \u2014 Parkev's high-conviction buy at $128 DCF fair value vs $71.71; volume contraction into support is the setup.",
+  "price_action": {
+    "open": 71.97,
+    "high": 72.75,
+    "low": 71.11,
+    "close": 71.71,
+    "volume": 35818000,
+    "vol_ratio": 0.69,
+    "vol_rank": "0.69x 30-day average \u2014 volume drying up significantly",
+    "intraday_story": "NFLX traded in a tight $1.64 range (high $72.75, low $71.11) on well-below-average volume. The narrow range and low volume into a slight decline is a classic Wyckoff volume dry-up signal \u2014 sellers are running out of supply at these levels. This is the same behavior that precedes a spring or upside reversal in Accumulation Phase B setups."
+  },
+  "news_catalyst": {
+    "headline": "Netflix 43% below 52-week high trading at 20x forward earnings \u2014 multiple analysts including Parkev rate it a high-conviction buy",
+    "summary": "NFLX continues to trade in the $67-75 range where Parkev Tatevosian has built a high-conviction buy thesis: DCF fair value $128, forward PE 17.7x (historical low), 30%+ operating margins, proven pricing power. The stock is down ~28% YTD and ~44% from its 52-week high, which Parkev attributes to market overreaction to the Warner Brothers acquisition rumor fallout. Today's -2% on 0.69x volume is a textbook low-conviction pullback \u2014 sellers don't have strong conviction at these levels.",
+    "source_url": "",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Phase B \u2014 absorption underway",
+    "key_support": 67.0,
+    "key_resistance": 80.0,
+    "rsi": 47.0,
+    "macd_signal": "bullish \u2014 histogram at +0.24, positive",
+    "volume_ratio_today": 0.69,
+    "volume_signal": "drying up \u2014 bullish",
+    "summary": "Volume drying up at $71-72 is the primary technical signal today. Over the past several sessions, NFLX has logged a 'high-volume up day \u2014 accumulation' followed by a 'buying climax' and now a quiet, low-volume pullback. This sequence (accumulation event \u2192 test on low volume) is precisely the Wyckoff Phase B behavior that precedes a Sign of Strength.\n\nMACD histogram at +0.24 is positive and turning higher, confirming that momentum has shifted from the prior bearish trend. RSI at 47 is neutral \u2014 room for upside without overbought concerns.\n\nKey support is the $67 area (52-week low zone). As long as NFLX holds above $67 on low volume, the base is strengthening. A volume expansion day above $75-76 would be the initial SOS signal."
+  },
+  "wyckoff_narrative": "Accumulation Phase B is where the 'composite operator' (large institutional players) builds positions after the initial Selling Climax. NFLX's Phase B classification, combined with today's very low volume (0.69x) on a slight pullback, is consistent with this interpretation.\n\nThe most recent events \u2014 buying climax followed by a quiet test \u2014 suggest the stock is in the Phase B 'secondary test' (ST) process. A successful ST is characterized by price revisiting or slightly undercutting the prior low on much lower volume, which is exactly what today's session shows relative to prior action.\n\nNext expected event: Sign of Strength (SOS) \u2014 a high-volume advance above $75-76 that breaks out of the current range. Entry zone for new positions: $68-72, with a stop below $65 (below the 52-week low).",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 261.59,
+    "upside_pct": 264.8,
+    "bear_value": 65.0,
+    "bull_value": 200.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.15,
+    "summary": "System DCF of $261.59 appears aggressive. Using Parkev's more conservative DCF of $128 (still implying 78% upside), or analyst consensus of $94.33 (31.5% upside), the stock is clearly undervalued by multiple methodologies. At 18.78x forward PE with 13.4% revenue growth and 28.2% margins, NFLX is one of the better-priced quality stocks on the watchlist."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.72,
+    "key_strengths": [
+      "Operating margin 28.2% \u2014 highest in streaming",
+      "Forward PE 18.78x at a historical low",
+      "Analyst target $94.33 = 31.5% upside",
+      "Proven pricing power and subscriber retention"
+    ],
+    "key_concerns": [
+      "Revenue growth 13.4% \u2014 decelerating from 20%+ peak rates",
+      "Mobile/short-form video is a structural competitive threat",
+      "Negative sentiment score (-0.337) and low mention volume"
+    ],
+    "summary": "Grade B with solid profitability and reasonable valuation. The decelerating revenue growth from 20%+ to 13% is a concern, but at 18.78x forward PE the market is giving little credit for 28% operating margins and best-in-class streaming economics. Fundamentals support the accumulate stance."
+  },
+  "sentiment": {
+    "score": -0.337,
+    "label": "Bearish",
+    "mentions_24h": 2,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Volume dry-up must hold above $67 \u2014 a break below 52-week lows on volume invalidates the setup",
+    "Sentiment is negative and mentions very low \u2014 suggests institutional investors are not yet interested",
+    "Revenue growth deceleration risk if ad-supported tier ramp is slower than expected"
+  ],
+  "watchlist_priority": "high"
+}

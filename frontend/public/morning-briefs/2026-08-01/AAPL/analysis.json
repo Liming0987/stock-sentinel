@@ -1,0 +1,83 @@
+{
+  "ticker": "AAPL",
+  "company_name": "Apple Inc.",
+  "report_date": "2026-08-01",
+  "price": 308.91,
+  "change_pct": -7.35,
+  "overall_stance": "avoid",
+  "conviction": 0.72,
+  "one_liner": "AAPL down 7.35% on 2x average volume after Q3 earnings beat but services miss and weak Q4 guidance \u2014 DCF at $210.68 vs $308.91 makes this one of the watchlist's most overvalued names.",
+  "price_action": {
+    "open": 304.81,
+    "high": 310.69,
+    "low": 300.0,
+    "close": 308.91,
+    "volume": 132300000,
+    "vol_ratio": 2.05,
+    "vol_rank": "2.05x 30-day average \u2014 distribution volume",
+    "intraday_story": "Apple gapped down from ~$333 close to a $304 open on earnings reaction, briefly touched $300 at the low (a psychologically significant round number), then recovered somewhat to close at $308.91. The close well off the day's high ($310.69) signals sellers remain in control. Volume at 2.05x average confirms institutional distribution, not a panic capitulation \u2014 this is methodical selling."
+  },
+  "news_catalyst": {
+    "headline": "Apple Q3 2026 beats EPS ($2.02 vs $1.89) but services miss ($30.74B vs $31.22B) and Q4 guidance of 9-11% growth disappoints",
+    "summary": "Apple reported revenue of $109.4B (+16% YoY) with $29.8B in profit, beating analyst estimates across the board except services, which came in $480M short of consensus. The services miss is structurally significant because services carries the highest margin of any Apple segment and has been the primary growth narrative for bulls. Q4 guidance of 9-11% growth is a deceleration driven by FX headwinds, AI-driven supply constraints on advanced silicon and memory components, and App Store business model changes in key international markets. The 8.6% opening gap down erased roughly $430B in market cap \u2014 the worst post-earnings opening since August 2024.",
+    "source_url": "https://9to5mac.com/2026/07/31/apple-stock-opens-down-roughly-10-following-mixed-q3-2026-results/",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "N/A",
+    "key_support": 295.0,
+    "key_resistance": 330.0,
+    "rsi": 41.68,
+    "macd_signal": "bearish \u2014 histogram at -1.44",
+    "volume_ratio_today": 2.05,
+    "volume_signal": "elevated \u2014 distribution",
+    "summary": "The Wyckoff system logged a sequence of 'buying climax' followed by multiple 'high-volume down days' in the events history \u2014 a classic UTAD/Distribution pattern. Today's 2x-volume down day following earnings is the latest high-volume down event in a chain that started several sessions ago.\n\nRSI at 41.68 is not yet oversold, which means there is room for further downside without triggering a technical bounce signal. MACD histogram at -1.44 is firmly negative. The $300 round-number support held as intraday low today, but without a volume dry-up (i.e., a Wyckoff Test on shrinking volume), that level has not been confirmed as supply-absorbed support.\n\nThe key level to watch is $295. If AAPL trades below $300 on elevated volume, it opens the door to $280-285. If instead volume dries up and AAPL holds $300-305 over 3-5 sessions, a potential base could form \u2014 but that would not change the avoid stance given valuation."
+  },
+  "wyckoff_narrative": "The sequence of Buying Climax \u2192 high-volume down day \u2192 high-volume down day observed in AAPL's recent event log is textbook Distribution Phase B/C behavior. Today's earnings-driven high-volume decline is consistent with a UTAD (Upthrust After Distribution) resolution \u2014 the stock made a new high earlier in the cycle, then reversed with conviction.\n\nFor distribution to be confirmed complete, we would need to see price break the trading range lows decisively on expanding volume, which has not yet happened. The next Wyckoff event to watch for is a Last Point of Supply (LPSY) on a dead-cat bounce, which would offer a short entry for aggressive traders. Accumulation thesis requires a clear Selling Climax (SC) with spike volume and spring behavior before the stock becomes investable again.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 210.68,
+    "upside_pct": -31.8,
+    "bear_value": 160.0,
+    "bull_value": 280.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.12,
+    "summary": "At $308.91 vs DCF of $210.68, Apple trades at a 47% premium to estimated intrinsic value. The forward PE of 32.3x is expensive for a company guiding to 9-11% near-term growth. Even the bull-case DCF at $280 implies downside from current price, making this the clearest valuation avoid on the watchlist."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.74,
+    "key_strengths": [
+      "Revenue growth 16.4% despite macro headwinds",
+      "Profit margin 27.6%",
+      "Massive installed base and ecosystem switching costs",
+      "Analyst target $321.66 \u2014 still above current price"
+    ],
+    "key_concerns": [
+      "Services revenue missed estimates \u2014 the highest-margin segment",
+      "Q4 supply constraints on advanced silicon/memory",
+      "Forward PE 32.3x expensive for decelerating growth",
+      "Analyst recommendation mean 2.04 = neutral/hold"
+    ],
+    "summary": "Grade B score of 0.74 reflects solid but not exceptional fundamentals. The services miss is the key concern because it strikes at the valuation thesis. Apple's fundamentals don't support an avoid rating alone, but combined with a 47% premium to DCF and decelerating guidance, the risk/reward is clearly unfavorable."
+  },
+  "sentiment": {
+    "score": 0.07,
+    "label": "Neutral",
+    "mentions_24h": 2048,
+    "trend": "falling"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Services revenue deceleration threatens the premium multiple",
+    "Supply constraints in Q4 could cause revenue to miss 9-11% guidance",
+    "If $300 support breaks on volume, next structural support is $280-285"
+  ],
+  "watchlist_priority": "high"
+}

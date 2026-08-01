@@ -1,0 +1,93 @@
+{
+  "ticker": "APP",
+  "company_name": "AppLovin Corporation",
+  "report_date": "2026-08-01",
+  "price": 395.9,
+  "change_pct": -1.97,
+  "overall_stance": "watch",
+  "conviction": 0.7,
+  "one_liner": "APP -1.97% but on 2.54x volume with RSI at extreme oversold 25.1 \u2014 Grade A with $654 analyst target and active HOLD signal; earnings Aug 5 is the binary catalyst to watch.",
+  "price_action": {
+    "open": 397.9,
+    "high": 398.16,
+    "low": 377.71,
+    "close": 395.9,
+    "volume": 15449700,
+    "vol_ratio": 2.54,
+    "vol_rank": "2.54x 30-day average \u2014 highest relative volume day in recent history",
+    "intraday_story": "APP opened at $397.90 nearly flat, then sold off sharply to an intraday low of $377.71 (-5.1% from open) before recovering almost entirely to close at $395.90. This wick-down-and-recover pattern on 2.54x volume is a potential Wyckoff Spring or Shakeout \u2014 aggressive selling that failed to hold lower prices, suggesting trapped bears. The recovery to near the open is structurally bullish despite the negative close."
+  },
+  "news_catalyst": {
+    "headline": "APP earnings scheduled August 5 \u2014 guidance for Q2 is $1.9-1.95B revenue, 84-85% adjusted EBITDA margin",
+    "summary": "No earnings release today \u2014 APP reports Q2 on August 5 after close. The 2.54x volume selloff and recovery today may be pre-earnings positioning, with some funds reducing exposure ahead of a binary event. APP had previously fallen 12%+ on July 13 after e-commerce advertising growth slowdown data was published. With guidance of $1.9-1.95B in Q2 revenue (53.99% YoY growth) and 84-85% EBITDA margins, the company has set a high bar. APP has beaten EPS in each of the last four quarters. The active HOLD signal (entry $385-402, stop $354, target $458) from yesterday captures this setup.",
+    "source_url": "",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Accumulation Phase B",
+    "wyckoff_bias": "bullish",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": "Watching for spring/shakeout setup pre-earnings",
+    "key_support": 375.0,
+    "key_resistance": 430.0,
+    "rsi": 25.08,
+    "macd_signal": "bearish \u2014 histogram at -0.78",
+    "volume_ratio_today": 2.54,
+    "volume_signal": "elevated \u2014 potential shakeout",
+    "summary": "RSI at 25.08 is in extreme oversold territory \u2014 the lowest reading among all 33 watchlist stocks today. Paired with the intraday shakeout to $377.71 that recovered to $395.90, this suggests exhaustion of the sellers who have been driving the stock lower from its highs.\n\nThe Wyckoff system classifies APP as Accumulation Phase B with bullish bias \u2014 consistent with an absorption setup. The 2.54x volume day with a recovery from deep lows looks like a potential Selling Climax (SC) or Spring event. If the next 1-2 sessions show narrow range and declining volume (automatic rally behavior), the probability of a base increases significantly.\n\nKey risk: earnings on Aug 5 make this a binary event. The active HOLD signal (entry $385-402, stop $354, target $458) is reasonable but sized for the known earnings risk. Avoid oversizing into Aug 5."
+  },
+  "wyckoff_narrative": "The Wyckoff system's Accumulation Phase B classification for APP, combined with the high-volume spring-like action today, points to a potential Phase C Spring or Shakeout. The defining characteristic is today's deep intraday low ($377.71) that was fully rejected by close ($395.90) \u2014 exactly what a Spring looks like: price dips below support to flush weak hands, then recovers above support by end of session.\n\nFor this Spring to confirm as a Phase C setup, the next expected event is a Test of the Spring low on lower volume (ideally 1.5x or less) over the next 1-3 sessions, holding above $375. Then a Sign of Strength (SOS) through $410-415 would begin the Mark-Up phase. The Aug 5 earnings is an accelerant or disruptor of this Wyckoff timeline.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1184.49,
+    "upside_pct": 199.0,
+    "bear_value": 280.0,
+    "bull_value": 800.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.45,
+    "summary": "DCF base case of $1,184 (199% upside) reflects APP's 64% profit margins, 59% revenue growth, and market leadership in AI-powered mobile advertising. More conservatively, the analyst consensus target of $654.60 implies 65% upside from current price. Forward PE of 18.3x for a 59% revenue growth company is genuinely cheap. The valuation case is strong; the execution risk is the Aug 5 earnings."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.86,
+    "key_strengths": [
+      "Revenue growth 59% YoY",
+      "Profit margin 64.3% \u2014 exceptional for ad-tech",
+      "Forward PE 18.3x \u2014 cheap for growth rate",
+      "Analyst target $654.60 = 65% upside",
+      "4 consecutive quarters of EPS beats"
+    ],
+    "key_concerns": [
+      "E-commerce ad growth slowdown flagged by industry data in July",
+      "Earnings binary event Aug 5 \u2014 elevated risk",
+      "MACD still negative at -0.78"
+    ],
+    "summary": "Grade A with strong score across growth, profitability, and analyst dimensions. The e-commerce ad slowdown concern from July 13 is the key downside risk \u2014 if Q2 confirms this trend, estimates will need to come down despite strong headline growth. The high margins provide a buffer."
+  },
+  "sentiment": {
+    "score": -0.05,
+    "label": "Neutral",
+    "mentions_24h": 33,
+    "trend": "flat"
+  },
+  "strategy_signals": [
+    {
+      "strategy": "System Signal",
+      "action": "hold",
+      "confidence": 0.45,
+      "entry_low": 385.44,
+      "entry_high": 402.17,
+      "stop_loss": 354.08,
+      "target": 458.63
+    }
+  ],
+  "risks": [
+    "Earnings Aug 5: e-commerce advertising slowdown could cause guidance cut",
+    "If $375 spring low breaks on next session, shakeout thesis fails",
+    "Stop loss at $354 is firm \u2014 below that the Wyckoff accumulation structure is invalidated"
+  ],
+  "watchlist_priority": "high"
+}
