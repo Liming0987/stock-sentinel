@@ -31,6 +31,7 @@ Resources:
     Type: AWS::ECR::Repository
     Properties:
       RepositoryName: stock-sentinel-backend
+      EmptyOnDelete: true
       ImageScanningConfiguration:
         ScanOnPush: true
       LifecyclePolicy:
@@ -52,6 +53,7 @@ Resources:
     Type: AWS::ECR::Repository
     Properties:
       RepositoryName: stock-sentinel-frontend
+      EmptyOnDelete: true
       ImageScanningConfiguration:
         ScanOnPush: true
       LifecyclePolicy:
@@ -171,8 +173,8 @@ Resources:
   # and even stack deletion. PostgreSQL data lives here, not on the root EBS.
   DataVolume:
     Type: AWS::EC2::Volume
-    DeletionPolicy: Retain
-    UpdateReplacePolicy: Retain
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
     Properties:
       AvailabilityZone: !Ref DataVolumeAvailabilityZone
       Size: 50
