@@ -1,0 +1,171 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Stock Sentinel — GitHub Actions IAM role (OIDC). Deploy once manually with admin credentials.
+
+Parameters:
+  GitHubOrg:
+    Type: String
+    Default: Liming0987
+  GitHubRepo:
+    Type: String
+    Default: stock-sentinel
+
+Resources:
+  GitHubActionsRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: StockSentinelGitHubActions
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/token.actions.githubusercontent.com"
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub "repo:${GitHubOrg}/${GitHubRepo}:*"
+      Policies:
+        - PolicyName: StockSentinelCFManage
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              # CloudFormation — full stack lifecycle
+              - Effect: Allow
+                Action:
+                  - cloudformation:CreateStack
+                  - cloudformation:UpdateStack
+                  - cloudformation:DeleteStack
+                  - cloudformation:DescribeStacks
+                  - cloudformation:DescribeStackEvents
+                  - cloudformation:DescribeStackResources
+                  - cloudformation:DescribeStackResource
+                  - cloudformation:GetTemplate
+                  - cloudformation:GetTemplateSummary
+                  - cloudformation:CreateChangeSet
+                  - cloudformation:ExecuteChangeSet
+                  - cloudformation:DescribeChangeSet
+                  - cloudformation:ListChangeSets
+                  - cloudformation:ValidateTemplate
+                Resource: "*"
+
+              # EC2 — instance + volume + security group lifecycle
+              - Effect: Allow
+                Action:
+                  - ec2:RunInstances
+                  - ec2:TerminateInstances
+                  - ec2:StopInstances
+                  - ec2:StartInstances
+                  - ec2:DescribeInstances
+                  - ec2:DescribeInstanceStatus
+                  - ec2:DescribeInstanceAttribute
+                  - ec2:ModifyInstanceAttribute
+                  - ec2:ModifyInstanceMetadataOptions
+                  - ec2:CreateVolume
+                  - ec2:DeleteVolume
+                  - ec2:AttachVolume
+                  - ec2:DetachVolume
+                  - ec2:DescribeVolumes
+                  - ec2:DescribeVolumeStatus
+                  - ec2:CreateSecurityGroup
+                  - ec2:DeleteSecurityGroup
+                  - ec2:DescribeSecurityGroups
+                  - ec2:AuthorizeSecurityGroupIngress
+                  - ec2:RevokeSecurityGroupIngress
+                  - ec2:CreateTags
+                  - ec2:DescribeTags
+                  - ec2:DescribeImages
+                  - ec2:DescribeKeyPairs
+                  - ec2:DescribeAvailabilityZones
+                  - ec2:DescribeSubnets
+                  - ec2:DescribeVpcs
+                Resource: "*"
+
+              # ECR — repo lifecycle + image push/pull/delete
+              - Effect: Allow
+                Action:
+                  - ecr:CreateRepository
+                  - ecr:DeleteRepository
+                  - ecr:DescribeRepositories
+                  - ecr:GetRepositoryPolicy
+                  - ecr:SetRepositoryPolicy
+                  - ecr:DeleteRepositoryPolicy
+                  - ecr:PutLifecyclePolicy
+                  - ecr:GetLifecyclePolicy
+                  - ecr:BatchDeleteImage
+                  - ecr:ListImages
+                  - ecr:BatchGetImage
+                  - ecr:GetDownloadUrlForLayer
+                  - ecr:BatchCheckLayerAvailability
+                  - ecr:PutImage
+                  - ecr:InitiateLayerUpload
+                  - ecr:UploadLayerPart
+                  - ecr:CompleteLayerUpload
+                  - ecr:GetAuthorizationToken
+                  - ecr:PutImageScanningConfiguration
+                  - ecr:TagResource
+                Resource: "*"
+
+              # IAM — manage the EC2 instance role; PassRole required for ec2:RunInstances
+              - Effect: Allow
+                Action:
+                  - iam:CreateRole
+                  - iam:DeleteRole
+                  - iam:GetRole
+                  - iam:UpdateRole
+                  - iam:TagRole
+                  - iam:UntagRole
+                  - iam:AttachRolePolicy
+                  - iam:DetachRolePolicy
+                  - iam:PutRolePolicy
+                  - iam:DeleteRolePolicy
+                  - iam:GetRolePolicy
+                  - iam:ListRolePolicies
+                  - iam:ListAttachedRolePolicies
+                  - iam:CreateInstanceProfile
+                  - iam:DeleteInstanceProfile
+                  - iam:GetInstanceProfile
+                  - iam:AddRoleToInstanceProfile
+                  - iam:RemoveRoleFromInstanceProfile
+                  - iam:PassRole
+                Resource: "*"
+
+              # Secrets Manager — full lifecycle for app credentials
+              - Effect: Allow
+                Action:
+                  - secretsmanager:CreateSecret
+                  - secretsmanager:DeleteSecret
+                  - secretsmanager:DescribeSecret
+                  - secretsmanager:GetSecretValue
+                  - secretsmanager:PutSecretValue
+                  - secretsmanager:UpdateSecret
+                  - secretsmanager:TagResource
+                  - secretsmanager:ListSecrets
+                Resource: "*"
+
+              # S3 — deploy bucket for docker-compose / nginx configs
+              - Effect: Allow
+                Action:
+                  - s3:CreateBucket
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                  - s3:ListBucket
+                Resource:
+                  - arn:aws:s3:::stock-sentinel-deploy-us-east-1
+                  - arn:aws:s3:::stock-sentinel-deploy-us-east-1/*
+
+              # SSM — remote command execution on EC2
+              - Effect: Allow
+                Action:
+                  - ssm:SendCommand
+                  - ssm:GetCommandInvocation
+                  - ssm:DescribeInstanceInformation
+                  - ssm:ListCommandInvocations
+                Resource: "*"
+
+Outputs:
+  RoleArn:
+    Description: ARN to set as the AWS_ROLE_ARN GitHub Actions secret
+    Value: !GetAtt GitHubActionsRole.Arn
