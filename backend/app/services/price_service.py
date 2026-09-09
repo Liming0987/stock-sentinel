@@ -274,40 +274,82 @@ class PriceService:
                 session.commit()
                 stocks = session.execute(select(Stock)).scalars().all()
 
-            for stock in stocks:
-                try:
-                    df = self.get_price_data(stock.ticker, period="5d", interval="1d")
-                    if df is None or df.empty:
-                        continue
-                    last_price = float(df["Close"].iloc[-1])
-                    prev_price = float(df["Close"].iloc[-2]) if len(df) >= 2 else last_price
-                    stock.prev_close = Decimal(str(round(prev_price, 2)))
-                    stock.last_price = Decimal(str(round(last_price, 2)))
-                    session.add(stock)
-                    updated += 1
-                except Exception as e:
-                    print(f"update_all: error for {stock.ticker}: {e}")
+            # Skip the recurring per-stock price refresh when the market is closed:
+            # daily-bar closes don't change off-hours and yfinance is rate-limited,
+            # so the 5-min cadence would just re-fetch identical data (~2/3 of runs).
+            # The empty-table bootstrap above still runs so a fresh deploy populates
+            # the universe regardless of the hour.
+            from app.services.strategy_runner import _is_market_open
+            market_open = _is_market_open()
+            if not market_open:
+                print("update_all: market closed — skipping price refresh")
 
-            session.commit()
+            if market_open:
+                for stock in stocks:
+                    try:
+                        df = self.get_price_data(stock.ticker, period="5d", interval="1d")
+                        if df is None or df.empty:
+                            continue
+                        last_price = float(df["Close"].iloc[-1])
+                        prev_price = float(df["Close"].iloc[-2]) if len(df) >= 2 else last_price
+                        stock.prev_close = Decimal(str(round(prev_price, 2)))
+                        stock.last_price = Decimal(str(round(last_price, 2)))
+                        session.add(stock)
+                        updated += 1
+                    except Exception as e:
+                        print(f"update_all: error for {stock.ticker}: {e}")
+
+                session.commit()
 
         engine.dispose()
         return updated
 
     def compute_intraday_indicators(self, df: pd.DataFrame) -> Dict:
-        """Compute intraday indicators from a 5-min bar DataFrame (period='1d', interval='5m')."""
+        """Compute intraday indicators from a 5-min bar DataFrame (period='1d', interval='5m').
+
+        Filters to today's ET session before computing anything so that yfinance frames
+        spanning multiple days (common pre-open / around midnight) don't corrupt VWAP,
+        bar counts, or the ORB.
+        """
         if df is None or df.empty:
+            return {}
+
+        import pytz
+        et = pytz.timezone("America/New_York")
+
+        # Normalise index to ET-aware timestamps
+        if df.index.tzinfo is None:
+            df = df.copy()
+            df.index = df.index.tz_localize("UTC").tz_convert(et)
+        else:
+            df = df.copy()
+            df.index = df.index.tz_convert(et)
+
+        today_et = df.index[-1].date()
+
+        # Sanity check: last bar must be from today (ET). If not, the frame is stale.
+        import datetime as _dt
+        now_et = _dt.datetime.now(et).date()
+        if today_et != now_et:
+            return {}
+
+        # Filter to today's session only — guards against multi-day frames from yfinance
+        df = df[df.index.date == today_et]
+        if df.empty:
             return {}
 
         result: Dict = {}
 
-        # VWAP from all bars since open
+        # VWAP computed only over today's bars so it resets correctly each session
         typical = (df["High"] + df["Low"] + df["Close"]) / 3
         cum_vol = df["Volume"].cumsum()
         cum_tp_vol = (typical * df["Volume"]).cumsum()
         vwap_series = cum_tp_vol / cum_vol.replace(0, float("nan"))
         result["vwap"] = round(float(vwap_series.iloc[-1]), 4) if not vwap_series.empty else None
+        # Per-bar VWAP used by VWAP Cross for a correct crossover comparison
+        result["prev_bar_vwap"] = round(float(vwap_series.iloc[-2]), 4) if len(vwap_series) >= 2 else result["vwap"]
 
-        # Opening Range: first 6 bars = 30 min
+        # Opening Range: first 6 bars = 30 min (anchored to today's session open)
         orb_bars = 6
         orb_slice = df.iloc[:orb_bars] if len(df) >= orb_bars else df
         result["orb_high"] = round(float(orb_slice["High"].max()), 4)
@@ -319,17 +361,20 @@ class PriceService:
         result["open_price"] = round(float(df["Open"].iloc[0]), 4)
         result["bars_elapsed"] = len(df)
 
-        # Intraday volume ratio: current bar vs avg bar
-        avg_bar_vol = df["Volume"].mean()
-        cur_bar_vol = df["Volume"].iloc[-1]
-        result["intraday_volume_ratio"] = round(float(cur_bar_vol / avg_bar_vol), 2) if avg_bar_vol > 0 else 0.0
+        # Intraday volume ratio: current bar vs avg of all *prior* bars (excludes the
+        # current bar and the high-volume opening bar from the denominator so mid-session
+        # surges are not understated).
+        prior_vols = df["Volume"].iloc[:-1]
+        avg_bar_vol = float(prior_vols.mean()) if len(prior_vols) > 0 else 0.0
+        cur_bar_vol = float(df["Volume"].iloc[-1])
+        result["intraday_volume_ratio"] = round(cur_bar_vol / avg_bar_vol, 2) if avg_bar_vol > 0 else 0.0
 
         # Intraday ATR (5-min, last 14 bars if available)
         atr_series = _atr(df["High"], df["Low"], df["Close"], length=min(14, len(df) - 1))
         if not atr_series.empty and not pd.isna(atr_series.iloc[-1]):
             result["intraday_atr"] = round(float(atr_series.iloc[-1]), 4)
         else:
-            # Fallback: use half the daily range as a rough intraday ATR proxy
+            # Fallback: mean bar range when ATR can't be computed yet
             result["intraday_atr"] = round(float((df["High"] - df["Low"]).mean()), 4)
 
         return result

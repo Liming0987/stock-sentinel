@@ -5,22 +5,22 @@ iterates a universe of tickers, asks each strategy to evaluate, and opens
 or closes paper trades accordingly.
 """
 from app.strategies.base import BaseStrategy, Signal
-from app.strategies.rsi_meanreversion import RSIMeanReversionStrategy
-from app.strategies.momentum import MomentumStrategy
-from app.strategies.sentiment_driven import SentimentDrivenStrategy
-from app.strategies.bb_breakout import BBBreakoutStrategy
-from app.strategies.macd_histogram import MACDHistogramStrategy
-from app.strategies.opening_range_breakout import OpeningRangeBreakoutStrategy
-from app.strategies.vwap_cross import VWAPCrossStrategy
-from app.strategies.fib_retracement import FibRetracementStrategy
-from app.strategies.elliott_fib import ElliottFibStrategy
-from app.strategies.vcp import VCPStrategy
+# Swing strategies (daily bars, multi-day holds) live in strategies/swing/;
+# intraday strategies (5-min bars, same-day) live in strategies/intraday/.
+from app.strategies.swing.rsi_meanreversion import RSIMeanReversionStrategy
+from app.strategies.swing.momentum import MomentumStrategy
+from app.strategies.swing.bb_breakout import BBBreakoutStrategy
+from app.strategies.swing.macd_histogram import MACDHistogramStrategy
+from app.strategies.intraday.opening_range_breakout import OpeningRangeBreakoutStrategy
+from app.strategies.intraday.vwap_cross import VWAPCrossStrategy
+from app.strategies.swing.fib_retracement import FibRetracementStrategy
+from app.strategies.swing.elliott_fib import ElliottFibStrategy
+from app.strategies.swing.vcp import VCPStrategy
 
 # Registry of available strategies. Add new ones here.
 STRATEGY_REGISTRY = {
     "rsi_meanreversion": RSIMeanReversionStrategy,
     "momentum": MomentumStrategy,
-    "sentiment_driven": SentimentDrivenStrategy,
     "bb_breakout": BBBreakoutStrategy,
     "macd_histogram": MACDHistogramStrategy,
     "opening_range_breakout": OpeningRangeBreakoutStrategy,
@@ -36,7 +36,6 @@ __all__ = [
     "STRATEGY_REGISTRY",
     "RSIMeanReversionStrategy",
     "MomentumStrategy",
-    "SentimentDrivenStrategy",
     "BBBreakoutStrategy",
     "MACDHistogramStrategy",
     "OpeningRangeBreakoutStrategy",

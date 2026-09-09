@@ -2,16 +2,12 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { api } from "./api";
-import type { TrendingStock, Signal, WatchlistItem } from "./mock-data";
+import type { TrendingStock, WatchlistItem } from "./mock-data";
 
 interface TrendingResponse {
   timeframe: string;
   stocks: TrendingStock[];
   updated_at: string | null;
-}
-
-interface SignalsResponse {
-  signals: Signal[];
 }
 
 interface SentimentResponse {
@@ -57,11 +53,6 @@ export function useTrending(timeframe = "24h", limit = 20) {
     [timeframe, limit]
   );
   return useApi(fetcher, { timeframe, stocks: [], updated_at: null } as TrendingResponse);
-}
-
-export function useSignals() {
-  const fetcher = useCallback(() => api.signals.active() as Promise<SignalsResponse>, []);
-  return useApi(fetcher, { signals: [] } as SignalsResponse);
 }
 
 export function useSentiment(ticker: string, period = "7d") {

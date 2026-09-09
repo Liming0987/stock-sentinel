@@ -127,7 +127,6 @@ class BacktestRunner:
                 ctx = {
                     "price_df": df_so_far,
                     "indicators": ind,
-                    "sentiment": {"avg_sentiment": 0.0, "mention_count": 0, "mention_velocity": 0.0},
                     "intraday": {},
                     "current_position": True,  # signal we have a position
                 }
@@ -169,11 +168,10 @@ class BacktestRunner:
                 ctx = {
                     "price_df": df_so_far,
                     "indicators": ind,
-                    "sentiment": {"avg_sentiment": 0.0, "mention_count": 0, "mention_velocity": 0.0},
                     "intraday": {},
                     "current_position": None,
                 }
-                sig = strat.evaluate(ticker, ctx)
+                sig = strat.apply_exit_overrides(strat.evaluate(ticker, ctx))
                 if sig.action == "buy":
                     buy_candidates.append((sig.confidence, ticker, sig, ind))
 

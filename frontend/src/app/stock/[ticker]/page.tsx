@@ -25,7 +25,7 @@ import {
   formatPercent,
   formatNumber,
 } from "@/lib/utils";
-import { useTrendingDetail, usePrices, useSentiment, useSignals, usePosts, useFundamentals, useWatchlist } from "@/lib/hooks";
+import { useTrendingDetail, usePrices, useSentiment, usePosts, useFundamentals, useWatchlist } from "@/lib/hooks";
 import { api } from "@/lib/api";
 
 function PostCard({ post, sentimentColor }: { post: ReturnType<typeof usePosts>["data"]["posts"][0]; sentimentColor: string }) {
@@ -84,7 +84,6 @@ export default function StockDetailPage() {
   const { data: stock, loading: stockLoading } = useTrendingDetail(ticker);
   const { data: priceData } = usePrices(ticker);
   const { data: sentimentData } = useSentiment(ticker);
-  const { data: signalsData } = useSignals();
   const { data: postsData } = usePosts(ticker);
   const { data: fundamentals } = useFundamentals(ticker);
   const { data: watchlistData, refetch: refetchWatchlist } = useWatchlist();
@@ -110,7 +109,6 @@ export default function StockDetailPage() {
     }
   };
 
-  const signal = signalsData.signals.find((s) => s.ticker === ticker);
   const candles = priceData.candles;
   const sentimentHistory = sentimentData.history;
   const posts = postsData.posts;
@@ -171,24 +169,6 @@ export default function StockDetailPage() {
           )}
         </div>
       </div>
-
-      {signal && (
-        <Card className="border-bullish/30 bg-bullish/5">
-          <CardContent className="p-4 space-y-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="bullish">{signal.signal_type}</Badge>
-              <span className="font-semibold">{(signal.confidence * 100).toFixed(0)}% confidence</span>
-              <span className="text-sm text-muted-foreground">
-                Entry: {formatPrice(signal.entry_low)} – {formatPrice(signal.entry_high)}
-              </span>
-            </div>
-            <div className="flex gap-4 text-sm">
-              <span>Stop: <span className="font-mono text-bearish">{formatPrice(signal.stop_loss)}</span></span>
-              <span>Target: <span className="font-mono text-bullish">{formatPrice(signal.target)}</span></span>
-            </div>
-          </CardContent>
-        </Card>
-      )}
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
         <Card>

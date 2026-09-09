@@ -226,11 +226,6 @@ const STRATEGIES = [
     best: "Volatile markets with defined support levels.",
   },
   {
-    name: "Sentiment-Driven",
-    desc: "Combines high social media mention velocity with positive FinBERT sentiment and price confirmation. Captures retail-driven momentum surges early.",
-    best: "Momentum stocks with active retail interest.",
-  },
-  {
     name: "BB Breakout",
     desc: "Enters when price closes above the upper Bollinger Band with elevated volume, signaling a volatility expansion and the start of a new trend leg.",
     best: "Low-volatility consolidations that are breaking out.",

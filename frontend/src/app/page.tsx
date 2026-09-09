@@ -178,11 +178,6 @@ export default function DashboardPage() {
                 style={{ gridTemplateColumns: "1.4fr 1fr 1fr 1.1fr" }}>
                 <div className="flex items-center gap-2.5 min-w-0">
                   <span className="font-bold text-[14px]">{w.ticker}</span>
-                  {w.has_active_signal && (
-                    <span className="rounded-[5px] bg-[var(--sentinel-accent-soft)] px-[7px] py-0.5 text-[9.5px] font-bold uppercase tracking-wide text-primary">
-                      SIGNAL
-                    </span>
-                  )}
                 </div>
                 <span className="font-mono text-[13.5px] text-right">
                   {w.price ? `$${w.price.toFixed(2)}` : "—"}

@@ -11,22 +11,6 @@ export interface TrendingStock {
   sources: string[];
 }
 
-export interface Signal {
-  id: number;
-  ticker: string;
-  name: string;
-  signal_type: "BUY" | "HOLD" | "AVOID";
-  confidence: number;
-  entry_low: number;
-  entry_high: number;
-  stop_loss: number;
-  target: number;
-  reasoning: string[];
-  created_at: string;
-  expires_at: string;
-  outcome?: "hit_target" | "hit_stop" | "expired" | null;
-}
-
 export interface SentimentPost {
   id: number;
   source: string;
@@ -55,7 +39,6 @@ export interface WatchlistItem {
   price: number;
   change_pct: number;
   sentiment_score: number;
-  has_active_signal: boolean;
 }
 
 // Mock data for development before backend is wired up
@@ -182,68 +165,12 @@ export const mockTrendingStocks: TrendingStock[] = [
   },
 ];
 
-export const mockSignals: Signal[] = [
-  {
-    id: 1,
-    ticker: "NVDA",
-    name: "NVIDIA Corporation",
-    signal_type: "BUY",
-    confidence: 0.82,
-    entry_low: 128.5,
-    entry_high: 132.0,
-    stop_loss: 122.0,
-    target: 145.0,
-    reasoning: [
-      "RSI oversold at 28",
-      "Positive sentiment surge +40%",
-      "Volume 2.1x average",
-    ],
-    created_at: new Date(Date.now() - 2 * 3600000).toISOString(),
-    expires_at: new Date(Date.now() + 46 * 3600000).toISOString(),
-  },
-  {
-    id: 2,
-    ticker: "SOFI",
-    name: "SoFi Technologies",
-    signal_type: "BUY",
-    confidence: 0.71,
-    entry_low: 9.5,
-    entry_high: 10.0,
-    stop_loss: 8.8,
-    target: 11.5,
-    reasoning: [
-      "Strong Reddit sentiment momentum",
-      "Price near lower Bollinger Band",
-      "Volume 2.4x average",
-    ],
-    created_at: new Date(Date.now() - 5 * 3600000).toISOString(),
-    expires_at: new Date(Date.now() + 43 * 3600000).toISOString(),
-  },
-  {
-    id: 3,
-    ticker: "PLTR",
-    name: "Palantir Technologies",
-    signal_type: "HOLD",
-    confidence: 0.59,
-    entry_low: 24.0,
-    entry_high: 25.2,
-    stop_loss: 22.5,
-    target: 28.0,
-    reasoning: [
-      "Moderate bullish sentiment",
-      "Volume slightly above average",
-    ],
-    created_at: new Date(Date.now() - 8 * 3600000).toISOString(),
-    expires_at: new Date(Date.now() + 40 * 3600000).toISOString(),
-  },
-];
-
 export const mockWatchlist: WatchlistItem[] = [
-  { ticker: "NVDA", name: "NVIDIA Corporation", price: 131.28, change_pct: 3.42, sentiment_score: 0.72, has_active_signal: true },
-  { ticker: "AAPL", name: "Apple Inc.", price: 213.07, change_pct: 0.54, sentiment_score: 0.45, has_active_signal: false },
-  { ticker: "TSLA", name: "Tesla, Inc.", price: 342.15, change_pct: -1.87, sentiment_score: -0.15, has_active_signal: false },
-  { ticker: "PLTR", name: "Palantir Technologies", price: 24.87, change_pct: 5.21, sentiment_score: 0.58, has_active_signal: true },
-  { ticker: "SOFI", name: "SoFi Technologies", price: 9.87, change_pct: 7.43, sentiment_score: 0.67, has_active_signal: true },
+  { ticker: "NVDA", name: "NVIDIA Corporation", price: 131.28, change_pct: 3.42, sentiment_score: 0.72 },
+  { ticker: "AAPL", name: "Apple Inc.", price: 213.07, change_pct: 0.54, sentiment_score: 0.45 },
+  { ticker: "TSLA", name: "Tesla, Inc.", price: 342.15, change_pct: -1.87, sentiment_score: -0.15 },
+  { ticker: "PLTR", name: "Palantir Technologies", price: 24.87, change_pct: 5.21, sentiment_score: 0.58 },
+  { ticker: "SOFI", name: "SoFi Technologies", price: 9.87, change_pct: 7.43, sentiment_score: 0.67 },
 ];
 
 export const mockSentimentHistory = Array.from({ length: 30 }, (_, i) => {

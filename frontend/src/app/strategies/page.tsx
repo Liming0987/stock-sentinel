@@ -23,7 +23,6 @@ const INTRADAY_STRATEGY_NAMES = new Set(["opening_range_breakout", "vwap_cross"]
 const STRATEGY_COLORS: Record<string, string> = {
   momentum:               "hsl(217, 91%, 60%)",
   rsi_meanreversion:      "hsl(142, 71%, 45%)",
-  sentiment_driven:       "hsl(38,  92%, 50%)",
   bb_breakout:            "hsl(280, 70%, 60%)",
   macd_histogram:         "hsl(340, 82%, 55%)",
   opening_range_breakout: "hsl(173, 80%, 40%)",

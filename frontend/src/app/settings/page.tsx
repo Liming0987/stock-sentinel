@@ -10,17 +10,11 @@ const API = process.env.NEXT_PUBLIC_API_URL || "";
 
 interface NotifSettings {
   notification_phone: string;
-  notify_signals: boolean;
   notify_trade_open: boolean;
   notify_trade_close: boolean;
 }
 
 const TOGGLES: { key: keyof NotifSettings; label: string; desc: string }[] = [
-  {
-    key: "notify_signals",
-    label: "Buy signal alerts",
-    desc: "SMS when a buy signal is generated for a watchlist stock",
-  },
   {
     key: "notify_trade_open",
     label: "Trade opened",
@@ -36,7 +30,6 @@ const TOGGLES: { key: keyof NotifSettings; label: string; desc: string }[] = [
 export default function SettingsPage() {
   const [form, setForm] = useState<NotifSettings>({
     notification_phone: "",
-    notify_signals: true,
     notify_trade_open: true,
     notify_trade_close: true,
   });
@@ -216,7 +209,6 @@ export default function SettingsPage() {
             </p>
             <p>You will receive a text when:</p>
             <ul className="ml-4 list-disc space-y-1">
-              <li>A <strong>buy signal</strong> fires for a stock on your watchlist</li>
               <li>A strategy <strong>opens</strong> a paper trade (shows entry price, stop &amp; target)</li>
               <li>A strategy <strong>closes</strong> a trade (shows exit price &amp; P&amp;L)</li>
             </ul>

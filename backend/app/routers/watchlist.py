@@ -8,7 +8,6 @@ from app.config import settings
 from app.models.database import get_db
 from app.models.stock import Stock
 from app.models.mention import Mention
-from app.models.signal import Signal
 from app.models.watchlist import Watchlist
 from app.services.volume_service import VolumeService
 from app.services.price_service import PriceService
@@ -35,7 +34,7 @@ def _change_pct(stock: Stock) -> float:
 
 @router.get("")
 async def get_watchlist(db: AsyncSession = Depends(get_db)):
-    """Get watchlist with current price, sentiment score, and active signal status."""
+    """Get watchlist with current price and sentiment score."""
     result = await db.execute(
         select(Watchlist, Stock)
         .join(Stock, Watchlist.stock_id == Stock.id)
@@ -57,24 +56,12 @@ async def get_watchlist(db: AsyncSession = Depends(get_db)):
         scores = [float(m.sentiment_score) for m in mentions if m.sentiment_score is not None]
         sentiment_score = round(sum(scores) / len(scores), 3) if scores else 0.0
 
-        signal_result = await db.execute(
-            select(Signal).where(
-                and_(
-                    Signal.stock_id == stock.id,
-                    Signal.expires_at > now,
-                    Signal.outcome.is_(None),
-                )
-            )
-        )
-        has_active_signal = signal_result.scalar_one_or_none() is not None
-
         stocks.append({
             "ticker": stock.ticker,
             "name": stock.name or stock.ticker,
             "price": float(stock.last_price) if stock.last_price else 0,
             "change_pct": _change_pct(stock),
             "sentiment_score": sentiment_score,
-            "has_active_signal": has_active_signal,
         })
 
     return {"stocks": stocks}

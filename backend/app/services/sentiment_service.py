@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 _process_sentiment_service: Optional["SentimentService"] = None
 
 
-def get_sentiment_service(use_finbert: bool = True) -> "SentimentService":
+def get_sentiment_service(use_finbert: bool = False) -> "SentimentService":
     """Return the process-level SentimentService, initialising it on first call."""
     global _process_sentiment_service
     if _process_sentiment_service is None:

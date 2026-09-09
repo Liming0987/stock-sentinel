@@ -28,10 +28,6 @@ export const api = {
     live: (ticker: string) =>
       fetchApi(`/api/prices/${ticker}/live`),
   },
-  signals: {
-    active: () => fetchApi("/api/signals"),
-    history: (limit = 50) => fetchApi(`/api/signals/history?limit=${limit}`),
-  },
   watchlist: {
     list: () => fetchApi("/api/watchlist"),
     add: (ticker: string) =>

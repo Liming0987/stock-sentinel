@@ -20,7 +20,11 @@ celery_app.conf.update(
     task_serializer="json",
     accept_content=["json"],
     result_serializer="json",
-    timezone="UTC",
+    # Beat crontab schedules are interpreted in this timezone. Using ET (not UTC)
+    # keeps market-relative tasks (EOD run, reconciler, daily report) aligned to
+    # the 9:30 AM / 4:00 PM NYSE clock year-round — Celery handles the EDT↔EST
+    # switch automatically, so no per-DST duplicate entries are needed.
+    timezone="America/New_York",
     enable_utc=True,
 
     # Task execution limits — prevent runaway tasks from blocking workers
@@ -62,36 +66,22 @@ celery_app.conf.beat_schedule = {
         "task": "app.workers.tasks.compute_trending",
         "schedule": 1800.0,
     },
-    "generate-signals": {
-        "task": "app.workers.tasks.generate_signals",
-        "schedule": 3600.0,
-    },
-    "cleanup-expired": {
-        "task": "app.workers.tasks.cleanup_expired_signals",
-        "schedule": crontab(hour=0, minute=0),
-    },
+    # Overnight housekeeping, staggered (times are ET):
     "cleanup-strategy-signals": {
         "task": "app.workers.tasks.cleanup_strategy_signals",
-        "schedule": crontab(hour=2, minute=0),
+        "schedule": crontab(hour=2, minute=0),   # 2:00 AM ET
     },
     "refresh-fundamentals": {
         "task": "app.workers.tasks.refresh_fundamentals",
-        "schedule": crontab(hour=1, minute=0),
+        "schedule": crontab(hour=1, minute=0),   # 1:00 AM ET
     },
-    # EOD strategies: run after market close using today's complete candles.
-    # Orders are submitted to Alpaca and queue for tomorrow's 9:30 AM open.
-    # Two crontab entries cover both DST offsets (EDT=UTC-4, EST=UTC-5):
-    #   20:15 UTC = 4:15 PM EDT (April–October)
-    #   21:15 UTC = 4:15 PM EST (November–March)
-    # run_eod() guards against running before market close and deduplicates
-    # via a Redis key so only one of the two entries executes per trading day.
-    "run-strategies-eod-edt": {
+    # EOD strategies: run ~5 min before the close using the near-final closing candle.
+    # Buy limit orders are placed while the market is still open so they fill this
+    # session near the signal price (no overnight gap). ET-based crontab tracks the
+    # 4:00 PM close year-round; run_eod() guards via _is_near_close().
+    "run-strategies-eod": {
         "task": "app.workers.tasks.run_strategies_eod",
-        "schedule": crontab(hour=20, minute=15),
-    },
-    "run-strategies-eod-est": {
-        "task": "app.workers.tasks.run_strategies_eod",
-        "schedule": crontab(hour=21, minute=15),
+        "schedule": crontab(hour=15, minute=55),  # 3:55 PM ET
     },
     "run-strategies-intraday": {
         "task": "app.workers.tasks.run_strategies_intraday",
@@ -99,13 +89,14 @@ celery_app.conf.beat_schedule = {
     },
     "generate-daily-report": {
         "task": "tasks.generate_daily_report",
-        "schedule": crontab(hour=21, minute=0),  # 21:00 UTC = 5pm ET
+        "schedule": crontab(hour=17, minute=0),  # 5:00 PM ET — after the 4:15 EOD run
     },
-    # Reconciler runs at 13:45 UTC (9:45 AM ET) — 15 min after open so that
-    # EOD orders queued the previous evening have time to fill before we check.
+    # Reconciler runs at 6:00 PM ET — after the near-close EOD run and the 4 PM close,
+    # so same-session limit fills are settled and any orphan (e.g. a race-fill our
+    # post-cancel re-check missed) is closed the same evening rather than next morning.
     "reconcile-positions": {
         "task": "tasks.reconcile_positions",
-        "schedule": crontab(hour=13, minute=45),
+        "schedule": crontab(hour=18, minute=0),  # 6:00 PM ET
     },
 }
 

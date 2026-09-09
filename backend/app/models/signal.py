@@ -1,23 +1,5 @@
-from sqlalchemy import Column, Integer, String, Numeric, DateTime, ForeignKey, func
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy import Column, Integer, Numeric, DateTime, ForeignKey, func
 from app.models.database import Base
-
-
-class Signal(Base):
-    __tablename__ = "signals"
-
-    id = Column(Integer, primary_key=True)
-    stock_id = Column(Integer, ForeignKey("stocks.id"), index=True)
-    signal_type = Column(String(10))  # BUY, HOLD, AVOID
-    confidence = Column(Numeric(4, 3))
-    entry_low = Column(Numeric(10, 2))
-    entry_high = Column(Numeric(10, 2))
-    stop_loss = Column(Numeric(10, 2))
-    target = Column(Numeric(10, 2))
-    reasoning = Column(JSONB)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    expires_at = Column(DateTime(timezone=True))
-    outcome = Column(String(10))  # hit_target, hit_stop, expired
 
 
 class TrendingSnapshot(Base):

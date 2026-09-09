@@ -41,7 +41,7 @@ def scrape_reddit(self: Task):
         from app.models.watchlist import Watchlist
 
         scraper = RedditScraper()
-        sentiment = get_sentiment_service(use_finbert=True)
+        sentiment = get_sentiment_service(use_finbert=settings.use_finbert)
         price_service = PriceService()
 
         results = scraper.scrape_all()
@@ -262,76 +262,6 @@ def compute_trending(self: Task):
     return {"stocks_ranked": len(rankings)}
 
 
-@celery_app.task(**_RETRY_DEFAULTS, name="app.workers.tasks.generate_signals")
-def generate_signals(self: Task):
-    """Generate buy/hold/avoid signals based on multi-factor model."""
-    from sqlalchemy import create_engine
-    from sqlalchemy.orm import Session
-    from app.services.signal_service import SignalService
-    from app.models.watchlist import Watchlist
-
-    service = SignalService()
-    signals = service.generate()
-
-    # SMS: notify for any new buy signal on a watchlisted stock
-    try:
-        from app.services.notification_service import NotificationService
-        from app.models.stock import Stock
-        sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
-        engine = create_engine(sync_url)
-        with Session(engine) as s:
-            watchlist_tickers = {
-                row[0] for row in s.execute(
-                    select(Stock.ticker).join(Watchlist, Watchlist.stock_id == Stock.id)
-                ).all()
-            }
-        engine.dispose()
-
-        svc = NotificationService(sync_url)
-        for sig in signals:
-            ticker = sig.get("ticker", "")
-            if sig.get("signal_type") == "buy" and ticker in watchlist_tickers:
-                reasoning = sig.get("reasoning", [])
-                svc.notify_signal(
-                    ticker=ticker,
-                    action="buy",
-                    confidence=sig.get("confidence", 0),
-                    reasoning=reasoning[0] if reasoning else "",
-                )
-    except Exception as e:
-        logger.warning(f"Signal notification failed: {e}")
-
-    return {"signals_generated": len(signals)}
-
-
-@celery_app.task(**_RETRY_DEFAULTS, name="app.workers.tasks.cleanup_expired_signals")
-def cleanup_expired_signals(self: Task):
-    """Mark expired signals and compute outcomes."""
-    from app.services.signal_service import SignalService
-    service = SignalService()
-    cleaned = service.cleanup_expired()
-    return {"signals_expired": cleaned}
-
-
-@celery_app.task(**_RETRY_DEFAULTS, name="app.workers.tasks.run_strategies")
-def run_strategies(self: Task):
-    """Evaluate every registered strategy and open/close paper trades."""
-    from app.services.strategy_runner import StrategyRunner
-    from app.services.notification_service import NotificationService
-    try:
-        runner = StrategyRunner()
-        return runner.run()
-    except Exception as exc:
-        msg = str(exc)
-        logger.error(f"run_strategies failed: {msg}")
-        try:
-            sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
-            NotificationService(sync_url).notify_error("run_strategies", msg)
-        except Exception:
-            pass
-        raise
-
-
 @celery_app.task(**_RETRY_DEFAULTS, name="app.workers.tasks.refresh_fundamentals")
 def refresh_fundamentals(self: Task):
     """Refresh fundamental analysis for all tracked stocks."""
@@ -377,11 +307,11 @@ def cleanup_strategy_signals(self: Task):
 
 @celery_app.task(**_RETRY_DEFAULTS, name="app.workers.tasks.run_strategies_eod")
 def run_strategies_eod(self: Task):
-    """Evaluate strategies at market close using today's complete candles.
+    """Evaluate strategies near the close (~3:55 PM ET) and enter with same-session limit orders.
 
-    Signals are based on today's actual close data. Orders are submitted to Alpaca
-    and queued for execution at tomorrow's 9:30 AM open. The position reconciler
-    (13:45 UTC) updates entry_price to the actual fill price after orders execute.
+    Signals use the near-final closing candle. Buy limit orders are placed while the
+    market is still open so they fill this session at ~the signal price, avoiding the
+    overnight gap of a queued market-on-open order.
     """
     from app.services.strategy_runner import StrategyRunner
     from app.services.notification_service import NotificationService
@@ -405,7 +335,7 @@ def run_strategies_eod(self: Task):
     autoretry_for=(), task_acks_late=True,
 )
 def run_strategies_intraday(self: Task):
-    """Run strategies every minute during market hours using real-time Alpaca prices."""
+    """Run strategies every 5 minutes during market hours using real-time Alpaca prices."""
     from app.services.strategy_runner import StrategyRunner
     from app.services.notification_service import NotificationService
     try:

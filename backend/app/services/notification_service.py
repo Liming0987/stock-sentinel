@@ -16,7 +16,6 @@ from app.config import settings as app_settings
 logger = logging.getLogger(__name__)
 
 SETTING_PHONE = "notification_phone"
-SETTING_SIGNALS = "notify_signals"
 SETTING_TRADE_OPEN = "notify_trade_open"
 SETTING_TRADE_CLOSE = "notify_trade_close"
 
@@ -80,14 +79,6 @@ class NotificationService:
         return self._send_sms(message, phone)
 
     # ── Convenience helpers ──────────────────────────────────────────────
-
-    def notify_signal(self, ticker: str, action: str, confidence: float,
-                      reasoning: str) -> bool:
-        msg = (
-            f"Stock Sentinel: {action.upper()} signal for ${ticker} "
-            f"(confidence {confidence*100:.0f}%). {reasoning}"
-        )
-        return self.notify(msg, SETTING_SIGNALS)
 
     def notify_trade_open(self, strategy: str, ticker: str, price: float,
                           stop: Optional[float], target: Optional[float]) -> bool:

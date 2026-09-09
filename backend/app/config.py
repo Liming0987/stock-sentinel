@@ -14,6 +14,26 @@ class Settings(BaseSettings):
     # Frontend
     frontend_url: str = "http://localhost:3000"
 
+    # Trading
+    # Near-close EOD buy limit = signal price × (1 + eod_limit_buffer).
+    # Higher = more reliable fills but more slippage; lower = tighter entries,
+    # more missed fills on volatile names. Override via EOD_LIMIT_BUFFER env var.
+    eod_limit_buffer: float = 0.005
+
+    # Exit levels. "atr" (default): each strategy sets its own ATR/structure-based
+    # stop & target. "percent": override every buy with a fixed % around the entry
+    # price — target = entry × (1 + target_pct), stop = entry × (1 - stop_pct).
+    # Override via EXIT_MODE / TARGET_PCT / STOP_PCT env vars.
+    exit_mode: str = "atr"     # "atr" | "percent"
+    target_pct: float = 0.05   # +5% target above entry when exit_mode == "percent"
+    stop_pct: float = 0.05     # -5% stop below entry when exit_mode == "percent"
+
+    # Sentiment model. False (default) = VADER only (fast, tiny memory) — chosen to fit
+    # a 2 GB t4g.small host. True = FinBERT (finance-tuned, needs torch + ~1.5 GB RAM, so a
+    # 4 GB instance). Sentiment no longer drives trades; it feeds the trending/sentiment
+    # dashboards only. Override via USE_FINBERT env var.
+    use_finbert: bool = False
+
     # AWS — used by Secrets Manager client
     # All third-party API credentials live in a single secret:
     # stock-sentinel/credentials. See app/services/secrets.py.

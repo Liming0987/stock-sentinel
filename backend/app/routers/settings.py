@@ -6,12 +6,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.database import get_db
 from app.models.settings import AppSetting
 from app.services.notification_service import (
-    SETTING_PHONE, SETTING_SIGNALS, SETTING_TRADE_OPEN, SETTING_TRADE_CLOSE,
+    SETTING_PHONE, SETTING_TRADE_OPEN, SETTING_TRADE_CLOSE,
 )
 
 router = APIRouter()
 
-ALL_KEYS = [SETTING_PHONE, SETTING_SIGNALS, SETTING_TRADE_OPEN, SETTING_TRADE_CLOSE]
+ALL_KEYS = [SETTING_PHONE, SETTING_TRADE_OPEN, SETTING_TRADE_CLOSE]
 
 
 @router.get("")
@@ -20,7 +20,6 @@ async def get_settings(db: AsyncSession = Depends(get_db)):
     rows = {r.key: r.value for r in result.scalars().all()}
     return {
         "notification_phone": rows.get(SETTING_PHONE, ""),
-        "notify_signals": rows.get(SETTING_SIGNALS, "true") != "false",
         "notify_trade_open": rows.get(SETTING_TRADE_OPEN, "true") != "false",
         "notify_trade_close": rows.get(SETTING_TRADE_CLOSE, "true") != "false",
     }
@@ -30,7 +29,6 @@ async def get_settings(db: AsyncSession = Depends(get_db)):
 async def save_settings(body: dict, db: AsyncSession = Depends(get_db)):
     mapping = {
         "notification_phone": SETTING_PHONE,
-        "notify_signals": SETTING_SIGNALS,
         "notify_trade_open": SETTING_TRADE_OPEN,
         "notify_trade_close": SETTING_TRADE_CLOSE,
     }

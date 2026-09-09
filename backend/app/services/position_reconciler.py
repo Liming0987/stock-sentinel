@@ -112,8 +112,8 @@ class PositionReconciler:
                 })
 
             # ── 2. DB trades with NO Alpaca position ──────────────────────────
-            # EOD orders queued after market close may not have filled yet if the
-            # reconciler runs very early. Check the order status before closing.
+            # A still-working or unsettled order may not show a position yet; check
+            # its order status before closing so we don't flatten a pending fill.
             db_only = db_tickers - alpaca_tickers
             for ticker in sorted(db_only):
                 for trade in db_by_ticker[ticker]:
@@ -181,19 +181,26 @@ class PositionReconciler:
                     })
 
             # ── 3. Matched positions — verify qty and sync fill price ─────────
+            # A symbol may back several DB trades (different strategies each holding up
+            # to the per-strategy cap), but Alpaca reports ONE aggregate position per
+            # symbol. So compare Alpaca qty against the SUM of the symbol's open trades,
+            # and only re-anchor entry_price from Alpaca's (blended) avg when a single
+            # trade backs the symbol — otherwise the blend would corrupt per-strategy
+            # entries. Stacked trades already record their own real fill at open.
             matched = db_tickers & alpaca_tickers
             for ticker in sorted(matched):
-                for trade in db_by_ticker[ticker]:
-                    alpaca_qty = alpaca_positions[ticker]["qty"]
-                    alpaca_avg_entry = alpaca_positions[ticker]["avg_entry_price"]
-                    db_qty = float(trade.qty or 0)
-                    db_entry = float(trade.entry_price or 0)
-                    qty_match = abs(alpaca_qty - db_qty) < 0.01
+                trades_for_ticker = db_by_ticker[ticker]
+                alpaca_qty = alpaca_positions[ticker]["qty"]
+                alpaca_avg_entry = alpaca_positions[ticker]["avg_entry_price"]
+                total_db_qty = sum(float(t.qty or 0) for t in trades_for_ticker)
+                qty_match = abs(alpaca_qty - total_db_qty) < 0.01
+                single_trade = len(trades_for_ticker) == 1
 
-                    # For EOD trades, entry_price was recorded as today's close (placeholder).
-                    # Update it to Alpaca's actual fill price when they differ materially.
+                for trade in trades_for_ticker:
+                    db_entry = float(trade.entry_price or 0)
+
                     price_updated = False
-                    if abs(db_entry - alpaca_avg_entry) > 0.005:
+                    if single_trade and abs(db_entry - alpaca_avg_entry) > 0.005:
                         trade.entry_price = Decimal(str(round(alpaca_avg_entry, 4)))
                         session.add(trade)
                         price_updated = True
@@ -212,7 +219,8 @@ class PositionReconciler:
                         price=Decimal(str(alpaca_avg_entry)),
                         meta={
                             "qty_match": qty_match,
-                            "db_qty": db_qty,
+                            "db_qty": float(trade.qty or 0),
+                            "total_db_qty": total_db_qty,
                             "alpaca_qty": alpaca_qty,
                             "alpaca_unrealized_pl": alpaca_positions[ticker].get("unrealized_pl"),
                             "price_updated": price_updated,
@@ -224,70 +232,18 @@ class PositionReconciler:
                         "trade_id": trade.id,
                         "ticker": ticker,
                         "qty_match": qty_match,
-                        "db_qty": db_qty,
+                        "db_qty": float(trade.qty or 0),
+                        "total_db_qty": total_db_qty,
                         "alpaca_qty": alpaca_qty,
                         "price_updated": price_updated,
                     })
 
-            # ── 4. Correct placeholder exit prices for EOD-closed trades ─────
-            # When a position is closed at EOD the sell order queues for next
-            # open and alpaca_close_order_id is stored on the trade. Here we
-            # poll those orders and update exit_price / pnl to the actual fill.
-            from datetime import timedelta
-            cutoff = datetime.now(timezone.utc) - timedelta(days=2)
-            eod_closed = session.execute(
-                select(Trade).where(
-                    and_(
-                        Trade.status == "closed",
-                        Trade.alpaca_close_order_id.isnot(None),
-                        Trade.closed_at >= cutoff,
-                    )
-                )
-            ).scalars().all()
-
-            exit_prices_fixed = []
-            for trade in eod_closed:
-                try:
-                    from alpaca.trading.requests import GetOrderByIdRequest
-                    order = self.alpaca.trading_client.get_order_by_id(
-                        trade.alpaca_close_order_id,
-                        filter=GetOrderByIdRequest(nested=False),
-                    )
-                    if not (order.filled_avg_price and str(getattr(order.status, "value", order.status)) == "filled"):
-                        continue
-                    fill_price = float(order.filled_avg_price)
-                    old_exit = float(trade.exit_price or 0)
-                    if abs(fill_price - old_exit) <= 0.005:
-                        trade.alpaca_close_order_id = None
-                        session.add(trade)
-                        continue
-                    entry = float(trade.entry_price or 0)
-                    qty = float(trade.qty or 0)
-                    trade.exit_price = Decimal(str(round(fill_price, 4)))
-                    trade.pnl = Decimal(str(round((fill_price - entry) * qty, 2)))
-                    trade.return_pct = Decimal(str(round((fill_price - entry) / entry, 4) if entry else 0))
-                    trade.alpaca_close_order_id = None
-                    session.add(trade)
-                    logger.info(
-                        f"[Reconciler] Trade #{trade.id} ({trade.ticker}) exit_price "
-                        f"{old_exit} → {fill_price} (actual fill)"
-                    )
-                    exit_prices_fixed.append({"trade_id": trade.id, "ticker": trade.ticker,
-                                              "old_exit": old_exit, "fill_price": fill_price})
-                except Exception as e:
-                    logger.warning(
-                        f"[Reconciler] Could not fix exit price for trade #{trade.id} "
-                        f"(order {trade.alpaca_close_order_id}): {e}"
-                    )
-
-            summary["exit_prices_fixed"] = exit_prices_fixed
             session.commit()
 
         engine.dispose()
         logger.info(
             f"[Reconciler] Done: {len(summary['orphan_cancelled'])} orphans cancelled, "
             f"{len(summary['db_orphans_closed'])} DB orphans closed, "
-            f"{len(summary['matched'])} matched, "
-            f"{len(exit_prices_fixed)} exit prices corrected"
+            f"{len(summary['matched'])} matched"
         )
         return summary

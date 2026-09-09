@@ -3,6 +3,11 @@ import numpy as np
 import pandas as pd
 from typing import List, Optional, Dict, Any
 
+# Minimum daily bars for a valid detection. Below ~200 the 150- and 200-span EMAs
+# collapse to the same series (min(span, n)), so the Stage-2 50/150/200 stack can
+# never be strictly ordered and the 52-week high isn't real. Require a full stack.
+_MIN_BARS = 200
+
 
 def _get_date(df: pd.DataFrame, idx: int) -> str:
     row_idx = df.index[idx]
@@ -51,8 +56,8 @@ def detect_vcp(df: pd.DataFrame) -> dict:
         "note": "Insufficient data.",
     }
 
-    if len(df) < 40:
-        return EMPTY
+    if len(df) < _MIN_BARS:
+        return {**EMPTY, "note": f"Need ≥{_MIN_BARS} bars for a valid 50/150/200-EMA stack."}
 
     close = df["Close"]
     high = df["High"]

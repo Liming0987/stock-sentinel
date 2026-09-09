@@ -1,4 +1,4 @@
-"""Recent activity feed: buy signals, trade opens, trade closes, task errors."""
+"""Recent activity feed: trade opens, trade closes, task errors."""
 from datetime import datetime, timezone, timedelta
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy import select, desc, and_
@@ -6,7 +6,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.database import get_db
 from app.models.stock import Stock
-from app.models.signal import Signal
 from app.models.trade import Strategy as StrategyRow, Trade
 from app.models.task_error import TaskError
 
@@ -21,28 +20,6 @@ async def get_notifications(
 ):
     cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
     notifications = []
-
-    # ── Buy signals ────────────────────────────────────────────────────────
-    sig_result = await db.execute(
-        select(Signal, Stock)
-        .join(Stock, Signal.stock_id == Stock.id)
-        .where(and_(Signal.signal_type == "buy", Signal.created_at >= cutoff))
-        .order_by(desc(Signal.created_at))
-        .limit(limit)
-    )
-    for sig, stock in sig_result.all():
-        reasoning = ""
-        if sig.reasoning:
-            reasons = sig.reasoning if isinstance(sig.reasoning, list) else []
-            reasoning = reasons[0] if reasons else ""
-        notifications.append({
-            "id": f"signal-{sig.id}",
-            "type": "signal",
-            "ticker": stock.ticker,
-            "message": f"Buy signal for ${stock.ticker} — {int((sig.confidence or 0) * 100)}% confidence. {reasoning}".strip(),
-            "timestamp": sig.created_at.isoformat(),
-            "meta": {"confidence": float(sig.confidence or 0)},
-        })
 
     # ── Trade opens ────────────────────────────────────────────────────────
     strats_result = await db.execute(select(StrategyRow))

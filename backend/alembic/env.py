@@ -9,12 +9,13 @@ from alembic import context
 from app.config import settings
 from app.models.database import Base
 
-# Import every model so Base.metadata is fully populated
-from app.models.stock import Stock  # noqa: F401
-from app.models.mention import RedditPost, StocktwitsMessage, Mention  # noqa: F401
-from app.models.signal import Signal, TrendingSnapshot  # noqa: F401
-from app.models.trade import Strategy, Trade  # noqa: F401
-from app.models.watchlist import Watchlist  # noqa: F401
+# Import every model module so Base.metadata is fully populated. The squashed initial
+# migration (0000) builds the schema from Base.metadata.create_all, so this must list
+# ALL models. Keep in sync with app/models/.
+from app.models import (  # noqa: F401
+    stock, mention, signal, trade, watchlist, settings,
+    fundamentals, strategy_signal, daily_report, task_error, trade_event,
+)
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.database_url)

@@ -34,6 +34,10 @@ class AlpacaService:
             from alpaca.trading.client import TradingClient
             if not self.is_configured:
                 raise RuntimeError("Alpaca credentials not configured")
+            # The `paper` flag selects both the credentials (see secrets.py) and the
+            # base endpoint the SDK targets:
+            #   paper=True  → https://paper-api.alpaca.markets/v2  (paper account)
+            #   paper=False → https://api.alpaca.markets/v2        (LIVE account, real money)
             self._trading_client = TradingClient(
                 api_key=self.api_key,
                 secret_key=self.api_secret,
@@ -77,21 +81,38 @@ class AlpacaService:
         order_type: str = "market",
         time_in_force: str = "day",
         client_order_id: Optional[str] = None,
+        limit_price: Optional[float] = None,
     ):
-        """Submit a market order. Returns the alpaca Order object."""
-        from alpaca.trading.requests import MarketOrderRequest
+        """Submit a market or limit order. Returns the alpaca Order object.
+
+        Pass order_type="limit" with limit_price for a limit order (used by the
+        near-close EOD entry). Fractional quantities require time_in_force="day".
+        """
+        from alpaca.trading.requests import MarketOrderRequest, LimitOrderRequest
         from alpaca.trading.enums import OrderSide, TimeInForce
 
         side_enum = OrderSide.BUY if side.lower() == "buy" else OrderSide.SELL
         tif_enum = TimeInForce.DAY if time_in_force == "day" else TimeInForce.GTC
 
-        req = MarketOrderRequest(
-            symbol=symbol,
-            qty=qty,
-            side=side_enum,
-            time_in_force=tif_enum,
-            client_order_id=client_order_id,
-        )
+        if order_type == "limit":
+            if limit_price is None:
+                raise ValueError("limit_price is required for a limit order")
+            req = LimitOrderRequest(
+                symbol=symbol,
+                qty=qty,
+                side=side_enum,
+                time_in_force=tif_enum,
+                limit_price=round(float(limit_price), 2),
+                client_order_id=client_order_id,
+            )
+        else:
+            req = MarketOrderRequest(
+                symbol=symbol,
+                qty=qty,
+                side=side_enum,
+                time_in_force=tif_enum,
+                client_order_id=client_order_id,
+            )
         return self.trading_client.submit_order(req)
 
     def get_positions(self):
@@ -145,6 +166,36 @@ class AlpacaService:
         logger.warning(f"Order {order_id} not filled within {timeout}s")
         return None
 
+    def get_order_fill_details(self, order_id: str, timeout: int = 20):
+        """Poll an order and return (filled_qty, filled_avg_price), or None.
+
+        Like get_order_fill but also returns the actual filled quantity so a partial
+        fill can be recorded at its true size. Returns as soon as the order is fully
+        filled, or terminal (canceled/expired/rejected) — in which case a partial fill
+        that posted before termination is returned rather than None. Non-terminal /
+        still-working orders keep polling until timeout, then return None.
+        """
+        import time
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            try:
+                from alpaca.trading.requests import GetOrderByIdRequest
+                order = self.trading_client.get_order_by_id(
+                    order_id, filter=GetOrderByIdRequest(nested=False)
+                )
+                status = order.status
+                filled_qty = float(order.filled_qty or 0)
+                if status == "filled" and order.filled_avg_price:
+                    return (filled_qty, float(order.filled_avg_price))
+                if status in ("canceled", "expired", "rejected"):
+                    if filled_qty > 0 and order.filled_avg_price:
+                        return (filled_qty, float(order.filled_avg_price))
+                    return None
+            except Exception as e:
+                logger.warning(f"get_order_fill_details poll error: {e}")
+            time.sleep(0.5)
+        return None
+
     def close_position(self, symbol: str) -> Optional[float]:
         """Close an entire position by symbol and return filled_avg_price, or None on failure."""
         try:
@@ -155,20 +206,29 @@ class AlpacaService:
             logger.warning(f"close_position failed for {symbol}: {e}")
             return None
 
-    def close_position_with_order_id(self, symbol: str) -> tuple:
-        """Close a position and return (fill_price, order_id).
+    def sell_qty_with_order_id(self, symbol: str, qty: float) -> tuple:
+        """Sell `qty` shares of `symbol` (market order) and return (fill_price, order_id).
 
-        fill_price is None when the market is closed and the sell is queued for
-        next open. order_id is always set on a successful submission so the
-        reconciler can fetch the actual fill price the following morning.
+        Sells only this quantity so closing ONE strategy's position does not liquidate
+        other strategies' holdings in the same symbol (Alpaca tracks one position per
+        symbol). If it does not fill within the poll window (e.g. market closed or
+        illiquid), the order is CANCELLED rather than left queued to fill at the next
+        open — fill_price is None in that case and the caller should leave the trade
+        open to retry.
         """
         try:
-            order = self.trading_client.close_position(symbol)
+            order = self.submit_order(symbol=symbol, qty=qty, side="sell")
             order_id = str(order.id)
             fill_price = self.get_order_fill(order_id)
+            if fill_price is None:
+                try:
+                    self.cancel_order(order_id)
+                    logger.warning(f"sell {qty} {symbol} not filled — order {order_id} cancelled")
+                except Exception as ce:
+                    logger.error(f"Failed to cancel unfilled sell {order_id} for {symbol}: {ce}")
             return fill_price, order_id
         except Exception as e:
-            logger.warning(f"close_position_with_order_id failed for {symbol}: {e}")
+            logger.warning(f"sell_qty_with_order_id failed for {symbol} x{qty}: {e}")
             return None, None
 
     def get_latest_prices(self, symbols: list) -> dict:

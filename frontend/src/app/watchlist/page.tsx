@@ -42,12 +42,6 @@ function WatchlistCard({
 }) {
   return (
     <Card className="relative overflow-hidden group">
-      {stock.has_active_signal && (
-        <div className="absolute right-3 top-3 z-10">
-          <Badge variant="bullish" className="text-[10px]">SIGNAL</Badge>
-        </div>
-      )}
-
       <Link href={`/watchlist/${stock.ticker}/analysis`} className="block">
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 group-hover:text-primary transition-colors">

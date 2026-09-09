@@ -15,7 +15,7 @@ class TradeEvent(Base):
     trade_id = Column(Integer, ForeignKey("trades.id", ondelete="SET NULL"), nullable=True, index=True)
 
     # Event classification
-    event_type = Column(String(30), nullable=False)
+    event_type = Column(String(30), nullable=False, index=True)
     # Valid values:
     #   opened          — trade successfully opened (Alpaca confirmed fill)
     #   closed          — trade successfully closed (Alpaca confirmed fill)

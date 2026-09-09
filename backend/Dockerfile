@@ -8,20 +8,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
+# Install Python dependencies. Sentiment uses VADER only (settings.use_finbert=False), so
+# torch + transformers + the FinBERT model download are intentionally omitted — this keeps
+# the image small and the runtime footprint under 2 GB (t4g.small). To enable FinBERT,
+# re-add `transformers` to requirements.txt and `pip install torch --index-url .../whl/cpu`.
 COPY requirements.txt .
-RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Download spaCy model
-RUN python -m spacy download en_core_web_sm
-
-# Pre-download FinBERT model to avoid cold-start latency at runtime.
-# Falls back to runtime download if HuggingFace is unavailable or rate-limiting.
-RUN python -c "from transformers import AutoModelForSequenceClassification, AutoTokenizer; \
-    AutoTokenizer.from_pretrained('ProsusAI/finbert'); \
-    AutoModelForSequenceClassification.from_pretrained('ProsusAI/finbert')" || \
-    echo "WARNING: FinBERT pre-download failed; model will be downloaded on first use"
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 

@@ -8,14 +8,14 @@ from app.config import settings
 from app.models.database import engine, Base
 from app.models.stock import Stock
 from app.models.mention import RedditPost, StocktwitsMessage, Mention
-from app.models.signal import Signal, TrendingSnapshot
+from app.models.signal import TrendingSnapshot  # noqa: F401 — registers table with Base
 from app.models.trade import Strategy, Trade
 from app.models.watchlist import Watchlist
 from app.models.settings import AppSetting  # noqa: F401 — registers table with Base
 from app.models.fundamentals import StockFundamentals  # noqa: F401 — registers table with Base
 from app.models.strategy_signal import StrategySignal  # noqa: F401 — registers table with Base
 from app.models.daily_report import DailyReport  # noqa: F401 — registers table with Base
-from app.routers import trending, sentiment, prices, signals, watchlist, auth, strategies as strategies_router
+from app.routers import trending, sentiment, prices, watchlist, auth, strategies as strategies_router
 from app.routers import settings as settings_router
 from app.routers import notifications as notifications_router
 from app.routers import backtest as backtest_router
@@ -57,7 +57,6 @@ app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(trending.router, prefix="/api/trending", tags=["trending"])
 app.include_router(sentiment.router, prefix="/api/sentiment", tags=["sentiment"])
 app.include_router(prices.router, prefix="/api/prices", tags=["prices"])
-app.include_router(signals.router, prefix="/api/signals", tags=["signals"])
 app.include_router(watchlist.router, prefix="/api/watchlist", tags=["watchlist"])
 app.include_router(strategies_router.router, prefix="/api/strategies", tags=["strategies"])
 app.include_router(settings_router.router, prefix="/api/settings", tags=["settings"])

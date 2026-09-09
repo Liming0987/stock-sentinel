@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Numeric, DateTime, ForeignKey, Text, Boolean, func
+from sqlalchemy import Column, Integer, String, Numeric, DateTime, ForeignKey, Text, Boolean, Index, func, text
 from app.models.database import Base
 
 
@@ -57,9 +57,22 @@ class Trade(Base):
     # Alpaca order tracking (for paper trading via Alpaca)
     alpaca_order_id = Column(String(50))
     alpaca_client_order_id = Column(String(50))
-    alpaca_close_order_id = Column(String(50))  # sell order ID; set when close queued after hours, cleared by reconciler
+    alpaca_close_order_id = Column(String(50))  # deprecated: closes no longer queue after hours (unfilled sells are cancelled + retried); column kept for historical rows
 
     reasoning = Column(Text)  # why the strategy entered
 
     opened_at = Column(DateTime(timezone=True), server_default=func.now(), index=True)
     closed_at = Column(DateTime(timezone=True))
+
+    __table_args__ = (
+        # Composite indexes for strategy-runner open-position and dedup queries.
+        Index("ix_trades_strategy_status", "strategy_id", "status"),
+        Index("ix_trades_ticker_status", "ticker", "status"),
+        # Partial index over rows that carry an Alpaca order id.
+        Index("ix_trades_alpaca_order_id", "alpaca_order_id",
+              postgresql_where=text("alpaca_order_id IS NOT NULL")),
+        # Partial UNIQUE index: at most one OPEN trade per (strategy, stock) — prevents
+        # overlapping intraday runs from opening duplicate trades for the same setup.
+        Index("uq_trades_open_strategy_stock", "strategy_id", "stock_id",
+              unique=True, postgresql_where=text("status = 'open'")),
+    )

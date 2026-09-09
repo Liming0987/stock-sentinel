@@ -23,4 +23,5 @@ class StrategySignal(Base):
 
     __table_args__ = (
         Index("ix_strategy_signals_strategy_created", "strategy_id", "created_at"),
+        Index("ix_strategy_signals_action_created", "action", "created_at"),
     )

@@ -4,8 +4,9 @@ Description: Stock Sentinel — EC2 + ECR infrastructure
 Parameters:
   InstanceType:
     Type: String
-    Default: t3.medium
-    AllowedValues: [t3.micro, t3.small, t3.medium, t3.large]
+    Default: t4g.small
+    AllowedValues: [t4g.micro, t4g.small, t4g.medium, t4g.large]
+    Description: ARM Graviton (t4g) — ~18-20% cheaper than x86 t3. Requires arm64 Docker images and an arm64 AMI.
   KeyPairName:
     Type: String
     Default: stock-sentinel-key
@@ -13,11 +14,13 @@ Parameters:
   AmiId:
     Type: String
     Description: >
-      Pinned Amazon Linux 2023 AMI ID (us-east-1). Update manually when you want to upgrade the OS.
-      DO NOT use a dynamic SSM parameter here — a dynamic value causes CloudFormation to replace
-      the EC2 instance on every AMI update, wiping all Docker volumes.
-      To find the latest AMI: aws ssm get-parameter --name /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 --query Parameter.Value --output text
-    Default: ami-0521cb2d60cfbb1a6
+      Pinned Amazon Linux 2023 **arm64** AMI ID (us-east-1) — must be arm64 for t4g/Graviton.
+      Update manually when you want to upgrade the OS. DO NOT use a dynamic SSM parameter here —
+      a dynamic value causes CloudFormation to replace the EC2 instance on every AMI update, wiping
+      all Docker volumes.
+      To find the latest arm64 AMI:
+      aws ssm get-parameter --name /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64 --query Parameter.Value --output text
+    Default: ami-07987a01dcdb011ef
   DataVolumeAvailabilityZone:
     Type: String
     Default: us-east-1c
@@ -74,6 +77,10 @@ Resources:
   # ── Secrets Manager ──
   # NOTE: Values below are PLACEHOLDER. Populate via the AWS Console after stack creation.
   # All credentials share one secret: stock-sentinel/credentials
+  # Alpaca uses SEPARATE key pairs for paper vs live (get_alpaca_credentials in secrets.py):
+  #   alpaca_paper: true  → alpaca_paper_api_key / alpaca_paper_api_secret (paper-api endpoint)
+  #   alpaca_paper: false → alpaca_api_key / alpaca_api_secret (LIVE endpoint, real money)
+  # Both pairs are seeded so switching is just editing values + flipping alpaca_paper.
 
   AppSecret:
     Type: AWS::SecretsManager::Secret
@@ -85,6 +92,8 @@ Resources:
           "reddit_client_id":"PLACEHOLDER",
           "reddit_client_secret":"PLACEHOLDER",
           "reddit_user_agent":"stock-sentinel/1.0",
+          "alpaca_paper_api_key":"PLACEHOLDER",
+          "alpaca_paper_api_secret":"PLACEHOLDER",
           "alpaca_api_key":"PLACEHOLDER",
           "alpaca_api_secret":"PLACEHOLDER",
           "alpaca_paper":true
@@ -177,7 +186,7 @@ Resources:
     UpdateReplacePolicy: Delete
     Properties:
       AvailabilityZone: !Ref DataVolumeAvailabilityZone
-      Size: 50
+      Size: 20
       VolumeType: gp3
       Encrypted: true
       Tags:
@@ -206,7 +215,7 @@ Resources:
       BlockDeviceMappings:
         - DeviceName: /dev/xvda
           Ebs:
-            VolumeSize: 30
+            VolumeSize: 20
             VolumeType: gp3
             DeleteOnTermination: true
       UserData:
