@@ -13,9 +13,10 @@ from app.models.database import Base
 # migration (0000) builds the schema from Base.metadata.create_all, so this must list
 # ALL models. Keep in sync with app/models/.
 from app.models import (  # noqa: F401
-    stock, mention, signal, trade, watchlist, settings,
+    stock, mention, signal, trade, watchlist,
     fundamentals, strategy_signal, daily_report, task_error, trade_event,
 )
+import app.models.settings  # noqa: F401 — shadows avoided by not using `settings` name
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.database_url)
