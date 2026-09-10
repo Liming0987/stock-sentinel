@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock Sentinel — {{ report_date }}</title>
+<style>
+/* ── Reset & variables ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #fafafa;
+  --surface:  #ffffff;
+  --border:   #e5e7eb;
+  --text:     #111827;
+  --muted:    #6b7280;
+  --faint:    #9ca3af;
+  --accent:   #2563eb;
+  --bullish:  #16a34a;
+  --bearish:  #dc2626;
+  --neutral:  #6b7280;
+  --mixed:    #d97706;
+  --radius:   8px;
+  --shadow:   0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #0f1117;
+    --surface: #1a1d27;
+    --border:  #2d3142;
+    --text:    #f0f2f5;
+    --muted:   #9ca3af;
+    --faint:   #6b7280;
+    --accent:  #60a5fa;
+    --bullish: #4ade80;
+    --bearish: #f87171;
+    --neutral: #9ca3af;
+    --mixed:   #fbbf24;
+    --shadow:  0 1px 3px rgba(0,0,0,.4);
+  }
+}
+/* ── Base ────────────────────────────────────────────────────────── */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 2rem 1.5rem;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+h3 { font-size: 1rem; font-weight: 600; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin-bottom: 0.75rem; }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.3rem; }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+/* ── Card ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+/* ── Header ──────────────────────────────────────────────────────── */
+.report-header { margin-bottom: 2rem; }
+.report-header .kicker {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
+}
+.report-header h1 { margin-bottom: 0.3rem; }
+.meta-row { display: flex; gap: 1.5rem; flex-wrap: wrap; color: var(--muted); font-size: 0.82rem; margin-top: 0.5rem; }
+.meta-row span strong { color: var(--text); }
+/* ── Sentiment pill ──────────────────────────────────────────────── */
+.pill {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em; border-radius: 99px;
+}
+.pill-bullish  { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-bearish  { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-neutral  { background: color-mix(in srgb, var(--neutral) 15%, transparent); color: var(--neutral); }
+.pill-mixed    { background: color-mix(in srgb, var(--mixed)   15%, transparent); color: var(--mixed);   }
+/* ── Conviction bar ──────────────────────────────────────────────── */
+.conv-bar {
+  display: inline-block; width: 60px; height: 5px;
+  background: var(--border); border-radius: 3px; vertical-align: middle;
+  position: relative; overflow: hidden;
+}
+.conv-bar-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--accent); border-radius: 3px;
+}
+/* ── Ticker label ────────────────────────────────────────────────── */
+.ticker { font-family: "SF Mono", "Fira Code", ui-monospace, monospace; font-size: 0.9em; font-weight: 600; }
+/* ── Consensus table ─────────────────────────────────────────────── */
+.consensus-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.consensus-table thead th {
+  text-align: left; padding: 0.5rem 0.75rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+}
+.consensus-table tbody td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.consensus-table tbody tr:last-child td { border-bottom: none; }
+.consensus-table .thesis-cell { color: var(--muted); font-size: 0.82rem; max-width: 240px; }
+/* ── Section headings ────────────────────────────────────────────── */
+.section-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 0.75rem;
+}
+/* ── Channel cards ───────────────────────────────────────────────── */
+.channel-name { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-bottom: 0.25rem; }
+.video-title a { font-size: 1rem; font-weight: 600; color: var(--text); }
+.video-title a:hover { color: var(--accent); }
+.summary-text { color: var(--muted); font-size: 0.88rem; margin-top: 0.75rem; }
+.stock-chip-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+.stock-chip {
+  font-size: 0.75rem; padding: 0.2em 0.55em; border-radius: 4px;
+  border: 1px solid var(--border); color: var(--muted); background: var(--bg);
+}
+.stock-chip .ticker { color: var(--text); }
+/* ── By-stock blocks ─────────────────────────────────────────────── */
+.stock-block { margin-bottom: 0.75rem; }
+.stock-block-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+.stock-block-header h3 { font-size: 1rem; }
+.mention-item { padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.87rem; }
+.mention-item:last-child { border-bottom: none; }
+.mention-channel { font-weight: 600; color: var(--text); }
+.mention-thesis { color: var(--muted); margin-top: 0.2rem; }
+.mention-points { margin-top: 0.3rem; color: var(--muted); font-size: 0.83rem; }
+/* ── Sources ─────────────────────────────────────────────────────── */
+.source-item { font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+.source-item:last-child { border-bottom: none; }
+.source-channel { font-size: 0.75rem; color: var(--faint); }
+/* ── Disclaimer ──────────────────────────────────────────────────── */
+.disclaimer {
+  font-size: 0.78rem; color: var(--faint); line-height: 1.5;
+  border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 2rem;
+}
+/* ── Nav / TOC ───────────────────────────────────────────────────── */
+.toc { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem; margin-bottom: 2rem; }
+.toc a { color: var(--muted); }
+.toc a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ── Header ──────────────────────────────────────────────────── -->
+<div class="report-header">
+  <div class="kicker">Stock Sentinel</div>
+  <h1>Daily YouTube Digest — {{ report_date }}</h1>
+  <div class="meta-row">
+    <span>Generated <strong>{{ generated_at }}</strong></span>
+    <span><strong>{{ video_count }}</strong> video{{ 's' if video_count != 1 }}</span>
+    <span><strong>{{ stock_count }}</strong> stock{{ 's' if stock_count != 1 }} identified</span>
+    {% if consensus %}<span><strong>{{ consensus|length }}</strong> consensus pick{{ 's' if consensus|length != 1 }}</span>{% endif %}
+  </div>
+</div>
+
+<!-- ── TOC ──────────────────────────────────────────────────────── -->
+<nav class="toc" aria-label="Jump to section">
+  {% if consensus %}<a href="#consensus">Consensus</a>{% endif %}
+  <a href="#by-channel">By Channel</a>
+  <a href="#by-stock">By Stock</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<!-- ── Consensus picks ──────────────────────────────────────────── -->
+{% if consensus %}
+<section id="consensus">
+  <div class="section-title">Today's Consensus — {{ consensus|length }} stock{{ 's' if consensus|length != 1 }} mentioned by 2+ creators</div>
+  <div class="card" style="padding: 0; overflow: hidden;">
+    <table class="consensus-table">
+      <thead>
+        <tr>
+          <th>Stock</th>
+          <th>Sentiment</th>
+          <th>Conviction</th>
+          <th>Channels</th>
+          <th>Top thesis</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in consensus %}
+        <tr>
+          <td>
+            <a href="#stock-{{ s.symbol or s.company_name|lower|replace(' ','-') }}">
+              {% if s.symbol %}<span class="ticker">{{ s.symbol }}</span>{% endif %}
+              {% if s.company_name and s.company_name != s.symbol %}
+                <span style="color:var(--muted);font-size:0.8rem;margin-left:0.3rem">{{ s.company_name }}</span>
+              {% endif %}
+            </a>
+          </td>
+          <td>
+            <span class="pill pill-{{ s.overall_sentiment }}">{{ s.overall_sentiment }}</span>
+          </td>
+          <td>
+            <span class="conv-bar" title="{{ (s.avg_conviction * 100)|round|int }}%">
+              <span class="conv-bar-fill" style="width:{{ (s.avg_conviction * 100)|round|int }}%"></span>
+            </span>
+            <span style="font-size:0.78rem;color:var(--muted);margin-left:0.3rem">{{ (s.avg_conviction * 100)|round|int }}%</span>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted)">{{ s.channel_count }}</td>
+          <td class="thesis-cell">{{ s.top_thesis }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+<hr>
+{% endif %}
+
+<!-- ── By channel ────────────────────────────────────────────────── -->
+<section id="by-channel">
+  <div class="section-title">By Channel — {{ analyses|length }} video{{ 's' if analyses|length != 1 }} analyzed</div>
+  {% for analysis in analyses %}
+  <div class="card">
+    <div class="channel-name">{{ analysis.channel_name }}</div>
+    <div class="video-title">
+      <a href="{{ analysis.video_url }}" target="_blank" rel="noopener noreferrer">
+        {{ analysis.video_title }}
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      {{ analysis.published_at[:10] if analysis.published_at }} ·
+      {{ analysis.duration_minutes|round(0)|int }}m
+    </div>
+
+    {% if analysis.summary %}
+    <div class="summary-text">
+      {{ analysis.summary | replace('\n', '<br>') | safe }}
+    </div>
+    {% endif %}
+
+    {% if analysis.stocks %}
+    <div class="stock-chip-list">
+      {% for stock in analysis.stocks %}
+      <a href="#stock-{{ stock.symbol or stock.company_name|lower|replace(' ','-') }}"
+         class="stock-chip">
+        {% if stock.symbol %}<span class="ticker">{{ stock.symbol }}</span>{% endif %}
+        {% if stock.company_name and stock.company_name != stock.symbol %}
+          {{ ' · ' if stock.symbol }}{{ stock.company_name }}
+        {% endif %}
+        <span class="pill pill-{{ stock.sentiment }}" style="margin-left:0.25rem">{{ stock.sentiment[0]|upper }}</span>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if analysis.key_theses %}
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        {% for thesis in analysis.key_theses %}
+        <li>{{ thesis }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</section>
+<hr>
+
+<!-- ── By stock ──────────────────────────────────────────────────── -->
+{% if all_stocks %}
+<section id="by-stock">
+  <div class="section-title">By Stock — {{ all_stocks|length }} mentioned today</div>
+  {% for stock in all_stocks %}
+  <div class="card stock-block" id="stock-{{ stock.symbol or stock.company_name|lower|replace(' ','-') }}">
+    <div class="stock-block-header">
+      <h3>
+        {% if stock.symbol %}<span class="ticker">{{ stock.symbol }}</span>{% endif %}
+        {% if stock.company_name and stock.company_name != stock.symbol %}
+          {% if stock.symbol %}<span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · {{ stock.company_name }}</span>
+          {% else %}{{ stock.company_name }}{% endif %}
+        {% endif %}
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">{{ stock.mentions|length }} mention{{ 's' if stock.mentions|length != 1 }}</span>
+    </div>
+    {% for mention in stock.mentions %}
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">{{ mention.channel }}</span>
+        <span class="pill pill-{{ mention.sentiment }}">{{ mention.sentiment }}</span>
+        <span class="conv-bar" title="Conviction {{ (mention.conviction * 100)|round|int }}%">
+          <span class="conv-bar-fill" style="width:{{ (mention.conviction * 100)|round|int }}%"></span>
+        </span>
+        {% if mention.price_target %}
+        <span style="font-size:0.78rem;color:var(--muted)">Target: {{ mention.price_target }}</span>
+        {% endif %}
+      </div>
+      {% if mention.thesis %}
+      <div class="mention-thesis">{{ mention.thesis }}</div>
+      {% endif %}
+      {% if mention.key_points %}
+      <ul class="mention-points">
+        {% for pt in mention.key_points %}
+        <li>{{ pt }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="{{ mention.video_url }}" target="_blank" rel="noopener noreferrer">{{ mention.video_title }}</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</section>
+<hr>
+{% endif %}
+
+<!-- ── Sources ───────────────────────────────────────────────────── -->
+<section id="sources">
+  <div class="section-title">Sources — {{ sources|length }} video{{ 's' if sources|length != 1 }}</div>
+  <div class="card" style="padding:0.5rem 1.5rem;">
+    {% for s in sources %}
+    <div class="source-item">
+      <div class="source-channel">{{ s.channel }}</div>
+      <a href="{{ s.url }}" target="_blank" rel="noopener noreferrer">{{ s.title }}</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ── Disclaimer ────────────────────────────────────────────────── -->
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> This report is generated automatically by Claude (Anthropic) summarizing publicly available YouTube content.
+  All summaries are paraphrased — they are not verbatim quotes from creators.
+  Nothing here constitutes financial advice. Do your own research before making any investment decisions.
+  Stock Sentinel is a personal learning tool, not a financial advisory service.
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>

@@ -51,7 +51,6 @@ type Analysis = {
   published_at: string;
   duration_minutes: number;
   summary: string;
-  macro_topics: string[];
   stocks: VideoStock[];
   key_theses: string[];
   warnings_or_risks: string[];
@@ -64,17 +63,6 @@ type AllStockEntry = {
   mentions: StockMention[];
 };
 
-type Source = {
-  channel: string;
-  title: string;
-  url: string;
-};
-
-type MacroTopic = {
-  title: string;
-  description: string;
-};
-
 type ReportData = {
   date: string;
   generated_at: string;
@@ -83,8 +71,6 @@ type ReportData = {
   consensus: ConsensusItem[];
   analyses: Analysis[];
   all_stocks: AllStockEntry[];
-  macro_topics: MacroTopic[];
-  sources: Source[];
 };
 
 // ── Helpers ────────────────────────────────────────────────────────────────
@@ -303,77 +289,9 @@ function StocksTab({ data, filteredUrls }: { data: ReportData; filteredUrls: Set
   );
 }
 
-function MacroTab({ data, filteredUrls }: { data: ReportData; filteredUrls: Set<string> }) {
-  // macro_topics have no per-video attribution in the JSON, so derive them from
-  // filtered analyses' macro_topics arrays
-  const filteredAnalyses = data.analyses.filter((a) => filteredUrls.has(a.video_url));
-  const seen = new Set<string>();
-  const topics = filteredAnalyses.flatMap((a) =>
-    (a.macro_topics ?? []).map((t) => ({ title: t, description: "" }))
-  ).filter((t) => {
-    if (seen.has(t.title)) return false;
-    seen.add(t.title);
-    return true;
-  });
-  if (topics.length === 0) {
-    return (
-      <div className="rounded-xl border bg-muted/30 py-12 text-center text-sm text-muted-foreground">
-        No macro topics recorded.
-      </div>
-    );
-  }
-  return (
-    <div className="space-y-3">
-      <p className="text-xs text-muted-foreground">
-        {topics.length} themes discussed across today&apos;s videos
-      </p>
-      <div className="grid gap-3 sm:grid-cols-2">
-        {topics.map((topic, i) => (
-          <Card key={i}>
-            <CardContent className="p-4 space-y-1.5">
-              <p className="text-sm font-semibold">{topic.title}</p>
-              {topic.description ? (
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {topic.description}
-                </p>
-              ) : (
-                <p className="text-xs text-muted-foreground italic">No description available.</p>
-              )}
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function SourcesTab({ data, filteredUrls }: { data: ReportData; filteredUrls: Set<string> }) {
-  const sources = data.sources.filter((s) => filteredUrls.has(s.url));
-  return (
-    <Card className="overflow-hidden p-0">
-      {sources.map((s, i) => (
-        <div key={i} className="flex items-start gap-3 border-b last:border-0 px-5 py-3 hover:bg-accent/30">
-          <div className="min-w-0">
-            <p className="text-[10px] text-muted-foreground">{s.channel}</p>
-            <a
-              href={s.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm hover:text-primary transition-colors flex items-center gap-1"
-            >
-              {s.title}
-              <ExternalLink className="h-3 w-3 shrink-0 text-muted-foreground" />
-            </a>
-          </div>
-        </div>
-      ))}
-    </Card>
-  );
-}
-
 // ── Main client component ──────────────────────────────────────────────────
 
-const TABS = ["Consensus", "Videos", "Stocks", "Macro", "Sources"] as const;
+const TABS = ["Consensus", "Videos", "Stocks"] as const;
 type Tab = (typeof TABS)[number];
 
 export function YouTubeDigestClient({ dates }: { dates: string[] }) {
@@ -485,8 +403,6 @@ export function YouTubeDigestClient({ dates }: { dates: string[] }) {
               {activeTab === "Consensus" && <ConsensusTab data={data} filteredUrls={filteredUrls} />}
               {activeTab === "Videos" && <VideosTab data={data} />}
               {activeTab === "Stocks" && <StocksTab data={data} filteredUrls={filteredUrls} />}
-              {activeTab === "Macro" && <MacroTab data={data} filteredUrls={filteredUrls} />}
-              {activeTab === "Sources" && <SourcesTab data={data} filteredUrls={filteredUrls} />}
             </>
           );
         })()

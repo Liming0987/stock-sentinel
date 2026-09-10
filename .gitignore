@@ -37,4 +37,7 @@ pgdata/
 
 # Local notebooks — never commit
 notebooks/
-.claude/
+.claude/settings.local.json
+
+# Local strategy review reports — never commit
+reports/

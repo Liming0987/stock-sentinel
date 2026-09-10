@@ -1,0 +1,8 @@
+<li>
+  <a href="{{ report_url }}">{{ report_date }}</a>
+  <div class="meta">
+    {{ video_count }} video{{ 's' if video_count != 1 }} ·
+    {{ stock_count }} stock{{ 's' if stock_count != 1 }}
+    {% if consensus_top %} · Top picks: {{ consensus_top | join(', ') }}{% endif %}
+  </div>
+</li>

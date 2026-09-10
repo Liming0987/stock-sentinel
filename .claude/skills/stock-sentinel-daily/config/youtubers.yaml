@@ -1,0 +1,99 @@
+# Stock Sentinel — YouTuber configuration
+# Each entry needs EITHER a channel_id (UCxxxx...) OR a handle (@something).
+# channel_id is more stable; handle is easier to find from the URL.
+# The fetcher script resolves handles to channel IDs once and caches them
+# in data/channel_id_cache.json — a one-time 1-unit API cost per channel.
+
+youtubers:
+  # ── Fundamental / value investing ────────────────────────────────────────
+  - handle: "@parkevtatevosiancfa9544"
+    display_name: "Parkev Tatevosian, CFA"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
+
+  - handle: "@nick_valueinvesting"
+    display_name: "Nick — Value Investing"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
+
+  - handle: "@DividendData"
+    display_name: "Dividend Data"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
+
+  - handle: "@danielpronk"
+    display_name: "Daniel Pronk"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
+
+  - handle: "@JosephCarlsonShow"
+    display_name: "Joseph Carlson"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
+
+  # ── Growth / tech investing ───────────────────────────────────────────────
+  - handle: "@StockswithJosh"
+    display_name: "Stocks with Josh"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
+
+  - channel_id: "UCFBpVaKCC0ajGps1vf0AgBg"
+    display_name: "Humphrey Yang"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
+
+  - handle: "@NewMoneyYoutube"
+    display_name: "New Money"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
+
+  # ── Technical analysis / trading ─────────────────────────────────────────
+  - handle: "@GarethSolowayProTrader"
+    display_name: "Gareth Soloway — Pro Trader"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
+
+  # ── Macro / market commentary ─────────────────────────────────────────────
+  - handle: "@ThePlainBagel"
+    display_name: "The Plain Bagel"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
+
+  # ── Chinese-language finance ──────────────────────────────────────────────
+  - handle: "@MeiTouJun"
+    display_name: "煤头君 (MeiTouJun)"
+    weight: 1.0
+    include_shorts: false
+    include_livestreams: false
+    min_duration_seconds: 300
+    enabled: true
