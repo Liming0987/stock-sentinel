@@ -291,20 +291,31 @@ class StrategyRunner:
     def _available_capital(self, session: Session, ticker: str, strategy_id) -> float:
         """Dollar notional available for a new position in `ticker` for `strategy_id`:
         the smallest of POSITION_SIZE_USD, the room left under the global cap
-        (MAX_TOTAL_DEPLOYED_USD), and the room left under this strategy's per-ticker cap
-        (MAX_PER_TICKER_PER_STRATEGY_USD). Clamped to >= 0.
+        (MAX_TOTAL_DEPLOYED_USD), the room left under this strategy's per-ticker cap
+        (MAX_PER_TICKER_PER_STRATEGY_USD), and Alpaca's actual buying power.
+        Clamped to >= 0.
 
-        Callers size the new position to this value, so leftover room under the caps is
-        used rather than skipped — without ever placing a position larger than $100 or
-        breaching the total. Different strategies can each hold up to the per-ticker cap
-        in the same ticker; only the total is shared.
+        Alpaca buying power is the authoritative cash ceiling — without it, the DB cap
+        can show room while Alpaca rejects the order with "insufficient buying power."
         """
         global_room = MAX_TOTAL_DEPLOYED_USD - self._deployed_capital(session)
         ticker_room = (
             MAX_PER_TICKER_PER_STRATEGY_USD
             - self._deployed_capital_for_ticker_strategy(session, ticker, strategy_id)
         )
-        return max(0.0, min(POSITION_SIZE_USD, global_room, ticker_room))
+        db_cap = max(0.0, min(POSITION_SIZE_USD, global_room, ticker_room))
+
+        # Clamp to actual Alpaca buying power so we never submit an order the broker
+        # will reject. Fall back to db_cap when Alpaca is not configured.
+        alpaca_bp = db_cap
+        if self.alpaca and self.alpaca.is_configured:
+            try:
+                acc = self.alpaca.get_account()
+                alpaca_bp = float(acc.get("buying_power", db_cap))
+            except Exception as e:
+                logger.warning(f"Could not fetch Alpaca buying power: {e} — using DB cap")
+
+        return max(0.0, min(db_cap, alpaca_bp))
 
     def _open_position(
         self, session: Session, strat_row: StrategyRow, stock: Stock, signal, ticker: str
