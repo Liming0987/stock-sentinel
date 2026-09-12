@@ -208,6 +208,42 @@ hr {{ border: none; border-top: 1px solid var(--border); margin: 2rem 0; }}
 .col-label-down {{ color: var(--bearish); }}
 .two-col li {{ font-size: 0.85rem; margin-bottom: 0.3rem; }}
 
+/* ── RS badge ────────────────────────────────────────────────────── */
+.rs-badge {{
+  font-family: "SF Mono", "Fira Code", ui-monospace, monospace;
+  font-size: 0.72rem; font-weight: 700;
+  padding: 0.2em 0.6em; border-radius: 4px; letter-spacing: 0.04em;
+}}
+.rs-up   {{ background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }}
+.rs-down {{ background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }}
+.rs-neutral-rs {{ background: color-mix(in srgb, var(--neutral) 15%, transparent); color: var(--neutral); }}
+
+/* ── Sector tag ──────────────────────────────────────────────────── */
+.sector-tag {{
+  font-size: 0.72rem; font-weight: 600;
+  padding: 0.2em 0.6em; border-radius: 4px;
+}}
+.sector-up {{ color: var(--bullish); background: color-mix(in srgb, var(--bullish) 12%, transparent); }}
+.sector-down {{ color: var(--bearish); background: color-mix(in srgb, var(--bearish) 12%, transparent); }}
+.sector-neutral-rs {{ color: var(--neutral); background: color-mix(in srgb, var(--neutral) 12%, transparent); }}
+
+/* ── Earnings banners ────────────────────────────────────────────── */
+.earnings-banner {{
+  font-size: 0.82rem; font-weight: 600;
+  padding: 0.45rem 0.9rem; border-radius: var(--radius); margin-bottom: 0.75rem;
+}}
+.earnings-risk     {{ background: color-mix(in srgb, var(--bearish) 12%, transparent); color: var(--bearish); border: 1px solid color-mix(in srgb, var(--bearish) 30%, transparent); }}
+.earnings-catalyst {{ background: color-mix(in srgb, var(--mixed)   12%, transparent); color: var(--mixed);   border: 1px solid color-mix(in srgb, var(--mixed) 30%, transparent); }}
+.earnings-normal   {{ background: color-mix(in srgb, var(--neutral) 8%,  transparent); color: var(--muted);   border: 1px solid var(--border); }}
+
+/* ── Score bar ───────────────────────────────────────────────────── */
+.score-bar-wrap {{ margin-top: 0.6rem; }}
+.score-total {{ font-size: 0.82rem; color: var(--muted); margin-bottom: 0.25rem; }}
+.score-total strong {{ color: var(--text); }}
+.score-dims {{ display: flex; gap: 1rem; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.3rem; flex-wrap: wrap; }}
+.score-bar {{ height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }}
+.score-fill {{ height: 100%; border-radius: 3px; background: linear-gradient(to right, var(--bearish), var(--mixed) 50%, var(--bullish)); }}
+
 /* ── Meta footer ─────────────────────────────────────────────────── */
 .report-meta {{ color: var(--faint); font-size: 0.75rem; margin-top: 2rem; text-align: center; }}
 
@@ -231,23 +267,22 @@ hr {{ border: none; border-top: 1px solid var(--border); margin: 2rem 0; }}
 
   <!-- ── Stock header ── -->
   <div class="stock-header">
-    <div class="kicker">Morning Brief · {REPORT_DATE}</div>
+    <div class="kicker">Daily Recon · {REPORT_DATE}</div>
     <div class="ticker-row">
       <span class="ticker">{TICKER}</span>
       <span class="pill pill-{STANCE_CLASS}">{STANCE}</span>
       <span class="pill pill-{PRIORITY_CLASS}">Priority: {PRIORITY}</span>
       <span class="pill pill-neutral">Grade {GRADE}</span>
+      {RS_HTML}
+      {SECTOR_HTML}
     </div>
     <div class="company-name">{COMPANY_NAME}</div>
     <div class="price-row">
       <span class="price">{PRICE}</span>
       <span class="change {CHANGE_CLASS}">{CHANGE_PCT}</span>
     </div>
-    <div class="conv-row">
-      <span>Conviction</span>
-      <div class="conv-bar"><div class="conv-fill" style="width:{CONVICTION}%"></div></div>
-      <span>{CONVICTION}%</span>
-    </div>
+    {EARNINGS_HTML}
+    {SCORE_HTML}
     <div class="one-liner">{ONE_LINER}</div>
   </div>
 

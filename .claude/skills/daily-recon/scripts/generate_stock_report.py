@@ -81,6 +81,53 @@ def render(analysis: dict, template: str) -> str:
     # Risks HTML
     risks_html = "".join(f"<li>{r}</li>" for r in risks) if risks else "<li>No specific risks flagged</li>"
 
+    # RS Rating badge
+    rs_rating = a.get("rs_rating")
+    rs_html = ""
+    if rs_rating is not None:
+        rs_cls = "up" if rs_rating >= 70 else ("down" if rs_rating < 40 else "neutral-rs")
+        rs_html = f'<span class="rs-badge rs-{rs_cls}">RS {rs_rating}</span>'
+
+    # Earnings flag banner
+    earnings_days = a.get("earnings_days")
+    earnings_flag = a.get("earnings_flag")
+    earnings_html = ""
+    if earnings_flag == "earnings_risk":
+        earnings_html = f'<div class="earnings-banner earnings-risk">⚠ Earnings in {earnings_days} day{"s" if earnings_days != 1 else ""} — position sizing risk</div>'
+    elif earnings_flag == "catalyst_opportunity":
+        earnings_html = f'<div class="earnings-banner earnings-catalyst">📅 Earnings in {earnings_days} days — potential catalyst</div>'
+    elif earnings_days is not None:
+        earnings_html = f'<div class="earnings-banner earnings-normal">Earnings: {earnings_days} days out</div>'
+
+    # Sector momentum
+    sm = a.get("sector_momentum") or {}
+    sm_label = sm.get("label", "neutral")
+    sm_ret = sm.get("return_4w_pct")
+    sm_etf = sm.get("etf", "")
+    sm_cls = {"strong": "up", "weak": "down"}.get(sm_label, "neutral-rs")
+    sm_html = ""
+    if sm_etf:
+        ret_str = fmt_pct(sm_ret) if sm_ret is not None else "—"
+        sm_html = f'<span class="sector-tag sector-{sm_cls}">{sm_etf} {ret_str} (4w)</span>'
+
+    # Score breakdown
+    score = a.get("score") or {}
+    score_total = score.get("total", 0)
+    score_trend = score.get("trend_health", 0)
+    score_fund  = score.get("fundamental_quality", 0)
+    score_timing = score.get("timing_setup", 0)
+    score_html = f"""<div class="score-bar-wrap">
+  <div class="score-total">Score: <strong>{score_total}/100</strong></div>
+  <div class="score-dims">
+    <span class="score-dim">Trend {score_trend}/30</span>
+    <span class="score-dim">Fundamentals {score_fund}/30</span>
+    <span class="score-dim">Setup {score_timing}/40</span>
+  </div>
+  <div class="score-bar">
+    <div class="score-fill" style="width:{min(score_total,100)}%"></div>
+  </div>
+</div>""" if score_total else ""
+
     # Wyckoff
     wy_score = tech.get("wyckoff_signals_detected", 0)
     wy_pct = int((wy_score / 5) * 100)
@@ -143,6 +190,10 @@ def render(analysis: dict, template: str) -> str:
         GRADE=fund.get("grade", "N/A"),
         PRIORITY=a.get("watchlist_priority", "medium").upper(),
         PRIORITY_CLASS=a.get("watchlist_priority", "medium").lower(),
+        RS_HTML=rs_html,
+        EARNINGS_HTML=earnings_html,
+        SECTOR_HTML=sm_html,
+        SCORE_HTML=score_html,
         # Technical
         TREND=tech.get("trend", "—").capitalize(),
         WYCKOFF_PHASE=tech.get("wyckoff_phase", "—"),

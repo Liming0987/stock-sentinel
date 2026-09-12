@@ -50,9 +50,16 @@ If the watchlist is empty, tell the user and stop.
 
 ---
 
-## Step 3 — For each stock, fetch all analysis data
+## Step 3 — Fetch all analysis data
 
-Call these endpoints for every ticker (can run concurrently with curl &):
+**3a — Fetch SPY price history once (needed for RS rating)**
+
+```python
+import yfinance as yf
+spy_df = yf.Ticker("SPY").history(period="1y", interval="1d")
+```
+
+**3b — For each stock, fetch API data** (can run concurrently):
 
 | Data | Endpoint |
 |------|----------|
@@ -76,7 +83,43 @@ Save each response to a working JSON file per ticker. Suggested layout:
 
 ---
 
-## Step 4 — Web search for breaking news (Claude does this)
+## Step 4 — Compute conviction score (run before writing any narrative)
+
+For each stock, run the scoring engine before writing the narrative. This produces the stance automatically from data — do not guess the stance from vibes.
+
+```python
+import sys
+sys.path.insert(0, "/Users/liming/Desktop/stock-sentinel/.claude/skills/daily-recon/scripts")
+from score import compute_score, compute_rs_rating, compute_sector_momentum, fetch_earnings_days
+import yfinance as yf
+
+# Fetch ticker price history (already have spy_df from Step 3)
+price_df = yf.Ticker(ticker).history(period="1y", interval="1d")
+
+# Compute new inputs
+rs_rating       = compute_rs_rating(ticker, price_df, spy_df)
+earnings_days   = fetch_earnings_days(ticker)
+sector          = fundamentals_data.get("metrics", {}).get("sector") or ""
+sector_momentum = compute_sector_momentum(sector)
+
+# Run the engine
+score_result = compute_score(
+    indicators   = prices_data.get("indicators", {}),
+    wyckoff      = volume_data.get("wyckoff", {}),
+    vcp          = volume_data.get("vcp", {}),
+    fundamentals = fundamentals_data,
+    dcf          = dcf_data,
+    signals      = [s for s in signals_data.get("signals", []) if s.get("ticker") == ticker],
+    rs_rating    = rs_rating,
+    earnings_days = earnings_days,
+)
+```
+
+Write `score_result` plus `rs_rating`, `earnings_days`, `sector_momentum` into the analysis JSON under the keys defined in the schema below. Use `score_result["stance"]` as `overall_stance`.
+
+---
+
+## Step 5 — Web search for breaking news (Claude does this)
 
 For each stock, use your **WebSearch** and **WebFetch** tools to find:
 1. Any news from the last 24-48 hours about the company
@@ -89,7 +132,7 @@ Then cross-reference: if the stock moved significantly (|change_pct| > 2%), try 
 
 ---
 
-## Step 5 — Analyze each stock (Claude does this)
+## Step 6 — Analyze each stock (Claude does this)
 
 Read all the fetched data for a stock and synthesize a structured analysis. Think like a pre-market trader who has 5 minutes to size up each position.
 
@@ -105,6 +148,8 @@ The goal is the kind of layered, narrative analysis a skilled pre-market trader 
 The `technical.summary`, `news_catalyst.summary`, and `wyckoff_narrative` fields are the main analytical content — write them as 3-5 paragraph prose, not 1-2 sentences.
 
 ### Analysis schema (write to `/tmp/daily-recon-YYYY-MM-DD/{TICKER}/analysis.json`):
+
+The `score`, `rs_rating`, `earnings_days`, `earnings_flag`, and `sector_momentum` fields come directly from the scoring engine in Step 4. Copy them verbatim — do not recompute.
 
 ```json
 {
@@ -187,19 +232,34 @@ The `technical.summary`, `news_catalyst.summary`, and `wyckoff_narrative` fields
     "Specific risk with a number or condition: e.g. 'If volume dries up below 50M on the next session before holding $226, the absorption thesis fails'",
     "Another specific risk"
   ],
-  "watchlist_priority": "high | medium | low"
+  "watchlist_priority": "high | medium | low",
+  "rs_rating": 74,
+  "earnings_days": 23,
+  "earnings_flag": "catalyst_opportunity | earnings_risk | null",
+  "sector_momentum": {
+    "etf": "QQQ",
+    "return_4w_pct": -3.2,
+    "label": "strong | neutral | weak"
+  },
+  "score": {
+    "total": 68,
+    "trend_health": 22,
+    "fundamental_quality": 26,
+    "timing_setup": 20
+  }
 }
 ```
 
-### Stance guidance:
-- **accumulate**: VCP detected + DCF has upside + fundamentals grade B or above + volume drying up (setup forming)
-- **watch**: Mixed signals — technically interesting but one or more concerns (high valuation, bearish news)
-- **hold**: Already in position, no new entry signal
-- **avoid**: Bearish Wyckoff structure, DCF overvalued, or strong negative news catalyst
+### Stance guidance (from scoring engine — do not override manually):
+- **accumulate**: score 75–100
+- **watch**: score 50–74
+- **caution**: score 35–49
+- **avoid**: score 0–34
+- **earnings_risk override**: if earnings ≤ 5 days, stance is forced to "watch" regardless of score
 
 ---
 
-## Step 6 — Generate HTML report per stock
+## Step 7 — Generate HTML report per stock
 
 Use the script at `scripts/generate_stock_report.py`:
 
@@ -213,7 +273,7 @@ The script renders a clean, dark-themed HTML report using the template at `templ
 
 ---
 
-## Step 7 — Generate index page
+## Step 8 — Generate index page
 
 After all per-stock reports are done:
 
@@ -229,7 +289,7 @@ The index shows a card per stock sorted by `watchlist_priority` (high first), wi
 
 ---
 
-## Step 8 — Commit and push
+## Step 9 — Commit and push
 
 ```bash
 cd "$REPO_ROOT"
@@ -242,7 +302,7 @@ If push fails due to upstream changes: `git pull --rebase && git push origin mai
 
 ---
 
-## Step 9 — Summary to user
+## Step 10 — Summary to user
 
 Report:
 - Stocks analyzed (count)

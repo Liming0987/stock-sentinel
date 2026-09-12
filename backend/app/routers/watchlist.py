@@ -85,7 +85,18 @@ async def get_volume_analysis(
 
 @router.get("/{ticker}/dcf")
 async def get_dcf(ticker: str):
-    return _dcf_service.analyze(ticker.upper())
+    result = _dcf_service.analyze(ticker.upper())
+    # Promote key fields from nested inputs to top level so callers
+    # (e.g. daily-recon skill) can access them without digging into inputs.
+    if result.get("feasible") and isinstance(result.get("inputs"), dict):
+        inp = result["inputs"]
+        result.setdefault("growth_rate", inp.get("growth_rate"))
+        result.setdefault("discount_rate", inp.get("discount_rate"))
+    if result.get("feasible") and result.get("base_intrinsic_value") and result.get("current_price"):
+        iv = result["base_intrinsic_value"]
+        cp = result["current_price"]
+        result.setdefault("upside_pct", round((iv - cp) / cp * 100, 1) if cp else None)
+    return result
 
 
 @router.get("/{ticker}/news")
