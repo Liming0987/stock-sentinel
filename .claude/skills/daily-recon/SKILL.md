@@ -1,8 +1,8 @@
 ---
-name: morning-brief
+name: daily-recon
 description: >
-  Run the Stock Sentinel morning brief — a pre-market analysis report for every stock in the watchlist.
-  Use this skill when the user says things like "run the morning brief", "generate the pre-market report",
+  Run the Stock Sentinel Daily Recon — a pre-market analysis report for every stock in the watchlist.
+  Use this skill when the user says things like "run daily recon", "run the recon", "generate the pre-market report",
   "analyze my watchlist before market open", "what does my watchlist look like today", "daily stock analysis
   report", or any phrasing that implies generating a per-stock analysis to read before trading. The skill
   calls the live backend API for every stock, runs all analysis frameworks (Wyckoff, VCP, DCF, fundamentals,
@@ -12,11 +12,11 @@ description: >
   stock-sentinel-daily for that) or for general stock questions.
 ---
 
-# Stock Sentinel Morning Brief — Skill Runbook
+# Stock Sentinel Daily Recon — Skill Runbook
 
 ## Purpose
 
-Generate a pre-market intelligence brief for every stock in the watchlist. Each stock gets:
+Generate a pre-market intelligence report for every stock in the watchlist. Each stock gets:
 - A structured Claude analysis synthesizing ALL available frameworks
 - Breaking news + catalyst identification via web search
 - An HTML report committed to `frontend/public/morning-briefs/YYYY-MM-DD/TICKER.html`
@@ -30,7 +30,7 @@ Run this daily at ~8:30 AM ET before the 9:30 AM market open.
 
 ```bash
 REPORT_DATE=$(date +%Y-%m-%d)
-API_BASE="http://34.201.111.94"
+API_BASE="http://54.91.140.94"
 REPO_ROOT="/Users/liming/Desktop/stock-sentinel"
 OUT_DIR="$REPO_ROOT/frontend/public/morning-briefs/$REPORT_DATE"
 mkdir -p "$OUT_DIR"
@@ -60,18 +60,18 @@ Call these endpoints for every ticker (can run concurrently with curl &):
 | DCF valuation | `GET /api/watchlist/{ticker}/dcf` |
 | Latest news (from backend) | `GET /api/watchlist/{ticker}/news?limit=10` |
 | Fundamentals + grade | `GET /api/fundamentals/{ticker}` |
-| Price data + indicators | `GET /api/prices/{ticker}?period=1M&interval=1d` |
+| Price data + indicators | `GET /api/prices/{ticker}?period=3M&interval=1d` |
 | Sentiment history | `GET /api/sentiment/{ticker}?period=7d` |
-| Active strategy signals | `GET /api/signals` |
+| Active strategy signals | `GET /api/strategy-signals?limit=50` |
 
 Save each response to a working JSON file per ticker. Suggested layout:
 ```
-/tmp/morning-brief-YYYY-MM-DD/{TICKER}/volume.json
-/tmp/morning-brief-YYYY-MM-DD/{TICKER}/dcf.json
-/tmp/morning-brief-YYYY-MM-DD/{TICKER}/news.json
-/tmp/morning-brief-YYYY-MM-DD/{TICKER}/fundamentals.json
-/tmp/morning-brief-YYYY-MM-DD/{TICKER}/prices.json
-/tmp/morning-brief-YYYY-MM-DD/{TICKER}/sentiment.json
+/tmp/daily-recon-YYYY-MM-DD/{TICKER}/volume.json
+/tmp/daily-recon-YYYY-MM-DD/{TICKER}/dcf.json
+/tmp/daily-recon-YYYY-MM-DD/{TICKER}/news.json
+/tmp/daily-recon-YYYY-MM-DD/{TICKER}/fundamentals.json
+/tmp/daily-recon-YYYY-MM-DD/{TICKER}/prices.json
+/tmp/daily-recon-YYYY-MM-DD/{TICKER}/sentiment.json
 ```
 
 ---
@@ -104,7 +104,7 @@ The goal is the kind of layered, narrative analysis a skilled pre-market trader 
 
 The `technical.summary`, `news_catalyst.summary`, and `wyckoff_narrative` fields are the main analytical content — write them as 3-5 paragraph prose, not 1-2 sentences.
 
-### Analysis schema (write to `/tmp/morning-brief-YYYY-MM-DD/{TICKER}/analysis.json`):
+### Analysis schema (write to `/tmp/daily-recon-YYYY-MM-DD/{TICKER}/analysis.json`):
 
 ```json
 {
@@ -204,8 +204,8 @@ The `technical.summary`, `news_catalyst.summary`, and `wyckoff_narrative` fields
 Use the script at `scripts/generate_stock_report.py`:
 
 ```bash
-python3 "$REPO_ROOT/.claude/skills/morning-brief/scripts/generate_stock_report.py" \
-  --analysis /tmp/morning-brief-$REPORT_DATE/{TICKER}/analysis.json \
+python3 "$REPO_ROOT/.claude/skills/daily-recon/scripts/generate_stock_report.py" \
+  --analysis /tmp/daily-recon-$REPORT_DATE/{TICKER}/analysis.json \
   --output "$OUT_DIR/{TICKER}.html"
 ```
 
@@ -218,9 +218,9 @@ The script renders a clean, dark-themed HTML report using the template at `templ
 After all per-stock reports are done:
 
 ```bash
-python3 "$REPO_ROOT/.claude/skills/morning-brief/scripts/generate_index.py" \
+python3 "$REPO_ROOT/.claude/skills/daily-recon/scripts/generate_index.py" \
   --date "$REPORT_DATE" \
-  --analyses-dir /tmp/morning-brief-$REPORT_DATE/ \
+  --analyses-dir /tmp/daily-recon-$REPORT_DATE/ \
   --output "$REPO_ROOT/frontend/public/morning-briefs/index.html" \
   --reports-dir "$OUT_DIR"
 ```
@@ -234,7 +234,7 @@ The index shows a card per stock sorted by `watchlist_priority` (high first), wi
 ```bash
 cd "$REPO_ROOT"
 git add frontend/public/morning-briefs/
-git commit -m "Morning brief $REPORT_DATE — {N} stocks analyzed"
+git commit -m "Daily recon $REPORT_DATE — {N} stocks analyzed"
 git push origin main
 ```
 
@@ -248,7 +248,7 @@ Report:
 - Stocks analyzed (count)
 - Top picks (accumulate stance)
 - Any urgent alerts (active signals, large moves with news)
-- URL to the index: `http://34.201.111.94/morning-briefs/index.html`
+- URL to the index: `http://54.91.140.94/morning-briefs/index.html`
 
 ---
 
