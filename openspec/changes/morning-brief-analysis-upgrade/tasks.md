@@ -19,4 +19,4 @@
 
 ## 5. End-to-end verification
 
-- [ ] 5.1 Run `/daily-recon` against the live backend — verify the generated HTML shows RS rating, score breakdown, and earnings proximity for NVDA and META; verify stance is not "watch" for both stocks if scores differ
+- [x] 5.1 Run `/daily-recon` against the live backend — verify the generated HTML shows RS rating, score breakdown, and earnings proximity for NVDA and META; verify stance is not "watch" for both stocks if scores differ

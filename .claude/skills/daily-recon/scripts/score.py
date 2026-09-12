@@ -113,11 +113,30 @@ def compute_sector_momentum(sector: str) -> dict:
 
 # ── Earnings proximity ────────────────────────────────────────────────────────
 
-def fetch_earnings_days(ticker: str) -> Optional[int]:
+def fetch_earnings_days(ticker: str, fundamentals: dict = None) -> Optional[int]:
     """
     Returns calendar days until next earnings, or None if unavailable.
-    Handles list, single timestamp, or missing earningsDate from yfinance.
+    Checks fundamentals["next_earnings"] first (already fetched), then
+    falls back to yfinance earningsDate.
     """
+    today = datetime.date.today()
+
+    # Prefer next_earnings from fundamentals (already fetched by the skill)
+    if fundamentals:
+        raw = fundamentals.get("next_earnings")
+        if raw:
+            try:
+                if hasattr(raw, "date"):
+                    target = raw.date()
+                else:
+                    from datetime import datetime as _dt
+                    target = _dt.fromisoformat(str(raw).replace("Z", "+00:00")).date()
+                diff = (target - today).days
+                if diff >= 0:
+                    return diff
+            except Exception:
+                pass
+
     try:
         import yfinance as yf
         info = yf.Ticker(ticker).info or {}
@@ -125,13 +144,11 @@ def fetch_earnings_days(ticker: str) -> Optional[int]:
         if raw is None:
             return None
 
-        # earningsDate can be a list of timestamps or a single value
         if isinstance(raw, (list, tuple)):
             raw = raw[0] if raw else None
         if raw is None:
             return None
 
-        # Convert timestamp int to date
         if isinstance(raw, (int, float)):
             target = datetime.date.fromtimestamp(raw)
         elif hasattr(raw, "date"):
@@ -139,12 +156,24 @@ def fetch_earnings_days(ticker: str) -> Optional[int]:
         else:
             return None
 
-        today = datetime.date.today()
         diff = (target - today).days
-        return diff if diff >= 0 else None  # ignore past earnings dates
+        return diff if diff >= 0 else None
 
     except Exception:
         return None
+
+
+def fetch_sector(ticker: str, fundamentals: dict = None) -> str:
+    """Returns the stock's sector string, falling back to yfinance if not in fundamentals."""
+    if fundamentals:
+        sector = (fundamentals.get("metrics") or {}).get("sector")
+        if sector:
+            return sector
+    try:
+        import yfinance as yf
+        return yf.Ticker(ticker).info.get("sector", "") or ""
+    except Exception:
+        return ""
 
 
 # ── Scoring engine ────────────────────────────────────────────────────────────
