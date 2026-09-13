@@ -17,6 +17,16 @@
 
 - [x] 4.1 Update `.claude/skills/daily-recon/scripts/generate_stock_report.py` to render: RS rating badge near price header, score breakdown bar (trend/fundamental/timing sub-scores), earnings flag warning banner when `earnings_flag == "earnings_risk"`, sector momentum label — verify the HTML renders correctly by opening a sample report in the browser
 
-## 5. End-to-end verification
+## 5. Skill — Financial statements
 
-- [x] 5.1 Run `/daily-recon` against the live backend — verify the generated HTML shows RS rating, score breakdown, and earnings proximity for NVDA and META; verify stance is not "watch" for both stocks if scores differ
+- [x] 5.1 Create `.claude/skills/daily-recon/scripts/financials.py` implementing `fetch_financials(ticker)` — fetches 4 quarters of income/balance/cashflow from yfinance, returns `{summary, flags, quarters}` with red-flag detection (margin deterioration, revenue deceleration, FCF/NI divergence, rising debt/equity, current ratio < 1) — verify NVDA returns a summary and TSLA flags FCF/NI divergence
+- [x] 5.2 Update `SKILL.md` with a financials fetch step and add `financials_summary` + `financials_flags` to the analysis schema — verify the runbook is self-contained
+- [x] 5.3 Update `generate_stock_report.py` + template to render a "Financial Health" card with summary and red flags — verify TSLA report shows the FCF/NI divergence flag
+
+## 6. Skill — Plain-English sector explanation
+
+- [x] 6.1 Update `generate_stock_report.py` to render a plain-English note explaining the sector momentum figure (headwind/tailwind/neutral) — verify NVDA report shows "Sector headwind — fund managers are rotating money out..."
+
+## 7. End-to-end verification
+
+- [x] 7.1 Run `/daily-recon` against the live backend — verify the generated HTML shows RS rating, score breakdown, earnings proximity, financial health, and sector explanation for all watchlist stocks; verify stances differ by score (NVDA/AAPL caution, TSLA avoid)

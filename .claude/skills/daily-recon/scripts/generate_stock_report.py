@@ -108,7 +108,31 @@ def render(analysis: dict, template: str) -> str:
     sm_html = ""
     if sm_etf:
         ret_str = fmt_pct(sm_ret) if sm_ret is not None else "—"
-        sm_html = f'<span class="sector-tag sector-{sm_cls}">{sm_etf} {ret_str} (4w)</span>'
+        if sm_label == "weak":
+            sm_note = "Sector headwind — fund managers are rotating money out of this sector, creating selling pressure even on strong individual stocks."
+        elif sm_label == "strong":
+            sm_note = "Sector tailwind — money is flowing into this sector, giving individual stocks a lift even on quiet days."
+        else:
+            sm_note = "Sector neutral — no meaningful rotation for or against this sector over the past 4 weeks."
+        sm_html = (
+            f'<span class="sector-tag sector-{sm_cls}" title="{sm_note}">{sm_etf} {ret_str} (4w)</span>'
+            f'<div class="sector-note">{sm_note}</div>'
+        )
+
+    # Financials
+    fin_summary = a.get("financials_summary", "")
+    fin_flags   = a.get("financials_flags", [])
+    fin_html = ""
+    if fin_summary:
+        flags_html = ""
+        if fin_flags:
+            flag_items = "".join(f"<li>{f}</li>" for f in fin_flags)
+            flags_html = f'<ul class="fin-flags">{flag_items}</ul>'
+        fin_html = f"""<div class="card">
+  <div class="section-title">Financial Health (last 4 quarters)</div>
+  <p class="fin-summary">{fin_summary}</p>
+  {flags_html}
+</div>"""
 
     # Score breakdown
     score = a.get("score") or {}
@@ -169,7 +193,7 @@ def render(analysis: dict, template: str) -> str:
     news_sent_class = {"bullish": "bullish", "bearish": "bearish"}.get(news_sent, "neutral")
 
     # Sentiment pill class
-    sent_score = float(sent.get("score", 0))
+    sent_score = float(sent.get("score") or 0)
     sent_label = sent.get("label", "Neutral")
     sent_pill = sentiment_pill_class(sent_score)
 
@@ -194,6 +218,7 @@ def render(analysis: dict, template: str) -> str:
         EARNINGS_HTML=earnings_html,
         SECTOR_HTML=sm_html,
         SCORE_HTML=score_html,
+        FIN_HTML=fin_html,
         # Technical
         TREND=tech.get("trend", "—").capitalize(),
         WYCKOFF_PHASE=tech.get("wyckoff_phase", "—"),

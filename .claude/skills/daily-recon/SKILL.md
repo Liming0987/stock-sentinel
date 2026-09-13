@@ -83,7 +83,26 @@ Save each response to a working JSON file per ticker. Suggested layout:
 
 ---
 
-## Step 4 — Compute conviction score (run before writing any narrative)
+## Step 4 — Fetch financial statements
+
+For each stock, fetch the 4 most recent quarters of financial data:
+
+```python
+import sys
+sys.path.insert(0, "/Users/liming/Desktop/stock-sentinel/.claude/skills/daily-recon/scripts")
+from financials import fetch_financials
+
+financials_data = fetch_financials(ticker)
+# financials_data["summary"] — plain-English narrative (pass to Claude)
+# financials_data["flags"]   — list of red flag strings
+# financials_data["quarters"] — quarterly metrics (revenue, margins, FCF, debt)
+```
+
+Save to `/tmp/daily-recon-YYYY-MM-DD/{TICKER}/financials.json`. Include `financials_data["summary"]` and `financials_data["flags"]` when writing the analysis JSON.
+
+---
+
+## Step 5 — Compute conviction score (run before writing any narrative)
 
 For each stock, run the scoring engine before writing the narrative. This produces the stance automatically from data — do not guess the stance from vibes.
 
@@ -246,7 +265,9 @@ The `score`, `rs_rating`, `earnings_days`, `earnings_flag`, and `sector_momentum
     "trend_health": 22,
     "fundamental_quality": 26,
     "timing_setup": 20
-  }
+  },
+  "financials_summary": "Plain-English summary from fetch_financials() — revenue trend, margins, FCF quality, balance sheet health.",
+  "financials_flags": ["FCF/NI divergence: net income +133% QoQ but FCF -176%"]
 }
 ```
 

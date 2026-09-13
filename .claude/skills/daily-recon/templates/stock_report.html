@@ -227,6 +227,12 @@ hr {{ border: none; border-top: 1px solid var(--border); margin: 2rem 0; }}
 .sector-down {{ color: var(--bearish); background: color-mix(in srgb, var(--bearish) 12%, transparent); }}
 .sector-neutral-rs {{ color: var(--neutral); background: color-mix(in srgb, var(--neutral) 12%, transparent); }}
 
+/* ── Sector note ─────────────────────────────────────────────────── */
+.sector-note {{
+  font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem;
+  line-height: 1.4;
+}}
+
 /* ── Earnings banners ────────────────────────────────────────────── */
 .earnings-banner {{
   font-size: 0.82rem; font-weight: 600;
@@ -243,6 +249,16 @@ hr {{ border: none; border-top: 1px solid var(--border); margin: 2rem 0; }}
 .score-dims {{ display: flex; gap: 1rem; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.3rem; flex-wrap: wrap; }}
 .score-bar {{ height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }}
 .score-fill {{ height: 100%; border-radius: 3px; background: linear-gradient(to right, var(--bearish), var(--mixed) 50%, var(--bullish)); }}
+
+/* ── Financial health ────────────────────────────────────────────── */
+.fin-summary {{ font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.75rem; }}
+.fin-flags {{ list-style: none; padding: 0; margin: 0; }}
+.fin-flags li {{
+  font-size: 0.82rem; color: var(--bearish);
+  background: color-mix(in srgb, var(--bearish) 8%, transparent);
+  border-left: 3px solid var(--bearish);
+  padding: 0.4rem 0.75rem; margin-bottom: 0.4rem; border-radius: 0 var(--radius) var(--radius) 0;
+}}
 
 /* ── Meta footer ─────────────────────────────────────────────────── */
 .report-meta {{ color: var(--faint); font-size: 0.75rem; margin-top: 2rem; text-align: center; }}
@@ -350,6 +366,9 @@ hr {{ border: none; border-top: 1px solid var(--border); margin: 2rem 0; }}
     </div>
     <p style="color:var(--muted);font-size:0.85rem;margin-top:0.75rem;margin-bottom:0">{FUND_SUMMARY}</p>
   </div>
+
+  <!-- ── Financial Health ── -->
+  {FIN_HTML}
 
   <!-- ── Sentiment ── -->
   <div class="card">

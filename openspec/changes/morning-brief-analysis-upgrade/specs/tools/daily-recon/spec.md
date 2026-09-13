@@ -54,3 +54,33 @@ The `/api/watchlist/{ticker}/dcf` endpoint SHALL return `upside_pct`, `growth_ra
 #### Scenario: DCF fields present
 - **WHEN** DCF is feasible
 - **THEN** the API response SHALL include upside_pct (percentage), growth_rate (decimal), and discount_rate (decimal)
+
+### Requirement: Financial statements summary
+The skill SHALL fetch the 4 most recent quarters of income statement, balance sheet, and cash flow from yfinance, summarise them in plain English, and detect red flags (margin deterioration, revenue deceleration, FCF/net-income divergence, rising debt/equity, current ratio below 1). The summary and flags SHALL be written into the analysis JSON as `financials_summary` and `financials_flags`.
+
+#### Scenario: Financials summary generated
+- **WHEN** yfinance returns quarterly statements for a stock
+- **THEN** `financials_summary` SHALL contain revenue trend, margins, FCF quality, and balance sheet position
+
+#### Scenario: FCF/net-income divergence flagged
+- **WHEN** net income grows more than 20% QoQ but free cash flow declines
+- **THEN** a red flag SHALL be added noting the earnings-quality concern
+
+#### Scenario: Financials unavailable
+- **WHEN** yfinance returns no statements for a stock
+- **THEN** `financials_summary` SHALL note data is unavailable and `financials_flags` SHALL be an empty list rather than failing
+
+#### Scenario: Financial health rendered in HTML
+- **WHEN** `financials_summary` is present in the analysis JSON
+- **THEN** the HTML report SHALL display a "Financial Health" card with the summary and any red flags styled prominently
+
+### Requirement: Plain-English sector momentum explanation
+The HTML report SHALL display a human-readable note explaining what the sector momentum figure means, so a layman understands the market context without knowing what a sector ETF is.
+
+#### Scenario: Weak sector explanation
+- **WHEN** sector_momentum label is "weak"
+- **THEN** the report SHALL explain that fund managers are rotating money out of the sector, creating a headwind for individual stocks
+
+#### Scenario: Strong sector explanation
+- **WHEN** sector_momentum label is "strong"
+- **THEN** the report SHALL explain that money is flowing into the sector, giving individual stocks a lift

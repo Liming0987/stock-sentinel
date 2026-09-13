@@ -1,0 +1,97 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVIDIA Corporation",
+  "report_date": "2026-09-11",
+  "price": 218.63,
+  "change_pct": 0.12,
+  "overall_stance": "caution",
+  "conviction": 0.44,
+  "one_liner": "NVDA consolidating near $218 post-dividend; Hugging Face acquisition adds AI narrative weight but score of 44/100 keeps this a watch-and-wait until EMA momentum recovers.",
+  "price_action": {
+    "open": 217.8,
+    "high": 220.1,
+    "low": 216.9,
+    "close": 218.63,
+    "volume": 0,
+    "vol_ratio": 1.1,
+    "vol_rank": "Below average \u2014 quiet session",
+    "intraday_story": "NVDA drifted flat on thin volume, opening near $217.80 and closing at $218.63. No directional conviction either way. After the $0.25 dividend ex-date on Sep 10, the stock is digesting. This is a rest-day candle, not a breakout or breakdown signal."
+  },
+  "news_catalyst": {
+    "headline": "NVIDIA acquires Hugging Face for ~$13B; $0.25 dividend ex-date Sep 10",
+    "summary": "NVIDIA's $13B acquisition of Hugging Face is the defining corporate event of the month, cementing its position across the full AI stack \u2014 hardware through model hub. The deal is bullish for long-term thesis but doesn't create immediate price momentum. The dividend ex-date passed cleanly. Stock moved as high as $230 on Sept 4 but has pulled back to $218 \u2014 still ~7% below its May ATH of $235.74. The tech sector ETF (QQQ) is down 3.2% over 4 weeks, creating a headwind even for strong names.",
+    "source_url": "https://www.fool.com/investing/2026/09/08/massive-news-for-nvidia-stock-investors/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 210.0,
+    "key_resistance": 230.0,
+    "rsi": 48.0,
+    "macd_signal": "flat",
+    "volume_ratio_today": 1.1,
+    "volume_signal": "drying up",
+    "summary": "NVDA trades above both its EMA-50 (~$208) and EMA-200 (~$185), maintaining a bullish trend structure. However the EMA-50 slope is flattening, which is what limits the Trend Health score. The stock peaked at $235.74 in May and has spent 4 months digesting that move. Current price of $218 sits 7% below the ATH and ~5% above EMA-50 \u2014 still in the healthy 'markup' zone but not accelerating.\n\nNo VCP pattern is detected. The contraction sequence would require tighter bases on decreasing volume. Volume has been generally declining since the May spike \u2014 which is constructive for a future setup but not yet actionable. The Wyckoff engine shows neutral phase, consistent with a late-Stage-2 rest after a strong advance.\n\nRS rating of 55 reflects mild outperformance vs SPY but not top-decile momentum. The sector (Technology/QQQ) is down 3.2% over 4 weeks, a headwind. For NVDA to set up a new entry, we'd want to see: (1) volume expansion above 1.5x average on a close above $225, or (2) a VCP forming with 2+ contractions."
+  },
+  "wyckoff_narrative": "NVDA is in a consolidation phase following a strong prior advance to ATH $235.74. No Wyckoff events have been tagged in the current 90-day dataset \u2014 no Selling Climax, no Sign of Strength. This absence is itself informative: the stock is in an orderly rest, not a panic selloff. The constructive interpretation is that supply from the May run-up is being absorbed at $210-$225, with no distribution signatures.\n\nThe next confirming event would be a Sign of Strength: a wide-spread up day on volume \u22652x average, closing in the upper third of its range and breaking above $225-$230 resistance. Until that fires, the Wyckoff picture is 'wait.' A close below $207 on heavy volume would be the first warning of potential distribution.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 301.71,
+    "upside_pct": 38.0,
+    "bear_value": 190.0,
+    "bull_value": 420.0,
+    "discount_rate": 0.15,
+    "growth_rate": 0.5,
+    "summary": "DCF values NVDA at $301 base case \u2014 38% above current price \u2014 using a 50% growth rate (analyst EPS estimates) and a 15% discount rate (beta-adjusted CAPM). The bull case at $420 factors in Hugging Face monetisation. The bear at $190 assumes growth normalises faster than expected. At $218, there is a meaningful margin of safety on the base case, provided the growth assumptions hold. The 50% growth rate is ambitious; any revision downward would compress the intrinsic value quickly."
+  },
+  "fundamentals": {
+    "grade": "A",
+    "score": 0.88,
+    "key_strengths": [
+      "100% profitability score \u2014 best-in-class margins",
+      "Revenue growth >100% YoY driven by data center AI demand",
+      "EPS beats consecutive quarters"
+    ],
+    "key_concerns": [
+      "Valuation pillar 0.53 \u2014 stock priced for perfection at current multiples"
+    ],
+    "summary": "NVDA earns an A (0.88) across all fundamental pillars except valuation. Profitability, growth, health, and analyst sentiment are all top-tier. The only drag is that even after the pullback from $235, the stock still carries a premium multiple. Fundamentals strongly support the technical setup when it emerges."
+  },
+  "sentiment": {
+    "score": null,
+    "label": "N/A",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Close below $207 (EMA-50 zone) would invalidate the uptrend structure and shift bias to distribution",
+    "QQQ sector weakness (-3.2% 4w) creates macro headwind even for AI leaders",
+    "50% growth rate in DCF is aggressive \u2014 any earnings miss would reprice significantly"
+  ],
+  "watchlist_priority": "high",
+  "rs_rating": 55,
+  "earnings_days": 67,
+  "earnings_flag": null,
+  "sector_momentum": {
+    "etf": "QQQ",
+    "return_4w_pct": -3.2,
+    "label": "weak"
+  },
+  "score": {
+    "total": 44,
+    "trend_health": 19,
+    "fundamental_quality": 20,
+    "timing_setup": 5
+  },
+  "financials_summary": "Most recent quarter revenue: $96.22B (up 17.9% QoQ) Gross margin 75.0%, net margin 62.0% \u2014 healthy spread Free cash flow $21.40B. FCF positive \u2014 earnings backed by real cash. Net debt $15.9B (debt $38.35B vs cash $22.44B). Red flags: Debt/equity rising: 0.06x \u2192 0.17x \u2014 leverage increasing.",
+  "financials_flags": [
+    "Debt/equity rising: 0.06x \u2192 0.17x \u2014 leverage increasing"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "ticker": "META",
+  "company_name": "Meta Platforms, Inc.",
+  "report_date": "2026-09-11",
+  "price": 647.54,
+  "change_pct": 0.49,
+  "overall_stance": "avoid",
+  "conviction": 0.33,
+  "one_liner": "META surged 6.6% on Sep 9 on AI product/chip news but score of 33/100 reflects broken EMA structure and weak RS \u2014 wait for the dust to settle.",
+  "price_action": {
+    "open": 644.0,
+    "high": 651.0,
+    "low": 642.0,
+    "close": 647.54,
+    "volume": 0,
+    "vol_ratio": 0.9,
+    "vol_rank": "Below average",
+    "intraday_story": "META closed up 0.49% in a quiet session following the explosive 6.55% surge on Sep 9. The two-day consolidation after a gap-up is telling \u2014 buyers absorbed the move cleanly but volume faded. Stock needs to hold $640 to validate the Sep 9 move as a pivot rather than a trap."
+  },
+  "news_catalyst": {
+    "headline": "JPMorgan upgrades META after Iris AI chip reveal and paid AI agent launch",
+    "summary": "Three simultaneous catalysts drove the 6.6% surge: (1) JPMorgan upgrade following AI product announcements, (2) in-house Iris AI chip entering production in September 2026 (Broadcom-designed, TSMC-fabricated), and (3) launch of a paid personal AI agent \u2014 Meta's first consumer AI monetisation. Separately, META agreed to an $18B settlement with limits on younger users, a known overhang now cleared. The Iris chip reduces dependency on NVIDIA and signals long-term margin expansion. The AI agent monetisation is nascent but strategically significant.",
+    "source_url": "https://www.fool.com/investing/2026/09/11/huge-news-for-meta-stock-investors/",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "sideways",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 630.0,
+    "key_resistance": 670.0,
+    "rsi": 52.0,
+    "macd_signal": "flat",
+    "volume_ratio_today": 0.9,
+    "volume_signal": "drying up",
+    "summary": "META's EMA structure is weaker than NVDA's, explaining the lower Trend Health score (8/30). EMA-50 is not significantly above EMA-200, and the RS rating of 43 indicates the stock has been lagging SPY over the past 12 weeks. The Sep 9 gap-up is a positive development but one candle doesn't fix a 3-month relative underperformance pattern.\n\nThe stock is testing resistance around $650-670. A sustained hold above $650 with volume confirmation would be the first sign that the trend is genuinely turning. Until EMA-50 begins rising consistently and RS improves above 60, this remains a 'news-driven pop in a structurally weak trend' scenario.\n\nNo VCP or Wyckoff signal detected. The $18B settlement clearing is a net positive for removing an overhang, but the technical picture needs more time to recover."
+  },
+  "wyckoff_narrative": "META shows no tagged Wyckoff events in the 90-day dataset. The stock appears to be in a late Accumulation or early Markup phase following what may have been a distribution-and-reset cycle in 2026. The Sep 9 surge on significant news could be interpreted as a Sign of Strength if confirmed by: (1) a secondary test of $630-640 on declining volume, followed by (2) a higher high above $670. Without confirmation, the single-day move is ambiguous \u2014 it could be a Spring or simply a news-driven bounce within a range.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 720.0,
+    "upside_pct": 11.0,
+    "bear_value": 450.0,
+    "bull_value": 950.0,
+    "discount_rate": 0.11,
+    "growth_rate": 0.25,
+    "summary": "META's DCF shows ~11% upside to base case $720, which is below the 15% threshold for a strong DCF signal. The Iris chip and AI agent monetisation aren't yet in the model's growth assumptions. If those materialise, the bull case strengthens meaningfully. At current price, the stock is fairly valued to slightly undervalued \u2014 not a compelling DCF buy but not expensive either."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.72,
+    "key_strengths": [
+      "Strong FCF generation",
+      "AI infrastructure investment building moat",
+      "JPMorgan upgrade after AI products"
+    ],
+    "key_concerns": [
+      "$18B legal settlement is a one-time but significant hit",
+      "RS rating 43 \u2014 underperforming market 3 months"
+    ],
+    "summary": "META scores B (0.72) \u2014 solid but not elite. The settlement removes a known risk. In-house AI chips are strategically positive but 2-3 year payoff horizon. Fundamentals support holding a position but don't compel new entry at current levels without technical confirmation."
+  },
+  "sentiment": {
+    "score": null,
+    "label": "N/A",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Sep 9 gap-up fades below $630 \u2014 would signal failed breakout and re-test of prior range lows",
+    "Iris chip production delays or cost overruns would reverse narrative quickly",
+    "Communication Services sector neutral \u2014 no tailwind from sector rotation"
+  ],
+  "watchlist_priority": "medium",
+  "rs_rating": 43,
+  "earnings_days": 47,
+  "earnings_flag": null,
+  "sector_momentum": {
+    "etf": "XLC",
+    "return_4w_pct": 0.0,
+    "label": "neutral"
+  },
+  "score": {
+    "total": 33,
+    "trend_health": 8,
+    "fundamental_quality": 15,
+    "timing_setup": 10
+  },
+  "financials_summary": "Most recent quarter revenue: $60.80B (up 8.0% QoQ) Gross margin 81.4%, net margin 26.1% \u2014 high operating costs Free cash flow $1.75B. FCF positive \u2014 earnings backed by real cash. Net debt $96.9B (debt $112.32B vs cash $15.46B).",
+  "financials_flags": []
+}

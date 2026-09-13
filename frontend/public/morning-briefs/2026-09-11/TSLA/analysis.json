@@ -1,0 +1,99 @@
+{
+  "ticker": "TSLA",
+  "company_name": "Tesla, Inc.",
+  "report_date": "2026-09-11",
+  "price": 365.4,
+  "change_pct": 0.51,
+  "overall_stance": "avoid",
+  "conviction": 0.04,
+  "one_liner": "TSLA scores 4/100 \u2014 broken EMA structure, RS 35, Cybercab update underwhelmed, negative FCF Q2; avoid until clear technical recovery.",
+  "price_action": {
+    "open": 363.5,
+    "high": 367.2,
+    "low": 361.0,
+    "close": 365.4,
+    "volume": 0,
+    "vol_ratio": 0.8,
+    "vol_rank": "Below average",
+    "intraday_story": "TSLA managed a small +0.51% gain on below-average volume after heavy selling earlier in the month. The stock dropped 6% on Sep 4 after the Cybercab update disappointed Wall Street. Today's quiet recovery candle shows no conviction \u2014 low volume bounce after a significant decline."
+  },
+  "news_catalyst": {
+    "headline": "Tesla Cybercab update disappoints; stock down 7% YTD as robotaxi capex balloons to $25B+",
+    "summary": "The Sep 4 6% drop is the defining recent event. Tesla's Cybercab update \u2014 long anticipated as a catalyst \u2014 failed to impress analysts and the stock has not recovered. The company expects $25B+ capex in 2026 for Robotaxi, Optimus, and AI compute, while Q2 FCF was negative $1.1B. This is a company spending aggressively with no clear near-term monetisation of its autonomous vehicle bet. The $44B cash cushion provides a buffer but doesn't justify the multiple at current levels. The Consumer Cyclical sector is also weak (-negative 4w), providing no sector tailwind.",
+    "source_url": "https://www.cnbc.com/2026/09/04/teslas-stock-drops-as-cybercab-update-underwhelms-nhtsa-probe.html",
+    "sentiment": "bearish"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 340.0,
+    "key_resistance": 390.0,
+    "rsi": 38.0,
+    "macd_signal": "bearish crossover",
+    "volume_ratio_today": 0.8,
+    "volume_signal": "drying up",
+    "summary": "TSLA is the weakest chart in the watchlist. EMA-50 is below or barely above EMA-200 (the EMA stack is not clearly bullish), RS rating of 35 puts it in the bottom third of market performers over 12 weeks, and the stock is down 7% YTD while the broader market is positive. The Sep 4 6% drop on Cybercab news created a downward gap that has not been filled.\n\nKey support is $340 \u2014 the prior consolidation zone from mid-2026. Key resistance is $390 where the gap began. For TSLA to become investable technically, it needs: (1) a base forming above $340 with volume drying up, (2) a Sign of Strength back above $390, and (3) RS rating recovering above 50. None of these conditions are currently met."
+  },
+  "wyckoff_narrative": "TSLA shows characteristics of a stock potentially entering a Distribution phase. No tagged events but the pattern \u2014 gap down on high volume (Sep 4), failure to recover \u2014 is consistent with institutional selling into strength. The 7% YTD decline while the market is positive is a red flag. Until Wyckoff accumulation signals appear (Secondary Test of lows on low volume, Spring, Sign of Strength), this remains avoid.",
+  "valuation": {
+    "feasible": false,
+    "base_intrinsic_value": null,
+    "upside_pct": null,
+    "bear_value": null,
+    "bull_value": null,
+    "discount_rate": null,
+    "growth_rate": null,
+    "summary": "DCF not applicable \u2014 negative FCF in Q2 2026 ($-1.1B) makes traditional DCF unreliable. Tesla's valuation is driven by narrative (robotaxi, Optimus, AI) rather than current cash generation. At this stage of investment, cash burn makes fundamental valuation speculative."
+  },
+  "fundamentals": {
+    "grade": "D",
+    "score": 0.2,
+    "key_strengths": [
+      "$44B cash cushion \u2014 no near-term liquidity risk",
+      "Early mover in autonomous vehicles"
+    ],
+    "key_concerns": [
+      "Negative FCF Q2 2026 (-$1.1B)",
+      "$25B+ capex guidance \u2014 growing cash burn",
+      "7% YTD stock decline \u2014 market losing confidence",
+      "Cybercab update disappointing analysts"
+    ],
+    "summary": "TSLA earns a D on fundamentals \u2014 driven entirely by negative FCF and deteriorating profitability metrics during a period of massive capital expenditure. The business model bet is on future autonomous vehicle monetisation; the current scorecard reflects present pain. Not investable on fundamentals alone at this time."
+  },
+  "sentiment": {
+    "score": null,
+    "label": "N/A",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Further Cybercab regulatory issues (NHTSA probe mentioned) could accelerate selling",
+    "FCF turns increasingly negative as $25B capex accelerates",
+    "Break below $340 support would target $300 zone"
+  ],
+  "watchlist_priority": "low",
+  "rs_rating": 35,
+  "earnings_days": 40,
+  "earnings_flag": null,
+  "sector_momentum": {
+    "etf": "XLY",
+    "return_4w_pct": -3.0,
+    "label": "weak"
+  },
+  "score": {
+    "total": 4,
+    "trend_health": 4,
+    "fundamental_quality": 0,
+    "timing_setup": 0
+  },
+  "financials_summary": "Most recent quarter revenue: $28.24B (up 26.1% QoQ) Gross margin 16.8%, net margin 3.9% \u2014 healthy spread Free cash flow $-1.10B. FCF negative \u2014 spending exceeds operating cash inflow. Net debt $0.9B (debt $16.08B vs cash $15.22B). Red flags: FCF/NI divergence: net income +133.5% QoQ but FCF -176.1% \u2014 earnings quality concern.",
+  "financials_flags": [
+    "FCF/NI divergence: net income +133.5% QoQ but FCF -176.1% \u2014 earnings quality concern"
+  ]
+}

@@ -9,6 +9,8 @@ The morning brief's current analysis framework defaults to "watch" for nearly ev
 - **New: Sector relative strength** — computes the stock's sector ETF performance (4-week return) from yfinance; shown as context in the report
 - **Fix: DCF response fields** — `upside_pct`, `growth_rate`, and `discount_rate` are present in the DCF service but missing from the API response serialisation; surfaced so Claude can write a complete DCF verdict
 - **Rework: Stance scoring** — replace the binary accumulate/watch/hold/avoid with a 0–100 scored framework across three dimensions (Trend Health 0–30, Fundamental Quality 0–30, Timing/Setup 0–40); thresholds: 75+ = accumulate, 50–74 = watch, below 50 = avoid; computed by the skill before Claude writes the narrative
+- **New: Financial statements** — fetch the 4 most recent quarters of balance sheet, income statement, and cash flow from yfinance; summarise key red flags (margin deterioration, rising debt, FCF diverging from net income) and pass into Claude's analysis context for deeper growth and financial health assessment
+- **Fix: Sector momentum plain-English explanation** — the HTML report now shows a human-readable note explaining what "QQQ -3.2% (4w)" means (e.g. "fund managers are rotating money out of this sector, creating headwinds for individual stocks") so a layman can understand it without knowing what a sector ETF is
 
 ## Capabilities
 
@@ -25,5 +27,8 @@ The morning brief's current analysis framework defaults to "watch" for nearly ev
 - **Modified:** `.claude/skills/morning-brief/SKILL.md` — updated analysis schema, stance guidance, and scoring instructions
 - **Modified:** `.claude/skills/morning-brief/scripts/generate_stock_report.py` — render RS rating, earnings flag, sector momentum, and score breakdown in HTML
 - **Modified:** `backend/app/routers/watchlist.py` — surface missing DCF fields (`upside_pct`, `growth_rate`, `discount_rate`) in the `/api/watchlist/{ticker}/dcf` response
-- **No new backend services** — RS rating, earnings date, and sector momentum are all computed client-side in the skill script from yfinance data
+- **New file:** `.claude/skills/daily-recon/scripts/financials.py` — fetches and summarises 4-quarter financial statements via yfinance; flags margin deterioration, debt increases, FCF/NI divergence
+- **Modified:** `.claude/skills/daily-recon/SKILL.md` — new step to run financials.py and include summary in analysis context
+- **Modified:** `.claude/skills/daily-recon/scripts/generate_stock_report.py` — render financial health summary section in HTML; add plain-English sector momentum explanation
+- **No new backend services** — financial statements fetched client-side via yfinance in the skill script
 - **No schema changes** — purely additive to the analysis JSON written by Claude

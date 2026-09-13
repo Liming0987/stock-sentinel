@@ -1,0 +1,98 @@
+{
+  "ticker": "AAPL",
+  "company_name": "Apple Inc.",
+  "report_date": "2026-09-11",
+  "price": 332.69,
+  "change_pct": 1.87,
+  "overall_stance": "caution",
+  "conviction": 0.44,
+  "one_liner": "AAPL +1.87% post-iPhone 18 Pro launch; new CEO John Ternus, foldable iPhone catalyst, $380 BofA target \u2014 score 44/100, watch for setup to form above $320.",
+  "price_action": {
+    "open": 327.5,
+    "high": 334.2,
+    "low": 326.8,
+    "close": 332.69,
+    "volume": 0,
+    "vol_ratio": 1.5,
+    "vol_rank": "Above average \u2014 iPhone launch week",
+    "intraday_story": "AAPL gained 1.87% on above-average volume in the wake of the Sep 9 iPhone launch event. Stock opened at $327.50 and closed near the high at $332.69 \u2014 strong intraday structure with buyers in control all day. This continues the recovery from the Sep 7 dip to $319 ahead of the event. The launch-week pattern is constructive."
+  },
+  "news_catalyst": {
+    "headline": "Apple CEO John Ternus unveils iPhone 18 Pro + first foldable; BofA maintains $380 target on AI rollout",
+    "summary": "Apple entered a new era on Sep 1 with John Ternus replacing Tim Cook as CEO. The Sep 9 'Surprise and shine' event unveiled the iPhone 18 Pro line and Apple's first foldable device \u2014 potentially a $14B revenue contributor in the December quarter (Morgan Stanley estimate). Management guided for 9-11% overall September quarter growth with iPhone revenue in the mid-teens. BofA's Wamsi Mohan maintains $380 target citing Apple's AI rollout premium. The new product cycle is the clearest near-term catalyst in the watchlist.",
+    "source_url": "https://finance.yahoo.com/markets/stocks/articles/apple-stock-september-surprise-could-130002154.html",
+    "sentiment": "bullish"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 318.0,
+    "key_resistance": 345.0,
+    "rsi": 56.0,
+    "macd_signal": "bullish crossover",
+    "volume_ratio_today": 1.5,
+    "volume_signal": "elevated",
+    "summary": "AAPL has the strongest recent price action in the watchlist among non-MU names. RS rating of 60 is above the median \u2014 recovering from the Sep 7 dip into the iPhone launch. EMA structure is bullish (price above EMA-50 above EMA-200). The MACD is showing a bullish crossover signal. RSI at 56 has room to run to overbought.\n\nKey support is $318 \u2014 the dip level from Sep 7. Key resistance is $345, the prior high from August. A sustained hold above $320 with the iPhone cycle driving earnings beats in October would be the technical confirmation needed to upgrade from caution to watch/accumulate. The foldable iPhone is a potential multi-billion dollar incremental revenue stream not yet fully priced in."
+  },
+  "wyckoff_narrative": "AAPL shows no Wyckoff event tags but the recent price action is constructive. The Sep 7 dip to $319 ahead of the iPhone launch, followed by recovery to $332 on volume, has the character of a Last Point of Support (LPS) ahead of a markup. If the stock can close above $340 on the back of foldable iPhone demand data, that would constitute a Sign of Strength in Wyckoff terms. The CEO transition (Cook to Ternus) adds uncertainty but the market has absorbed it positively so far.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 370.0,
+    "upside_pct": 11.2,
+    "bear_value": 255.0,
+    "bull_value": 490.0,
+    "discount_rate": 0.1,
+    "growth_rate": 0.12,
+    "summary": "AAPL DCF shows ~11% upside to $370 base case using 12% growth and 10% discount rate. The foldable iPhone and AI services could push the bull case meaningfully higher. At $332, the stock is close to fair value on conservative assumptions \u2014 the premium is justified by the capital return program and AI services optionality. BofA's $380 target (14% upside) aligns with the bull base."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.68,
+    "key_strengths": [
+      "New product cycle: iPhone 18 Pro + foldable",
+      "9-11% September quarter guidance",
+      "Services revenue growing double-digits",
+      "John Ternus era begins with major product event"
+    ],
+    "key_concerns": [
+      "RS 60 \u2014 moderate, not leadership",
+      "Tech sector (QQQ) weak -3.2% 4w \u2014 headwind",
+      "Valuation not cheap at current levels"
+    ],
+    "summary": "AAPL earns B (0.68) \u2014 solid company with a clear near-term catalyst but not a screaming fundamental buy at current price. The foldable iPhone is the wildcard that could move the needle if adoption is strong. Ternus as CEO is untested but the product roadmap appears intact."
+  },
+  "sentiment": {
+    "score": null,
+    "label": "N/A",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Foldable iPhone demand disappoints \u2014 Morgan Stanley $14B estimate may be too optimistic",
+    "Tech sector headwind (QQQ -3.2%) limits upside even with good product cycle",
+    "CEO transition risk \u2014 Ternus is unproven at Apple's scale"
+  ],
+  "watchlist_priority": "high",
+  "rs_rating": 60,
+  "earnings_days": 48,
+  "earnings_flag": null,
+  "sector_momentum": {
+    "etf": "QQQ",
+    "return_4w_pct": -3.2,
+    "label": "weak"
+  },
+  "score": {
+    "total": 44,
+    "trend_health": 19,
+    "fundamental_quality": 15,
+    "timing_setup": 10
+  },
+  "financials_summary": "Most recent quarter revenue: $109.42B (down 1.6% QoQ) Gross margin 50.1%, net margin 27.2% \u2014 healthy spread Free cash flow $31.91B. FCF positive \u2014 earnings backed by real cash. Net debt $44.8B (debt $84.34B vs cash $39.54B).",
+  "financials_flags": []
+}

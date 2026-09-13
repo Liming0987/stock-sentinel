@@ -1,0 +1,97 @@
+{
+  "ticker": "LLY",
+  "company_name": "Eli Lilly and Company",
+  "report_date": "2026-09-11",
+  "price": 1114.8,
+  "change_pct": -0.73,
+  "overall_stance": "avoid",
+  "conviction": 0.28,
+  "one_liner": "LLY dips 0.73% in healthcare sell-off; trillion-dollar GLP-1 leader with strong analyst support but EMA structure and RS (59) don't yet justify new entry at $1,114.",
+  "price_action": {
+    "open": 1122.0,
+    "high": 1125.0,
+    "low": 1109.0,
+    "close": 1114.8,
+    "volume": 0,
+    "vol_ratio": 1.2,
+    "vol_rank": "Slightly above average",
+    "intraday_story": "LLY opened near the high at $1,122 and sold off through the session, closing near the low at $1,114. The -0.73% decline is attributed to a broader healthcare sector sell-off rather than company-specific news. Close in the lower third of the day's range \u2014 mild near-term caution signal."
+  },
+  "news_catalyst": {
+    "headline": "Eli Lilly presents at Morgan Stanley Healthcare Conference Sep 14; AtaiBeckley acquisition complete",
+    "summary": "No major negative catalyst \u2014 the decline is sector-driven. Lilly completed the AtaiBeckley acquisition and will present at the Morgan Stanley Global Healthcare Conference on Sep 14, which is a potential positive catalyst next week. Analyst consensus remains bullish with a $1,307 average target (17% upside from current). HSBC raised its target to $940 from $850 on Sep 10, though that remains well below consensus \u2014 possibly a conservative re-rating. GLP-1 drugs continue to be the dominant growth driver with 47% revenue growth expected.",
+    "source_url": "https://247wallst.com/investing/2026/09/10/eli-lilly-stock-has-become-a-trillion-dollar-giant-is-it-too-late-to-buy/",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "uptrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 1080.0,
+    "key_resistance": 1160.0,
+    "rsi": 45.0,
+    "macd_signal": "flat",
+    "volume_ratio_today": 1.2,
+    "volume_signal": "normal",
+    "summary": "LLY is above EMA-200 but the EMA-50 slope analysis is borderline. RS rating of 59 indicates modest outperformance of SPY but not leadership. The stock has been a market leader on the GLP-1 thesis for years, but at $1,114 it needs a fresh technical setup to justify new entries. The healthcare sector is in a neutral phase (-0% 4w), providing neither tailwind nor headwind.\n\nKey levels: $1,080 is the significant support from prior consolidation. $1,160 is the near-term resistance from the August highs. A VCP or tight base forming between these levels would be the ideal setup. Currently no pattern is detected. The Morgan Stanley conference on Sep 14 is a near-term catalyst to watch."
+  },
+  "wyckoff_narrative": "LLY shows no explicit Wyckoff event tags in the 90-day dataset. The stock appears to be in a late-stage Markup or beginning a Distribution phase from its ATH zone. The slight sell-off today on healthcare rotation is not alarming but worth noting. If LLY can hold above $1,080 on any further sector weakness, the accumulation-at-support interpretation holds. A close below $1,080 on volume above 1.5x average would be the first Distribution warning.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 1250.0,
+    "upside_pct": 12.0,
+    "bear_value": 800.0,
+    "bull_value": 1600.0,
+    "discount_rate": 0.09,
+    "growth_rate": 0.35,
+    "summary": "LLY's DCF shows ~12% upside to $1,250 base case, driven by 35% assumed growth from GLP-1 dominance. The consensus target of $1,307 aligns closely. At $1,114 the stock is fairly valued to modestly undervalued if GLP-1 adoption curves hold. The bear case at $800 reflects a scenario where weight-loss drug competition intensifies faster than expected from Novo Nordisk and emerging competitors."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.7,
+    "key_strengths": [
+      "47% revenue growth driven by GLP-1 drugs (Mounjaro, Zepbound)",
+      "4 consecutive EPS beats",
+      "Strong pipeline with AtaiBeckley addition"
+    ],
+    "key_concerns": [
+      "Premium valuation leaves limited margin of safety",
+      "Healthcare sector sell-off risk",
+      "Competition from Novo Nordisk intensifying"
+    ],
+    "summary": "LLY is a high-quality growth company in a dominant market position. B grade reflects the strong business offset by valuation that prices in significant future growth. Analyst consensus is bullish \u2014 20 buys, average target $1,307. The Morgan Stanley conference next week could refresh the bull thesis."
+  },
+  "sentiment": {
+    "score": null,
+    "label": "N/A",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "Healthcare sector sell-off accelerates below $1,080 support",
+    "GLP-1 competition from Novo Nordisk ramps faster than expected",
+    "Morgan Stanley conference (Sep 14) \u2014 any guidance disappointment could accelerate selling"
+  ],
+  "watchlist_priority": "medium",
+  "rs_rating": 59,
+  "earnings_days": 48,
+  "earnings_flag": null,
+  "sector_momentum": {
+    "etf": "XLV",
+    "return_4w_pct": 0.0,
+    "label": "neutral"
+  },
+  "score": {
+    "total": 28,
+    "trend_health": 13,
+    "fundamental_quality": 15,
+    "timing_setup": 0
+  },
+  "financials_summary": "Most recent quarter revenue: $22.97B (up 16.0% QoQ) Gross margin 85.8%, net margin 30.9% \u2014 high operating costs Free cash flow $4.47B. FCF positive \u2014 earnings backed by real cash. Net debt $46.0B (debt $54.91B vs cash $8.95B).",
+  "financials_flags": []
+}

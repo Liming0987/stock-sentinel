@@ -1,0 +1,99 @@
+{
+  "ticker": "APP",
+  "company_name": "AppLovin Corporation",
+  "report_date": "2026-09-11",
+  "price": 323.51,
+  "change_pct": 2.87,
+  "overall_stance": "avoid",
+  "conviction": 0.22,
+  "one_liner": "APP +2.87% today but RS 18 and broken EMA structure signal persistent underperformance despite 52.8% revenue growth \u2014 wait for technical recovery.",
+  "price_action": {
+    "open": 315.0,
+    "high": 326.0,
+    "low": 313.0,
+    "close": 323.51,
+    "volume": 0,
+    "vol_ratio": 1.4,
+    "vol_rank": "Above average on up day",
+    "intraday_story": "APP had a strong session, up 2.87% on above-average volume \u2014 the best single-day performer in the watchlist today. The stock climbed from $315 open to close near the high at $323.51. This is constructive intraday price action, but needs to be seen in context of a stock with RS 18 \u2014 it has severely underperformed the market over 3 months despite excellent revenue growth."
+  },
+  "news_catalyst": {
+    "headline": "AppLovin Q2 revenue +52.8% YoY to $1.92B; Q3 guide +46-48%; analyst target $552",
+    "summary": "AppLovin reported exceptional Q2 results with 52.8% revenue growth, but the stock has been down 6.6% since that report \u2014 indicating the numbers were priced in or guidance disappointed expectations. The Q3 guide of 46-48% growth is strong but decelerating from Q2. The $552 analyst consensus target implies 71% upside from current price \u2014 suggesting significant analyst optimism that the market hasn't validated. The gap between analyst targets and price action (RS 18) is a significant caution flag.",
+    "source_url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/applovin-stock-gains-as-revenue-rises-52-8-percent/70087212",
+    "sentiment": "neutral"
+  },
+  "technical": {
+    "trend": "downtrend",
+    "wyckoff_phase": "Consolidation / No Clear Phase",
+    "wyckoff_bias": "neutral",
+    "wyckoff_signals_detected": 0,
+    "vcp_detected": false,
+    "vcp_pivot": null,
+    "vcp_stage": null,
+    "key_support": 295.0,
+    "key_resistance": 360.0,
+    "rsi": 42.0,
+    "macd_signal": "flat",
+    "volume_ratio_today": 1.4,
+    "volume_signal": "elevated",
+    "summary": "APP has the worst RS rating in the watchlist at 18 \u2014 meaning it has massively underperformed SPY over 12 weeks. Despite posting 52.8% revenue growth, the stock has been unable to sustain rallies. This disconnect between business fundamentals and price action typically signals that large holders are distributing (selling) into strength.\n\nToday's 2.87% gain on elevated volume is the best single-day move in the watchlist, but one good day doesn't fix 3 months of underperformance. For APP to become technically investable: RS needs to recover above 50, and the stock needs to establish a base above $300 with volume drying up. Today's move could be the start of that process, or it could be another failed bounce."
+  },
+  "wyckoff_narrative": "APP exhibits characteristics of a stock in a Distribution phase despite strong revenue growth \u2014 the hallmark of smart money selling into fundamental strength. RS 18 over 12 weeks while reporting 52.8% growth is the classic Wyckoff distribution signature: fundamental narrative is strong (news is good), but price cannot sustain advances. Watch for volume to dry up on any further advance toward $360. If it does, and the stock then reverses on low volume, that would be a Last Point of Supply \u2014 the final sell signal before a larger decline. Alternatively, if APP holds $295 and volume contracts significantly, it may be reaching the end of distribution.",
+  "valuation": {
+    "feasible": true,
+    "base_intrinsic_value": 480.0,
+    "upside_pct": 48.0,
+    "bear_value": 200.0,
+    "bull_value": 700.0,
+    "discount_rate": 0.14,
+    "growth_rate": 0.5,
+    "summary": "APP's DCF shows 48% upside to $480 using 50% growth and 14% discount rate \u2014 the business fundamentals support significant upside. But the market is not rewarding that fundamental story right now (RS 18). Analyst target of $552 (71% upside) vs. actual price action is a classic value trap risk. The DCF upside is real but catalysts to unlock it aren't visible in the near term."
+  },
+  "fundamentals": {
+    "grade": "B",
+    "score": 0.72,
+    "key_strengths": [
+      "52.8% revenue growth Q2",
+      "Q3 guide 46-48% growth \u2014 decelerating but still exceptional",
+      "P/E 23.45 \u2014 reasonable for growth rate"
+    ],
+    "key_concerns": [
+      "RS 18 \u2014 stock massively underperforming despite good results",
+      "Down 6.6% since strong earnings \u2014 distribution signal",
+      "Ad-tech competitive landscape intensifying"
+    ],
+    "summary": "APP has excellent fundamentals \u2014 fast growth at a reasonable multiple. The problem is entirely technical/sentiment: the market is not rewarding the growth story. This mismatch (great business, bad stock) typically resolves either through the stock eventually catching up, or through fundamentals deteriorating to meet the price. Monitoring closely."
+  },
+  "sentiment": {
+    "score": null,
+    "label": "N/A",
+    "mentions_24h": 0,
+    "trend": "flat"
+  },
+  "strategy_signals": [],
+  "risks": [
+    "RS 18 persists \u2014 if institutional selling continues, today's bounce fails below $295",
+    "Revenue growth decelerates further in Q3 below guide",
+    "Communication Services sector neutral \u2014 no sector tailwind to accelerate recovery"
+  ],
+  "watchlist_priority": "low",
+  "rs_rating": 18,
+  "earnings_days": 54,
+  "earnings_flag": null,
+  "sector_momentum": {
+    "etf": "XLC",
+    "return_4w_pct": 0.0,
+    "label": "neutral"
+  },
+  "score": {
+    "total": 22,
+    "trend_health": 2,
+    "fundamental_quality": 20,
+    "timing_setup": 0
+  },
+  "financials_summary": "Most recent quarter revenue: $1.92B (up 4.4% QoQ) Gross margin 88.3%, net margin 65.8% \u2014 healthy spread Free cash flow $0.87B. FCF positive \u2014 earnings backed by real cash. Net debt $0.5B (debt $3.52B vs cash $3.05B). Red flags: Revenue growth decelerating sharply: 11.1% QoQ \u2192 4.4% QoQ.",
+  "financials_flags": [
+    "Revenue growth decelerating sharply: 11.1% QoQ \u2192 4.4% QoQ"
+  ]
+}
