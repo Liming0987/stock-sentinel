@@ -44,6 +44,18 @@ SP100 = [
 LIQUIDITY_MIN_VOLUME = 500_000
 LIQUIDITY_MIN_PRICE  = 5.0
 
+# Symbols the social scrapers (Reddit/StockTwits cashtags) surface that are NOT
+# tradeable US equities — FX pairs, delisted names, crypto, or noise. Filtered
+# out of the pool so they don't spam yfinance "possibly delisted" errors and
+# waste download slots. Uppercase; matched case-insensitively.
+EXCLUDED_TICKERS = {
+    "CAD",   # Canadian dollar (FX, not equity)
+    "USD", "EUR", "GBP", "JPY", "AUD",  # other FX cashtags
+    "TWO",   # Two Harbors — frequently delisted/no-data on yfinance
+    "LUXX", "WILD",  # social-media noise, no price data
+    "BTC", "ETH", "DOGE", "SOL", "XRP",  # crypto cashtags
+}
+
 
 class UniverseBuilder:
 
@@ -95,6 +107,9 @@ class UniverseBuilder:
             pool.update(rows)
         except Exception as e:
             logger.warning(f"UniverseBuilder: could not load trending: {e}")
+
+        # Drop non-equity cashtags / delisted symbols the scrapers surface
+        pool = {t for t in pool if t and t.upper() not in EXCLUDED_TICKERS}
 
         return list(pool)
 
