@@ -452,12 +452,19 @@ class StrategyRunner:
             raise CapitalCapReached(
                 f"{ticker}: only ${available_usd:.2f} room left (< ${MIN_POSITION_USD:.0f} min) — skipping"
             )
-        intended_qty = round(available_usd / signal_price, 6)
-        intended_qty = max(intended_qty, 0.000001)
 
         # Buy limit slightly above the signal price: marketable near the close but
         # bounds the worst-case fill.
         limit_price = round(signal_price * (1 + settings.eod_limit_buffer), 2)
+
+        # Size the quantity against the LIMIT price (not the signal price): Alpaca
+        # reserves buying power at the limit, so qty×limit must stay within available
+        # capital. Floor to 6 decimals so rounding never pushes the cost basis over
+        # buying power (which caused "insufficient buying power" rejections when the
+        # limit buffer lifted a $99.98 order to $100.49).
+        import math
+        intended_qty = math.floor((available_usd / limit_price) * 1e6) / 1e6
+        intended_qty = max(intended_qty, 0.000001)
 
         order = self.alpaca.submit_order(
             symbol=ticker,
