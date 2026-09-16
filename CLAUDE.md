@@ -53,6 +53,8 @@ frontend/src/
 | Elliott Wave+Fib | wave count + fib confluence | wave structure break |
 | VCP | volume-confirmed pivot breakout after 2–4 contractions in a Stage-2 uptrend | 8% stop or 2.5× risk target |
 
+**Authoritative per-strategy specs** (entry/exit rules, every parameter + its backtest rationale, rejected alternatives) live in `openspec/specs/strategies/<swing|intraday>/<name>/spec.md`. Read the spec before changing a strategy. Elliott Wave+Fib trades Wave 4 pullbacks only (W2 entries were removed). The Sentiment-Driven strategy was removed — do NOT reintroduce it.
+
 ## Development commands (local)
 ```bash
 # Backend (from backend/)
@@ -70,8 +72,19 @@ python3 -m py_compile backend/app/strategies/<file>.py
 cd frontend && npx tsc --noEmit
 ```
 
+## Runtime notes & gotchas
+- **Universe is dynamic** — `UniverseBuilder` (services/universe_builder.py) scores an S&P-100 pool + watchlist + trending and selects the top ~20 each run; there is no fixed ticker list. Non-equity cashtags surfaced by scrapers (FX, crypto, delisted) are filtered via the `EXCLUDED_TICKERS` denylist.
+- **Secrets** — one combined secret `stock-sentinel/credentials` holds all third-party keys (Reddit + Alpaca). When `alpaca_paper: true` the service uses `alpaca_paper_api_key`/`_secret`. No env-var fallbacks; loaded via `services/secrets.py`.
+- **Order sizing** — order size is clamped to Alpaca buying power. EOD limit orders size quantity on the *limit* price (signal price × buffer), not the signal price, so `qty × limit` never exceeds buying power (avoids "insufficient buying power" rejections). Caps: $100/trade, $100 per strategy per ticker, $500 total.
+- **Notifications** — SMS via **AWS SNS** (services/notification_service.py, boto3 + EC2 instance role), not Twilio.
+- **Signal log** — `/api/strategy-signals` (per-signal decision audit incl. `not_executed_reason`). The old advisory `/api/signals` + `SignalService` were removed.
+- **Known bug** — `GET /api/prices/{ticker}` can return 500 when yfinance yields NaN candle values (JSON can't serialize NaN); the daily-recon skill works around it by pulling prices from yfinance directly.
+
 ## Multi-agent workflow
 Use `/trade-feature` to build new features or strategies through a 3-agent pipeline:
 **Analyst → Builder → Evaluator**
 
 See `.claude/commands/trade-feature.md` for details.
+
+## OpenSpec
+Specs and change proposals live in `openspec/`. Use `/opsx:propose`, `/opsx:apply`, `/opsx:archive` (or `/opsx:explore` to think through an idea). Capability specs are under `openspec/specs/` — strategies under `strategies/`, tooling under `tools/` (daily-recon, daily-recon-scoring, strategy-review).
