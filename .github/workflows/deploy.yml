@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Sync system clock
         run: sudo chronyc makestep 2>/dev/null || sudo ntpdate -u pool.ntp.org 2>/dev/null || true
@@ -82,7 +82,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Sync system clock
         run: sudo chronyc makestep 2>/dev/null || sudo ntpdate -u pool.ntp.org 2>/dev/null || true
@@ -124,7 +124,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Sync system clock
         run: sudo chronyc makestep 2>/dev/null || sudo ntpdate -u pool.ntp.org 2>/dev/null || true
