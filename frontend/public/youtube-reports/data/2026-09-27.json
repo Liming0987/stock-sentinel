@@ -1,0 +1,1147 @@
+{
+  "date": "2026-09-27",
+  "generated_at": "2026-09-27 15:10 UTC",
+  "video_count": 9,
+  "stock_count": 18,
+  "consensus": [
+    {
+      "symbol": "MSFT",
+      "company_name": "Microsoft Corp",
+      "display": "MSFT",
+      "channel_count": 2,
+      "channels": [
+        "Gareth Soloway — Pro Trader",
+        "Stocks with Josh"
+      ],
+      "weighted_score": 0.3,
+      "avg_sentiment_score": 0.15,
+      "overall_sentiment": "mixed",
+      "avg_conviction": 0.45,
+      "top_thesis": "Bullish for one final push to a ~529-531 fib/channel/RSI resistance 'brick wall,' where he expects heavy selling and advises hedging; a rejection there could pull back toward $460.",
+      "mentions": [
+        {
+          "channel": "Gareth Soloway — Pro Trader",
+          "sentiment": "bullish",
+          "conviction": 0.3,
+          "thesis": "Mentioned as having a great rebound and being among the large-cap AI names keeping the market elevated.",
+          "key_points": [
+            "Described as having staged a strong rebound",
+            "Grouped with the leaders supporting the broader market"
+          ],
+          "price_target": null,
+          "video_id": "YOKV8cD6YG0",
+          "video_title": "S&P 500 To 8,000 While Oil Breaks Down To $80",
+          "video_url": "https://www.youtube.com/watch?v=YOKV8cD6YG0"
+        },
+        {
+          "channel": "Stocks with Josh",
+          "sentiment": "mixed",
+          "conviction": 0.6,
+          "thesis": "Bullish for one final push to a ~529-531 fib/channel/RSI resistance 'brick wall,' where he expects heavy selling and advises hedging; a rejection there could pull back toward $460.",
+          "key_points": [
+            "Prior buy call near $382 rode up to ~$500; now expects a final push to ~529",
+            "529-531 aligns a 1.618 fib extension, an ascending-channel top, and RSI resistance near 66",
+            "Bullish drivers: 43% Azure/cloud growth, 30M paid Copilot seats, ~$40.6B quarterly operating profit",
+            "Warns ~$41B quarterly capex becomes a profit-taking trigger if growth slows",
+            "Suggests hedging long-term positions into the resistance; rejection could mean a pullback to ~$460"
+          ],
+          "price_target": "~529-531 near-term target, then possible pullback to ~460",
+          "video_id": "ZBv5kk-z2M8",
+          "video_title": "The Final Push Higher This Week?",
+          "video_url": "https://www.youtube.com/watch?v=ZBv5kk-z2M8"
+        }
+      ]
+    },
+    {
+      "symbol": "MU",
+      "company_name": "Micron Technology Inc",
+      "display": "MU",
+      "channel_count": 3,
+      "channels": [
+        "Gareth Soloway — Pro Trader",
+        "Parkev Tatevosian, CFA",
+        "Stocks with Josh"
+      ],
+      "weighted_score": 0.0,
+      "avg_sentiment_score": 0.0,
+      "overall_sentiment": "neutral",
+      "avg_conviction": 0.28,
+      "top_thesis": "Near-term upside to fill a gap that aligns with a 786 fib level, after which he would consider a small short.",
+      "mentions": [
+        {
+          "channel": "Gareth Soloway — Pro Trader",
+          "sentiment": "mixed",
+          "conviction": 0.45,
+          "thesis": "Near-term upside to fill a gap that aligns with a 786 fib level, after which he would consider a small short.",
+          "key_points": [
+            "Sees upside to a gap fill that lines up with the 786 Fibonacci level",
+            "Would consider a small short once that target is reached"
+          ],
+          "price_target": "gap-fill near a 786 fib level, then a possible small short",
+          "video_id": "YOKV8cD6YG0",
+          "video_title": "S&P 500 To 8,000 While Oil Breaks Down To $80",
+          "video_url": "https://www.youtube.com/watch?v=YOKV8cD6YG0"
+        },
+        {
+          "channel": "Stocks with Josh",
+          "sentiment": "neutral",
+          "conviction": 0.2,
+          "thesis": "Named as a key week-ahead catalyst for memory stocks and the AI trade via its upcoming earnings, not a directional call.",
+          "key_points": [
+            "Earnings cited as a catalyst for memory stocks and the overall AI trade",
+            "One of two events (with PCE) the market is watching into September 30"
+          ],
+          "price_target": null,
+          "video_id": "ZBv5kk-z2M8",
+          "video_title": "The Final Push Higher This Week?",
+          "video_url": "https://www.youtube.com/watch?v=ZBv5kk-z2M8"
+        },
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "sentiment": "neutral",
+          "conviction": 0.2,
+          "thesis": "Flagged as the next key AI-industry data point, with earnings after the close on September 30 that he'll cover live — not a rating.",
+          "key_points": [
+            "Reports quarterly results after market close on September 30",
+            "Cited as an important upcoming read on the AI industry"
+          ],
+          "price_target": null,
+          "video_id": "s7G5dXn2VTY",
+          "video_title": "Unfortunate News for Oracle Stock Investors | ORCL Stock Analysis",
+          "video_url": "https://www.youtube.com/watch?v=s7G5dXn2VTY"
+        }
+      ]
+    }
+  ],
+  "analyses": [
+    {
+      "video_id": "GYkvoCvL77Y",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Target's Management Team Deserves Credit for Accelerating Revenue Growth Amid a Challenging Backdrop",
+      "video_url": "https://www.youtube.com/watch?v=GYkvoCvL77Y",
+      "published_at": "2026-09-26T16:45:15Z",
+      "duration_minutes": 6,
+      "summary": "Parkev credits Target's new management team for reinvigorating growth after a long slump, with net sales up 5.3% in the latest quarter, traffic up nearly 4%, and full-year guidance raised to roughly 5% growth for 2026. He notes sales had been declining from a 2023 peak until early 2026, and trailing revenue now totals about $108 billion, up from around $70 billion in 2017. He praises Target as an early leader in the digital transformation — buy-online-pickup-in-store and drive-up delivery — a playbook Walmart, Home Depot and others later copied.\n\nHe frames Target as a more premium retailer that struggled as pinched consumer budgets pushed shoppers toward lower-priced options like Costco and Walmart, which makes the re-acceleration more impressive. On margins, Target historically ran a richer operating margin (around 7-8%, near 9% at the pandemic peak) versus Walmart near 6% and Costco around 3.5%, and management is trying to restore those historical levels. He also walks through inventory turnover as a key retail metric: Target's ~8.2 is normal for it but well below Walmart's ~12 and Costco's ~15, reflecting Target's higher-price, lower-turnover strategy.\n\nOn valuation, enthusiasm has lifted Target's forward P/E from about 8 to 16.7. He had rated the stock a buy before the run-up but downgraded to Hold about a month ago (August 21) on valuation. His updated DCF pegs fair value at $93 versus a $160 market price, so he sees considerable downside and reiterates Hold, saying the ~3.3% drop since his last review isn't enough to warrant an upgrade — he'd want a bigger pullback or further fundamental improvement first.",
+      "macro_topics": [
+        "consumer spending pressure",
+        "retail digital transformation",
+        "inventory turnover as a retail health metric"
+      ],
+      "stocks": [
+        {
+          "symbol": "TGT",
+          "company_name": "Target Corp",
+          "sentiment": "bearish",
+          "conviction": 0.65,
+          "thesis": "Management has impressively re-accelerated growth, but after the forward P/E jumped from ~8 to 16.7 the stock looks considerably overvalued versus his $93 DCF fair value — Hold with downside risk.",
+          "price_target": "$93 DCF fair value (vs ~$160 market)",
+          "key_points": [
+            "Net sales up 5.3% and traffic up ~4% in the latest quarter; full-year guide raised to ~5% growth",
+            "Trailing revenue ~$108B, up from ~$70B in 2017",
+            "Management aiming to restore historical operating margins near 8%",
+            "Inventory turnover ~8.2, below Walmart's ~12 and Costco's ~15 by design",
+            "Forward P/E re-rated from ~8 to 16.7; downgraded to Hold on Aug 21",
+            "Reiterates Hold — wants a significant pullback before buying"
+          ],
+          "time_spent_estimate_minutes": 6
+        }
+      ],
+      "key_theses": [
+        "Target's turnaround under new management is real, with growth, traffic and guidance all improving",
+        "It is a premium retailer that lost share to lower-cost Walmart and Costco during the consumer squeeze",
+        "The valuation re-rating has run ahead of fundamentals",
+        "Hold — considerable downside to a $93 DCF fair value from ~$160"
+      ],
+      "warnings_or_risks": [
+        "Forward P/E doubled from ~8 to 16.7, pricing in a lot of the turnaround",
+        "DCF implies significant downside from the current price",
+        "Premium positioning remains vulnerable to value-seeking consumer behavior"
+      ]
+    },
+    {
+      "video_id": "GjtaI05BM2A",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Interesting News for Starbucks Stock Investors | SBUX Stock Analysis | BROS Stock",
+      "video_url": "https://www.youtube.com/watch?v=GjtaI05BM2A",
+      "published_at": "2026-09-27T13:45:32Z",
+      "duration_minutes": 7,
+      "summary": "Parkev reacts to Starbucks' announcement that it will close roughly 250 stores across the US and Canada, framing it as further evidence of diseconomies of scale — the company has grown so large (40,000+ locations worldwide) that costs are rising faster than sales. He notes this is the second round of closures and expects more, arguing the chain is over-saturated in North America. He points to a decline in operating margin from about 18% in 2017 to roughly 10% today, and return on invested capital falling from above 30% pre-pandemic to just 11-12%, barely covering the cost of capital.\n\nHe attributes much of the margin compression to a structural rise in labor costs: a shortage of frontline restaurant workers (affecting McDonald's and Domino's too) and sharply higher minimum wages, especially California's $20+/hour restaurant wage. In his view these are permanent cost shifts Starbucks didn't anticipate, making incremental new locations unprofitable and justifying a strategic shrinking of the footprint.\n\nParkev credits CEO Brian Niccol — whose track record at Chipotle earns the stock benefit-of-the-doubt — for identifying and acting on the problem, but warns that giving up market share could open the door for Dutch Bros to expand at Starbucks' expense. On valuation he calls a forward P/E of 30 rich for a company in this position and pegs his DCF fair value at $66 versus a market price of $93. He reiterates a Hold rating, saying he loves the brand but wants a considerably better entry point before upgrading to a buy.",
+      "macro_topics": [
+        "restaurant labor shortage",
+        "minimum wage inflation",
+        "diseconomies of scale in retail"
+      ],
+      "stocks": [
+        {
+          "symbol": "SBUX",
+          "company_name": "Starbucks Corp",
+          "sentiment": "bearish",
+          "conviction": 0.7,
+          "thesis": "Store closures signal diseconomies of scale; margins and ROIC have compressed on structurally higher labor costs, and at a forward P/E of 30 the stock is too expensive versus his $66 DCF fair value.",
+          "price_target": "$66 DCF fair value (vs ~$93 market)",
+          "key_points": [
+            "Roughly 250 US/Canada store closures announced — the second such round, with more expected",
+            "Operating margin has slid from about 18% in 2017 to around 10% today",
+            "Return on invested capital has fallen from above 30% pre-pandemic to just 11-12%",
+            "Higher minimum wages and a frontline-labor shortage are permanent cost headwinds",
+            "Reiterates Hold; wants a much better entry point before upgrading"
+          ],
+          "price_target_note": null,
+          "time_spent_estimate_minutes": 6
+        },
+        {
+          "symbol": "BROS",
+          "company_name": "Dutch Bros Inc",
+          "sentiment": "bullish",
+          "conviction": 0.45,
+          "thesis": "As Starbucks right-sizes and cedes market share, Dutch Bros has room to expand and could emerge as a powerful competitor.",
+          "price_target": null,
+          "key_points": [
+            "Positioned as an up-and-coming coffee chain that can grow at Starbucks' expense",
+            "Mentioned as a beneficiary of Starbucks giving up North American market share"
+          ],
+          "time_spent_estimate_minutes": 1
+        }
+      ],
+      "key_theses": [
+        "Starbucks has grown too large to manage efficiently and must shrink to restore profitability",
+        "Labor cost inflation is a structural, not cyclical, headwind for the chain",
+        "CEO Brian Niccol earns the stock benefit-of-the-doubt, but the valuation already prices in a turnaround",
+        "Starbucks looks overvalued at ~$93 versus a $66 DCF fair value — Hold"
+      ],
+      "warnings_or_risks": [
+        "Giving up market share could let Dutch Bros grow into a serious long-term competitor",
+        "Forward P/E of 30 is rich for a company with falling margins and ROIC near its cost of capital"
+      ]
+    },
+    {
+      "video_id": "MgyF6WSteJE",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "I'm Updating My Outlook on Alphabet Stock",
+      "video_url": "https://www.youtube.com/watch?v=MgyF6WSteJE",
+      "published_at": "2026-09-27T11:45:38Z",
+      "duration_minutes": 6,
+      "summary": "Parkev updates his view on Alphabet following management comments at the Goldman Sachs Communacopia technology conference, where the company claimed its AI is 2.7x better than competitors with 80% better price-performance for inferencing. He emphasizes Alphabet's full-stack advantage — custom processing units, its own large language model, and six product lines each with over a billion users — which lets it spread massive AI investment across a huge customer base. Trailing revenue has surpassed $446 billion, the AI business has crossed a $100 billion annual run rate, and the cloud backlog is around $500 billion.\n\nHe highlights sharply rising productivity: revenue per employee has nearly doubled over the decade and accelerated since 2024, from about $1.65 million to $2.15 million per employee, with management holding headcount roughly flat. On valuation, the forward P/E of about 22.7 looks reasonable for a company approaching 20% revenue growth with improving margins and strong moats, though he acknowledges the business is riskier than in recent years because of unprecedented, hundreds-of-billions AI spending in a category where Alphabet hasn't yet proven multi-year dominance.\n\nHis updated DCF forecasts $7.8 billion of free cash flow this year, turning to negative $32 billion next year as AI capex peaks (he sees peak hyperscaler spending around 2027-2028), then recovering to a large positive figure (~$146 billion) by 2029 as the investments pay off. His DCF fair value is $338 against a $342 market price — fairly valued on DCF, undervalued on forward P/E. Because he ranks Alphabet a 'Hall of Fame' business that he's owned since 2020, he calls it an excellent buying opportunity and reiterates a Buy at his highest conviction level.",
+      "macro_topics": [
+        "AI capital spending cycle",
+        "hyperscaler capex",
+        "productivity gains from AI"
+      ],
+      "stocks": [
+        {
+          "symbol": "GOOGL",
+          "company_name": "Alphabet Inc",
+          "sentiment": "bullish",
+          "conviction": 0.9,
+          "thesis": "Full-stack AI advantage, a $100B+ AI run rate, rising revenue-per-employee productivity, and a reasonable forward P/E make this 'Hall of Fame' business slightly underpriced — a high-conviction buy.",
+          "price_target": "$338 DCF fair value (vs ~$342 market)",
+          "key_points": [
+            "Claims 2.7x better AI performance and 80% better inferencing price-performance vs competitors",
+            "Trailing revenue over $446B; AI business past a $100B run rate; ~$500B cloud backlog",
+            "Revenue per employee up to ~$2.15M as headcount stays flat — major productivity gain",
+            "Forward P/E ~22.7 called reasonable for ~20% growth and improving margins",
+            "DCF sees FCF swinging negative in 2027 as AI capex peaks, then recovering strongly by 2029",
+            "Highest-conviction Buy; owned since 2020 and ranked a Hall of Fame business"
+          ],
+          "time_spent_estimate_minutes": 6
+        }
+      ],
+      "key_theses": [
+        "Alphabet's full-stack AI and billion-user product lines spread AI costs across a huge base",
+        "Productivity is rising fast — revenue per employee climbing while headcount stays flat",
+        "AI capex will pressure free cash flow near-term but pay off strongly by 2029",
+        "Fairly valued on DCF, undervalued on forward P/E — high-conviction buy"
+      ],
+      "warnings_or_risks": [
+        "Unprecedented hundreds-of-billions AI spending in a category Alphabet hasn't dominated for years",
+        "Free cash flow projected to turn sharply negative in 2027",
+        "Higher business risk than in recent years pressures the justified valuation"
+      ]
+    },
+    {
+      "video_id": "QswotwkLAJ0",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Is This the Biggest Stock Opportunity in Gaming History?",
+      "video_url": "https://www.youtube.com/watch?v=QswotwkLAJ0",
+      "published_at": "2026-09-27T12:45:01Z",
+      "duration_minutes": 7,
+      "summary": "Parkev evaluates Take-Two Interactive ahead of the November launch of GTA 6, whose predecessor GTA 5 has sold over 230 million units since 2013 and remains one of the most successful franchises in history. He argues the excitement is justified but insists on looking at the whole business, not just one game. Revenue has more than quadrupled since 2017 to about $6.7 billion trailing, with management guiding to at least $8 billion this fiscal year, and he expects substantial multi-year growth as GTA 6 rolls out to PC and its online marketplace after the initial launch.\n\nOn profitability the picture is mixed: operating margin has been negative since 2024 (though improving), and return on invested capital collapsed as development dragged on. He sees several tailwinds that should make GTA 6 more lucrative than GTA 5 even at similar unit volumes — a shift from physical discs to higher-margin digital sales and much higher average selling prices — and thinks ROIC could climb above 20%, possibly toward 30%, in the first three-to-five years post-launch. R&D as a percent of revenue has jumped into double digits and stayed there.\n\nHe cautions that buying Take-Two means betting not just on GTA 6 but on the company's ability to innovate future hits (GTA 7, 8 and others), and the repeated GTA 6 delays don't inspire confidence in that process. Still, the valuation sits at a multi-year low — a forward P/E of 20 with the stock down nearly 20% in 2026 — and his DCF fair value of $202 is right around the $207 market price. He concludes Take-Two is a buying opportunity but explicitly keeps his conviction low given how much value hinges on a single unproven game.",
+      "macro_topics": [
+        "video game industry",
+        "shift from physical to digital game sales",
+        "AI/consumer spending backdrop"
+      ],
+      "stocks": [
+        {
+          "symbol": "TTWO",
+          "company_name": "Take-Two Interactive Software Inc",
+          "sentiment": "bullish",
+          "conviction": 0.45,
+          "thesis": "GTA 6 plus digital-mix and pricing tailwinds should drive multi-year revenue and ROIC gains, and the stock trades at a multi-year-low forward P/E of 20 near his $202 DCF fair value — a buy, but low conviction given single-title concentration.",
+          "price_target": "$202 DCF fair value (vs ~$207 market)",
+          "key_points": [
+            "GTA 6 launches in November with strong pre-orders and reviews; PC and online marketplace roll out later",
+            "Revenue more than quadrupled since 2017 to ~$6.7B; management guides to $8B+ this year",
+            "Digital-sales mix and higher average selling prices should make GTA 6 more profitable than GTA 5",
+            "Operating margin negative since 2024 and ROIC collapsed during the extended development cycle",
+            "Repeated delays raise doubts about the company's longer-term innovation pipeline",
+            "Rates it a buy but deliberately keeps conviction low due to reliance on one game"
+          ],
+          "time_spent_estimate_minutes": 7
+        }
+      ],
+      "key_theses": [
+        "GTA 6 is a major near-term catalyst but the whole portfolio and future pipeline matter more",
+        "Digital mix shift and higher ASPs make each GTA 6 unit more profitable than GTA 5",
+        "Valuation is at a multi-year low despite the biggest product launch in over a decade",
+        "Buy rating with intentionally low conviction pending real launch data"
+      ],
+      "warnings_or_risks": [
+        "Extreme concentration of value in the success of a single unproven title",
+        "Repeated GTA 6 delays undermine confidence in the innovation process",
+        "Operating margins remain negative and ROIC has collapsed during development"
+      ]
+    },
+    {
+      "video_id": "YOKV8cD6YG0",
+      "channel_name": "Gareth Soloway — Pro Trader",
+      "video_title": "S&P 500 To 8,000 While Oil Breaks Down To $80",
+      "video_url": "https://www.youtube.com/watch?v=YOKV8cD6YG0",
+      "published_at": "2026-09-26T21:00:02Z",
+      "duration_minutes": 15,
+      "summary": "Gareth Soloway previews the week ahead with a technical tour of the S&P 500, oil, the 10-year yield, gold, silver, Bitcoin and several individual stocks. He remains short-term bullish on the S&P 500 as long as it holds above his 'neutral zone' line at 7575, and expects a break above 7770 to open a move to an upper trendline around 7800 by early October, with 8,000 possible by mid-October — a 250+ point gain from the current ~7743. He stresses he is long-term bearish (seeing the market eventually 'collapse like a house of cards') but insists the charts are in charge and the breakdown isn't ready yet, noting only a narrow group of large-cap AI names is holding the market up.\n\nOn macro cross-assets, he expects crude oil to break down toward $80 over the next few weeks to a month (a bear-flag setup, aided by potential deal overtures ahead of midterms), while the 10-year yield broke out on a bull flag and could tag a high pivot as early as Monday before pulling back to around 5% — a pullback he says would give the stock market confidence to keep rising. He sees gold and silver as range-bound at support (warning of downside to 3,900 gold / $55 silver if support breaks) and Bitcoin holding up after a higher high, expecting a pullback to about 81,000 that must hold as support for another leg up, with 75,500 the next level below.\n\nOn individual names: he thinks Micron has upside to fill a gap that aligns with a 786 fib, after which he'd consider a small short; Nvidia is range-bound in a converging wedge with no clear bias but remains the core of the AI trade; and Meta, after a huge run, looks topped with expected downside back to a prior breakout/buyable level. He also cites Apple near all-time highs and Microsoft's strong rebound as part of the small group keeping the market afloat. The video closes with a sponsored promotion for the Rumble Wallet.",
+      "macro_topics": [
+        "S&P 500 technical outlook",
+        "crude oil",
+        "10-year Treasury yield",
+        "gold and silver",
+        "Bitcoin",
+        "US midterm elections",
+        "long-term market top thesis"
+      ],
+      "stocks": [
+        {
+          "symbol": "MU",
+          "company_name": "Micron Technology Inc",
+          "sentiment": "mixed",
+          "conviction": 0.45,
+          "thesis": "Near-term upside to fill a gap that aligns with a 786 fib level, after which he would consider a small short.",
+          "price_target": "gap-fill near a 786 fib level, then a possible small short",
+          "key_points": [
+            "Sees upside to a gap fill that lines up with the 786 Fibonacci level",
+            "Would consider a small short once that target is reached"
+          ],
+          "time_spent_estimate_minutes": 1
+        },
+        {
+          "symbol": "NVDA",
+          "company_name": "NVIDIA Corp",
+          "sentiment": "neutral",
+          "conviction": 0.4,
+          "thesis": "Range-bound in a converging wedge with no clear directional bias; still the core of the AI trade and to be given benefit of the doubt while it doesn't break down.",
+          "price_target": null,
+          "key_points": [
+            "Chopping in an up-sloping, slowly converging wedge with no bias",
+            "Described as the core of the market keeping the AI trade alive"
+          ],
+          "time_spent_estimate_minutes": 1
+        },
+        {
+          "symbol": "META",
+          "company_name": "Meta Platforms Inc",
+          "sentiment": "bearish",
+          "conviction": 0.55,
+          "thesis": "After an incredible run he believes Meta has topped and expects downside back to a prior breakout level, which he'd treat as the buyable zone.",
+          "price_target": "downside to a prior breakout / buyable level",
+          "key_points": [
+            "Believes the stock has topped after a large advance",
+            "Expects a move down to a former resistance-turned-support level to buy"
+          ],
+          "time_spent_estimate_minutes": 1
+        },
+        {
+          "symbol": "AAPL",
+          "company_name": "Apple Inc",
+          "sentiment": "bullish",
+          "conviction": 0.3,
+          "thesis": "Cited as still near all-time highs, one of the small group of large caps holding the market up.",
+          "price_target": null,
+          "key_points": [
+            "Noted as trading near all-time highs",
+            "Part of the narrow leadership keeping the index afloat"
+          ],
+          "time_spent_estimate_minutes": 1
+        },
+        {
+          "symbol": "MSFT",
+          "company_name": "Microsoft Corp",
+          "sentiment": "bullish",
+          "conviction": 0.3,
+          "thesis": "Mentioned as having a great rebound and being among the large-cap AI names keeping the market elevated.",
+          "price_target": null,
+          "key_points": [
+            "Described as having staged a strong rebound",
+            "Grouped with the leaders supporting the broader market"
+          ],
+          "time_spent_estimate_minutes": 1
+        }
+      ],
+      "key_theses": [
+        "Short-term bullish S&P 500 to ~7800 and possibly 8,000 by mid-October while above the 7575 line",
+        "Oil breaking down toward $80 while the 10-year yield tags a pivot then pulls back to ~5%",
+        "Gold, silver and Bitcoin range-bound at support with defined downside if support breaks",
+        "Long-term bearish 'house of cards' view, but the charts say the top isn't in yet"
+      ],
+      "warnings_or_risks": [
+        "Only a narrow group of large-cap AI names is holding the market up",
+        "Long-term he expects an eventual market collapse",
+        "Key support breaks (gold 3,900 / silver $55 / Bitcoin 75,500) would flip the near-term bias bearish"
+      ]
+    },
+    {
+      "video_id": "ZBv5kk-z2M8",
+      "channel_name": "Stocks with Josh",
+      "video_title": "The Final Push Higher This Week?",
+      "video_url": "https://www.youtube.com/watch?v=ZBv5kk-z2M8",
+      "published_at": "2026-09-26T18:02:10Z",
+      "duration_minutes": 13,
+      "summary": "Josh frames the coming week as risk-on into September 30, driven by two catalysts the market is watching: the PCE inflation report (the Fed's preferred gauge) and Micron's earnings, which he says will speak to memory stocks and the broader AI trade. Much of the video is a technical, fib-theory-based walkthrough of Microsoft and the S&P 500 (SPY), with heavy promotion of his paid Discord community, a stock screener, and a new candle-pattern tool.\n\nOn Microsoft, he recaps a prior call to buy near $382 and says it ripped to about $500. He now expects a 'final push' to a target he dialed in at 529 (down slightly from 531), where a trend-based fib extension (1.618) plus an ascending-channel top and an RSI resistance level near 66 should create a 'brick wall' of selling. He advises viewers to consider hedging long-term Microsoft positions there. Fundamentally he cites Azure/cloud growth of 43%, 30 million paid Microsoft 365 Copilot seats, and ~$40.6B quarterly operating profit as the bullish drivers, but warns the ~$41B quarterly infrastructure spend becomes a reason to take profit if growth slows. If Microsoft rejects at the fib level, he sees a normal pullback potentially to the 382-fib area around $460, possibly playing out over October.\n\nOn the S&P 500 (SPY), he expects a possible early-week tap of an important fib level around 783, an area of substantial resistance where sellers are camped, and points to bearish RSI divergence (price rising while momentum fades) as a warning that a violent flush below the 60 RSI level could occur, as in a prior cycle. He is currently in the bullish camp with RSI above 60 but stresses caution around the PCE and Micron catalysts. He also touts small-cap screener winners as promotional proof of his tools; those tickers carry no investment thesis and are excluded from the stock list.",
+      "macro_topics": [
+        "PCE inflation report",
+        "Fibonacci technical analysis",
+        "AI trade / memory stocks",
+        "RSI momentum and bearish divergence"
+      ],
+      "stocks": [
+        {
+          "symbol": "MSFT",
+          "company_name": "Microsoft Corp",
+          "sentiment": "mixed",
+          "conviction": 0.6,
+          "thesis": "Bullish for one final push to a ~529-531 fib/channel/RSI resistance 'brick wall,' where he expects heavy selling and advises hedging; a rejection there could pull back toward $460.",
+          "price_target": "~529-531 near-term target, then possible pullback to ~460",
+          "key_points": [
+            "Prior buy call near $382 rode up to ~$500; now expects a final push to ~529",
+            "529-531 aligns a 1.618 fib extension, an ascending-channel top, and RSI resistance near 66",
+            "Bullish drivers: 43% Azure/cloud growth, 30M paid Copilot seats, ~$40.6B quarterly operating profit",
+            "Warns ~$41B quarterly capex becomes a profit-taking trigger if growth slows",
+            "Suggests hedging long-term positions into the resistance; rejection could mean a pullback to ~$460"
+          ],
+          "time_spent_estimate_minutes": 6
+        },
+        {
+          "symbol": "SPY",
+          "company_name": "SPDR S&P 500 ETF (S&P 500)",
+          "sentiment": "mixed",
+          "conviction": 0.5,
+          "thesis": "Bullish near-term toward a ~783 fib resistance level, but bearish RSI divergence warns of a potential violent flush below the 60 RSI level.",
+          "price_target": "~783 fib resistance near-term",
+          "key_points": [
+            "Possible early-week tap of a ~783 fib level where sellers are camped",
+            "Bearish RSI divergence — price ascending while momentum descends",
+            "Still bullish while RSI holds above 60, but flags flush risk like a prior cycle"
+          ],
+          "time_spent_estimate_minutes": 3
+        },
+        {
+          "symbol": "MU",
+          "company_name": "Micron Technology Inc",
+          "sentiment": "neutral",
+          "conviction": 0.2,
+          "thesis": "Named as a key week-ahead catalyst for memory stocks and the AI trade via its upcoming earnings, not a directional call.",
+          "price_target": null,
+          "key_points": [
+            "Earnings cited as a catalyst for memory stocks and the overall AI trade",
+            "One of two events (with PCE) the market is watching into September 30"
+          ],
+          "time_spent_estimate_minutes": 1
+        }
+      ],
+      "key_theses": [
+        "Risk-on into September 30, gated by the PCE report and Micron earnings",
+        "Microsoft has one final push to ~529-531 before major fib/channel/RSI resistance",
+        "S&P 500 approaching ~783 fib resistance with bearish RSI divergence flashing caution",
+        "Take profit / hedge into resistance rather than chase after the extended run"
+      ],
+      "warnings_or_risks": [
+        "Microsoft's heavy AI capex becomes a profit-taking catalyst if growth slows",
+        "Microsoft rejection at the fib level could bring a pullback toward $460",
+        "Bearish RSI divergence on the S&P raises the risk of a violent momentum flush"
+      ]
+    },
+    {
+      "video_id": "dLLAFMZ75BQ",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Novo Nordisk Gives Uninspiring Outlook",
+      "video_url": "https://www.youtube.com/watch?v=dLLAFMZ75BQ",
+      "published_at": "2026-09-26T16:45:14Z",
+      "duration_minutes": 7,
+      "summary": "Parkev examines Novo Nordisk after management guided to only mid-single-digit revenue growth through 2030 and a rise in patients served to over 60 million from about 46.5 million today. Investors expected more given Novo's strong weight-loss franchise, and the muted outlook — plus a looming patent loss on one weight-loss category — has left shares down over 25% year-to-date in 2026. Trailing revenue is about $51.5 billion, more than triple 2017 levels, so investors had grown used to far faster growth.\n\nHe walks through the fundamentals: operating margin is lucrative at ~45% but has been volatile between roughly 40% and 47% over the decade, unsettling investors who want to see a stable, rising trajectory. His bigger concern is falling return on invested capital — still strong in absolute terms at ~37% (three-to-four times its cost of capital) but down sharply from the 80-90% range earlier in the decade, raising the question of how far it will fall. Notably, Novo has spent the least on R&D as a percent of revenue among peers Pfizer and Eli Lilly, so overspending isn't the cause — he suspects the effectiveness of those investments. Management has already cut about 12,000 jobs in 2026 and hopes to redirect savings into R&D, and he notes AI could eventually lower drug-development costs industry-wide.\n\nOn valuation, Novo trades at a forward P/E of just 11.3, near its cheapest in a long time. He revised his DCF lower after cutting his free-cash-flow expectations and raising his beta assumption to 0.75 to reflect higher forward risk, arriving at a fair value of $64.50 versus a $38.36 market price near the 52-week low — implying about 68% upside over 12-18 months. He keeps Novo rated a buy but lowers his conviction to low as performance keeps disappointing, and states he prefers competitor Eli Lilly, which he owns.",
+      "macro_topics": [
+        "GLP-1 / weight-loss drug market",
+        "pharma patent cliffs",
+        "AI in drug development"
+      ],
+      "stocks": [
+        {
+          "symbol": "NVO",
+          "company_name": "Novo Nordisk A/S",
+          "sentiment": "bullish",
+          "conviction": 0.35,
+          "thesis": "After a 25%+ YTD drop the stock trades at a forward P/E of 11.3 with ~68% upside to his revised $64.50 DCF fair value, so it stays a buy — but conviction is cut to low as growth disappoints and ROIC keeps falling.",
+          "price_target": "$64.50 DCF fair value (vs ~$38.36 market)",
+          "key_points": [
+            "Guided to only mid-single-digit revenue growth through 2030, disappointing investors",
+            "Shares down over 25% YTD; near a 52-week low around $35",
+            "Operating margin lucrative at ~45% but volatile; ROIC still strong at ~37% but falling from 80-90%",
+            "Cut ~12,000 jobs in 2026, redirecting savings toward R&D",
+            "Revised DCF lower (higher beta of 0.75) to a $64.50 fair value implying ~68% upside",
+            "Buy rating retained but conviction lowered to low; prefers and owns Eli Lilly"
+          ],
+          "time_spent_estimate_minutes": 6
+        },
+        {
+          "symbol": "LLY",
+          "company_name": "Eli Lilly and Co",
+          "sentiment": "bullish",
+          "conviction": 0.6,
+          "thesis": "He explicitly prefers Eli Lilly over Novo Nordisk in the weight-loss market and owns the stock, viewing it as the better buying opportunity of the two.",
+          "price_target": null,
+          "key_points": [
+            "Named his preferred weight-loss-market pick over Novo Nordisk",
+            "Discloses he personally owns Eli Lilly"
+          ],
+          "time_spent_estimate_minutes": 1
+        },
+        {
+          "symbol": "PFE",
+          "company_name": "Pfizer Inc",
+          "sentiment": "neutral",
+          "conviction": 0.2,
+          "thesis": "Referenced only as an R&D-spending and ROIC comparison point against Novo Nordisk and Eli Lilly, not as a recommendation.",
+          "price_target": null,
+          "key_points": [
+            "Cited alongside Eli Lilly in an R&D-as-percent-of-revenue peer comparison"
+          ],
+          "time_spent_estimate_minutes": 1
+        }
+      ],
+      "key_theses": [
+        "Novo's mid-single-digit growth outlook and patent loss disappointed a market used to rapid growth",
+        "Falling ROIC (from 80-90% to ~37%) is the key concern despite strong absolute profitability",
+        "At a forward P/E of 11.3 the stock is cheap with large modeled upside",
+        "Buy but low conviction — Eli Lilly is the preferred weight-loss play"
+      ],
+      "warnings_or_risks": [
+        "Patent loss on a weight-loss category threatens market power",
+        "Persistently falling return on invested capital with an uncertain floor",
+        "Repeated underperformance eroding the analyst's confidence"
+      ]
+    },
+    {
+      "video_id": "s7G5dXn2VTY",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Unfortunate News for Oracle Stock Investors | ORCL Stock Analysis",
+      "video_url": "https://www.youtube.com/watch?v=s7G5dXn2VTY",
+      "published_at": "2026-09-26T13:45:25Z",
+      "duration_minutes": 8,
+      "summary": "Parkev breaks down why Oracle fell nearly 4% after issuing a force majeure notice on its 2.45-gigawatt New Mexico data-center site, 'Project Jupiter,' tied to a startup initiative with OpenAI (the customer) and SoftBank. The notice, reportedly sent to developer/private-credit player Blue Owl Capital, appears aimed at delaying payments if the site fails to come online in 2028. Oracle publicly insisted the project remains on schedule and that such notices are routine, but Parkev argues the sell-off reflects fear of what it could signal about the AI ecosystem's heavy interdependence and circular financing, where companies are simultaneously each other's customers and creditors.\n\nHe stresses Oracle is the most leveraged and cash-tenuous of the hyperscalers (citing a KeyBanc analyst), carrying tens of billions in debt with free cash flow expected to stay negative for years, so any adverse change hits its share price harder. A recent positive is that Oracle now collects multi-billion-dollar deposits from customers ordering compute capacity, easing the timing mismatch between huge upfront data-center spending and cash flows that arrive over years. He models negative free cash flow of about $25B in 2026, $37B in 2027, and $32.6B in 2028 (revised less negative after the deposits), with a return to positive cash flow in 2029.\n\nHe updated his fair value to $131 versus a $139 market price, so with a margin of safety the stock looks fairly valued on DCF but undervalued on a forward P/E of 12.71 — cheaper than in 2024 despite far more backlog, which he says reflects rising risk as OpenAI's position looks more tenuous (Anthropic's rise, OpenAI's delayed IPO). He concludes Oracle is still a buying opportunity on risk-versus-reward but at low conviction, and flags Micron's earnings after the close on September 30 as the next key AI read.",
+      "macro_topics": [
+        "AI data-center buildout",
+        "circular financing in the AI ecosystem",
+        "hyperscaler leverage and cash flow"
+      ],
+      "stocks": [
+        {
+          "symbol": "ORCL",
+          "company_name": "Oracle Corp",
+          "sentiment": "bullish",
+          "conviction": 0.35,
+          "thesis": "A leveraged, cash-tenuous AI infrastructure play; the force majeure scare highlights ecosystem risk, but at a forward P/E of 12.71 and near his $131 DCF fair value it's still a low-conviction buy on risk-reward.",
+          "price_target": "$131 DCF fair value (vs ~$139 market)",
+          "key_points": [
+            "Fell ~4% on a force majeure notice for its 2.45 GW New Mexico 'Project Jupiter' site tied to OpenAI/SoftBank",
+            "Most leveraged, cash-tenuous hyperscaler with FCF negative for years (modeled -$25B/-$37B/-$32.6B in 2026-2028)",
+            "Now collecting multi-billion-dollar customer deposits, easing the cash-timing mismatch",
+            "Forward P/E of 12.71 looks cheap versus 2024 despite far larger backlog",
+            "Rising risk tied to OpenAI's more tenuous position (Anthropic's rise, delayed IPO)",
+            "Buy on risk-reward but low conviction"
+          ],
+          "time_spent_estimate_minutes": 8
+        },
+        {
+          "symbol": "MU",
+          "company_name": "Micron Technology Inc",
+          "sentiment": "neutral",
+          "conviction": 0.2,
+          "thesis": "Flagged as the next key AI-industry data point, with earnings after the close on September 30 that he'll cover live — not a rating.",
+          "price_target": null,
+          "key_points": [
+            "Reports quarterly results after market close on September 30",
+            "Cited as an important upcoming read on the AI industry"
+          ],
+          "time_spent_estimate_minutes": 1
+        }
+      ],
+      "key_theses": [
+        "The force majeure notice matters for what it signals about AI-ecosystem interdependence, not the event itself",
+        "Oracle's heavy leverage makes its stock react outsized to any adverse news",
+        "Customer deposits are improving the cash-timing problem of the data-center buildout",
+        "Fairly valued on DCF, cheap on forward P/E — a low-conviction buy given elevated risk"
+      ],
+      "warnings_or_risks": [
+        "Circular financing and interdependence across the AI ecosystem could ripple through the system",
+        "Years of negative free cash flow and heavy debt load",
+        "Heavy reliance on OpenAI, whose competitive position looks more tenuous"
+      ]
+    },
+    {
+      "video_id": "sF_4vrPXkUY",
+      "channel_name": "Parkev Tatevosian, CFA",
+      "video_title": "Should Investors Buy Costco Stock Instead of Walmart Stock? | COST Stock Analysis WMT Stock Analysis",
+      "video_url": "https://www.youtube.com/watch?v=sF_4vrPXkUY",
+      "published_at": "2026-09-26T15:45:18Z",
+      "duration_minutes": 7,
+      "summary": "Parkev compares Costco and Walmart, two low-cost retail leaders, to decide which is the better buy at current prices. On revenue, Walmart is more than twice the size ($736 billion trailing versus Costco's $294 billion), but he flags that Walmart does this with over 10,000 locations worldwide while Costco generates nearly half that revenue from fewer than 1,000 stores — which he reads as a long runway for Costco to expand. Costco has historically been conservative about adding locations, maximizing revenue per store, but has been slower than Walmart in e-commerce, where Walmart is the clear leader and has even been gaining share against Amazon by using its store network for fast fulfillment.\n\nHe spends time on profitability, noting people are often shocked that both companies earn only about $4 of operating profit per $100 of sales — Walmart at 4.4% and Costco at 3.82% (including membership fees). He stresses retail is a structurally low-margin industry. He then focuses on inventory turnover as the metric that matters most for merchants: Costco's ~15.25 is world-class and well above Walmart's ~12, reflecting Costco's discipline in buying and placing inventory.\n\nOn valuation, Costco trades at a forward P/E of 36.3, about a 10% premium to Walmart's 34 — rich multiples for brick-and-mortar retailers that reflect investor respect. His DCF work finds Walmart overvalued (fair value $70 versus a $110 price) while Costco looks more fairly valued (fair value $843 versus a $900 price). Given the choice between the two, he would pick Costco today.",
+      "macro_topics": [
+        "low-cost retail business model",
+        "e-commerce competition",
+        "retail profit margins and inventory turnover"
+      ],
+      "stocks": [
+        {
+          "symbol": "COST",
+          "company_name": "Costco Wholesale Corp",
+          "sentiment": "bullish",
+          "conviction": 0.55,
+          "thesis": "Preferred over Walmart: a long store-expansion runway, world-class inventory turnover (~15), and a DCF fair value ($843) much closer to the market price ($900) than Walmart's.",
+          "price_target": "$843 DCF fair value (vs ~$900 market)",
+          "key_points": [
+            "Generates ~$294B revenue from under 1,000 stores — seen as room to expand",
+            "Best-in-class inventory turnover of ~15.25 versus Walmart's ~12",
+            "Trades at a forward P/E of 36.3, ~10% premium to Walmart",
+            "DCF fair value $843 vs ~$900 price — more fairly valued than Walmart",
+            "His pick between the two retailers today"
+          ],
+          "time_spent_estimate_minutes": 4
+        },
+        {
+          "symbol": "WMT",
+          "company_name": "Walmart Inc",
+          "sentiment": "bearish",
+          "conviction": 0.5,
+          "thesis": "The e-commerce leader with a huge store network, but his DCF shows it overvalued at $110 versus a $70 fair value, so he prefers Costco.",
+          "price_target": "$70 DCF fair value (vs ~$110 market)",
+          "key_points": [
+            "Largest by revenue at ~$736B across 10,000+ locations",
+            "Clear e-commerce leader, gaining share against Amazon via store-based fulfillment",
+            "Operating margin only ~4.4% (Costco ~3.82%) — typical thin retail margins",
+            "DCF fair value $70 vs ~$110 price — looks overvalued"
+          ],
+          "time_spent_estimate_minutes": 4
+        },
+        {
+          "symbol": "AMZN",
+          "company_name": "Amazon.com Inc",
+          "sentiment": "neutral",
+          "conviction": 0.15,
+          "thesis": "Mentioned only as the e-commerce benchmark Walmart is gaining share against, not as a recommendation.",
+          "price_target": null,
+          "key_points": [
+            "Cited as the competitor Walmart is taking e-commerce share from"
+          ],
+          "time_spent_estimate_minutes": 1
+        }
+      ],
+      "key_theses": [
+        "Costco has a long runway to expand its small store base while maximizing revenue per store",
+        "Walmart leads in e-commerce and is even gaining share on Amazon",
+        "Retail is structurally low-margin — both earn only ~$4 per $100 of sales",
+        "On valuation Costco is more fairly priced than the overvalued Walmart — Costco is the pick"
+      ],
+      "warnings_or_risks": [
+        "Both trade at rich forward P/E multiples (36 and 34) for low-margin retailers",
+        "Walmart looks overvalued on DCF with meaningful downside to $70",
+        "Costco lags in e-commerce breadth and features"
+      ]
+    }
+  ],
+  "all_stocks": [
+    {
+      "symbol": "AAPL",
+      "company_name": "Apple Inc",
+      "display": "AAPL",
+      "mentions": [
+        {
+          "channel": "Gareth Soloway — Pro Trader",
+          "video_title": "S&P 500 To 8,000 While Oil Breaks Down To $80",
+          "video_url": "https://www.youtube.com/watch?v=YOKV8cD6YG0",
+          "sentiment": "bullish",
+          "conviction": 0.3,
+          "thesis": "Cited as still near all-time highs, one of the small group of large caps holding the market up.",
+          "key_points": [
+            "Noted as trading near all-time highs",
+            "Part of the narrow leadership keeping the index afloat"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "AMZN",
+      "company_name": "Amazon.com Inc",
+      "display": "AMZN",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Should Investors Buy Costco Stock Instead of Walmart Stock? | COST Stock Analysis WMT Stock Analysis",
+          "video_url": "https://www.youtube.com/watch?v=sF_4vrPXkUY",
+          "sentiment": "neutral",
+          "conviction": 0.15,
+          "thesis": "Mentioned only as the e-commerce benchmark Walmart is gaining share against, not as a recommendation.",
+          "key_points": [
+            "Cited as the competitor Walmart is taking e-commerce share from"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "BROS",
+      "company_name": "Dutch Bros Inc",
+      "display": "BROS",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Interesting News for Starbucks Stock Investors | SBUX Stock Analysis | BROS Stock",
+          "video_url": "https://www.youtube.com/watch?v=GjtaI05BM2A",
+          "sentiment": "bullish",
+          "conviction": 0.45,
+          "thesis": "As Starbucks right-sizes and cedes market share, Dutch Bros has room to expand and could emerge as a powerful competitor.",
+          "key_points": [
+            "Positioned as an up-and-coming coffee chain that can grow at Starbucks' expense",
+            "Mentioned as a beneficiary of Starbucks giving up North American market share"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "COST",
+      "company_name": "Costco Wholesale Corp",
+      "display": "COST",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Should Investors Buy Costco Stock Instead of Walmart Stock? | COST Stock Analysis WMT Stock Analysis",
+          "video_url": "https://www.youtube.com/watch?v=sF_4vrPXkUY",
+          "sentiment": "bullish",
+          "conviction": 0.55,
+          "thesis": "Preferred over Walmart: a long store-expansion runway, world-class inventory turnover (~15), and a DCF fair value ($843) much closer to the market price ($900) than Walmart's.",
+          "key_points": [
+            "Generates ~$294B revenue from under 1,000 stores — seen as room to expand",
+            "Best-in-class inventory turnover of ~15.25 versus Walmart's ~12",
+            "Trades at a forward P/E of 36.3, ~10% premium to Walmart",
+            "DCF fair value $843 vs ~$900 price — more fairly valued than Walmart",
+            "His pick between the two retailers today"
+          ],
+          "price_target": "$843 DCF fair value (vs ~$900 market)"
+        }
+      ]
+    },
+    {
+      "symbol": "GOOGL",
+      "company_name": "Alphabet Inc",
+      "display": "GOOGL",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "I'm Updating My Outlook on Alphabet Stock",
+          "video_url": "https://www.youtube.com/watch?v=MgyF6WSteJE",
+          "sentiment": "bullish",
+          "conviction": 0.9,
+          "thesis": "Full-stack AI advantage, a $100B+ AI run rate, rising revenue-per-employee productivity, and a reasonable forward P/E make this 'Hall of Fame' business slightly underpriced — a high-conviction buy.",
+          "key_points": [
+            "Claims 2.7x better AI performance and 80% better inferencing price-performance vs competitors",
+            "Trailing revenue over $446B; AI business past a $100B run rate; ~$500B cloud backlog",
+            "Revenue per employee up to ~$2.15M as headcount stays flat — major productivity gain",
+            "Forward P/E ~22.7 called reasonable for ~20% growth and improving margins",
+            "DCF sees FCF swinging negative in 2027 as AI capex peaks, then recovering strongly by 2029",
+            "Highest-conviction Buy; owned since 2020 and ranked a Hall of Fame business"
+          ],
+          "price_target": "$338 DCF fair value (vs ~$342 market)"
+        }
+      ]
+    },
+    {
+      "symbol": "LLY",
+      "company_name": "Eli Lilly and Co",
+      "display": "LLY",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Novo Nordisk Gives Uninspiring Outlook",
+          "video_url": "https://www.youtube.com/watch?v=dLLAFMZ75BQ",
+          "sentiment": "bullish",
+          "conviction": 0.6,
+          "thesis": "He explicitly prefers Eli Lilly over Novo Nordisk in the weight-loss market and owns the stock, viewing it as the better buying opportunity of the two.",
+          "key_points": [
+            "Named his preferred weight-loss-market pick over Novo Nordisk",
+            "Discloses he personally owns Eli Lilly"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "META",
+      "company_name": "Meta Platforms Inc",
+      "display": "META",
+      "mentions": [
+        {
+          "channel": "Gareth Soloway — Pro Trader",
+          "video_title": "S&P 500 To 8,000 While Oil Breaks Down To $80",
+          "video_url": "https://www.youtube.com/watch?v=YOKV8cD6YG0",
+          "sentiment": "bearish",
+          "conviction": 0.55,
+          "thesis": "After an incredible run he believes Meta has topped and expects downside back to a prior breakout level, which he'd treat as the buyable zone.",
+          "key_points": [
+            "Believes the stock has topped after a large advance",
+            "Expects a move down to a former resistance-turned-support level to buy"
+          ],
+          "price_target": "downside to a prior breakout / buyable level"
+        }
+      ]
+    },
+    {
+      "symbol": "MSFT",
+      "company_name": "Microsoft Corp",
+      "display": "MSFT",
+      "mentions": [
+        {
+          "channel": "Gareth Soloway — Pro Trader",
+          "video_title": "S&P 500 To 8,000 While Oil Breaks Down To $80",
+          "video_url": "https://www.youtube.com/watch?v=YOKV8cD6YG0",
+          "sentiment": "bullish",
+          "conviction": 0.3,
+          "thesis": "Mentioned as having a great rebound and being among the large-cap AI names keeping the market elevated.",
+          "key_points": [
+            "Described as having staged a strong rebound",
+            "Grouped with the leaders supporting the broader market"
+          ],
+          "price_target": null
+        },
+        {
+          "channel": "Stocks with Josh",
+          "video_title": "The Final Push Higher This Week?",
+          "video_url": "https://www.youtube.com/watch?v=ZBv5kk-z2M8",
+          "sentiment": "mixed",
+          "conviction": 0.6,
+          "thesis": "Bullish for one final push to a ~529-531 fib/channel/RSI resistance 'brick wall,' where he expects heavy selling and advises hedging; a rejection there could pull back toward $460.",
+          "key_points": [
+            "Prior buy call near $382 rode up to ~$500; now expects a final push to ~529",
+            "529-531 aligns a 1.618 fib extension, an ascending-channel top, and RSI resistance near 66",
+            "Bullish drivers: 43% Azure/cloud growth, 30M paid Copilot seats, ~$40.6B quarterly operating profit",
+            "Warns ~$41B quarterly capex becomes a profit-taking trigger if growth slows",
+            "Suggests hedging long-term positions into the resistance; rejection could mean a pullback to ~$460"
+          ],
+          "price_target": "~529-531 near-term target, then possible pullback to ~460"
+        }
+      ]
+    },
+    {
+      "symbol": "MU",
+      "company_name": "Micron Technology Inc",
+      "display": "MU",
+      "mentions": [
+        {
+          "channel": "Gareth Soloway — Pro Trader",
+          "video_title": "S&P 500 To 8,000 While Oil Breaks Down To $80",
+          "video_url": "https://www.youtube.com/watch?v=YOKV8cD6YG0",
+          "sentiment": "mixed",
+          "conviction": 0.45,
+          "thesis": "Near-term upside to fill a gap that aligns with a 786 fib level, after which he would consider a small short.",
+          "key_points": [
+            "Sees upside to a gap fill that lines up with the 786 Fibonacci level",
+            "Would consider a small short once that target is reached"
+          ],
+          "price_target": "gap-fill near a 786 fib level, then a possible small short"
+        },
+        {
+          "channel": "Stocks with Josh",
+          "video_title": "The Final Push Higher This Week?",
+          "video_url": "https://www.youtube.com/watch?v=ZBv5kk-z2M8",
+          "sentiment": "neutral",
+          "conviction": 0.2,
+          "thesis": "Named as a key week-ahead catalyst for memory stocks and the AI trade via its upcoming earnings, not a directional call.",
+          "key_points": [
+            "Earnings cited as a catalyst for memory stocks and the overall AI trade",
+            "One of two events (with PCE) the market is watching into September 30"
+          ],
+          "price_target": null
+        },
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Unfortunate News for Oracle Stock Investors | ORCL Stock Analysis",
+          "video_url": "https://www.youtube.com/watch?v=s7G5dXn2VTY",
+          "sentiment": "neutral",
+          "conviction": 0.2,
+          "thesis": "Flagged as the next key AI-industry data point, with earnings after the close on September 30 that he'll cover live — not a rating.",
+          "key_points": [
+            "Reports quarterly results after market close on September 30",
+            "Cited as an important upcoming read on the AI industry"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "NVDA",
+      "company_name": "NVIDIA Corp",
+      "display": "NVDA",
+      "mentions": [
+        {
+          "channel": "Gareth Soloway — Pro Trader",
+          "video_title": "S&P 500 To 8,000 While Oil Breaks Down To $80",
+          "video_url": "https://www.youtube.com/watch?v=YOKV8cD6YG0",
+          "sentiment": "neutral",
+          "conviction": 0.4,
+          "thesis": "Range-bound in a converging wedge with no clear directional bias; still the core of the AI trade and to be given benefit of the doubt while it doesn't break down.",
+          "key_points": [
+            "Chopping in an up-sloping, slowly converging wedge with no bias",
+            "Described as the core of the market keeping the AI trade alive"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "NVO",
+      "company_name": "Novo Nordisk A/S",
+      "display": "NVO",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Novo Nordisk Gives Uninspiring Outlook",
+          "video_url": "https://www.youtube.com/watch?v=dLLAFMZ75BQ",
+          "sentiment": "bullish",
+          "conviction": 0.35,
+          "thesis": "After a 25%+ YTD drop the stock trades at a forward P/E of 11.3 with ~68% upside to his revised $64.50 DCF fair value, so it stays a buy — but conviction is cut to low as growth disappoints and ROIC keeps falling.",
+          "key_points": [
+            "Guided to only mid-single-digit revenue growth through 2030, disappointing investors",
+            "Shares down over 25% YTD; near a 52-week low around $35",
+            "Operating margin lucrative at ~45% but volatile; ROIC still strong at ~37% but falling from 80-90%",
+            "Cut ~12,000 jobs in 2026, redirecting savings toward R&D",
+            "Revised DCF lower (higher beta of 0.75) to a $64.50 fair value implying ~68% upside",
+            "Buy rating retained but conviction lowered to low; prefers and owns Eli Lilly"
+          ],
+          "price_target": "$64.50 DCF fair value (vs ~$38.36 market)"
+        }
+      ]
+    },
+    {
+      "symbol": "ORCL",
+      "company_name": "Oracle Corp",
+      "display": "ORCL",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Unfortunate News for Oracle Stock Investors | ORCL Stock Analysis",
+          "video_url": "https://www.youtube.com/watch?v=s7G5dXn2VTY",
+          "sentiment": "bullish",
+          "conviction": 0.35,
+          "thesis": "A leveraged, cash-tenuous AI infrastructure play; the force majeure scare highlights ecosystem risk, but at a forward P/E of 12.71 and near his $131 DCF fair value it's still a low-conviction buy on risk-reward.",
+          "key_points": [
+            "Fell ~4% on a force majeure notice for its 2.45 GW New Mexico 'Project Jupiter' site tied to OpenAI/SoftBank",
+            "Most leveraged, cash-tenuous hyperscaler with FCF negative for years (modeled -$25B/-$37B/-$32.6B in 2026-2028)",
+            "Now collecting multi-billion-dollar customer deposits, easing the cash-timing mismatch",
+            "Forward P/E of 12.71 looks cheap versus 2024 despite far larger backlog",
+            "Rising risk tied to OpenAI's more tenuous position (Anthropic's rise, delayed IPO)",
+            "Buy on risk-reward but low conviction"
+          ],
+          "price_target": "$131 DCF fair value (vs ~$139 market)"
+        }
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "company_name": "Pfizer Inc",
+      "display": "PFE",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Novo Nordisk Gives Uninspiring Outlook",
+          "video_url": "https://www.youtube.com/watch?v=dLLAFMZ75BQ",
+          "sentiment": "neutral",
+          "conviction": 0.2,
+          "thesis": "Referenced only as an R&D-spending and ROIC comparison point against Novo Nordisk and Eli Lilly, not as a recommendation.",
+          "key_points": [
+            "Cited alongside Eli Lilly in an R&D-as-percent-of-revenue peer comparison"
+          ],
+          "price_target": null
+        }
+      ]
+    },
+    {
+      "symbol": "SBUX",
+      "company_name": "Starbucks Corp",
+      "display": "SBUX",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Interesting News for Starbucks Stock Investors | SBUX Stock Analysis | BROS Stock",
+          "video_url": "https://www.youtube.com/watch?v=GjtaI05BM2A",
+          "sentiment": "bearish",
+          "conviction": 0.7,
+          "thesis": "Store closures signal diseconomies of scale; margins and ROIC have compressed on structurally higher labor costs, and at a forward P/E of 30 the stock is too expensive versus his $66 DCF fair value.",
+          "key_points": [
+            "Roughly 250 US/Canada store closures announced — the second such round, with more expected",
+            "Operating margin has slid from about 18% in 2017 to around 10% today",
+            "Return on invested capital has fallen from above 30% pre-pandemic to just 11-12%",
+            "Higher minimum wages and a frontline-labor shortage are permanent cost headwinds",
+            "Reiterates Hold; wants a much better entry point before upgrading"
+          ],
+          "price_target": "$66 DCF fair value (vs ~$93 market)"
+        }
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "company_name": "SPDR S&P 500 ETF (S&P 500)",
+      "display": "SPY",
+      "mentions": [
+        {
+          "channel": "Stocks with Josh",
+          "video_title": "The Final Push Higher This Week?",
+          "video_url": "https://www.youtube.com/watch?v=ZBv5kk-z2M8",
+          "sentiment": "mixed",
+          "conviction": 0.5,
+          "thesis": "Bullish near-term toward a ~783 fib resistance level, but bearish RSI divergence warns of a potential violent flush below the 60 RSI level.",
+          "key_points": [
+            "Possible early-week tap of a ~783 fib level where sellers are camped",
+            "Bearish RSI divergence — price ascending while momentum descends",
+            "Still bullish while RSI holds above 60, but flags flush risk like a prior cycle"
+          ],
+          "price_target": "~783 fib resistance near-term"
+        }
+      ]
+    },
+    {
+      "symbol": "TGT",
+      "company_name": "Target Corp",
+      "display": "TGT",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Target's Management Team Deserves Credit for Accelerating Revenue Growth Amid a Challenging Backdrop",
+          "video_url": "https://www.youtube.com/watch?v=GYkvoCvL77Y",
+          "sentiment": "bearish",
+          "conviction": 0.65,
+          "thesis": "Management has impressively re-accelerated growth, but after the forward P/E jumped from ~8 to 16.7 the stock looks considerably overvalued versus his $93 DCF fair value — Hold with downside risk.",
+          "key_points": [
+            "Net sales up 5.3% and traffic up ~4% in the latest quarter; full-year guide raised to ~5% growth",
+            "Trailing revenue ~$108B, up from ~$70B in 2017",
+            "Management aiming to restore historical operating margins near 8%",
+            "Inventory turnover ~8.2, below Walmart's ~12 and Costco's ~15 by design",
+            "Forward P/E re-rated from ~8 to 16.7; downgraded to Hold on Aug 21",
+            "Reiterates Hold — wants a significant pullback before buying"
+          ],
+          "price_target": "$93 DCF fair value (vs ~$160 market)"
+        }
+      ]
+    },
+    {
+      "symbol": "TTWO",
+      "company_name": "Take-Two Interactive Software Inc",
+      "display": "TTWO",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Is This the Biggest Stock Opportunity in Gaming History?",
+          "video_url": "https://www.youtube.com/watch?v=QswotwkLAJ0",
+          "sentiment": "bullish",
+          "conviction": 0.45,
+          "thesis": "GTA 6 plus digital-mix and pricing tailwinds should drive multi-year revenue and ROIC gains, and the stock trades at a multi-year-low forward P/E of 20 near his $202 DCF fair value — a buy, but low conviction given single-title concentration.",
+          "key_points": [
+            "GTA 6 launches in November with strong pre-orders and reviews; PC and online marketplace roll out later",
+            "Revenue more than quadrupled since 2017 to ~$6.7B; management guides to $8B+ this year",
+            "Digital-sales mix and higher average selling prices should make GTA 6 more profitable than GTA 5",
+            "Operating margin negative since 2024 and ROIC collapsed during the extended development cycle",
+            "Repeated delays raise doubts about the company's longer-term innovation pipeline",
+            "Rates it a buy but deliberately keeps conviction low due to reliance on one game"
+          ],
+          "price_target": "$202 DCF fair value (vs ~$207 market)"
+        }
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "company_name": "Walmart Inc",
+      "display": "WMT",
+      "mentions": [
+        {
+          "channel": "Parkev Tatevosian, CFA",
+          "video_title": "Should Investors Buy Costco Stock Instead of Walmart Stock? | COST Stock Analysis WMT Stock Analysis",
+          "video_url": "https://www.youtube.com/watch?v=sF_4vrPXkUY",
+          "sentiment": "bearish",
+          "conviction": 0.5,
+          "thesis": "The e-commerce leader with a huge store network, but his DCF shows it overvalued at $110 versus a $70 fair value, so he prefers Costco.",
+          "key_points": [
+            "Largest by revenue at ~$736B across 10,000+ locations",
+            "Clear e-commerce leader, gaining share against Amazon via store-based fulfillment",
+            "Operating margin only ~4.4% (Costco ~3.82%) — typical thin retail margins",
+            "DCF fair value $70 vs ~$110 price — looks overvalued"
+          ],
+          "price_target": "$70 DCF fair value (vs ~$110 market)"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Target's Management Team Deserves Credit for Accelerating Revenue Growth Amid a Challenging Backdrop",
+      "url": "https://www.youtube.com/watch?v=GYkvoCvL77Y"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Interesting News for Starbucks Stock Investors | SBUX Stock Analysis | BROS Stock",
+      "url": "https://www.youtube.com/watch?v=GjtaI05BM2A"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "I'm Updating My Outlook on Alphabet Stock",
+      "url": "https://www.youtube.com/watch?v=MgyF6WSteJE"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Is This the Biggest Stock Opportunity in Gaming History?",
+      "url": "https://www.youtube.com/watch?v=QswotwkLAJ0"
+    },
+    {
+      "channel": "Gareth Soloway — Pro Trader",
+      "title": "S&P 500 To 8,000 While Oil Breaks Down To $80",
+      "url": "https://www.youtube.com/watch?v=YOKV8cD6YG0"
+    },
+    {
+      "channel": "Stocks with Josh",
+      "title": "The Final Push Higher This Week?",
+      "url": "https://www.youtube.com/watch?v=ZBv5kk-z2M8"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Novo Nordisk Gives Uninspiring Outlook",
+      "url": "https://www.youtube.com/watch?v=dLLAFMZ75BQ"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Unfortunate News for Oracle Stock Investors | ORCL Stock Analysis",
+      "url": "https://www.youtube.com/watch?v=s7G5dXn2VTY"
+    },
+    {
+      "channel": "Parkev Tatevosian, CFA",
+      "title": "Should Investors Buy Costco Stock Instead of Walmart Stock? | COST Stock Analysis WMT Stock Analysis",
+      "url": "https://www.youtube.com/watch?v=sF_4vrPXkUY"
+    }
+  ]
+}

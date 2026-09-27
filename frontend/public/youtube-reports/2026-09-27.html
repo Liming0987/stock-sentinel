@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock Sentinel — 2026-09-27</title>
+<style>
+/* ── Reset & variables ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #fafafa;
+  --surface:  #ffffff;
+  --border:   #e5e7eb;
+  --text:     #111827;
+  --muted:    #6b7280;
+  --faint:    #9ca3af;
+  --accent:   #2563eb;
+  --bullish:  #16a34a;
+  --bearish:  #dc2626;
+  --neutral:  #6b7280;
+  --mixed:    #d97706;
+  --radius:   8px;
+  --shadow:   0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #0f1117;
+    --surface: #1a1d27;
+    --border:  #2d3142;
+    --text:    #f0f2f5;
+    --muted:   #9ca3af;
+    --faint:   #6b7280;
+    --accent:  #60a5fa;
+    --bullish: #4ade80;
+    --bearish: #f87171;
+    --neutral: #9ca3af;
+    --mixed:   #fbbf24;
+    --shadow:  0 1px 3px rgba(0,0,0,.4);
+  }
+}
+/* ── Base ────────────────────────────────────────────────────────── */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 2rem 1.5rem;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+h3 { font-size: 1rem; font-weight: 600; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin-bottom: 0.75rem; }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.3rem; }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+/* ── Card ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+/* ── Header ──────────────────────────────────────────────────────── */
+.report-header { margin-bottom: 2rem; }
+.report-header .kicker {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
+}
+.report-header h1 { margin-bottom: 0.3rem; }
+.meta-row { display: flex; gap: 1.5rem; flex-wrap: wrap; color: var(--muted); font-size: 0.82rem; margin-top: 0.5rem; }
+.meta-row span strong { color: var(--text); }
+/* ── Sentiment pill ──────────────────────────────────────────────── */
+.pill {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em; border-radius: 99px;
+}
+.pill-bullish  { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-bearish  { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-neutral  { background: color-mix(in srgb, var(--neutral) 15%, transparent); color: var(--neutral); }
+.pill-mixed    { background: color-mix(in srgb, var(--mixed)   15%, transparent); color: var(--mixed);   }
+/* ── Conviction bar ──────────────────────────────────────────────── */
+.conv-bar {
+  display: inline-block; width: 60px; height: 5px;
+  background: var(--border); border-radius: 3px; vertical-align: middle;
+  position: relative; overflow: hidden;
+}
+.conv-bar-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--accent); border-radius: 3px;
+}
+/* ── Ticker label ────────────────────────────────────────────────── */
+.ticker { font-family: "SF Mono", "Fira Code", ui-monospace, monospace; font-size: 0.9em; font-weight: 600; }
+/* ── Consensus table ─────────────────────────────────────────────── */
+.consensus-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.consensus-table thead th {
+  text-align: left; padding: 0.5rem 0.75rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+}
+.consensus-table tbody td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.consensus-table tbody tr:last-child td { border-bottom: none; }
+.consensus-table .thesis-cell { color: var(--muted); font-size: 0.82rem; max-width: 240px; }
+/* ── Section headings ────────────────────────────────────────────── */
+.section-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 0.75rem;
+}
+/* ── Channel cards ───────────────────────────────────────────────── */
+.channel-name { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-bottom: 0.25rem; }
+.video-title a { font-size: 1rem; font-weight: 600; color: var(--text); }
+.video-title a:hover { color: var(--accent); }
+.summary-text { color: var(--muted); font-size: 0.88rem; margin-top: 0.75rem; }
+.stock-chip-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+.stock-chip {
+  font-size: 0.75rem; padding: 0.2em 0.55em; border-radius: 4px;
+  border: 1px solid var(--border); color: var(--muted); background: var(--bg);
+}
+.stock-chip .ticker { color: var(--text); }
+/* ── By-stock blocks ─────────────────────────────────────────────── */
+.stock-block { margin-bottom: 0.75rem; }
+.stock-block-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+.stock-block-header h3 { font-size: 1rem; }
+.mention-item { padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.87rem; }
+.mention-item:last-child { border-bottom: none; }
+.mention-channel { font-weight: 600; color: var(--text); }
+.mention-thesis { color: var(--muted); margin-top: 0.2rem; }
+.mention-points { margin-top: 0.3rem; color: var(--muted); font-size: 0.83rem; }
+/* ── Sources ─────────────────────────────────────────────────────── */
+.source-item { font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+.source-item:last-child { border-bottom: none; }
+.source-channel { font-size: 0.75rem; color: var(--faint); }
+/* ── Disclaimer ──────────────────────────────────────────────────── */
+.disclaimer {
+  font-size: 0.78rem; color: var(--faint); line-height: 1.5;
+  border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 2rem;
+}
+/* ── Nav / TOC ───────────────────────────────────────────────────── */
+.toc { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem; margin-bottom: 2rem; }
+.toc a { color: var(--muted); }
+.toc a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ── Header ──────────────────────────────────────────────────── -->
+<div class="report-header">
+  <div class="kicker">Stock Sentinel</div>
+  <h1>Daily YouTube Digest — 2026-09-27</h1>
+  <div class="meta-row">
+    <span>Generated <strong>2026-09-27 15:10 UTC</strong></span>
+    <span><strong>9</strong> videos</span>
+    <span><strong>18</strong> stocks identified</span>
+    <span><strong>2</strong> consensus picks</span>
+  </div>
+</div>
+
+<!-- ── TOC ──────────────────────────────────────────────────────── -->
+<nav class="toc" aria-label="Jump to section">
+  <a href="#consensus">Consensus</a>
+  <a href="#by-channel">By Channel</a>
+  <a href="#by-stock">By Stock</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<!-- ── Consensus picks ──────────────────────────────────────────── -->
+
+<section id="consensus">
+  <div class="section-title">Today's Consensus — 2 stocks mentioned by 2+ creators</div>
+  <div class="card" style="padding: 0; overflow: hidden;">
+    <table class="consensus-table">
+      <thead>
+        <tr>
+          <th>Stock</th>
+          <th>Sentiment</th>
+          <th>Conviction</th>
+          <th>Channels</th>
+          <th>Top thesis</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>
+            <a href="#stock-MSFT">
+              <span class="ticker">MSFT</span>
+              
+                <span style="color:var(--muted);font-size:0.8rem;margin-left:0.3rem">Microsoft Corp</span>
+              
+            </a>
+          </td>
+          <td>
+            <span class="pill pill-mixed">mixed</span>
+          </td>
+          <td>
+            <span class="conv-bar" title="45%">
+              <span class="conv-bar-fill" style="width:45%"></span>
+            </span>
+            <span style="font-size:0.78rem;color:var(--muted);margin-left:0.3rem">45%</span>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted)">2</td>
+          <td class="thesis-cell">Bullish for one final push to a ~529-531 fib/channel/RSI resistance &#39;brick wall,&#39; where he expects heavy selling and advises hedging; a rejection there could pull back toward $460.</td>
+        </tr>
+        
+        <tr>
+          <td>
+            <a href="#stock-MU">
+              <span class="ticker">MU</span>
+              
+                <span style="color:var(--muted);font-size:0.8rem;margin-left:0.3rem">Micron Technology Inc</span>
+              
+            </a>
+          </td>
+          <td>
+            <span class="pill pill-neutral">neutral</span>
+          </td>
+          <td>
+            <span class="conv-bar" title="28%">
+              <span class="conv-bar-fill" style="width:28%"></span>
+            </span>
+            <span style="font-size:0.78rem;color:var(--muted);margin-left:0.3rem">28%</span>
+          </td>
+          <td style="font-size:0.82rem;color:var(--muted)">3</td>
+          <td class="thesis-cell">Near-term upside to fill a gap that aligns with a 786 fib level, after which he would consider a small short.</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</section>
+<hr>
+
+
+<!-- ── By channel ────────────────────────────────────────────────── -->
+<section id="by-channel">
+  <div class="section-title">By Channel — 9 videos analyzed</div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=GYkvoCvL77Y" target="_blank" rel="noopener noreferrer">
+        Target&#39;s Management Team Deserves Credit for Accelerating Revenue Growth Amid a Challenging Backdrop
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-09-26 ·
+      6m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev credits Target's new management team for reinvigorating growth after a long slump, with net sales up 5.3% in the latest quarter, traffic up nearly 4%, and full-year guidance raised to roughly 5% growth for 2026. He notes sales had been declining from a 2023 peak until early 2026, and trailing revenue now totals about $108 billion, up from around $70 billion in 2017. He praises Target as an early leader in the digital transformation — buy-online-pickup-in-store and drive-up delivery — a playbook Walmart, Home Depot and others later copied.<br><br>He frames Target as a more premium retailer that struggled as pinched consumer budgets pushed shoppers toward lower-priced options like Costco and Walmart, which makes the re-acceleration more impressive. On margins, Target historically ran a richer operating margin (around 7-8%, near 9% at the pandemic peak) versus Walmart near 6% and Costco around 3.5%, and management is trying to restore those historical levels. He also walks through inventory turnover as a key retail metric: Target's ~8.2 is normal for it but well below Walmart's ~12 and Costco's ~15, reflecting Target's higher-price, lower-turnover strategy.<br><br>On valuation, enthusiasm has lifted Target's forward P/E from about 8 to 16.7. He had rated the stock a buy before the run-up but downgraded to Hold about a month ago (August 21) on valuation. His updated DCF pegs fair value at $93 versus a $160 market price, so he sees considerable downside and reiterates Hold, saying the ~3.3% drop since his last review isn't enough to warrant an upgrade — he'd want a bigger pullback or further fundamental improvement first.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-TGT"
+         class="stock-chip">
+        <span class="ticker">TGT</span>
+        
+           · Target Corp
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Target&#39;s turnaround under new management is real, with growth, traffic and guidance all improving</li>
+        
+        <li>It is a premium retailer that lost share to lower-cost Walmart and Costco during the consumer squeeze</li>
+        
+        <li>The valuation re-rating has run ahead of fundamentals</li>
+        
+        <li>Hold — considerable downside to a $93 DCF fair value from ~$160</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=GjtaI05BM2A" target="_blank" rel="noopener noreferrer">
+        Interesting News for Starbucks Stock Investors | SBUX Stock Analysis | BROS Stock
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-09-27 ·
+      7m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev reacts to Starbucks' announcement that it will close roughly 250 stores across the US and Canada, framing it as further evidence of diseconomies of scale — the company has grown so large (40,000+ locations worldwide) that costs are rising faster than sales. He notes this is the second round of closures and expects more, arguing the chain is over-saturated in North America. He points to a decline in operating margin from about 18% in 2017 to roughly 10% today, and return on invested capital falling from above 30% pre-pandemic to just 11-12%, barely covering the cost of capital.<br><br>He attributes much of the margin compression to a structural rise in labor costs: a shortage of frontline restaurant workers (affecting McDonald's and Domino's too) and sharply higher minimum wages, especially California's $20+/hour restaurant wage. In his view these are permanent cost shifts Starbucks didn't anticipate, making incremental new locations unprofitable and justifying a strategic shrinking of the footprint.<br><br>Parkev credits CEO Brian Niccol — whose track record at Chipotle earns the stock benefit-of-the-doubt — for identifying and acting on the problem, but warns that giving up market share could open the door for Dutch Bros to expand at Starbucks' expense. On valuation he calls a forward P/E of 30 rich for a company in this position and pegs his DCF fair value at $66 versus a market price of $93. He reiterates a Hold rating, saying he loves the brand but wants a considerably better entry point before upgrading to a buy.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-SBUX"
+         class="stock-chip">
+        <span class="ticker">SBUX</span>
+        
+           · Starbucks Corp
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-BROS"
+         class="stock-chip">
+        <span class="ticker">BROS</span>
+        
+           · Dutch Bros Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Starbucks has grown too large to manage efficiently and must shrink to restore profitability</li>
+        
+        <li>Labor cost inflation is a structural, not cyclical, headwind for the chain</li>
+        
+        <li>CEO Brian Niccol earns the stock benefit-of-the-doubt, but the valuation already prices in a turnaround</li>
+        
+        <li>Starbucks looks overvalued at ~$93 versus a $66 DCF fair value — Hold</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=MgyF6WSteJE" target="_blank" rel="noopener noreferrer">
+        I&#39;m Updating My Outlook on Alphabet Stock
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-09-27 ·
+      6m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev updates his view on Alphabet following management comments at the Goldman Sachs Communacopia technology conference, where the company claimed its AI is 2.7x better than competitors with 80% better price-performance for inferencing. He emphasizes Alphabet's full-stack advantage — custom processing units, its own large language model, and six product lines each with over a billion users — which lets it spread massive AI investment across a huge customer base. Trailing revenue has surpassed $446 billion, the AI business has crossed a $100 billion annual run rate, and the cloud backlog is around $500 billion.<br><br>He highlights sharply rising productivity: revenue per employee has nearly doubled over the decade and accelerated since 2024, from about $1.65 million to $2.15 million per employee, with management holding headcount roughly flat. On valuation, the forward P/E of about 22.7 looks reasonable for a company approaching 20% revenue growth with improving margins and strong moats, though he acknowledges the business is riskier than in recent years because of unprecedented, hundreds-of-billions AI spending in a category where Alphabet hasn't yet proven multi-year dominance.<br><br>His updated DCF forecasts $7.8 billion of free cash flow this year, turning to negative $32 billion next year as AI capex peaks (he sees peak hyperscaler spending around 2027-2028), then recovering to a large positive figure (~$146 billion) by 2029 as the investments pay off. His DCF fair value is $338 against a $342 market price — fairly valued on DCF, undervalued on forward P/E. Because he ranks Alphabet a 'Hall of Fame' business that he's owned since 2020, he calls it an excellent buying opportunity and reiterates a Buy at his highest conviction level.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-GOOGL"
+         class="stock-chip">
+        <span class="ticker">GOOGL</span>
+        
+           · Alphabet Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Alphabet&#39;s full-stack AI and billion-user product lines spread AI costs across a huge base</li>
+        
+        <li>Productivity is rising fast — revenue per employee climbing while headcount stays flat</li>
+        
+        <li>AI capex will pressure free cash flow near-term but pay off strongly by 2029</li>
+        
+        <li>Fairly valued on DCF, undervalued on forward P/E — high-conviction buy</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=QswotwkLAJ0" target="_blank" rel="noopener noreferrer">
+        Is This the Biggest Stock Opportunity in Gaming History?
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-09-27 ·
+      7m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev evaluates Take-Two Interactive ahead of the November launch of GTA 6, whose predecessor GTA 5 has sold over 230 million units since 2013 and remains one of the most successful franchises in history. He argues the excitement is justified but insists on looking at the whole business, not just one game. Revenue has more than quadrupled since 2017 to about $6.7 billion trailing, with management guiding to at least $8 billion this fiscal year, and he expects substantial multi-year growth as GTA 6 rolls out to PC and its online marketplace after the initial launch.<br><br>On profitability the picture is mixed: operating margin has been negative since 2024 (though improving), and return on invested capital collapsed as development dragged on. He sees several tailwinds that should make GTA 6 more lucrative than GTA 5 even at similar unit volumes — a shift from physical discs to higher-margin digital sales and much higher average selling prices — and thinks ROIC could climb above 20%, possibly toward 30%, in the first three-to-five years post-launch. R&D as a percent of revenue has jumped into double digits and stayed there.<br><br>He cautions that buying Take-Two means betting not just on GTA 6 but on the company's ability to innovate future hits (GTA 7, 8 and others), and the repeated GTA 6 delays don't inspire confidence in that process. Still, the valuation sits at a multi-year low — a forward P/E of 20 with the stock down nearly 20% in 2026 — and his DCF fair value of $202 is right around the $207 market price. He concludes Take-Two is a buying opportunity but explicitly keeps his conviction low given how much value hinges on a single unproven game.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-TTWO"
+         class="stock-chip">
+        <span class="ticker">TTWO</span>
+        
+           · Take-Two Interactive Software Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>GTA 6 is a major near-term catalyst but the whole portfolio and future pipeline matter more</li>
+        
+        <li>Digital mix shift and higher ASPs make each GTA 6 unit more profitable than GTA 5</li>
+        
+        <li>Valuation is at a multi-year low despite the biggest product launch in over a decade</li>
+        
+        <li>Buy rating with intentionally low conviction pending real launch data</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Gareth Soloway — Pro Trader</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=YOKV8cD6YG0" target="_blank" rel="noopener noreferrer">
+        S&amp;P 500 To 8,000 While Oil Breaks Down To $80
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-09-26 ·
+      15m
+    </div>
+
+    
+    <div class="summary-text">
+      Gareth Soloway previews the week ahead with a technical tour of the S&P 500, oil, the 10-year yield, gold, silver, Bitcoin and several individual stocks. He remains short-term bullish on the S&P 500 as long as it holds above his 'neutral zone' line at 7575, and expects a break above 7770 to open a move to an upper trendline around 7800 by early October, with 8,000 possible by mid-October — a 250+ point gain from the current ~7743. He stresses he is long-term bearish (seeing the market eventually 'collapse like a house of cards') but insists the charts are in charge and the breakdown isn't ready yet, noting only a narrow group of large-cap AI names is holding the market up.<br><br>On macro cross-assets, he expects crude oil to break down toward $80 over the next few weeks to a month (a bear-flag setup, aided by potential deal overtures ahead of midterms), while the 10-year yield broke out on a bull flag and could tag a high pivot as early as Monday before pulling back to around 5% — a pullback he says would give the stock market confidence to keep rising. He sees gold and silver as range-bound at support (warning of downside to 3,900 gold / $55 silver if support breaks) and Bitcoin holding up after a higher high, expecting a pullback to about 81,000 that must hold as support for another leg up, with 75,500 the next level below.<br><br>On individual names: he thinks Micron has upside to fill a gap that aligns with a 786 fib, after which he'd consider a small short; Nvidia is range-bound in a converging wedge with no clear bias but remains the core of the AI trade; and Meta, after a huge run, looks topped with expected downside back to a prior breakout/buyable level. He also cites Apple near all-time highs and Microsoft's strong rebound as part of the small group keeping the market afloat. The video closes with a sponsored promotion for the Rumble Wallet.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-MU"
+         class="stock-chip">
+        <span class="ticker">MU</span>
+        
+           · Micron Technology Inc
+        
+        <span class="pill pill-mixed" style="margin-left:0.25rem">M</span>
+      </a>
+      
+      <a href="#stock-NVDA"
+         class="stock-chip">
+        <span class="ticker">NVDA</span>
+        
+           · NVIDIA Corp
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+      <a href="#stock-META"
+         class="stock-chip">
+        <span class="ticker">META</span>
+        
+           · Meta Platforms Inc
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-AAPL"
+         class="stock-chip">
+        <span class="ticker">AAPL</span>
+        
+           · Apple Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-MSFT"
+         class="stock-chip">
+        <span class="ticker">MSFT</span>
+        
+           · Microsoft Corp
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Short-term bullish S&amp;P 500 to ~7800 and possibly 8,000 by mid-October while above the 7575 line</li>
+        
+        <li>Oil breaking down toward $80 while the 10-year yield tags a pivot then pulls back to ~5%</li>
+        
+        <li>Gold, silver and Bitcoin range-bound at support with defined downside if support breaks</li>
+        
+        <li>Long-term bearish &#39;house of cards&#39; view, but the charts say the top isn&#39;t in yet</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Stocks with Josh</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=ZBv5kk-z2M8" target="_blank" rel="noopener noreferrer">
+        The Final Push Higher This Week?
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-09-26 ·
+      13m
+    </div>
+
+    
+    <div class="summary-text">
+      Josh frames the coming week as risk-on into September 30, driven by two catalysts the market is watching: the PCE inflation report (the Fed's preferred gauge) and Micron's earnings, which he says will speak to memory stocks and the broader AI trade. Much of the video is a technical, fib-theory-based walkthrough of Microsoft and the S&P 500 (SPY), with heavy promotion of his paid Discord community, a stock screener, and a new candle-pattern tool.<br><br>On Microsoft, he recaps a prior call to buy near $382 and says it ripped to about $500. He now expects a 'final push' to a target he dialed in at 529 (down slightly from 531), where a trend-based fib extension (1.618) plus an ascending-channel top and an RSI resistance level near 66 should create a 'brick wall' of selling. He advises viewers to consider hedging long-term Microsoft positions there. Fundamentally he cites Azure/cloud growth of 43%, 30 million paid Microsoft 365 Copilot seats, and ~$40.6B quarterly operating profit as the bullish drivers, but warns the ~$41B quarterly infrastructure spend becomes a reason to take profit if growth slows. If Microsoft rejects at the fib level, he sees a normal pullback potentially to the 382-fib area around $460, possibly playing out over October.<br><br>On the S&P 500 (SPY), he expects a possible early-week tap of an important fib level around 783, an area of substantial resistance where sellers are camped, and points to bearish RSI divergence (price rising while momentum fades) as a warning that a violent flush below the 60 RSI level could occur, as in a prior cycle. He is currently in the bullish camp with RSI above 60 but stresses caution around the PCE and Micron catalysts. He also touts small-cap screener winners as promotional proof of his tools; those tickers carry no investment thesis and are excluded from the stock list.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-MSFT"
+         class="stock-chip">
+        <span class="ticker">MSFT</span>
+        
+           · Microsoft Corp
+        
+        <span class="pill pill-mixed" style="margin-left:0.25rem">M</span>
+      </a>
+      
+      <a href="#stock-SPY"
+         class="stock-chip">
+        <span class="ticker">SPY</span>
+        
+           · SPDR S&amp;P 500 ETF (S&amp;P 500)
+        
+        <span class="pill pill-mixed" style="margin-left:0.25rem">M</span>
+      </a>
+      
+      <a href="#stock-MU"
+         class="stock-chip">
+        <span class="ticker">MU</span>
+        
+           · Micron Technology Inc
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Risk-on into September 30, gated by the PCE report and Micron earnings</li>
+        
+        <li>Microsoft has one final push to ~529-531 before major fib/channel/RSI resistance</li>
+        
+        <li>S&amp;P 500 approaching ~783 fib resistance with bearish RSI divergence flashing caution</li>
+        
+        <li>Take profit / hedge into resistance rather than chase after the extended run</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=dLLAFMZ75BQ" target="_blank" rel="noopener noreferrer">
+        Novo Nordisk Gives Uninspiring Outlook
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-09-26 ·
+      7m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev examines Novo Nordisk after management guided to only mid-single-digit revenue growth through 2030 and a rise in patients served to over 60 million from about 46.5 million today. Investors expected more given Novo's strong weight-loss franchise, and the muted outlook — plus a looming patent loss on one weight-loss category — has left shares down over 25% year-to-date in 2026. Trailing revenue is about $51.5 billion, more than triple 2017 levels, so investors had grown used to far faster growth.<br><br>He walks through the fundamentals: operating margin is lucrative at ~45% but has been volatile between roughly 40% and 47% over the decade, unsettling investors who want to see a stable, rising trajectory. His bigger concern is falling return on invested capital — still strong in absolute terms at ~37% (three-to-four times its cost of capital) but down sharply from the 80-90% range earlier in the decade, raising the question of how far it will fall. Notably, Novo has spent the least on R&D as a percent of revenue among peers Pfizer and Eli Lilly, so overspending isn't the cause — he suspects the effectiveness of those investments. Management has already cut about 12,000 jobs in 2026 and hopes to redirect savings into R&D, and he notes AI could eventually lower drug-development costs industry-wide.<br><br>On valuation, Novo trades at a forward P/E of just 11.3, near its cheapest in a long time. He revised his DCF lower after cutting his free-cash-flow expectations and raising his beta assumption to 0.75 to reflect higher forward risk, arriving at a fair value of $64.50 versus a $38.36 market price near the 52-week low — implying about 68% upside over 12-18 months. He keeps Novo rated a buy but lowers his conviction to low as performance keeps disappointing, and states he prefers competitor Eli Lilly, which he owns.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-NVO"
+         class="stock-chip">
+        <span class="ticker">NVO</span>
+        
+           · Novo Nordisk A/S
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-LLY"
+         class="stock-chip">
+        <span class="ticker">LLY</span>
+        
+           · Eli Lilly and Co
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-PFE"
+         class="stock-chip">
+        <span class="ticker">PFE</span>
+        
+           · Pfizer Inc
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Novo&#39;s mid-single-digit growth outlook and patent loss disappointed a market used to rapid growth</li>
+        
+        <li>Falling ROIC (from 80-90% to ~37%) is the key concern despite strong absolute profitability</li>
+        
+        <li>At a forward P/E of 11.3 the stock is cheap with large modeled upside</li>
+        
+        <li>Buy but low conviction — Eli Lilly is the preferred weight-loss play</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=s7G5dXn2VTY" target="_blank" rel="noopener noreferrer">
+        Unfortunate News for Oracle Stock Investors | ORCL Stock Analysis
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-09-26 ·
+      8m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev breaks down why Oracle fell nearly 4% after issuing a force majeure notice on its 2.45-gigawatt New Mexico data-center site, 'Project Jupiter,' tied to a startup initiative with OpenAI (the customer) and SoftBank. The notice, reportedly sent to developer/private-credit player Blue Owl Capital, appears aimed at delaying payments if the site fails to come online in 2028. Oracle publicly insisted the project remains on schedule and that such notices are routine, but Parkev argues the sell-off reflects fear of what it could signal about the AI ecosystem's heavy interdependence and circular financing, where companies are simultaneously each other's customers and creditors.<br><br>He stresses Oracle is the most leveraged and cash-tenuous of the hyperscalers (citing a KeyBanc analyst), carrying tens of billions in debt with free cash flow expected to stay negative for years, so any adverse change hits its share price harder. A recent positive is that Oracle now collects multi-billion-dollar deposits from customers ordering compute capacity, easing the timing mismatch between huge upfront data-center spending and cash flows that arrive over years. He models negative free cash flow of about $25B in 2026, $37B in 2027, and $32.6B in 2028 (revised less negative after the deposits), with a return to positive cash flow in 2029.<br><br>He updated his fair value to $131 versus a $139 market price, so with a margin of safety the stock looks fairly valued on DCF but undervalued on a forward P/E of 12.71 — cheaper than in 2024 despite far more backlog, which he says reflects rising risk as OpenAI's position looks more tenuous (Anthropic's rise, OpenAI's delayed IPO). He concludes Oracle is still a buying opportunity on risk-versus-reward but at low conviction, and flags Micron's earnings after the close on September 30 as the next key AI read.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-ORCL"
+         class="stock-chip">
+        <span class="ticker">ORCL</span>
+        
+           · Oracle Corp
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-MU"
+         class="stock-chip">
+        <span class="ticker">MU</span>
+        
+           · Micron Technology Inc
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>The force majeure notice matters for what it signals about AI-ecosystem interdependence, not the event itself</li>
+        
+        <li>Oracle&#39;s heavy leverage makes its stock react outsized to any adverse news</li>
+        
+        <li>Customer deposits are improving the cash-timing problem of the data-center buildout</li>
+        
+        <li>Fairly valued on DCF, cheap on forward P/E — a low-conviction buy given elevated risk</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=sF_4vrPXkUY" target="_blank" rel="noopener noreferrer">
+        Should Investors Buy Costco Stock Instead of Walmart Stock? | COST Stock Analysis WMT Stock Analysis
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-09-26 ·
+      7m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev compares Costco and Walmart, two low-cost retail leaders, to decide which is the better buy at current prices. On revenue, Walmart is more than twice the size ($736 billion trailing versus Costco's $294 billion), but he flags that Walmart does this with over 10,000 locations worldwide while Costco generates nearly half that revenue from fewer than 1,000 stores — which he reads as a long runway for Costco to expand. Costco has historically been conservative about adding locations, maximizing revenue per store, but has been slower than Walmart in e-commerce, where Walmart is the clear leader and has even been gaining share against Amazon by using its store network for fast fulfillment.<br><br>He spends time on profitability, noting people are often shocked that both companies earn only about $4 of operating profit per $100 of sales — Walmart at 4.4% and Costco at 3.82% (including membership fees). He stresses retail is a structurally low-margin industry. He then focuses on inventory turnover as the metric that matters most for merchants: Costco's ~15.25 is world-class and well above Walmart's ~12, reflecting Costco's discipline in buying and placing inventory.<br><br>On valuation, Costco trades at a forward P/E of 36.3, about a 10% premium to Walmart's 34 — rich multiples for brick-and-mortar retailers that reflect investor respect. His DCF work finds Walmart overvalued (fair value $70 versus a $110 price) while Costco looks more fairly valued (fair value $843 versus a $900 price). Given the choice between the two, he would pick Costco today.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-COST"
+         class="stock-chip">
+        <span class="ticker">COST</span>
+        
+           · Costco Wholesale Corp
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-WMT"
+         class="stock-chip">
+        <span class="ticker">WMT</span>
+        
+           · Walmart Inc
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-AMZN"
+         class="stock-chip">
+        <span class="ticker">AMZN</span>
+        
+           · Amazon.com Inc
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Costco has a long runway to expand its small store base while maximizing revenue per store</li>
+        
+        <li>Walmart leads in e-commerce and is even gaining share on Amazon</li>
+        
+        <li>Retail is structurally low-margin — both earn only ~$4 per $100 of sales</li>
+        
+        <li>On valuation Costco is more fairly priced than the overvalued Walmart — Costco is the pick</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+</section>
+<hr>
+
+<!-- ── By stock ──────────────────────────────────────────────────── -->
+
+<section id="by-stock">
+  <div class="section-title">By Stock — 18 mentioned today</div>
+  
+  <div class="card stock-block" id="stock-AAPL">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">AAPL</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Apple Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 30%">
+          <span class="conv-bar-fill" style="width:30%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Cited as still near all-time highs, one of the small group of large caps holding the market up.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Noted as trading near all-time highs</li>
+        
+        <li>Part of the narrow leadership keeping the index afloat</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=YOKV8cD6YG0" target="_blank" rel="noopener noreferrer">S&amp;P 500 To 8,000 While Oil Breaks Down To $80</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-AMZN">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">AMZN</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Amazon.com Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 15%">
+          <span class="conv-bar-fill" style="width:15%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Mentioned only as the e-commerce benchmark Walmart is gaining share against, not as a recommendation.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Cited as the competitor Walmart is taking e-commerce share from</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=sF_4vrPXkUY" target="_blank" rel="noopener noreferrer">Should Investors Buy Costco Stock Instead of Walmart Stock? | COST Stock Analysis WMT Stock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-BROS">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">BROS</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Dutch Bros Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 45%">
+          <span class="conv-bar-fill" style="width:45%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">As Starbucks right-sizes and cedes market share, Dutch Bros has room to expand and could emerge as a powerful competitor.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Positioned as an up-and-coming coffee chain that can grow at Starbucks&#39; expense</li>
+        
+        <li>Mentioned as a beneficiary of Starbucks giving up North American market share</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=GjtaI05BM2A" target="_blank" rel="noopener noreferrer">Interesting News for Starbucks Stock Investors | SBUX Stock Analysis | BROS Stock</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-COST">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">COST</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Costco Wholesale Corp</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 55%">
+          <span class="conv-bar-fill" style="width:55%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $843 DCF fair value (vs ~$900 market)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Preferred over Walmart: a long store-expansion runway, world-class inventory turnover (~15), and a DCF fair value ($843) much closer to the market price ($900) than Walmart&#39;s.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Generates ~$294B revenue from under 1,000 stores — seen as room to expand</li>
+        
+        <li>Best-in-class inventory turnover of ~15.25 versus Walmart&#39;s ~12</li>
+        
+        <li>Trades at a forward P/E of 36.3, ~10% premium to Walmart</li>
+        
+        <li>DCF fair value $843 vs ~$900 price — more fairly valued than Walmart</li>
+        
+        <li>His pick between the two retailers today</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=sF_4vrPXkUY" target="_blank" rel="noopener noreferrer">Should Investors Buy Costco Stock Instead of Walmart Stock? | COST Stock Analysis WMT Stock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-GOOGL">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">GOOGL</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Alphabet Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 90%">
+          <span class="conv-bar-fill" style="width:90%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $338 DCF fair value (vs ~$342 market)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Full-stack AI advantage, a $100B+ AI run rate, rising revenue-per-employee productivity, and a reasonable forward P/E make this &#39;Hall of Fame&#39; business slightly underpriced — a high-conviction buy.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Claims 2.7x better AI performance and 80% better inferencing price-performance vs competitors</li>
+        
+        <li>Trailing revenue over $446B; AI business past a $100B run rate; ~$500B cloud backlog</li>
+        
+        <li>Revenue per employee up to ~$2.15M as headcount stays flat — major productivity gain</li>
+        
+        <li>Forward P/E ~22.7 called reasonable for ~20% growth and improving margins</li>
+        
+        <li>DCF sees FCF swinging negative in 2027 as AI capex peaks, then recovering strongly by 2029</li>
+        
+        <li>Highest-conviction Buy; owned since 2020 and ranked a Hall of Fame business</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=MgyF6WSteJE" target="_blank" rel="noopener noreferrer">I&#39;m Updating My Outlook on Alphabet Stock</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-LLY">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">LLY</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Eli Lilly and Co</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 60%">
+          <span class="conv-bar-fill" style="width:60%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">He explicitly prefers Eli Lilly over Novo Nordisk in the weight-loss market and owns the stock, viewing it as the better buying opportunity of the two.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Named his preferred weight-loss-market pick over Novo Nordisk</li>
+        
+        <li>Discloses he personally owns Eli Lilly</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=dLLAFMZ75BQ" target="_blank" rel="noopener noreferrer">Novo Nordisk Gives Uninspiring Outlook</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-META">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">META</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Meta Platforms Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 55%">
+          <span class="conv-bar-fill" style="width:55%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: downside to a prior breakout / buyable level</span>
+        
+      </div>
+      
+      <div class="mention-thesis">After an incredible run he believes Meta has topped and expects downside back to a prior breakout level, which he&#39;d treat as the buyable zone.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Believes the stock has topped after a large advance</li>
+        
+        <li>Expects a move down to a former resistance-turned-support level to buy</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=YOKV8cD6YG0" target="_blank" rel="noopener noreferrer">S&amp;P 500 To 8,000 While Oil Breaks Down To $80</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-MSFT">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">MSFT</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Microsoft Corp</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">2 mentions</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 30%">
+          <span class="conv-bar-fill" style="width:30%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Mentioned as having a great rebound and being among the large-cap AI names keeping the market elevated.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Described as having staged a strong rebound</li>
+        
+        <li>Grouped with the leaders supporting the broader market</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=YOKV8cD6YG0" target="_blank" rel="noopener noreferrer">S&amp;P 500 To 8,000 While Oil Breaks Down To $80</a>
+      </div>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Stocks with Josh</span>
+        <span class="pill pill-mixed">mixed</span>
+        <span class="conv-bar" title="Conviction 60%">
+          <span class="conv-bar-fill" style="width:60%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: ~529-531 near-term target, then possible pullback to ~460</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Bullish for one final push to a ~529-531 fib/channel/RSI resistance &#39;brick wall,&#39; where he expects heavy selling and advises hedging; a rejection there could pull back toward $460.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Prior buy call near $382 rode up to ~$500; now expects a final push to ~529</li>
+        
+        <li>529-531 aligns a 1.618 fib extension, an ascending-channel top, and RSI resistance near 66</li>
+        
+        <li>Bullish drivers: 43% Azure/cloud growth, 30M paid Copilot seats, ~$40.6B quarterly operating profit</li>
+        
+        <li>Warns ~$41B quarterly capex becomes a profit-taking trigger if growth slows</li>
+        
+        <li>Suggests hedging long-term positions into the resistance; rejection could mean a pullback to ~$460</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=ZBv5kk-z2M8" target="_blank" rel="noopener noreferrer">The Final Push Higher This Week?</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-MU">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">MU</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Micron Technology Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">3 mentions</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-mixed">mixed</span>
+        <span class="conv-bar" title="Conviction 45%">
+          <span class="conv-bar-fill" style="width:45%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: gap-fill near a 786 fib level, then a possible small short</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Near-term upside to fill a gap that aligns with a 786 fib level, after which he would consider a small short.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Sees upside to a gap fill that lines up with the 786 Fibonacci level</li>
+        
+        <li>Would consider a small short once that target is reached</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=YOKV8cD6YG0" target="_blank" rel="noopener noreferrer">S&amp;P 500 To 8,000 While Oil Breaks Down To $80</a>
+      </div>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Stocks with Josh</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 20%">
+          <span class="conv-bar-fill" style="width:20%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Named as a key week-ahead catalyst for memory stocks and the AI trade via its upcoming earnings, not a directional call.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Earnings cited as a catalyst for memory stocks and the overall AI trade</li>
+        
+        <li>One of two events (with PCE) the market is watching into September 30</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=ZBv5kk-z2M8" target="_blank" rel="noopener noreferrer">The Final Push Higher This Week?</a>
+      </div>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 20%">
+          <span class="conv-bar-fill" style="width:20%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Flagged as the next key AI-industry data point, with earnings after the close on September 30 that he&#39;ll cover live — not a rating.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Reports quarterly results after market close on September 30</li>
+        
+        <li>Cited as an important upcoming read on the AI industry</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=s7G5dXn2VTY" target="_blank" rel="noopener noreferrer">Unfortunate News for Oracle Stock Investors | ORCL Stock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-NVDA">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">NVDA</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · NVIDIA Corp</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Gareth Soloway — Pro Trader</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 40%">
+          <span class="conv-bar-fill" style="width:40%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Range-bound in a converging wedge with no clear directional bias; still the core of the AI trade and to be given benefit of the doubt while it doesn&#39;t break down.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Chopping in an up-sloping, slowly converging wedge with no bias</li>
+        
+        <li>Described as the core of the market keeping the AI trade alive</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=YOKV8cD6YG0" target="_blank" rel="noopener noreferrer">S&amp;P 500 To 8,000 While Oil Breaks Down To $80</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-NVO">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">NVO</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Novo Nordisk A/S</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 35%">
+          <span class="conv-bar-fill" style="width:35%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $64.50 DCF fair value (vs ~$38.36 market)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">After a 25%+ YTD drop the stock trades at a forward P/E of 11.3 with ~68% upside to his revised $64.50 DCF fair value, so it stays a buy — but conviction is cut to low as growth disappoints and ROIC keeps falling.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Guided to only mid-single-digit revenue growth through 2030, disappointing investors</li>
+        
+        <li>Shares down over 25% YTD; near a 52-week low around $35</li>
+        
+        <li>Operating margin lucrative at ~45% but volatile; ROIC still strong at ~37% but falling from 80-90%</li>
+        
+        <li>Cut ~12,000 jobs in 2026, redirecting savings toward R&amp;D</li>
+        
+        <li>Revised DCF lower (higher beta of 0.75) to a $64.50 fair value implying ~68% upside</li>
+        
+        <li>Buy rating retained but conviction lowered to low; prefers and owns Eli Lilly</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=dLLAFMZ75BQ" target="_blank" rel="noopener noreferrer">Novo Nordisk Gives Uninspiring Outlook</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-ORCL">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">ORCL</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Oracle Corp</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 35%">
+          <span class="conv-bar-fill" style="width:35%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $131 DCF fair value (vs ~$139 market)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">A leveraged, cash-tenuous AI infrastructure play; the force majeure scare highlights ecosystem risk, but at a forward P/E of 12.71 and near his $131 DCF fair value it&#39;s still a low-conviction buy on risk-reward.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Fell ~4% on a force majeure notice for its 2.45 GW New Mexico &#39;Project Jupiter&#39; site tied to OpenAI/SoftBank</li>
+        
+        <li>Most leveraged, cash-tenuous hyperscaler with FCF negative for years (modeled -$25B/-$37B/-$32.6B in 2026-2028)</li>
+        
+        <li>Now collecting multi-billion-dollar customer deposits, easing the cash-timing mismatch</li>
+        
+        <li>Forward P/E of 12.71 looks cheap versus 2024 despite far larger backlog</li>
+        
+        <li>Rising risk tied to OpenAI&#39;s more tenuous position (Anthropic&#39;s rise, delayed IPO)</li>
+        
+        <li>Buy on risk-reward but low conviction</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=s7G5dXn2VTY" target="_blank" rel="noopener noreferrer">Unfortunate News for Oracle Stock Investors | ORCL Stock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-PFE">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">PFE</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Pfizer Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 20%">
+          <span class="conv-bar-fill" style="width:20%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Referenced only as an R&amp;D-spending and ROIC comparison point against Novo Nordisk and Eli Lilly, not as a recommendation.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Cited alongside Eli Lilly in an R&amp;D-as-percent-of-revenue peer comparison</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=dLLAFMZ75BQ" target="_blank" rel="noopener noreferrer">Novo Nordisk Gives Uninspiring Outlook</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-SBUX">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">SBUX</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Starbucks Corp</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 70%">
+          <span class="conv-bar-fill" style="width:70%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $66 DCF fair value (vs ~$93 market)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Store closures signal diseconomies of scale; margins and ROIC have compressed on structurally higher labor costs, and at a forward P/E of 30 the stock is too expensive versus his $66 DCF fair value.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Roughly 250 US/Canada store closures announced — the second such round, with more expected</li>
+        
+        <li>Operating margin has slid from about 18% in 2017 to around 10% today</li>
+        
+        <li>Return on invested capital has fallen from above 30% pre-pandemic to just 11-12%</li>
+        
+        <li>Higher minimum wages and a frontline-labor shortage are permanent cost headwinds</li>
+        
+        <li>Reiterates Hold; wants a much better entry point before upgrading</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=GjtaI05BM2A" target="_blank" rel="noopener noreferrer">Interesting News for Starbucks Stock Investors | SBUX Stock Analysis | BROS Stock</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-SPY">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">SPY</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · SPDR S&amp;P 500 ETF (S&amp;P 500)</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Stocks with Josh</span>
+        <span class="pill pill-mixed">mixed</span>
+        <span class="conv-bar" title="Conviction 50%">
+          <span class="conv-bar-fill" style="width:50%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: ~783 fib resistance near-term</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Bullish near-term toward a ~783 fib resistance level, but bearish RSI divergence warns of a potential violent flush below the 60 RSI level.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Possible early-week tap of a ~783 fib level where sellers are camped</li>
+        
+        <li>Bearish RSI divergence — price ascending while momentum descends</li>
+        
+        <li>Still bullish while RSI holds above 60, but flags flush risk like a prior cycle</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=ZBv5kk-z2M8" target="_blank" rel="noopener noreferrer">The Final Push Higher This Week?</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-TGT">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">TGT</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Target Corp</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 65%">
+          <span class="conv-bar-fill" style="width:65%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $93 DCF fair value (vs ~$160 market)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Management has impressively re-accelerated growth, but after the forward P/E jumped from ~8 to 16.7 the stock looks considerably overvalued versus his $93 DCF fair value — Hold with downside risk.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Net sales up 5.3% and traffic up ~4% in the latest quarter; full-year guide raised to ~5% growth</li>
+        
+        <li>Trailing revenue ~$108B, up from ~$70B in 2017</li>
+        
+        <li>Management aiming to restore historical operating margins near 8%</li>
+        
+        <li>Inventory turnover ~8.2, below Walmart&#39;s ~12 and Costco&#39;s ~15 by design</li>
+        
+        <li>Forward P/E re-rated from ~8 to 16.7; downgraded to Hold on Aug 21</li>
+        
+        <li>Reiterates Hold — wants a significant pullback before buying</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=GYkvoCvL77Y" target="_blank" rel="noopener noreferrer">Target&#39;s Management Team Deserves Credit for Accelerating Revenue Growth Amid a Challenging Backdrop</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-TTWO">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">TTWO</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Take-Two Interactive Software Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 45%">
+          <span class="conv-bar-fill" style="width:45%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $202 DCF fair value (vs ~$207 market)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">GTA 6 plus digital-mix and pricing tailwinds should drive multi-year revenue and ROIC gains, and the stock trades at a multi-year-low forward P/E of 20 near his $202 DCF fair value — a buy, but low conviction given single-title concentration.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>GTA 6 launches in November with strong pre-orders and reviews; PC and online marketplace roll out later</li>
+        
+        <li>Revenue more than quadrupled since 2017 to ~$6.7B; management guides to $8B+ this year</li>
+        
+        <li>Digital-sales mix and higher average selling prices should make GTA 6 more profitable than GTA 5</li>
+        
+        <li>Operating margin negative since 2024 and ROIC collapsed during the extended development cycle</li>
+        
+        <li>Repeated delays raise doubts about the company&#39;s longer-term innovation pipeline</li>
+        
+        <li>Rates it a buy but deliberately keeps conviction low due to reliance on one game</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=QswotwkLAJ0" target="_blank" rel="noopener noreferrer">Is This the Biggest Stock Opportunity in Gaming History?</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-WMT">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">WMT</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Walmart Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 50%">
+          <span class="conv-bar-fill" style="width:50%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $70 DCF fair value (vs ~$110 market)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">The e-commerce leader with a huge store network, but his DCF shows it overvalued at $110 versus a $70 fair value, so he prefers Costco.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Largest by revenue at ~$736B across 10,000+ locations</li>
+        
+        <li>Clear e-commerce leader, gaining share against Amazon via store-based fulfillment</li>
+        
+        <li>Operating margin only ~4.4% (Costco ~3.82%) — typical thin retail margins</li>
+        
+        <li>DCF fair value $70 vs ~$110 price — looks overvalued</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=sF_4vrPXkUY" target="_blank" rel="noopener noreferrer">Should Investors Buy Costco Stock Instead of Walmart Stock? | COST Stock Analysis WMT Stock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+</section>
+<hr>
+
+
+<!-- ── Sources ───────────────────────────────────────────────────── -->
+<section id="sources">
+  <div class="section-title">Sources — 9 videos</div>
+  <div class="card" style="padding:0.5rem 1.5rem;">
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=GYkvoCvL77Y" target="_blank" rel="noopener noreferrer">Target&#39;s Management Team Deserves Credit for Accelerating Revenue Growth Amid a Challenging Backdrop</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=GjtaI05BM2A" target="_blank" rel="noopener noreferrer">Interesting News for Starbucks Stock Investors | SBUX Stock Analysis | BROS Stock</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=MgyF6WSteJE" target="_blank" rel="noopener noreferrer">I&#39;m Updating My Outlook on Alphabet Stock</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=QswotwkLAJ0" target="_blank" rel="noopener noreferrer">Is This the Biggest Stock Opportunity in Gaming History?</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Gareth Soloway — Pro Trader</div>
+      <a href="https://www.youtube.com/watch?v=YOKV8cD6YG0" target="_blank" rel="noopener noreferrer">S&amp;P 500 To 8,000 While Oil Breaks Down To $80</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Stocks with Josh</div>
+      <a href="https://www.youtube.com/watch?v=ZBv5kk-z2M8" target="_blank" rel="noopener noreferrer">The Final Push Higher This Week?</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=dLLAFMZ75BQ" target="_blank" rel="noopener noreferrer">Novo Nordisk Gives Uninspiring Outlook</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=s7G5dXn2VTY" target="_blank" rel="noopener noreferrer">Unfortunate News for Oracle Stock Investors | ORCL Stock Analysis</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=sF_4vrPXkUY" target="_blank" rel="noopener noreferrer">Should Investors Buy Costco Stock Instead of Walmart Stock? | COST Stock Analysis WMT Stock Analysis</a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- ── Disclaimer ────────────────────────────────────────────────── -->
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> This report is generated automatically by Claude (Anthropic) summarizing publicly available YouTube content.
+  All summaries are paraphrased — they are not verbatim quotes from creators.
+  Nothing here constitutes financial advice. Do your own research before making any investment decisions.
+  Stock Sentinel is a personal learning tool, not a financial advisory service.
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>
