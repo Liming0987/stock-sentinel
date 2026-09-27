@@ -6,6 +6,15 @@ on:
       - main
       - 'release/**'
 
+# Serialize deploys per branch. Two pushes in quick succession would otherwise
+# run overlapping builds that race to overwrite the shared `:latest` ECR tag and
+# then deploy to the same EC2 host — a stale `:latest` from the older build can
+# clobber the newer one (this caused a greenlet-less image to reach production).
+# cancel-in-progress: false queues the newer run until the current deploy finishes.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   id-token: write
   contents: read
