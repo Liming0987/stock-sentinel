@@ -459,12 +459,20 @@ class StrategyRunner:
 
         # Size the quantity against the LIMIT price (not the signal price): Alpaca
         # reserves buying power at the limit, so qty×limit must stay within available
-        # capital. Floor to 6 decimals so rounding never pushes the cost basis over
-        # buying power (which caused "insufficient buying power" rejections when the
-        # limit buffer lifted a $99.98 order to $100.49).
+        # capital.
+        #
+        # Whole shares only: Alpaca supports fractional quantities for MARKET orders
+        # exclusively — a fractional LIMIT order is rejected, which previously made
+        # nearly every near-close EOD entry fail to fill. Floor to an integer share
+        # count so the limit order is accepted; skip cleanly when the share price
+        # exceeds the available cap (can't afford even one whole share).
         import math
-        intended_qty = math.floor((available_usd / limit_price) * 1e6) / 1e6
-        intended_qty = max(intended_qty, 0.000001)
+        intended_qty = math.floor(available_usd / limit_price)
+        if intended_qty < 1:
+            raise CapitalCapReached(
+                f"{ticker}: limit ${limit_price:.2f}/share exceeds ${available_usd:.2f} "
+                f"room — can't buy a whole share (fractional limit orders are rejected)"
+            )
 
         order = self.alpaca.submit_order(
             symbol=ticker,
