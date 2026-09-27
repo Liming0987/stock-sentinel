@@ -8,7 +8,7 @@ from app.services.fundamentals_service import FundamentalsService
 router = APIRouter()
 _service = FundamentalsService()
 
-_sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+_sync_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
 _engine = create_engine(_sync_url, pool_size=2, max_overflow=2)
 
 

@@ -113,7 +113,7 @@ def _verify_db_on_startup(sender, **kwargs):
     import time
     from sqlalchemy import create_engine, text
 
-    sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    sync_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
     engine = create_engine(sync_url, pool_pre_ping=True)
 
     for attempt in range(1, 6):

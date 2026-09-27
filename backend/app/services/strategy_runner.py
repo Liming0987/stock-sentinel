@@ -42,7 +42,7 @@ class MissingExitError(RuntimeError):
 
 
 def _sync_db_url() -> str:
-    return settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    return settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
 
 
 def _is_market_open() -> bool:

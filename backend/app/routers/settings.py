@@ -65,7 +65,7 @@ async def test_sms(body: dict = None, db: AsyncSession = Depends(get_db)):
 
     # Fall back to saved DB value
     if not phone:
-        sync_url = app_settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+        sync_url = app_settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
 
         def _load_phone():
             return NotificationService(sync_url)._load_all().get("notification_phone", "")

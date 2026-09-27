@@ -45,7 +45,7 @@ def scrape_reddit(self: Task):
         price_service = PriceService()
 
         results = scraper.scrape_all()
-        sync_db_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+        sync_db_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
         engine = create_engine(sync_db_url)
 
         # Pull watchlist tickers and do a targeted search so watchlisted stocks
@@ -162,7 +162,7 @@ def scrape_stocktwits(self: Task):
         price_service = PriceService()
 
         results = scraper.scrape_trending()
-        sync_db_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+        sync_db_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
         engine = create_engine(sync_db_url)
 
         msgs_saved = 0
@@ -270,7 +270,7 @@ def refresh_fundamentals(self: Task):
     from app.models.stock import Stock
     from app.services.fundamentals_service import FundamentalsService
 
-    sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    sync_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
     engine = create_engine(sync_url)
     try:
         with Session(engine) as session:
@@ -291,7 +291,7 @@ def cleanup_strategy_signals(self: Task):
     from app.models.strategy_signal import StrategySignal
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=30)
-    sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    sync_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
     engine = create_engine(sync_url)
     try:
         with Session(engine) as session:
@@ -322,7 +322,7 @@ def run_strategies_eod(self: Task):
         msg = str(exc)
         logger.error(f"run_strategies_eod failed: {msg}")
         try:
-            sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+            sync_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
             NotificationService(sync_url).notify_error("run_strategies_eod", msg)
         except Exception:
             pass
@@ -348,7 +348,7 @@ def run_strategies_intraday(self: Task):
         msg = str(exc)
         logger.error(f"run_strategies_intraday failed: {msg}")
         try:
-            sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+            sync_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
             NotificationService(sync_url).notify_error("run_strategies_intraday", msg)
         except Exception:
             pass
@@ -376,7 +376,7 @@ def generate_daily_report(self: Task):
     today = date_type.today()
     today_start = datetime(today.year, today.month, today.day, tzinfo=timezone.utc)
 
-    sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    sync_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
     engine = create_engine(sync_url)
 
     try:

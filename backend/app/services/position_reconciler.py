@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 def _sync_db_url() -> str:
     from app.config import settings
-    return settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+    return settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
 
 
 class PositionReconciler:

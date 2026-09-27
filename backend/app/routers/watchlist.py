@@ -22,7 +22,7 @@ _fundamentals_service = FundamentalsService()
 _news_service = NewsService()
 _dcf_service = DCFService()
 
-_sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+_sync_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
 _sync_engine = create_engine(_sync_url, pool_size=2, max_overflow=2)
 
 

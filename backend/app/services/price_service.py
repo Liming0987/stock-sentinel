@@ -251,7 +251,7 @@ class PriceService:
 
         BOOTSTRAP_TICKERS = ["NVDA", "TSLA", "AAPL", "MSFT", "AMD", "META", "GOOG", "AMZN", "PLTR", "SOFI"]
 
-        sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+        sync_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
         engine = create_engine(sync_url)
         updated = 0
 

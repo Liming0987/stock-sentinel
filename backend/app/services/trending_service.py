@@ -102,7 +102,7 @@ class TrendingService:
         from app.models.mention import Mention, RedditPost
         from app.models.signal import TrendingSnapshot
 
-        sync_url = settings.database_url.replace("+asyncpg", "").replace("+aiopg", "")
+        sync_url = settings.database_url.replace("+asyncpg", "+psycopg2").replace("+aiopg", "+psycopg2")
         engine = create_engine(sync_url)
         now = datetime.now(timezone.utc)
         window_start = now - timedelta(hours=24)
