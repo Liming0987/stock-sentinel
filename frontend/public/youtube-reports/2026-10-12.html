@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock Sentinel — 2026-10-12</title>
+<style>
+/* ── Reset & variables ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #fafafa;
+  --surface:  #ffffff;
+  --border:   #e5e7eb;
+  --text:     #111827;
+  --muted:    #6b7280;
+  --faint:    #9ca3af;
+  --accent:   #2563eb;
+  --bullish:  #16a34a;
+  --bearish:  #dc2626;
+  --neutral:  #6b7280;
+  --mixed:    #d97706;
+  --radius:   8px;
+  --shadow:   0 1px 3px rgba(0,0,0,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #0f1117;
+    --surface: #1a1d27;
+    --border:  #2d3142;
+    --text:    #f0f2f5;
+    --muted:   #9ca3af;
+    --faint:   #6b7280;
+    --accent:  #60a5fa;
+    --bullish: #4ade80;
+    --bearish: #f87171;
+    --neutral: #9ca3af;
+    --mixed:   #fbbf24;
+    --shadow:  0 1px 3px rgba(0,0,0,.4);
+  }
+}
+/* ── Base ────────────────────────────────────────────────────────── */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 2rem 1.5rem;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; }
+h3 { font-size: 1rem; font-weight: 600; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin-bottom: 0.75rem; }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.3rem; }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+/* ── Card ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+/* ── Header ──────────────────────────────────────────────────────── */
+.report-header { margin-bottom: 2rem; }
+.report-header .kicker {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
+}
+.report-header h1 { margin-bottom: 0.3rem; }
+.meta-row { display: flex; gap: 1.5rem; flex-wrap: wrap; color: var(--muted); font-size: 0.82rem; margin-top: 0.5rem; }
+.meta-row span strong { color: var(--text); }
+/* ── Sentiment pill ──────────────────────────────────────────────── */
+.pill {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em; border-radius: 99px;
+}
+.pill-bullish  { background: color-mix(in srgb, var(--bullish) 15%, transparent); color: var(--bullish); }
+.pill-bearish  { background: color-mix(in srgb, var(--bearish) 15%, transparent); color: var(--bearish); }
+.pill-neutral  { background: color-mix(in srgb, var(--neutral) 15%, transparent); color: var(--neutral); }
+.pill-mixed    { background: color-mix(in srgb, var(--mixed)   15%, transparent); color: var(--mixed);   }
+/* ── Conviction bar ──────────────────────────────────────────────── */
+.conv-bar {
+  display: inline-block; width: 60px; height: 5px;
+  background: var(--border); border-radius: 3px; vertical-align: middle;
+  position: relative; overflow: hidden;
+}
+.conv-bar-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--accent); border-radius: 3px;
+}
+/* ── Ticker label ────────────────────────────────────────────────── */
+.ticker { font-family: "SF Mono", "Fira Code", ui-monospace, monospace; font-size: 0.9em; font-weight: 600; }
+/* ── Consensus table ─────────────────────────────────────────────── */
+.consensus-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.consensus-table thead th {
+  text-align: left; padding: 0.5rem 0.75rem;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+}
+.consensus-table tbody td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.consensus-table tbody tr:last-child td { border-bottom: none; }
+.consensus-table .thesis-cell { color: var(--muted); font-size: 0.82rem; max-width: 240px; }
+/* ── Section headings ────────────────────────────────────────────── */
+.section-title {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 0.75rem;
+}
+/* ── Channel cards ───────────────────────────────────────────────── */
+.channel-name { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-bottom: 0.25rem; }
+.video-title a { font-size: 1rem; font-weight: 600; color: var(--text); }
+.video-title a:hover { color: var(--accent); }
+.summary-text { color: var(--muted); font-size: 0.88rem; margin-top: 0.75rem; }
+.stock-chip-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+.stock-chip {
+  font-size: 0.75rem; padding: 0.2em 0.55em; border-radius: 4px;
+  border: 1px solid var(--border); color: var(--muted); background: var(--bg);
+}
+.stock-chip .ticker { color: var(--text); }
+/* ── By-stock blocks ─────────────────────────────────────────────── */
+.stock-block { margin-bottom: 0.75rem; }
+.stock-block-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+.stock-block-header h3 { font-size: 1rem; }
+.mention-item { padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.87rem; }
+.mention-item:last-child { border-bottom: none; }
+.mention-channel { font-weight: 600; color: var(--text); }
+.mention-thesis { color: var(--muted); margin-top: 0.2rem; }
+.mention-points { margin-top: 0.3rem; color: var(--muted); font-size: 0.83rem; }
+/* ── Sources ─────────────────────────────────────────────────────── */
+.source-item { font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+.source-item:last-child { border-bottom: none; }
+.source-channel { font-size: 0.75rem; color: var(--faint); }
+/* ── Disclaimer ──────────────────────────────────────────────────── */
+.disclaimer {
+  font-size: 0.78rem; color: var(--faint); line-height: 1.5;
+  border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 2rem;
+}
+/* ── Nav / TOC ───────────────────────────────────────────────────── */
+.toc { display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.8rem; margin-bottom: 2rem; }
+.toc a { color: var(--muted); }
+.toc a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ── Header ──────────────────────────────────────────────────── -->
+<div class="report-header">
+  <div class="kicker">Stock Sentinel</div>
+  <h1>Daily YouTube Digest — 2026-10-12</h1>
+  <div class="meta-row">
+    <span>Generated <strong>2026-10-12 13:49 UTC</strong></span>
+    <span><strong>9</strong> videos</span>
+    <span><strong>16</strong> stocks identified</span>
+    
+  </div>
+</div>
+
+<!-- ── TOC ──────────────────────────────────────────────────────── -->
+<nav class="toc" aria-label="Jump to section">
+  
+  <a href="#by-channel">By Channel</a>
+  <a href="#by-stock">By Stock</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<!-- ── Consensus picks ──────────────────────────────────────────── -->
+
+
+<!-- ── By channel ────────────────────────────────────────────────── -->
+<section id="by-channel">
+  <div class="section-title">By Channel — 9 videos analyzed</div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=-PP31UU49TA" target="_blank" rel="noopener noreferrer">
+        Consumer Sentiment is Falling
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-10-11 ·
+      14m
+    </div>
+
+    
+    <div class="summary-text">
+      This is a macro-focused video rather than a single-stock analysis. Parkev unpacks the University of Michigan consumer-sentiment report, which fell to 46.3 in October (down 1.8 points from September's 48.1 and below the 47.3 expectation), near record lows. He frames consumer sentiment as a leading indicator: sour consumers spend less, which slows sales, profits, and hiring, ultimately pressuring stock valuations.<br><br>He attributes the gloom primarily to a cumulative, roughly six-year surge in the cost of living since the 2020-2021 COVID stimulus. He distinguishes substitutable from non-substitutable inflation: price rises in goods you can swap away from (e.g., beef for chicken) hurt less, but the bulk of inflation has hit categories consumers cannot avoid — food (all food +2.7%), energy (gasoline +27%, fuel oil +52%, utility gas and electricity up), shelter (+3%), and hospital services (+5.2%). He cites the Iran war and earlier Russia-Ukraine invasion as drivers of elevated oil prices. A rare relief is motor-vehicle insurance, down 5.1%, though vehicle maintenance/repair is up 5.2% and may eventually push insurance back up.<br><br>Parkev connects this to equities: weak sentiment should especially hurt discretionary spending (vacations, new cars, theme-park trips like Disney). He references consumer-facing companies he follows — Walmart, Costco, Procter & Gamble, Pepsi, Coca-Cola — all reporting customers trading down to store brands and smaller package sizes, which pressures their profits and hiring.<br><br>He balances the bearishness with a key offset: the labor market remains very strong, with unemployment near 4% (near multi-decade lows), and employers are reluctant to fire. He says he will grow concerned only when mass layoffs begin outside AI-driven back-office roles, but for now expects weak sentiment to persist given few catalysts to lower the cost of living. The video closes with a plug for his book on his six-step investing framework.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-WMT"
+         class="stock-chip">
+        <span class="ticker">WMT</span>
+        
+           · Walmart Inc
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+      <a href="#stock-COST"
+         class="stock-chip">
+        <span class="ticker">COST</span>
+        
+           · Costco Wholesale
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+      <a href="#stock-PG"
+         class="stock-chip">
+        <span class="ticker">PG</span>
+        
+           · Procter &amp; Gamble
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Consumer sentiment at 46.3 is near record lows and acts as a leading indicator for spending and hiring</li>
+        
+        <li>Non-substitutable inflation (food, energy, shelter, healthcare) is driving the bulk of consumer pain</li>
+        
+        <li>Weak sentiment should pressure discretionary categories and the profits of consumer-facing companies</li>
+        
+        <li>A near-4% unemployment rate and reluctant-to-fire employers are the key offset keeping the economy stable</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=2X2q3QYGou8" target="_blank" rel="noopener noreferrer">
+        Why Is MongoDB Stock Crashing and is it a Buying Opportunity? | MDB STock Analysis
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-10-12 ·
+      6m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev examines the recent sell-off in MongoDB after its CEO was poached, forcing an abrupt leadership transition that spooked investors. He frames the disruption as a legitimate concern but notes management simultaneously announced an additional $1 billion share-buyback authorization, which he reads as a signal of insider optimism. The stock is down about 8% year to date despite a rally that preceded the CEO news.<br><br>The bulk of the video is a fundamentals review that is strongly positive. Trailing-12-month revenue sits at $2.78 billion, up from roughly $100 million in 2017, and management guided to at least 20% annual revenue growth for the next three years. Margins are improving in lockstep: cash-flow-from-operations-to-sales hit a record 24% (up from -30% in 2019), and R&D as a percentage of sales has fallen from 55% in 2017 to 28%, with room to keep declining as the company scales. Management expects GAAP profitability by the end of 2027. Parkev attributes the strength to organic demand and customers expanding into higher-value add-on services that lift average revenue per user.<br><br>On valuation he is more cautious. The forward P/E of 49 is near multi-year lows and, given 20%+ growth and expanding margins, he considers that a fair price. However, his updated discounted-cash-flow model (13.2% WACC) pegs fair value at $293 versus the current $386 price, implying the shares are overvalued on a DCF basis even while appearing fairly valued on forward P/E.<br><br>Reconciling the two methods, Parkev reiterates a hold rating rather than upgrading to a buy. He wants to see either continued operational outperformance at a similar price or a pullback closer to his $293 fair-value estimate before calling the dip a buying opportunity.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-MDB"
+         class="stock-chip">
+        <span class="ticker">MDB</span>
+        
+           · MongoDB Inc
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Strong, accelerating fundamentals do not automatically make a stock a buy if the price exceeds intrinsic value</li>
+        
+        <li>A large buyback authorization can signal management confidence even amid leadership disruption</li>
+        
+        <li>Cross-checking forward P/E against a DCF can produce conflicting signals that warrant a hold</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=6o0f9xYy1qQ" target="_blank" rel="noopener noreferrer">
+        Revenue Growth is Accelerating at 3M | MMM Stock Analysis
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-10-11 ·
+      7m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev reviews 3M, the industrial conglomerate, following several years of major restructuring driven partly by rising trade barriers, higher oil prices, and supply shortages. He argues the restructuring is beginning to pay off: organic revenue growth is accelerating and management is guiding to further margin expansion.<br><br>A central theme is management's deliberate divestiture of commodity-like businesses — segments where products are undifferentiated and compete only on cost. These divestitures cut total revenue from about $35 billion to roughly $25 billion but improved the quality and organic growth of the remaining portfolio. Parkev uses the grocery-store analogy (nobody cares about the brand of a banana) to explain why commodity businesses are unattractive and why shedding them is sensible.<br><br>On profitability, 3M's operating margin has historically hovered around 20% (down from roughly 25% a decade ago), but management is targeting 25% in the near term. The levers include roughly 1.5% portfolio-wide price increases to offset oil costs, reducing manufacturing facilities from about 110 to 100, and using AI to cut overhead in IT, HR, and finance functions.<br><br>On valuation, 3M trades at a forward P/E of 16.6, near the high end of its recent range, reflecting investor optimism about the turnaround. His DCF pegs fair value at $143 versus the current $163 price, so the stock looks slightly overvalued on both methods. Parkev concludes it is not yet a buying opportunity and would wait for either a further pullback or more evidence that the restructuring benefits are durable.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-MMM"
+         class="stock-chip">
+        <span class="ticker">MMM</span>
+        
+           · 3M Company
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Divesting undifferentiated commodity businesses can improve a conglomerate&#39;s growth and margin profile</li>
+        
+        <li>Margin-expansion levers (pricing, plant consolidation, AI overhead cuts) are driving the 3M turnaround</li>
+        
+        <li>A good turnaround story can still be a hold if the price already reflects the optimism</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=7kTPgbUy5eA" target="_blank" rel="noopener noreferrer">
+        Is Planet Labs an Undervalued Space Stock to Buy Right Now in October? | PL Stock Analysis
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-10-11 ·
+      11m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev dedicates a full deep-dive to Planet Labs (PL), whose stock is down nearly 50% over the prior six months, asking whether the dip is a buying opportunity. The business has turned cash-flow positive and holds nearly a billion dollars in cash, which he treats as a meaningful de-risking inflection.<br><br>Fundamentally he is very impressed. Year to date Planet Labs generated roughly $68 million in operating cash flow and $21 million in free cash flow even after higher capex to meet rising demand. It opportunistically raised about $120 million selling stock at an average $32 during the space-stock frenzy (shares now ~$17.50), leaving about $865 million in cash. Remaining performance obligations stood at $753 million (up ~9%), and the Q2 beat came partly from executing a contract earlier than expected. Management says executing existing contracts alone could recognize over $400 million in revenue over the next four quarters. Wall Street analysts project revenue growth of 47% in the fiscal year ending January 2027, 30% the following year, and 28% the year after. Demand is driven by nations securing their regions via satellite imagery, faster/clearer images, and added AI-driven analysis that lifts premium, higher-margin revenue. Operating margin is improving from -125% to -25%.<br><br>Where Parkev hesitates is valuation. The stock trades at a forward price-to-sales of 11 — roughly where it sat before the frenzy, having peaked above 30 during the SpaceX-IPO-driven euphoria. He draws extensive parallels to past frenzies he warned against (meme stocks 2020-21, EV stocks, quantum computing), arguing he instinctively avoids herd behavior and applies a higher threshold to such names.<br><br>His DCF pegs fair value at $5.50 versus the $17.50 market price. He concludes Planet Labs is an exciting, well-run, robustly growing business he would like to own — but not at these levels. He would want roughly another 50% drop to around $8 before meaningfully considering a purchase, and would not buy near current prices all else equal.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-PL"
+         class="stock-chip">
+        <span class="ticker">PL</span>
+        
+           · Planet Labs PBC
+        
+        <span class="pill pill-mixed" style="margin-left:0.25rem">M</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Turning cash-flow positive is a major de-risking inflection for a young, capital-intensive company</li>
+        
+        <li>Planet Labs has strong demand, growing RPO, and improving margins with AI-enhanced offerings</li>
+        
+        <li>Market frenzies (meme, EV, quantum, space) tend to produce severe overvaluation and subsequent crashes</li>
+        
+        <li>A great business is still not a buy above intrinsic value — he wants ~$8 before considering PL</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=ADlAND_uysQ" target="_blank" rel="noopener noreferrer">
+        Domino&#39;s Analysis: Value Stock or Value Trap? | DPZ Stock Analysis
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-10-11 ·
+      7m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev evaluates Domino's Pizza, asking whether it is a value stock or a value trap. He opens with positive developments: Domino's has secured the top position on both Uber Eats and DoorDash, and management reports customers ordering more frequently than ever. The offsetting concern is that average order value is falling — people order more often but spend less per order — which is management's near-term focus.<br><br>Much of the video celebrates Domino's long-term business quality. Revenue has more than doubled from under $2.5 billion in 2017 to over $5 billion, and sales kept climbing even after the post-COVID reopening, which Parkev finds impressive. He frames this through two concepts from his book: customer value proposition (Domino's is arguably the best value for feeding a family of four) and unit economics. On the latter, operating margin reached 19.3%, near a decade high, and return on invested capital is an exceptional 51% against a WACC under 15% — one of the best ROIC-to-WACC ratios in the industry — enabled by the franchise model.<br><br>On valuation, Domino's trades at a forward P/E of 14.72, near its cheapest in years. Parkev attributes the depressed multiple to macro headwinds: rising global interest rates increasing the opportunity cost of capital and pulling money toward bonds, plus falling consumer disposable income amid a higher cost of living.<br><br>His updated DCF values the business at $326, about 6% above the current market price, making the stock look slightly undervalued. He concludes that Domino's is a buying opportunity at current prices, calling it one of the better businesses he covers and saying he likes the risk-versus-reward here.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-DPZ"
+         class="stock-chip">
+        <span class="ticker">DPZ</span>
+        
+           · Domino&#39;s Pizza Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Customer value proposition plus strong unit economics are the hallmarks of a durable business</li>
+        
+        <li>The franchise model drives Domino&#39;s exceptional ROIC and enables uncapped expansion</li>
+        
+        <li>Macro headwinds (rates, weaker consumer) have pushed a high-quality name to an attractive valuation</li>
+        
+        <li>Domino&#39;s is a buy at current prices on favorable risk-versus-reward</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=Gvg-LurhONQ" target="_blank" rel="noopener noreferrer">
+        What&#39;s Going on With Nike Stock? | NKE Stock Deep Dive Part 1
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-10-11 ·
+      9m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev explains the ongoing trouble at Nike, whose stock keeps making new 52-week lows and is down over 46% in 2026. Management forecast a difficult current fiscal year and hinted the pain could extend into the next, so this video aims to clarify what is happening. He stresses the declining, year-over-year revenue is not a surprise — management expected it and said Q1 results were in line with their own guidance.<br><br>The weakness is concentrated in Nike Sportswear, the Jordan brand, and Greater China, while the Nike performance business is holding up. The most concerning issue is inventory: Nike is struggling to move aged, higher-volume sportswear footwear even after price cuts, discounts, and promotions, and that excess clogs wholesale partners' shelves and suppresses new orders. Parkev links this to a cautious consumer trading down to cheaper goods — a theme he hears from nearly every consumer-facing company he follows (Lululemon, Costco, Walmart, Target, Procter & Gamble, Clorox, Kimberly-Clark) — as shrinking disposable income and higher living costs squeeze discretionary spending.<br><br>Parkev notes one bright spot: where Nike delivers genuinely new products, it sees early success, and he argues the company has leaned too long on legacy franchises (Air Force 1s, Jordans) in new colorways rather than true innovation.<br><br>He then pushes back on Nike's plan to restore the scarcity model for Jordan retro launches by deliberately cutting their volume and frequency. He sees Jordan as Nike's best IP and highest-priced product (recent retros around $215), and worries that Jordan's cultural relevance is fading with younger generations, so reducing supply of a declining-relevance product seems backward. He concedes, though, that his prior judgment of Nike's direct-to-consumer push was wrong, so this scarcity strategy might still work out. Overall he is unenthusiastic about management's turnaround approach.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-NKE"
+         class="stock-chip">
+        <span class="ticker">NKE</span>
+        
+           · Nike Inc
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-LULU"
+         class="stock-chip">
+        <span class="ticker">LULU</span>
+        
+           · Lululemon Athletica
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Nike&#39;s revenue decline is expected by management and may persist into the next fiscal year</li>
+        
+        <li>Excess aged inventory is the core near-term problem, dragging on wholesale orders</li>
+        
+        <li>A cautious consumer trading down is hurting discretionary consumer-facing brands broadly</li>
+        
+        <li>Management&#39;s turnaround strategy — especially cutting Jordan supply — does not inspire confidence</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Daniel Pronk</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=H12AMJAOSE4" target="_blank" rel="noopener noreferrer">
+        The 3 Best Buying Opportunities I Can Find Now
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-10-11 ·
+      28m
+    </div>
+
+    
+    <div class="summary-text">
+      Daniel Pronk walks through the three stocks he has been actively buying over the past week, framing them as the best risk-reward opportunities he can find in the market: Construction Partners (ROAD), Brookfield Asset Management (BAM), and Amazon (AMZN).<br><br>His top conviction pick is Construction Partners, a U.S. roadway infrastructure builder now about 5.4% of his portfolio. The stock is down roughly 28-30% over a couple of months and nearly 40% from highs despite strong Q3 results (record revenue, ~30% year-over-year growth across most metrics, and a record $3.36 billion backlog). He rebuts the two main bear cases: on inflation/oil, management uses a pass-through cost-adjustment contract model (adopted after being burned in 2022) and EBITDA margins are now at an all-time-high guide of 5.4%; on interest rates, a 1% rise means only ~$17.6 million of added interest against ~$565 million EBITDA and ~$324 million owner free cash flow. He highlights 2030 guidance of 15% revenue CAGR to over $6 billion and 18% EBITDA CAGR to over $1 billion, trades it at ~15.2x owner FCF, and his DCF (19% EBITDA growth, 15 exit multiple) implies a $178 fair value and ~27% annual return, with a conservative case still yielding ~15%.<br><br>His second pick, Brookfield Asset Management, he calls the most attractive dividend-growth stock in the market: a ~4.4-4.5% yield management aims to grow 15% annually, a forward P/E of 21.7 versus a ~26.9 historical median, and fee-related earnings compounding ~16% since 2020 with a record 2026 fundraising year expected. He dismisses private-equity redemption fears as not applying to BAM given its continued capital inflows, and his conservative DCF implies ~17.3% annual returns, with he personally expecting ~15-20%. It is over 6% of his portfolio.<br><br>His third pick is Amazon, his second-largest position at over 13%. He argues it is clearly undervalued and should trade well over $300, firing on all cylinders with AWS as a standout. He interprets recent news bullishly: AWS raising GPU pricing 15% signals compute demand exceeds supply; a chip sale-leaseback is a liquidity move to fund buildout (not a demand-slowdown signal); AWS is considering 100+ U.S. data centers with ~$200B committed capex; and AWS's single-digit exposure to frontier models plus reliance on core compute/storage/inference makes its revenue diversified and steady. With analysts projecting AWS revenue of ~$177B in 2026 growing 37%/40%/35%, he values Amazon at ~17.5x price-to-operating-cash-flow (below its ~25 historical median) and his conservative DCF (20% OCF growth, 20 exit multiple) implies a $371 fair value and ~23.5% annual return.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-ROAD"
+         class="stock-chip">
+        <span class="ticker">ROAD</span>
+        
+           · Construction Partners Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-BAM"
+         class="stock-chip">
+        <span class="ticker">BAM</span>
+        
+           · Brookfield Asset Management
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-AMZN"
+         class="stock-chip">
+        <span class="ticker">AMZN</span>
+        
+           · Amazon.com Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Construction Partners is oversold on overblown inflation and interest-rate fears, with a pass-through model protecting margins</li>
+        
+        <li>Brookfield Asset Management is the best dividend-growth setup in the market, trading below its historical multiple</li>
+        
+        <li>Amazon is a clear undervaluation given accelerating AWS growth and below-average cash-flow multiples</li>
+        
+        <li>Falling share prices in high-quality businesses reduce risk and increase future returns — a reason to keep buying</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=Sw23L58CCNI" target="_blank" rel="noopener noreferrer">
+        Should Investors Buy Planet Labs Stock Instead of Rocket Lab Stock? | PL Stock vs. RKLB Stock
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-10-12 ·
+      9m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev runs a head-to-head comparison of two space stocks, Planet Labs (PL) and Rocket Lab (RKLB), against the backdrop of surging interest in the sector following SpaceX's IPO and falling launch technology costs. He compares the two across revenue, cash flow, R&D intensity, balance sheet, and valuation to decide which he would buy today.<br><br>On growth, Rocket Lab is the clear leader, with revenue soaring from under $50 million in 2022 to $769 million on a trailing-12-month basis, versus Planet Labs' $378 million. However, Parkev weighs cash flow more heavily for early-stage companies, and here Planet Labs wins decisively: it is cash-flow-positive at 31% of sales (and has been since roughly mid-2025), while Rocket Lab remains at -29%. He stresses that being cash-flow positive lets Planet Labs raise equity opportunistically rather than out of desperation, which it did by selling over $100 million of stock during the space-stock frenzy.<br><br>R&D remains elevated for both (Rocket Lab 39%, Planet Labs 34% of revenue) but is trending down as revenue grows, a healthy sign. On the balance sheet, Rocket Lab holds over $2.3 billion in cash versus Planet Labs' $867 million, but Parkev argues Planet Labs is actually in a better position because it adds cash each quarter while Rocket Lab burns it.<br><br>On valuation both look expensive. Rocket Lab trades at a forward price-to-sales of 31 versus Planet Labs' 11. His DCF pegs Planet Labs fair value at $5.52 (vs. $17.43 price) and Rocket Lab at $24 (vs. $70+ price), so he views the entire space sector — including SpaceX — as considerably overvalued. If forced to choose one, he picks Planet Labs for its more attractive valuation and positive operating cash flow, but makes clear he would not buy either at current prices.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-PL"
+         class="stock-chip">
+        <span class="ticker">PL</span>
+        
+           · Planet Labs PBC
+        
+        <span class="pill pill-mixed" style="margin-left:0.25rem">M</span>
+      </a>
+      
+      <a href="#stock-RKLB"
+         class="stock-chip">
+        <span class="ticker">RKLB</span>
+        
+           · Rocket Lab
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>For early-stage companies, operating cash flow matters more than headline revenue growth</li>
+        
+        <li>Being cash-flow positive lets a company raise equity opportunistically instead of out of desperation</li>
+        
+        <li>The entire space sector, including SpaceX, looks considerably overvalued right now</li>
+        
+        <li>Of PL and RKLB, Planet Labs is the better buy on valuation and cash flow — but neither is attractive at current prices</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+  <div class="card">
+    <div class="channel-name">Parkev Tatevosian, CFA</div>
+    <div class="video-title">
+      <a href="https://www.youtube.com/watch?v=bQjNidzf00c" target="_blank" rel="noopener noreferrer">
+        Best Semiconductor Stocks to Buy in October: Marvell vs. Qualcomm
+      </a>
+    </div>
+    <div style="font-size:0.75rem;color:var(--faint);margin-top:0.2rem">
+      2026-10-11 ·
+      6m
+    </div>
+
+    
+    <div class="summary-text">
+      Parkev compares two asset-light semiconductor companies, Marvell (MRVL) and Qualcomm (QCOM), to decide which is the better buy. He frames Marvell as already benefiting from the AI spending boom, while Qualcomm is on the cusp of capturing AI-driven data-center revenue but currently feels only the negative side effects.<br><br>On revenue, Qualcomm is the larger business at $44 billion TTM (up from roughly $25 billion a decade ago, less than a doubling), while Marvell has grown far faster to $9.45 billion TTM from under $1 billion ten years ago. Qualcomm's core smartphone segment is struggling as higher component prices weigh on handset purchases, but it has signed data-center semiconductor agreements with Meta Platforms and is in talks with others including Amazon — revenue Parkev expects to materialize in mid-to-late 2027 rather than 2026. He notes Qualcomm has successfully diversified before, into automotive and PCs.<br><br>On profitability, Qualcomm leads on absolute operating margin (23.5%) and ROIC (22.9%, up from 12% in 2017), while Marvell leads on improvement — operating margin swinging from -10% in 2025 to 16.8% TTM, and ROIC up to 12.6% from about 4% in 2017.<br><br>On valuation, Marvell trades at a forward P/E of 42.5, nearly three times Qualcomm's 14, reflecting its current AI exposure. Parkev's DCF values Marvell at $200 (vs. $287 price), so it looks overvalued on both methods, while Qualcomm's DCF fair value is $253 (vs. $181 price), making it undervalued on both. He concludes Qualcomm is the clear winner — better margins and ROIC, cheaper valuation, with a 2027 AI catalyst ahead — and discloses he already owns Qualcomm and has no interest in Marvell near current prices.
+    </div>
+    
+
+    
+    <div class="stock-chip-list">
+      
+      <a href="#stock-QCOM"
+         class="stock-chip">
+        <span class="ticker">QCOM</span>
+        
+           · Qualcomm Inc
+        
+        <span class="pill pill-bullish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-MRVL"
+         class="stock-chip">
+        <span class="ticker">MRVL</span>
+        
+           · Marvell Technology
+        
+        <span class="pill pill-bearish" style="margin-left:0.25rem">B</span>
+      </a>
+      
+      <a href="#stock-META"
+         class="stock-chip">
+        <span class="ticker">META</span>
+        
+           · Meta Platforms
+        
+        <span class="pill pill-neutral" style="margin-left:0.25rem">N</span>
+      </a>
+      
+    </div>
+    
+
+    
+    <div style="margin-top:0.75rem;">
+      <div style="font-size:0.75rem;font-weight:600;color:var(--faint);margin-bottom:0.3rem">Key takeaways</div>
+      <ul style="color:var(--muted);font-size:0.85rem;">
+        
+        <li>Qualcomm offers better margins, ROIC, and valuation than Marvell with an upcoming AI catalyst</li>
+        
+        <li>Marvell&#39;s AI growth is real but already more than priced in</li>
+        
+        <li>Qualcomm&#39;s 2027 data-center revenue from Meta and potential Amazon deals is the key forward catalyst</li>
+        
+        <li>Buy the company where valuation lags the fundamentals, not where it runs ahead</li>
+        
+      </ul>
+    </div>
+    
+  </div>
+  
+</section>
+<hr>
+
+<!-- ── By stock ──────────────────────────────────────────────────── -->
+
+<section id="by-stock">
+  <div class="section-title">By Stock — 16 mentioned today</div>
+  
+  <div class="card stock-block" id="stock-AMZN">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">AMZN</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Amazon.com Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Daniel Pronk</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 90%">
+          <span class="conv-bar-fill" style="width:90%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $371 fair value / ~23.5% annual return over 3 years (DCF); thinks it should be well over $300</span>
+        
+      </div>
+      
+      <div class="mention-thesis">His second-largest position: AWS growth and strong cash flows are accelerating while the stock trades below historical cash-flow multiples, which he sees as a clear AI-driven undervaluation.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>AWS raising GPU pricing 15%, signaling compute demand exceeds supply</li>
+        
+        <li>Chip sale-leaseback interpreted as a liquidity move to fund buildout, not a demand slowdown</li>
+        
+        <li>AWS considering 100+ U.S. data centers with ~$200B committed capex; single-digit frontier-model exposure makes revenue steady</li>
+        
+        <li>Analysts project AWS revenue ~$177B in 2026 growing 37%/40%/35%, potentially doubling to ~$334B by 2028</li>
+        
+        <li>Trades ~17.5x price-to-operating-cash-flow vs ~25 historical median; over 13% of his portfolio</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=H12AMJAOSE4" target="_blank" rel="noopener noreferrer">The 3 Best Buying Opportunities I Can Find Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-BAM">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">BAM</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Brookfield Asset Management</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Daniel Pronk</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 85%">
+          <span class="conv-bar-fill" style="width:85%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: ~17.3% annual return (conservative DCF); personally expects 15-20%</span>
+        
+      </div>
+      
+      <div class="mention-thesis">His pick for most attractive dividend-growth stock: a high ~4.4% yield targeted to grow 15% annually, trading well below its historical P/E with record fundraising expected.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>~4.4-4.5% dividend yield with a 15% annual dividend-growth goal (doubling roughly every 5 years)</li>
+        
+        <li>Forward P/E of 21.7 versus ~26.9 historical median; historically traded over 30x trailing earnings</li>
+        
+        <li>Fee-related earnings compounding ~16% since 2020 with a record 2026 fundraising year expected</li>
+        
+        <li>Private-equity redemption fears dismissed as not applying given continued capital inflows</li>
+        
+        <li>Over 6% of his portfolio; held in tax-deferred accounts to compound dividends tax-free</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=H12AMJAOSE4" target="_blank" rel="noopener noreferrer">The 3 Best Buying Opportunities I Can Find Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-COST">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">COST</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Costco Wholesale</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 20%">
+          <span class="conv-bar-fill" style="width:20%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Named among retailers observing consumers making trade-offs amid cost-of-living pressure; illustrative of the macro theme, not a stock call.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Cited as a company noting shoppers trading down and buying smaller package sizes</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=-PP31UU49TA" target="_blank" rel="noopener noreferrer">Consumer Sentiment is Falling</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-DPZ">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">DPZ</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Domino&#39;s Pizza Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 80%">
+          <span class="conv-bar-fill" style="width:80%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $326 DCF fair value (about 6% above current price)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">A high-quality franchise business with exceptional ROIC trading near multi-year-low valuation; his DCF puts it about 6% undervalued, so he calls it a buying opportunity.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Secured the top spot on both Uber Eats and DoorDash with rising order frequency</li>
+        
+        <li>Revenue more than doubled to over $5B since 2017 and kept growing post-reopening</li>
+        
+        <li>Operating margin near a decade high at 19.3% and ROIC of 51% versus WACC under 15%</li>
+        
+        <li>Forward P/E of 14.72 is near its cheapest in years, pressured by rising rates and weaker consumer spending</li>
+        
+        <li>DCF fair value of $326 is about 6% above the market price, making it slightly undervalued</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=ADlAND_uysQ" target="_blank" rel="noopener noreferrer">Domino&#39;s Analysis: Value Stock or Value Trap? | DPZ Stock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-LULU">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">LULU</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Lululemon Athletica</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 30%">
+          <span class="conv-bar-fill" style="width:30%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Cited alongside Nike as a consumer-facing brand pressured by the same cautious-consumer, trading-down dynamic.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Named as another apparel brand facing consumer caution and reduced discretionary spending</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=Gvg-LurhONQ" target="_blank" rel="noopener noreferrer">What&#39;s Going on With Nike Stock? | NKE Stock Deep Dive Part 1</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-MDB">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">MDB</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · MongoDB Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 80%">
+          <span class="conv-bar-fill" style="width:80%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $293 DCF fair value (current price $386)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Excellent and accelerating fundamentals (20%+ growth, record margins, nearing GAAP profitability) but the stock trades above his DCF fair value, so he keeps it a hold rather than a buy on the dip.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>CEO was poached, forcing a disruptive abrupt leadership transition that drove the sell-off</li>
+        
+        <li>Management added $1 billion to buyback authorization, read as a sign of optimism</li>
+        
+        <li>TTM revenue of $2.78B with guided 20%+ annual growth for three years and GAAP profitability expected by end of 2027</li>
+        
+        <li>Cash-flow-from-ops margin at a record 24% and R&amp;D/sales down to 28% from 55% in 2017</li>
+        
+        <li>Forward P/E of 49 looks fair, but DCF at 13.2% WACC implies overvaluation versus the current price</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=2X2q3QYGou8" target="_blank" rel="noopener noreferrer">Why Is MongoDB Stock Crashing and is it a Buying Opportunity? | MDB STock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-META">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">META</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Meta Platforms</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 20%">
+          <span class="conv-bar-fill" style="width:20%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Named as a signed data-center semiconductor customer for Qualcomm, supporting the 2027 AI revenue thesis; not analyzed as an investment.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Cited as a Qualcomm data-center chip customer underpinning future AI revenue</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=bQjNidzf00c" target="_blank" rel="noopener noreferrer">Best Semiconductor Stocks to Buy in October: Marvell vs. Qualcomm</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-MMM">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">MMM</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · 3M Company</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 70%">
+          <span class="conv-bar-fill" style="width:70%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $143 DCF fair value (current price $163)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">The restructuring is working — accelerating organic growth and expanding margins — but the stock trades slightly above his DCF fair value and at the high end of its P/E range, so he waits rather than buys.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Divesting commodity-like businesses cut revenue from ~$35B to ~$25B but lifted organic growth quality</li>
+        
+        <li>Operating margin around 21% with management targeting 25% via price hikes, fewer plants, and AI-driven overhead cuts</li>
+        
+        <li>Forward P/E of 16.6 sits near the high end of its recent range, reflecting turnaround optimism</li>
+        
+        <li>DCF fair value of $143 is slightly below the $163 market price; he would wait for a pullback or more proof</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=6o0f9xYy1qQ" target="_blank" rel="noopener noreferrer">Revenue Growth is Accelerating at 3M | MMM Stock Analysis</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-MRVL">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">MRVL</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Marvell Technology</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 75%">
+          <span class="conv-bar-fill" style="width:75%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $200 DCF fair value (current price $287)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Faster-growing and already capturing AI gains, but the valuation is well ahead of the fundamentals on both P/E and DCF, so Parkev has no interest near current prices.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Explosive growth to $9.45B TTM revenue from under $1B a decade ago</li>
+        
+        <li>Operating margin improved from -10% (2025) to 16.8% TTM; ROIC up to 12.6%</li>
+        
+        <li>Already benefiting from the AI spending boom</li>
+        
+        <li>Expensive at forward P/E of 42.5 (nearly 3x Qualcomm) and DCF fair value of $200 below the $287 price</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=bQjNidzf00c" target="_blank" rel="noopener noreferrer">Best Semiconductor Stocks to Buy in October: Marvell vs. Qualcomm</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-NKE">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">NKE</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Nike Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 70%">
+          <span class="conv-bar-fill" style="width:70%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Revenue is declining with aged inventory stuck in the channel and weakness in Sportswear, Jordan, and China; Parkev is unimpressed with management&#39;s turnaround strategy, particularly cutting Jordan supply.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Stock down over 46% in 2026 and repeatedly making new 52-week lows</li>
+        
+        <li>Weakness concentrated in Nike Sportswear, Jordan brand, and Greater China; performance business holds up</li>
+        
+        <li>Aged sportswear footwear not selling even after discounts, clogging wholesale channels and future orders</li>
+        
+        <li>New products succeed when offered, but Nike has over-relied on legacy franchises in new colorways</li>
+        
+        <li>Parkev disagrees with deliberately cutting Jordan retro volume given Jordan&#39;s fading relevance with younger buyers</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=Gvg-LurhONQ" target="_blank" rel="noopener noreferrer">What&#39;s Going on With Nike Stock? | NKE Stock Deep Dive Part 1</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-PG">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">PG</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Procter &amp; Gamble</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 20%">
+          <span class="conv-bar-fill" style="width:20%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Mentioned as a branded consumer-goods maker seeing shoppers switch to store brands; used to illustrate the trading-down trend, not analyzed.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Referenced as a branded company losing some share to cheaper store-brand alternatives</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=-PP31UU49TA" target="_blank" rel="noopener noreferrer">Consumer Sentiment is Falling</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-PL">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">PL</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Planet Labs PBC</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">2 mentions</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-mixed">mixed</span>
+        <span class="conv-bar" title="Conviction 80%">
+          <span class="conv-bar-fill" style="width:80%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $5.50 DCF fair value; would consider buying near $8 (current price $17.50)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">A well-run, robustly growing, newly cash-flow-positive business Parkev would like to own, but it trades far above his DCF fair value, so he would wait for roughly another 50% drop before buying.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Down nearly 50% over six months but turned cash-flow positive with ~$865M cash on hand</li>
+        
+        <li>Generated ~$68M operating cash flow and $21M free cash flow year to date despite higher capex</li>
+        
+        <li>RPO of $753M (up ~9%); executing existing contracts alone could recognize $400M+ revenue over four quarters</li>
+        
+        <li>Analysts project 47%/30%/28% revenue growth over the next three fiscal years; operating margin improving from -125% to -25%</li>
+        
+        <li>Forward P/S of 11 (peaked above 30 in the frenzy); DCF fair value of $5.50 implies waiting for ~$8</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=7kTPgbUy5eA" target="_blank" rel="noopener noreferrer">Is Planet Labs an Undervalued Space Stock to Buy Right Now in October? | PL Stock Analysis</a>
+      </div>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-mixed">mixed</span>
+        <span class="conv-bar" title="Conviction 65%">
+          <span class="conv-bar-fill" style="width:65%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $5.52 DCF fair value (current price $17.43)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">His preferred pick of the two on cheaper valuation and positive operating cash flow, but he still considers it considerably overvalued versus his DCF fair value and would not buy at the current price.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Cash-flow-positive at 31% of sales, positive since roughly mid-2025, unlike Rocket Lab</li>
+        
+        <li>Opportunistically sold over $100M of stock during the space frenzy rather than out of need</li>
+        
+        <li>Lower growth than Rocket Lab (TTM revenue $378M) but cheaper at forward P/S of 11</li>
+        
+        <li>Chosen as the better of the two to buy, though DCF fair value of $5.52 is far below the market price</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=Sw23L58CCNI" target="_blank" rel="noopener noreferrer">Should Investors Buy Planet Labs Stock Instead of Rocket Lab Stock? | PL Stock vs. RKLB Stock</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-QCOM">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">QCOM</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Qualcomm Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 85%">
+          <span class="conv-bar-fill" style="width:85%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $253 DCF fair value (current price $181)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Better margins and ROIC, cheaper on both P/E and DCF, with a 2027 AI data-center revenue catalyst from Meta and potential Amazon deals; his clear pick and a current holding.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Larger at $44B TTM revenue with operating margin 23.5% and ROIC 22.9%</li>
+        
+        <li>Core smartphone segment pressured by higher component prices, the current AI downside</li>
+        
+        <li>Data-center chip agreement signed with Meta and talks with Amazon, with revenue expected mid-to-late 2027</li>
+        
+        <li>Cheap at forward P/E of 14 and DCF fair value of $253 above the $181 price</li>
+        
+        <li>Parkev already owns Qualcomm and picks it over Marvell</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=bQjNidzf00c" target="_blank" rel="noopener noreferrer">Best Semiconductor Stocks to Buy in October: Marvell vs. Qualcomm</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-RKLB">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">RKLB</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Rocket Lab</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-bearish">bearish</span>
+        <span class="conv-bar" title="Conviction 60%">
+          <span class="conv-bar-fill" style="width:60%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $24 DCF fair value (current price $70+)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">Faster-growing with a bigger opportunity and larger cash pile, but it burns cash each quarter and trades at nearly 3x Planet Labs&#39; valuation, well above his DCF fair value.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Explosive revenue growth from under $50M (2022) to $769M TTM, the growth leader of the pair</li>
+        
+        <li>Negative operating cash flow at -29% of sales; still burning money each quarter</li>
+        
+        <li>Over $2.3B cash on the balance sheet but offset by ongoing cash burn</li>
+        
+        <li>Expensive at forward P/S of 31 and trades far above the $24 DCF estimate</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=Sw23L58CCNI" target="_blank" rel="noopener noreferrer">Should Investors Buy Planet Labs Stock Instead of Rocket Lab Stock? | PL Stock vs. RKLB Stock</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-ROAD">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">ROAD</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Construction Partners Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Daniel Pronk</span>
+        <span class="pill pill-bullish">bullish</span>
+        <span class="conv-bar" title="Conviction 95%">
+          <span class="conv-bar-fill" style="width:95%"></span>
+        </span>
+        
+        <span style="font-size:0.78rem;color:var(--muted)">Target: $178 fair value / ~27% annual return over 5 years (DCF)</span>
+        
+      </div>
+      
+      <div class="mention-thesis">His highest-conviction buy: a critical U.S. road-infrastructure builder down ~30% despite record results and backlog, with a pass-through cost model neutralizing the inflation bear case and large upside to his DCF.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Down ~30% in two months and ~40% from highs despite record Q3 revenue and ~30% year-over-year growth</li>
+        
+        <li>Record backlog of $3.36B and guidance raised every quarter for the past year</li>
+        
+        <li>Pass-through cost-adjustment contracts (since 2022) protect margins from oil/inflation; EBITDA margin at all-time-high 5.4% guide</li>
+        
+        <li>Interest-rate risk modest: 1% rise is ~$17.6M vs ~$565M EBITDA and ~$324M owner FCF</li>
+        
+        <li>Trades ~15.2x owner FCF; 2030 guide of 15% revenue and 18% EBITDA CAGR; now 5.4% of his portfolio</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=H12AMJAOSE4" target="_blank" rel="noopener noreferrer">The 3 Best Buying Opportunities I Can Find Now</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="card stock-block" id="stock-WMT">
+    <div class="stock-block-header">
+      <h3>
+        <span class="ticker">WMT</span>
+        
+          <span style="color:var(--muted);font-weight:400;font-size:0.9rem"> · Walmart Inc</span>
+          
+        
+      </h3>
+      <span style="font-size:0.8rem;color:var(--faint)">1 mention</span>
+    </div>
+    
+    <div class="mention-item">
+      <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+        <span class="mention-channel">Parkev Tatevosian, CFA</span>
+        <span class="pill pill-neutral">neutral</span>
+        <span class="conv-bar" title="Conviction 20%">
+          <span class="conv-bar-fill" style="width:20%"></span>
+        </span>
+        
+      </div>
+      
+      <div class="mention-thesis">Cited as a consumer-facing company reporting customers trading down to store brands and smaller package sizes; mentioned as evidence of the macro trend, not analyzed as an investment.</div>
+      
+      
+      <ul class="mention-points">
+        
+        <li>Referenced as reporting consumers trading down to cheaper store-brand products</li>
+        
+      </ul>
+      
+      <div style="font-size:0.75rem;color:var(--faint);margin-top:0.3rem">
+        <a href="https://www.youtube.com/watch?v=-PP31UU49TA" target="_blank" rel="noopener noreferrer">Consumer Sentiment is Falling</a>
+      </div>
+    </div>
+    
+  </div>
+  
+</section>
+<hr>
+
+
+<!-- ── Sources ───────────────────────────────────────────────────── -->
+<section id="sources">
+  <div class="section-title">Sources — 9 videos</div>
+  <div class="card" style="padding:0.5rem 1.5rem;">
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=-PP31UU49TA" target="_blank" rel="noopener noreferrer">Consumer Sentiment is Falling</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=2X2q3QYGou8" target="_blank" rel="noopener noreferrer">Why Is MongoDB Stock Crashing and is it a Buying Opportunity? | MDB STock Analysis</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=6o0f9xYy1qQ" target="_blank" rel="noopener noreferrer">Revenue Growth is Accelerating at 3M | MMM Stock Analysis</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=7kTPgbUy5eA" target="_blank" rel="noopener noreferrer">Is Planet Labs an Undervalued Space Stock to Buy Right Now in October? | PL Stock Analysis</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=ADlAND_uysQ" target="_blank" rel="noopener noreferrer">Domino&#39;s Analysis: Value Stock or Value Trap? | DPZ Stock Analysis</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=Gvg-LurhONQ" target="_blank" rel="noopener noreferrer">What&#39;s Going on With Nike Stock? | NKE Stock Deep Dive Part 1</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Daniel Pronk</div>
+      <a href="https://www.youtube.com/watch?v=H12AMJAOSE4" target="_blank" rel="noopener noreferrer">The 3 Best Buying Opportunities I Can Find Now</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=Sw23L58CCNI" target="_blank" rel="noopener noreferrer">Should Investors Buy Planet Labs Stock Instead of Rocket Lab Stock? | PL Stock vs. RKLB Stock</a>
+    </div>
+    
+    <div class="source-item">
+      <div class="source-channel">Parkev Tatevosian, CFA</div>
+      <a href="https://www.youtube.com/watch?v=bQjNidzf00c" target="_blank" rel="noopener noreferrer">Best Semiconductor Stocks to Buy in October: Marvell vs. Qualcomm</a>
+    </div>
+    
+  </div>
+</section>
+
+<!-- ── Disclaimer ────────────────────────────────────────────────── -->
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> This report is generated automatically by Claude (Anthropic) summarizing publicly available YouTube content.
+  All summaries are paraphrased — they are not verbatim quotes from creators.
+  Nothing here constitutes financial advice. Do your own research before making any investment decisions.
+  Stock Sentinel is a personal learning tool, not a financial advisory service.
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>
